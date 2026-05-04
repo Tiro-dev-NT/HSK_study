@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="HSK Master - Học từ vựng tiếng Trung Quốc từ HSK 1 đến HSK 6"/>
+  <title>HSK Master — Học Tiếng Trung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <!-- SIDEBAR (Desktop) -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">汉</span>
+      <span class="logo-text">HSK Master</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-page="home" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        <span>Tổng quan</span>
+      </a>
+      <a class="nav-item" data-page="dictionary" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Từ điển</span>
+      </a>
+      <a class="nav-item" data-page="learn" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span>Học từ</span>
+      </a>
+      <a class="nav-item" data-page="quiz" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Kiểm tra</span>
+      </a>
+      <a class="nav-item" data-page="vault" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Kho của tôi</span>
+      </a>
+      <a class="nav-item" data-page="feedback" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Góp ý</span>
+      </a>
+      <a class="nav-item" id="navSettings" href="#" onclick="openSettings();return false;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Cài đặt</span>
+      </a>
+    </nav>
+    <!-- HSK VERSION SWITCH -->
+    <div class="hsk-version-switch">
+      <div class="vsw-label">Phiên bản từ điển</div>
+      <div class="vsw-row">
+        <button class="vsw active" id="ver20" data-ver="2">HSK 2.0</button>
+        <button class="vsw" id="ver30" data-ver="3">HSK 3.0 <span class="badge-soon">Sắp ra mắt</span></button>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="btn-icon" id="themeToggle" title="Đổi theme">🌙</button>
+      <button class="btn-lang" id="langToggle">VI / EN</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- HEADER (Mobile) -->
+    <header class="mobile-header">
+      <span class="logo-icon">汉</span>
+      <span class="logo-text">HSK Master</span>
+      <div class="header-actions">
+        <button class="btn-icon" id="themeToggleMobile">🌙</button>
+        <button class="btn-lang-sm" id="langToggleMobile">VI</button>
+      </div>
+    </header>
+
+    <!-- PAGE: HOME -->
+    <section class="page active" id="page-home">
+      <div class="page-header">
+        <h1 data-vi="Chào mừng trở lại 👋" data-en="Welcome back 👋">Chào mừng trở lại 👋</h1>
+        <p data-vi="Hôm nay học gì?" data-en="What to study today?">Hôm nay học gì?</p>
+      </div>
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num" id="statLearned">0</div>
+          <div class="stat-label" data-vi="Đã học" data-en="Learned">Đã học</div>
+        </div>
+        <div class="stat-card streak-card" id="streakCard">
+          <div class="stat-num"><span id="statStreak">0</span><span class="streak-fire">🔥</span></div>
+          <div class="stat-label" data-vi="Chuỗi ngày" data-en="Day streak">Chuỗi ngày</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statDue">0</div>
+          <div class="stat-label" data-vi="Cần ôn" data-en="Due today">Cần ôn</div>
+        </div>
+      </div>
+      <!-- XP Progress bar -->
+      <div class="xp-bar-wrap" id="xpBarWrap">
+        <div class="xp-bar-header">
+          <span class="xp-label">⚡ <span id="xpTotal">0</span> XP</span>
+          <span class="xp-level-label" id="xpLevelLabel">Cấp 1</span>
+        </div>
+        <div class="xp-bar-track"><div class="xp-bar-fill" id="xpBarFill" style="width:0%"></div></div>
+        <div class="xp-bar-footer"><span id="xpThisWeek">+0 XP tuần này</span></div>
+      </div>
+      <!-- Streak calendar (last 7 days) -->
+      <div class="streak-calendar" id="streakCalendar"></div>
+      <h2 data-vi="Chọn cấp độ HSK" data-en="Choose HSK Level">Chọn cấp độ HSK</h2>
+      <div class="level-grid" id="levelGrid"></div>
+    </section>
+
+    <!-- PAGE: DICTIONARY -->
+    <section class="page" id="page-dictionary">
+      <div class="page-header">
+        <h1 data-vi="Từ điển" data-en="Dictionary">Từ điển</h1>
+      </div>
+      <div class="search-box">
+        <input type="text" id="dictSearch" placeholder="Tìm chữ Hán, pinyin hoặc nghĩa..." autocomplete="off"/>
+        <span class="search-icon">🔍</span>
+      </div>
+      <div class="search-tabs">
+        <button class="stab active" data-mode="all">Tất cả</button>
+        <button class="stab" data-mode="hanzi">Chữ Hán</button>
+        <button class="stab" data-mode="pinyin">Pinyin</button>
+        <button class="stab" data-mode="meaning">Nghĩa</button>
+        <button class="stab" data-mode="radical">🔑 Bộ thủ</button>
+      </div>
+      <!-- RADICAL BROWSER -->
+      <div class="radical-browser" id="radicalBrowser" style="display:none">
+        <div class="rad-label">Chọn bộ thủ để lọc từ:</div>
+        <div class="rad-grid" id="radGrid"></div>
+      </div>
+      <div class="dict-results" id="dictResults">
+        <p class="hint" data-vi="Nhập từ để tìm kiếm..." data-en="Type to search...">Nhập từ để tìm kiếm...</p>
+      </div>
+    </section>
+
+    <!-- PAGE: LEARN (DECK BROWSER + SESSION) -->
+    <section class="page" id="page-learn">
+
+      <!-- ① DECK BROWSER -->
+      <div id="deckBrowser">
+        <div class="page-header">
+          <h1 data-vi="Học từ vựng" data-en="Vocabulary">Học từ vựng</h1>
+          <div class="deck-view-toggle">
+            <button class="dvt-btn active" id="viewGrid" title="Grid">⊞</button>
+            <button class="dvt-btn" id="viewList" title="List">☰</button>
+          </div>
+        </div>
+        <!-- Tabs -->
+        <div class="deck-tabs">
+          <button class="dtab active" id="tabHSK">📚 Bộ thẻ HSK</button>
+          <button class="dtab" id="tabMine">⭐ Bộ thẻ của tôi</button>
+        </div>
+        <!-- HSK Decks -->
+        <div id="hskDecksPanel">
+          <div class="deck-grid" id="hskDeckGrid"></div>
+        </div>
+        <!-- My Decks -->
+        <div id="myDecksPanel" style="display:none">
+          <div class="my-decks-toolbar">
+            <button class="btn-primary btn-sm" id="btnCreateDeck">＋ Tạo bộ thẻ</button>
+            <label class="btn-sm btn-outline" id="btnImportDeck">📥 Import JSON
+              <input type="file" id="importDeckFile" accept=".json" style="display:none"/>
+            </label>
+          </div>
+          <div class="deck-grid" id="myDeckGrid"></div>
+        </div>
+      </div>
+
+      <!-- ② DECK DETAIL — Anki style -->
+      <div id="deckDetail" style="display:none">
+
+        <!-- Header -->
+        <div class="dd-header">
+          <button class="btn-back" id="backToBrowser">← Quay lại</button>
+          <div class="dd-header-info">
+            <h2 id="deckDetailTitle">HSK 1</h2>
+            <div class="dd-meta-row">
+              <span id="deckDetailCount">0 từ</span>
+              <span class="dd-dot">·</span>
+              <span id="deckDetailProgress">0% đã học</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SRS stats chips -->
+        <div class="deck-srs-stats" id="deckDetailSRS" style="display:none"></div>
+
+        <!-- ── PREVIEW CARD (large, Anki-style) ── -->
+        <div class="preview-card-wrap">
+          <button class="preview-nav prev" id="previewPrev" title="Từ trước">&#8592;</button>
+          <div class="preview-card" id="previewCard">
+            <div class="pc-hanzi" id="pcHanzi">你好</div>
+            <div class="pc-pinyin" id="pcPinyin">nǐ hǎo</div>
+            <button class="pc-tts" id="pcTts" title="Phát âm">🔊</button>
+            <div class="pc-meaning" id="pcMeaning" style="display:none"></div>
+            <div class="pc-tap-hint">Nhấn để xem nghĩa</div>
+          </div>
+          <button class="preview-nav next" id="previewNext" title="Từ tiếp">&#8594;</button>
+          <!-- Counter -->
+          <div class="preview-counter">
+            <span id="previewIdx">1</span> / <span id="previewTotal">0</span>
+          </div>
+        </div>
+
+        <!-- Keyboard shortcut hint -->
+        <div class="kb-hint">
+          <span>Phím tắt:</span>
+          <kbd>Space</kbd> lật · <kbd>←</kbd><kbd>→</kbd> chuyển · <kbd>Enter</kbd> học ngay
+        </div>
+
+        <!-- Mode chips (horizontal) -->
+        <div class="mode-chips-row">
+          <button class="mode-chip active" data-mode="flashcard">🃏 Flashcard</button>
+          <button class="mode-chip" data-mode="mcq">🎯 Trắc nghiệm</button>
+          <button class="mode-chip" data-mode="typing">⌨️ Điền từ</button>
+          <button class="mode-chip disabled" data-mode="listening">🎧 Nghe <small>Sắp có</small></button>
+        </div>
+
+        <!-- CTA button -->
+        <button class="btn-study-now" id="startLearn">🚀 Học ngay</button>
+
+        <!-- Word list -->
+        <div class="dd-word-list-header">
+          <span id="ddWordListTitle">Từ vựng trong bộ thẻ</span>
+          <span class="dd-wl-count" id="ddWordCount"></span>
+        </div>
+        <div class="dd-word-list" id="ddWordList"></div>
+
+      </div>
+
+
+      <!-- ── FLASHCARD MODE ── -->
+      <div class="flashcard-area" id="flashcardArea" style="display:none">
+        <div class="session-header">
+          <div class="fc-progress"><span id="fcCurrent">1</span> / <span id="fcTotal">10</span></div>
+          <div class="session-score">✅ <span id="fcCorrectCount">0</span> &nbsp; ❌ <span id="fcWrongCount">0</span></div>
+          <button class="btn-exit" id="exitLearn">✕</button>
+        </div>
+        <div class="flashcard" id="flashcard">
+          <div class="fc-front">
+            <div class="fc-hanzi" id="fcHanzi">你好</div>
+            <div class="fc-pinyin" id="fcPinyin">nǐ hǎo</div>
+            <div class="fc-tap" data-vi="Nhấn để xem nghĩa" data-en="Tap to reveal">Nhấn để xem nghĩa</div>
+          </div>
+          <div class="fc-back">
+            <div class="fc-hanzi-sm" id="fcHanziBack">你好</div>
+            <div class="fc-pinyin-back" id="fcPinyinBack"></div>
+            <button class="tts-inline-btn" id="fcTts">🔊</button>
+            <div class="fc-meaning-vi" id="fcMeaningVi"></div>
+            <div class="fc-meaning-en" id="fcMeaningEn"></div>
+            <div class="fc-ex-block" id="fcExBlock" style="display:none">
+              <div class="fc-ex-zh" id="fcExZh"></div>
+              <div class="fc-ex-py" id="fcExPy"></div>
+            </div>
+          </div>
+        </div>
+        <div class="srs-buttons" id="fcButtons" style="display:none">
+          <button class="srs-btn srs-again" id="btnAgain">❌ Không nhớ<small>1 phút</small></button>
+          <button class="srs-btn srs-hard" id="btnHard">😓 Khó<small>6 phút</small></button>
+          <button class="srs-btn srs-good" id="btnGood">😊 Ổn<small>10 phút</small></button>
+          <button class="srs-btn srs-easy" id="btnEasy">✅ Dễ<small>4 ngày</small></button>
+        </div>
+      </div>
+
+      <!-- ── TYPING MODE ── -->
+      <div class="typing-area" id="typingArea" style="display:none">
+        <div class="session-header">
+          <div class="fc-progress"><span id="tyCurrent">1</span> / <span id="tyTotal">10</span></div>
+          <div class="session-score">✅ <span id="tyCorrectCount">0</span> &nbsp; ❌ <span id="tyWrongCount">0</span></div>
+          <button class="btn-exit" id="exitTyping">✕</button>
+        </div>
+        <div class="typing-card" id="typingCard">
+          <div class="ty-label" data-vi="Nghĩa:" data-en="Meaning:">Nghĩa:</div>
+          <div class="ty-meaning" id="tyMeaning"></div>
+          <div class="ty-example" id="tyExample"></div>
+          <div class="ty-hint-label">Gợi ý:</div>
+          <div class="ty-hint" id="tyHint"></div>
+          <div class="ty-input-row">
+            <input type="text" id="tyInput" placeholder="Nhập pinyin hoặc chữ Hán..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
+            <button class="btn-primary" id="tySubmit">Kiểm tra</button>
+          </div>
+          <div class="ty-feedback" id="tyFeedback" style="display:none"></div>
+          <div class="ty-answer-block" id="tyAnswerBlock" style="display:none">
+            <div class="ty-ans-row">
+              <span class="ty-ans-hanzi" id="tyAnsHanzi"></span>
+              <span class="ty-ans-pinyin" id="tyAnsPinyin"></span>
+              <button class="tts-inline-btn" id="tyTts">🔊</button>
+            </div>
+            <div class="ty-ans-meaning" id="tyAnsMeaning"></div>
+            <div class="ty-ans-ex" id="tyAnsEx" style="display:none"></div>
+            <button class="btn-primary ty-next-btn" id="tyNext" style="margin-top:20px">Tiếp theo →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MCQ MODE ── -->
+      <div class="mcq-area" id="mcqArea" style="display:none">
+        <div class="session-header">
+          <div class="fc-progress"><span id="mcqCurrent">1</span> / <span id="mcqTotal">10</span></div>
+          <div class="session-score">✅ <span id="mcqCorrectCount">0</span> &nbsp; ❌ <span id="mcqWrongCount">0</span></div>
+          <button class="btn-exit" id="exitMcq">✕</button>
+        </div>
+        <div class="mcq-card">
+          <div class="mcq-question-word">
+            <div class="mcq-hanzi" id="mcqHanzi"></div>
+            <div class="mcq-pinyin" id="mcqPinyin"></div>
+            <button class="tts-inline-btn" id="mcqTts">🔊</button>
+          </div>
+          <div class="mcq-prompt" data-vi="Nghĩa của từ này là?" data-en="What does this word mean?">Nghĩa của từ này là?</div>
+          <div class="mcq-options" id="mcqOptions"></div>
+        </div>
+      </div>
+
+      <!-- ── SESSION COMPLETE ── -->
+      <div class="session-result" id="sessionResult" style="display:none">
+        <div class="sr-emoji" id="srEmoji">🎉</div>
+        <h2 class="sr-title" id="srTitle">Hoàn thành phiên học!</h2>
+        <div class="sr-stats-row">
+          <div class="sr-stat sr-correct"><span id="srCorrect">0</span><small>Đúng</small></div>
+          <div class="sr-stat sr-wrong"><span id="srWrong">0</span><small>Sai</small></div>
+          <div class="sr-stat"><span id="srPct">0%</span><small>Điểm</small></div>
+        </div>
+        <button class="btn-primary" id="learnAgainBtn">🔄 Học lại</button>
+      </div>
+    </section>
+
+
+    <!-- PAGE: QUIZ -->
+    <section class="page" id="page-quiz">
+      <div class="page-header">
+        <h1 data-vi="Kiểm tra từ vựng" data-en="Vocabulary Quiz">Kiểm tra từ vựng</h1>
+      </div>
+      <div class="quiz-setup" id="quizSetup">
+        <div class="setup-row">
+          <label data-vi="Cấp độ:" data-en="Level:">Cấp độ:</label>
+          <select id="quizLevel">
+            <option value="1">HSK 1</option>
+            <option value="2">HSK 2</option>
+            <option value="3">HSK 3</option>
+            <option value="4">HSK 4</option>
+            <option value="5">HSK 5</option>
+            <option value="6">HSK 6</option>
+            <option value="mix">Hỗn hợp</option>
+          </select>
+        </div>
+        <div class="setup-row">
+          <label data-vi="Số câu:" data-en="Questions:">Số câu:</label>
+          <select id="quizCount">
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+        <button class="btn-primary" id="startQuiz" data-vi="Bắt đầu kiểm tra" data-en="Start Quiz">Bắt đầu kiểm tra</button>
+      </div>
+      <div class="quiz-area" id="quizArea" style="display:none">
+        <div class="quiz-progress"><span id="qCurrent">1</span>/<span id="qTotal">10</span> — <span id="qScore">0</span> đúng</div>
+        <div class="quiz-card">
+          <div class="q-question" id="qQuestion"></div>
+          <div class="q-options" id="qOptions"></div>
+        </div>
+      </div>
+      <div class="quiz-result" id="quizResult" style="display:none">
+        <div class="result-circle"><span id="resultScore">0</span><small data-vi="điểm" data-en="pts">điểm</small></div>
+        <h2 id="resultMsg"></h2>
+        <button class="btn-primary" id="retryQuiz" data-vi="Làm lại" data-en="Try Again">Làm lại</button>
+      </div>
+    </section>
+
+    <!-- PAGE: VAULT (MY DECKS MANAGER) -->
+    <section class="page" id="page-vault">
+      <!-- Default view: deck list -->
+      <div id="vaultDeckList">
+        <div class="page-header">
+          <h1 data-vi="Kho của tôi" data-en="My Vault">Kho của tôi</h1>
+          <div style="display:flex;gap:8px">
+            <button class="btn-primary btn-sm" id="btnCreateDeck2">＋ Tạo bộ thẻ</button>
+            <label class="btn-sm btn-outline" id="btnImportDeck2">📥 Import
+              <input type="file" id="importDeckFile2" accept=".json" style="display:none"/>
+            </label>
+          </div>
+        </div>
+        <div class="vault-deck-list" id="vaultDeckItems"></div>
+      </div>
+      <!-- Edit deck view -->
+      <div id="vaultEditDeck" style="display:none">
+        <div class="page-header">
+          <button class="btn-back" id="backToVaultList">← Quay lại</button>
+          <h2 id="editDeckTitle">Sửa bộ thẻ</h2>
+        </div>
+        <div class="edit-deck-name-row">
+          <input type="text" id="editDeckNameInput" placeholder="Tên bộ thẻ..." class="deck-name-input"/>
+          <button class="btn-primary btn-sm" id="saveDeckName">💾 Lưu</button>
+        </div>
+        <div class="edit-deck-search">
+          <input type="text" id="editDeckSearch" placeholder="🔍 Tìm từ để thêm vào bộ thẻ..."/>
+          <div class="edit-search-results" id="editSearchResults"></div>
+        </div>
+        <div class="edit-deck-words">
+          <div class="edit-words-label">Từ trong bộ thẻ (<span id="editWordCount">0</span> từ)</div>
+          <div class="edit-words-list" id="editWordsList"></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:16px">
+          <button class="btn-primary" id="exportEditDeck">📤 Export</button>
+        </div>
+      </div>
+    </section>
+      <!-- PAGE: FEEDBACK -->
+      <section class="page" id="page-feedback">
+        <div class="page-header">
+          <h1>💬 Góp ý &amp; Đánh giá</h1>
+          <p style="color:var(--text2);font-size:14px">Chia sẻ ý kiến giúp chúng tôi cải thiện ứng dụng!</p>
+        </div>
+        <!-- Rating -->
+        <div class="feedback-section">
+          <div class="fb-section-title">⭐ Đánh giá tổng quát</div>
+          <div class="fb-stars" id="fbStars">
+            <span class="fb-star" data-v="1">★</span>
+            <span class="fb-star" data-v="2">★</span>
+            <span class="fb-star" data-v="3">★</span>
+            <span class="fb-star" data-v="4">★</span>
+            <span class="fb-star" data-v="5">★</span>
+          </div>
+        </div>
+        <!-- Category -->
+        <div class="feedback-section">
+          <div class="fb-section-title">🏷️ Loại góp ý</div>
+          <div class="fb-category-row">
+            <button class="fb-cat active" data-cat="feature">💡 Tính năng</button>
+            <button class="fb-cat" data-cat="bug">🐛 Báo lỗi</button>
+            <button class="fb-cat" data-cat="content">📚 Nội dung</button>
+            <button class="fb-cat" data-cat="ui">🎨 Giao diện</button>
+            <button class="fb-cat" data-cat="other">📦 Khác</button>
+          </div>
+        </div>
+        <!-- Message -->
+        <div class="feedback-section">
+          <div class="fb-section-title">📝 Nội dung góp ý</div>
+          <textarea id="fbMessage" class="fb-textarea" placeholder="Chia sẻ ý kiến, đề xuất của bạn..." rows="5"></textarea>
+        </div>
+        <!-- Submit -->
+        <button class="btn-primary w-full" id="fbSubmit">🚀 Gửi góp ý</button>
+        <div class="fb-success" id="fbSuccess" style="display:none">
+          <div class="fb-success-icon">🎉</div>
+          <div>Cảm ơn bạn đã góp ý!</div>
+        </div>
+        <!-- Previous feedbacks -->
+        <div class="fb-history" id="fbHistory"></div>
+      </section>
+    </main>
+
+  <!-- BOTTOM NAV (Mobile) -->
+  <nav class="bottom-nav">
+    <a class="bnav-item active" data-page="home" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      <span>Trang chủ</span>
+    </a>
+    <a class="bnav-item" data-page="dictionary" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Từ điển</span>
+    </a>
+    <a class="bnav-item" data-page="learn" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+      <span>Học từ</span>
+    </a>
+    <a class="bnav-item" data-page="quiz" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/></svg>
+      <span>Quiz</span>
+    </a>
+    <a class="bnav-item" data-page="vault" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <span>Kho</span>
+    </a>
+    <a class="bnav-item" data-page="feedback" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Góp ý</span>
+    </a>
+  </nav>
+
+  <!-- ADD TO DECK POPUP -->
+  <div class="popup-overlay" id="addToDeckPopup" style="display:none">
+    <div class="add-deck-popup">
+      <div class="adp-title">➕ Thêm "<span id="adpWord"></span>" vào...</div>
+      <div class="adp-list" id="adpDeckList"></div>
+      <button class="adp-new" id="adpCreateNew">＋ Tạo bộ thẻ mới</button>
+      <button class="adp-close" id="adpClose">✕</button>
+    </div>
+  </div>
+
+  <!-- WORD DETAIL MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+
+      <!-- Hanzi + TTS -->
+      <div class="modal-hanzi-row">
+        <div class="modal-hanzi" id="modalHanzi"></div>
+        <button class="modal-tts-btn" id="modalTtsBtn" title="Phát âm">&#128266;</button>
+      </div>
+      <div class="modal-pinyin" id="modalPinyin"></div>
+      <div class="modal-level" id="modalLevel"></div>
+
+      <!-- Stroke animation (HanziWriter) -->
+      <div class="modal-stroke-container" id="modalStrokeContainer" style="display:none">
+        <div id="hanziWriterTarget" style="margin:0 auto"></div>
+        <div class="stroke-btns">
+          <button class="stroke-btn" id="btnAnimateStroke">▶ Viết mẫu</button>
+          <button class="stroke-btn outline" id="btnPracticeStroke">✍️ Luyện viết</button>
+        </div>
+      </div>
+
+      <div class="modal-meanings">
+        <div class="meaning-row"><span class="lang-badge vi">VI</span><span id="modalVi"></span></div>
+        <div class="meaning-row"><span class="lang-badge en">EN</span><span id="modalEn"></span></div>
+      </div>
+      <div class="modal-example" id="modalExample" style="display:none">
+        <div class="ex-label">Ví dụ câu / Example</div>
+        <div class="ex-zh" id="exZh"></div>
+        <div class="ex-py" id="exPy"></div>
+        <div class="ex-vi" id="exVi"></div>
+        <div class="ex-en" id="exEn"></div>
+      </div>
+      <button class="btn-primary w-full" id="addToVault">➕ Thêm vào bộ thẻ</button>
+    </div>
+  </div>
+
+  <!-- Data core (HSK_DATA + LEVEL_INFO + HSK_META + TOPIC_META + helpers) -->
+  <script src="js/data.js"></script>
+  <!-- HSK vocabulary by level — add/edit each file independently -->
+  <script src="js/data/hsk1.js"></script>
+  <script src="js/data/hsk2.js"></script>
+  <script src="js/data/hsk3.js"></script>
+  <script src="js/data/hsk4.js"></script>
+  <script src="js/data/hsk5.js"></script>
+  <script src="js/data/hsk6.js"></script>
+  <!-- App scripts: app.js defines state vars, decks.js uses them -->
+  <script src="js/srs.js"></script>
+  <script src="js/radicals.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/decks.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+  <!-- ════ SETTINGS MODAL ════ -->
+  <div class="settings-overlay" id="settingsOverlay" style="display:none" onclick="if(event.target===this)closeSettings()">
+    <div class="settings-modal" id="settingsModal">
+      <div class="sm-header">
+        <h2>⚙️ Cài đặt</h2>
+        <button class="sm-close" onclick="closeSettings()">✕</button>
+      </div>
+
+      <!-- Section: Daily Limits -->
+      <div class="sm-section">
+        <div class="sm-section-title">📅 Giới hạn hàng ngày</div>
+        <div class="sm-row">
+          <label>Thẻ mới / ngày</label>
+          <div class="sm-control">
+            <input type="number" id="setNewPerDay" min="1" max="200" value="20">
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Ôn tập tối đa / ngày</label>
+          <div class="sm-control">
+            <input type="number" id="setMaxReviews" min="10" max="9999" value="200">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: New Cards -->
+      <div class="sm-section">
+        <div class="sm-section-title">🆕 Thẻ mới</div>
+        <div class="sm-row">
+          <label>Khoảng cách tốt nghiệp (ngày)</label>
+          <div class="sm-control">
+            <input type="number" id="setGraduateInterval" min="1" max="30" value="1">
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Khoảng cách "Dễ" (ngày)</label>
+          <div class="sm-control">
+            <input type="number" id="setEasyInterval" min="1" max="30" value="4">
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Thứ tự thẻ mới</label>
+          <div class="sm-control">
+            <select id="setNewOrder">
+              <option value="seq">Theo thứ tự (Sequential)</option>
+              <option value="random">Ngẫu nhiên</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Display -->
+      <div class="sm-section">
+        <div class="sm-section-title">🎨 Hiển thị</div>
+        <div class="sm-row">
+          <label>Tự động phát âm TTS</label>
+          <div class="sm-control">
+            <label class="sm-toggle"><input type="checkbox" id="setAutoTTS" checked><span class="sm-slider"></span></label>
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Hiển thị Pinyin (mặt trước)</label>
+          <div class="sm-control">
+            <label class="sm-toggle"><input type="checkbox" id="setShowPinyin" checked><span class="sm-slider"></span></label>
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Hiển thị nghĩa tiếng Anh</label>
+          <div class="sm-control">
+            <label class="sm-toggle"><input type="checkbox" id="setShowEnglish"><span class="sm-slider"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Study -->
+      <div class="sm-section">
+        <div class="sm-section-title">📚 Học tập</div>
+        <div class="sm-row">
+          <label>Mode học mặc định</label>
+          <div class="sm-control">
+            <select id="setDefaultMode">
+              <option value="flashcard">🃏 Flashcard</option>
+              <option value="mcq">🎯 Trắc nghiệm</option>
+              <option value="typing">⌨️ Điền từ</option>
+            </select>
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Gợi ý tự động sau (giây)</label>
+          <div class="sm-control">
+            <select id="setHintDelay">
+              <option value="0">Tắt</option>
+              <option value="3">3 giây</option>
+              <option value="5">5 giây</option>
+              <option value="10">10 giây</option>
+            </select>
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Âm thanh khi trả lời</label>
+          <div class="sm-control">
+            <label class="sm-toggle"><input type="checkbox" id="setSoundFx" checked><span class="sm-slider"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="sm-actions">
+        <button class="sm-btn-reset" onclick="resetSettings()">↺ Mặc định</button>
+        <button class="sm-btn-save" onclick="saveSettings()">💾 Lưu cài đặt</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

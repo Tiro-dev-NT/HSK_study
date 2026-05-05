@@ -18,3 +18,8 @@ package-lock.json
 
 # PDF/docs not needed in repo
 PDF,vocation/
+
+# Local planning / design docs (keep local only)
+implementation_plan.md
+hsk_game_spec.md
+*.local.md

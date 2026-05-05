@@ -10,9 +10,9 @@ var LEVEL_INFO = {
   1: { label:'HSK 1', count:140,  color:'#E74C3C', icon:'📕' },
   2: { label:'HSK 2', count:130,  color:'#E67E22', icon:'📙' },
   3: { label:'HSK 3', count:260,  color:'#F1C40F', icon:'📒' },
-  4: { label:'HSK 4', count:200,  color:'#27AE60', icon:'📗' },
-  5: { label:'HSK 5', count:200,  color:'#2980B9', icon:'📘' },
-  6: { label:'HSK 6', count:200,  color:'#8E44AD', icon:'📓' },
+  4: { label:'HSK 4', count:370,  color:'#27AE60', icon:'📗' },
+  5: { label:'HSK 5', count:305,  color:'#2980B9', icon:'📘' },
+  6: { label:'HSK 6', count:305,  color:'#8E44AD', icon:'📓' },
 };
 
 // Alias for backward compat (decks.js uses HSK_META)

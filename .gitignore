@@ -22,4 +22,5 @@ PDF,vocation/
 # Local planning / design docs (keep local only)
 implementation_plan.md
 hsk_game_spec.md
+DEPLOY_GUIDE.md
 *.local.md

@@ -480,13 +480,18 @@ function wireDecksUI() {
     // SRS queue for system decks; shuffle 20 for user decks
     if (deck.isSystem && typeof buildStudyQueue === 'function') {
       const { queue } = buildStudyQueue(words, SRS_NEW_PER_DAY);
-      fcDeck = queue.length ? queue : shuffle(words).slice(0, SRS_NEW_PER_DAY);
+      AppState.fcDeck = queue.length ? queue : shuffle(words).slice(0, SRS_NEW_PER_DAY);
     } else {
-      fcDeck = shuffle([...words]).slice(0, Math.min(words.length, 20));
+      AppState.fcDeck = shuffle([...words]).slice(0, Math.min(words.length, 20));
     }
 
-    fcIndex = 0;
-    fcSession = { correct: 0, wrong: 0 };
+    AppState.fcIndex   = 0;
+    AppState.fcSession = { correct: 0, wrong: 0 };
+
+    // Sync backward-compat aliases
+    fcDeck    = AppState.fcDeck;
+    fcIndex   = AppState.fcIndex;
+    fcSession = AppState.fcSession;
 
     // Hide setup, show session
     document.getElementById('deckDetail').style.display = 'none';

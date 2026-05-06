@@ -805,133 +805,153 @@
   <!-- ════ SETTINGS MODAL ════ -->
   <div class="settings-overlay" id="settingsOverlay" style="display:none" onclick="if(event.target===this)closeSettings()">
     <div class="settings-modal" id="settingsModal">
+
+      <!-- Header -->
       <div class="sm-header">
-        <h2>⚙️ Cài đặt</h2>
-        <button class="sm-close" onclick="closeSettings()">✕</button>
-      </div>
-
-      <!-- Section: Daily Limits -->
-      <div class="sm-section">
-        <div class="sm-section-title">📅 Giới hạn hàng ngày</div>
-        <div class="sm-row">
-          <label>Thẻ mới / ngày</label>
-          <div class="sm-control">
-            <input type="number" id="setNewPerDay" min="1" max="200" value="20">
-          </div>
-        </div>
-        <div class="sm-row">
-          <label>Ôn tập tối đa / ngày</label>
-          <div class="sm-control">
-            <input type="number" id="setMaxReviews" min="10" max="9999" value="200">
-          </div>
+        <h2>Cài đặt giao diện</h2>
+        <div class="sm-header-actions">
+          <button class="sm-reset-link" onclick="resetSettings()">↺ Mặc định</button>
+          <button class="sm-close" onclick="closeSettings()">✕</button>
         </div>
       </div>
 
-      <!-- Section: New Cards -->
+      <!-- Ngôn ngữ -->
       <div class="sm-section">
-        <div class="sm-section-title">🆕 Thẻ mới</div>
-        <div class="sm-row">
-          <label>Khoảng cách tốt nghiệp (ngày)</label>
-          <div class="sm-control">
-            <input type="number" id="setGraduateInterval" min="1" max="30" value="1">
-          </div>
-        </div>
-        <div class="sm-row">
-          <label>Khoảng cách "Dễ" (ngày)</label>
-          <div class="sm-control">
-            <input type="number" id="setEasyInterval" min="1" max="30" value="4">
-          </div>
-        </div>
-        <div class="sm-row">
-          <label>Thứ tự thẻ mới</label>
-          <div class="sm-control">
-            <select id="setNewOrder">
-              <option value="seq">Theo thứ tự (Sequential)</option>
-              <option value="random">Ngẫu nhiên</option>
-            </select>
-          </div>
+        <div class="sm-section-title">Ngôn ngữ</div>
+        <div class="sm-lang-row">
+          <button class="sm-lang-btn active" id="smLangVI" onclick="Settings.setLang('vi')">
+            <span class="sm-lang-flag">🇻🇳</span> Tiếng Việt
+          </button>
+          <button class="sm-lang-btn" id="smLangEN" onclick="Settings.setLang('en')">
+            <span class="sm-lang-flag">🇬🇧</span> English
+          </button>
         </div>
       </div>
 
-      <!-- Section: Display -->
+      <!-- Giao diện -->
       <div class="sm-section">
-        <div class="sm-section-title">🎨 Hiển thị</div>
         <div class="sm-row">
-          <label>Tự động phát âm TTS</label>
-          <div class="sm-control">
-            <label class="sm-toggle"><input type="checkbox" id="setAutoTTS" checked><span class="sm-slider"></span></label>
+          <div class="sm-row-info">
+            <span class="sm-row-label">Chế độ tối</span>
+            <span class="sm-row-desc">Chuyển đổi giao diện sáng/tối</span>
           </div>
+          <label class="sm-toggle"><input type="checkbox" id="setDarkMode" onchange="Settings.toggleDarkMode(this.checked)"><span class="sm-slider"></span></label>
         </div>
         <div class="sm-row">
-          <label>Hiển thị Pinyin (mặt trước)</label>
-          <div class="sm-control">
+          <div class="sm-row-info">
+            <span class="sm-row-label">Hiệu ứng âm thanh</span>
+            <span class="sm-row-desc">Âm thanh đúng/sai, lật trang</span>
+          </div>
+          <label class="sm-toggle"><input type="checkbox" id="setSoundFx" checked><span class="sm-slider"></span></label>
+        </div>
+        <div class="sm-row">
+          <div class="sm-row-info">
+            <span class="sm-row-label">Tự động phát âm</span>
+            <span class="sm-row-desc">Phát TTS khi hiện từ mới</span>
+          </div>
+          <label class="sm-toggle"><input type="checkbox" id="setAutoTTS" checked><span class="sm-slider"></span></label>
+        </div>
+      </div>
+
+      <!-- Màu chủ đạo -->
+      <div class="sm-section">
+        <div class="sm-section-title">Màu chủ đạo</div>
+        <div class="sm-color-row" id="smColorRow">
+          <button class="sm-color-dot active" data-color="#C0392B" style="background:#C0392B" onclick="Settings.setPrimaryColor('#C0392B','#E74C3C')"></button>
+          <button class="sm-color-dot" data-color="#2563EB" style="background:#2563EB" onclick="Settings.setPrimaryColor('#2563EB','#3B82F6')"></button>
+          <button class="sm-color-dot" data-color="#7C3AED" style="background:#7C3AED" onclick="Settings.setPrimaryColor('#7C3AED','#8B5CF6')"></button>
+          <button class="sm-color-dot" data-color="#059669" style="background:#059669" onclick="Settings.setPrimaryColor('#059669','#10B981')"></button>
+          <button class="sm-color-dot" data-color="#D97706" style="background:#D97706" onclick="Settings.setPrimaryColor('#D97706','#F59E0B')"></button>
+          <button class="sm-color-dot" data-color="#DB2777" style="background:#DB2777" onclick="Settings.setPrimaryColor('#DB2777','#EC4899')"></button>
+        </div>
+      </div>
+
+      <!-- Học tập (collapsible) -->
+      <div class="sm-section sm-collapsible" id="smStudySection">
+        <button class="sm-collapse-btn" onclick="Settings.toggleAdvanced()">
+          <span>Cài đặt học tập nâng cao</span>
+          <span class="sm-collapse-icon" id="smCollapseIcon">›</span>
+        </button>
+        <div class="sm-advanced" id="smAdvanced" style="display:none">
+          <div class="sm-row">
+            <label>Thẻ mới / ngày</label>
+            <div class="sm-control"><input type="number" id="setNewPerDay" min="1" max="200" value="20"></div>
+          </div>
+          <div class="sm-row">
+            <label>Ôn tập tối đa / ngày</label>
+            <div class="sm-control"><input type="number" id="setMaxReviews" min="10" max="9999" value="200"></div>
+          </div>
+          <div class="sm-row">
+            <label>Khoảng cách tốt nghiệp (ngày)</label>
+            <div class="sm-control"><input type="number" id="setGraduateInterval" min="1" max="30" value="1"></div>
+          </div>
+          <div class="sm-row">
+            <label>Khoảng cách "Dễ" (ngày)</label>
+            <div class="sm-control"><input type="number" id="setEasyInterval" min="1" max="30" value="4"></div>
+          </div>
+          <div class="sm-row">
+            <label>Thứ tự thẻ mới</label>
+            <div class="sm-control">
+              <select id="setNewOrder">
+                <option value="seq">Theo thứ tự</option>
+                <option value="random">Ngẫu nhiên</option>
+              </select>
+            </div>
+          </div>
+          <div class="sm-row">
+            <label>Hiển thị Pinyin</label>
             <label class="sm-toggle"><input type="checkbox" id="setShowPinyin" checked><span class="sm-slider"></span></label>
           </div>
-        </div>
-        <div class="sm-row">
-          <label>Hiển thị nghĩa tiếng Anh</label>
-          <div class="sm-control">
+          <div class="sm-row">
+            <label>Hiển thị tiếng Anh</label>
             <label class="sm-toggle"><input type="checkbox" id="setShowEnglish"><span class="sm-slider"></span></label>
           </div>
-        </div>
-      </div>
-
-      <!-- Section: Study -->
-      <div class="sm-section">
-        <div class="sm-section-title">📚 Học tập</div>
-        <div class="sm-row">
-          <label>Mode học mặc định</label>
-          <div class="sm-control">
-            <select id="setDefaultMode">
-              <option value="flashcard">🃏 Flashcard</option>
-              <option value="mcq">🎯 Trắc nghiệm</option>
-              <option value="typing">⌨️ Điền từ</option>
-            </select>
+          <div class="sm-row">
+            <label>Mode học mặc định</label>
+            <div class="sm-control">
+              <select id="setDefaultMode">
+                <option value="flashcard">🃏 Flashcard</option>
+                <option value="mcq">🎯 Trắc nghiệm</option>
+                <option value="typing">⌨️ Điền từ</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="sm-row">
-          <label>Gợi ý tự động sau (giây)</label>
-          <div class="sm-control">
-            <select id="setHintDelay">
-              <option value="0">Tắt</option>
-              <option value="3">3 giây</option>
-              <option value="5">5 giây</option>
-              <option value="10">10 giây</option>
-            </select>
+          <div class="sm-row">
+            <label>Chế độ Flashcard</label>
+            <div class="sm-control">
+              <select id="setSrsMode">
+                <option value="simple">2 nút</option>
+                <option value="advanced">4 nút SRS</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="sm-row">
-          <label>Âm thanh khi trả lời</label>
-          <div class="sm-control">
-            <label class="sm-toggle"><input type="checkbox" id="setSoundFx" checked><span class="sm-slider"></span></label>
+          <div class="sm-row">
+            <label>Gợi ý Điền từ</label>
+            <div class="sm-control">
+              <select id="setHintLevel">
+                <option value="easy">Dễ</option>
+                <option value="medium">Vừa</option>
+                <option value="hard">Khó</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="sm-row">
-          <label>Chế độ Flashcard</label>
-          <div class="sm-control">
-            <select id="setSrsMode">
-              <option value="simple">Đơn giản (2 nút)</option>
-              <option value="advanced">Đầy đủ (4 nút SRS)</option>
-            </select>
+          <div class="sm-row">
+            <label>Gợi ý sau (giây)</label>
+            <div class="sm-control">
+              <select id="setHintDelay">
+                <option value="0">Tắt</option>
+                <option value="3">3 giây</option>
+                <option value="5">5 giây</option>
+                <option value="10">10 giây</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="sm-row">
-          <label>Gợi ý Điền từ</label>
-          <div class="sm-control">
-            <select id="setHintLevel">
-              <option value="easy">Dễ (chữ đầu mỗi âm)</option>
-              <option value="medium">Vừa (chữ đầu + gạch)</option>
-              <option value="hard">Khó (không gợi ý)</option>
-            </select>
+          <div class="sm-adv-save">
+            <button class="sm-btn-save" onclick="saveSettings()">💾 Lưu</button>
           </div>
         </div>
       </div>
 
-      <!-- Actions -->
-      <div class="sm-actions">
-        <button class="sm-btn-reset" onclick="resetSettings()">↺ Mặc định</button>
-        <button class="sm-btn-save" onclick="saveSettings()">💾 Lưu cài đặt</button>
-      </div>
     </div>
   </div>
 

@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════
-// GAMES.JS — Game Center: Speed Quiz + Memory Flip
+// GAMES.JS — Game Center: Speed Quiz + Memory Flip + Pinyin Wordle
 // • Reads: AppState.srsData, getAllWords(), shuffle()
 // • Writes: XP via addXP()
 // ═══════════════════════════════════════════════════════
@@ -18,6 +18,7 @@ var Games = {
     document.getElementById('gamesHub').style.display = '';
     document.getElementById('gameSpeedQuiz').style.display = 'none';
     document.getElementById('gameMemory').style.display = 'none';
+    document.getElementById('gameWordle').style.display = 'none';
   },
 
   setup: function() {
@@ -27,6 +28,7 @@ var Games = {
         var game = card.dataset.game;
         if (game === 'speed-quiz') SpeedQuiz.start();
         else if (game === 'memory') MemoryFlip.start();
+        else if (game === 'wordle') PinyinWordle.start();
       });
     });
   },
@@ -272,5 +274,273 @@ var MemoryFlip = {
     document.getElementById('memResult').style.display   = '';
     document.getElementById('memFinalMoves').textContent = MemoryFlip.moves;
     document.getElementById('memXPEarned').textContent   = xpEarned;
+  },
+};
+
+// ═══════════════════════════════════════════════════════
+// PINYIN WORDLE — Guess the 2-syllable pinyin in 5 tries
+// ═══════════════════════════════════════════════════════
+
+var PinyinWordle = {
+  answer:      null,   // { word, syllables: ['ni','hao'] }
+  guesses:     [],
+  current:     [],     // syllables being built for current guess
+  maxAttempts: 5,
+  pool:        null,   // cached answer pool
+  keyboard:    null,   // sorted unique bare syllables
+
+  // ── Strip tone diacritics → bare ASCII syllable ────
+  _stripTone: function(s) {
+    return s.toLowerCase()
+      .replace(/[āáǎà]/g, 'a')
+      .replace(/[ēéěè]/g, 'e')
+      .replace(/[īíǐì]/g, 'i')
+      .replace(/[ōóǒò]/g, 'o')
+      .replace(/[ūúǔù]/g, 'u')
+      .replace(/[ǖǘǚǜü]/g, 'u');
+  },
+
+  // ── Split pinyin string into exactly charCount bare syllables ──
+  _splitPinyin: function(pinyinStr, charCount) {
+    var parts = pinyinStr.trim().split(/\s+/);
+    if (parts.length === charCount) {
+      return parts.map(PinyinWordle._stripTone);
+    }
+    if (charCount === 2 && parts.length === 1) {
+      var bare = PinyinWordle._stripTone(pinyinStr.replace(/\s/g, ''));
+      // Try each split point; require second part to start with initial + vowel
+      var initials = ['zh','ch','sh','b','p','m','f','d','t','n','l',
+                      'g','k','h','j','q','x','r','z','c','s','y','w'];
+      var vowels = 'aeiou';
+      for (var i = 2; i < bare.length; i++) {
+        var second = bare.slice(i);
+        for (var k = 0; k < initials.length; k++) {
+          if (second.indexOf(initials[k]) === 0) {
+            var after = second.slice(initials[k].length);
+            if (after.length > 0 && vowels.indexOf(after[0]) !== -1) {
+              return [bare.slice(0, i), second];
+            }
+          }
+        }
+      }
+    }
+    return null;
+  },
+
+  // ── Build answer pool from HSK 1–3 2-char words ───
+  _buildPool: function() {
+    if (PinyinWordle.pool) return;
+    var pool = [];
+    var all = getAllWords();
+    all.forEach(function(w) {
+      if (w.h.length !== 2) return;
+      if ((w.level || 1) > 3) return;
+      var syllables = PinyinWordle._splitPinyin(w.p, 2);
+      if (!syllables || !syllables[0] || !syllables[1]) return;
+      pool.push({ word: w, syllables: syllables });
+    });
+    PinyinWordle.pool = pool;
+
+    var sylSet = {};
+    pool.forEach(function(p) {
+      sylSet[p.syllables[0]] = true;
+      sylSet[p.syllables[1]] = true;
+    });
+    PinyinWordle.keyboard = Object.keys(sylSet).sort();
+  },
+
+  // ── Start a new game ──────────────────────────────
+  start: function() {
+    PinyinWordle._buildPool();
+
+    ['gamesHub','gameSpeedQuiz','gameMemory'].forEach(function(id) {
+      document.getElementById(id).style.display = 'none';
+    });
+    document.getElementById('gameWordle').style.display = '';
+
+    var pool = PinyinWordle.pool;
+    PinyinWordle.answer  = pool[Math.floor(Math.random() * pool.length)];
+    PinyinWordle.guesses = [];
+    PinyinWordle.current = [];
+
+    document.getElementById('wdResult').style.display  = 'none';
+    document.getElementById('wdMessage').textContent   = '';
+    document.getElementById('wdAttempts').textContent  = '0';
+
+    var w = PinyinWordle.answer.word;
+    var meaning = AppState.lang === 'vi' ? w.v : w.e;
+    document.getElementById('wdHint').innerHTML =
+      '<span class="wd-hanzi">' + w.h + '</span>' +
+      '<span class="wd-meaning">(' + meaning + ')</span>';
+
+    PinyinWordle._buildGrid();
+    PinyinWordle._buildKeyboard();
+
+    document.getElementById('wdExit').onclick     = function() { Games._showHub(); };
+    document.getElementById('wdPlayAgain').onclick = function() { PinyinWordle.start(); };
+    document.getElementById('wdBackHub').onclick   = function() { Games._showHub(); };
+  },
+
+  // ── Build 5×2 grid ───────────────────────────────
+  _buildGrid: function() {
+    var grid = document.getElementById('wdGrid');
+    grid.innerHTML = '';
+    for (var row = 0; row < PinyinWordle.maxAttempts; row++) {
+      var rowEl = document.createElement('div');
+      rowEl.className = 'wd-row';
+      for (var col = 0; col < 2; col++) {
+        var cell = document.createElement('div');
+        cell.className = 'wd-cell';
+        cell.id = 'wdCell' + row + '_' + col;
+        rowEl.appendChild(cell);
+      }
+      grid.appendChild(rowEl);
+    }
+  },
+
+  // ── Build syllable keyboard ───────────────────────
+  _buildKeyboard: function() {
+    var kb = document.getElementById('wdKeyboard');
+    kb.innerHTML = '';
+
+    // Current-guess input slots
+    var inputArea = document.createElement('div');
+    inputArea.className = 'wd-input-area';
+
+    var slot0 = document.createElement('div');
+    slot0.className = 'wd-input-slot'; slot0.id = 'wdSlot0'; slot0.textContent = '?';
+    var slot1 = document.createElement('div');
+    slot1.className = 'wd-input-slot'; slot1.id = 'wdSlot1'; slot1.textContent = '?';
+
+    var submitBtn = document.createElement('button');
+    submitBtn.className = 'btn-primary wd-action-btn';
+    submitBtn.id = 'wdSubmit';
+    submitBtn.textContent = '✓ Thử';
+    submitBtn.disabled = true;
+    submitBtn.onclick = PinyinWordle._submit;
+
+    var clearBtn = document.createElement('button');
+    clearBtn.className = 'btn-secondary wd-action-btn';
+    clearBtn.id = 'wdClear';
+    clearBtn.textContent = '✕ Xóa';
+    clearBtn.onclick = function() {
+      PinyinWordle.current = [];
+      PinyinWordle._updateSlots();
+    };
+
+    inputArea.appendChild(slot0);
+    inputArea.appendChild(slot1);
+    inputArea.appendChild(submitBtn);
+    inputArea.appendChild(clearBtn);
+    kb.appendChild(inputArea);
+
+    // Syllable buttons
+    var syllablesDiv = document.createElement('div');
+    syllablesDiv.className = 'wd-syllables';
+    PinyinWordle.keyboard.forEach(function(syl) {
+      var btn = document.createElement('button');
+      btn.className = 'wd-key';
+      btn.dataset.syl = syl;
+      btn.textContent = syl;
+      btn.onclick = function() {
+        if (PinyinWordle.current.length < 2) {
+          PinyinWordle.current.push(syl);
+          PinyinWordle._updateSlots();
+        }
+      };
+      syllablesDiv.appendChild(btn);
+    });
+    kb.appendChild(syllablesDiv);
+  },
+
+  // ── Sync input slot display ───────────────────────
+  _updateSlots: function() {
+    var s0 = document.getElementById('wdSlot0');
+    var s1 = document.getElementById('wdSlot1');
+    var sb = document.getElementById('wdSubmit');
+    if (s0) { s0.textContent = PinyinWordle.current[0] || '?'; s0.className = 'wd-input-slot' + (PinyinWordle.current[0] ? ' wd-filled' : ''); }
+    if (s1) { s1.textContent = PinyinWordle.current[1] || '?'; s1.className = 'wd-input-slot' + (PinyinWordle.current[1] ? ' wd-filled' : ''); }
+    if (sb) sb.disabled = PinyinWordle.current.length < 2;
+  },
+
+  // ── Submit a guess ────────────────────────────────
+  _submit: function() {
+    if (PinyinWordle.current.length < 2) return;
+    var guess  = PinyinWordle.current.slice();
+    var answer = PinyinWordle.answer.syllables;
+    var row    = PinyinWordle.guesses.length;
+    var result = PinyinWordle._compare(guess, answer);
+
+    PinyinWordle.guesses.push({ guess: guess, result: result });
+    PinyinWordle.current = [];
+
+    // Fill grid cells
+    result.forEach(function(r, col) {
+      var cell = document.getElementById('wdCell' + row + '_' + col);
+      if (!cell) return;
+      cell.textContent = guess[col];
+      cell.classList.add(r === 2 ? 'wd-correct' : r === 1 ? 'wd-present' : 'wd-absent');
+    });
+
+    PinyinWordle._colorKeys(guess, result);
+    PinyinWordle._updateSlots();
+
+    var attEl = document.getElementById('wdAttempts');
+    if (attEl) attEl.textContent = PinyinWordle.guesses.length;
+
+    if (result.every(function(r) { return r === 2; })) {
+      PinyinWordle._finish(true);
+    } else if (PinyinWordle.guesses.length >= PinyinWordle.maxAttempts) {
+      PinyinWordle._finish(false);
+    }
+  },
+
+  // ── Compare guess vs answer: 2=correct, 1=present, 0=absent ──
+  _compare: function(guess, answer) {
+    var result = [0, 0];
+    var pool   = answer.slice();
+    for (var i = 0; i < 2; i++) {
+      if (guess[i] === answer[i]) { result[i] = 2; pool[i] = null; }
+    }
+    for (var i = 0; i < 2; i++) {
+      if (result[i] === 2) continue;
+      var idx = pool.indexOf(guess[i]);
+      if (idx !== -1) { result[i] = 1; pool[idx] = null; }
+    }
+    return result;
+  },
+
+  // ── Update keyboard key colors ────────────────────
+  _colorKeys: function(guess, result) {
+    var prio = { 'wd-correct': 3, 'wd-present': 2, 'wd-absent': 1 };
+    guess.forEach(function(syl, i) {
+      var cls = result[i] === 2 ? 'wd-correct' : result[i] === 1 ? 'wd-present' : 'wd-absent';
+      document.querySelectorAll('.wd-key[data-syl="' + syl + '"]').forEach(function(btn) {
+        var curr = btn.classList.contains('wd-correct') ? 3
+                 : btn.classList.contains('wd-present') ? 2
+                 : btn.classList.contains('wd-absent')  ? 1 : 0;
+        if ((prio[cls] || 0) > curr) {
+          btn.classList.remove('wd-correct', 'wd-present', 'wd-absent');
+          btn.classList.add(cls);
+        }
+      });
+    });
+  },
+
+  // ── Win / lose ────────────────────────────────────
+  _finish: function(won) {
+    var w = PinyinWordle.answer.word;
+    document.getElementById('wdMessage').textContent = won ? '🎉 Chính xác!' : '😢 Hết lượt!';
+    var xp = won ? Math.max(20, 50 - (PinyinWordle.guesses.length - 1) * 8) : 0;
+    if (xp > 0 && typeof addXP === 'function') addXP(xp);
+
+    setTimeout(function() {
+      document.getElementById('wdResultEmoji').textContent = won ? '🏆' : '😢';
+      document.getElementById('wdResultTitle').textContent = won ? 'Xuất sắc! +' + xp + ' XP' : 'Chưa được!';
+      document.getElementById('wdAnswerReveal').innerHTML  =
+        'Đáp án: <strong>' + w.h + '</strong> — ' +
+        PinyinWordle.answer.syllables.join(' · ') + '<br><small>(' + (AppState.lang === 'vi' ? w.v : w.e) + ')</small>';
+      document.getElementById('wdResult').style.display = '';
+    }, 600);
   },
 };

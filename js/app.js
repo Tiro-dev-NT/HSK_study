@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['setupFeedback',        function() { Feedback.setup(); }],
     ['loadSettings',         function() { Settings.load(); }],
     ['setupGames',           function() { if (typeof Games !== 'undefined') Games.setup(); }],
+    ['setupAuth',            function() { if (typeof Auth !== 'undefined') { Auth.setup(); Auth.init(); } }],
   ];
 
   initSteps.forEach(function(step) {

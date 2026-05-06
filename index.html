@@ -58,6 +58,23 @@
         <button class="vsw" id="ver30" data-ver="3">HSK 3.0 <span class="badge-soon">Sắp ra mắt</span></button>
       </div>
     </div>
+    <!-- Auth section -->
+    <div class="sidebar-auth">
+      <button class="auth-login-btn" id="authLoginBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Đăng nhập
+      </button>
+      <div class="auth-user-block" id="authUserBlock" style="display:none">
+        <div class="auth-avatar">👤</div>
+        <div class="auth-info">
+          <div class="auth-email" id="authUserEmail">user</div>
+          <div class="auth-actions">
+            <button class="auth-action-btn" id="syncStatusBtn" style="display:none" title="Sync dữ liệu">🔄</button>
+            <button class="auth-action-btn" id="authLogoutBtn" title="Đăng xuất">📤</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="sidebar-footer">
       <button class="btn-icon" id="themeToggle" title="Đổi theme">🌙</button>
       <button class="btn-lang" id="langToggle">VI / EN</button>
@@ -73,6 +90,7 @@
       <div class="header-actions">
         <button class="btn-icon" id="themeToggleMobile">🌙</button>
         <button class="btn-lang-sm" id="langToggleMobile">VI</button>
+        <button class="btn-icon auth-login-btn-sm" id="authLoginBtnMobile" title="Đăng nhập">👤</button>
       </div>
     </header>
 
@@ -486,11 +504,11 @@
             <div class="gc-desc">Lật thẻ ghép cặp Hán ↔ Nghĩa</div>
             <div class="gc-tags"><span class="gc-tag yellow">🟡 Vừa</span></div>
           </div>
-          <div class="game-card game-coming">
+          <div class="game-card" data-game="wordle">
             <div class="gc-icon">🟩</div>
             <div class="gc-name">Pinyin Wordle</div>
             <div class="gc-desc">Đoán pinyin trong 5 lần thử</div>
-            <div class="gc-tags"><span class="gc-badge-soon">Sắp có</span></div>
+            <div class="gc-tags"><span class="gc-tag orange">🟠 Thử thách</span></div>
           </div>
           <div class="game-card game-coming">
             <div class="gc-icon">⚔️</div>
@@ -564,6 +582,28 @@
           <div class="sq-btns">
             <button class="btn-primary" id="memPlayAgain">🔄 Chơi lại</button>
             <button class="btn-secondary" id="memBackHub">← Về menu</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PINYIN WORDLE GAME ── -->
+      <div id="gameWordle" style="display:none">
+        <div class="game-header">
+          <button class="btn-exit" id="wdExit">✕</button>
+          <h2 style="margin:0">🟩 Pinyin Wordle</h2>
+          <div class="wd-attempts-wrap">Lần thử: <strong id="wdAttempts">0</strong>/5</div>
+        </div>
+        <div class="wd-hint" id="wdHint"></div>
+        <div class="wd-grid" id="wdGrid"></div>
+        <div class="wd-message" id="wdMessage"></div>
+        <div class="wd-keyboard" id="wdKeyboard"></div>
+        <div class="wd-result" id="wdResult" style="display:none">
+          <div class="sq-result-emoji" id="wdResultEmoji">🏆</div>
+          <h3 id="wdResultTitle"></h3>
+          <div class="wd-answer" id="wdAnswerReveal"></div>
+          <div class="sq-btns">
+            <button class="btn-primary" id="wdPlayAgain">🔄 Chơi lại</button>
+            <button class="btn-secondary" id="wdBackHub">← Về menu</button>
           </div>
         </div>
       </div>
@@ -688,6 +728,10 @@
   <script src="js/app.js"></script>
   <!-- ══ CDN libs ══ -->
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sync.js"></script>
   <!-- ════ SETTINGS MODAL ════ -->
   <div class="settings-overlay" id="settingsOverlay" style="display:none" onclick="if(event.target===this)closeSettings()">
     <div class="settings-modal" id="settingsModal">
@@ -820,5 +864,54 @@
       </div>
     </div>
   </div>
+
+  <!-- ════ LOGIN MODAL ════ -->
+  <div class="auth-overlay" id="loginModal" style="display:none" onclick="if(event.target===this)Auth.closeLoginModal()">
+    <div class="auth-modal">
+      <button class="auth-modal-close" onclick="Auth.closeLoginModal()">✕</button>
+      <div class="auth-modal-icon">🔐</div>
+      <h2 class="auth-modal-title">Đăng nhập</h2>
+      <p class="auth-modal-sub">Lưu tiến độ &amp; đồng bộ đa thiết bị</p>
+
+      <button class="btn-google" id="authGoogleBtn">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Tiếp tục với Google
+      </button>
+
+      <div class="auth-divider"><span>hoặc dùng email</span></div>
+
+      <input class="auth-email-input" type="email" id="authEmailInput" placeholder="Nhập email của bạn..."/>
+      <button class="btn-magic-link" id="authMagicLinkBtn">📧 Gửi link đăng nhập</button>
+
+      <button class="btn-guest-continue" onclick="Auth.closeLoginModal()">Tiếp tục không cần đăng nhập →</button>
+    </div>
+  </div>
+
+  <!-- ════ MIGRATION MODAL ════ -->
+  <div class="auth-overlay" id="migrationModal" style="display:none">
+    <div class="auth-modal">
+      <div class="auth-modal-icon">📦</div>
+      <h2 class="auth-modal-title">Có dữ liệu chưa đồng bộ</h2>
+      <p class="auth-modal-sub" id="migrationDesc">Bạn có tiến độ học local chưa đồng bộ với cloud.</p>
+      <div class="mig-buttons">
+        <button class="mig-btn" id="migBtnMerge">
+          <span class="mig-btn-icon">🔀</span>
+          <span class="mig-btn-label">Gộp lại</span>
+          <span class="mig-btn-desc">Khuyên dùng — giữ tốt nhất cả hai</span>
+        </button>
+        <button class="mig-btn" id="migBtnUpload">
+          <span class="mig-btn-icon">📤</span>
+          <span class="mig-btn-label">Upload local lên cloud</span>
+          <span class="mig-btn-desc">Ghi đè cloud bằng dữ liệu local</span>
+        </button>
+        <button class="mig-btn mig-btn-danger" id="migBtnDownload">
+          <span class="mig-btn-icon">📥</span>
+          <span class="mig-btn-label">Lấy từ cloud</span>
+          <span class="mig-btn-desc">Ghi đè local bằng dữ liệu cloud</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

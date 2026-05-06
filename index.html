@@ -81,6 +81,68 @@
     </div>
   </aside>
 
+  <!-- RIGHT SIDEBAR (Desktop ≥1280px) -->
+  <aside class="right-sidebar" id="rightSidebar">
+    <button class="rs-collapse-btn" id="rsCollapseBtn" title="Thu gọn">‹</button>
+    <div class="rs-inner">
+      <!-- Mini stats -->
+      <div class="rs-section">
+        <div class="rs-stats">
+          <div class="rs-stat"><span class="rs-stat-num" id="rsLearned">0</span><span class="rs-stat-label">Đã học</span></div>
+          <div class="rs-stat"><span class="rs-stat-num" id="rsStreak">0</span><span class="rs-stat-label">🔥 Chuỗi</span></div>
+          <div class="rs-stat"><span class="rs-stat-num" id="rsDue">0</span><span class="rs-stat-label">Cần ôn</span></div>
+        </div>
+      </div>
+      <!-- XP mini -->
+      <div class="rs-section">
+        <div class="rs-xp-header">
+          <span>⚡ <strong id="rsXpTotal">0</strong> XP</span>
+          <span class="rs-xp-level" id="rsXpLevel">Cấp 1</span>
+        </div>
+        <div class="rs-xp-track"><div class="rs-xp-fill" id="rsXpFill" style="width:0%"></div></div>
+        <!-- B4: Self-compare weekly XP -->
+        <div class="rs-weekly-compare" id="rsWeeklyCompare">
+          <span id="rsWeeklyXp">+0 XP tuần này</span>
+          <span class="rs-vs-last" id="rsVsLast"></span>
+        </div>
+      </div>
+      <!-- Streak calendar -->
+      <div class="rs-section">
+        <div class="rs-section-title">7 ngày gần đây</div>
+        <div class="rs-streak-cal" id="rsStreakCal"></div>
+      </div>
+      <!-- Quick study settings (E5) -->
+      <div class="rs-section">
+        <div class="rs-section-title">Cài đặt nhanh</div>
+        <div class="rs-quick-settings">
+          <label class="rs-qs-row">
+            <span>Hiện pinyin</span>
+            <input type="checkbox" id="qsPinyin" onchange="RightSidebar.togglePinyin(this.checked)"/>
+          </label>
+          <label class="rs-qs-row">
+            <span>Tiếng Anh</span>
+            <input type="checkbox" id="qsEnglish" onchange="RightSidebar.toggleEnglish(this.checked)"/>
+          </label>
+          <div class="rs-qs-row">
+            <span>Gợi ý</span>
+            <select id="qsHintLevel" onchange="RightSidebar.setHintLevel(this.value)" class="rs-qs-select">
+              <option value="easy">Dễ</option>
+              <option value="medium">Vừa</option>
+              <option value="hard">Khó</option>
+            </select>
+          </div>
+          <div class="rs-qs-row">
+            <span>Chế độ SRS</span>
+            <select id="qsSrsMode" onchange="RightSidebar.setSrsMode(this.value)" class="rs-qs-select">
+              <option value="simple">2 nút</option>
+              <option value="advanced">4 nút</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
   <!-- MAIN CONTENT -->
   <main class="main-content">
     <!-- HEADER (Mobile) -->
@@ -302,8 +364,15 @@
           <div class="ty-label" data-vi="Nghĩa:" data-en="Meaning:">Nghĩa:</div>
           <div class="ty-meaning" id="tyMeaning"></div>
           <div class="ty-example" id="tyExample"></div>
-          <div class="ty-hint-label">Gợi ý:</div>
-          <div class="ty-hint" id="tyHint"></div>
+          <!-- E1: char slots + hint row -->
+          <div class="ty-slots-row">
+            <div class="ty-char-slots" id="tyCharSlots"></div>
+            <span class="ty-char-count" id="tyCharCount"></span>
+          </div>
+          <div class="ty-hint-row">
+            <div class="ty-hint" id="tyHint"></div>
+            <button class="ty-reveal-btn" id="tyRevealBtn" title="Hiện 1 ký tự">💡</button>
+          </div>
           <div class="ty-input-row">
             <input type="text" id="tyInput" placeholder="Nhập pinyin hoặc chữ Hán..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
             <button class="btn-primary" id="tySubmit">Kiểm tra</button>
@@ -732,6 +801,7 @@
   <script src="js/supabase.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/sync.js"></script>
+  <script src="js/rightsidebar.js"></script>
   <!-- ════ SETTINGS MODAL ════ -->
   <div class="settings-overlay" id="settingsOverlay" style="display:none" onclick="if(event.target===this)closeSettings()">
     <div class="settings-modal" id="settingsModal">

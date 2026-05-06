@@ -110,6 +110,7 @@ var Gamification = {
     }
     Gamification.renderXPBar();
     Gamification.renderStreakCalendar();
+    if (typeof RightSidebar !== 'undefined') RightSidebar.render();
   },
 
   // ── Level Grid (Home page) ─────────────────────────

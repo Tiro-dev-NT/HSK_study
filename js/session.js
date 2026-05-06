@@ -162,9 +162,12 @@ var Session = {
   },
 
   // ── Typing mode ────────────────────────────────────
+  _tyRevealedCount: 0,
+
   showTyCard: function() {
     Session.updateSessionScore('ty');
-    const w   = AppState.fcDeck[AppState.fcIndex];
+    Session._tyRevealedCount = 0;
+    const w    = AppState.fcDeck[AppState.fcIndex];
     const lang = AppState.lang;
     document.getElementById('tyMeaning').textContent = lang === 'vi' ? w.v : w.e;
     const exEl = document.getElementById('tyExample');
@@ -175,13 +178,37 @@ var Session = {
       exEl.style.display = 'none';
     }
     document.getElementById('tyHint').textContent = Session._getHint(w.p);
+
+    // E1: char slots
+    Session._renderCharSlots(w.h, 0);
+    const countEl = document.getElementById('tyCharCount');
+    if (countEl) countEl.textContent = w.h.length + ' chữ';
+
     const input = document.getElementById('tyInput');
     input.value = '';
     input.disabled = false;
     input.focus();
-    document.getElementById('tySubmit').style.display     = 'block';
-    document.getElementById('tyFeedback').style.display   = 'none';
+    document.getElementById('tySubmit').style.display      = 'block';
+    document.getElementById('tyFeedback').style.display    = 'none';
     document.getElementById('tyAnswerBlock').style.display = 'none';
+  },
+
+  _renderCharSlots: function(hanzi, revealedCount) {
+    const slotsEl = document.getElementById('tyCharSlots');
+    if (!slotsEl) return;
+    slotsEl.innerHTML = hanzi.split('').map(function(ch, i) {
+      const revealed = i < revealedCount;
+      return '<div class="ty-char-slot' + (revealed ? ' revealed' : '') + '">' +
+        (revealed ? ch : '') + '</div>';
+    }).join('');
+  },
+
+  revealOneChar: function() {
+    const w = AppState.fcDeck[AppState.fcIndex];
+    if (!w) return;
+    if (Session._tyRevealedCount >= w.h.length) return;
+    Session._tyRevealedCount++;
+    Session._renderCharSlots(w.h, Session._tyRevealedCount);
   },
 
   checkTypingAnswer: function() {

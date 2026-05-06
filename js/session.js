@@ -35,12 +35,15 @@ var Session = {
     document.getElementById('tyInput')?.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const ansBlock = document.getElementById('tyAnswerBlock');
-        if (ansBlock && ansBlock.style.display !== 'none') { Session.nextTyCard(); return; }
+        if (ansBlock && ansBlock.style.display !== 'none') { Session.nextTyCard(2); return; }
         const val = document.getElementById('tyInput').value.trim();
         if (val) Session.checkTypingAnswer();
       }
     });
-    document.getElementById('tyNext')?.addEventListener('click', Session.nextTyCard);
+    document.getElementById('tyBtnAgain')?.addEventListener('click', function() { Session.nextTyCard(0); });
+    document.getElementById('tyBtnHard')?.addEventListener('click',  function() { Session.nextTyCard(1); });
+    document.getElementById('tyBtnGood')?.addEventListener('click',  function() { Session.nextTyCard(2); });
+    document.getElementById('tyBtnEasy')?.addEventListener('click',  function() { Session.nextTyCard(3); });
     document.getElementById('tyTts')?.addEventListener('click', function() {
       const w = AppState.fcDeck[AppState.fcIndex];
       if (w) Dictionary.playTTS(w.h);
@@ -152,6 +155,8 @@ var Session = {
       AppState.markLearned(w);
     } else {
       AppState.fcSession.wrong++;
+      // Re-add failed card back into session so it comes up again
+      AppState.fcDeck.push(w);
     }
     fcSession = AppState.fcSession;
     if (typeof updateSRSCard === 'function') updateSRSCard(w.h, quality);
@@ -230,10 +235,8 @@ var Session = {
     if (isCorrect) {
       AppState.fcSession.correct++;
       AppState.markLearned(w);
-      if (typeof updateSRSCard === 'function') updateSRSCard(w.h, 2);
     } else {
       AppState.fcSession.wrong++;
-      if (typeof updateSRSCard === 'function') updateSRSCard(w.h, 0);
     }
     fcSession = AppState.fcSession;
     const ansBox = document.getElementById('tyAnswerBlock');
@@ -244,10 +247,17 @@ var Session = {
     const exEl = document.getElementById('tyAnsEx');
     if (w.ex) { exEl.style.display = 'block'; exEl.textContent = w.ex.zh; }
     else { exEl.style.display = 'none'; }
+    document.getElementById('tyBtnsRating').style.display = 'flex';
     Dictionary.playTTS(w.h);
   },
 
-  nextTyCard: function() {
+  nextTyCard: function(quality) {
+    quality = (quality === undefined) ? 2 : quality;
+    const w = AppState.fcDeck[AppState.fcIndex];
+    if (typeof updateSRSCard === 'function') updateSRSCard(w.h, quality);
+    // Re-add card to session queue if user rated "Không nhớ"
+    if (quality === 0) AppState.fcDeck.push(w);
+    document.getElementById('tyBtnsRating').style.display = 'none';
     AppState.fcIndex++;
     fcIndex = AppState.fcIndex;
     if (AppState.fcIndex >= AppState.fcDeck.length) Session.endLearnSession();
@@ -323,7 +333,7 @@ function flipFcCard()            { Session.flipFcCard(); }
 function nextFcCard(q)           { Session.nextFcCard(q); }
 function showTyCard()            { Session.showTyCard(); }
 function checkTypingAnswer()     { Session.checkTypingAnswer(); }
-function nextTyCard()            { Session.nextTyCard(); }
+function nextTyCard(q)           { Session.nextTyCard(q); }
 function showMcqCard()           { Session.showMcqCard(); }
 function answerMcq(btn, w)       { Session.answerMcq(btn, w); }
 

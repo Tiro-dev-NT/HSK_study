@@ -481,39 +481,131 @@
       <div class="page-header">
         <h1 data-vi="Kiểm tra từ vựng" data-en="Vocabulary Quiz">Kiểm tra từ vựng</h1>
       </div>
+
+      <!-- SETUP -->
       <div class="quiz-setup" id="quizSetup">
-        <div class="setup-row">
-          <label data-vi="Cấp độ:" data-en="Level:">Cấp độ:</label>
-          <select id="quizLevel">
-            <option value="1">HSK 1</option>
-            <option value="2">HSK 2</option>
-            <option value="3">HSK 3</option>
-            <option value="4">HSK 4</option>
-            <option value="5">HSK 5</option>
-            <option value="6">HSK 6</option>
-            <option value="mix">Hỗn hợp</option>
-          </select>
+        <!-- Scope selector (B5a) -->
+        <div class="setup-section">
+          <div class="setup-label" data-vi="Phạm vi" data-en="Scope">Phạm vi</div>
+          <div class="scope-tabs">
+            <button class="scope-tab active" data-scope="hsk">HSK</button>
+            <button class="scope-tab" data-scope="topic">Chủ đề</button>
+            <button class="scope-tab" data-scope="deck">Bộ thẻ</button>
+            <button class="scope-tab" data-scope="adaptive">SRS Due</button>
+            <button class="scope-tab" data-scope="wrong">Ôn sai</button>
+          </div>
+          <div id="scope-hsk" class="scope-panel">
+            <select id="quizLevel">
+              <option value="1">HSK 1</option>
+              <option value="2">HSK 2</option>
+              <option value="3">HSK 3</option>
+              <option value="4">HSK 4</option>
+              <option value="5">HSK 5</option>
+              <option value="6">HSK 6</option>
+              <option value="mix">Hỗn hợp</option>
+            </select>
+          </div>
+          <div id="scope-topic" class="scope-panel" style="display:none">
+            <select id="quizTopic"></select>
+          </div>
+          <div id="scope-deck" class="scope-panel" style="display:none">
+            <select id="quizDeck"><option value="">-- Chọn bộ thẻ --</option></select>
+          </div>
+          <div id="scope-adaptive" class="scope-panel" style="display:none">
+            <p class="scope-desc" data-vi="Ưu tiên các từ đến hạn ôn trong SRS" data-en="Prioritize SRS due cards">Ưu tiên các từ đến hạn ôn trong SRS</p>
+            <div id="adaptiveStats" class="adaptive-stats"></div>
+          </div>
+          <div id="scope-wrong" class="scope-panel" style="display:none">
+            <p class="scope-desc" data-vi="Ôn lại các từ đã trả lời sai" data-en="Review previously wrong answers">Ôn lại các từ đã trả lời sai</p>
+            <div id="wrongCount" class="scope-desc" style="margin-top:4px"></div>
+            <button class="btn-outline btn-sm" id="clearWrongHistory" style="margin-top:8px" data-vi="🗑 Xóa lịch sử sai" data-en="🗑 Clear wrong history">🗑 Xóa lịch sử sai</button>
+          </div>
         </div>
+
+        <!-- Question mode (B5b) -->
+        <div class="setup-section">
+          <div class="setup-label" data-vi="Dạng câu" data-en="Question Type">Dạng câu</div>
+          <div class="mode-grid">
+            <label class="mode-opt">
+              <input type="radio" name="qMode" value="forward" checked>
+              <span class="mode-card">
+                <span class="mode-icon">汉→义</span>
+                <span class="mode-name" data-vi="Hán → Nghĩa" data-en="Hanzi → Meaning">Hán → Nghĩa</span>
+              </span>
+            </label>
+            <label class="mode-opt">
+              <input type="radio" name="qMode" value="reverse">
+              <span class="mode-card">
+                <span class="mode-icon">义→汉</span>
+                <span class="mode-name" data-vi="Nghĩa → Hán" data-en="Meaning → Hanzi">Nghĩa → Hán</span>
+              </span>
+            </label>
+            <label class="mode-opt">
+              <input type="radio" name="qMode" value="pinyin">
+              <span class="mode-card">
+                <span class="mode-icon">汉→音</span>
+                <span class="mode-name" data-vi="Hán → Phiên âm" data-en="Hanzi → Pinyin">Hán → Phiên âm</span>
+              </span>
+            </label>
+            <label class="mode-opt">
+              <input type="radio" name="qMode" value="mix">
+              <span class="mode-card">
+                <span class="mode-icon">🔀</span>
+                <span class="mode-name" data-vi="Hỗn hợp" data-en="Mixed">Hỗn hợp</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Count -->
         <div class="setup-row">
           <label data-vi="Số câu:" data-en="Questions:">Số câu:</label>
           <select id="quizCount">
             <option value="10">10</option>
-            <option value="20">20</option>
+            <option value="20" selected>20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
           </select>
         </div>
-        <button class="btn-primary" id="startQuiz" data-vi="Bắt đầu kiểm tra" data-en="Start Quiz">Bắt đầu kiểm tra</button>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn-primary" id="startQuiz" data-vi="Bắt đầu kiểm tra" data-en="Start Quiz">Bắt đầu kiểm tra</button>
+          <button class="btn-outline" id="showQuizHistory" data-vi="📊 Lịch sử" data-en="📊 History">📊 Lịch sử</button>
+        </div>
       </div>
+
+      <!-- ACTIVE QUIZ -->
       <div class="quiz-area" id="quizArea" style="display:none">
-        <div class="quiz-progress"><span id="qCurrent">1</span>/<span id="qTotal">10</span> — <span id="qScore">0</span> đúng</div>
+        <div class="quiz-progress"><span id="qCurrent">1</span>/<span id="qTotal">10</span> — <span id="qScore">0</span> <span data-vi="đúng" data-en="correct">đúng</span></div>
+        <div class="q-type-badge" id="qTypeBadge"></div>
         <div class="quiz-card">
           <div class="q-question" id="qQuestion"></div>
+          <div class="q-sub" id="qSub" style="display:none"></div>
           <div class="q-options" id="qOptions"></div>
         </div>
       </div>
+
+      <!-- RESULT (B5d) -->
       <div class="quiz-result" id="quizResult" style="display:none">
         <div class="result-circle"><span id="resultScore">0</span><small data-vi="điểm" data-en="pts">điểm</small></div>
         <h2 id="resultMsg"></h2>
-        <button class="btn-primary" id="retryQuiz" data-vi="Làm lại" data-en="Try Again">Làm lại</button>
+        <div class="wrong-review" id="wrongReview" style="display:none">
+          <h3 data-vi="Từ cần ôn lại" data-en="Words to review">Từ cần ôn lại</h3>
+          <div class="wrong-list" id="wrongList"></div>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+          <button class="btn-primary" id="retryQuiz" data-vi="Làm lại" data-en="Try Again">Làm lại</button>
+          <button class="btn-outline" id="reviewWrongBtn" style="display:none" data-vi="⚡ Ôn sai ngay" data-en="⚡ Review Wrong">⚡ Ôn sai ngay</button>
+        </div>
+      </div>
+
+      <!-- HISTORY PANEL (B5d) -->
+      <div id="quizHistory" style="display:none">
+        <div class="page-header" style="margin-bottom:16px">
+          <button class="btn-back" id="closeHistory">← <span data-vi="Quay lại" data-en="Back">Quay lại</span></button>
+          <h2 data-vi="Lịch sử Quiz" data-en="Quiz History">Lịch sử Quiz</h2>
+        </div>
+        <div id="historyList"></div>
       </div>
     </section>
 

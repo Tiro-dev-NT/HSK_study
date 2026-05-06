@@ -473,6 +473,130 @@ body {
 .result-circle small { font-size: 13px; font-weight: 400; }
 .quiz-result h2 { font-size: 22px; margin-bottom: 24px; }
 
+/* Scope tabs (B5a) */
+.setup-section { display: flex; flex-direction: column; gap: 10px; }
+.setup-label { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .04em; }
+.scope-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.scope-tab {
+  padding: 6px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface2);
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .18s;
+}
+.scope-tab:hover { border-color: var(--primary); color: var(--primary); }
+.scope-tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.scope-panel { padding-top: 4px; }
+.scope-desc { font-size: 13px; color: var(--text2); }
+.adaptive-stats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.adapt-stat {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.adapt-due  { background: #FEF3C7; color: #92400E; }
+.adapt-reln { background: #FEE2E2; color: #991B1B; }
+.adapt-new  { background: #DBEAFE; color: #1E40AF; }
+[data-theme="dark"] .adapt-due  { background: #451A03; color: #FCD34D; }
+[data-theme="dark"] .adapt-reln { background: #450A0A; color: #FCA5A5; }
+[data-theme="dark"] .adapt-new  { background: #1E3A5F; color: #93C5FD; }
+
+/* Question mode grid (B5b) */
+.mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mode-opt { cursor: pointer; }
+.mode-opt input { display: none; }
+.mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 8px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface2);
+  transition: all .18s;
+}
+.mode-opt input:checked + .mode-card { border-color: var(--primary); background: #FFF0EE; }
+[data-theme="dark"] .mode-opt input:checked + .mode-card { background: #2D1A1A; }
+.mode-opt:hover .mode-card { border-color: var(--primary); }
+.mode-icon { font-family: var(--font-hanzi); font-size: 15px; font-weight: 700; color: var(--text); }
+.mode-name { font-size: 11px; color: var(--text2); text-align: center; }
+
+/* Question type badge + sub */
+.q-type-badge {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: .04em;
+  margin-bottom: 4px;
+  font-family: var(--font-hanzi);
+}
+.q-sub {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text2);
+  margin-top: -16px;
+  margin-bottom: 20px;
+  font-family: var(--font-hanzi);
+}
+
+/* Wrong review (B5d) */
+.wrong-review {
+  margin: 16px auto 0;
+  max-width: 480px;
+  text-align: left;
+}
+.wrong-review h3 { font-size: 15px; color: var(--text2); margin-bottom: 10px; text-align: center; }
+.wrong-list { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow-y: auto; }
+.wrong-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.wi-hanzi  { font-family: var(--font-hanzi); font-size: 22px; min-width: 36px; }
+.wi-pinyin { font-size: 13px; color: var(--text2); min-width: 70px; }
+.wi-meaning { font-size: 13px; color: var(--text); flex: 1; }
+
+/* Quiz session history (B5d) */
+#quizHistory { padding-bottom: 24px; }
+.hist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.hist-left { flex: 1; min-width: 0; }
+.hist-date { font-size: 12px; color: var(--text3); margin-bottom: 4px; }
+.hist-tags { display: flex; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
+.hist-tag {
+  padding: 2px 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 11px;
+  color: var(--text2);
+}
+.hist-detail { font-size: 12px; color: var(--text2); }
+.hist-score { font-size: 22px; font-weight: 800; min-width: 52px; text-align: right; }
+.hist-score--good { color: #059669; }
+.hist-score--ok   { color: var(--accent); }
+.hist-score--poor { color: #DC2626; }
+
 /* ── VAULT ── */
 .vault-empty { text-align: center; padding: 60px 0; color: var(--text3); font-size: 16px; }
 .vault-empty p:first-child { font-size: 48px; margin-bottom: 12px; }

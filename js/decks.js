@@ -13,7 +13,7 @@ let deckViewMode = 'grid'; // 'grid' | 'list'
 let deckTabActive = 'hsk'; // 'hsk' | 'mine'
 let pendingAddWord = null; // word object waiting to be added to a deck via popup
 let editingDeckId = null;
-let currentLearnMode = 'flashcard'; // 'flashcard' | 'typing' | 'mcq'
+let currentLearnMode = 'flashcard'; // 'flashcard' | 'typing' | 'mcq' | 'listening'
 
 // ── Init ───────────────────────────────────────────────
 function setupDecks() {
@@ -496,16 +496,18 @@ function wireDecksUI() {
     // Hide setup, show session
     document.getElementById('deckDetail').style.display = 'none';
     if (currentLearnMode === 'flashcard') {
-      document.getElementById('flashcardArea').style.display = 'block'; showFcCard();
+      document.getElementById('flashcardArea').style.display  = 'block'; showFcCard();
     } else if (currentLearnMode === 'typing') {
-      document.getElementById('typingArea').style.display = 'block'; showTyCard();
+      document.getElementById('typingArea').style.display     = 'block'; showTyCard();
     } else if (currentLearnMode === 'mcq') {
-      document.getElementById('mcqArea').style.display = 'block'; showMcqCard();
+      document.getElementById('mcqArea').style.display        = 'block'; showMcqCard();
+    } else if (currentLearnMode === 'listening') {
+      document.getElementById('listeningArea').style.display  = 'block'; showLsCard();
     }
   });
 
   // Session exit → back to deck detail
-  ['exitLearn','exitTyping','exitMcq'].forEach(id => {
+  ['exitLearn','exitTyping','exitMcq','exitListening'].forEach(id => {
     document.getElementById(id)?.addEventListener('click', () => {
       endLearnSession();
       setTimeout(() => {

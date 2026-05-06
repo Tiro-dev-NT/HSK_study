@@ -299,7 +299,7 @@
           <button class="mode-chip active" data-mode="flashcard">🃏 Flashcard</button>
           <button class="mode-chip" data-mode="mcq">🎯 Trắc nghiệm</button>
           <button class="mode-chip" data-mode="typing">⌨️ Điền từ</button>
-          <button class="mode-chip disabled" data-mode="listening">🎧 Nghe <small>Sắp có</small></button>
+          <button class="mode-chip" data-mode="listening">🎧 Nghe</button>
         </div>
 
         <!-- CTA button -->
@@ -393,6 +393,45 @@
                 <button class="srs-btn srs-hard"  id="tyBtnHard">😓 Khó<small>1 ngày</small></button>
                 <button class="srs-btn srs-good"  id="tyBtnGood">😊 Tốt<small>3 ngày</small></button>
                 <button class="srs-btn srs-easy"  id="tyBtnEasy">✅ Dễ<small>4 ngày</small></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LISTENING MODE ── -->
+      <div class="typing-area" id="listeningArea" style="display:none">
+        <div class="session-header">
+          <div class="fc-progress"><span id="lsCurrent">1</span> / <span id="lsTotal">10</span></div>
+          <div class="session-score">✅ <span id="lsCorrectCount">0</span> &nbsp; ❌ <span id="lsWrongCount">0</span></div>
+          <button class="btn-exit" id="exitListening">✕</button>
+        </div>
+        <div class="typing-card" id="listeningCard">
+          <div class="ls-tts-block">
+            <button class="ls-tts-btn" id="lsTtsBtn">🔊</button>
+            <div class="ls-tts-label" data-vi="Nhấn để nghe lại" data-en="Tap to replay">Nhấn để nghe lại</div>
+          </div>
+          <div class="ty-label" data-vi="Nghĩa:" data-en="Meaning:">Nghĩa:</div>
+          <div class="ty-meaning" id="lsMeaning"></div>
+          <div class="ty-input-row" style="margin-top:16px">
+            <input type="text" id="lsInput" placeholder="Nhập pinyin hoặc chữ Hán..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
+            <button class="btn-primary" id="lsSubmit">Kiểm tra</button>
+          </div>
+          <div class="ty-feedback" id="lsFeedback" style="display:none"></div>
+          <div class="ty-answer-block" id="lsAnswerBlock" style="display:none">
+            <div class="ty-ans-row">
+              <span class="ty-ans-hanzi" id="lsAnsHanzi"></span>
+              <span class="ty-ans-pinyin" id="lsAnsPinyin"></span>
+              <button class="tts-inline-btn" id="lsTtsAns">🔊</button>
+            </div>
+            <div class="ty-ans-meaning" id="lsAnsMeaning"></div>
+            <div class="ty-ans-ex" id="lsAnsEx" style="display:none"></div>
+            <div class="srs-buttons" id="lsBtnsRating" style="display:none;margin-top:16px">
+              <div class="srs-btns-inner">
+                <button class="srs-btn srs-again" id="lsBtnAgain">❌ Không nhớ<small>ôn lại</small></button>
+                <button class="srs-btn srs-hard"  id="lsBtnHard">😓 Khó<small>1 ngày</small></button>
+                <button class="srs-btn srs-good"  id="lsBtnGood">😊 Tốt<small>3 ngày</small></button>
+                <button class="srs-btn srs-easy"  id="lsBtnEasy">✅ Dễ<small>4 ngày</small></button>
               </div>
             </div>
           </div>

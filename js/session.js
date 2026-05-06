@@ -49,6 +49,29 @@ var Session = {
       if (w) Dictionary.playTTS(w.h);
     });
 
+    // Listening
+    document.getElementById('lsSubmit')?.addEventListener('click', Session.checkLsAnswer);
+    document.getElementById('lsInput')?.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const ansBlock = document.getElementById('lsAnswerBlock');
+        if (ansBlock && ansBlock.style.display !== 'none') { Session.nextLsCard(2); return; }
+        const val = document.getElementById('lsInput').value.trim();
+        if (val) Session.checkLsAnswer();
+      }
+    });
+    document.getElementById('lsTtsBtn')?.addEventListener('click', function() {
+      const w = AppState.fcDeck[AppState.fcIndex];
+      if (w) Session._lsPlayTTS(w.h);
+    });
+    document.getElementById('lsTtsAns')?.addEventListener('click', function() {
+      const w = AppState.fcDeck[AppState.fcIndex];
+      if (w) Dictionary.playTTS(w.h);
+    });
+    document.getElementById('lsBtnAgain')?.addEventListener('click', function() { Session.nextLsCard(0); });
+    document.getElementById('lsBtnHard')?.addEventListener('click',  function() { Session.nextLsCard(1); });
+    document.getElementById('lsBtnGood')?.addEventListener('click',  function() { Session.nextLsCard(2); });
+    document.getElementById('lsBtnEasy')?.addEventListener('click',  function() { Session.nextLsCard(3); });
+
     // MCQ TTS
     document.getElementById('mcqTts')?.addEventListener('click', function() {
       const w = AppState.fcDeck[AppState.fcIndex];
@@ -74,9 +97,10 @@ var Session = {
 
   // ── End session ────────────────────────────────────
   endLearnSession: function() {
-    document.getElementById('flashcardArea').style.display = 'none';
-    document.getElementById('typingArea').style.display    = 'none';
-    document.getElementById('mcqArea').style.display       = 'none';
+    document.getElementById('flashcardArea').style.display  = 'none';
+    document.getElementById('typingArea').style.display     = 'none';
+    document.getElementById('mcqArea').style.display        = 'none';
+    document.getElementById('listeningArea').style.display  = 'none';
     const total = AppState.fcSession.correct + AppState.fcSession.wrong;
     if (total === 0) return;
     document.getElementById('sessionResult').style.display = 'block';
@@ -278,6 +302,72 @@ var Session = {
     return syllables.map(function(s) { return s.charAt(0) + '__'; }).join(' ');
   },
 
+  // ── Listening mode ─────────────────────────────────
+  _lsPlayTTS: function(hanzi) {
+    const btn = document.getElementById('lsTtsBtn');
+    if (btn) { btn.classList.add('playing'); setTimeout(function() { btn.classList.remove('playing'); }, 1800); }
+    Dictionary.playTTS(hanzi);
+  },
+
+  showLsCard: function() {
+    Session.updateSessionScore('ls');
+    const w    = AppState.fcDeck[AppState.fcIndex];
+    const lang = AppState.lang;
+    document.getElementById('lsMeaning').textContent = lang === 'vi' ? w.v : w.e;
+    const input = document.getElementById('lsInput');
+    input.value = '';
+    input.disabled = false;
+    input.focus();
+    document.getElementById('lsSubmit').style.display   = 'block';
+    document.getElementById('lsFeedback').style.display = 'none';
+    document.getElementById('lsAnswerBlock').style.display = 'none';
+    document.getElementById('lsBtnsRating').style.display  = 'none';
+    // Auto-play TTS after short delay
+    setTimeout(function() { Session._lsPlayTTS(w.h); }, 300);
+  },
+
+  checkLsAnswer: function() {
+    const input = document.getElementById('lsInput');
+    const val   = input.value.trim().toLowerCase();
+    if (!val) return;
+    const w         = AppState.fcDeck[AppState.fcIndex];
+    const pyNoTones = w.p.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s/g, '').toLowerCase();
+    const valClean  = val.replace(/\s/g, '').toLowerCase();
+    const isCorrect = val === w.h || valClean === pyNoTones;
+    input.disabled = true;
+    document.getElementById('lsSubmit').style.display = 'none';
+    const fb = document.getElementById('lsFeedback');
+    fb.style.display = 'block';
+    fb.className = 'ty-feedback ' + (isCorrect ? 'correct' : 'wrong');
+    fb.textContent = isCorrect
+      ? (AppState.lang === 'vi' ? 'Chính xác!' : 'Correct!')
+      : (AppState.lang === 'vi' ? 'Chưa đúng!'  : 'Incorrect!');
+    if (isCorrect) { AppState.fcSession.correct++; AppState.markLearned(w); }
+    else            { AppState.fcSession.wrong++; }
+    fcSession = AppState.fcSession;
+    const ansBox = document.getElementById('lsAnswerBlock');
+    ansBox.style.display = 'block';
+    document.getElementById('lsAnsHanzi').textContent   = w.h;
+    document.getElementById('lsAnsPinyin').textContent  = w.p;
+    document.getElementById('lsAnsMeaning').textContent = AppState.lang === 'vi' ? w.v : w.e;
+    const exEl = document.getElementById('lsAnsEx');
+    if (w.ex) { exEl.style.display = 'block'; exEl.textContent = w.ex.zh; }
+    else { exEl.style.display = 'none'; }
+    document.getElementById('lsBtnsRating').style.display = 'flex';
+  },
+
+  nextLsCard: function(quality) {
+    quality = (quality === undefined) ? 2 : quality;
+    const w = AppState.fcDeck[AppState.fcIndex];
+    if (typeof updateSRSCard === 'function') updateSRSCard(w.h, quality);
+    if (quality === 0) AppState.fcDeck.push(w);
+    document.getElementById('lsBtnsRating').style.display = 'none';
+    AppState.fcIndex++;
+    fcIndex = AppState.fcIndex;
+    if (AppState.fcIndex >= AppState.fcDeck.length) Session.endLearnSession();
+    else Session.showLsCard();
+  },
+
   // ── MCQ mode ───────────────────────────────────────
   showMcqCard: function() {
     Session.updateSessionScore('mcq');
@@ -336,6 +426,9 @@ function checkTypingAnswer()     { Session.checkTypingAnswer(); }
 function nextTyCard(q)           { Session.nextTyCard(q); }
 function showMcqCard()           { Session.showMcqCard(); }
 function answerMcq(btn, w)       { Session.answerMcq(btn, w); }
+function showLsCard()            { Session.showLsCard(); }
+function checkLsAnswer()         { Session.checkLsAnswer(); }
+function nextLsCard(q)           { Session.nextLsCard(q); }
 
 // saveProgress: kept as global for backward-compat (decks.js may call it)
 function saveProgress(word) { AppState.markLearned(word); }

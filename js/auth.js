@@ -1,13 +1,73 @@
 // ═══════════════════════════════════════════════════════
 // AUTH.JS — Authentication via Supabase
-// • Google OAuth + Email magic link
-// • Owns: Auth.init(), loginWithGoogle(), loginWithEmail(),
+// • Google OAuth + Email + Password
+// • Owns: Auth.init(), loginWithGoogle(), submitForm(),
 //         logout(), renderUI(), handleMigration()
 // • Writes: AppState.user
 // ═══════════════════════════════════════════════════════
 
 var Auth = {
   user: null,
+  _tab: 'login',  // 'login' | 'register'
+
+  // ── Tab switch ─────────────────────────────────────
+  switchTab: function(tab) {
+    Auth._tab = tab;
+    document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+    document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
+    document.getElementById('authConfirmWrap').style.display = tab === 'register' ? 'flex' : 'none';
+    document.getElementById('authForgotBtn').style.display   = tab === 'login'    ? 'block' : 'none';
+    document.getElementById('authSubmitBtn').textContent     = tab === 'login' ? 'Đăng nhập' : 'Đăng ký';
+    document.getElementById('authModalSub').textContent      = tab === 'login'
+      ? 'Đăng nhập để đồng bộ tiến trình học của bạn.'
+      : 'Tạo tài khoản miễn phí, không cần Gmail.';
+    if (document.getElementById('authPasswordInput'))
+      document.getElementById('authPasswordInput').autocomplete = tab === 'login' ? 'current-password' : 'new-password';
+  },
+
+  // ── Submit form (login or register) ────────────────
+  submitForm: async function() {
+    var email = (document.getElementById('authEmailInput').value || '').trim();
+    var pass  = (document.getElementById('authPasswordInput').value || '');
+    if (!email || !pass) { showToast('Vui lòng nhập đầy đủ email và mật khẩu'); return; }
+    if (!email.includes('@')) { showToast('Email không hợp lệ'); return; }
+
+    var btn = document.getElementById('authSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳';
+
+    if (Auth._tab === 'register') {
+      var confirm = (document.getElementById('authConfirmInput').value || '');
+      if (pass !== confirm) { showToast('Mật khẩu xác nhận không khớp'); btn.disabled = false; Auth.switchTab('register'); return; }
+      if (pass.length < 6) { showToast('Mật khẩu tối thiểu 6 ký tự'); btn.disabled = false; Auth.switchTab('register'); return; }
+      var res = await SB.auth.signUp({ email: email, password: pass });
+      if (res.error) {
+        showToast('❌ ' + res.error.message);
+      } else {
+        showToast('✅ Đăng ký thành công! Kiểm tra email để xác nhận tài khoản.');
+        Auth.closeLoginModal();
+      }
+    } else {
+      var res2 = await SB.auth.signInWithPassword({ email: email, password: pass });
+      if (res2.error) {
+        showToast('❌ ' + (res2.error.message === 'Invalid login credentials' ? 'Email hoặc mật khẩu không đúng' : res2.error.message));
+      }
+    }
+    btn.disabled = false;
+    Auth.switchTab(Auth._tab);
+  },
+
+  // ── Forgot password ────────────────────────────────
+  forgotPassword: async function() {
+    var email = (document.getElementById('authEmailInput').value || '').trim();
+    if (!email || !email.includes('@')) { showToast('Nhập email trước rồi nhấn Quên mật khẩu'); return; }
+    var res = await SB.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
+    if (res.error) {
+      showToast('❌ ' + res.error.message);
+    } else {
+      showToast('📧 Đã gửi link đặt lại mật khẩu tới ' + email);
+    }
+  },
 
   // ── Init (call on app startup) ─────────────────────
   init: async function() {
@@ -40,26 +100,6 @@ var Auth = {
     }).then(function(res) {
       if (res.error) showToast('❌ ' + res.error.message);
     });
-  },
-
-  loginWithEmail: async function(email) {
-    if (!SB) return;
-    if (!email || !email.includes('@')) { showToast('Email không hợp lệ'); return; }
-    var res = await SB.auth.signInWithOtp({
-      email: email,
-      options: { emailRedirectTo: window.location.origin }
-    });
-    if (res.error) {
-      showToast('❌ ' + res.error.message);
-    } else {
-      showToast('📧 Đã gửi link đăng nhập tới ' + email);
-      Auth.closeLoginModal();
-    }
-  },
-
-  loginWithEmailInput: function() {
-    var val = (document.getElementById('authEmailInput') || {}).value || '';
-    Auth.loginWithEmail(val.trim());
   },
 
   logout: async function() {
@@ -169,10 +209,12 @@ var Auth = {
     document.getElementById('authLoginBtn')?.addEventListener('click', Auth.openLoginModal);
     document.getElementById('authLoginBtnMobile')?.addEventListener('click', Auth.openLoginModal);
     document.getElementById('authLogoutBtn')?.addEventListener('click', Auth.logout);
-    document.getElementById('authMagicLinkBtn')?.addEventListener('click', Auth.loginWithEmailInput);
     document.getElementById('authGoogleBtn')?.addEventListener('click', Auth.loginWithGoogle);
-    document.getElementById('authEmailInput')?.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') Auth.loginWithEmailInput();
+    document.getElementById('authPasswordInput')?.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') Auth.submitForm();
+    });
+    document.getElementById('authConfirmInput')?.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') Auth.submitForm();
     });
     // Migration buttons
     document.getElementById('migBtnUpload')?.addEventListener('click', async function() {

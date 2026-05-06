@@ -717,17 +717,27 @@ body {
 .auth-divider { display: flex; align-items: center; gap: 12px; margin: 4px 0 16px; }
 .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .auth-divider span { font-size: 13px; color: var(--text2); white-space: nowrap; }
-.auth-email-input {
-  width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius);
-  background: var(--bg); color: var(--text); font-size: 15px; margin-bottom: 10px; box-sizing: border-box;
+/* ── AUTH TABS ── */
+.auth-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 16px; }
+.auth-tab { flex: 1; padding: 10px; background: none; border: none; font-size: 15px; font-weight: 600; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color .15s, border-color .15s; }
+.auth-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+/* ── AUTH FORM ── */
+.auth-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.auth-input-wrap { position: relative; display: flex; align-items: center; }
+.auth-input-icon { position: absolute; left: 13px; font-size: 15px; color: var(--text3); pointer-events: none; }
+.auth-field-input {
+  width: 100%; padding: 12px 14px 12px 38px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg); color: var(--text); font-size: 15px; box-sizing: border-box;
 }
-.auth-email-input:focus { outline: none; border-color: var(--primary); }
-.btn-magic-link {
-  width: 100%; padding: 12px; border-radius: var(--radius); background: var(--primary);
-  color: #fff; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-bottom: 16px;
+.auth-field-input:focus { outline: none; border-color: var(--primary); }
+.btn-auth-submit {
+  width: 100%; padding: 13px; border-radius: var(--radius); background: var(--primary);
+  color: #fff; font-size: 15px; font-weight: 700; border: none; cursor: pointer; margin-top: 2px;
 }
-.btn-magic-link:hover { opacity: .88; }
-.btn-guest-continue { background: none; border: none; color: var(--text2); font-size: 13px; cursor: pointer; padding: 4px; text-decoration: underline; }
+.btn-auth-submit:hover { opacity: .88; }
+.auth-forgot-btn { background: none; border: none; color: var(--text2); font-size: 13px; cursor: pointer; text-align: center; }
+.auth-forgot-btn:hover { color: var(--primary); }
+.btn-guest-continue { background: none; border: none; color: var(--text2); font-size: 13px; cursor: pointer; padding: 4px; text-decoration: underline; display: block; margin: 0 auto; }
 .btn-guest-continue:hover { color: var(--text); }
 
 /* ── MIGRATION MODAL ── */

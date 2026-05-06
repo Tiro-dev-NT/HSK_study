@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Điều khoản Dịch vụ — HSK Master</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #C0392B;
+      --primary-light: #E74C3C;
+      --accent: #F39C12;
+      --bg: #F0F2F5;
+      --surface: #FFFFFF;
+      --text: #1A202C;
+      --text2: #64748B;
+      --border: #E2E8F0;
+      --radius: 14px;
+      --font-ui: 'Inter', sans-serif;
+      --font-hanzi: 'Noto Sans SC', serif;
+    }
+    [data-theme="dark"] {
+      --bg: #0F0F1A;
+      --surface: #1A1A2E;
+      --text: #F1F5F9;
+      --text2: #94A3B8;
+      --border: #2D3748;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #C0392B, #F39C12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-hanzi);
+      font-size: 18px;
+      color: #fff;
+      font-weight: 700;
+    }
+    .nav-back {
+      font-size: 14px;
+      color: var(--text2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .nav-back:hover { background: var(--border); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1A1A2E 0%, #C0392B 60%, #F39C12 100%);
+      padding: 56px 24px 48px;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: .5px;
+    }
+    .hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 10px; }
+    .hero p { font-size: 16px; opacity: .88; max-width: 500px; margin: 0 auto; }
+
+    /* CONTENT */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .toc-card h3 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--text2);
+      margin-bottom: 14px;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toc-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .toc-list a:hover { text-decoration: underline; }
+    .toc-list li::before { content: "→ "; color: var(--text2); font-size: 13px; }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #C0392B, #E74C3C);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 10px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .section h2 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .section p { font-size: 15px; color: var(--text2); margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 12px;
+    }
+    .section ul li {
+      font-size: 15px;
+      color: var(--text2);
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+    .section ul li::before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 6px;
+      font-weight: 700;
+    }
+    .section strong { color: var(--text); }
+
+    .highlight-box {
+      background: rgba(192,57,43,.07);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--text2);
+    }
+    [data-theme="dark"] .highlight-box { background: rgba(192,57,43,.12); }
+
+    .warning-box {
+      background: rgba(243,156,18,.07);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--text2);
+    }
+    [data-theme="dark"] .warning-box { background: rgba(243,156,18,.1); }
+
+    .updated-tag {
+      display: inline-block;
+      background: var(--border);
+      color: var(--text2);
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(192,57,43,.08), rgba(243,156,18,.08));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .contact-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; color: var(--text2); margin-bottom: 16px; }
+    .contact-card a.btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #C0392B, #E74C3C);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .contact-card a.btn:hover { opacity: .88; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--text2);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .section { padding: 22px 18px; }
+      .toc-card { padding: 18px; }
+      .hero { padding: 40px 16px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">
+      <div class="nav-logo-icon">汉</div>
+      HSK Master
+    </a>
+    <a href="/" class="nav-back">← Về ứng dụng</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">📜 Điều khoản & Điều kiện</div>
+    <h1>Điều khoản Dịch vụ</h1>
+    <p>Vui lòng đọc kỹ trước khi sử dụng. Sử dụng HSK Master đồng nghĩa với việc bạn đồng ý với các điều khoản này.</p>
+  </div>
+
+  <div class="container">
+
+    <span class="updated-tag">📅 Cập nhật lần cuối: 06/05/2026</span>
+
+    <div class="toc-card">
+      <h3>Mục lục</h3>
+      <ul class="toc-list">
+        <li><a href="#acceptance">Chấp nhận điều khoản</a></li>
+        <li><a href="#service">Mô tả dịch vụ</a></li>
+        <li><a href="#account">Tài khoản người dùng</a></li>
+        <li><a href="#conduct">Quy tắc sử dụng</a></li>
+        <li><a href="#ip">Sở hữu trí tuệ</a></li>
+        <li><a href="#disclaimer">Giới hạn trách nhiệm</a></li>
+        <li><a href="#termination">Chấm dứt dịch vụ</a></li>
+        <li><a href="#changes">Thay đổi điều khoản</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+    </div>
+
+    <div class="section" id="acceptance">
+      <h2><span class="section-num">1</span> Chấp nhận Điều khoản</h2>
+      <p>Bằng cách truy cập và sử dụng <strong>HSK Master</strong> (hanzigenz.com), bạn xác nhận rằng bạn đã đọc, hiểu và đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này.</p>
+      <p>Nếu bạn không đồng ý với bất kỳ điều khoản nào, vui lòng ngừng sử dụng dịch vụ. Trẻ em dưới 13 tuổi cần có sự đồng ý của phụ huynh hoặc người giám hộ.</p>
+    </div>
+
+    <div class="section" id="service">
+      <h2><span class="section-num">2</span> Mô tả Dịch vụ</h2>
+      <p>HSK Master là ứng dụng web miễn phí giúp người dùng học từ vựng tiếng Trung Quốc theo chuẩn HSK 1–6, bao gồm:</p>
+      <ul>
+        <li>Hệ thống học thẻ ghi nhớ với thuật toán lặp lại ngắt quãng (SRS).</li>
+        <li>Tra từ điển Hán-Việt và Hán-Anh.</li>
+        <li>Các chế độ luyện tập: Flashcard, Trắc nghiệm, Điền từ.</li>
+        <li>Trò chơi học tập: Speed Quiz, Memory Flip, Pinyin Wordle.</li>
+        <li>Đồng bộ tiến độ học tập qua tài khoản (tùy chọn).</li>
+      </ul>
+      <div class="highlight-box">
+        Dịch vụ được cung cấp <strong>miễn phí</strong>. Chúng tôi bảo lưu quyền thêm tính năng trả phí trong tương lai, nhưng các tính năng cơ bản hiện tại sẽ luôn miễn phí.
+      </div>
+    </div>
+
+    <div class="section" id="account">
+      <h2><span class="section-num">3</span> Tài khoản Người dùng</h2>
+      <p>Việc tạo tài khoản là <strong>tùy chọn</strong> — bạn có thể sử dụng đầy đủ tính năng học tập mà không cần đăng ký. Tài khoản chỉ cần thiết cho tính năng đồng bộ đa thiết bị.</p>
+      <ul>
+        <li>Bạn chịu trách nhiệm bảo mật thông tin đăng nhập của mình.</li>
+        <li>Mỗi người dùng chỉ được phép sở hữu một tài khoản.</li>
+        <li>Bạn phải cung cấp thông tin chính xác khi đăng ký.</li>
+        <li>Thông báo ngay cho chúng tôi nếu phát hiện tài khoản bị truy cập trái phép.</li>
+      </ul>
+      <p>Chúng tôi bảo lưu quyền tạm khóa hoặc xóa tài khoản vi phạm điều khoản mà không cần thông báo trước.</p>
+    </div>
+
+    <div class="section" id="conduct">
+      <h2><span class="section-num">4</span> Quy tắc Sử dụng</h2>
+      <p>Khi sử dụng HSK Master, bạn đồng ý <strong>không</strong> thực hiện các hành vi sau:</p>
+      <ul>
+        <li>Can thiệp, làm gián đoạn hoặc tấn công hệ thống và máy chủ.</li>
+        <li>Cào dữ liệu (scraping), sao chép nội dung từ vựng để phân phối lại mà không có phép.</li>
+        <li>Tạo tài khoản giả mạo hoặc mạo danh người khác.</li>
+        <li>Sử dụng bot, script tự động để thao túng hệ thống XP hoặc thống kê.</li>
+        <li>Chia sẻ nội dung bất hợp pháp, xúc phạm hoặc vi phạm bản quyền.</li>
+      </ul>
+      <div class="warning-box">
+        Vi phạm các quy tắc trên có thể dẫn đến việc tài khoản bị xóa vĩnh viễn và có thể bị báo cáo lên cơ quan chức năng nếu cần thiết.
+      </div>
+    </div>
+
+    <div class="section" id="ip">
+      <h2><span class="section-num">5</span> Sở hữu Trí tuệ</h2>
+      <p><strong>Nội dung của HSK Master:</strong> Thiết kế giao diện, mã nguồn, đồ họa, bố cục và nội dung bài học gốc thuộc sở hữu của HSK Master và được bảo vệ bởi luật bản quyền.</p>
+      <p><strong>Dữ liệu từ vựng HSK:</strong> Danh sách từ vựng HSK là tài liệu công cộng theo tiêu chuẩn của Hội đồng Quốc tế Ngôn ngữ Trung Quốc (Hanban). Chúng tôi không có bản quyền đối với các từ vựng này.</p>
+      <p><strong>Dữ liệu người dùng:</strong> Dữ liệu học tập bạn tạo ra (tiến độ, ghi chú, bộ thẻ cá nhân) là tài sản của bạn. Bạn có thể xuất và xóa bất kỳ lúc nào.</p>
+      <ul>
+        <li>Bạn được phép sử dụng ứng dụng cho mục đích cá nhân, phi thương mại.</li>
+        <li>Nghiêm cấm sao chép, phân phối lại hoặc xây dựng sản phẩm phái sinh từ mã nguồn mà không có sự cho phép bằng văn bản.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="disclaimer">
+      <h2><span class="section-num">6</span> Giới hạn Trách nhiệm</h2>
+      <p>HSK Master được cung cấp <strong>"nguyên trạng"</strong> (as-is) và <strong>"theo khả năng sẵn có"</strong> (as-available). Chúng tôi không đảm bảo dịch vụ sẽ hoạt động liên tục, không có lỗi hoặc đáp ứng mọi kỳ vọng cụ thể.</p>
+      <ul>
+        <li>Chúng tôi không chịu trách nhiệm về mất dữ liệu do sự cố kỹ thuật ngoài tầm kiểm soát.</li>
+        <li>Chúng tôi không đảm bảo tính chính xác tuyệt đối của mọi nội dung từ vựng.</li>
+        <li>Các liên kết đến dịch vụ bên thứ ba không thuộc trách nhiệm của chúng tôi.</li>
+      </ul>
+      <div class="highlight-box">
+        Chúng tôi khuyến nghị bạn thường xuyên xuất dữ liệu học tập để sao lưu cá nhân, đặc biệt trước các bản cập nhật lớn.
+      </div>
+    </div>
+
+    <div class="section" id="termination">
+      <h2><span class="section-num">7</span> Chấm dứt Dịch vụ</h2>
+      <p><strong>Từ phía bạn:</strong> Bạn có thể ngừng sử dụng dịch vụ bất kỳ lúc nào. Để xóa tài khoản và toàn bộ dữ liệu liên quan, vui lòng liên hệ chúng tôi qua email.</p>
+      <p><strong>Từ phía chúng tôi:</strong> Chúng tôi bảo lưu quyền tạm ngừng hoặc chấm dứt tài khoản vi phạm điều khoản. Trong trường hợp ngừng cung cấp toàn bộ dịch vụ, chúng tôi sẽ thông báo trước ít nhất <strong>30 ngày</strong> để bạn có thể xuất dữ liệu.</p>
+    </div>
+
+    <div class="section" id="changes">
+      <h2><span class="section-num">8</span> Thay đổi Điều khoản</h2>
+      <p>Chúng tôi có thể cập nhật các Điều khoản này theo thời gian để phản ánh sự thay đổi của dịch vụ hoặc yêu cầu pháp lý. Ngày cập nhật sẽ luôn được hiển thị ở đầu trang.</p>
+      <p>Đối với các thay đổi quan trọng (ảnh hưởng đến quyền lợi người dùng), chúng tôi sẽ thông báo qua email (nếu bạn đã đăng ký) hoặc thông báo nổi bật trong ứng dụng trước ít nhất <strong>7 ngày</strong>.</p>
+    </div>
+
+    <div class="contact-card" id="contact">
+      <h3>💬 Câu hỏi về Điều khoản?</h3>
+      <p>Nếu bạn có bất kỳ thắc mắc nào về các điều khoản này hoặc muốn yêu cầu xóa tài khoản, hãy liên hệ trực tiếp với chúng tôi.</p>
+      <a href="mailto:nguyentruong100406@gmail.com" class="btn">Liên hệ qua Email</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 HSK Master · <a href="/privacy.html">Bảo mật</a> · <a href="/terms.html">Điều khoản</a> · <a href="/">Về ứng dụng</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chính sách Bảo mật — HSK Master</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #C0392B;
+      --primary-light: #E74C3C;
+      --accent: #F39C12;
+      --bg: #F0F2F5;
+      --surface: #FFFFFF;
+      --text: #1A202C;
+      --text2: #64748B;
+      --border: #E2E8F0;
+      --radius: 14px;
+      --font-ui: 'Inter', sans-serif;
+      --font-hanzi: 'Noto Sans SC', serif;
+    }
+    [data-theme="dark"] {
+      --bg: #0F0F1A;
+      --surface: #1A1A2E;
+      --text: #F1F5F9;
+      --text2: #94A3B8;
+      --border: #2D3748;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #C0392B, #F39C12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-hanzi);
+      font-size: 18px;
+      color: #fff;
+      font-weight: 700;
+    }
+    .nav-back {
+      font-size: 14px;
+      color: var(--text2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .nav-back:hover { background: var(--border); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #C0392B 0%, #E74C3C 50%, #F39C12 100%);
+      padding: 56px 24px 48px;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: .5px;
+    }
+    .hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 10px; }
+    .hero p { font-size: 16px; opacity: .88; max-width: 500px; margin: 0 auto; }
+
+    /* CONTENT */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .toc-card h3 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--text2);
+      margin-bottom: 14px;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toc-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .toc-list a:hover { text-decoration: underline; }
+    .toc-list li::before { content: "→ "; color: var(--text2); font-size: 13px; }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #C0392B, #E74C3C);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 10px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .section h2 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .section p { font-size: 15px; color: var(--text2); margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 12px;
+    }
+    .section ul li {
+      font-size: 15px;
+      color: var(--text2);
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+    .section ul li::before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 6px;
+      font-weight: 700;
+    }
+    .section strong { color: var(--text); }
+
+    .highlight-box {
+      background: rgba(192,57,43,.07);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--text2);
+    }
+    [data-theme="dark"] .highlight-box { background: rgba(192,57,43,.12); }
+
+    .updated-tag {
+      display: inline-block;
+      background: var(--border);
+      color: var(--text2);
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(192,57,43,.08), rgba(243,156,18,.08));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .contact-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; color: var(--text2); margin-bottom: 16px; }
+    .contact-card a.btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #C0392B, #E74C3C);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .contact-card a.btn:hover { opacity: .88; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--text2);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .section { padding: 22px 18px; }
+      .toc-card { padding: 18px; }
+      .hero { padding: 40px 16px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">
+      <div class="nav-logo-icon">汉</div>
+      HSK Master
+    </a>
+    <a href="/" class="nav-back">← Về ứng dụng</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">🔒 Bảo mật & Quyền riêng tư</div>
+    <h1>Chính sách Bảo mật</h1>
+    <p>Chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ dữ liệu cá nhân một cách minh bạch.</p>
+  </div>
+
+  <div class="container">
+
+    <span class="updated-tag">📅 Cập nhật lần cuối: 06/05/2026</span>
+
+    <div class="toc-card">
+      <h3>Mục lục</h3>
+      <ul class="toc-list">
+        <li><a href="#collect">Thông tin chúng tôi thu thập</a></li>
+        <li><a href="#use">Cách chúng tôi sử dụng thông tin</a></li>
+        <li><a href="#storage">Lưu trữ dữ liệu</a></li>
+        <li><a href="#third-party">Dịch vụ bên thứ ba</a></li>
+        <li><a href="#rights">Quyền của bạn</a></li>
+        <li><a href="#children">Trẻ em</a></li>
+        <li><a href="#changes">Thay đổi chính sách</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+    </div>
+
+    <div class="section" id="collect">
+      <h2><span class="section-num">1</span> Thông tin chúng tôi thu thập</h2>
+      <p>HSK Master thu thập các thông tin tối thiểu cần thiết để cung cấp dịch vụ học tiếng Trung:</p>
+      <ul>
+        <li><strong>Thông tin tài khoản:</strong> Địa chỉ email và tên hiển thị khi bạn đăng ký bằng Google hoặc email.</li>
+        <li><strong>Dữ liệu học tập:</strong> Tiến độ học từ vựng, lịch sử ôn tập SRS, điểm XP, chuỗi ngày học (streak).</li>
+        <li><strong>Cài đặt:</strong> Tùy chọn ngôn ngữ giao diện, chế độ tối/sáng, cài đặt gợi ý.</li>
+        <li><strong>Dữ liệu thiết bị:</strong> Loại trình duyệt, hệ điều hành (tự động, không định danh cá nhân).</li>
+      </ul>
+      <div class="highlight-box">
+        Chúng tôi <strong>không</strong> thu thập số điện thoại, địa chỉ thực, thông tin thanh toán hay bất kỳ dữ liệu nhạy cảm nào khác.
+      </div>
+    </div>
+
+    <div class="section" id="use">
+      <h2><span class="section-num">2</span> Cách chúng tôi sử dụng thông tin</h2>
+      <p>Thông tin thu thập được sử dụng duy nhất cho các mục đích sau:</p>
+      <ul>
+        <li>Đồng bộ tiến độ học tập của bạn giữa các thiết bị.</li>
+        <li>Tính toán lịch ôn tập SRS (Spaced Repetition System) cá nhân hóa.</li>
+        <li>Hiển thị thống kê học tập, XP và chuỗi ngày.</li>
+        <li>Gửi thông báo ôn tập (nếu bạn kích hoạt tính năng này).</li>
+        <li>Cải thiện chất lượng ứng dụng qua dữ liệu tổng hợp ẩn danh.</li>
+      </ul>
+      <p>Chúng tôi <strong>không bán, không chia sẻ</strong> dữ liệu cá nhân của bạn cho bên thứ ba vì mục đích thương mại.</p>
+    </div>
+
+    <div class="section" id="storage">
+      <h2><span class="section-num">3</span> Lưu trữ dữ liệu</h2>
+      <ul>
+        <li><strong>Lưu trữ cục bộ:</strong> Khi không đăng nhập, dữ liệu được lưu trong <code>localStorage</code> của trình duyệt — chỉ bạn mới có thể truy cập.</li>
+        <li><strong>Lưu trữ đám mây:</strong> Khi đăng nhập, dữ liệu được đồng bộ lên <strong>Supabase</strong> (PostgreSQL, máy chủ tại Singapore). Dữ liệu được mã hóa khi truyền tải (TLS) và khi lưu trữ.</li>
+        <li><strong>Thời gian lưu trữ:</strong> Dữ liệu được giữ cho đến khi bạn yêu cầu xóa tài khoản.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="third-party">
+      <h2><span class="section-num">4</span> Dịch vụ bên thứ ba</h2>
+      <p>HSK Master sử dụng các dịch vụ sau:</p>
+      <ul>
+        <li><strong>Google OAuth:</strong> Xác thực đăng nhập. Google có thể thu thập thông tin theo chính sách riêng của họ.</li>
+        <li><strong>Supabase:</strong> Lưu trữ dữ liệu người dùng (cơ sở dữ liệu PostgreSQL được bảo mật theo tiêu chuẩn SOC 2).</li>
+        <li><strong>Cloudflare Pages:</strong> Phân phối ứng dụng web (CDN). Cloudflare có thể ghi log truy cập ẩn danh.</li>
+        <li><strong>Google Fonts:</strong> Phông chữ Noto Sans SC và Inter được tải từ máy chủ Google.</li>
+      </ul>
+      <p>Các dịch vụ này có chính sách bảo mật riêng và độc lập với HSK Master.</p>
+    </div>
+
+    <div class="section" id="rights">
+      <h2><span class="section-num">5</span> Quyền của bạn</h2>
+      <p>Bạn có toàn quyền kiểm soát dữ liệu của mình:</p>
+      <ul>
+        <li><strong>Xem dữ liệu:</strong> Truy cập toàn bộ tiến độ học trong phần Cài đặt → Đồng bộ dữ liệu.</li>
+        <li><strong>Xuất dữ liệu:</strong> Tải xuống dữ liệu dưới dạng JSON bất kỳ lúc nào.</li>
+        <li><strong>Xóa dữ liệu:</strong> Xóa toàn bộ dữ liệu học tập ngay trong ứng dụng, hoặc liên hệ chúng tôi để xóa tài khoản hoàn toàn.</li>
+        <li><strong>Hủy đồng bộ:</strong> Đăng xuất để dừng đồng bộ đám mây — dữ liệu cục bộ vẫn được giữ nguyên.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="children">
+      <h2><span class="section-num">6</span> Trẻ em</h2>
+      <p>HSK Master không yêu cầu xác minh độ tuổi và phù hợp với mọi lứa tuổi. Chúng tôi không cố ý thu thập thông tin cá nhân của trẻ dưới 13 tuổi ngoài những gì cần thiết để cung cấp dịch vụ.</p>
+      <p>Nếu bạn là phụ huynh và lo ngại về dữ liệu con em mình, vui lòng liên hệ chúng tôi để được hỗ trợ xóa dữ liệu.</p>
+    </div>
+
+    <div class="section" id="changes">
+      <h2><span class="section-num">7</span> Thay đổi chính sách</h2>
+      <p>Chúng tôi có thể cập nhật Chính sách Bảo mật này khi cần thiết. Mọi thay đổi quan trọng sẽ được thông báo qua email (nếu bạn đã đăng ký) hoặc thông báo trong ứng dụng trước ít nhất 7 ngày.</p>
+      <p>Ngày cập nhật sẽ luôn được hiển thị rõ ràng ở đầu trang này. Việc tiếp tục sử dụng dịch vụ sau khi chính sách thay đổi đồng nghĩa với việc bạn chấp nhận các điều khoản mới.</p>
+    </div>
+
+    <div class="contact-card" id="contact">
+      <h3>📬 Liên hệ về Quyền riêng tư</h3>
+      <p>Có câu hỏi về chính sách bảo mật hoặc muốn yêu cầu xóa dữ liệu? Chúng tôi luôn sẵn sàng hỗ trợ.</p>
+      <a href="mailto:nguyentruong100406@gmail.com" class="btn">Gửi email cho chúng tôi</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 HSK Master · <a href="/privacy.html">Bảo mật</a> · <a href="/terms.html">Điều khoản</a> · <a href="/">Về ứng dụng</a></p>
+  </footer>
+
+</body>
+</html>

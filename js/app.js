@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['updateStats',          function() { Gamification.updateStats(); }],
     ['setupFeedback',        function() { Feedback.setup(); }],
     ['loadSettings',         function() { Settings.load(); }],
+    ['setupGames',           function() { if (typeof Games !== 'undefined') Games.setup(); }],
   ];
 
   initSteps.forEach(function(step) {

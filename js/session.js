@@ -21,10 +21,14 @@ var Session = {
       const w = AppState.fcDeck[AppState.fcIndex];
       if (w) Dictionary.playTTS(w.h);
     });
+    // Advanced mode (4 buttons)
     document.getElementById('btnAgain')?.addEventListener('click', function() { Session.nextFcCard(0); });
     document.getElementById('btnHard')?.addEventListener('click',  function() { Session.nextFcCard(1); });
     document.getElementById('btnGood')?.addEventListener('click',  function() { Session.nextFcCard(2); });
     document.getElementById('btnEasy')?.addEventListener('click',  function() { Session.nextFcCard(3); });
+    // Simple mode (2 buttons)
+    document.getElementById('btnForget')?.addEventListener('click',   function() { Session.nextFcCard(0); });
+    document.getElementById('btnRemember')?.addEventListener('click', function() { Session.nextFcCard(2); });
 
     // Typing
     document.getElementById('tySubmit')?.addEventListener('click', Session.checkTypingAnswer);
@@ -85,6 +89,24 @@ var Session = {
     checkAndUpdateStreak();
     updateStats();
     buildLevelGrid();
+    // ── Extended stats ─────────────────────────────
+    // Elapsed time
+    const elapsedMs = AppState.fcSession.startTime ? (Date.now() - AppState.fcSession.startTime) : 0;
+    const mins = Math.floor(elapsedMs / 60000);
+    const secs = Math.floor((elapsedMs % 60000) / 1000);
+    document.getElementById('srTime').textContent = mins + ':' + String(secs).padStart(2, '0');
+    // XP earned
+    document.getElementById('srXP').textContent = '+' + earned + ' XP';
+    // Streak
+    const streak = typeof Gamification !== 'undefined' ? Gamification.getStreak() : parseInt(localStorage.getItem('hsk_streak') || '0');
+    document.getElementById('srStreak').textContent = streak + ' 🔥';
+    // Due tomorrow
+    const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowStr = tomorrow.toISOString().split('T')[0];
+    const srs = AppState.srsData || {};
+    const dueTomorrow = Object.values(srs).filter(function(c) { return c.dueDate === tomorrowStr; }).length;
+    const dueEl = document.getElementById('srDueTomorrow');
+    if (dueEl) dueEl.textContent = dueTomorrow > 0 ? ('📅 Ngày mai cần ôn: ' + dueTomorrow + ' thẻ') : '';
   },
 
   // ── Flashcard ──────────────────────────────────────
@@ -114,6 +136,9 @@ var Session = {
     const fc = document.getElementById('flashcard');
     if (!fc.classList.contains('flipped')) {
       fc.classList.add('flipped');
+      const isSimple = (typeof appSettings === 'undefined' || appSettings.srsMode !== 'advanced');
+      document.getElementById('fcBtnsSimple').style.display   = isSimple   ? 'flex' : 'none';
+      document.getElementById('fcBtnsAdvanced').style.display = isSimple   ? 'none' : 'flex';
       document.getElementById('fcButtons').style.display = 'flex';
       Dictionary.playTTS(AppState.fcDeck[AppState.fcIndex].h);
     }
@@ -149,11 +174,7 @@ var Session = {
     } else {
       exEl.style.display = 'none';
     }
-    const py = w.p;
-    let hint = py.charAt(0);
-    for (let i = 1; i < py.length - 1; i++) hint += (py.charAt(i) === ' ' ? ' ' : ' _');
-    hint += (py.length > 1 ? ' ' + py.charAt(py.length - 1) : '');
-    document.getElementById('tyHint').textContent = hint;
+    document.getElementById('tyHint').textContent = Session._getHint(w.p);
     const input = document.getElementById('tyInput');
     input.value = '';
     input.disabled = false;
@@ -204,6 +225,20 @@ var Session = {
     fcIndex = AppState.fcIndex;
     if (AppState.fcIndex >= AppState.fcDeck.length) Session.endLearnSession();
     else Session.showTyCard();
+  },
+
+  // ── Hint generator (hintLevel: easy/medium/hard) ──
+  _getHint: function(pinyin) {
+    const level = (typeof appSettings !== 'undefined' ? appSettings.hintLevel : null) || 'medium';
+    const syllables = pinyin.split(' ').filter(Boolean);
+    if (level === 'hard') {
+      return syllables.map(function() { return '___'; }).join(' ');
+    }
+    if (level === 'easy') {
+      return syllables.map(function(s) { return s.charAt(0) + '_'; }).join(' ');
+    }
+    // medium: first char + 2 underscores per syllable
+    return syllables.map(function(s) { return s.charAt(0) + '__'; }).join(' ');
   },
 
   // ── MCQ mode ───────────────────────────────────────

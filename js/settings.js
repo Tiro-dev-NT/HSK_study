@@ -21,6 +21,8 @@ const SETTINGS_DEFAULT = {
   defaultMode:       'flashcard',
   hintDelay:         0,
   soundFx:           true,
+  srsMode:           'simple',   // 'simple' = 2 buttons | 'advanced' = 4 buttons
+  hintLevel:         'medium',   // 'easy' | 'medium' | 'hard'
 };
 
 var appSettings = { ...SETTINGS_DEFAULT };
@@ -64,6 +66,8 @@ var Settings = {
     document.getElementById('setDefaultMode').value      = s.defaultMode;
     document.getElementById('setHintDelay').value        = String(s.hintDelay);
     document.getElementById('setSoundFx').checked        = s.soundFx;
+    document.getElementById('setSrsMode').value          = s.srsMode;
+    document.getElementById('setHintLevel').value        = s.hintLevel;
     document.getElementById('settingsOverlay').style.display = 'flex';
     document.body.style.overflow = 'hidden';
   },
@@ -86,6 +90,8 @@ var Settings = {
       defaultMode:      document.getElementById('setDefaultMode').value,
       hintDelay:        parseInt(document.getElementById('setHintDelay').value) || 0,
       soundFx:          document.getElementById('setSoundFx').checked,
+      srsMode:          document.getElementById('setSrsMode').value,
+      hintLevel:        document.getElementById('setHintLevel').value,
     };
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(appSettings));
     Settings.apply();

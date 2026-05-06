@@ -486,7 +486,7 @@ function wireDecksUI() {
     }
 
     AppState.fcIndex   = 0;
-    AppState.fcSession = { correct: 0, wrong: 0 };
+    AppState.fcSession = { correct: 0, wrong: 0, startTime: Date.now() };
 
     // Sync backward-compat aliases
     fcDeck    = AppState.fcDeck;

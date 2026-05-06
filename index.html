@@ -41,6 +41,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <span>Góp ý</span>
       </a>
+      <a class="nav-item" data-page="games" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="4"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
+        <span>Trò chơi</span>
+      </a>
       <a class="nav-item" id="navSettings" href="#" onclick="openSettings();return false;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         <span>Cài đặt</span>
@@ -256,10 +260,16 @@
           </div>
         </div>
         <div class="srs-buttons" id="fcButtons" style="display:none">
-          <button class="srs-btn srs-again" id="btnAgain">❌ Không nhớ<small>1 phút</small></button>
-          <button class="srs-btn srs-hard" id="btnHard">😓 Khó<small>6 phút</small></button>
-          <button class="srs-btn srs-good" id="btnGood">😊 Ổn<small>10 phút</small></button>
-          <button class="srs-btn srs-easy" id="btnEasy">✅ Dễ<small>4 ngày</small></button>
+          <div id="fcBtnsAdvanced" class="srs-btns-inner" style="display:none">
+            <button class="srs-btn srs-again" id="btnAgain">❌ Không nhớ<small>1 phút</small></button>
+            <button class="srs-btn srs-hard"  id="btnHard">😓 Khó<small>6 phút</small></button>
+            <button class="srs-btn srs-good"  id="btnGood">😊 Ổn<small>10 phút</small></button>
+            <button class="srs-btn srs-easy"  id="btnEasy">✅ Dễ<small>4 ngày</small></button>
+          </div>
+          <div id="fcBtnsSimple" class="srs-btns-inner">
+            <button class="srs-btn srs-again srs-btn-simple" id="btnForget">❌ Chưa nhớ<small>1 phút</small></button>
+            <button class="srs-btn srs-good  srs-btn-simple" id="btnRemember">✅ Nhớ rồi<small>4 ngày</small></button>
+          </div>
         </div>
       </div>
 
@@ -321,6 +331,12 @@
           <div class="sr-stat sr-wrong"><span id="srWrong">0</span><small>Sai</small></div>
           <div class="sr-stat"><span id="srPct">0%</span><small>Điểm</small></div>
         </div>
+        <div class="sr-stats-row sr-stats-row2">
+          <div class="sr-stat"><span id="srTime">—</span><small>Thời gian</small></div>
+          <div class="sr-stat sr-xp"><span id="srXP">+0 XP</span><small>Kinh nghiệm</small></div>
+          <div class="sr-stat"><span id="srStreak">0 🔥</span><small>Chuỗi ngày</small></div>
+        </div>
+        <p class="sr-due" id="srDueTomorrow"></p>
         <button class="btn-primary" id="learnAgainBtn">🔄 Học lại</button>
       </div>
     </section>
@@ -447,6 +463,113 @@
         <!-- Previous feedbacks -->
         <div class="fb-history" id="fbHistory"></div>
       </section>
+
+    <!-- PAGE: GAMES -->
+    <section class="page" id="page-games">
+
+      <!-- ── GAME HUB ── -->
+      <div id="gamesHub">
+        <div class="page-header">
+          <h1>🎮 Khu vui chơi</h1>
+          <p class="page-subtitle" style="color:var(--text2);margin-top:4px">Vừa chơi vừa học tiếng Trung!</p>
+        </div>
+        <div class="games-grid">
+          <div class="game-card" data-game="speed-quiz">
+            <div class="gc-icon">⚡</div>
+            <div class="gc-name">Speed Quiz</div>
+            <div class="gc-desc">Trả lời nhanh trong 60 giây, ghi điểm cao nhất</div>
+            <div class="gc-tags"><span class="gc-tag green">🟢 Dễ</span></div>
+          </div>
+          <div class="game-card" data-game="memory">
+            <div class="gc-icon">🧠</div>
+            <div class="gc-name">Memory Flip</div>
+            <div class="gc-desc">Lật thẻ ghép cặp Hán ↔ Nghĩa</div>
+            <div class="gc-tags"><span class="gc-tag yellow">🟡 Vừa</span></div>
+          </div>
+          <div class="game-card game-coming">
+            <div class="gc-icon">🟩</div>
+            <div class="gc-name">Pinyin Wordle</div>
+            <div class="gc-desc">Đoán pinyin trong 5 lần thử</div>
+            <div class="gc-tags"><span class="gc-badge-soon">Sắp có</span></div>
+          </div>
+          <div class="game-card game-coming">
+            <div class="gc-icon">⚔️</div>
+            <div class="gc-name">Boss Battle</div>
+            <div class="gc-desc">Đánh boss bằng từ vựng, HP bar</div>
+            <div class="gc-tags"><span class="gc-badge-soon">Sắp có</span></div>
+          </div>
+          <div class="game-card game-coming">
+            <div class="gc-icon">🏎️</div>
+            <div class="gc-name">Racing Quiz</div>
+            <div class="gc-desc">Đua xe vs CPU — đúng thì tiến</div>
+            <div class="gc-tags"><span class="gc-badge-soon">Sắp có</span></div>
+          </div>
+          <div class="game-card game-coming">
+            <div class="gc-icon">📝</div>
+            <div class="gc-name">Sentence Builder</div>
+            <div class="gc-desc">Sắp xếp từ thành câu đúng ngữ pháp</div>
+            <div class="gc-tags"><span class="gc-badge-soon">Sắp có</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SPEED QUIZ GAME ── -->
+      <div id="gameSpeedQuiz" style="display:none">
+        <div class="game-header">
+          <button class="btn-exit" id="sqExit">✕</button>
+          <h2 style="margin:0">⚡ Speed Quiz</h2>
+          <div class="sq-timer-wrap"><div class="sq-timer" id="sqTimer">60</div></div>
+        </div>
+        <div class="sq-scorebar">
+          <span>Điểm: <strong id="sqScore">0</strong></span>
+          <span>Chuỗi: <strong id="sqStreak">0</strong> 🔥</span>
+        </div>
+        <div class="sq-card">
+          <div class="sq-hanzi" id="sqHanzi"></div>
+          <div class="sq-pinyin" id="sqPinyin"></div>
+          <div class="sq-options" id="sqOptions"></div>
+        </div>
+        <div class="sq-result" id="sqResult" style="display:none">
+          <div class="sq-result-emoji" id="sqResultEmoji">🏆</div>
+          <h3>Hết giờ!</h3>
+          <div class="sq-result-stats">
+            <div>Điểm cao nhất: <strong id="sqFinalScore">0</strong></div>
+            <div>Nhận được: <strong id="sqXPEarned">0</strong> XP</div>
+          </div>
+          <div class="sq-btns">
+            <button class="btn-primary" id="sqPlayAgain">🔄 Chơi lại</button>
+            <button class="btn-secondary" id="sqBackHub">← Về menu</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MEMORY FLIP GAME ── -->
+      <div id="gameMemory" style="display:none">
+        <div class="game-header">
+          <button class="btn-exit" id="memExit">✕</button>
+          <h2 style="margin:0">🧠 Memory Flip</h2>
+          <div class="mem-info">
+            <span>Cặp: <strong id="memPairs">0</strong>/8</span>
+            <span>Lượt: <strong id="memMoves">0</strong></span>
+          </div>
+        </div>
+        <div class="mem-grid" id="memGrid"></div>
+        <div class="mem-result" id="memResult" style="display:none">
+          <div>🎉</div>
+          <h3>Ghép xong tất cả!</h3>
+          <div class="sq-result-stats">
+            <div>Số lượt lật: <strong id="memFinalMoves">0</strong></div>
+            <div>Nhận được: <strong id="memXPEarned">0</strong> XP</div>
+          </div>
+          <div class="sq-btns">
+            <button class="btn-primary" id="memPlayAgain">🔄 Chơi lại</button>
+            <button class="btn-secondary" id="memBackHub">← Về menu</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
     </main>
 
   <!-- BOTTOM NAV (Mobile) -->
@@ -474,6 +597,10 @@
     <a class="bnav-item" data-page="feedback" href="#">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       <span>Góp ý</span>
+    </a>
+    <a class="bnav-item" data-page="games" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="4"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
+      <span>Trò chơi</span>
     </a>
   </nav>
 
@@ -556,6 +683,7 @@
   <!-- ══ Deck & session (depends on state + modules above) ══ -->
   <script src="js/decks.js"></script>
   <script src="js/session.js"></script>
+  <script src="js/games.js"></script>
   <!-- ══ Entry point (must be last) ══ -->
   <script src="js/app.js"></script>
   <!-- ══ CDN libs ══ -->
@@ -662,6 +790,25 @@
           <label>Âm thanh khi trả lời</label>
           <div class="sm-control">
             <label class="sm-toggle"><input type="checkbox" id="setSoundFx" checked><span class="sm-slider"></span></label>
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Chế độ Flashcard</label>
+          <div class="sm-control">
+            <select id="setSrsMode">
+              <option value="simple">Đơn giản (2 nút)</option>
+              <option value="advanced">Đầy đủ (4 nút SRS)</option>
+            </select>
+          </div>
+        </div>
+        <div class="sm-row">
+          <label>Gợi ý Điền từ</label>
+          <div class="sm-control">
+            <select id="setHintLevel">
+              <option value="easy">Dễ (chữ đầu mỗi âm)</option>
+              <option value="medium">Vừa (chữ đầu + gạch)</option>
+              <option value="hard">Khó (không gợi ý)</option>
+            </select>
           </div>
         </div>
       </div>

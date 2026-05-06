@@ -277,14 +277,49 @@ var Dictionary = {
       .toLowerCase();
   },
 
+  _zhVoice:    null,
+  _ttsTimeout: null,
+
+  _pickZhVoice: function() {
+    if (Dictionary._zhVoice) return Dictionary._zhVoice;
+    var voices = window.speechSynthesis.getVoices();
+    Dictionary._zhVoice =
+      voices.find(function(v) { return v.lang === 'zh-CN'; }) ||
+      voices.find(function(v) { return v.lang === 'zh-TW'; }) ||
+      voices.find(function(v) { return v.lang.startsWith('zh'); }) ||
+      null;
+    if (!Dictionary._zhVoice && voices.length > 0) {
+      console.warn('[TTS] Không tìm thấy giọng tiếng Trung. Voices:', voices.map(function(v) { return v.lang; }).join(', '));
+    }
+    return Dictionary._zhVoice;
+  },
+
   playTTS: function(text) {
     if (typeof appSettings !== 'undefined' && appSettings.autoTTS === false) return;
-    if (!window.speechSynthesis) return;
-    const msg  = new SpeechSynthesisUtterance(text);
-    msg.lang   = 'zh-CN';
-    msg.rate   = 0.9;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(msg);
+    var synth = window.speechSynthesis;
+    if (!synth) return;
+
+    function doSpeak() {
+      // Chrome bug: synth silently fails after long idle — resume first
+      if (synth.paused) synth.resume();
+      var msg  = new SpeechSynthesisUtterance(text);
+      msg.lang = 'zh-CN';
+      msg.rate = 0.9;
+      var voice = Dictionary._pickZhVoice();
+      if (voice) msg.voice = voice;
+      synth.cancel();
+      // Delay after cancel prevents Chrome from silently dropping the utterance
+      clearTimeout(Dictionary._ttsTimeout);
+      Dictionary._ttsTimeout = setTimeout(function() { synth.speak(msg); }, 50);
+    }
+
+    var voices = synth.getVoices();
+    if (voices.length > 0) {
+      doSpeak();
+    } else {
+      // Chrome loads voices asynchronously on first page load
+      synth.addEventListener('voiceschanged', doSpeak, { once: true });
+    }
   },
 };
 

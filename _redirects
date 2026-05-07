@@ -1,0 +1,9 @@
+# Static pages keep their own files
+/privacy        /privacy.html       200
+/terms          /terms.html         200
+
+# Block direct access to fragment files
+/pages/*        /index.html         404
+
+# SPA fallback — Router handles all other routes
+/*              /index.html         200

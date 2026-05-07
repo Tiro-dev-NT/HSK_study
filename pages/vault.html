@@ -1,0 +1,38 @@
+    <!-- PAGE: VAULT (MY DECKS MANAGER) -->
+    <section class="page active" id="page-vault">
+      <!-- Default view: deck list -->
+      <div id="vaultDeckList">
+        <div class="page-header">
+          <h1 data-vi="Kho của tôi" data-en="My Vault">Kho của tôi</h1>
+          <div style="display:flex;gap:8px">
+            <button class="btn-primary btn-sm" id="btnCreateDeck2">＋ Tạo bộ thẻ</button>
+            <label class="btn-sm btn-outline" id="btnImportDeck2">📥 Import
+              <input type="file" id="importDeckFile2" accept=".json" style="display:none"/>
+            </label>
+          </div>
+        </div>
+        <div class="vault-deck-list" id="vaultDeckItems"></div>
+      </div>
+      <!-- Edit deck view -->
+      <div id="vaultEditDeck" style="display:none">
+        <div class="page-header">
+          <button class="btn-back" id="backToVaultList">← Quay lại</button>
+          <h2 id="editDeckTitle">Sửa bộ thẻ</h2>
+        </div>
+        <div class="edit-deck-name-row">
+          <input type="text" id="editDeckNameInput" placeholder="Tên bộ thẻ..." class="deck-name-input"/>
+          <button class="btn-primary btn-sm" id="saveDeckName">💾 Lưu</button>
+        </div>
+        <div class="edit-deck-search">
+          <input type="text" id="editDeckSearch" placeholder="🔍 Tìm từ để thêm vào bộ thẻ..."/>
+          <div class="edit-search-results" id="editSearchResults"></div>
+        </div>
+        <div class="edit-deck-words">
+          <div class="edit-words-label">Từ trong bộ thẻ (<span id="editWordCount">0</span> từ)</div>
+          <div class="edit-words-list" id="editWordsList"></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:16px">
+          <button class="btn-primary" id="exportEditDeck">📤 Export</button>
+        </div>
+      </div>
+    </section>

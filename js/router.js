@@ -1,38 +1,183 @@
 // ═══════════════════════════════════════════════════════
-// ROUTER.JS — Client-side page navigation
-// • Owns: navigateTo(), setupRouting()
-// • No state, no data dependency
-// • Input: page name (string)
-// • Output: DOM class changes only
+// ROUTER.JS — Client-side fragment router (Phase 2.5)
+// • Lazy-fetches HTML fragments from /pages/*.html
+// • Caches fetched fragments in memory
+// • Uses History pushState for clean URLs
+// • Calls per-page module init after injection
 // ═══════════════════════════════════════════════════════
 
-var Router = {
-  currentPage: null,
+var Router = (function() {
 
-  setup: function() {
-    document.querySelectorAll('[data-page]').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        Router.navigateTo(link.dataset.page);
+  var _cache = {};       // { pageName: htmlString }
+  var _current = null;
+  var _pending = false;  // prevent concurrent navigations
+
+  // ── Route map: URL path → page name ─────────────────
+  var _routes = {
+    '/':               'home',
+    '/home':           'home',
+    '/dictionary':     'dictionary',
+    '/learn':          'learn',
+    '/quiz':           'quiz',
+    '/vault':          'vault',
+    '/feedback':       'feedback',
+    '/games':          'games',
+    '/extension-auth': 'extension-auth',
+    '/video-vocab':    'video-vocab'
+  };
+
+  // ── Module init map: called after fragment is injected ──
+  var _initMap = {
+    'home': function() {
+      if (typeof Gamification !== 'undefined') {
+        Gamification.buildLevelGrid();
+        Gamification.updateStats();
+      }
+    },
+    'dictionary': function() {
+      if (typeof Dictionary !== 'undefined') {
+        Dictionary.setup();
+        Dictionary.setupHSKVersion();
+        Dictionary.buildRadicalBrowser();
+      }
+    },
+    'learn': function() {
+      if (typeof setupDecks === 'function') setupDecks();
+      if (typeof Session !== 'undefined') Session.setup();
+    },
+    'quiz': function() {
+      if (typeof Quiz !== 'undefined') Quiz.setup();
+    },
+    'vault': function() {
+      if (typeof setupDecks === 'function') setupDecks();
+    },
+    'feedback': function() {
+      if (typeof Feedback !== 'undefined') Feedback.setup();
+    },
+    'games': function() {
+      if (typeof Games !== 'undefined') Games.setup();
+    },
+    'extension-auth': function() {
+      // Auth.checkExtensionBridge() runs once at startup via app.js
+    },
+    'video-vocab': function() {
+      // Populated dynamically by auth/sync
+    }
+  };
+
+  // ── Fetch fragment from server (or memory cache) ─────
+  function _fetchFragment(page) {
+    if (_cache[page]) return Promise.resolve(_cache[page]);
+    return fetch('/pages/' + page + '.html')
+      .then(function(res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(function(html) {
+        _cache[page] = html;
+        return html;
       });
-    });
-  },
+  }
 
-  navigateTo: function(page) {
-    document.querySelectorAll('.page').forEach(function(p) {
-      p.classList.remove('active');
+  // ── Update nav highlights ────────────────────────────
+  function _updateNav(page) {
+    document.querySelectorAll('[data-page]').forEach(function(el) {
+      el.classList.toggle('active', el.dataset.page === page);
     });
-    document.querySelectorAll('[data-page]').forEach(function(l) {
-      l.classList.remove('active');
-    });
-    const target = document.getElementById('page-' + page);
-    if (target) target.classList.add('active');
-    document.querySelectorAll('[data-page="' + page + '"]').forEach(function(l) {
-      l.classList.add('active');
-    });
-    Router.currentPage = page;
-  },
-};
+  }
+
+  // ── Resolve URL path → page name ────────────────────
+  function _pageFromPath(pathname) {
+    var page = _routes[pathname];
+    if (!page) {
+      var stripped = pathname.replace(/^\//, '') || 'home';
+      page = _initMap.hasOwnProperty(stripped) ? stripped : 'home';
+    }
+    return page;
+  }
+
+  // ── Core navigation ──────────────────────────────────
+  function _navigateTo(page, pushState) {
+    if (_pending) return;
+    page = page || 'home';
+    if (page.charAt(0) === '/') page = page.slice(1) || 'home';
+    _pending = true;
+    var content = document.getElementById('content');
+
+    _fetchFragment(page)
+      .then(function(html) {
+        if (content) content.innerHTML = html;
+        try {
+          if (_initMap[page]) _initMap[page]();
+        } catch(e) {
+          console.error('[Router] initPageModule ' + page + ' failed:', e);
+        }
+        if (pushState !== false) {
+          var path = page === 'home' ? '/' : '/' + page;
+          history.pushState({ page: page }, '', path);
+        }
+        _updateNav(page);
+        _current = page;
+        window.scrollTo(0, 0);
+      })
+      .catch(function(err) {
+        console.error('[Router] fetch failed for ' + page + ':', err);
+        if (content) {
+          content.innerHTML =
+            '<section class="page active">' +
+            '<div class="page-header"><h1>Lỗi tải trang</h1>' +
+            '<p style="color:var(--text2)">Không thể tải trang <strong>' + page + '</strong>. ' +
+            'Vui lòng thử lại.</p>' +
+            '<button class="btn-primary" onclick="Router.navigateTo(\'home\')">← Về trang chủ</button>' +
+            '</div></section>';
+        }
+      })
+      .then(function() { _pending = false; });
+  }
+
+  // ── Public API ───────────────────────────────────────
+  return {
+
+    currentPage: null,  // backward-compat property
+
+    setup: function() {
+      // Event delegation for [data-page] links anywhere in document
+      document.body.addEventListener('click', function(e) {
+        var el = e.target;
+        while (el && el !== document.body) {
+          if (el.dataset && el.dataset.page) {
+            e.preventDefault();
+            Router.navigateTo(el.dataset.page);
+            return;
+          }
+          el = el.parentElement;
+        }
+      });
+
+      // Browser back/forward
+      window.addEventListener('popstate', function(e) {
+        var page = (e.state && e.state.page)
+          ? e.state.page
+          : _pageFromPath(window.location.pathname);
+        _navigateTo(page, false);
+      });
+
+      // Initial navigation: honour URL path for direct links / refresh
+      var initialPage = _pageFromPath(window.location.pathname);
+      _navigateTo(initialPage, false);
+
+      // Replace current history entry so popstate has state on first back
+      var initPath = initialPage === 'home' ? '/' : '/' + initialPage;
+      history.replaceState({ page: initialPage }, '', initPath);
+    },
+
+    navigateTo: function(page, pushState) {
+      Router.currentPage = page;
+      _navigateTo(page, pushState);
+    }
+  };
+
+}());
 
 // ── Backward-compat global functions ──────────────────
 function setupRouting() { Router.setup(); }

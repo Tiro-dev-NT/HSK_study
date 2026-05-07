@@ -1,0 +1,25 @@
+    <!-- PAGE: DICTIONARY -->
+    <section class="page active" id="page-dictionary">
+      <div class="page-header">
+        <h1 data-vi="Từ điển" data-en="Dictionary">Từ điển</h1>
+      </div>
+      <div class="search-box">
+        <input type="text" id="dictSearch" placeholder="Tìm chữ Hán, pinyin hoặc nghĩa..." autocomplete="off"/>
+        <span class="search-icon">🔍</span>
+      </div>
+      <div class="search-tabs">
+        <button class="stab active" data-mode="all">Tất cả</button>
+        <button class="stab" data-mode="hanzi">Chữ Hán</button>
+        <button class="stab" data-mode="pinyin">Pinyin</button>
+        <button class="stab" data-mode="meaning">Nghĩa</button>
+        <button class="stab" data-mode="radical">🔑 Bộ thủ</button>
+      </div>
+      <!-- RADICAL BROWSER -->
+      <div class="radical-browser" id="radicalBrowser" style="display:none">
+        <div class="rad-label">Chọn bộ thủ để lọc từ:</div>
+        <div class="rad-grid" id="radGrid"></div>
+      </div>
+      <div class="dict-results" id="dictResults">
+        <p class="hint" data-vi="Nhập từ để tìm kiếm..." data-en="Type to search...">Nhập từ để tìm kiếm...</p>
+      </div>
+    </section>

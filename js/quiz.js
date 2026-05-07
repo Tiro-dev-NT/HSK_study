@@ -16,6 +16,13 @@ var Quiz = {
       btn.addEventListener('click', function() { Quiz._switchScope(btn.dataset.scope); });
     });
 
+    document.querySelectorAll('.level-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.level-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+
     Quiz._populateTopics();
     Quiz._populateDecks();
 
@@ -108,7 +115,8 @@ var Quiz = {
     var lang  = AppState.lang;
 
     if (scope === 'hsk') {
-      var lv = document.getElementById('quizLevel').value;
+      var activeBtn = document.querySelector('.level-btn.active');
+      var lv = activeBtn ? activeBtn.dataset.level : '1';
       if (lv === 'mix') {
         [1,2,3,4,5,6].forEach(function(l) {
           (HSK_DATA[l] || []).forEach(function(w) { pool.push(Object.assign({}, w, {level: l})); });

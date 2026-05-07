@@ -495,15 +495,15 @@
             <button class="scope-tab" data-scope="wrong">Ôn sai</button>
           </div>
           <div id="scope-hsk" class="scope-panel">
-            <select id="quizLevel">
-              <option value="1">HSK 1</option>
-              <option value="2">HSK 2</option>
-              <option value="3">HSK 3</option>
-              <option value="4">HSK 4</option>
-              <option value="5">HSK 5</option>
-              <option value="6">HSK 6</option>
-              <option value="mix">Hỗn hợp</option>
-            </select>
+            <div class="level-grid" id="levelGrid">
+              <button class="level-btn active" data-level="1" style="--lc:#E74C3C"><span class="lv-dot"></span>HSK 1<span class="lv-count">140 từ</span></button>
+              <button class="level-btn" data-level="2" style="--lc:#E67E22"><span class="lv-dot"></span>HSK 2<span class="lv-count">130 từ</span></button>
+              <button class="level-btn" data-level="3" style="--lc:#D4AC0D"><span class="lv-dot"></span>HSK 3<span class="lv-count">260 từ</span></button>
+              <button class="level-btn" data-level="4" style="--lc:#27AE60"><span class="lv-dot"></span>HSK 4<span class="lv-count">590 từ</span></button>
+              <button class="level-btn" data-level="5" style="--lc:#2980B9"><span class="lv-dot"></span>HSK 5<span class="lv-count">465 từ</span></button>
+              <button class="level-btn" data-level="6" style="--lc:#8E44AD"><span class="lv-dot"></span>HSK 6<span class="lv-count">415 từ</span></button>
+              <button class="level-btn level-btn--mix" data-level="mix" style="--lc:var(--primary)">🔀 Hỗn hợp <span class="lv-count">2000+ từ</span></button>
+            </div>
           </div>
           <div id="scope-topic" class="scope-panel" style="display:none">
             <select id="quizTopic"></select>

@@ -105,7 +105,7 @@
    ex:{zh:"他的评价非常中肯。",py:"Tā de píngjià fēicháng zhōngkěn.",vi:"Đánh giá của anh ấy rất xác đáng.",en:"His assessment was very pertinent."}},
   // ── Nouns ──
   {h:"倡议",p:"chàngyì",v:"Sáng kiến / đề xướng",e:"Initiative/proposal",t:"society",
-   ex:{zh:"中国提出了"一带一路"倡议。",py:"Zhōngguó tíchūle "Yīdài yīlù" chàngyì.",vi:"Trung Quốc đã đề xướng sáng kiến "Vành đai và Con đường".",en:"China put forward the \"Belt and Road\" initiative."}},
+   ex:{zh:"中国提出了\"一带一路\"倡议。",py:"Zhōngguó tíchūle \"Yīdài yīlù\" chàngyì.",vi:"Trung Quốc đã đề xướng sáng kiến \"Vành đai và Con đường\".",en:"China put forward the \"Belt and Road\" initiative."}},
   {h:"博弈",p:"bóyì",v:"Đấu tranh / cạnh tranh (nghĩa bóng)",e:"Contest/game (strategic)",t:"society",
    ex:{zh:"两国之间的博弈愈发激烈。",py:"Liǎng guó zhī jiān de bóyì yùfā jīliè.",vi:"Cuộc cạnh tranh chiến lược giữa hai nước ngày càng gay gắt.",en:"The strategic contest between the two countries has become increasingly intense."}},
   {h:"痕迹",p:"hénjì",v:"Dấu vết / dấu tích",e:"Trace/mark",t:"general",

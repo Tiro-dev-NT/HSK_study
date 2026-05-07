@@ -240,4 +240,65 @@ var Auth = {
       if (typeof Sync !== 'undefined') Sync.manualSync();
     });
   },
+
+  // ── Extension auth bridge ──────────────────────────
+  // Called on page load when ?ext_id=... is in the URL
+  checkExtensionBridge: async function() {
+    var params = new URLSearchParams(window.location.search);
+    var extId = params.get('ext_id');
+    if (!extId) return false;
+
+    if (typeof Router !== 'undefined') Router.navigateTo('extension-auth');
+
+    if (!SB) {
+      document.getElementById('extAuthErrorMsg').textContent = 'Lỗi kết nối Supabase.';
+      document.getElementById('extAuthError').style.display = '';
+      return true;
+    }
+
+    var sessionRes = await SB.auth.getSession();
+    var session = sessionRes.data && sessionRes.data.session;
+
+    if (!session) {
+      document.getElementById('extAuthMsg').textContent = 'Vui lòng đăng nhập để kết nối extension.';
+      document.getElementById('extAuthLogin').style.display = '';
+      // After login, try again
+      SB.auth.onAuthStateChange(function(event, sess) {
+        if (event === 'SIGNED_IN' && sess) {
+          Auth._sendTokenToExtension(extId, sess);
+        }
+      });
+    } else {
+      await Auth._sendTokenToExtension(extId, session);
+    }
+    return true;
+  },
+
+  _sendTokenToExtension: async function(extId, session) {
+    document.getElementById('extAuthMsg').textContent = 'Đang kết nối với extension...';
+    document.getElementById('extAuthLogin').style.display = 'none';
+    try {
+      var sent = await new Promise(function(resolve) {
+        if (typeof chrome === 'undefined' || !chrome.runtime) { resolve(false); return; }
+        chrome.runtime.sendMessage(extId, {
+          type:          'HANZIGENZ_AUTH',
+          token:         session.access_token,
+          refresh_token: session.refresh_token,
+          user:          session.user,
+        }, function(response) {
+          resolve(response && response.ok);
+        });
+      });
+      if (sent) {
+        document.getElementById('extAuthMsg').textContent = '';
+        document.getElementById('extAuthSuccess').style.display = '';
+      } else {
+        throw new Error('Extension không phản hồi. Hãy đảm bảo extension đã được cài đặt.');
+      }
+    } catch (e) {
+      document.getElementById('extAuthMsg').textContent = '';
+      document.getElementById('extAuthErrorMsg').textContent = e.message;
+      document.getElementById('extAuthError').style.display = '';
+    }
+  },
 };

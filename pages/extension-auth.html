@@ -1,0 +1,20 @@
+    <!-- PAGE: EXTENSION AUTH (triggered by ?ext_id= param) -->
+    <section class="page active" id="page-extension-auth">
+      <div style="max-width:400px;margin:60px auto;padding:24px;text-align:center">
+        <div style="font-size:48px;margin-bottom:16px">🀄</div>
+        <h2 style="margin-bottom:8px">Hanzi Genz Companion</h2>
+        <p id="extAuthMsg" style="color:var(--text2);margin-bottom:24px">Đang kết nối với extension...</p>
+        <div id="extAuthLogin" style="display:none">
+          <p style="color:var(--text2);margin-bottom:16px">Đăng nhập để cho phép extension lưu từ vựng.</p>
+          <button class="btn-primary" onclick="Auth.openLoginModal()">Đăng nhập / Đăng ký</button>
+        </div>
+        <div id="extAuthSuccess" style="display:none">
+          <div style="font-size:36px">✅</div>
+          <p style="margin-top:8px;color:#4ade80">Đã kết nối thành công! Bạn có thể đóng tab này.</p>
+        </div>
+        <div id="extAuthError" style="display:none">
+          <div style="font-size:36px">❌</div>
+          <p id="extAuthErrorMsg" style="margin-top:8px;color:#f87171"></p>
+        </div>
+      </div>
+    </section>

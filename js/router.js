@@ -164,6 +164,7 @@ var Router = (function() {
 
       // Initial navigation: honour URL path for direct links / refresh
       var initialPage = _pageFromPath(window.location.pathname);
+      Router.currentPage = initialPage;
       _navigateTo(initialPage, false);
 
       // Replace current history entry so popstate has state on first back

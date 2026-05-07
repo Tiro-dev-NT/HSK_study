@@ -461,7 +461,7 @@ function wireDecksUI() {
 
   // Keyboard shortcuts on deck detail screen
   document.addEventListener('keydown', e => {
-    if (document.getElementById('deckDetail').style.display === 'none') return;
+    if (document.getElementById('deckDetail')?.style.display === 'none') return;
     if (['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
     if (e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); flipPreviewCard(); }
     if (e.key === 'ArrowLeft')  { previewIdx = (previewIdx - 1 + previewWords.length) % previewWords.length; renderPreviewCard(); }

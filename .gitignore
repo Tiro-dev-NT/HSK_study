@@ -24,3 +24,10 @@ implementation_plan.md
 hsk_game_spec.md
 DEPLOY_GUIDE.md
 *.local.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

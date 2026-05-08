@@ -435,6 +435,9 @@ body {
 .quiz-setup { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 20px; }
 .setup-row { display: flex; align-items: center; gap: 16px; }
 .setup-row label { font-size: 14px; font-weight: 500; color: var(--text2); min-width: 70px; }
+.quiz-area-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.quiz-area-header .quiz-progress { margin-bottom: 0; flex: 1; }
+.quiz-back-btn { font-size: 13px; padding: 4px 10px; white-space: nowrap; flex-shrink: 0; }
 .quiz-progress { color: var(--text2); font-size: 14px; margin-bottom: 16px; text-align: center; }
 .quiz-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
 .q-question { font-family: var(--font-hanzi); font-size: 48px; text-align: center; margin-bottom: 28px; color: var(--text); }

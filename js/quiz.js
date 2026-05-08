@@ -54,6 +54,17 @@ var Quiz = {
     document.getElementById('dailyBackBtn')?.addEventListener('click', Quiz._backToSetup);
     document.getElementById('survivalBackBtn')?.addEventListener('click', Quiz._backToSetup);
 
+    // Back button during active quiz
+    document.getElementById('quizBackBtn')?.addEventListener('click', function() {
+      var inProgress = AppState.qIndex > 0 || AppState.qScore > 0;
+      var lang = AppState.lang;
+      if (inProgress) {
+        var msg = lang === 'vi' ? 'Bỏ bài kiểm tra hiện tại?' : 'Abandon current quiz?';
+        if (!confirm(msg)) return;
+      }
+      Quiz._backToSetup();
+    });
+
     // Update Daily Challenge card status on load
     Quiz._updateDailyChallengeCard();
   },

@@ -13,6 +13,41 @@
 var Session = {
 
   setup: function() {
+    // BUG-04: Check for My Vocab "Học ngay" words
+    var mvWords = sessionStorage.getItem('mv_learn_words');
+    if (mvWords) {
+      sessionStorage.removeItem('mv_learn_words');
+      try {
+        var hanzis = JSON.parse(mvWords);
+        var allWords = typeof getAllWords === 'function' ? getAllWords() : [];
+        var dataMap = {};
+        allWords.forEach(function(w) { dataMap[w.h] = w; });
+        var deck = [];
+        hanzis.forEach(function(h) {
+          var w = dataMap[h];
+          if (!w) {
+            var srs = AppState.srsData[h];
+            if (srs) {
+              w = { h: h, p: srs.p || '', v: srs.v || '', e: srs.e || '', level: srs.level || 0, ex: srs.ex || null };
+            }
+          }
+          if (w) deck.push(w);
+        });
+        if (deck.length > 0) {
+          AppState.fcDeck = deck;
+          AppState.fcIndex = 0;
+          AppState.fcSession = { correct: 0, wrong: 0, startTime: Date.now() };
+          fcDeck = AppState.fcDeck;
+          fcIndex = AppState.fcIndex;
+          fcSession = AppState.fcSession;
+          setTimeout(function() {
+            var fa = document.getElementById('flashcardArea');
+            if (fa) { fa.style.display = 'block'; Session.showFcCard(); }
+          }, 100);
+        }
+      } catch(e) { console.error('[Session] mv_learn_words parse error:', e); }
+    }
+
     // Flashcard
     const fc = document.getElementById('flashcard');
     if (fc) fc.addEventListener('click', Session.flipFcCard);

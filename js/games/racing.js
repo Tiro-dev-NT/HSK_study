@@ -36,6 +36,18 @@ var RacingQuiz = {
     RacingQuiz._nextQuestion();
     RacingQuiz._startCPU();
     RacingQuiz._bindEvents();
+
+    // BUG-06: timeout 90s to force end race
+    RacingQuiz.raceTimeout = setTimeout(function() {
+      if (!RacingQuiz.finished) {
+        console.log('[Racing] timeout — force ending race');
+        var sorted = [0,1,2,3,4].sort(function(a,b) {
+          return RacingQuiz.positions[b] - RacingQuiz.positions[a];
+        });
+        RacingQuiz.finishOrder = sorted;
+        RacingQuiz._endRace();
+      }
+    }, 90000);
   },
 
   _renderHTML: function() {
@@ -203,6 +215,7 @@ var RacingQuiz = {
   },
 
   cleanup: function() {
+    clearTimeout(RacingQuiz.raceTimeout);
     clearInterval(RacingQuiz.cpuTimer);
     RacingQuiz.timers.forEach(function(t) { clearTimeout(t); });
     RacingQuiz.timers = [];

@@ -38,6 +38,9 @@ var Sync = {
             interval_days: c.interval, ease: c.ease, due_date: c.dueDate,
             reps: c.reps || 0, lapses: c.lapses || 0, last_review: c.lastReview || null,
             tags: c.tags || [],
+            word_data: c.source === 'import' ? {
+              p: c.p, v: c.v, e: c.e, level: c.level, t: c.t, ex: c.ex, source: c.source
+            } : null,
             updated_at: new Date().toISOString()
           };
         });
@@ -60,6 +63,7 @@ var Sync = {
           week_start:  xp.weekStart || null,
           streak_days: streak,
           last_active: localStorage.getItem('hsk_last_active') || null,
+          daily_xp:   xp.dailyXP || {},
           updated_at:  new Date().toISOString()
         });
         if (r3.error) console.error('[SYNC push xp]', r3.error);
@@ -123,14 +127,16 @@ var Sync = {
       }
 
       // 2. SRS
-      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags').eq('user_id', uid);
+      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags,word_data').eq('user_id', uid);
       if (!sr.error && sr.data && sr.data.length > 0) {
         sr.data.forEach(function(row) {
-          AppState.srsData[row.hanzi] = {
+          var entry = {
             interval: row.interval_days, ease: row.ease, dueDate: row.due_date,
             reps: row.reps || 0, lapses: row.lapses || 0, lastReview: row.last_review || null,
             tags: row.tags || []
           };
+          if (row.word_data) Object.assign(entry, row.word_data);
+          AppState.srsData[row.hanzi] = entry;
         });
         AppState.saveSRSData();
         srsData = AppState.srsData;
@@ -143,6 +149,7 @@ var Sync = {
         AppState.xpData.total    = d.total_xp    || 0;
         AppState.xpData.weeklyXP = d.weekly_xp   || 0;
         AppState.xpData.weekStart = d.week_start  || '';
+        if (d.daily_xp) AppState.xpData.dailyXP = d.daily_xp;
         AppState.saveXP();
         xpData = AppState.xpData;
         localStorage.setItem('hsk_streak', d.streak_days || 0);
@@ -222,13 +229,29 @@ var Sync = {
       if (!sr.error && sr.data) {
         sr.data.forEach(function(row) {
           var local = AppState.srsData[row.hanzi];
+          var localTags = (local && local.tags) ? local.tags : [];
+          var cloudTags = row.tags || [];
+          // BUG-03: Union tags
+          var mergedTags = localTags.slice();
+          cloudTags.forEach(function(t) {
+            if (mergedTags.indexOf(t) < 0) mergedTags.push(t);
+          });
+
           if (!local || (row.reps || 0) > (local.reps || 0)) {
             // Cloud is more progressed
-            AppState.srsData[row.hanzi] = {
+            var entry = {
               interval: row.interval_days, ease: row.ease, dueDate: row.due_date,
               reps: row.reps || 0, lapses: row.lapses || 0, lastReview: row.last_review || null,
-              tags: row.tags || []
+              tags: mergedTags
             };
+            // BUG-14: restore word_data if present
+            if (row.word_data) Object.assign(entry, row.word_data);
+            AppState.srsData[row.hanzi] = entry;
+          } else if (local) {
+            // Local thắng nhưng vẫn union tags
+            local.tags = mergedTags;
+            // BUG-14: if local missing word_data fields but cloud has them
+            if (row.word_data && !local.source) Object.assign(local, row.word_data);
           }
         });
         AppState.saveSRSData();
@@ -239,6 +262,15 @@ var Sync = {
       if (!xr.error && xr.data) {
         var d = xr.data;
         AppState.xpData.total = Math.max(AppState.xpData.total || 0, d.total_xp || 0);
+        // BUG-07: merge dailyXP (max per day)
+        if (d.daily_xp) {
+          var localDaily = AppState.xpData.dailyXP || {};
+          var cloudDaily = d.daily_xp || {};
+          Object.keys(cloudDaily).forEach(function(day) {
+            localDaily[day] = Math.max(localDaily[day] || 0, cloudDaily[day] || 0);
+          });
+          AppState.xpData.dailyXP = localDaily;
+        }
         AppState.saveXP();
         xpData = AppState.xpData;
         var cloudStreak = d.streak_days || 0;
@@ -292,6 +324,26 @@ var Sync = {
           wordle_wins: Math.max(localGS.wordle_wins || 0, cloudGS.wordle_wins || 0),
         };
         if (mergedGS.memory_best === 9999) delete mergedGS.memory_best;
+
+        // BUG-08: C5-C7 game scores
+        // bossBestLevel: union cleared levels
+        var localBoss = localGS.bossBestLevel || {};
+        var cloudBoss = cloudGS.bossBestLevel || {};
+        var mergedBoss = {};
+        Object.keys(localBoss).forEach(function(k) { mergedBoss[k] = true; });
+        Object.keys(cloudBoss).forEach(function(k) { mergedBoss[k] = true; });
+        if (Object.keys(mergedBoss).length > 0) mergedGS.bossBestLevel = mergedBoss;
+
+        // racingBest: min (lower rank = better)
+        var localRace = localGS.racingBest || 99;
+        var cloudRace = cloudGS.racingBest || 99;
+        var bestRace = Math.min(localRace, cloudRace);
+        if (bestRace < 99) mergedGS.racingBest = bestRace;
+
+        // sentenceBest: max
+        mergedGS.sentenceBest = Math.max(localGS.sentenceBest || 0, cloudGS.sentenceBest || 0);
+        if (mergedGS.sentenceBest === 0) delete mergedGS.sentenceBest;
+
         localStorage.setItem('game_scores', JSON.stringify(mergedGS));
       }
 

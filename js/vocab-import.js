@@ -227,8 +227,8 @@ var VocabImport = (function() {
     if (count > 0) {
       AppState.saveSRSData();
       // Trigger sync if available
-      if (typeof SyncManager !== 'undefined' && SyncManager.pushToCloud) {
-        try { SyncManager.pushToCloud(); } catch(e) {}
+      if (typeof Sync !== 'undefined' && typeof Auth !== 'undefined' && Auth.user) {
+        Sync.pushAll().catch(function(e) { console.error('[VocabImport] sync error:', e); });
       }
     }
 

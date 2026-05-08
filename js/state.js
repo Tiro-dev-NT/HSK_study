@@ -47,7 +47,7 @@ var AppState = {
   // Flashcard/session state
   fcDeck:    [],
   fcIndex:   0,
-  fcSession: { correct: 0, wrong: 0 },
+  fcSession: { correct: 0, wrong: 0, startTime: Date.now() },
 
   // Quiz state
   qDeck:         [],

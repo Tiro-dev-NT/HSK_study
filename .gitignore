@@ -33,6 +33,6 @@ extension_plan.md
 sync_fix_*.md
 *.sql
 
-# Claude Code bootstrap (working style)
-.claude_bootstrap.md
+# Claude Code bootstrap (working style — auto-loaded by Claude Code)
+CLAUDE.md
 .claude/

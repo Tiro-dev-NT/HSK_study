@@ -167,6 +167,153 @@ var Gamification = {
   },
 };
 
+  // ── Word of the Day ────────────────────────────────
+  renderWOTD: function() {
+    var card = document.getElementById('wotdCard');
+    if (!card) return;
+    var all = getAllWords();
+    if (!all.length) return;
+
+    var today = new Date().toISOString().split('T')[0];
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem('hsk_wotd') || 'null'); } catch(e) {}
+    var word;
+    if (cached && cached.date === today && cached.hanzi) {
+      word = all.find(function(w) { return w.h === cached.hanzi; });
+    }
+    if (!word) {
+      var hash = 0;
+      for (var i = 0; i < today.length; i++) {
+        hash = ((hash << 5) - hash) + today.charCodeAt(i);
+        hash = hash & hash;
+      }
+      var idx = Math.abs(hash) % all.length;
+      word = all[idx];
+      localStorage.setItem('hsk_wotd', JSON.stringify({ date: today, hanzi: word.h }));
+    }
+
+    document.getElementById('wotdHanzi').textContent = word.h;
+    document.getElementById('wotdPinyin').textContent = word.p;
+    var isEN = AppState.lang === 'en';
+    document.getElementById('wotdMeaning').textContent = isEN ? word.e : word.v;
+    var exEl = document.getElementById('wotdExample');
+    if (word.ex && word.ex.zh) {
+      exEl.innerHTML = '<span class="wotd-ex-zh">' + word.ex.zh + '</span>' +
+        (word.ex.py ? '<br><span class="wotd-ex-py">' + word.ex.py + '</span>' : '') +
+        '<br><span class="wotd-ex-vi">' + (isEN ? (word.ex.en || word.ex.vi) : word.ex.vi) + '</span>';
+      exEl.style.display = '';
+    } else {
+      exEl.style.display = 'none';
+    }
+
+    // HanziWriter animation
+    var writerEl = document.getElementById('wotdWriter');
+    if (writerEl && typeof HanziWriter !== 'undefined') {
+      writerEl.innerHTML = '';
+      try {
+        var writer = HanziWriter.create(writerEl, word.h.charAt(0), {
+          width: 100, height: 100, padding: 5,
+          strokeColor: getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#333',
+          delayBetweenStrokes: 300, autoAnimate: true
+        });
+      } catch(e) {}
+    }
+
+    document.getElementById('wotdTTS').onclick = function() {
+      if (typeof Dictionary !== 'undefined') Dictionary.playTTS(word.h);
+      else if ('speechSynthesis' in window) {
+        var u = new SpeechSynthesisUtterance(word.h);
+        u.lang = 'zh-CN'; speechSynthesis.speak(u);
+      }
+    };
+    document.getElementById('wotdDetail').onclick = function() {
+      if (typeof Dictionary !== 'undefined' && Dictionary.openModal) {
+        Dictionary.openModal(word);
+      }
+    };
+  },
+
+  // ── Progress Analytics ────────────────────────────
+  renderAnalytics: function() {
+    Gamification._renderReadiness();
+    Gamification._renderWeakWords();
+    Gamification._renderXPTrend();
+  },
+
+  _renderReadiness: function() {
+    var el = document.getElementById('readinessChart');
+    if (!el) return;
+    var html = '';
+    [1,2,3,4,5,6].forEach(function(lv) {
+      var words = getNewWordsForLevel(lv);
+      var total = words.length || (LEVEL_INFO[lv] ? LEVEL_INFO[lv].count : 0);
+      if (!total) return;
+      var stats = getLevelStats(lv);
+      var pct = Math.round(stats.mastered / total * 100);
+      var color = LEVEL_INFO[lv] ? LEVEL_INFO[lv].color : 'var(--primary)';
+      html += '<div class="readiness-row">' +
+        '<span class="readiness-label">HSK ' + lv + '</span>' +
+        '<div class="readiness-bar"><div class="readiness-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+        '<span class="readiness-pct">' + pct + '%</span>' +
+      '</div>';
+    });
+    el.innerHTML = html;
+  },
+
+  _renderWeakWords: function() {
+    var el = document.getElementById('weakWordsList');
+    if (!el) return;
+    var srs = AppState.srsData || {};
+    var entries = [];
+    Object.keys(srs).forEach(function(hanzi) {
+      var s = srs[hanzi];
+      if (s.lapses && s.lapses > 0) {
+        entries.push({ h: hanzi, lapses: s.lapses, p: '' });
+      }
+    });
+    entries.sort(function(a, b) { return b.lapses - a.lapses; });
+    entries = entries.slice(0, 8);
+
+    if (!entries.length) {
+      el.innerHTML = '<div class="weak-empty">Chưa có dữ liệu — học thêm để phân tích!</div>';
+      return;
+    }
+    var all = getAllWords();
+    var html = '';
+    entries.forEach(function(e) {
+      var w = all.find(function(wd) { return wd.h === e.h; });
+      html += '<div class="weak-item">' +
+        '<span class="weak-hanzi">' + e.h + '</span>' +
+        '<span class="weak-pinyin">' + (w ? w.p : '') + '</span>' +
+        '<span class="weak-lapses">' + e.lapses + ' lần sai</span>' +
+      '</div>';
+    });
+    el.innerHTML = html;
+  },
+
+  _renderXPTrend: function() {
+    var el = document.getElementById('xpTrendChart');
+    if (!el) return;
+    var daily = (AppState.xpData && AppState.xpData.dailyXP) || {};
+    var days = [];
+    for (var i = 13; i >= 0; i--) {
+      var d = new Date(); d.setDate(d.getDate() - i);
+      var key = d.toISOString().split('T')[0];
+      days.push({ date: key, xp: daily[key] || 0, label: (d.getDate()) + '/' + (d.getMonth()+1) });
+    }
+    var maxXP = Math.max.apply(null, days.map(function(d) { return d.xp; })) || 1;
+    var html = '<div class="xp-trend-bars">';
+    days.forEach(function(d) {
+      var h = Math.max(2, Math.round(d.xp / maxXP * 80));
+      html += '<div class="xp-trend-col" title="' + d.label + ': ' + d.xp + ' XP">' +
+        '<div class="xp-trend-bar" style="height:' + h + 'px"></div>' +
+        '<span class="xp-trend-label">' + d.label + '</span>' +
+      '</div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+  },
+
 // ── Backward-compat global functions ──────────────────
 function addXP(amount)            { Gamification.addXP(amount); }
 function checkAndUpdateStreak()   { Gamification.checkAndUpdateStreak(); }

@@ -34,6 +34,8 @@ var Router = (function() {
       if (typeof Gamification !== 'undefined') {
         Gamification.buildLevelGrid();
         Gamification.updateStats();
+        Gamification.renderWOTD();
+        Gamification.renderAnalytics();
       }
     },
     'dictionary': function() {

@@ -30,6 +30,50 @@
       </div>
       <!-- Streak calendar (last 7 days) -->
       <div class="streak-calendar" id="streakCalendar"></div>
+      <!-- Word of the Day -->
+      <div class="wotd-card" id="wotdCard">
+        <div class="wotd-header">
+          <span class="wotd-badge">📖 Từ vựng hôm nay</span>
+        </div>
+        <div class="wotd-body">
+          <div class="wotd-hanzi-area">
+            <div class="wotd-hanzi" id="wotdHanzi"></div>
+            <div id="wotdWriter" style="margin:0 auto"></div>
+          </div>
+          <div class="wotd-info">
+            <div class="wotd-pinyin" id="wotdPinyin"></div>
+            <div class="wotd-meaning" id="wotdMeaning"></div>
+            <div class="wotd-example" id="wotdExample"></div>
+          </div>
+          <div class="wotd-actions">
+            <button class="wotd-btn" id="wotdTTS" title="Phát âm">🔊 Phát âm</button>
+            <button class="wotd-btn wotd-btn-detail" id="wotdDetail">📖 Xem chi tiết</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Analytics -->
+      <div class="analytics-section" id="analyticsSection">
+        <h2 data-vi="Phân tích tiến độ" data-en="Progress Analytics">Phân tích tiến độ</h2>
+        <div class="analytics-grid">
+          <!-- HSK Readiness -->
+          <div class="analytics-card" id="analyticsReadiness">
+            <div class="ac-title" data-vi="HSK Readiness" data-en="HSK Readiness">HSK Readiness</div>
+            <div class="ac-body" id="readinessChart"></div>
+          </div>
+          <!-- Weak Words -->
+          <div class="analytics-card" id="analyticsWeak">
+            <div class="ac-title" data-vi="Từ yếu nhất" data-en="Weakest Words">Từ yếu nhất</div>
+            <div class="ac-body" id="weakWordsList"></div>
+          </div>
+          <!-- XP Trends -->
+          <div class="analytics-card" id="analyticsXP">
+            <div class="ac-title" data-vi="XP 14 ngày qua" data-en="XP Last 14 Days">XP 14 ngày qua</div>
+            <div class="ac-body" id="xpTrendChart"></div>
+          </div>
+        </div>
+      </div>
+
       <h2 data-vi="Chọn cấp độ HSK" data-en="Choose HSK Level">Chọn cấp độ HSK</h2>
       <div class="level-grid" id="levelGrid"></div>
     </section>

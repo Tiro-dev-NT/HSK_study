@@ -2305,3 +2305,12 @@ body {
   .mv-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
   .mv-card-hanzi { font-size: 24px; }
 }
+
+/* ── Sync Recovery buttons ─────────────────── */
+.sm-btn-danger {
+  padding: 8px 16px; border-radius: 8px; border: 1px solid #e74c3c;
+  background: rgba(231,76,60,.12); color: #e74c3c; font-size: .875rem;
+  cursor: pointer; transition: background .2s;
+}
+.sm-btn-danger:hover { background: rgba(231,76,60,.25); }
+.sm-desc-muted { font-size: .8rem; color: var(--text-muted, #888); margin: 4px 0 0; }

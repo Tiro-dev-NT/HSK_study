@@ -191,6 +191,8 @@ var Auth = {
       userBlock.style.display = 'none';
     }
     if (syncBtn) syncBtn.style.display = user ? '' : 'none';
+    var syncRecovery = document.getElementById('smSyncRecovery');
+    if (syncRecovery) syncRecovery.style.display = user ? '' : 'none';
     if (typeof Sync !== 'undefined') Sync.updateBadge();
   },
 

@@ -357,14 +357,36 @@ var Sync = {
     }
   },
 
+  // ── Dangerous push detection ──────────────────────
+  _isDangerousPush: async function() {
+    var xp = AppState.xpData || {};
+    var srs = AppState.srsData || {};
+    var prog = AppState.progress || {};
+    var localEmpty = (xp.total || 0) === 0
+      && Object.keys(srs).length === 0
+      && Object.keys(prog).every(function(lv) { return !prog[lv] || prog[lv].length === 0; });
+    if (!localEmpty) return false;
+    // Check cloud
+    try {
+      var res = await SB.from('user_xp').select('total_xp').eq('user_id', Auth.user.id).maybeSingle();
+      if (!res.error && res.data && (res.data.total_xp || 0) > 0) return true;
+    } catch(e) { console.warn('[SYNC _isDangerousPush]', e); }
+    return false;
+  },
+
   // ── Manual sync (push + pull) ──────────────────────
   manualSync: async function() {
     if (!Auth.user) { showToast('Cần đăng nhập để sync'); return; }
     if (!navigator.onLine) { showToast('⚠️ Không có mạng'); return; }
     Sync.updateBadge('syncing');
     try {
-      await Sync.pushAll();
-      await Sync.pullAll();
+      if (await Sync._isDangerousPush()) {
+        console.warn('[SYNC] Local rỗng nhưng cloud có data → chỉ pull, không push');
+        await Sync.pullAll();
+      } else {
+        await Sync.pushAll();
+        await Sync.pullAll();
+      }
       showToast('✅ Sync xong!');
     } catch(e) {
       console.error('[SYNC]', e);
@@ -373,15 +395,52 @@ var Sync = {
     Sync.updateBadge();
   },
 
+  // ── Force Push / Force Pull ────────────────────────
+  forcePush: async function() {
+    if (!Auth.user) { showToast('Cần đăng nhập'); return; }
+    if (!confirm('⚠️ Đẩy toàn bộ dữ liệu LOCAL lên cloud?\nDữ liệu cloud sẽ bị ghi đè!')) return;
+    Sync.updateBadge('syncing');
+    try {
+      await Sync.pushAll();
+      showToast('✅ Đã đẩy local lên cloud!');
+    } catch(e) {
+      console.error('[SYNC forcePush]', e);
+      showToast('❌ Lỗi: ' + (e.message || ''));
+    }
+    Sync.updateBadge();
+  },
+
+  forcePull: async function() {
+    if (!Auth.user) { showToast('Cần đăng nhập'); return; }
+    if (!confirm('⚠️ Tải toàn bộ dữ liệu từ CLOUD về?\nDữ liệu local sẽ bị ghi đè!')) return;
+    Sync.updateBadge('syncing');
+    try {
+      await Sync.pullAll();
+      showToast('✅ Đã tải cloud về! Đang reload...');
+      setTimeout(function() { location.reload(); }, 1000);
+    } catch(e) {
+      console.error('[SYNC forcePull]', e);
+      showToast('❌ Lỗi: ' + (e.message || ''));
+    }
+    Sync.updateBadge();
+  },
+
   // ── Auto sync khi login hoặc online ───────────────
   autoSync: function() {
     if (!Auth.user) return;
     if (navigator.onLine) {
-      setTimeout(Sync.manualSync, 1000); // delay 1s để app finish loading
+      setTimeout(async function() {
+        Sync.updateBadge('syncing');
+        try { await Sync.mergeAll(); } catch(e) { console.error('[SYNC autoSync]', e); }
+        Sync.updateBadge();
+      }, 1000);
     }
     window.removeEventListener('online', Sync._onlineHandler);
-    Sync._onlineHandler = function() {
-      if (Auth.user) Sync.manualSync();
+    Sync._onlineHandler = async function() {
+      if (!Auth.user) return;
+      Sync.updateBadge('syncing');
+      try { await Sync.mergeAll(); } catch(e) { console.error('[SYNC autoSync online]', e); }
+      Sync.updateBadge();
     };
     window.addEventListener('online', Sync._onlineHandler);
   },

@@ -482,6 +482,16 @@
         </div>
       </div>
 
+      <!-- Sync Recovery (only visible when logged in) -->
+      <div id="smSyncRecovery" style="display:none">
+        <h3 style="margin:18px 0 8px;font-size:1rem">🔄 Khôi phục dữ liệu</h3>
+        <p class="sm-desc-muted">Dùng khi sync tự động gặp lỗi. Thao tác này không thể hoàn tác.</p>
+        <div style="display:flex;gap:10px;margin-top:10px">
+          <button class="sm-btn-danger" onclick="Sync.forcePush()">⬆️ Đẩy local → cloud</button>
+          <button class="sm-btn-danger" onclick="Sync.forcePull()">⬇️ Tải cloud → local</button>
+        </div>
+      </div>
+
     </div>
   </div>
 

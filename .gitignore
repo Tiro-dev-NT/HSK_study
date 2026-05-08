@@ -28,10 +28,14 @@ DEPLOY_GUIDE.md
 # Reports & migrations — keep local, don't push to GitHub
 Bao_cao_*.md
 Bug_Report_*.md
+BUG_REPORT*.md
 Optimization_Plan_*.md
 extension_plan.md
 sync_fix_*.md
 *.sql
+
+# Temp word lists
+_hsk*_existing.txt
 
 # Claude Code bootstrap (working style — auto-loaded by Claude Code)
 CLAUDE.md

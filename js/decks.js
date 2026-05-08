@@ -75,15 +75,15 @@ function migrateVaultToDecks() {
 
 // ── Helpers ────────────────────────────────────────────
 function getDeckWords(deck) {
-  if (deck.isSystem && deck.level) return (HSK_DATA[deck.level] || []).map(w => ({...w, level: deck.level}));
+  if (deck.isSystem && deck.level) return getNewWordsForLevel(deck.level).map(w => ({...w, level: deck.level}));
   return deck.words || [];
 }
 
 function getDeckProgress(deck) {
   if (!deck.isSystem || !deck.level) return { learned: deck.words?.length || 0, total: deck.words?.length || 0, pct: deck.words?.length ? 100 : 0 };
-  const total = (HSK_DATA[deck.level] || []).length || HSK_META[deck.level]?.count || 0;
+  const total = getNewWordsForLevel(deck.level).length || HSK_META[deck.level]?.count || 0;
   const learned = (progress[deck.level] || []).length;
-  return { learned, total, pct: total ? Math.round(learned / total * 100) : 0 };
+  return { learned: Math.min(learned, total), total, pct: total ? Math.round(Math.min(learned, total) / total * 100) : 0 };
 }
 
 function createDeck(title) {

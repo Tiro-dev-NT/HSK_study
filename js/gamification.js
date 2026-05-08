@@ -126,16 +126,31 @@ var Gamification = {
       const info        = LEVEL_INFO[lv];
       const card        = document.createElement('div');
       card.className    = 'level-card';
-      const learned     = (AppState.progress[lv] || []).length;
-      const realCount   = (HSK_DATA[lv] || []).length;
+      const newWords    = getNewWordsForLevel(lv);
+      const realCount   = newWords.length;
       const displayCount = realCount || info.count;
+      const stats       = getLevelStats(lv);
+      const pct         = displayCount ? Math.round(stats.mastered / displayCount * 100) : 0;
+
+      var isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
+      var lblNew      = isEN ? 'New' : 'Chưa học';
+      var lblLearning = isEN ? 'Learning' : 'Đang học';
+      var lblDue      = isEN ? 'Due' : 'Cần ôn';
+      var lblMastered = isEN ? 'Mastered' : 'Đã thuộc';
+      var lblWords    = isEN ? 'new words' : 'từ mới';
+
       card.innerHTML =
         '<div class="level-badge">' + info.label + '</div>' +
-        '<div class="level-count">' + displayCount + ' từ' + (!realCount ? ' (coming soon)' : '') + '</div>' +
-        '<div class="level-count" style="margin-top:4px;color:var(--accent)">' + learned + '/' + displayCount + ' học</div>';
+        '<div class="level-count">' + displayCount + ' ' + lblWords + (!realCount ? ' (coming soon)' : '') + '</div>' +
+        '<div class="level-progress-bar"><div class="level-progress-fill" style="width:' + pct + '%;background:' + info.color + '"></div></div>' +
+        '<div class="level-stats-grid">' +
+          '<span class="ls-item ls-new" title="' + lblNew + '">🆕 ' + stats.new + '</span>' +
+          '<span class="ls-item ls-learning" title="' + lblLearning + '">📖 ' + stats.learning + '</span>' +
+          '<span class="ls-item ls-due" title="' + lblDue + '">🔄 ' + stats.due + '</span>' +
+          '<span class="ls-item ls-mastered" title="' + lblMastered + '">✅ ' + stats.mastered + '</span>' +
+        '</div>';
       card.addEventListener('click', function() {
         Router.navigateTo('learn');
-        // Notify decks module via custom event (no direct coupling)
         setTimeout(function() {
           document.dispatchEvent(new CustomEvent('hsk:openDeck', { detail: { deckId: 'sys_hsk' + lv } }));
         }, 50);

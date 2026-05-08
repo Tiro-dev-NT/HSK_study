@@ -67,3 +67,48 @@ function getAllWords() {
 function getWordsByLevel(lv) {
   return (HSK_DATA[lv] || []).map(function(w) { return Object.assign({}, w, {level: lv}); });
 }
+
+// Trả về từ MỚI của level (loại bỏ từ đã có ở level thấp hơn)
+function getNewWordsForLevel(level) {
+  var lowerWords = new Set();
+  for (var i = 1; i < level; i++) {
+    (HSK_DATA[i] || []).forEach(function(w) { lowerWords.add(w.h); });
+  }
+  return (HSK_DATA[level] || []).filter(function(w) { return !lowerWords.has(w.h); });
+}
+
+// Trả về TẤT CẢ từ tích lũy đến level X (dedup)
+function getCumulativeWords(level) {
+  var all = [];
+  for (var i = 1; i <= level; i++) {
+    (HSK_DATA[i] || []).forEach(function(w) { all.push(Object.assign({}, w, {level: i})); });
+  }
+  var seen = new Set();
+  return all.filter(function(w) {
+    if (seen.has(w.h)) return false;
+    seen.add(w.h); return true;
+  });
+}
+
+// Phân loại từ theo trạng thái SRS (kiểu Anki)
+function getLevelStats(level) {
+  var words = getNewWordsForLevel(level);
+  var total = words.length;
+  var newCount = 0, learning = 0, mastered = 0, due = 0;
+  var today = new Date().toISOString().split('T')[0];
+  var progress = AppState.progress[level] || [];
+
+  words.forEach(function(w) {
+    var srs = AppState.srsData[w.h];
+    if (!srs && progress.indexOf(w.h) === -1) {
+      newCount++;
+    } else if (srs && srs.interval >= 21) {
+      mastered++;
+    } else if (srs && srs.dueDate && srs.dueDate <= today) {
+      due++;
+    } else {
+      learning++;
+    }
+  });
+  return { total: total, new: newCount, learning: learning, mastered: mastered, due: due };
+}

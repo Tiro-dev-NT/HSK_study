@@ -32,3 +32,7 @@ Optimization_Plan_*.md
 extension_plan.md
 sync_fix_*.md
 *.sql
+
+# Claude Code bootstrap (working style)
+.claude_bootstrap.md
+.claude/

@@ -32,6 +32,16 @@ var Games = {
       });
     });
   },
+
+  // ── Persistent best scores ─────────────────────────
+  getScores: function() {
+    return JSON.parse(localStorage.getItem('game_scores') || '{}');
+  },
+  saveScore: function(key, val) {
+    var scores = Games.getScores();
+    scores[key] = val;
+    localStorage.setItem('game_scores', JSON.stringify(scores));
+  },
 };
 
 // ═══════════════════════════════════════════════════════
@@ -153,6 +163,10 @@ var SpeedQuiz = {
     var xpEarned = Math.floor(SpeedQuiz.score / 5);
     if (xpEarned > 0 && typeof addXP === 'function') addXP(xpEarned);
 
+    var prev = Games.getScores();
+    if (SpeedQuiz.score > (prev.speed_best || 0))
+      Games.saveScore('speed_best', SpeedQuiz.score);
+
     document.getElementById('sqResult').style.display  = '';
     document.getElementById('sqFinalScore').textContent = SpeedQuiz.score;
     document.getElementById('sqXPEarned').textContent   = xpEarned;
@@ -271,6 +285,11 @@ var MemoryFlip = {
   _end: function() {
     var xpEarned = Math.max(10, 80 - MemoryFlip.moves * 2);
     if (typeof addXP === 'function') addXP(xpEarned);
+
+    var prev = Games.getScores();
+    if (!prev.memory_best || MemoryFlip.moves < prev.memory_best)
+      Games.saveScore('memory_best', MemoryFlip.moves);
+
     document.getElementById('memResult').style.display   = '';
     document.getElementById('memFinalMoves').textContent = MemoryFlip.moves;
     document.getElementById('memXPEarned').textContent   = xpEarned;
@@ -533,6 +552,11 @@ var PinyinWordle = {
     document.getElementById('wdMessage').textContent = won ? '🎉 Chính xác!' : '😢 Hết lượt!';
     var xp = won ? Math.max(20, 50 - (PinyinWordle.guesses.length - 1) * 8) : 0;
     if (xp > 0 && typeof addXP === 'function') addXP(xp);
+
+    if (won) {
+      var prev = Games.getScores();
+      Games.saveScore('wordle_wins', (prev.wordle_wins || 0) + 1);
+    }
 
     setTimeout(function() {
       document.getElementById('wdResultEmoji').textContent = won ? '🏆' : '😢';

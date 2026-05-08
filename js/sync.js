@@ -46,19 +46,23 @@ var Sync = {
         }
       }
 
-      // 3. XP + streak
+      // 3. XP + streak — chỉ push nếu local có dữ liệu thực (tránh ghi đè cloud khi thiết bị mới)
       var xp     = AppState.xpData || {};
       var streak = parseInt(localStorage.getItem('hsk_streak') || '0');
-      var r3 = await SB.from('user_xp').upsert({
-        user_id:     uid,
-        total_xp:    xp.total    || 0,
-        weekly_xp:   xp.weeklyXP || 0,
-        week_start:  xp.weekStart || null,
-        streak_days: streak,
-        last_active: localStorage.getItem('hsk_last_active') || null,
-        updated_at:  new Date().toISOString()
-      });
-      if (r3.error) console.error('[SYNC push xp]', r3.error);
+      var localHasData = (xp.total || 0) > 0 || streak > 0
+                         || srsKeys.length > 0 || progressRows.length > 0;
+      if (localHasData) {
+        var r3 = await SB.from('user_xp').upsert({
+          user_id:     uid,
+          total_xp:    xp.total    || 0,
+          weekly_xp:   xp.weeklyXP || 0,
+          week_start:  xp.weekStart || null,
+          streak_days: streak,
+          last_active: localStorage.getItem('hsk_last_active') || null,
+          updated_at:  new Date().toISOString()
+        });
+        if (r3.error) console.error('[SYNC push xp]', r3.error);
+      }
 
       // 4. User decks
       var rawDecks = JSON.parse(localStorage.getItem('hsk_user_decks') || '[]');
@@ -75,12 +79,22 @@ var Sync = {
         if (r4.error) console.error('[SYNC push decks]', r4.error);
       }
 
-      // 5. Settings
+      // 5. Settings + quiz/game activity — chỉ push nếu local có cài đặt hoặc activity thực
       var studySettings = JSON.parse(localStorage.getItem('hsk_settings') || '{}');
-      var r5 = await SB.from('user_settings').upsert({
-        user_id: uid, study: studySettings, updated_at: new Date().toISOString()
-      });
-      if (r5.error) console.error('[SYNC push settings]', r5.error);
+      var globalData = {
+        quiz_wrong:   JSON.parse(localStorage.getItem('quiz_wrong')   || '[]'),
+        quiz_history: JSON.parse(localStorage.getItem('quiz_history') || '[]'),
+        game_scores:  JSON.parse(localStorage.getItem('game_scores')  || '{}'),
+      };
+      var hasSettings = Object.keys(studySettings).length > 0;
+      var hasActivity = globalData.quiz_history.length > 0 || globalData.quiz_wrong.length > 0
+                        || Object.keys(globalData.game_scores).length > 0;
+      if (hasSettings || hasActivity) {
+        var r5 = await SB.from('user_settings').upsert({
+          user_id: uid, study: studySettings, global: globalData, updated_at: new Date().toISOString()
+        });
+        if (r5.error) console.error('[SYNC push settings]', r5.error);
+      }
 
     } catch(e) {
       console.error('[SYNC pushAll error]', e);
@@ -117,9 +131,9 @@ var Sync = {
         srsData = AppState.srsData;
       }
 
-      // 3. XP + streak
+      // 3. XP + streak — chỉ ghi đè nếu cloud có dữ liệu thực (tránh reset về 0)
       var xr = await SB.from('user_xp').select('*').eq('user_id', uid).maybeSingle();
-      if (!xr.error && xr.data) {
+      if (!xr.error && xr.data && ((xr.data.total_xp || 0) > 0 || (xr.data.streak_days || 0) > 0)) {
         var d = xr.data;
         AppState.xpData.total    = d.total_xp    || 0;
         AppState.xpData.weeklyXP = d.weekly_xp   || 0;
@@ -130,11 +144,30 @@ var Sync = {
         if (d.last_active) localStorage.setItem('hsk_last_active', d.last_active);
       }
 
-      // 4. Settings
-      var setr = await SB.from('user_settings').select('study').eq('user_id', uid).maybeSingle();
-      if (!setr.error && setr.data && setr.data.study && Object.keys(setr.data.study).length > 0) {
-        localStorage.setItem('hsk_settings', JSON.stringify(setr.data.study));
-        if (typeof Settings !== 'undefined') Settings.load();
+      // 4. User decks
+      var dr = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid);
+      if (!dr.error && dr.data && dr.data.length > 0) {
+        var pulledDecks = dr.data.map(function(row) {
+          return { name: row.name, words: (row.word_ids || []).map(function(h) { return { h: h }; }) };
+        });
+        localStorage.setItem('hsk_user_decks', JSON.stringify(pulledDecks));
+        if (typeof loadDecks === 'function') loadDecks();
+      }
+
+      // 5. Settings + quiz/game activity
+      var setr = await SB.from('user_settings').select('study,global').eq('user_id', uid).maybeSingle();
+      if (!setr.error && setr.data) {
+        if (setr.data.study && Object.keys(setr.data.study).length > 0) {
+          localStorage.setItem('hsk_settings', JSON.stringify(setr.data.study));
+          if (typeof Settings !== 'undefined') Settings.load();
+        }
+        var g = setr.data.global || {};
+        if (g.quiz_wrong && g.quiz_wrong.length > 0)
+          localStorage.setItem('quiz_wrong', JSON.stringify(g.quiz_wrong));
+        if (g.quiz_history && g.quiz_history.length > 0)
+          localStorage.setItem('quiz_history', JSON.stringify(g.quiz_history));
+        if (g.game_scores)
+          localStorage.setItem('game_scores', JSON.stringify(g.game_scores));
       }
 
       // Refresh UI
@@ -192,6 +225,55 @@ var Sync = {
         var cloudStreak = d.streak_days || 0;
         var localStreak = parseInt(localStorage.getItem('hsk_streak') || '0');
         localStorage.setItem('hsk_streak', Math.max(cloudStreak, localStreak));
+      }
+
+      // Decks: merge by name (union words)
+      var dr2 = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid);
+      if (!dr2.error && dr2.data && dr2.data.length > 0) {
+        var localDecks = JSON.parse(localStorage.getItem('hsk_user_decks') || '[]');
+        var deckMap = {};
+        localDecks.forEach(function(d) { deckMap[d.name] = new Set((d.words || []).map(function(w) { return w.h; })); });
+        dr2.data.forEach(function(row) {
+          if (!deckMap[row.name]) deckMap[row.name] = new Set();
+          (row.word_ids || []).forEach(function(h) { deckMap[row.name].add(h); });
+        });
+        var mergedDecks = Object.keys(deckMap).map(function(name) {
+          return { name: name, words: Array.from(deckMap[name]).map(function(h) { return { h: h }; }) };
+        });
+        localStorage.setItem('hsk_user_decks', JSON.stringify(mergedDecks));
+        if (typeof loadDecks === 'function') loadDecks();
+      }
+
+      // Quiz + game data: merge from cloud settings
+      var setr2 = await SB.from('user_settings').select('global').eq('user_id', uid).maybeSingle();
+      if (!setr2.error && setr2.data && setr2.data.global) {
+        var g = setr2.data.global;
+
+        // quiz_wrong: union set, cap 200
+        var localWrong = JSON.parse(localStorage.getItem('quiz_wrong') || '[]');
+        var cloudWrong = g.quiz_wrong || [];
+        var wrongSet = {};
+        localWrong.concat(cloudWrong).forEach(function(h) { wrongSet[h] = true; });
+        localStorage.setItem('quiz_wrong', JSON.stringify(Object.keys(wrongSet).slice(0, 200)));
+
+        // quiz_history: merge by date ISO string, dedup, latest 50
+        var localHist = JSON.parse(localStorage.getItem('quiz_history') || '[]');
+        var cloudHist = g.quiz_history || [];
+        var histMap = {};
+        localHist.concat(cloudHist).forEach(function(s) { histMap[s.date] = s; });
+        var mergedHist = Object.values(histMap).sort(function(a, b) { return b.date.localeCompare(a.date); }).slice(0, 50);
+        localStorage.setItem('quiz_history', JSON.stringify(mergedHist));
+
+        // game_scores: speed_best=max, memory_best=min, wordle_wins=max
+        var localGS = JSON.parse(localStorage.getItem('game_scores') || '{}');
+        var cloudGS = g.game_scores || {};
+        var mergedGS = {
+          speed_best:  Math.max(localGS.speed_best  || 0, cloudGS.speed_best  || 0),
+          memory_best: Math.min(localGS.memory_best || 9999, cloudGS.memory_best || 9999),
+          wordle_wins: Math.max(localGS.wordle_wins || 0, cloudGS.wordle_wins || 0),
+        };
+        if (mergedGS.memory_best === 9999) delete mergedGS.memory_best;
+        localStorage.setItem('game_scores', JSON.stringify(mergedGS));
       }
 
       // Then push merged state back to cloud

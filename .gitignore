@@ -24,3 +24,11 @@ implementation_plan.md
 hsk_game_spec.md
 DEPLOY_GUIDE.md
 *.local.md
+
+# Reports & migrations — keep local, don't push to GitHub
+Bao_cao_*.md
+Bug_Report_*.md
+Optimization_Plan_*.md
+extension_plan.md
+sync_fix_*.md
+*.sql

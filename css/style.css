@@ -2059,3 +2059,41 @@ body {
 }
 .auth-legal a { color: var(--text3); text-decoration: underline; }
 .auth-legal a:hover { opacity: 1; color: var(--primary); }
+
+/* ── B5g: SPECIAL MODES (Daily Challenge + Survival) ── */
+.special-modes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.special-mode-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius);
+  padding: 16px 18px; transition: all .2s; cursor: default;
+}
+.special-mode-card:hover { border-color: var(--primary); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+.dc-card { border-left: 4px solid #F59E0B; }
+.sv-card { border-left: 4px solid #EF4444; }
+.smc-icon { font-size: 32px; flex-shrink: 0; }
+.smc-body { flex: 1; min-width: 0; }
+.smc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.smc-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
+.smc-status { margin-top: 8px; }
+.btn-sm { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+
+/* Daily Challenge status */
+.dc-done-score { font-size: 20px; font-weight: 700; color: var(--primary); }
+.dc-done-xp { font-size: 14px; color: var(--accent); font-weight: 600; }
+.dc-countdown { font-size: 12px; color: var(--text3); margin-top: 4px; }
+.dc-streak { font-size: 13px; color: #F59E0B; font-weight: 600; margin-top: 4px; }
+.dc-result-detail { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: 16px 0; font-size: 16px; }
+.dc-xp-earned { font-size: 20px; font-weight: 700; color: var(--accent); }
+
+/* Survival Mode */
+.sv-result-detail { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: 16px 0; font-size: 16px; }
+.sv-new-best { font-size: 18px; font-weight: 700; color: #F59E0B; animation: pulse .5s infinite alternate; }
+.sv-best { font-size: 14px; color: var(--text2); }
+.survival-timer-badge { font-weight: 700; margin-left: 8px; color: var(--accent); }
+.survival-timer-badge.timer-danger { color: #EF4444; animation: pulse .4s infinite alternate; }
+
+@media (max-width: 600px) {
+  .special-modes-grid { grid-template-columns: 1fr; }
+  .special-mode-card { flex-wrap: wrap; gap: 10px; padding: 14px; }
+  .smc-icon { font-size: 26px; }
+}

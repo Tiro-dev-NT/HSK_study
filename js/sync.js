@@ -85,6 +85,9 @@ var Sync = {
         quiz_wrong:   JSON.parse(localStorage.getItem('quiz_wrong')   || '[]'),
         quiz_history: JSON.parse(localStorage.getItem('quiz_history') || '[]'),
         game_scores:  JSON.parse(localStorage.getItem('game_scores')  || '{}'),
+        daily_challenge: JSON.parse(localStorage.getItem('hsk_daily_challenge') || '{}'),
+        daily_challenge_streak: JSON.parse(localStorage.getItem('hsk_daily_challenge_streak') || '{}'),
+        survival_high_score: JSON.parse(localStorage.getItem('hsk_survival_high_score') || '{}'),
       };
       var hasSettings = Object.keys(studySettings).length > 0;
       var hasActivity = globalData.quiz_history.length > 0 || globalData.quiz_wrong.length > 0
@@ -168,6 +171,19 @@ var Sync = {
           localStorage.setItem('quiz_history', JSON.stringify(g.quiz_history));
         if (g.game_scores)
           localStorage.setItem('game_scores', JSON.stringify(g.game_scores));
+        // B5g: Daily Challenge + Survival
+        if (g.daily_challenge && Object.keys(g.daily_challenge).length > 0) {
+          localStorage.setItem('hsk_daily_challenge', JSON.stringify(g.daily_challenge));
+          AppState.dailyChallenge = g.daily_challenge;
+        }
+        if (g.daily_challenge_streak && g.daily_challenge_streak.current !== undefined) {
+          localStorage.setItem('hsk_daily_challenge_streak', JSON.stringify(g.daily_challenge_streak));
+          AppState.dailyChallengeStreak = g.daily_challenge_streak;
+        }
+        if (g.survival_high_score && (g.survival_high_score.score || 0) > (AppState.survivalHighScore.score || 0)) {
+          localStorage.setItem('hsk_survival_high_score', JSON.stringify(g.survival_high_score));
+          AppState.survivalHighScore = g.survival_high_score;
+        }
       }
 
       // Refresh UI

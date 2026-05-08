@@ -6,6 +6,34 @@
 
       <!-- SETUP -->
       <div class="quiz-setup" id="quizSetup">
+
+        <!-- B5g: Special Modes -->
+        <div class="setup-section">
+          <div class="setup-label" data-vi="Chế độ đặc biệt" data-en="Special Modes">Chế độ đặc biệt</div>
+          <div class="special-modes-grid">
+            <!-- Daily Challenge -->
+            <div class="special-mode-card dc-card">
+              <div class="smc-icon">📅</div>
+              <div class="smc-body">
+                <div class="smc-title" data-vi="Thử thách hàng ngày" data-en="Daily Challenge">Thử thách hàng ngày</div>
+                <div class="smc-desc" data-vi="10 câu mỗi ngày · Mix dạng câu · Bonus XP ≥8/10" data-en="10 questions daily · Mixed types · Bonus XP ≥8/10">10 câu mỗi ngày · Mix dạng câu · Bonus XP ≥8/10</div>
+                <div class="smc-status" id="dailyChallengeStatus" style="display:none"></div>
+              </div>
+              <button class="btn-primary btn-sm" id="startDailyChallenge" data-vi="▶ Bắt đầu" data-en="▶ Start">▶ Bắt đầu</button>
+            </div>
+            <!-- Survival Mode -->
+            <div class="special-mode-card sv-card">
+              <div class="smc-icon">💀</div>
+              <div class="smc-body">
+                <div class="smc-title" data-vi="Chế độ Survival" data-en="Survival Mode">Chế độ Survival</div>
+                <div class="smc-desc" data-vi="Trả lời liên tục · Sai 1 câu = Game Over · Timer tăng tốc" data-en="Non-stop · 1 wrong = Game Over · Timer speeds up">Trả lời liên tục · Sai 1 câu = Game Over · Timer tăng tốc</div>
+                <div class="smc-status" id="survivalHighScoreDisplay" style="display:none"></div>
+              </div>
+              <button class="btn-primary btn-sm" id="startSurvivalMode" data-vi="▶ Chơi" data-en="▶ Play">▶ Chơi</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Scope selector (B5a) -->
         <div class="setup-section">
           <div class="setup-label" data-vi="Phạm vi" data-en="Scope">Phạm vi</div>
@@ -21,10 +49,10 @@
               <button class="level-btn active" data-level="1" style="--lc:#E74C3C"><span class="lv-dot"></span>HSK 1<span class="lv-count">140 từ</span></button>
               <button class="level-btn" data-level="2" style="--lc:#E67E22"><span class="lv-dot"></span>HSK 2<span class="lv-count">130 từ</span></button>
               <button class="level-btn" data-level="3" style="--lc:#D4AC0D"><span class="lv-dot"></span>HSK 3<span class="lv-count">260 từ</span></button>
-              <button class="level-btn" data-level="4" style="--lc:#27AE60"><span class="lv-dot"></span>HSK 4<span class="lv-count">590 từ</span></button>
-              <button class="level-btn" data-level="5" style="--lc:#2980B9"><span class="lv-dot"></span>HSK 5<span class="lv-count">465 từ</span></button>
-              <button class="level-btn" data-level="6" style="--lc:#8E44AD"><span class="lv-dot"></span>HSK 6<span class="lv-count">415 từ</span></button>
-              <button class="level-btn level-btn--mix" data-level="mix" style="--lc:var(--primary)">🔀 Hỗn hợp <span class="lv-count">2000+ từ</span></button>
+              <button class="level-btn" data-level="4" style="--lc:#27AE60"><span class="lv-dot"></span>HSK 4<span class="lv-count">591 từ</span></button>
+              <button class="level-btn" data-level="5" style="--lc:#2980B9"><span class="lv-dot"></span>HSK 5<span class="lv-count">1349 từ</span></button>
+              <button class="level-btn" data-level="6" style="--lc:#8E44AD"><span class="lv-dot"></span>HSK 6<span class="lv-count">1419 từ</span></button>
+              <button class="level-btn level-btn--mix" data-level="mix" style="--lc:var(--primary)">🔀 Hỗn hợp <span class="lv-count">3889 từ</span></button>
             </div>
           </div>
           <div id="scope-topic" class="scope-panel" style="display:none">
@@ -120,6 +148,12 @@
           <button class="btn-outline" id="reviewWrongBtn" style="display:none" data-vi="⚡ Ôn sai ngay" data-en="⚡ Review Wrong">⚡ Ôn sai ngay</button>
         </div>
       </div>
+
+      <!-- DAILY CHALLENGE RESULT (B5g) -->
+      <div id="dailyChallengeResult" style="display:none"></div>
+
+      <!-- SURVIVAL RESULT (B5g) -->
+      <div id="survivalResult" style="display:none"></div>
 
       <!-- HISTORY PANEL (B5d) -->
       <div id="quizHistory" style="display:none">

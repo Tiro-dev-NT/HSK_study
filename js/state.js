@@ -23,6 +23,20 @@ var AppState = {
       return JSON.parse(localStorage.getItem('hsk_xp') || '{"total":0,"weeklyXP":0,"weekStart":"","lastActive":""}');
     } catch(e) { return {total:0, weeklyXP:0, weekStart:'', lastActive:''}; }
   })(),
+  dailyChallenge: (function() {
+    try { return JSON.parse(localStorage.getItem('hsk_daily_challenge') || '{}'); }
+    catch(e) { return {}; }
+  })(),
+  dailyChallengeStreak: (function() {
+    try {
+      return JSON.parse(localStorage.getItem('hsk_daily_challenge_streak') || '{"current":0,"best":0,"lastDate":""}');
+    } catch(e) { return {current:0, best:0, lastDate:''}; }
+  })(),
+  survivalHighScore: (function() {
+    try {
+      return JSON.parse(localStorage.getItem('hsk_survival_high_score') || '{"score":0,"date":""}');
+    } catch(e) { return {score:0, date:''}; }
+  })(),
 
   // ── Session / transient state ──
   currentWord:    null,   // word currently shown in modal
@@ -36,10 +50,12 @@ var AppState = {
   fcSession: { correct: 0, wrong: 0 },
 
   // Quiz state
-  qDeck:      [],
-  qIndex:     0,
-  qScore:     0,
-  qAnswered:  false,
+  qDeck:         [],
+  qIndex:        0,
+  qScore:        0,
+  qAnswered:     false,
+  qSessionType:  'standard',
+  qMeta:         {},
 
   // ── localStorage helpers ──────────────────────────
   save: function(key, value) {
@@ -57,6 +73,18 @@ var AppState = {
 
   saveXP: function() {
     this.save('hsk_xp', this.xpData);
+  },
+
+  saveDailyChallenge: function() {
+    this.save('hsk_daily_challenge', this.dailyChallenge);
+  },
+
+  saveDailyChallengeStreak: function() {
+    this.save('hsk_daily_challenge_streak', this.dailyChallengeStreak);
+  },
+
+  saveSurvivalHighScore: function() {
+    this.save('hsk_survival_high_score', this.survivalHighScore);
   },
 
   // Record a word as learned for a given level
@@ -80,22 +108,27 @@ var AppState = {
 // ── Backward-compat aliases (so app.js / decks.js still work during migration) ──
 // These let old code using bare variable names still function
 // They will be removed once all modules are fully migrated
-var appLang    = AppState.lang;
-var appTheme   = AppState.theme;
-var hskVersion = AppState.version;
-var progress   = AppState.progress;   // shared reference
-var srsData    = AppState.srsData;    // shared reference
-var xpData     = AppState.xpData;    // shared reference
-var currentWord   = AppState.currentWord;
-var activeRadical = AppState.activeRadical;
-var hanziWriter   = AppState.hanziWriter;
-var searchMode    = AppState.searchMode;
-var fcDeck        = AppState.fcDeck;
-var fcIndex       = AppState.fcIndex;
-var fcSession     = AppState.fcSession;
-var qDeck         = AppState.qDeck;
-var qIndex        = AppState.qIndex;
-var qScore        = AppState.qScore;
-var qAnswered     = AppState.qAnswered;
+var appLang             = AppState.lang;
+var appTheme            = AppState.theme;
+var hskVersion          = AppState.version;
+var progress            = AppState.progress;   // shared reference
+var srsData             = AppState.srsData;    // shared reference
+var xpData              = AppState.xpData;     // shared reference
+var dailyChallenge      = AppState.dailyChallenge;
+var dailyChallengeStreak = AppState.dailyChallengeStreak;
+var survivalHighScore   = AppState.survivalHighScore;
+var currentWord         = AppState.currentWord;
+var activeRadical       = AppState.activeRadical;
+var hanziWriter         = AppState.hanziWriter;
+var searchMode          = AppState.searchMode;
+var fcDeck              = AppState.fcDeck;
+var fcIndex             = AppState.fcIndex;
+var fcSession           = AppState.fcSession;
+var qDeck               = AppState.qDeck;
+var qIndex              = AppState.qIndex;
+var qScore              = AppState.qScore;
+var qAnswered           = AppState.qAnswered;
+var qSessionType        = AppState.qSessionType;
+var qMeta               = AppState.qMeta;
 
 console.log('[STATE] Initialized. Progress levels:', Object.keys(AppState.progress).filter(k => AppState.progress[k].length > 0));

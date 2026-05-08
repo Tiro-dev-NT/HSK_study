@@ -61,12 +61,13 @@ var SentenceBuilder = {
   },
 
   _renderHTML: function() {
-    return '<div class="sent-game">' +
+    return '<div class="sent-game premium">' +
       '<div class="boss-header">' +
         '<button class="btn-exit" id="sentExit">✕</button>' +
         '<h2 style="margin:0">📝 Sentence Builder</h2>' +
         '<div class="sent-progress" id="sentProgress">0/' + SentenceBuilder.totalRounds + '</div>' +
       '</div>' +
+      '<div class="sent-progress-dots" id="sentDots"></div>' +
       '<div class="sent-prompt" id="sentPrompt"></div>' +
       '<div class="sent-slots" id="sentSlots"></div>' +
       '<div class="sent-bank" id="sentBank"></div>' +
@@ -132,6 +133,20 @@ var SentenceBuilder = {
 
     SentenceBuilder.round++;
     document.getElementById('sentProgress').textContent = SentenceBuilder.round + '/' + SentenceBuilder.totalRounds;
+
+    // Progress dots
+    var dotsEl = document.getElementById('sentDots');
+    if (dotsEl) {
+      var dotsHTML = '';
+      for (var d = 0; d < SentenceBuilder.totalRounds; d++) {
+        var cls = 'sent-progress-dot';
+        if (d < SentenceBuilder.round - 1) cls += ' dot-done';
+        else if (d === SentenceBuilder.round - 1) cls += ' dot-current';
+        dotsHTML += '<span class="' + cls + '"></span>';
+      }
+      dotsEl.innerHTML = dotsHTML;
+    }
+
     document.getElementById('sentPrompt').innerHTML = '<div class="sent-vi">' + SentenceBuilder.current.vi + '</div>';
     document.getElementById('sentFeedback').style.display = 'none';
     document.getElementById('sentCheck').disabled = true;
@@ -199,14 +214,20 @@ var SentenceBuilder = {
     if (userAnswer === correctAnswer) {
       SentenceBuilder.correct++;
       var xp = SentenceBuilder.usedHint ? Math.floor(SentenceBuilder.xpPerCorrect / 2) : SentenceBuilder.xpPerCorrect;
-      fb.innerHTML = '✅ Chính xác! +' + xp + ' XP' +
+      fb.innerHTML = '<span class="sent-checkmark">✅</span> Chính xác! +' + xp + ' XP' +
         (SentenceBuilder.current.py ? '<br><small>Pinyin: ' + SentenceBuilder.current.py + '</small>' : '');
       fb.className = 'sent-feedback sent-correct';
       if (typeof addXP === 'function') addXP(xp);
+      Games.animate.flash(document.getElementById('sentSlots'), '#22C55E');
     } else {
       fb.innerHTML = '❌ Sai rồi! Đáp án: ' + SentenceBuilder.current.zh +
         (SentenceBuilder.current.py ? '<br><small>Pinyin: ' + SentenceBuilder.current.py + '</small>' : '');
       fb.className = 'sent-feedback sent-wrong';
+      // Shake wrong slots
+      document.querySelectorAll('.sent-filled').forEach(function(el) {
+        el.classList.add('sent-wrong-shake');
+      });
+      Games.animate.shake(document.getElementById('sentSlots'));
     }
     fb.style.display = '';
 

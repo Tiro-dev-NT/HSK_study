@@ -33,14 +33,16 @@ var RacingQuiz = {
     });
 
     RacingQuiz._renderTrack();
-    RacingQuiz._nextQuestion();
-    RacingQuiz._startCPU();
     RacingQuiz._bindEvents();
 
-    // BUG-06: timeout 90s to force end race
+    // Countdown then start
+    Games.countdown(null, function() {
+      RacingQuiz._nextQuestion();
+      RacingQuiz._startCPU();
+    });
+
     RacingQuiz.raceTimeout = setTimeout(function() {
       if (!RacingQuiz.finished) {
-        console.log('[Racing] timeout — force ending race');
         var sorted = [0,1,2,3,4].sort(function(a,b) {
           return RacingQuiz.positions[b] - RacingQuiz.positions[a];
         });
@@ -51,7 +53,7 @@ var RacingQuiz = {
   },
 
   _renderHTML: function() {
-    return '<div class="race-game">' +
+    return '<div class="race-game premium">' +
       '<div class="boss-header">' +
         '<button class="btn-exit" id="raceExit">✕</button>' +
         '<h2 style="margin:0">🏎️ Racing Quiz</h2>' +
@@ -61,6 +63,7 @@ var RacingQuiz = {
       '<div class="race-options" id="raceOptions"></div>' +
       '<div class="race-result" id="raceResult" style="display:none">' +
         '<h3 id="raceResultTitle"></h3>' +
+        '<div class="race-podium" id="racePodium"></div>' +
         '<div class="race-ranking" id="raceRanking"></div>' +
         '<p id="raceXPMsg"></p>' +
         '<div class="sq-btns">' +
@@ -137,11 +140,23 @@ var RacingQuiz = {
       btn.classList.add('sq-correct');
       RacingQuiz.positions[0] = Math.min(RacingQuiz.TRACK_LEN - 1, RacingQuiz.positions[0] + 1);
       RacingQuiz._checkFinish(0);
+      // Speed line + float effect
+      var playerCar = document.querySelector('.race-lane:first-child .race-active');
+      if (playerCar) {
+        Games.particles.damageFloat(playerCar, '+1', '#22C55E');
+      }
     } else {
       btn.classList.add('sq-wrong');
       document.querySelectorAll('#raceOptions .boss-opt').forEach(function(b) {
         if (b.dataset.h === RacingQuiz.current.h) b.classList.add('sq-correct');
       });
+      // Shake player car
+      var track = document.getElementById('raceTrack');
+      if (track) {
+        var lane = track.querySelector('.race-lane');
+        if (lane) Games.animate.shake(lane);
+      }
+      Games.particles.damageFloat(document.querySelector('.race-lane'), '❌', '#EF4444');
     }
     RacingQuiz._renderTrack();
 
@@ -205,6 +220,22 @@ var RacingQuiz = {
       var highlight = idx === 0 ? ' style="font-weight:bold;color:var(--accent)"' : '';
       return '<div' + highlight + '>' + medal + ' ' + names[idx] + '</div>';
     }).join('');
+
+    // Podium for top 3
+    var podiumEl = document.getElementById('racePodium');
+    if (podiumEl && RacingQuiz.finishOrder.length >= 3) {
+      var top3 = RacingQuiz.finishOrder.slice(0, 3);
+      var podiumOrder = [top3[1], top3[0], top3[2]]; // silver, gold, bronze layout
+      var classes = ['silver', 'gold', 'bronze'];
+      podiumEl.innerHTML = podiumOrder.map(function(idx, i) {
+        return '<div class="race-podium-item">' +
+          '<div class="race-podium-name">' + names[idx] + '</div>' +
+          '<div class="race-podium-bar ' + classes[i] + '"></div>' +
+        '</div>';
+      }).join('');
+    }
+
+    if (playerRank === 1) Games.particles.confetti();
 
     document.getElementById('raceResultTitle').textContent = playerRank <= 3 ? '🎉 Hạng ' + playerRank + '!' : 'Về hạng ' + playerRank;
     document.getElementById('raceRanking').innerHTML = rankHTML;

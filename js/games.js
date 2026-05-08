@@ -34,6 +34,9 @@ var Games = {
         else if (game === 'boss-battle' && typeof BossBattle !== 'undefined') BossBattle._showLevelSelect();
         else if (game === 'racing' && typeof RacingQuiz !== 'undefined') RacingQuiz.start();
         else if (game === 'sentence' && typeof SentenceBuilder !== 'undefined') SentenceBuilder.start();
+        else if (game === 'handwriting' && typeof HandwritingGame !== 'undefined') HandwritingGame.start();
+        else if (game === 'tone-trainer' && typeof ToneTrainer !== 'undefined') ToneTrainer.start();
+        else if (game === 'cloze' && typeof ClozeGame !== 'undefined') ClozeGame.start();
       });
     });
   },
@@ -47,6 +50,98 @@ var Games = {
     scores[key] = val;
     localStorage.setItem('game_scores', JSON.stringify(scores));
   },
+
+  // ── Visual Utilities (C8) ─────────────────────────
+  particles: {
+    burst: function(el, count, emoji) {
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      for (var i = 0; i < (count || 5); i++) {
+        var p = document.createElement('span');
+        p.className = 'game-particle';
+        p.textContent = emoji || '✨';
+        p.style.left = (rect.left + rect.width/2 + (Math.random()-0.5)*40) + 'px';
+        p.style.top = (rect.top + (Math.random()-0.5)*20) + 'px';
+        p.style.position = 'fixed';
+        document.body.appendChild(p);
+        setTimeout(function(el) { el.remove(); }.bind(null, p), 1000);
+      }
+    },
+    confetti: function(container) {
+      var wrap = document.createElement('div');
+      wrap.className = 'game-confetti';
+      var colors = ['#EF4444','#F59E0B','#22C55E','#3B82F6','#8B5CF6','#EC4899'];
+      for (var i = 0; i < 40; i++) {
+        var piece = document.createElement('div');
+        piece.className = 'game-confetti-piece';
+        piece.style.left = Math.random() * 100 + '%';
+        piece.style.top = '-10px';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = (Math.random() * 0.5) + 's';
+        piece.style.animationDuration = (1.5 + Math.random()) + 's';
+        wrap.appendChild(piece);
+      }
+      (container || document.body).appendChild(wrap);
+      setTimeout(function() { wrap.remove(); }, 3000);
+    },
+    damageFloat: function(el, text, color) {
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      var f = document.createElement('span');
+      f.className = 'game-damage-float';
+      f.textContent = text;
+      f.style.left = (rect.left + rect.width/2 - 15) + 'px';
+      f.style.top = (rect.top - 10) + 'px';
+      f.style.color = color || '#EF4444';
+      f.style.position = 'fixed';
+      document.body.appendChild(f);
+      setTimeout(function() { f.remove(); }, 1000);
+    }
+  },
+
+  animate: {
+    shake: function(el) {
+      if (!el) return;
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'screen-shake .3s ease';
+      setTimeout(function() { el.style.animation = ''; }, 300);
+    },
+    flash: function(el, color) {
+      if (!el) return;
+      el.style.boxShadow = '0 0 20px ' + (color || '#22C55E') + '80';
+      setTimeout(function() { el.style.boxShadow = ''; }, 600);
+    },
+    countTo: function(el, from, to, ms) {
+      if (!el) return;
+      var start = Date.now();
+      var timer = setInterval(function() {
+        var pct = Math.min(1, (Date.now() - start) / ms);
+        el.textContent = Math.round(from + (to - from) * pct);
+        if (pct >= 1) clearInterval(timer);
+      }, 30);
+    }
+  },
+
+  countdown: function(container, callback) {
+    var overlay = document.createElement('div');
+    overlay.className = 'game-countdown';
+    overlay.innerHTML = '<span>3</span>';
+    (container || document.body).appendChild(overlay);
+    var count = 3;
+    var interval = setInterval(function() {
+      count--;
+      if (count > 0) {
+        overlay.innerHTML = '<span>' + count + '</span>';
+      } else if (count === 0) {
+        overlay.innerHTML = '<span>GO!</span>';
+      } else {
+        clearInterval(interval);
+        overlay.remove();
+        if (callback) callback();
+      }
+    }, 700);
+  }
 };
 
 // ═══════════════════════════════════════════════════════

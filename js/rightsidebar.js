@@ -29,6 +29,7 @@ var RightSidebar = {
     RightSidebar.renderStats();
     RightSidebar.renderXP();
     RightSidebar.renderStreakCal();
+    RightSidebar.renderHeatmap();
   },
 
   renderStats: function() {
@@ -143,6 +144,99 @@ var RightSidebar = {
       var el = document.getElementById('setHintLevel');
       if (el) el.value = val;
     }
+  },
+
+  // ── E7: Heatmap 12 tuần ────────────────────────────
+  renderHeatmap: function() {
+    var container = document.getElementById('rsHeatmap');
+    if (!container) return;
+    var dailyXP = (AppState.xpData && AppState.xpData.dailyXP) ? AppState.xpData.dailyXP : {};
+    var today = new Date();
+    var html = '';
+    // 12 columns (weeks), each with 7 rows (days)
+    for (var w = 11; w >= 0; w--) {
+      html += '<div class="rs-heatmap-col">';
+      for (var d = 0; d < 7; d++) {
+        var offset = w * 7 + (6 - d);
+        var date = new Date(today);
+        date.setDate(today.getDate() - offset);
+        var dateStr = date.toISOString().split('T')[0];
+        var xp = dailyXP[dateStr] || 0;
+        var lvl = xp === 0 ? 0 : xp < 50 ? 1 : xp < 100 ? 2 : xp < 200 ? 3 : 4;
+        html += '<span class="hm-cell hm-' + lvl + '" title="' + dateStr + ': ' + xp + ' XP"></span>';
+      }
+      html += '</div>';
+    }
+    container.innerHTML = html;
+  },
+
+  // ── E8: Related words ──────────────────────────────
+  renderRelated: function(currentWord) {
+    var section = document.getElementById('rsRelated');
+    var list = document.getElementById('rsRelatedList');
+    if (!section || !list) return;
+    if (!currentWord || !currentWord.h) { section.style.display = 'none'; return; }
+
+    var results = [];
+    var allWords = (typeof getAllWords === 'function') ? getAllWords() : [];
+    var currentH = currentWord.h;
+
+    // Find by shared radical
+    if (typeof RADICALS !== 'undefined') {
+      var chars = currentH.split('');
+      for (var i = 0; i < chars.length && results.length < 5; i++) {
+        var radical = null;
+        for (var r in RADICALS) {
+          if (RADICALS[r].chars && RADICALS[r].chars.indexOf(chars[i]) !== -1) { radical = r; break; }
+        }
+        if (radical && RADICALS[radical].chars) {
+          var relChars = RADICALS[radical].chars;
+          for (var j = 0; j < allWords.length && results.length < 5; j++) {
+            var w = allWords[j];
+            if (w.h === currentH) continue;
+            if (results.some(function(x){return x.h===w.h;})) continue;
+            for (var k = 0; k < relChars.length; k++) {
+              if (w.h.indexOf(relChars[k]) !== -1) { results.push(w); break; }
+            }
+          }
+        }
+      }
+    }
+
+    // Fill with same topic
+    if (results.length < 5 && currentWord.t) {
+      for (var i = 0; i < allWords.length && results.length < 5; i++) {
+        var w = allWords[i];
+        if (w.h === currentH) continue;
+        if (results.some(function(x){return x.h===w.h;})) continue;
+        if (w.t === currentWord.t) results.push(w);
+      }
+    }
+
+    if (results.length === 0) { section.style.display = 'none'; return; }
+    section.style.display = '';
+    var html = '';
+    results.forEach(function(w) {
+      html += '<div class="rs-related-item" data-hanzi="' + w.h + '">' +
+        '<span class="rs-related-h">' + w.h + '</span>' +
+        '<span class="rs-related-p">' + (w.p || '') + '</span>' +
+        '<div class="rs-related-v">' + (w.v || w.e || '') + '</div>' +
+      '</div>';
+    });
+    list.innerHTML = html;
+    // Click handler
+    list.querySelectorAll('.rs-related-item').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var hanzi = el.getAttribute('data-hanzi');
+        var word = allWords.find(function(w){return w.h === hanzi;});
+        if (word && typeof Dictionary !== 'undefined' && Dictionary.show) Dictionary.show(word);
+      });
+    });
+  },
+
+  clearRelated: function() {
+    var section = document.getElementById('rsRelated');
+    if (section) section.style.display = 'none';
   },
 
   setSrsMode: function(val) {

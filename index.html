@@ -8,7 +8,7 @@
   <meta name="google-site-verification" content="irzs3eRhIGTqbu0OIyCegfEwhQAbOhoVsGLyGKG7nQw" />
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/style.css?v=2.6"/>
+  <link rel="stylesheet" href="css/style.css?v=2.7"/>
 </head>
 <body>
   <!-- SIDEBAR (Desktop) -->
@@ -34,9 +34,13 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         <span>Kiểm tra</span>
       </a>
-      <a class="nav-item" data-page="vault" href="#">
+      <a class="nav-item" data-page="my-vocab" href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
         <span>Kho của tôi</span>
+      </a>
+      <a class="nav-item" data-page="vault" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17,21 17,13 7,13 7,21"/><polyline points="7,3 7,8 15,8"/></svg>
+        <span>Bộ thẻ</span>
       </a>
       <a class="nav-item" data-page="feedback" href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -112,6 +116,25 @@
         <div class="rs-section-title">7 ngày gần đây</div>
         <div class="rs-streak-cal" id="rsStreakCal"></div>
       </div>
+      <!-- E7: Heatmap -->
+      <div class="rs-section">
+        <div class="rs-section-title" data-vi="Hoạt động 12 tuần" data-en="12-week activity">Hoạt động 12 tuần</div>
+        <div class="rs-heatmap" id="rsHeatmap"></div>
+        <div class="rs-heatmap-legend">
+          <span data-vi="Ít" data-en="Less">Ít</span>
+          <span class="hm-cell hm-0"></span>
+          <span class="hm-cell hm-1"></span>
+          <span class="hm-cell hm-2"></span>
+          <span class="hm-cell hm-3"></span>
+          <span class="hm-cell hm-4"></span>
+          <span data-vi="Nhiều" data-en="More">Nhiều</span>
+        </div>
+      </div>
+      <!-- E8: Related words (session) -->
+      <div class="rs-section" id="rsRelated" style="display:none">
+        <div class="rs-section-title" data-vi="Từ liên quan" data-en="Related words">Từ liên quan</div>
+        <div class="rs-related-list" id="rsRelatedList"></div>
+      </div>
       <!-- Quick study settings (E5) -->
       <div class="rs-section">
         <div class="rs-section-title">Cài đặt nhanh</div>
@@ -179,7 +202,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/></svg>
       <span>Quiz</span>
     </a>
-    <a class="bnav-item" data-page="vault" href="#">
+    <a class="bnav-item" data-page="my-vocab" href="#">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
       <span>Kho</span>
     </a>
@@ -283,18 +306,23 @@
   <!-- ══ Utility / engine (no DOM dependency) ══ -->
   <script src="js/srs.js?v=2.5"></script>
   <!-- ══ Core modules (ordered by dependency) ══ -->
-  <script src="js/state.js?v=2.6"></script>
-  <script src="js/router.js?v=2.5"></script>
+  <script src="js/state.js?v=2.7"></script>
+  <script src="js/router.js?v=2.7"></script>
   <script src="js/theme.js?v=2.5"></script>
-  <script src="js/gamification.js?v=2.5"></script>
+  <script src="js/gamification.js?v=2.7"></script>
   <script src="js/dictionary.js?v=2.5"></script>
   <script src="js/quiz.js?v=2.7"></script>
+  <script src="js/my-vocab.js?v=1.0"></script>
+  <script src="js/vocab-import.js?v=1.0"></script>
   <script src="js/feedback.js?v=2.5"></script>
   <script src="js/settings.js?v=2.5"></script>
   <!-- ══ Deck & session (depends on state + modules above) ══ -->
   <script src="js/decks.js?v=2.5"></script>
-  <script src="js/session.js?v=2.5"></script>
+  <script src="js/session.js?v=2.7"></script>
   <script src="js/games.js?v=2.5"></script>
+  <script src="js/games/boss.js?v=1.0"></script>
+  <script src="js/games/racing.js?v=1.0"></script>
+  <script src="js/games/sentence.js?v=1.0"></script>
   <!-- ══ Entry point (must be last) ══ -->
   <script src="js/app.js?v=2.5"></script>
   <!-- ══ CDN libs ══ -->
@@ -302,8 +330,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="js/supabase.js?v=2.5"></script>
   <script src="js/auth.js?v=2.5"></script>
-  <script src="js/sync.js?v=2.6"></script>
-  <script src="js/rightsidebar.js?v=2.5"></script>
+  <script src="js/sync.js?v=2.7"></script>
+  <script src="js/rightsidebar.js?v=2.7"></script>
   <!-- ════ SETTINGS MODAL ════ -->
   <div class="settings-overlay" id="settingsOverlay" style="display:none" onclick="if(event.target===this)closeSettings()">
     <div class="settings-modal" id="settingsModal">

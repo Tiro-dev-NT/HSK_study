@@ -1,0 +1,59 @@
+    <!-- PAGE: MY VOCAB (Phase 2.1) -->
+    <section class="page active" id="page-my-vocab">
+      <div class="page-header">
+        <h1>📚 Kho từ vựng của tôi</h1>
+        <p style="color:var(--text2);font-size:14px">Quản lý tất cả từ đã lưu — HSK, extension, tự tạo</p>
+        <button class="btn-outline btn-sm" data-page="vocab-import" style="margin-top:8px">+ Import từ AI</button>
+      </div>
+
+      <!-- Search bar -->
+      <div class="mv-search-wrap">
+        <input type="text" id="mvSearch" class="mv-search" placeholder="🔍 Tìm theo Hán tự / Pinyin / Nghĩa Việt..." autocomplete="off"/>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="mv-filter-tabs" id="mvFilterTabs">
+        <button class="mv-tab active" data-filter="all">Tất cả</button>
+        <button class="mv-tab" data-filter="hsk">HSK</button>
+        <button class="mv-tab" data-filter="extension">Từ video</button>
+        <button class="mv-tab" data-filter="manual">Tự tạo</button>
+        <button class="mv-tab" data-filter="web">Đã lưu (web)</button>
+      </div>
+
+      <!-- Tag chips -->
+      <div class="mv-tag-chips" id="mvTagChips"></div>
+
+      <!-- Bulk action bar -->
+      <div class="mv-bulk-bar" id="mvBulkBar" style="display:none">
+        <span id="mvSelectedCount">0 từ đã chọn</span>
+        <button class="btn-sm btn-primary" id="mvBulkAddTag">🏷️ Thêm tag</button>
+        <button class="btn-sm btn-outline" id="mvBulkRemoveTag">✂️ Xóa tag</button>
+        <button class="btn-sm btn-primary" id="mvBulkLearn">▶ Học ngay</button>
+        <button class="btn-sm btn-outline" id="mvDeselectAll">✕ Bỏ chọn</button>
+      </div>
+
+      <!-- Word count -->
+      <div class="mv-word-count" id="mvWordCount"></div>
+
+      <!-- Word grid -->
+      <div class="mv-grid" id="mvGrid"></div>
+
+      <!-- Empty state -->
+      <div class="mv-empty" id="mvEmpty" style="display:none">
+        <div style="font-size:48px;margin-bottom:12px">📭</div>
+        <p>Chưa có từ nào. Hãy học từ mới hoặc lưu từ video!</p>
+      </div>
+
+      <!-- Tag input modal -->
+      <div class="mv-modal-overlay" id="mvTagModal" style="display:none">
+        <div class="mv-modal">
+          <div class="mv-modal-title" id="mvTagModalTitle">Thêm tag</div>
+          <input type="text" id="mvTagInput" class="mv-tag-input" placeholder="Nhập tag..." autocomplete="off"/>
+          <div class="mv-tag-suggestions" id="mvTagSuggestions"></div>
+          <div class="mv-modal-actions">
+            <button class="btn-primary btn-sm" id="mvTagConfirm">Xác nhận</button>
+            <button class="btn-outline btn-sm" id="mvTagCancel">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </section>

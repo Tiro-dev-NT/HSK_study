@@ -116,6 +116,8 @@ var Session = {
     checkAndUpdateStreak();
     updateStats();
     buildLevelGrid();
+    // E8: clear related words
+    if (typeof RightSidebar !== 'undefined' && RightSidebar.clearRelated) RightSidebar.clearRelated();
     // ── Extended stats ─────────────────────────────
     // Elapsed time
     const elapsedMs = AppState.fcSession.startTime ? (Date.now() - AppState.fcSession.startTime) : 0;
@@ -149,6 +151,8 @@ var Session = {
     document.getElementById('fcPinyinBack').textContent = w.p;
     document.getElementById('fcMeaningVi').textContent = w.v;
     document.getElementById('fcMeaningEn').textContent = w.e;
+    // E8: show related words
+    if (typeof RightSidebar !== 'undefined' && RightSidebar.renderRelated) RightSidebar.renderRelated(w);
     const exBox = document.getElementById('fcExBlock');
     if (w.ex) {
       exBox.style.display = 'block';
@@ -207,6 +211,8 @@ var Session = {
       exEl.style.display = 'none';
     }
     document.getElementById('tyHint').textContent = Session._getHint(w.p);
+    // E8: show related words
+    if (typeof RightSidebar !== 'undefined' && RightSidebar.renderRelated) RightSidebar.renderRelated(w);
 
     // E1: char slots
     Session._renderCharSlots(w.h, 0);
@@ -322,6 +328,8 @@ var Session = {
     document.getElementById('lsFeedback').style.display = 'none';
     document.getElementById('lsAnswerBlock').style.display = 'none';
     document.getElementById('lsBtnsRating').style.display  = 'none';
+    // E8: show related words
+    if (typeof RightSidebar !== 'undefined' && RightSidebar.renderRelated) RightSidebar.renderRelated(w);
     // Auto-play TTS after short delay
     setTimeout(function() { Session._lsPlayTTS(w.h); }, 300);
   },
@@ -375,6 +383,8 @@ var Session = {
     const lang = AppState.lang;
     document.getElementById('mcqHanzi').textContent  = w.h;
     document.getElementById('mcqPinyin').textContent = w.p;
+    // E8: show related words
+    if (typeof RightSidebar !== 'undefined' && RightSidebar.renderRelated) RightSidebar.renderRelated(w);
     const allWords = getAllWords();
     const wrong    = shuffle(allWords.filter(function(x) { return x.h !== w.h; })).slice(0, 3);
     const options  = shuffle([w].concat(wrong));

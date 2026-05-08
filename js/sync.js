@@ -37,6 +37,7 @@ var Sync = {
             user_id: uid, hanzi: hanzi,
             interval_days: c.interval, ease: c.ease, due_date: c.dueDate,
             reps: c.reps || 0, lapses: c.lapses || 0, last_review: c.lastReview || null,
+            tags: c.tags || [],
             updated_at: new Date().toISOString()
           };
         });
@@ -122,12 +123,13 @@ var Sync = {
       }
 
       // 2. SRS
-      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review').eq('user_id', uid);
+      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags').eq('user_id', uid);
       if (!sr.error && sr.data && sr.data.length > 0) {
         sr.data.forEach(function(row) {
           AppState.srsData[row.hanzi] = {
             interval: row.interval_days, ease: row.ease, dueDate: row.due_date,
-            reps: row.reps || 0, lapses: row.lapses || 0, lastReview: row.last_review || null
+            reps: row.reps || 0, lapses: row.lapses || 0, lastReview: row.last_review || null,
+            tags: row.tags || []
           };
         });
         AppState.saveSRSData();
@@ -224,7 +226,8 @@ var Sync = {
             // Cloud is more progressed
             AppState.srsData[row.hanzi] = {
               interval: row.interval_days, ease: row.ease, dueDate: row.due_date,
-              reps: row.reps || 0, lapses: row.lapses || 0, lastReview: row.last_review || null
+              reps: row.reps || 0, lapses: row.lapses || 0, lastReview: row.last_review || null,
+              tags: row.tags || []
             };
           }
         });

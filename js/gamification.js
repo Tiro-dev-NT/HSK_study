@@ -19,6 +19,10 @@ var Gamification = {
     }
     AppState.xpData.total    = (AppState.xpData.total    || 0) + amount;
     AppState.xpData.weeklyXP = (AppState.xpData.weeklyXP || 0) + amount;
+    // E7: track daily XP for heatmap
+    var today = new Date().toISOString().split('T')[0];
+    if (!AppState.xpData.dailyXP) AppState.xpData.dailyXP = {};
+    AppState.xpData.dailyXP[today] = (AppState.xpData.dailyXP[today] || 0) + amount;
     // keep compat alias in sync
     xpData.total    = AppState.xpData.total;
     xpData.weeklyXP = AppState.xpData.weeklyXP;

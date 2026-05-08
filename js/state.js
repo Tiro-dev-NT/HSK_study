@@ -103,6 +103,35 @@ var AppState = {
       return sum + arr.length;
     }, 0);
   },
+
+  // ── Tag helpers (Phase 2.1) ────────────────────────
+  addTagToWord: function(hanzi, tag) {
+    if (!this.srsData[hanzi]) return;
+    if (!this.srsData[hanzi].tags) this.srsData[hanzi].tags = [];
+    if (this.srsData[hanzi].tags.indexOf(tag) < 0) {
+      this.srsData[hanzi].tags.push(tag);
+      this.saveSRSData();
+    }
+  },
+
+  removeTagFromWord: function(hanzi, tag) {
+    if (!this.srsData[hanzi] || !this.srsData[hanzi].tags) return;
+    var idx = this.srsData[hanzi].tags.indexOf(tag);
+    if (idx >= 0) {
+      this.srsData[hanzi].tags.splice(idx, 1);
+      this.saveSRSData();
+    }
+  },
+
+  getAllTags: function() {
+    var tagSet = {};
+    var srs = this.srsData || {};
+    Object.keys(srs).forEach(function(h) {
+      var tags = srs[h].tags || [];
+      tags.forEach(function(t) { tagSet[t] = true; });
+    });
+    return Object.keys(tagSet).sort();
+  },
 };
 
 // ── Backward-compat aliases (so app.js / decks.js still work during migration) ──

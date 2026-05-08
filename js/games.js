@@ -19,6 +19,8 @@ var Games = {
     document.getElementById('gameSpeedQuiz').style.display = 'none';
     document.getElementById('gameMemory').style.display = 'none';
     document.getElementById('gameWordle').style.display = 'none';
+    var canvas = document.getElementById('gameCanvas');
+    if (canvas) { canvas.style.display = 'none'; canvas.innerHTML = ''; }
   },
 
   setup: function() {
@@ -29,6 +31,9 @@ var Games = {
         if (game === 'speed-quiz') SpeedQuiz.start();
         else if (game === 'memory') MemoryFlip.start();
         else if (game === 'wordle') PinyinWordle.start();
+        else if (game === 'boss-battle' && typeof BossBattle !== 'undefined') BossBattle._showLevelSelect();
+        else if (game === 'racing' && typeof RacingQuiz !== 'undefined') RacingQuiz.start();
+        else if (game === 'sentence' && typeof SentenceBuilder !== 'undefined') SentenceBuilder.start();
       });
     });
   },

@@ -1,0 +1,82 @@
+    <!-- PAGE: VOCAB IMPORT (Phase 2.2) -->
+    <section class="page active" id="page-vocab-import">
+      <div class="page-header">
+        <h1>📥 Import từ vựng qua AI</h1>
+        <p style="color:var(--text2);font-size:14px">Nhập danh sách → sinh prompt → gửi AI → paste JSON về → import</p>
+      </div>
+
+      <!-- Stepper -->
+      <div class="vi-stepper">
+        <div class="vi-step vi-step-active" data-step="1"><span class="vi-step-num">1</span> Nhập từ</div>
+        <div class="vi-step" data-step="2"><span class="vi-step-num">2</span> Copy prompt</div>
+        <div class="vi-step" data-step="3"><span class="vi-step-num">3</span> Paste JSON</div>
+      </div>
+
+      <!-- Step 1: Input words -->
+      <div class="vi-panel" id="viStep1">
+        <label class="vi-label">Nhập danh sách từ (mỗi dòng 1 từ, hoặc Hán|Pinyin|Việt):</label>
+        <textarea id="viInputWords" class="vi-textarea" rows="8" placeholder="你好&#10;再见&#10;谢谢&#10;&#10;Hoặc:&#10;学习|xuéxí|Học tập&#10;工作|gōngzuò|Làm việc"></textarea>
+        <button class="btn-primary vi-btn" id="viGenPrompt">🚀 Generate Prompt</button>
+      </div>
+
+      <!-- Step 2: Copy prompt -->
+      <div class="vi-panel vi-hidden" id="viStep2">
+        <label class="vi-label">Prompt đã sinh — copy và paste vào AI:</label>
+        <textarea id="viPromptOutput" class="vi-textarea vi-readonly" rows="12" readonly></textarea>
+        <div class="vi-actions">
+          <button class="btn-primary vi-btn" id="viCopyPrompt">📋 Copy Prompt</button>
+          <button class="btn-outline vi-btn" id="viBackStep1">← Quay lại</button>
+        </div>
+        <div class="vi-ai-links" style="margin-top:12px;font-size:13px;color:var(--text2)">
+          Mở AI: 
+          <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a> · 
+          <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> · 
+          <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a>
+        </div>
+        <button class="btn-primary vi-btn" id="viGoStep3" style="margin-top:12px">Tiếp → Paste JSON</button>
+      </div>
+
+      <!-- Step 3: Paste JSON -->
+      <div class="vi-panel vi-hidden" id="viStep3">
+        <label class="vi-label">Paste JSON từ AI vào đây:</label>
+        <textarea id="viJsonInput" class="vi-textarea" rows="10" placeholder='Paste JSON array từ AI vào đây...'></textarea>
+        <div class="vi-actions">
+          <button class="btn-primary vi-btn" id="viValidate">✅ Validate & Preview</button>
+          <button class="btn-outline vi-btn" id="viBackStep2">← Quay lại</button>
+        </div>
+
+        <!-- Preview area -->
+        <div id="viPreview" class="vi-hidden" style="margin-top:16px">
+          <div id="viPreviewSummary" style="margin-bottom:8px;font-weight:600"></div>
+          <div id="viPreviewList" class="vi-preview-list"></div>
+          <button class="btn-primary vi-btn vi-import-btn" id="viImportBtn" disabled style="margin-top:12px">📥 Import (0 từ)</button>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .vi-stepper { display:flex; gap:4px; margin-bottom:20px; }
+      .vi-step { flex:1; text-align:center; padding:10px 4px; border-radius:8px; background:var(--card); color:var(--text2); font-size:13px; transition:all .2s; }
+      .vi-step-active { background:var(--primary); color:#fff; font-weight:600; }
+      .vi-step-done { background:var(--success, #22c55e); color:#fff; }
+      .vi-step-num { display:inline-block; width:22px; height:22px; line-height:22px; border-radius:50%; background:rgba(255,255,255,.2); font-size:12px; margin-right:4px; }
+      .vi-panel { background:var(--card); border-radius:12px; padding:20px; margin-bottom:16px; }
+      .vi-hidden { display:none!important; }
+      .vi-label { display:block; font-size:13px; color:var(--text2); margin-bottom:8px; }
+      .vi-textarea { width:100%; border:1px solid var(--border); border-radius:8px; padding:12px; font-size:14px; font-family:monospace; background:var(--bg); color:var(--text); resize:vertical; box-sizing:border-box; }
+      .vi-readonly { opacity:.85; cursor:default; }
+      .vi-btn { margin-top:12px; margin-right:8px; }
+      .vi-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+      .vi-ai-links a { color:var(--primary); text-decoration:underline; }
+      .vi-preview-list { max-height:400px; overflow-y:auto; }
+      .vi-preview-item { display:flex; align-items:center; gap:10px; padding:8px 12px; border-bottom:1px solid var(--border); font-size:14px; }
+      .vi-preview-item:last-child { border-bottom:none; }
+      .vi-status { font-size:16px; flex-shrink:0; }
+      .vi-word-info { flex:1; min-width:0; }
+      .vi-word-hanzi { font-size:18px; font-weight:700; }
+      .vi-word-pinyin { color:var(--primary); margin-left:8px; }
+      .vi-word-meaning { color:var(--text2); font-size:13px; }
+      .vi-word-error { color:var(--danger, #ef4444); font-size:12px; }
+      .vi-word-warn { color:var(--warning, #f59e0b); font-size:12px; }
+      .vi-word-skip { color:var(--text2); font-size:12px; font-style:italic; }
+    </style>

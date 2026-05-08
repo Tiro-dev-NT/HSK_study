@@ -23,7 +23,9 @@ var Router = (function() {
     '/feedback':       'feedback',
     '/games':          'games',
     '/extension-auth': 'extension-auth',
-    '/video-vocab':    'video-vocab'
+    '/video-vocab':    'video-vocab',
+    '/my-vocab':       'my-vocab',
+    '/vocab-import':   'vocab-import'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -62,6 +64,12 @@ var Router = (function() {
     },
     'video-vocab': function() {
       // Populated dynamically by auth/sync
+    },
+    'my-vocab': function() {
+      if (typeof MyVocab !== 'undefined') MyVocab.setup();
+    },
+    'vocab-import': function() {
+      if (typeof VocabImport !== 'undefined') VocabImport.setup();
     }
   };
 

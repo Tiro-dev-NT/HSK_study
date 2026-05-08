@@ -170,8 +170,18 @@ var Router = (function() {
         _navigateTo(page, false);
       });
 
-      // Initial navigation: honour URL path for direct links / refresh
-      var initialPage = _pageFromPath(window.location.pathname);
+      // Handle hash-based routes (fallback for #/page or #page)
+      window.addEventListener('hashchange', function() {
+        var hash = window.location.hash.replace(/^#\/?/, '') || 'home';
+        var page = _initMap.hasOwnProperty(hash) ? hash : 'home';
+        _navigateTo(page, false);
+      });
+
+      // Initial navigation: honour URL path or hash for direct links / refresh
+      var initialHash = window.location.hash.replace(/^#\/?/, '');
+      var initialPage = initialHash && _initMap.hasOwnProperty(initialHash)
+        ? initialHash
+        : _pageFromPath(window.location.pathname);
       Router.currentPage = initialPage;
       _navigateTo(initialPage, false);
 

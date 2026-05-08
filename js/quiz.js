@@ -67,6 +67,14 @@ var Quiz = {
 
     // Update Daily Challenge card status on load
     Quiz._updateDailyChallengeCard();
+
+    // Clear survival timer when user navigates away or hides page
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden && Quiz._survivalTimer) {
+        clearInterval(Quiz._survivalTimer);
+        Quiz._survivalTimer = null;
+      }
+    });
   },
 
   _switchScope: function(scope) {

@@ -36,7 +36,6 @@
   {h:"贡献",p:"gòngxiàn",v:"Đóng góp",e:"Contribution",t:"social"},
   {h:"义务",p:"yìwù",v:"Nghĩa vụ",e:"Obligation/duty",t:"society"},
   {h:"权利",p:"quánlì",v:"Quyền lợi",e:"Right (legal)",t:"society"},
-  {h:"义务",p:"yìwù",v:"Nghĩa vụ",e:"Duty/obligation",t:"society"},
   {h:"责任",p:"zérèn",v:"Trách nhiệm",e:"Responsibility",t:"society"},
   {h:"纪律",p:"jìlǜ",v:"Kỷ luật",e:"Discipline",t:"society"},
   {h:"规则",p:"guīzé",v:"Quy tắc",e:"Rule",t:"society"},

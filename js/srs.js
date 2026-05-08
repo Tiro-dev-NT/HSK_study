@@ -3,6 +3,7 @@
 // Storage key: "hsk_srs" → { [hanzi]: { interval, ease, dueDate, reps, lapses, lastReview } }
 
 const SRS_KEY = 'hsk_srs';
+const SRS_DAILY_KEY = 'hsk_srs_daily_reviews';
 const SRS_NEW_PER_DAY = 20; // configurable: max new cards per day per deck
 
 // Quality values matching UI buttons:
@@ -62,6 +63,11 @@ function updateSRSCard(hanzi, quality) {
 
   srsData[hanzi] = card;
   saveSRS();
+  // Persist daily review count in localStorage
+  var dailyData = JSON.parse(localStorage.getItem(SRS_DAILY_KEY) || '{}');
+  if (dailyData.date !== today) { dailyData = { date: today, count: 0 }; }
+  dailyData.count++;
+  localStorage.setItem(SRS_DAILY_KEY, JSON.stringify(dailyData));
   return card;
 }
 
@@ -116,6 +122,13 @@ function getSRSBadgeHTML(words) {
 }
 
 // Minutes until next review (for flashcard interval display)
+function getDailyReviewCount() {
+  var today = new Date().toISOString().split('T')[0];
+  var dailyData = JSON.parse(localStorage.getItem(SRS_DAILY_KEY) || '{}');
+  if (dailyData.date !== today) return 0;
+  return dailyData.count || 0;
+}
+
 function getIntervalLabel(quality) {
   const labels = {
     0: '1 phút',

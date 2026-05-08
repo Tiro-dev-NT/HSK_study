@@ -9,9 +9,17 @@
 
 var Dictionary = {
 
+  _setupDone: false,
+
   setup: function() {
     const input = document.getElementById('dictSearch');
     if (!input) return;
+    if (Dictionary._setupDone) {
+      // Already wired — just refresh results
+      Dictionary.searchDict(input.value.trim());
+      return;
+    }
+    Dictionary._setupDone = true;
 
     // Search input
     input.addEventListener('input', function() {

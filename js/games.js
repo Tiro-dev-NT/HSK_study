@@ -262,6 +262,7 @@ var SpeedQuiz = {
     clearInterval(SpeedQuiz.timer);
     var xpEarned = Math.floor(SpeedQuiz.score / 5);
     if (xpEarned > 0 && typeof addXP === 'function') addXP(xpEarned);
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('games_played');
 
     var prev = Games.getScores();
     if (SpeedQuiz.score > (prev.speed_best || 0))
@@ -385,6 +386,7 @@ var MemoryFlip = {
   _end: function() {
     var xpEarned = Math.max(10, 80 - MemoryFlip.moves * 2);
     if (typeof addXP === 'function') addXP(xpEarned);
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('games_played');
 
     var prev = Games.getScores();
     if (!prev.memory_best || MemoryFlip.moves < prev.memory_best)
@@ -652,6 +654,7 @@ var PinyinWordle = {
     document.getElementById('wdMessage').textContent = won ? '🎉 Chính xác!' : '😢 Hết lượt!';
     var xp = won ? Math.max(20, 50 - (PinyinWordle.guesses.length - 1) * 8) : 0;
     if (xp > 0 && typeof addXP === 'function') addXP(xp);
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('games_played');
 
     if (won) {
       var prev = Games.getScores();

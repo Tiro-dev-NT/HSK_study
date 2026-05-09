@@ -51,6 +51,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="4"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
         <span>Trò chơi</span>
       </a>
+      <a class="nav-item" data-page="quests" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        <span>Nhiệm vụ</span>
+      </a>
       <a class="nav-item" id="navSettings" href="#" onclick="openSettings();return false;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         <span>Cài đặt</span>
@@ -98,6 +102,14 @@
           <div class="rs-stat"><span class="rs-stat-num" id="rsStreak">0</span><span class="rs-stat-label">🔥 Chuỗi</span></div>
           <div class="rs-stat"><span class="rs-stat-num" id="rsDue">0</span><span class="rs-stat-label">Cần ôn</span></div>
         </div>
+      </div>
+      <!-- Token balance -->
+      <div class="rs-section rs-tokens-section">
+        <div class="rs-token-row">
+          <span class="rs-token-label">🪙 Token</span>
+          <strong class="rs-token-balance" id="rs-token-balance">0</strong>
+        </div>
+        <a class="rs-quest-link" data-page="quests" href="#" onclick="Router.navigateTo('quests');return false;">⚔️ Nhiệm vụ →</a>
       </div>
       <!-- XP mini -->
       <div class="rs-section">
@@ -175,6 +187,7 @@
       <span class="logo-icon">汉</span>
       <span class="logo-text">Hanzi Genz</span>
       <div class="header-actions">
+        <span class="header-token" id="header-token-badge" title="Token của bạn">🪙 <span id="token-count">0</span></span>
         <button class="btn-icon" id="themeToggleMobile">🌙</button>
         <button class="btn-lang-sm" id="langToggleMobile">VI</button>
         <button class="btn-icon auth-login-btn-sm" id="authLoginBtnMobile" title="Đăng nhập">👤</button>
@@ -347,6 +360,7 @@
   <script src="js/games/tone-trainer.js?v=1.1"></script>
   <script src="js/games/cloze.js?v=1.1"></script>
   <!-- ══ Entry point (must be last) ══ -->
+  <script src="js/quests.js?v=1.0"></script>
   <script src="js/app.js?v=2.5"></script>
   <!-- ══ CDN libs ══ -->
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>

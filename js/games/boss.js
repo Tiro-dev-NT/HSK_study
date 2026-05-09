@@ -266,6 +266,10 @@ var BossBattle = {
     if (won) {
       xp = BossBattle.level === 'easy' ? 50 : BossBattle.level === 'medium' ? 100 : 200;
       if (typeof addXP === 'function') addXP(xp);
+      if (typeof Quests !== 'undefined') {
+        Quests.incrementMetric('boss_won');
+        Quests.incrementMetric('games_played');
+      }
       var scores = Games.getScores();
       if (!scores.bossBestLevel) scores.bossBestLevel = {};
       scores.bossBestLevel[BossBattle.level] = true;

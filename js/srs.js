@@ -63,6 +63,7 @@ function updateSRSCard(hanzi, quality) {
 
   srsData[hanzi] = card;
   saveSRS();
+  if (typeof Quests !== 'undefined') Quests.incrementMetric('srs_reviewed');
   // Persist daily review count in localStorage
   var dailyData = JSON.parse(localStorage.getItem(SRS_DAILY_KEY) || '{}');
   if (dailyData.date !== today) { dailyData = { date: today, count: 0 }; }

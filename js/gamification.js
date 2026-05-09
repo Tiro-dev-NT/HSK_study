@@ -23,6 +23,8 @@ var Gamification = {
     var today = new Date().toISOString().split('T')[0];
     if (!AppState.xpData.dailyXP) AppState.xpData.dailyXP = {};
     AppState.xpData.dailyXP[today] = (AppState.xpData.dailyXP[today] || 0) + amount;
+    AppState.saveXP();
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('xp_earned_today', amount);
     // keep compat alias in sync
     xpData.total    = AppState.xpData.total;
     xpData.weeklyXP = AppState.xpData.weeklyXP;

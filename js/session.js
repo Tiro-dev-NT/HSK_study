@@ -149,6 +149,12 @@ var Session = {
     const earned = AppState.fcSession.correct * 10 + AppState.fcSession.wrong * 3;
     addXP(earned);
     checkAndUpdateStreak();
+    // Quest hooks
+    if (typeof Quests !== 'undefined') {
+      Quests.incrementMetric('cards_studied', total);
+      Quests.incrementMetric('correct_answers', AppState.fcSession.correct);
+      Quests.incrementMetric('sessions_done', 1);
+    }
     updateStats();
     buildLevelGrid();
     // E8: clear related words

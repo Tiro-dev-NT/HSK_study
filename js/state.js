@@ -37,6 +37,16 @@ var AppState = {
       return JSON.parse(localStorage.getItem('hsk_survival_high_score') || '{"score":0,"date":""}');
     } catch(e) { return {score:0, date:''}; }
   })(),
+  tokenData: (function() {
+    try {
+      return JSON.parse(localStorage.getItem('hsk_tokens') || '{"balance":0,"lifetime_earned":0,"history":[]}');
+    } catch(e) { return {balance:0, lifetime_earned:0, history:[]}; }
+  })(),
+  questData: (function() {
+    try {
+      return JSON.parse(localStorage.getItem('hsk_quests') || '{"daily":{},"weekly":{},"chains":{},"metrics":{}}');
+    } catch(e) { return {daily:{}, weekly:{}, chains:{}, metrics:{}}; }
+  })(),
 
   // ── Session / transient state ──
   currentWord:    null,   // word currently shown in modal
@@ -85,6 +95,14 @@ var AppState = {
 
   saveSurvivalHighScore: function() {
     this.save('hsk_survival_high_score', this.survivalHighScore);
+  },
+
+  saveTokens: function() {
+    this.save('hsk_tokens', this.tokenData);
+  },
+
+  saveQuests: function() {
+    this.save('hsk_quests', this.questData);
   },
 
   // Record a word as learned for a given level

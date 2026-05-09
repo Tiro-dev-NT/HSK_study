@@ -25,7 +25,8 @@ var Router = (function() {
     '/extension-auth': 'extension-auth',
     '/video-vocab':    'video-vocab',
     '/my-vocab':       'my-vocab',
-    '/vocab-import':   'vocab-import'
+    '/vocab-import':   'vocab-import',
+    '/quests':         'quests'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -37,6 +38,7 @@ var Router = (function() {
         Gamification.renderWOTD();
         Gamification.renderAnalytics();
       }
+      if (typeof Quests !== 'undefined') Quests.renderHomeWidget();
     },
     'dictionary': function() {
       if (typeof Dictionary !== 'undefined') {
@@ -72,6 +74,9 @@ var Router = (function() {
     },
     'vocab-import': function() {
       if (typeof VocabImport !== 'undefined') VocabImport.setup();
+    },
+    'quests': function() {
+      if (typeof Quests !== 'undefined') Quests.setupPage();
     }
   };
 

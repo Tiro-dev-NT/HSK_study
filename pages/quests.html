@@ -1,0 +1,24 @@
+<section class="page active quest-page">
+  <div class="quest-page-header">
+    <h1>⚔️ Nhiệm vụ</h1>
+    <div class="quest-page-balance-wrap">
+      <span class="quest-balance-label">🪙</span>
+      <strong class="quest-balance-num" id="quest-page-balance">0</strong>
+      <span class="quest-balance-label">token</span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="quest-tabs">
+    <button class="quest-tab active" data-tab="daily" onclick="Quests.switchTab('daily')">📅 Hôm nay</button>
+    <button class="quest-tab" data-tab="weekly" onclick="Quests.switchTab('weekly')">📆 Tuần này</button>
+  </div>
+
+  <!-- Countdown -->
+  <div class="quest-countdown-row">
+    <span class="quest-countdown" id="quest-countdown">Reset trong 00:00:00</span>
+  </div>
+
+  <!-- Quest cards -->
+  <div id="quest-page-container" class="quest-page-container"></div>
+</section>

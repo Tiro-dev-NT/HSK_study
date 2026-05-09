@@ -636,6 +636,7 @@ var Quiz = {
     var baseXP = score * 10;
     var xpEarned = score >= 8 ? baseXP * 2 : baseXP;
     if (xpEarned > 0 && typeof addXP === 'function') addXP(xpEarned);
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('daily_challenge_done', 1);
 
     // Save result
     AppState.dailyChallenge[date] = {

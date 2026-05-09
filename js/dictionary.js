@@ -10,6 +10,7 @@
 var Dictionary = {
 
   _setupDone: false,
+  _modalEventsBound: false,
 
   setup: function() {
     const input = document.getElementById('dictSearch');
@@ -53,7 +54,14 @@ var Dictionary = {
       });
     });
 
-    // Modal — wire buttons ONCE here
+    // Default search on startup
+    Dictionary.searchDict('');
+  },
+
+  _bindModalEvents: function() {
+    if (Dictionary._modalEventsBound) return;
+    Dictionary._modalEventsBound = true;
+
     document.getElementById('modalClose')?.addEventListener('click', Dictionary.closeModal);
     document.getElementById('modalOverlay')?.addEventListener('click', function(e) {
       if (e.target === e.currentTarget) Dictionary.closeModal();
@@ -72,9 +80,6 @@ var Dictionary = {
     document.getElementById('modalTtsBtn')?.addEventListener('click', function() {
       if (AppState.currentWord) Dictionary.playTTS(AppState.currentWord.h);
     });
-
-    // Default search on startup
-    Dictionary.searchDict('');
   },
 
   // ── Search ─────────────────────────────────────────
@@ -141,6 +146,7 @@ var Dictionary = {
 
   // ── Modal ──────────────────────────────────────────
   openModal: function(word) {
+    Dictionary._bindModalEvents();
     AppState.currentWord = word;
     currentWord = word; // compat alias
     document.getElementById('modalHanzi').textContent = word.h;

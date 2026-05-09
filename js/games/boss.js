@@ -260,14 +260,6 @@ var BossBattle = {
     if (eText) eText.textContent = BossBattle.bossHP + '/' + BossBattle.bossMaxHP;
   },
 
-  _shakeEl: function(selector) {
-    var el = document.querySelector(selector);
-    if (!el) return;
-    el.classList.add('boss-shake');
-    var t = setTimeout(function() { el.classList.remove('boss-shake'); }, 500);
-    BossBattle.timers.push(t);
-  },
-
   _finish: function(won) {
     BossBattle.gameOver = true;
     var xp = 0;

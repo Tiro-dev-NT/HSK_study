@@ -182,7 +182,12 @@ var HandwritingGame = {
   cleanup: function() {
     HandwritingGame.timers.forEach(function(t) { clearTimeout(t); });
     HandwritingGame.timers = [];
+    if (HandwritingGame.writer && typeof HandwritingGame.writer.cancelQuiz === 'function') {
+      try { HandwritingGame.writer.cancelQuiz(); } catch(e) {}
+    }
     HandwritingGame.writer = null;
+    var wrap = document.getElementById('hwWriterWrap');
+    if (wrap) wrap.innerHTML = '';
     var canvas = document.getElementById('gameCanvas');
     if (canvas) canvas.innerHTML = '';
   }

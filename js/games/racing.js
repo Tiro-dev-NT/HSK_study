@@ -140,25 +140,26 @@ var RacingQuiz = {
       btn.classList.add('sq-correct');
       RacingQuiz.positions[0] = Math.min(RacingQuiz.TRACK_LEN - 1, RacingQuiz.positions[0] + 1);
       RacingQuiz._checkFinish(0);
-      // Speed line + float effect
-      var playerCar = document.querySelector('.race-lane:first-child .race-active');
-      if (playerCar) {
-        Games.particles.damageFloat(playerCar, '+1', '#22C55E');
-      }
     } else {
       btn.classList.add('sq-wrong');
       document.querySelectorAll('#raceOptions .boss-opt').forEach(function(b) {
         if (b.dataset.h === RacingQuiz.current.h) b.classList.add('sq-correct');
       });
-      // Shake player car
+    }
+    RacingQuiz._renderTrack();
+
+    if (isCorrect) {
+      var playerCar = document.querySelector('.race-lane:first-child .race-active');
+      if (playerCar) Games.particles.damageFloat(playerCar, '+1', '#22C55E');
+    } else {
       var track = document.getElementById('raceTrack');
       if (track) {
         var lane = track.querySelector('.race-lane');
         if (lane) Games.animate.shake(lane);
       }
-      Games.particles.damageFloat(document.querySelector('.race-lane'), '❌', '#EF4444');
+      var laneEl = document.querySelector('.race-lane');
+      if (laneEl) Games.particles.damageFloat(laneEl, '❌', '#EF4444');
     }
-    RacingQuiz._renderTrack();
 
     var t = setTimeout(function() {
       if (!RacingQuiz.finished) RacingQuiz._nextQuestion();

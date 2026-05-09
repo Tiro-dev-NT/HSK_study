@@ -78,7 +78,7 @@ var ClozeGame = {
     document.getElementById('clozeFeedback').textContent = '';
     document.getElementById('clozeFeedback').className = 'cloze-feedback';
 
-    var sentence = ClozeGame.current.ex.zh.replace(ClozeGame.current.h, '<span class="cloze-blank">＿＿＿</span>');
+    var sentence = ClozeGame.current.ex.zh.split(ClozeGame.current.h).join('<span class="cloze-blank">＿＿＿</span>');
     var transEl = ClozeGame.current.ex.vi || ClozeGame.current.ex.en || '';
     document.getElementById('clozeSentence').innerHTML =
       '<div class="cloze-zh">' + sentence + '</div>' +

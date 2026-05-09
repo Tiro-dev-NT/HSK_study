@@ -26,7 +26,7 @@ var ToneTrainer = {
       var ch = syllable[i];
       if (ToneTrainer.TONE_MAP[ch]) return ToneTrainer.TONE_MAP[ch];
     }
-    return 0; // neutral/light tone
+    return 5; // neutral / light tone
   },
 
   start: function() {
@@ -34,7 +34,7 @@ var ToneTrainer = {
     ToneTrainer.correct = 0;
     ToneTrainer.wordPool = shuffle(Games._getWordPool([1, 2, 3, 4])).filter(function(w) {
       var parts = w.p.trim().split(/\s+/);
-      return parts.length >= 1 && parts.every(function(s) { return ToneTrainer._getTone(s) > 0; });
+      return parts.length >= 1 && parts.some(function(s) { return ToneTrainer._getTone(s) > 0; });
     }).slice(0, 30);
 
     var canvas = document.getElementById('gameCanvas');
@@ -109,10 +109,11 @@ var ToneTrainer = {
       html += '<div class="tone-syl-group" data-sidx="' + sIdx + '">' +
         '<div class="tone-syl-label">Âm tiết ' + (sIdx + 1) + '</div>' +
         '<div class="tone-btns">';
-      for (var t = 1; t <= 4; t++) {
-        var toneLabel = t === 1 ? 'ˉ' : t === 2 ? 'ˊ' : t === 3 ? 'ˇ' : 'ˋ';
+      for (var t = 1; t <= 5; t++) {
+        var toneLabel = t === 1 ? 'ˉ' : t === 2 ? 'ˊ' : t === 3 ? 'ˇ' : t === 4 ? 'ˋ' : '·';
+        var toneText = t === 5 ? 'nhẹ' : t;
         var selected = ToneTrainer.userTones[sIdx] === t ? ' tone-selected' : '';
-        html += '<button class="tone-btn' + selected + '" data-sidx="' + sIdx + '" data-tone="' + t + '">' + toneLabel + ' ' + t + '</button>';
+        html += '<button class="tone-btn' + selected + '" data-sidx="' + sIdx + '" data-tone="' + t + '">' + toneLabel + ' ' + toneText + '</button>';
       }
       html += '</div></div>';
     });

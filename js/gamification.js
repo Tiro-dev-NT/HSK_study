@@ -165,7 +165,6 @@ var Gamification = {
     d.setDate(d.getDate() - d.getDay());
     return d.toISOString().split('T')[0];
   },
-};
 
   // ── Word of the Day ────────────────────────────────
   renderWOTD: function() {
@@ -192,7 +191,7 @@ var Gamification = {
       localStorage.setItem('hsk_wotd', JSON.stringify({ date: today, hanzi: word.h }));
     }
 
-    document.getElementById('wotdHanzi').textContent = word.h;
+    document.getElementById('wotdHanzi').textContent = word.h.charAt(0);
     document.getElementById('wotdPinyin').textContent = word.p;
     var isEN = AppState.lang === 'en';
     document.getElementById('wotdMeaning').textContent = isEN ? word.e : word.v;
@@ -268,7 +267,7 @@ var Gamification = {
     Object.keys(srs).forEach(function(hanzi) {
       var s = srs[hanzi];
       if (s.lapses && s.lapses > 0) {
-        entries.push({ h: hanzi, lapses: s.lapses, p: '' });
+        entries.push({ h: hanzi, lapses: s.lapses });
       }
     });
     entries.sort(function(a, b) { return b.lapses - a.lapses; });
@@ -301,6 +300,11 @@ var Gamification = {
       var key = d.toISOString().split('T')[0];
       days.push({ date: key, xp: daily[key] || 0, label: (d.getDate()) + '/' + (d.getMonth()+1) });
     }
+    var hasData = days.some(function(d) { return d.xp > 0; });
+    if (!hasData) {
+      el.innerHTML = '<div class="weak-empty">Chưa có dữ liệu XP — học để thấy biểu đồ!</div>';
+      return;
+    }
     var maxXP = Math.max.apply(null, days.map(function(d) { return d.xp; })) || 1;
     var html = '<div class="xp-trend-bars">';
     days.forEach(function(d) {
@@ -312,7 +316,8 @@ var Gamification = {
     });
     html += '</div>';
     el.innerHTML = html;
-  },
+  }
+};
 
 // ── Backward-compat global functions ──────────────────
 function addXP(amount)            { Gamification.addXP(amount); }

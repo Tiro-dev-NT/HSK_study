@@ -299,3 +299,17 @@
 .sent-progress-dot.dot-done { background: #22C55E; }
 .sent-progress-dot.dot-current { background: var(--primary); transform: scale(1.2); }
 .sent-progress-dot.dot-wrong { background: #EF4444; }
+
+/* ── Mobile responsive (≤480px) ───────────────────── */
+@media (max-width: 480px) {
+  .game-countdown { font-size: 56px; }
+  .game-particle { font-size: 16px; }
+  .game-damage-float { font-size: 18px; }
+  .game-combo-badge { font-size: 11px; padding: 3px 8px; }
+  .race-podium { height: 90px; margin: 12px 0; gap: 6px; }
+  .race-podium-bar { width: 44px; }
+  .race-podium-bar.gold   { height: 60px; }
+  .race-podium-bar.silver { height: 45px; }
+  .race-podium-bar.bronze { height: 30px; }
+  .race-podium-name { font-size: 10px; }
+}

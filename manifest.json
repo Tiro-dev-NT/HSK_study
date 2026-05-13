@@ -1,0 +1,14 @@
+{
+  "name": "Hanzi Genz — Học Tiếng Trung",
+  "short_name": "HanziGenz",
+  "description": "Học từ vựng tiếng Trung Quốc HSK 1-6",
+  "icons": [
+    { "src": "assets/icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F0F1A",
+  "theme_color": "#C0392B",
+  "lang": "vi",
+  "orientation": "portrait-primary"
+}

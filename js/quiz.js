@@ -46,6 +46,12 @@ var Quiz = {
     document.getElementById('reviewWrongBtn')?.addEventListener('click', Quiz._reviewWrong);
     document.getElementById('showQuizHistory')?.addEventListener('click', Quiz._showHistory);
     document.getElementById('closeHistory')?.addEventListener('click', Quiz._hideHistory);
+    document.querySelectorAll('[data-quiz-mode]').forEach(function(card) {
+      var btn = card.querySelector('button');
+      btn?.addEventListener('click', function() {
+        Quiz._startSpecialMode(card.dataset.quizMode);
+      });
+    });
 
     // B5g: Daily Challenge + Survival Mode
     document.getElementById('startDailyChallenge')?.addEventListener('click', Quiz._startDailyChallenge);
@@ -481,6 +487,14 @@ var Quiz = {
     document.getElementById('quizSetup').style.display  = 'flex';
     Quiz._populateDecks();
     Quiz._updateDailyChallengeCard();
+  },
+
+  _startSpecialMode: function(mode) {
+    if (mode === 'tone-trainer' && typeof ToneTrainer !== 'undefined') {
+      ToneTrainer.start('quiz');
+    } else if (mode === 'cloze' && typeof ClozeGame !== 'undefined') {
+      ClozeGame.start('quiz');
+    }
   },
 
   _hideAllPanels: function() {

@@ -29,7 +29,8 @@ var ToneTrainer = {
     return 5; // neutral / light tone
   },
 
-  start: function() {
+  start: function(exitTo) {
+    ToneTrainer._exitTo = exitTo || 'games';
     ToneTrainer.round = 0;
     ToneTrainer.correct = 0;
     ToneTrainer.wordPool = shuffle(Games._getWordPool([1, 2, 3, 4])).filter(function(w) {
@@ -63,9 +64,9 @@ var ToneTrainer = {
       '</div>' +
     '</div>';
 
-    document.getElementById('toneExit').onclick = function() { ToneTrainer.cleanup(); Games._showHub(); };
-    document.getElementById('tonePlayAgain').onclick = function() { ToneTrainer.cleanup(); ToneTrainer.start(); };
-    document.getElementById('toneBackHub').onclick = function() { ToneTrainer.cleanup(); Games._showHub(); };
+    document.getElementById('toneExit').onclick = function() { ToneTrainer.cleanup(); ToneTrainer._goBack(); };
+    document.getElementById('tonePlayAgain').onclick = function() { ToneTrainer.cleanup(); ToneTrainer.start(ToneTrainer._exitTo); };
+    document.getElementById('toneBackHub').onclick = function() { ToneTrainer.cleanup(); ToneTrainer._goBack(); };
 
     ToneTrainer._nextRound();
   },
@@ -167,6 +168,11 @@ var ToneTrainer = {
     document.getElementById('tonePlayArea').style.display = 'none';
     document.getElementById('toneSyllables').style.display = 'none';
     document.getElementById('toneFeedback').style.display = 'none';
+  },
+
+  _goBack: function() {
+    if (ToneTrainer._exitTo === 'quiz' && typeof Quiz !== 'undefined') Quiz._backToSetup();
+    else Games._showHub();
   },
 
   cleanup: function() {

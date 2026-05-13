@@ -1,0 +1,118 @@
+    <!-- PAGE: HANDWRITING -->
+    <section class="page active" id="page-handwriting">
+      <div class="page-header">
+        <h1 data-vi="✍️ Luyện viết" data-en="✍️ Handwriting Practice">✍️ Luyện viết</h1>
+        <p class="page-subtitle" style="color:var(--text2);margin-top:4px" data-vi="Luyện viết chữ Hán online hoặc tạo PDF in ra giấy" data-en="Practice writing Hanzi online or generate printable PDF">Luyện viết chữ Hán online hoặc tạo PDF in ra giấy</p>
+      </div>
+
+      <!-- Mode tabs -->
+      <div class="hw-tabs">
+        <button class="hw-tab active" data-tab="online" onclick="Handwriting.switchTab('online')">🖥 Online</button>
+        <button class="hw-tab" data-tab="print" onclick="Handwriting.switchTab('print')">🖨 Tạo PDF</button>
+      </div>
+
+      <!-- ═══ ONLINE MODE ═══ -->
+      <div class="hw-panel" id="hw-panel-online">
+        <div class="hw-setup-card">
+          <h3 data-vi="Chọn cấp độ & số lượng" data-en="Choose level & count">Chọn cấp độ & số lượng</h3>
+          <div class="hw-form-row">
+            <label data-vi="HSK Level:" data-en="HSK Level:">HSK Level:</label>
+            <select id="hwOnlineLevel">
+              <option value="1">HSK 1</option><option value="2">HSK 2</option>
+              <option value="3" selected>HSK 3</option><option value="4">HSK 4</option>
+              <option value="5">HSK 5</option><option value="6">HSK 6</option>
+            </select>
+          </div>
+          <div class="hw-form-row">
+            <label data-vi="Số từ:" data-en="Count:">Số từ:</label>
+            <select id="hwOnlineCount">
+              <option value="5">5</option><option value="10" selected>10</option><option value="20">20</option>
+            </select>
+          </div>
+          <button class="btn-primary" id="hwOnlineStart" data-vi="▶ Bắt đầu luyện" data-en="▶ Start Practice">▶ Bắt đầu luyện</button>
+        </div>
+        <!-- Online practice area (rendered by JS) -->
+        <div id="hwOnlineArea" style="display:none"></div>
+      </div>
+
+      <!-- ═══ PRINT MODE ═══ -->
+      <div class="hw-panel" id="hw-panel-print" style="display:none">
+        <!-- Source picker -->
+        <div class="hw-setup-card">
+          <h3 data-vi="Chọn nguồn chữ" data-en="Choose character source">Chọn nguồn chữ</h3>
+          <div class="hw-source-tabs">
+            <button class="hw-src-tab active" data-src="hsk" onclick="Handwriting.switchSource('hsk')">HSK Level</button>
+            <button class="hw-src-tab" data-src="deck" onclick="Handwriting.switchSource('deck')">Deck</button>
+            <button class="hw-src-tab" data-src="custom" onclick="Handwriting.switchSource('custom')">Tự nhập</button>
+          </div>
+
+          <!-- HSK source -->
+          <div class="hw-src-panel" id="hw-src-hsk">
+            <div class="hw-hsk-btns">
+              <button class="hw-hsk-btn" data-level="1">HSK 1</button>
+              <button class="hw-hsk-btn" data-level="2">HSK 2</button>
+              <button class="hw-hsk-btn active" data-level="3">HSK 3</button>
+              <button class="hw-hsk-btn" data-level="4">HSK 4</button>
+              <button class="hw-hsk-btn" data-level="5">HSK 5</button>
+              <button class="hw-hsk-btn" data-level="6">HSK 6</button>
+            </div>
+          </div>
+          <!-- Deck source -->
+          <div class="hw-src-panel" id="hw-src-deck" style="display:none">
+            <select id="hwDeckSelect"><option value="">-- Chọn bộ thẻ --</option></select>
+          </div>
+          <!-- Custom source -->
+          <div class="hw-src-panel" id="hw-src-custom" style="display:none">
+            <textarea id="hwCustomInput" rows="3" placeholder="Nhập chữ Hán (VD: 你好世界学习中文)..." maxlength="200"></textarea>
+            <div class="hw-custom-hint" data-vi="Tối đa 100 chữ. Chỉ lấy ký tự Hán." data-en="Max 100 characters. Only CJK extracted.">Tối đa 100 chữ. Chỉ lấy ký tự Hán.</div>
+          </div>
+
+          <!-- Preview selected chars -->
+          <div class="hw-preview-row">
+            <span class="hw-preview-label" data-vi="Đã chọn:" data-en="Selected:">Đã chọn:</span>
+            <span class="hw-preview-count" id="hwPreviewCount">0 chữ</span>
+          </div>
+          <div class="hw-preview-chars" id="hwPreviewChars"></div>
+        </div>
+
+        <!-- Layout picker -->
+        <div class="hw-setup-card">
+          <h3 data-vi="Chọn kiểu bố cục" data-en="Choose layout">Chọn kiểu bố cục</h3>
+          <div class="hw-layout-grid">
+            <label class="hw-layout-option active">
+              <input type="radio" name="hwLayout" value="row" checked/>
+              <div class="hw-layout-preview">
+                <div class="hw-lp-icon">☰</div>
+                <div class="hw-lp-name" data-vi="Row (Hàng)" data-en="Row">Row (Hàng)</div>
+                <div class="hw-lp-desc" data-vi="8 chữ/trang × 11 lần" data-en="8 chars/page × 11 times">8 chữ/trang × 11 lần</div>
+              </div>
+            </label>
+            <label class="hw-layout-option">
+              <input type="radio" name="hwLayout" value="grid"/>
+              <div class="hw-layout-preview">
+                <div class="hw-lp-icon">⊞</div>
+                <div class="hw-lp-name" data-vi="Grid (Lưới)" data-en="Grid">Grid (Lưới)</div>
+                <div class="hw-lp-desc" data-vi="1 chữ/trang × 81 ô" data-en="1 char/page × 81 cells">1 chữ/trang × 81 ô</div>
+              </div>
+            </label>
+            <label class="hw-layout-option">
+              <input type="radio" name="hwLayout" value="sentence"/>
+              <div class="hw-layout-preview">
+                <div class="hw-lp-icon">📝</div>
+                <div class="hw-lp-name" data-vi="Sentence (Câu)" data-en="Sentence">Sentence (Câu)</div>
+                <div class="hw-lp-desc" data-vi="Viết câu mẫu 4-6 lần" data-en="Write example sentences 4-6x">Viết câu mẫu 4-6 lần</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="hw-setup-card">
+          <label class="hw-option-row"><input type="checkbox" id="hwShowPinyin" checked/> <span data-vi="Hiện pinyin" data-en="Show pinyin">Hiện pinyin</span></label>
+          <label class="hw-option-row"><input type="checkbox" id="hwShowMeaning" checked/> <span data-vi="Hiện nghĩa" data-en="Show meaning">Hiện nghĩa</span></label>
+        </div>
+
+        <!-- Generate button -->
+        <button class="btn-primary hw-print-btn" id="hwGenerateBtn" data-vi="🖨 Tạo bản in" data-en="🖨 Generate Print">🖨 Tạo bản in</button>
+      </div>
+    </section>

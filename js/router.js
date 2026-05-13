@@ -26,7 +26,8 @@ var Router = (function() {
     '/video-vocab':    'video-vocab',
     '/my-vocab':       'my-vocab',
     '/vocab-import':   'vocab-import',
-    '/quests':         'quests'
+    '/quests':         'quests',
+    '/handwriting':    'handwriting'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -77,6 +78,9 @@ var Router = (function() {
     },
     'quests': function() {
       if (typeof Quests !== 'undefined') Quests.setupPage();
+    },
+    'handwriting': function() {
+      if (typeof Handwriting !== 'undefined') Handwriting.setup();
     }
   };
 

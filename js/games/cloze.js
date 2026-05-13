@@ -11,7 +11,8 @@ var ClozeGame = {
   answered: false,
   timers: [],
 
-  start: function() {
+  start: function(exitTo) {
+    ClozeGame._exitTo = exitTo || 'games';
     ClozeGame.round = 0;
     ClozeGame.correct = 0;
 
@@ -34,7 +35,7 @@ var ClozeGame = {
     if (!ClozeGame.pool.length) {
       canvas.innerHTML = '<div class="boss-game"><div class="boss-header"><button class="btn-exit" id="clozeExit0">✕</button><h2 style="margin:0">📋 Cloze</h2></div>' +
         '<p style="text-align:center;color:var(--text2);padding:40px">Sắp có thêm câu mẫu cho HSK 1-3. Hãy thử học HSK 4+ trước!</p></div>';
-      document.getElementById('clozeExit0').onclick = function() { Games._showHub(); };
+      document.getElementById('clozeExit0').onclick = function() { ClozeGame._goBack(); };
       return;
     }
 
@@ -57,9 +58,9 @@ var ClozeGame = {
       '</div>' +
     '</div>';
 
-    document.getElementById('clozeExit').onclick = function() { ClozeGame.cleanup(); Games._showHub(); };
-    document.getElementById('clozePlayAgain').onclick = function() { ClozeGame.cleanup(); ClozeGame.start(); };
-    document.getElementById('clozeBackHub').onclick = function() { ClozeGame.cleanup(); Games._showHub(); };
+    document.getElementById('clozeExit').onclick = function() { ClozeGame.cleanup(); ClozeGame._goBack(); };
+    document.getElementById('clozePlayAgain').onclick = function() { ClozeGame.cleanup(); ClozeGame.start(ClozeGame._exitTo); };
+    document.getElementById('clozeBackHub').onclick = function() { ClozeGame.cleanup(); ClozeGame._goBack(); };
 
     ClozeGame._nextRound();
   },
@@ -138,6 +139,11 @@ var ClozeGame = {
     document.getElementById('clozeSentence').style.display = 'none';
     document.getElementById('clozeOptions').style.display = 'none';
     document.getElementById('clozeFeedback').style.display = 'none';
+  },
+
+  _goBack: function() {
+    if (ClozeGame._exitTo === 'quiz' && typeof Quiz !== 'undefined') Quiz._backToSetup();
+    else Games._showHub();
   },
 
   cleanup: function() {

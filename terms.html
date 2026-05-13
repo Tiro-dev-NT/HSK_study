@@ -103,7 +103,7 @@
       letter-spacing: .5px;
     }
     .hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 10px; }
-    .hero p { font-size: 16px; opacity: .88; max-width: 500px; margin: 0 auto; }
+    .hero p { font-size: 16px; opacity: .88; max-width: 540px; margin: 0 auto; }
 
     /* CONTENT */
     .container {
@@ -172,6 +172,12 @@
       align-items: center;
       gap: 4px;
     }
+    .section h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 20px 0 10px;
+    }
     .section p { font-size: 15px; color: var(--text2); margin-bottom: 12px; }
     .section p:last-child { margin-bottom: 0; }
     .section ul {
@@ -215,6 +221,39 @@
       color: var(--text2);
     }
     [data-theme="dark"] .warning-box { background: rgba(243,156,18,.1); }
+
+    .info-box {
+      background: rgba(59,130,246,.07);
+      border-left: 3px solid #3B82F6;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--text2);
+    }
+    [data-theme="dark"] .info-box { background: rgba(59,130,246,.1); }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .pricing-table th {
+      background: rgba(192,57,43,.08);
+      color: var(--text);
+      font-weight: 600;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    .pricing-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text2);
+    }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .pricing-table tr:hover td { background: rgba(192,57,43,.04); }
 
     .updated-tag {
       display: inline-block;
@@ -264,6 +303,8 @@
       .section { padding: 22px 18px; }
       .toc-card { padding: 18px; }
       .hero { padding: 40px 16px 36px; }
+      .pricing-table { font-size: 13px; }
+      .pricing-table th, .pricing-table td { padding: 8px 10px; }
     }
   </style>
 </head>
@@ -280,12 +321,12 @@
   <div class="hero">
     <div class="hero-badge">📜 Điều khoản & Điều kiện</div>
     <h1>Điều khoản Dịch vụ</h1>
-    <p>Vui lòng đọc kỹ trước khi sử dụng. Sử dụng Hanzi Genz đồng nghĩa với việc bạn đồng ý với các điều khoản này.</p>
+    <p>Vui lòng đọc kỹ trước khi sử dụng. Truy cập và sử dụng Hanzi Genz đồng nghĩa với việc bạn đồng ý toàn bộ các điều khoản này.</p>
   </div>
 
   <div class="container">
 
-    <span class="updated-tag">📅 Cập nhật lần cuối: 06/05/2026</span>
+    <span class="updated-tag">📅 Cập nhật lần cuối: 09/05/2026</span>
 
     <div class="toc-card">
       <h3>Mục lục</h3>
@@ -293,103 +334,314 @@
         <li><a href="#acceptance">Chấp nhận điều khoản</a></li>
         <li><a href="#service">Mô tả dịch vụ</a></li>
         <li><a href="#account">Tài khoản người dùng</a></li>
+        <li><a href="#subscription">Gói Pro &amp; Thanh toán</a></li>
+        <li><a href="#token">Token (🪙) — Vật phẩm ảo</a></li>
+        <li><a href="#refund">Hoàn tiền &amp; Hủy đăng ký</a></li>
         <li><a href="#conduct">Quy tắc sử dụng</a></li>
         <li><a href="#ip">Sở hữu trí tuệ</a></li>
+        <li><a href="#availability">Tính khả dụng &amp; Bất khả kháng</a></li>
         <li><a href="#disclaimer">Giới hạn trách nhiệm</a></li>
         <li><a href="#termination">Chấm dứt dịch vụ</a></li>
         <li><a href="#changes">Thay đổi điều khoản</a></li>
+        <li><a href="#law">Luật áp dụng</a></li>
         <li><a href="#contact">Liên hệ</a></li>
       </ul>
     </div>
 
+    <!-- 1 -->
     <div class="section" id="acceptance">
       <h2><span class="section-num">1</span> Chấp nhận Điều khoản</h2>
       <p>Bằng cách truy cập và sử dụng <strong>Hanzi Genz</strong> (hanzigenz.com), bạn xác nhận rằng bạn đã đọc, hiểu và đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này.</p>
-      <p>Nếu bạn không đồng ý với bất kỳ điều khoản nào, vui lòng ngừng sử dụng dịch vụ. Trẻ em dưới 13 tuổi cần có sự đồng ý của phụ huynh hoặc người giám hộ.</p>
-    </div>
-
-    <div class="section" id="service">
-      <h2><span class="section-num">2</span> Mô tả Dịch vụ</h2>
-      <p>Hanzi Genz là ứng dụng web miễn phí giúp người dùng học từ vựng tiếng Trung Quốc theo chuẩn HSK 1–6, bao gồm:</p>
-      <ul>
-        <li>Hệ thống học thẻ ghi nhớ với thuật toán lặp lại ngắt quãng (SRS).</li>
-        <li>Tra từ điển Hán-Việt và Hán-Anh.</li>
-        <li>Các chế độ luyện tập: Flashcard, Trắc nghiệm, Điền từ.</li>
-        <li>Trò chơi học tập: Speed Quiz, Memory Flip, Pinyin Wordle.</li>
-        <li>Đồng bộ tiến độ học tập qua tài khoản (tùy chọn).</li>
-      </ul>
-      <div class="highlight-box">
-        Dịch vụ được cung cấp <strong>miễn phí</strong>. Chúng tôi bảo lưu quyền thêm tính năng trả phí trong tương lai, nhưng các tính năng cơ bản hiện tại sẽ luôn miễn phí.
+      <p>Nếu bạn không đồng ý với bất kỳ điều khoản nào, vui lòng ngừng sử dụng dịch vụ ngay lập tức.</p>
+      <div class="info-box">
+        Hanzi Genz là ứng dụng học ngôn ngữ giáo dục, phù hợp với mọi lứa tuổi. Không áp dụng giới hạn độ tuổi tối thiểu.
       </div>
     </div>
 
+    <!-- 2 -->
+    <div class="section" id="service">
+      <h2><span class="section-num">2</span> Mô tả Dịch vụ</h2>
+      <p>Hanzi Genz là ứng dụng web học từ vựng tiếng Trung Quốc theo chuẩn HSK 1–6, bao gồm:</p>
+      <ul>
+        <li>Hệ thống học thẻ ghi nhớ với thuật toán lặp lại ngắt quãng (SRS).</li>
+        <li>Tra từ điển Hán-Việt và Hán-Anh.</li>
+        <li>Các chế độ luyện tập: Flashcard, Trắc nghiệm, Điền từ, Nghe hiểu.</li>
+        <li>Trò chơi học tập: Speed Quiz, Memory Flip, Pinyin Wordle, Boss Battle, Racing, Sentence Builder và nhiều hơn.</li>
+        <li>Hệ thống nhiệm vụ (Quest) hàng ngày/hàng tuần và tích lũy Token.</li>
+        <li>Đồng bộ tiến độ học tập qua tài khoản đám mây.</li>
+      </ul>
+      <div class="highlight-box">
+        Các tính năng học tập cốt lõi (HSK 1–6, SRS, Flashcard, Từ điển, XP, Streak) sẽ <strong>luôn miễn phí</strong>. Chúng tôi chỉ thu phí cho tính năng mở rộng và nội dung nâng cao.
+      </div>
+    </div>
+
+    <!-- 3 -->
     <div class="section" id="account">
       <h2><span class="section-num">3</span> Tài khoản Người dùng</h2>
-      <p>Việc tạo tài khoản là <strong>tùy chọn</strong> — bạn có thể sử dụng đầy đủ tính năng học tập mà không cần đăng ký. Tài khoản chỉ cần thiết cho tính năng đồng bộ đa thiết bị.</p>
+      <p>Tài khoản cần thiết để đồng bộ tiến độ đa thiết bị và sử dụng các tính năng nâng cao.</p>
       <ul>
         <li>Bạn chịu trách nhiệm bảo mật thông tin đăng nhập của mình.</li>
         <li>Mỗi người dùng chỉ được phép sở hữu một tài khoản.</li>
         <li>Bạn phải cung cấp thông tin chính xác khi đăng ký.</li>
         <li>Thông báo ngay cho chúng tôi nếu phát hiện tài khoản bị truy cập trái phép.</li>
       </ul>
-      <p>Chúng tôi bảo lưu quyền tạm khóa hoặc xóa tài khoản vi phạm điều khoản mà không cần thông báo trước.</p>
-    </div>
-
-    <div class="section" id="conduct">
-      <h2><span class="section-num">4</span> Quy tắc Sử dụng</h2>
-      <p>Khi sử dụng Hanzi Genz, bạn đồng ý <strong>không</strong> thực hiện các hành vi sau:</p>
-      <ul>
-        <li>Can thiệp, làm gián đoạn hoặc tấn công hệ thống và máy chủ.</li>
-        <li>Cào dữ liệu (scraping), sao chép nội dung từ vựng để phân phối lại mà không có phép.</li>
-        <li>Tạo tài khoản giả mạo hoặc mạo danh người khác.</li>
-        <li>Sử dụng bot, script tự động để thao túng hệ thống XP hoặc thống kê.</li>
-        <li>Chia sẻ nội dung bất hợp pháp, xúc phạm hoặc vi phạm bản quyền.</li>
-      </ul>
+      <p>Chúng tôi bảo lưu quyền tạm khóa hoặc xóa tài khoản vi phạm điều khoản. Tài khoản bị khóa do vi phạm sẽ <strong>không được hoàn trả</strong> Token hoặc phí đăng ký còn lại.</p>
       <div class="warning-box">
-        Vi phạm các quy tắc trên có thể dẫn đến việc tài khoản bị xóa vĩnh viễn và có thể bị báo cáo lên cơ quan chức năng nếu cần thiết.
+        <strong>Chargeback:</strong> Nếu bạn thực hiện yêu cầu hoàn tiền qua ngân hàng hoặc ví điện tử (chargeback) mà không liên hệ chúng tôi trước, tài khoản sẽ bị khóa ngay lập tức và vĩnh viễn.
       </div>
     </div>
 
+    <!-- 4 -->
+    <div class="section" id="subscription">
+      <h2><span class="section-num">4</span> Gói Pro &amp; Thanh toán</h2>
+      <p>Hanzi Genz cung cấp gói <strong>Pro</strong> với các tính năng nâng cao. Bảng giá hiện tại:</p>
+
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Gói</th>
+            <th>Giá</th>
+            <th>Token bonus</th>
+            <th>Gia hạn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Monthly</strong></td>
+            <td>79.000 VND/tháng</td>
+            <td>+100 🪙/tháng</td>
+            <td>Tự động hàng tháng</td>
+          </tr>
+          <tr>
+            <td><strong>Quarterly</strong></td>
+            <td>199.000 VND/3 tháng</td>
+            <td>+350 🪙</td>
+            <td>Tự động mỗi 3 tháng</td>
+          </tr>
+          <tr>
+            <td><strong>Yearly</strong></td>
+            <td>599.000 VND/năm</td>
+            <td>+1.500 🪙 + badge</td>
+            <td>Tự động hàng năm</td>
+          </tr>
+          <tr>
+            <td><strong>Lifetime</strong></td>
+            <td>1.499.000 VND (1 lần)</td>
+            <td>+200 🪙/tháng vĩnh viễn</td>
+            <td>Không gia hạn</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Tự động gia hạn (Auto-renewal)</h3>
+      <p>Các gói Monthly, Quarterly, Yearly sẽ <strong>tự động gia hạn</strong> vào ngày hết hạn trừ khi bạn hủy trước đó ít nhất 24 giờ. Bạn có thể hủy bất kỳ lúc nào trong phần cài đặt tài khoản.</p>
+
+      <h3>Gói Lifetime — lưu ý quan trọng</h3>
+      <p>Gói Lifetime cấp quyền sử dụng toàn bộ tính năng Pro <strong>trong suốt thời gian dịch vụ Hanzi Genz còn hoạt động</strong>. Đây không phải là cam kết dịch vụ tồn tại vĩnh viễn.</p>
+      <div class="info-box">
+        Gói Lifetime = quyền Pro miễn phí trọn đời khi app còn vận hành, không phải cam kết app tồn tại mãi mãi. Điều khoản hoàn tiền khi ngừng hoạt động được quy định rõ tại Mục 6.
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="section" id="token">
+      <h2><span class="section-num">5</span> Token (🪙) — Vật phẩm Ảo</h2>
+      <p>Token (🪙) là <strong>vật phẩm kỹ thuật số trong ứng dụng</strong>, không phải tiền tệ, không phải tài sản tài chính và không có giá trị pháp lý tương đương tiền mặt.</p>
+
+      <h3>Đặc điểm Token</h3>
+      <ul>
+        <li><strong>Vĩnh viễn:</strong> Token không có ngày hết hạn, được giữ nguyên miễn là tài khoản còn hoạt động.</li>
+        <li><strong>Không quy đổi:</strong> Token không thể đổi ra tiền mặt, tiền điện tử hoặc bất kỳ loại tài sản nào trong bất kỳ trường hợp nào.</li>
+        <li><strong>Không chuyển nhượng:</strong> Token gắn liền với tài khoản cá nhân, không thể tặng hoặc chuyển cho tài khoản khác (trừ tính năng tặng Token khi được kích hoạt).</li>
+        <li><strong>Lưu trữ server-side:</strong> Số dư Token thực được lưu trên máy chủ của chúng tôi. Mọi thay đổi số dư qua giao diện người dùng hay công cụ phát triển (DevTools) đều vô hiệu và có thể dẫn đến khóa tài khoản.</li>
+      </ul>
+
+      <h3>Cách kiếm Token miễn phí</h3>
+      <ul>
+        <li>Hoàn thành phiên học, nhiệm vụ hàng ngày/hàng tuần.</li>
+        <li>Duy trì streak học tập, lên cấp HSK, thắng trò chơi.</li>
+        <li>Mời bạn bè đăng ký (Referral).</li>
+      </ul>
+
+      <h3>Mua Token</h3>
+      <p>Token cũng có thể mua trực tiếp theo gói. Giao dịch mua Token hoàn tất ngay sau khi thanh toán thành công.</p>
+
+      <h3>Sử dụng Token</h3>
+      <p>Token dùng để mở tính năng AI, boost XP, mở tạm thời nội dung Premium và các tiện ích trong ứng dụng. Chi tiết tính năng theo từng thời điểm được công bố trong ứng dụng.</p>
+
+      <div class="warning-box">
+        Cố tình gian lận để kiếm Token bất hợp pháp (dùng bot, khai thác lỗi hệ thống, v.v.) sẽ dẫn đến xóa toàn bộ Token và khóa tài khoản vĩnh viễn.
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="section" id="refund">
+      <h2><span class="section-num">6</span> Hoàn tiền &amp; Hủy đăng ký</h2>
+
+      <h3>Gói Monthly / Quarterly / Yearly</h3>
+      <ul>
+        <li>Hoàn tiền 100% trong vòng <strong>7 ngày</strong> kể từ ngày thanh toán đầu tiên của gói, nếu dịch vụ không hoạt động liên tục quá 72 giờ liên tiếp do lỗi từ phía chúng tôi.</li>
+        <li>Không hoàn tiền cho thời gian đã sử dụng.</li>
+        <li>Hủy đăng ký: tính năng Pro vẫn dùng đến hết chu kỳ đã thanh toán, không tự động gia hạn kỳ tiếp.</li>
+        <li>Không hoàn tiền nếu tài khoản bị khóa do vi phạm điều khoản.</li>
+      </ul>
+
+      <h3>Gói Lifetime — Hoàn tiền khi ngừng hoạt động</h3>
+      <p>Nếu chúng tôi quyết định ngừng hoàn toàn dịch vụ Hanzi Genz, áp dụng chính sách hoàn tiền theo thời gian sử dụng thực tế:</p>
+
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Thời gian đã dùng</th>
+            <th>Mức hoàn tiền</th>
+            <th>Lý do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dưới 6 tháng</td>
+            <td><strong>40%</strong> giá mua gốc</td>
+            <td>Chưa khai thác đủ giá trị</td>
+          </tr>
+          <tr>
+            <td>6 – 18 tháng</td>
+            <td><strong>20%</strong> giá mua gốc</td>
+            <td>Chưa hòa vốn break-even (~19 tháng)</td>
+          </tr>
+          <tr>
+            <td>Trên 18 tháng</td>
+            <td><strong>Không hoàn</strong></td>
+            <td>Đã vượt break-even, nhận đủ giá trị</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Trong mọi trường hợp ngừng hoạt động, chúng tôi sẽ thông báo trước <strong>tối thiểu 30 ngày</strong> qua email để bạn có thể xuất toàn bộ dữ liệu học tập.</p>
+
+      <h3>Token đã mua</h3>
+      <ul>
+        <li>Token mua bằng tiền: <strong>không hoàn tiền sau 24 giờ</strong> kể từ thời điểm giao dịch.</li>
+        <li>Token kiếm miễn phí qua học tập/nhiệm vụ: không có giá trị hoàn tiền trong bất kỳ trường hợp nào.</li>
+        <li>Khi tài khoản bị xóa tự nguyện: Token bị mất, không hoàn tiền.</li>
+      </ul>
+
+      <div class="highlight-box">
+        Để yêu cầu hoàn tiền hợp lệ, vui lòng liên hệ <strong>dev.tiro.06@gmail.com</strong> trước — không thực hiện chargeback qua ngân hàng. Chargeback không qua liên hệ trước sẽ dẫn đến khóa tài khoản vĩnh viễn (xem Mục 3).
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="section" id="conduct">
+      <h2><span class="section-num">7</span> Quy tắc Sử dụng</h2>
+      <p>Khi sử dụng Hanzi Genz, bạn đồng ý <strong>không</strong> thực hiện các hành vi sau:</p>
+      <ul>
+        <li>Can thiệp, làm gián đoạn hoặc tấn công hệ thống và máy chủ.</li>
+        <li>Dùng bot, script tự động hoặc khai thác lỗi để gian lận XP, Token, streak hay bất kỳ chỉ số nào.</li>
+        <li>Cào dữ liệu (scraping) hoặc sao chép nội dung từ vựng để phân phối lại mà không có phép.</li>
+        <li>Tạo nhiều tài khoản hoặc mạo danh người khác.</li>
+        <li>Can thiệp vào số dư Token qua DevTools, bộ nhớ trình duyệt hoặc bất kỳ công cụ nào.</li>
+        <li>Chia sẻ thông tin đăng nhập cho người khác sử dụng.</li>
+      </ul>
+      <div class="warning-box">
+        Vi phạm các quy tắc trên dẫn đến xóa tài khoản vĩnh viễn, mất toàn bộ Token và dữ liệu, không hoàn tiền. Hành vi nghiêm trọng có thể bị báo cáo lên cơ quan chức năng.
+      </div>
+    </div>
+
+    <!-- 8 -->
     <div class="section" id="ip">
-      <h2><span class="section-num">5</span> Sở hữu Trí tuệ</h2>
-      <p><strong>Nội dung của Hanzi Genz:</strong> Thiết kế giao diện, mã nguồn, đồ họa, bố cục và nội dung bài học gốc thuộc sở hữu của Hanzi Genz và được bảo vệ bởi luật bản quyền.</p>
+      <h2><span class="section-num">8</span> Sở hữu Trí tuệ</h2>
+      <p><strong>Nội dung Hanzi Genz:</strong> Thiết kế giao diện, mã nguồn, đồ họa, bố cục và nội dung bài học gốc thuộc sở hữu của Hanzi Genz, được bảo vệ theo pháp luật sở hữu trí tuệ Việt Nam.</p>
       <p><strong>Dữ liệu từ vựng HSK:</strong> Danh sách từ vựng HSK là tài liệu công cộng theo tiêu chuẩn của Hội đồng Quốc tế Ngôn ngữ Trung Quốc (Hanban). Chúng tôi không có bản quyền đối với các từ vựng này.</p>
-      <p><strong>Dữ liệu người dùng:</strong> Dữ liệu học tập bạn tạo ra (tiến độ, ghi chú, bộ thẻ cá nhân) là tài sản của bạn. Bạn có thể xuất và xóa bất kỳ lúc nào.</p>
+      <p><strong>Dữ liệu người dùng:</strong> Dữ liệu học tập bạn tạo ra (tiến độ, ghi chú, bộ thẻ cá nhân) là tài sản của bạn. Bạn có thể xuất và yêu cầu xóa bất kỳ lúc nào.</p>
       <ul>
         <li>Bạn được phép sử dụng ứng dụng cho mục đích cá nhân, phi thương mại.</li>
         <li>Nghiêm cấm sao chép, phân phối lại hoặc xây dựng sản phẩm phái sinh từ mã nguồn mà không có sự cho phép bằng văn bản.</li>
       </ul>
     </div>
 
-    <div class="section" id="disclaimer">
-      <h2><span class="section-num">6</span> Giới hạn Trách nhiệm</h2>
-      <p>Hanzi Genz được cung cấp <strong>"nguyên trạng"</strong> (as-is) và <strong>"theo khả năng sẵn có"</strong> (as-available). Chúng tôi không đảm bảo dịch vụ sẽ hoạt động liên tục, không có lỗi hoặc đáp ứng mọi kỳ vọng cụ thể.</p>
+    <!-- 9 -->
+    <div class="section" id="availability">
+      <h2><span class="section-num">9</span> Tính khả dụng &amp; Bất khả kháng</h2>
+
+      <h3>Tính khả dụng dịch vụ</h3>
+      <p>Dịch vụ được cung cấp theo dạng <strong>"nguyên trạng"</strong> (as-is) và <strong>"theo khả năng sẵn có"</strong> (as-available). Chúng tôi không cam kết dịch vụ hoạt động liên tục 100% và có thể tạm ngưng để bảo trì hoặc nâng cấp mà không cần thông báo trước.</p>
+
+      <h3>Bất khả kháng (Force Majeure)</h3>
+      <p>Chúng tôi không chịu trách nhiệm cho gián đoạn dịch vụ do các nguyên nhân ngoài tầm kiểm soát hợp lý, bao gồm nhưng không giới hạn:</p>
       <ul>
-        <li>Chúng tôi không chịu trách nhiệm về mất dữ liệu do sự cố kỹ thuật ngoài tầm kiểm soát.</li>
-        <li>Chúng tôi không đảm bảo tính chính xác tuyệt đối của mọi nội dung từ vựng.</li>
-        <li>Các liên kết đến dịch vụ bên thứ ba không thuộc trách nhiệm của chúng tôi.</li>
+        <li>Sự cố hạ tầng bên thứ ba: Supabase, Cloudflare, Google, các nhà cung cấp dịch vụ đám mây.</li>
+        <li>Thiên tai, dịch bệnh, chiến tranh, hoặc tình trạng khẩn cấp quốc gia.</li>
+        <li>Thay đổi chính sách pháp luật bắt buộc ngừng hoặc thay đổi dịch vụ.</li>
+        <li>Tấn công mạng (DDoS, hack) quy mô lớn ngoài khả năng phòng ngừa thông thường.</li>
+        <li>Mất điện, sự cố cáp quang quốc tế hoặc hạ tầng Internet.</li>
       </ul>
-      <div class="highlight-box">
-        Chúng tôi khuyến nghị bạn thường xuyên xuất dữ liệu học tập để sao lưu cá nhân, đặc biệt trước các bản cập nhật lớn.
+
+      <div class="info-box">
+        Trong trường hợp bất khả kháng kéo dài, chúng tôi sẽ thông báo tình trạng qua email và kênh chính thức, đồng thời nỗ lực khôi phục dịch vụ trong thời gian sớm nhất có thể.
       </div>
     </div>
 
-    <div class="section" id="termination">
-      <h2><span class="section-num">7</span> Chấm dứt Dịch vụ</h2>
-      <p><strong>Từ phía bạn:</strong> Bạn có thể ngừng sử dụng dịch vụ bất kỳ lúc nào. Để xóa tài khoản và toàn bộ dữ liệu liên quan, vui lòng liên hệ chúng tôi qua email.</p>
-      <p><strong>Từ phía chúng tôi:</strong> Chúng tôi bảo lưu quyền tạm ngừng hoặc chấm dứt tài khoản vi phạm điều khoản. Trong trường hợp ngừng cung cấp toàn bộ dịch vụ, chúng tôi sẽ thông báo trước ít nhất <strong>30 ngày</strong> để bạn có thể xuất dữ liệu.</p>
+    <!-- 10 -->
+    <div class="section" id="disclaimer">
+      <h2><span class="section-num">10</span> Giới hạn Trách nhiệm</h2>
+      <ul>
+        <li>Chúng tôi không chịu trách nhiệm về mất dữ liệu do sự cố kỹ thuật ngoài tầm kiểm soát. Khuyến nghị xuất dữ liệu định kỳ.</li>
+        <li>Chúng tôi không đảm bảo tính chính xác tuyệt đối của mọi nội dung từ vựng hay phát âm.</li>
+        <li>Các liên kết đến dịch vụ bên thứ ba không thuộc trách nhiệm của chúng tôi.</li>
+        <li>Chúng tôi không chịu trách nhiệm cho thiệt hại gián tiếp, mất cơ hội kinh doanh hoặc thiệt hại hậu quả phát sinh từ việc sử dụng hoặc không thể sử dụng dịch vụ.</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Giới hạn bồi thường tối đa:</strong> Trong mọi trường hợp tranh chấp, trách nhiệm tài chính tối đa của chúng tôi không vượt quá tổng số tiền bạn đã thanh toán cho dịch vụ trong vòng <strong>3 tháng</strong> trước khi xảy ra sự kiện tranh chấp.
+      </div>
     </div>
 
+    <!-- 11 -->
+    <div class="section" id="termination">
+      <h2><span class="section-num">11</span> Chấm dứt Dịch vụ</h2>
+
+      <h3>Từ phía bạn</h3>
+      <p>Bạn có thể ngừng sử dụng và yêu cầu xóa tài khoản bất kỳ lúc nào qua email. Khi xóa tài khoản: toàn bộ dữ liệu học tập, Token và quyền Pro sẽ bị xóa vĩnh viễn và không thể khôi phục.</p>
+
+      <h3>Từ phía chúng tôi — khóa tài khoản</h3>
+      <p>Chúng tôi bảo lưu quyền tạm khóa hoặc xóa tài khoản vi phạm điều khoản mà không cần thông báo trước. Tài khoản bị xóa do vi phạm không được hoàn trả bất kỳ khoản phí hoặc Token nào.</p>
+
+      <h3>Ngừng toàn bộ dịch vụ</h3>
+      <p>Trong trường hợp chúng tôi quyết định ngừng cung cấp dịch vụ Hanzi Genz:</p>
+      <ul>
+        <li>Thông báo trước tối thiểu <strong>30 ngày</strong> qua email đã đăng ký.</li>
+        <li>Người dùng có 30 ngày để xuất toàn bộ dữ liệu học tập.</li>
+        <li>Hoàn tiền subscription/Lifetime theo chính sách tại Mục 6.</li>
+        <li>Token (dù miễn phí hay mua) không được hoàn tiền khi dịch vụ ngừng.</li>
+      </ul>
+    </div>
+
+    <!-- 12 -->
     <div class="section" id="changes">
-      <h2><span class="section-num">8</span> Thay đổi Điều khoản</h2>
-      <p>Chúng tôi có thể cập nhật các Điều khoản này theo thời gian để phản ánh sự thay đổi của dịch vụ hoặc yêu cầu pháp lý. Ngày cập nhật sẽ luôn được hiển thị ở đầu trang.</p>
-      <p>Đối với các thay đổi quan trọng (ảnh hưởng đến quyền lợi người dùng), chúng tôi sẽ thông báo qua email (nếu bạn đã đăng ký) hoặc thông báo nổi bật trong ứng dụng trước ít nhất <strong>7 ngày</strong>.</p>
+      <h2><span class="section-num">12</span> Thay đổi Điều khoản</h2>
+      <p>Chúng tôi có thể cập nhật các Điều khoản này theo thời gian. Ngày cập nhật luôn được hiển thị đầu trang.</p>
+      <p>Đối với thay đổi ảnh hưởng đến quyền lợi người dùng (giá, chính sách hoàn tiền, Token), chúng tôi sẽ thông báo qua email hoặc thông báo trong ứng dụng trước ít nhất <strong>15 ngày</strong>. Tiếp tục sử dụng sau thời điểm đó đồng nghĩa với đồng ý điều khoản mới.</p>
+      <p>Thay đổi nhỏ (chính tả, làm rõ ngôn từ, không ảnh hưởng quyền lợi) có hiệu lực ngay khi đăng tải.</p>
+    </div>
+
+    <!-- 13 -->
+    <div class="section" id="law">
+      <h2><span class="section-num">13</span> Luật Áp dụng</h2>
+      <p>Các Điều khoản này được điều chỉnh và giải thích theo <strong>pháp luật nước Cộng hòa Xã hội Chủ nghĩa Việt Nam</strong>, bao gồm:</p>
+      <ul>
+        <li>Luật Bảo vệ quyền lợi người tiêu dùng.</li>
+        <li>Luật Giao dịch điện tử.</li>
+        <li>Nghị định về Thương mại điện tử.</li>
+      </ul>
+      <p>Mọi tranh chấp phát sinh từ việc sử dụng dịch vụ sẽ được giải quyết trước tiên thông qua thương lượng thiện chí. Nếu không đạt được thỏa thuận, tranh chấp sẽ được đưa ra <strong>Tòa án nhân dân có thẩm quyền tại Thành phố Hồ Chí Minh</strong>.</p>
+      <div class="info-box">
+        Chúng tôi khuyến khích liên hệ trực tiếp qua email trước khi khởi kiện. Hầu hết vấn đề có thể giải quyết nhanh chóng qua trao đổi trực tiếp.
+      </div>
     </div>
 
     <div class="contact-card" id="contact">
       <h3>💬 Câu hỏi về Điều khoản?</h3>
-      <p>Nếu bạn có bất kỳ thắc mắc nào về các điều khoản này hoặc muốn yêu cầu xóa tài khoản, hãy liên hệ trực tiếp với chúng tôi.</p>
-      <a href="mailto:nguyentruong100406@gmail.com" class="btn">Liên hệ qua Email</a>
+      <p>Nếu bạn có bất kỳ thắc mắc nào về các điều khoản này, yêu cầu hoàn tiền hợp lệ, hoặc muốn xóa tài khoản, hãy liên hệ trực tiếp — chúng tôi phản hồi trong vòng 48 giờ làm việc.</p>
+      <a href="mailto:dev.tiro.06@gmail.com" class="btn">Liên hệ qua Email</a>
     </div>
 
   </div>

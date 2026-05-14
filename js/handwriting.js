@@ -329,15 +329,22 @@ var Handwriting = {
       }
       win.document.write(html);
       win.document.close();
-      setTimeout(function() { win.print(); }, 800);
     };
 
     fetch('/logo_hanzigenz.png')
       .then(function(r) { return r.blob(); })
       .then(function(blob) {
-        var reader = new FileReader();
-        reader.onloadend = function() { _doOpen(reader.result); };
-        reader.readAsDataURL(blob);
+        var url = URL.createObjectURL(blob);
+        var img = new Image();
+        img.onload = function() {
+          var canvas = document.createElement('canvas');
+          canvas.width = 240; canvas.height = 240;
+          canvas.getContext('2d').drawImage(img, 0, 0, 240, 240);
+          URL.revokeObjectURL(url);
+          _doOpen(canvas.toDataURL('image/png', 0.85));
+        };
+        img.onerror = function() { URL.revokeObjectURL(url); _doOpen(null); };
+        img.src = url;
       })
       .catch(function() { _doOpen(null); });
   },
@@ -362,7 +369,9 @@ var Handwriting = {
     return '<!DOCTYPE html><html><head><meta charset="UTF-8"/>' +
       '<title>Hanzi Genz — Luyện viết</title>' +
       '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet"/>' +
-      '<style>' + css + '</style></head><body>' + body + '</body></html>';
+      '<style>' + css + '</style></head><body>' + body +
+      '<script>window.onload=function(){window.print();}<\/script>' +
+      '</body></html>';
   },
 
   // ── Layout A: Row (8 chars/page × 11 practice cells) ──
@@ -480,7 +489,7 @@ var Handwriting = {
       '.sent-row { display: flex; margin-bottom: 2mm; align-items: center; }',
       '.sent-punct { width: 8mm; text-align: center; font-size: 12pt; }',
       '.print-page { position: relative; }',
-      '.page-wm { position: absolute; bottom: 6mm; right: 6mm; width: 22mm; opacity: 0.10; pointer-events: none; }'
+      '.page-wm { position: absolute; bottom: 6mm; right: 6mm; width: 22mm; opacity: 0.15; pointer-events: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }'
     ].join('\n');
   }
 };

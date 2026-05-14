@@ -204,6 +204,13 @@ var Auth = {
     if (syncBtn) syncBtn.style.display = user ? '' : 'none';
     var syncRecovery = document.getElementById('smSyncRecovery');
     if (syncRecovery) syncRecovery.style.display = user ? '' : 'none';
+
+    // K.8: show admin nav link for admin email only
+    var navAdmin = document.getElementById('navAdmin');
+    if (navAdmin) {
+      navAdmin.style.display = (user && user.email === 'dev.tiro.06@gmail.com') ? '' : 'none';
+    }
+
     if (typeof Sync !== 'undefined') Sync.updateBadge();
   },
 

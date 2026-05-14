@@ -30,7 +30,8 @@ var Router = (function() {
     '/vocab-import':   'vocab-import',
     '/quests':         'quests',
     '/handwriting':    'handwriting',
-    '/pricing':        'pricing'
+    '/pricing':        'pricing',
+    '/admin':          'admin'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -93,6 +94,9 @@ var Router = (function() {
     },
     'pricing': function() {
       // static page, no module init needed
+    },
+    'admin': function() {
+      if (typeof Admin !== 'undefined') Admin.setup();
     }
   };
 

@@ -1,0 +1,76 @@
+<div class="admin-page" id="adminPage">
+  <div class="admin-header">
+    <h1>🛠 Admin Dashboard</h1>
+    <p class="admin-sub">Quản trị viên: <span id="adminEmail"></span></p>
+  </div>
+
+  <!-- Stats overview -->
+  <div class="admin-stats-grid" id="adminStatsGrid">
+    <div class="admin-stat-card">
+      <div class="ast-label">Tổng user</div>
+      <div class="ast-value" id="statTotalUsers">—</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="ast-label">Active 7 ngày</div>
+      <div class="ast-value" id="statActive7d">—</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="ast-label">Pro+Max</div>
+      <div class="ast-value" id="statPro">—</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="ast-label">Basic</div>
+      <div class="ast-value" id="statBasic">—</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="ast-label">Total XP</div>
+      <div class="ast-value" id="statXP">—</div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-tabs">
+    <button class="admin-tab active" data-tab="users">👤 Users</button>
+    <button class="admin-tab" data-tab="grant">⚡ Cấp gói</button>
+  </div>
+
+  <!-- Users tab -->
+  <div class="admin-tab-panel" id="adminTabUsers">
+    <div class="admin-toolbar">
+      <input type="text" id="adminUserSearch" placeholder="Lọc theo email..." class="admin-search">
+      <button class="admin-btn-secondary" id="adminRefresh">🔄 Refresh</button>
+    </div>
+    <div class="admin-users-list" id="adminUsersList">
+      <p class="admin-empty">Đang tải...</p>
+    </div>
+  </div>
+
+  <!-- Grant subscription tab -->
+  <div class="admin-tab-panel" id="adminTabGrant" style="display:none">
+    <div class="admin-grant-card">
+      <h3>Cấp gói thủ công</h3>
+      <p class="admin-help">Dùng khi user đã chuyển khoản qua PayOS QR — cấp gói tay trong lúc chờ webhook tự động.</p>
+
+      <div class="admin-form-row">
+        <label>Email user</label>
+        <input type="email" id="grantEmail" placeholder="user@example.com">
+      </div>
+      <div class="admin-form-row">
+        <label>Gói</label>
+        <select id="grantPlan">
+          <option value="basic">Basic (49k/tháng)</option>
+          <option value="pro">Pro (99k/tháng)</option>
+          <option value="max">Max (799k/năm)</option>
+        </select>
+      </div>
+      <div class="admin-form-row">
+        <label>Số ngày</label>
+        <input type="number" id="grantDays" value="30" min="1" max="3650">
+      </div>
+      <button class="admin-btn-primary" id="grantSubmit">✓ Cấp gói</button>
+      <button class="admin-btn-danger" id="revokeSubmit">✗ Hủy gói (set free)</button>
+
+      <div id="grantResult" class="admin-result"></div>
+    </div>
+  </div>
+</div>

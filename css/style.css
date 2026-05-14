@@ -3362,16 +3362,95 @@ rt { font-size: 11px; color: var(--primary); line-height: 1; }
 .read-reveal-btn:hover { border-color: var(--primary); color: var(--primary); }
 
 /* ══════════════════════════════════════════════
-   K.0 — LOGIN WALL
+   K.0 — SOFT LOGIN PROMPT (floating bottom card)
 ══════════════════════════════════════════════ */
-.login-wall { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; }
-.login-wall-card { text-align: center; padding: 40px 32px; max-width: 360px; width: 100%; }
-.login-wall-logo img { border-radius: 16px; margin-bottom: 12px; }
-.login-wall-logo h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
-.login-wall-logo p { font-size: 14px; color: var(--text2); margin-bottom: 28px; }
-.login-wall-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px 20px; border-radius: 12px; background: var(--primary); color: #fff; border: none; font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity .15s; margin-bottom: 12px; }
-.login-wall-btn:hover { opacity: .88; }
-.login-wall-sub { font-size: 12px; color: var(--text2); }
+.auth-prompt {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: calc(100% - 40px);
+  max-width: 360px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.25), 0 2px 8px rgba(0,0,0,.1);
+  z-index: 8500;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px) scale(.96);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+.auth-prompt.auth-prompt-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.auth-prompt-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-prompt-close:hover { background: rgba(0,0,0,.08); color: var(--text); }
+[data-theme="dark"] .auth-prompt-close:hover { background: rgba(255,255,255,.08); }
+.auth-prompt-body { display: flex; gap: 12px; align-items: flex-start; padding-right: 18px; }
+.auth-prompt-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.auth-prompt-text { flex: 1; min-width: 0; }
+.auth-prompt-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.auth-prompt-sub { font-size: 12px; color: var(--text2); line-height: 1.45; }
+.auth-prompt-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.auth-prompt-btn-secondary {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .15s;
+}
+.auth-prompt-btn-secondary:hover { color: var(--text); }
+.auth-prompt-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .15s, transform .15s;
+}
+.auth-prompt-btn-primary:hover { opacity: .9; }
+.auth-prompt-btn-primary:active { transform: scale(.97); }
+
+@media (max-width: 768px) {
+  .auth-prompt { right: 12px; bottom: 80px; left: 12px; width: auto; max-width: none; }
+}
 
 /* ══════════════════════════════════════════════
    K.2 — PRO GATE OVERLAY

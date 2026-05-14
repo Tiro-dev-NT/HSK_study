@@ -77,6 +77,9 @@ var Auth = {
     var sessionRes = await SB.auth.getSession();
     if (sessionRes.data && sessionRes.data.session) {
       await Auth._onSignIn(sessionRes.data.session.user, false);
+    } else {
+      // Anonymous browse — show soft prompt after delay (if not dismissed this session)
+      Auth._scheduleSoftPrompt();
     }
 
     // Listen for future auth events (OAuth redirect, magic link)
@@ -109,7 +112,7 @@ var Auth = {
 
   // ── Internal ───────────────────────────────────────
   _onSignIn: async function(user, isNew) {
-    Auth._hideWall();
+    Auth._hidePrompt();
     Auth.user = user;
     AppState.user = user;
     Auth.renderUI();
@@ -126,7 +129,6 @@ var Auth = {
     AppState.user = null;
     if (typeof Monetization !== 'undefined') Monetization.resetCache();
     Auth.renderUI();
-    Auth._showWall();
     showToast('👋 Đã đăng xuất');
   },
 
@@ -224,19 +226,51 @@ var Auth = {
     if (m) m.style.display = 'none';
   },
 
-  // ── Login wall helpers ─────────────────────────────
-  _showWall: function() {
-    var w = document.getElementById('loginWall');
-    if (w) w.style.display = 'flex';
+  // ── Soft prompt helpers ────────────────────────────
+  _PROMPT_DISMISS_KEY: 'hsk_auth_prompt_dismissed',
+  _PROMPT_COOLDOWN_HOURS: 24,
+
+  _scheduleSoftPrompt: function() {
+    if (Auth._isPromptDismissed()) return;
+    // Delay so user sees app first, then gentle prompt
+    setTimeout(function() {
+      if (!Auth.user) Auth._showPrompt();
+    }, 4000);
   },
-  _hideWall: function() {
-    var w = document.getElementById('loginWall');
-    if (w) w.style.display = 'none';
+
+  _isPromptDismissed: function() {
+    try {
+      var ts = parseInt(localStorage.getItem(Auth._PROMPT_DISMISS_KEY) || '0', 10);
+      if (!ts) return false;
+      var hoursAgo = (Date.now() - ts) / 3600000;
+      return hoursAgo < Auth._PROMPT_COOLDOWN_HOURS;
+    } catch(e) { return false; }
+  },
+
+  _dismissPrompt: function() {
+    try { localStorage.setItem(Auth._PROMPT_DISMISS_KEY, Date.now()); } catch(e) {}
+    Auth._hidePrompt();
+  },
+
+  _showPrompt: function() {
+    var p = document.getElementById('authPrompt');
+    if (!p) return;
+    p.style.display = 'flex';
+    requestAnimationFrame(function() { p.classList.add('auth-prompt-visible'); });
+  },
+
+  _hidePrompt: function() {
+    var p = document.getElementById('authPrompt');
+    if (!p) return;
+    p.classList.remove('auth-prompt-visible');
+    setTimeout(function() { p.style.display = 'none'; }, 250);
   },
 
   // ── Setup modal event listeners ────────────────────
   setup: function() {
-    document.getElementById('loginWallBtn')?.addEventListener('click', Auth.openLoginModal);
+    document.getElementById('authPromptLogin')?.addEventListener('click', Auth.openLoginModal);
+    document.getElementById('authPromptLater')?.addEventListener('click', Auth._dismissPrompt);
+    document.getElementById('authPromptClose')?.addEventListener('click', Auth._dismissPrompt);
     document.getElementById('authLoginBtn')?.addEventListener('click', Auth.openLoginModal);
     document.getElementById('authLoginBtnMobile')?.addEventListener('click', Auth.openLoginModal);
     document.getElementById('authLogoutBtn')?.addEventListener('click', Auth.logout);

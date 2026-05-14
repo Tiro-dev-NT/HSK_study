@@ -36,12 +36,30 @@ var Handwriting = {
   },
 
   _startOnline: function() {
-    var level = parseInt(document.getElementById('hwOnlineLevel').value);
-    var count = parseInt(document.getElementById('hwOnlineCount').value);
-    var pool = shuffle(Games._getWordPool([level])).slice(0, count);
+    var customEl = document.getElementById('hwOnlineCustom');
+    var customText = customEl ? customEl.value.trim() : '';
+    var pool;
+
+    if (customText) {
+      // Use custom-typed characters
+      var chars = customText.match(/[一-鿿]/g) || [];
+      var unique = [];
+      var seen = {};
+      chars.forEach(function(ch) { if (!seen[ch]) { seen[ch] = true; unique.push(ch); } });
+      var wordMap = {};
+      getAllWords().forEach(function(w) { if (w.h.length === 1) wordMap[w.h] = w; });
+      pool = unique.map(function(ch) { return wordMap[ch] || { h: ch, p: '', v: ch, e: ch }; });
+    } else {
+      // Use HSK level — filter to single characters only (HanziWriter needs single chars)
+      var level = parseInt(document.getElementById('hwOnlineLevel').value);
+      var count = parseInt(document.getElementById('hwOnlineCount').value);
+      pool = shuffle(getAllWords().filter(function(w) {
+        return w.level === level && w.h.length === 1;
+      })).slice(0, count);
+    }
 
     if (!pool.length) {
-      alert('Không đủ từ vựng cho level này!');
+      alert('Không đủ từ vựng! Thử level khác hoặc nhập chữ thủ công.');
       return;
     }
 
@@ -286,11 +304,31 @@ var Handwriting = {
     var showPinyin = document.getElementById('hwShowPinyin').checked;
     var showMeaning = document.getElementById('hwShowMeaning').checked;
 
+    // Row/Grid layouts need individual characters — expand multi-char words and deduplicate
+    if (layout === 'row' || layout === 'grid') {
+      var seen = {};
+      var expanded = [];
+      chars.forEach(function(c) {
+        c.h.split('').forEach(function(ch) {
+          if (/[一-鿿]/.test(ch) && !seen[ch]) {
+            seen[ch] = true;
+            expanded.push({ h: ch, p: c.p, v: c.v, e: c.e, ex: c.ex });
+          }
+        });
+      });
+      chars = expanded;
+      if (!chars.length) { alert('Chưa chọn chữ nào!'); return; }
+    }
+
     var html = Handwriting._buildPrintHTML(chars, layout, showPinyin, showMeaning);
     var win = window.open('', '_blank');
+    if (!win) {
+      alert('Trình duyệt đã chặn popup. Vui lòng cho phép popup từ trang này rồi thử lại.');
+      return;
+    }
     win.document.write(html);
     win.document.close();
-    setTimeout(function() { win.print(); }, 600);
+    setTimeout(function() { win.print(); }, 800);
   },
 
   _buildPrintHTML: function(chars, layout, showPinyin, showMeaning) {

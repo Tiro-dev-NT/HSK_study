@@ -29,7 +29,8 @@ var Router = (function() {
     '/my-vocab':       'my-vocab',
     '/vocab-import':   'vocab-import',
     '/quests':         'quests',
-    '/handwriting':    'handwriting'
+    '/handwriting':    'handwriting',
+    '/pricing':        'pricing'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -89,6 +90,9 @@ var Router = (function() {
     },
     'handwriting': function() {
       if (typeof Handwriting !== 'undefined') Handwriting.setup();
+    },
+    'pricing': function() {
+      // static page, no module init needed
     }
   };
 

@@ -109,6 +109,7 @@ var Auth = {
 
   // ── Internal ───────────────────────────────────────
   _onSignIn: async function(user, isNew) {
+    Auth._hideWall();
     Auth.user = user;
     AppState.user = user;
     Auth.renderUI();
@@ -123,7 +124,9 @@ var Auth = {
   _onSignOut: function() {
     Auth.user = null;
     AppState.user = null;
+    if (typeof Monetization !== 'undefined') Monetization.resetCache();
     Auth.renderUI();
+    Auth._showWall();
     showToast('👋 Đã đăng xuất');
   },
 
@@ -214,8 +217,19 @@ var Auth = {
     if (m) m.style.display = 'none';
   },
 
+  // ── Login wall helpers ─────────────────────────────
+  _showWall: function() {
+    var w = document.getElementById('loginWall');
+    if (w) w.style.display = 'flex';
+  },
+  _hideWall: function() {
+    var w = document.getElementById('loginWall');
+    if (w) w.style.display = 'none';
+  },
+
   // ── Setup modal event listeners ────────────────────
   setup: function() {
+    document.getElementById('loginWallBtn')?.addEventListener('click', Auth.openLoginModal);
     document.getElementById('authLoginBtn')?.addEventListener('click', Auth.openLoginModal);
     document.getElementById('authLoginBtnMobile')?.addEventListener('click', Auth.openLoginModal);
     document.getElementById('authLogoutBtn')?.addEventListener('click', Auth.logout);

@@ -1,0 +1,122 @@
+<div class="pricing-page">
+  <div class="pricing-hero">
+    <h1>Chọn gói phù hợp</h1>
+    <p>Học tiếng Trung hiệu quả hơn với gói phù hợp</p>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- Free -->
+    <div class="pricing-card">
+      <div class="pc-header">
+        <div class="pc-name">Free</div>
+        <div class="pc-price">
+          <div class="pc-price-main">0đ</div>
+          <div class="pc-price-sub">mãi mãi</div>
+        </div>
+      </div>
+      <ul class="pc-features">
+        <li>Từ điển HSK 1–6 (7.000+ từ)</li>
+        <li>Flashcard + SRS thông minh</li>
+        <li>Speed Quiz, Memory Flip, Wordle</li>
+        <li>Luyện viết Hanzi</li>
+        <li>Ngữ pháp HSK 1–2</li>
+        <li>Đọc hiểu HSK 1–2</li>
+        <li class="pc-feat-locked">Boss Battle</li>
+        <li class="pc-feat-locked">Racing Quiz</li>
+        <li class="pc-feat-locked">Sentence Builder</li>
+      </ul>
+      <button class="pc-btn" disabled>Đang dùng</button>
+    </div>
+
+    <!-- Basic -->
+    <div class="pricing-card pc-highlighted">
+      <div class="pc-popular-badge">Phổ biến nhất</div>
+      <div class="pc-header">
+        <div class="pc-name">Basic</div>
+        <div class="pc-price">
+          <div class="pc-price-main">49k</div>
+          <div class="pc-price-sub">/tháng</div>
+        </div>
+      </div>
+      <ul class="pc-features">
+        <li>Tất cả tính năng Free</li>
+        <li>Boss Battle ⚔️</li>
+        <li>Racing Quiz 🏎️</li>
+        <li>Sentence Builder 📝</li>
+        <li>Lịch sử điểm số chi tiết</li>
+      </ul>
+      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('basic')">Nâng cấp ngay</button>
+    </div>
+
+    <!-- Pro -->
+    <div class="pricing-card">
+      <div class="pc-header">
+        <div class="pc-name">Pro</div>
+        <div class="pc-price">
+          <div class="pc-price-main">99k</div>
+          <div class="pc-price-sub">/tháng</div>
+        </div>
+      </div>
+      <ul class="pc-features">
+        <li>Tất cả tính năng Basic</li>
+        <li>SRS nâng cao (4 nút)</li>
+        <li>Token thưởng x2</li>
+        <li>Streak không giới hạn</li>
+        <li>Ưu tiên hỗ trợ</li>
+      </ul>
+      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('pro')">Nâng cấp ngay</button>
+    </div>
+
+    <!-- Max -->
+    <div class="pricing-card">
+      <div class="pc-header">
+        <div class="pc-name">Max</div>
+        <div class="pc-price">
+          <div class="pc-price-main">799k</div>
+          <div class="pc-price-sub">/năm</div>
+        </div>
+      </div>
+      <ul class="pc-features">
+        <li>Tất cả tính năng Pro</li>
+        <li>Tiết kiệm 2 tháng</li>
+        <li>Beta tính năng mới sớm</li>
+        <li>Hỗ trợ phát triển app</li>
+      </ul>
+      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('max')">Nâng cấp ngay</button>
+    </div>
+
+  </div>
+
+  <p class="pricing-footer">Thanh toán qua chuyển khoản ngân hàng / PayOS · Hỗ trợ: dev.tiro.06@gmail.com</p>
+</div>
+
+<!-- Payment modal (PayOS placeholder) -->
+<div id="paymentModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:8000; align-items:center; justify-content:center;">
+  <div style="background:var(--surface); border-radius:20px; padding:28px 24px; max-width:320px; width:90%; text-align:center; border:1.5px solid var(--border);">
+    <div style="font-size:32px; margin-bottom:12px;">💳</div>
+    <h2 id="payModalTitle" style="font-size:17px; font-weight:700; margin-bottom:8px;"></h2>
+    <p id="payModalDesc" style="font-size:13px; color:var(--text2); margin-bottom:16px;"></p>
+    <p style="font-size:12px; color:var(--text2); background:rgba(0,0,0,.08); border-radius:8px; padding:10px; margin-bottom:16px; line-height:1.6;">
+      Tính năng thanh toán tự động đang được triển khai.<br>
+      Liên hệ <strong>dev.tiro.06@gmail.com</strong> để nâng cấp thủ công.
+    </p>
+    <button onclick="document.getElementById('paymentModal').style.display='none'" style="width:100%; padding:11px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--text2); font-size:14px; cursor:pointer;">Đóng</button>
+  </div>
+</div>
+
+<script>
+var Pricing = {
+  _plans: {
+    basic: { name: 'Basic', price: '49.000đ/tháng' },
+    pro:   { name: 'Pro',   price: '99.000đ/tháng' },
+    max:   { name: 'Max',   price: '799.000đ/năm'  }
+  },
+  openPayment: function(plan) {
+    var p = Pricing._plans[plan] || {};
+    document.getElementById('payModalTitle').textContent = 'Nâng cấp lên ' + (p.name || plan);
+    document.getElementById('payModalDesc').textContent  = 'Giá: ' + (p.price || '');
+    document.getElementById('paymentModal').style.display = 'flex';
+  }
+};
+</script>

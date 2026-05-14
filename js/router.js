@@ -17,6 +17,8 @@ var Router = (function() {
     '/':               'home',
     '/home':           'home',
     '/dictionary':     'dictionary',
+    '/grammar':        'grammar',
+    '/reading':        'reading',
     '/learn':          'learn',
     '/quiz':           'quiz',
     '/vault':          'vault',
@@ -47,6 +49,12 @@ var Router = (function() {
         Dictionary.setupHSKVersion();
         Dictionary.buildRadicalBrowser();
       }
+    },
+    'grammar': function() {
+      if (typeof Grammar !== 'undefined') Grammar.setup();
+    },
+    'reading': function() {
+      if (typeof Reading !== 'undefined') Reading.setup();
     },
     'learn': function() {
       if (typeof setupDecks === 'function') setupDecks();

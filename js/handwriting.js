@@ -223,9 +223,21 @@ var Handwriting = {
 
   _loadDeckChars: function(deckId) {
     if (!deckId) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
-    var decks = JSON.parse(localStorage.getItem('hsk_decks') || '[]');
-    var deck = decks.find(function(d) { return d.id === deckId; });
-    if (!deck || !deck.wordIds) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
+    var rawDecks = JSON.parse(localStorage.getItem('hsk_decks') || '{}');
+    var deck = Array.isArray(rawDecks)
+      ? rawDecks.find(function(d) { return d.id === deckId; })
+      : rawDecks[deckId];
+    if (!deck) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
+
+    if (Array.isArray(deck.words)) {
+      Handwriting.selectedChars = deck.words.map(function(w) {
+        return { h: w.h, p: w.p || '', v: w.v || '', e: w.e || '', ex: w.ex };
+      }).filter(function(w) { return w.h; });
+      Handwriting._updatePreview();
+      return;
+    }
+
+    if (!Array.isArray(deck.wordIds)) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
 
     var all = getAllWords();
     var map = {};
@@ -255,11 +267,15 @@ var Handwriting = {
   _populateDecks: function() {
     var select = document.getElementById('hwDeckSelect');
     if (!select) return;
-    var decks = JSON.parse(localStorage.getItem('hsk_decks') || '[]');
+
+    var rawDecks = JSON.parse(localStorage.getItem('hsk_decks') || '{}');
+    var decks = Array.isArray(rawDecks) ? rawDecks : Object.values(rawDecks || {});
+
+    select.innerHTML = '<option value="">-- Chọn bộ thẻ --</option>';
     decks.forEach(function(d) {
       var opt = document.createElement('option');
       opt.value = d.id;
-      opt.textContent = d.name + ' (' + (d.wordIds ? d.wordIds.length : 0) + ' từ)';
+      opt.textContent = (d.title || d.name || 'Deck') + ' (' + (Array.isArray(d.words) ? d.words.length : (d.wordIds ? d.wordIds.length : 0)) + ' từ)';
       select.appendChild(opt);
     });
   },

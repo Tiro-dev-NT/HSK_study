@@ -683,6 +683,7 @@ body {
   font-family: var(--font-ui);
 }
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(192,57,43,.4); }
+.fb-social-link { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
 .btn-sm { padding: 8px 16px; font-size: 13px; }
 .w-full { width: 100%; margin-top: 16px; }
 
@@ -2120,6 +2121,81 @@ body {
 .dc-streak { font-size: 13px; color: #F59E0B; font-weight: 600; margin-top: 4px; }
 .dc-result-detail { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: 16px 0; font-size: 16px; }
 .dc-xp-earned { font-size: 20px; font-weight: 700; color: var(--accent); }
+
+/* ── Grammar + Reading (Phase F.3) ── */
+.grammar-controls, .reading-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.grammar-levels, .reading-levels { display: flex; gap: 8px; flex-wrap: wrap; }
+.gram-level-btn, .read-level-btn {
+  padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: .2s;
+}
+.gram-level-btn.active, .read-level-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.grammar-search { flex: 1; max-width: 320px; }
+.search-input {
+  width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text); font-size: 14px;
+}
+.grammar-list, .reading-list { display: grid; gap: 14px; }
+.grammar-card, .reading-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 18px; box-shadow: var(--shadow-sm, 0 2px 10px rgba(0,0,0,.08));
+}
+.gram-card-header { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+.gram-pattern { font-size: 18px; font-weight: 700; color: var(--primary); }
+.gram-name { font-size: 13px; font-weight: 600; color: var(--text2); background: var(--surface2); padding: 4px 10px; border-radius: 999px; }
+.gram-explanation { color: var(--text); line-height: 1.6; margin-bottom: 14px; }
+.gram-examples { display: grid; gap: 10px; }
+.gram-example, .read-passage, .read-question { background: var(--surface2); border-radius: 12px; padding: 14px; }
+.gram-zh, .read-text { font-size: 20px; line-height: 1.9; color: var(--text); margin-bottom: 6px; }
+.gram-py, .read-pinyin { font-size: 14px; color: var(--text2); margin-bottom: 6px; }
+.gram-meaning { font-size: 14px; color: var(--text3); margin: 0; }
+.clickable-hanzi { cursor: pointer; border-radius: 6px; transition: .2s; }
+.clickable-hanzi:hover { color: var(--primary); background: rgba(192,57,43,.08); }
+.reading-card {
+  display: flex; align-items: center; gap: 14px; cursor: pointer; transition: .2s;
+}
+.reading-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.read-card-num {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
+}
+.read-card-body { flex: 1; min-width: 0; }
+.read-card-title { font-size: 18px; margin-bottom: 6px; color: var(--text); }
+.read-card-preview { color: var(--text2); margin: 0; }
+.read-card-arrow { font-size: 22px; color: var(--text3); }
+.reading-view { display: grid; gap: 16px; }
+.read-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.read-pinyin-toggle { margin-top: 10px; }
+.read-questions { display: grid; gap: 12px; margin-top: 16px; }
+.read-q-text { font-weight: 600; margin-bottom: 10px; color: var(--text); }
+.read-options { display: grid; gap: 8px; }
+.read-option {
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface);
+  color: var(--text); text-align: left; cursor: pointer; transition: .2s;
+}
+.read-option:hover:not(:disabled) { border-color: var(--primary); }
+.read-option.correct { background: rgba(34,197,94,.12); border-color: rgba(34,197,94,.45); color: #16a34a; }
+.read-option.wrong { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.45); color: #dc2626; }
+.empty-state { padding: 28px 20px; text-align: center; color: var(--text2); background: var(--surface2); border-radius: 14px; }
+/* ── Reading Listening controls (Phase F.4) ── */
+.read-listen-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 14px; background: var(--surface2); border-radius: 12px; margin-bottom: 14px; }
+.read-listen-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; transition: .2s; }
+.read-listen-btn:hover { border-color: var(--primary); color: var(--primary); }
+.read-speed-group { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.read-speed-label { font-size: 12px; color: var(--text2); }
+.read-speed-btn { padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text2); font-size: 12px; font-weight: 600; cursor: pointer; transition: .2s; }
+.read-speed-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.read-sentence-row { display: flex; align-items: flex-start; gap: 8px; }
+.read-sent-play { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text2); font-size: 10px; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; margin-top: 6px; }
+.read-sent-play:hover { border-color: var(--primary); color: var(--primary); }
+.read-pinyin-block { margin-top: 8px; }
+.read-py-line { font-size: 13px; color: var(--text2); margin-bottom: 4px; }
+@media (max-width: 768px) {
+  .grammar-controls, .reading-controls { flex-direction: column; align-items: stretch; }
+  .grammar-search { max-width: none; }
+  .gram-zh, .read-text { font-size: 18px; }
+}
 
 /* Survival Mode */
 .sv-result-detail { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: 16px 0; font-size: 16px; }

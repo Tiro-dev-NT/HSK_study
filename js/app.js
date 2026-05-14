@@ -12,30 +12,20 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   var initSteps = [
-    ['applyTheme',           function() { Theme.applyTheme(AppState.theme); }],
-    ['applyLang',            function() { Theme.applyLang(AppState.lang); }],
-    ['loadSRS',              function() { if (typeof loadSRS === 'function') loadSRS(); }],
-    ['setupRouting',         function() { Router.setup(); }],
-    ['setupDictionary',      function() { Dictionary.setup(); }],
-    ['setupHSKVersion',      function() { Dictionary.setupHSKVersion(); }],
-    ['buildRadicalBrowser',  function() { Dictionary.buildRadicalBrowser(); }],
-    ['setupDecks',           function() { if (typeof setupDecks === 'function') setupDecks(); }],
-    ['setupSessionHandlers', function() { Session.setup(); }],
-    ['setupQuiz',            function() { Quiz.setup(); }],
-    ['setupTheme',           function() { Theme.setupTheme(); }],
-    ['setupLang',            function() { Theme.setupLang(); }],
-    ['buildLevelGrid',       function() { Gamification.buildLevelGrid(); }],
-    ['updateStats',          function() { Gamification.updateStats(); }],
-    ['setupFeedback',        function() { Feedback.setup(); }],
-    ['loadSettings',         function() { Settings.load(); }],
-    ['setupGames',           function() { if (typeof Games !== 'undefined') Games.setup(); }],
-    ['setupAuth',            function() { if (typeof Auth !== 'undefined') { Auth.setup(); Auth.init(); Auth.checkExtensionBridge(); } }],
-    ['setupSyncWindow',      function() { if (typeof SyncWindow !== 'undefined') SyncWindow.init(); }],
-    ['setupRightSidebar',   function() { if (typeof RightSidebar !== 'undefined') RightSidebar.init(); }],
-    ['setupRevealBtn',      function() {
-      var btn = document.getElementById('tyRevealBtn');
-      if (btn) btn.addEventListener('click', function() { Session.revealOneChar(); });
-    }],
+    ['applyTheme',      function() { Theme.applyTheme(AppState.theme); }],
+    ['applyLang',       function() { Theme.applyLang(AppState.lang); }],
+    ['loadSRS',         function() { if (typeof loadSRS === 'function') loadSRS(); }],
+    ['setupRouting',    function() { Router.setup(); }],
+    ['setupTheme',      function() { Theme.setupTheme(); }],
+    ['setupLang',       function() { Theme.setupLang(); }],
+    ['buildLevelGrid',  function() { Gamification.buildLevelGrid(); }],
+    ['updateStats',     function() { Gamification.updateStats(); }],
+    ['setupFeedback',   function() { Feedback.setup(); }],
+    ['loadSettings',    function() { Settings.load(); }],
+    ['setupGames',      function() { if (typeof Games !== 'undefined') Games.setup(); }],
+    ['setupAuth',       function() { if (typeof Auth !== 'undefined') { Auth.setup(); Auth.init(); Auth.checkExtensionBridge(); } }],
+    ['setupSyncWindow', function() { if (typeof SyncWindow !== 'undefined') SyncWindow.init(); }],
+    ['setupRightSidebar', function() { if (typeof RightSidebar !== 'undefined') RightSidebar.init(); }],
   ];
 
   initSteps.forEach(function(step) {

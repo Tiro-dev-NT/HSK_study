@@ -1094,6 +1094,9 @@ body {
   }
   .bottom-nav {
     display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     position: fixed;
     bottom: 0; left: 0; right: 0;
     background: var(--surface);
@@ -1103,6 +1106,8 @@ body {
   }
   .bnav-item {
     flex: 1;
+    flex-shrink: 0;
+    min-width: 56px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1116,6 +1121,7 @@ body {
     transition: color .2s;
     touch-action: manipulation;
   }
+  .bottom-nav::-webkit-scrollbar { display: none; }
   .bnav-item svg { width: 20px; height: 20px; }
   .bnav-item.active { color: var(--primary); }
   .stats-row { grid-template-columns: repeat(3,1fr); gap: 10px; }

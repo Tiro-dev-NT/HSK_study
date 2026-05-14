@@ -3360,3 +3360,60 @@ rt { font-size: 11px; color: var(--primary); line-height: 1; }
 .read-passage.read-hidden { display: none; }
 .read-reveal-btn { display: block; width: 100%; padding: 10px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 16px; text-align: center; transition: all .15s; }
 .read-reveal-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ══════════════════════════════════════════════
+   K.0 — LOGIN WALL
+══════════════════════════════════════════════ */
+.login-wall { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; }
+.login-wall-card { text-align: center; padding: 40px 32px; max-width: 360px; width: 100%; }
+.login-wall-logo img { border-radius: 16px; margin-bottom: 12px; }
+.login-wall-logo h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.login-wall-logo p { font-size: 14px; color: var(--text2); margin-bottom: 28px; }
+.login-wall-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px 20px; border-radius: 12px; background: var(--primary); color: #fff; border: none; font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity .15s; margin-bottom: 12px; }
+.login-wall-btn:hover { opacity: .88; }
+.login-wall-sub { font-size: 12px; color: var(--text2); }
+
+/* ══════════════════════════════════════════════
+   K.2 — PRO GATE OVERLAY
+══════════════════════════════════════════════ */
+.pro-gate-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 9000; display: flex; align-items: center; justify-content: center; }
+.pro-gate-card { background: var(--surface); border-radius: 20px; padding: 32px 28px; max-width: 320px; width: 90%; text-align: center; border: 1.5px solid var(--border); }
+.pro-gate-icon { font-size: 40px; margin-bottom: 12px; }
+.pro-gate-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.pro-gate-card p { font-size: 14px; color: var(--text2); margin-bottom: 20px; }
+.pro-gate-cta { display: block; width: 100%; padding: 12px; border-radius: 10px; background: var(--primary); color: #fff; border: none; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 10px; transition: opacity .15s; }
+.pro-gate-cta:hover { opacity: .88; }
+.pro-gate-close { display: block; width: 100%; padding: 10px; border-radius: 10px; border: 1.5px solid var(--border); background: none; color: var(--text2); font-size: 14px; cursor: pointer; transition: border-color .15s; }
+.pro-gate-close:hover { border-color: var(--primary); }
+
+/* ══════════════════════════════════════════════
+   K.3 — PRICING PAGE
+══════════════════════════════════════════════ */
+.pricing-page { padding-bottom: 80px; }
+.pricing-hero { text-align: center; padding: 24px 0 20px; }
+.pricing-hero h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+.pricing-hero p { font-size: 14px; color: var(--text2); }
+.pricing-grid { display: flex; flex-direction: column; gap: 14px; }
+.pricing-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px; position: relative; }
+.pricing-card.pc-highlighted { border-color: var(--primary); }
+.pc-popular-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 12px; border-radius: 10px; white-space: nowrap; }
+.pc-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.pc-name { font-size: 17px; font-weight: 700; }
+.pc-price { text-align: right; }
+.pc-price-main { font-size: 20px; font-weight: 800; color: var(--primary); }
+.pc-price-sub { font-size: 11px; color: var(--text2); }
+.pc-features { list-style: none; margin-bottom: 16px; }
+.pc-features li { font-size: 13px; color: var(--text2); padding: 4px 0; display: flex; gap: 6px; }
+.pc-features li::before { content: "✓"; color: #22c55e; font-weight: 700; flex-shrink: 0; }
+.pc-features li.pc-feat-locked::before { content: "✗"; color: var(--border); }
+.pc-features li.pc-feat-locked { opacity: .5; }
+.pc-btn { display: block; width: 100%; padding: 11px; border-radius: 10px; border: 1.5px solid var(--border); background: none; color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; transition: all .15s; text-align: center; }
+.pc-btn.pc-btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.pc-btn.pc-btn-primary:hover { opacity: .88; }
+.pc-btn:not(.pc-btn-primary):hover { border-color: var(--primary); color: var(--primary); }
+.pc-btn[disabled] { opacity: .5; cursor: default; }
+.pricing-footer { text-align: center; padding: 16px 0 0; font-size: 12px; color: var(--text2); }
+
+/* K.4 — PRO badge on game cards */
+.game-card { position: relative; }
+.gc-pro-badge { position: absolute; top: 8px; right: 8px; font-size: 10px; font-weight: 700; background: var(--primary); color: #fff; padding: 2px 7px; border-radius: 10px; letter-spacing: .3px; }

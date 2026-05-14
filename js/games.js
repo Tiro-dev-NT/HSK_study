@@ -23,11 +23,23 @@ var Games = {
     if (canvas) { canvas.style.display = 'none'; canvas.innerHTML = ''; }
   },
 
+  _premiumGames: ['boss-battle', 'racing', 'sentence'],
+
   setup: function() {
-    // Game card click → launch game
+    // Game card click → launch game (with premium gate for boss-battle/racing/sentence)
     document.querySelectorAll('.game-card:not(.game-coming)').forEach(function(card) {
-      card.addEventListener('click', function() {
+      card.addEventListener('click', async function() {
         var game = card.dataset.game;
+
+        if (Games._premiumGames.indexOf(game) !== -1) {
+          var pro = typeof Monetization !== 'undefined' ? await Monetization.isPro() : false;
+          if (!pro) {
+            var name = card.querySelector('.gc-name');
+            if (typeof Monetization !== 'undefined') Monetization.showGate(name ? name.textContent : game);
+            return;
+          }
+        }
+
         if (game === 'speed-quiz') SpeedQuiz.start();
         else if (game === 'memory') MemoryFlip.start();
         else if (game === 'wordle') PinyinWordle.start();

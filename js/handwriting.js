@@ -320,18 +320,29 @@ var Handwriting = {
       if (!chars.length) { alert('Chưa chọn chữ nào!'); return; }
     }
 
-    var html = Handwriting._buildPrintHTML(chars, layout, showPinyin, showMeaning);
-    var win = window.open('', '_blank');
-    if (!win) {
-      alert('Trình duyệt đã chặn popup. Vui lòng cho phép popup từ trang này rồi thử lại.');
-      return;
-    }
-    win.document.write(html);
-    win.document.close();
-    setTimeout(function() { win.print(); }, 800);
+    var _doOpen = function(logoSrc) {
+      var html = Handwriting._buildPrintHTML(chars, layout, showPinyin, showMeaning, logoSrc);
+      var win = window.open('', '_blank');
+      if (!win) {
+        alert('Trình duyệt đã chặn popup. Vui lòng cho phép popup từ trang này rồi thử lại.');
+        return;
+      }
+      win.document.write(html);
+      win.document.close();
+      setTimeout(function() { win.print(); }, 800);
+    };
+
+    fetch('/logo_hanzigenz.png')
+      .then(function(r) { return r.blob(); })
+      .then(function(blob) {
+        var reader = new FileReader();
+        reader.onloadend = function() { _doOpen(reader.result); };
+        reader.readAsDataURL(blob);
+      })
+      .catch(function() { _doOpen(null); });
   },
 
-  _buildPrintHTML: function(chars, layout, showPinyin, showMeaning) {
+  _buildPrintHTML: function(chars, layout, showPinyin, showMeaning, logoSrc) {
     var css = Handwriting._getPrintCSS();
     var body = '';
 
@@ -341,6 +352,11 @@ var Handwriting = {
       body = Handwriting._buildGridLayout(chars, showPinyin, showMeaning);
     } else {
       body = Handwriting._buildSentenceLayout(chars, showPinyin, showMeaning);
+    }
+
+    if (logoSrc) {
+      var wm = '<img class="page-wm" src="' + logoSrc + '">';
+      body = body.replace(/<div class="print-page">/g, '<div class="print-page">' + wm);
     }
 
     return '<!DOCTYPE html><html><head><meta charset="UTF-8"/>' +
@@ -462,7 +478,9 @@ var Handwriting = {
       '.sent-py { font-size: 10pt; color: #555; }',
       '.sent-vi { font-size: 9pt; color: #777; }',
       '.sent-row { display: flex; margin-bottom: 2mm; align-items: center; }',
-      '.sent-punct { width: 8mm; text-align: center; font-size: 12pt; }'
+      '.sent-punct { width: 8mm; text-align: center; font-size: 12pt; }',
+      '.print-page { position: relative; }',
+      '.page-wm { position: absolute; bottom: 6mm; right: 6mm; width: 22mm; opacity: 0.10; pointer-events: none; }'
     ].join('\n');
   }
 };

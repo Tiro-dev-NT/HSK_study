@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════
-// READING.JS — Reading + Listening Module (Phase F.3/F.4)
+// READING.JS — Reading + Listening Module (Phase F.7 v2)
 // ═══════════════════════════════════════════════════════
 
 var Reading = (function() {
@@ -10,13 +10,13 @@ var Reading = (function() {
   var _answers = {};
   var _ttsRate = 1;
   var _lastTTSText = '';
+  var _activeRow = null;
 
   // Split Chinese text into sentences on 。！？… boundaries
   function _splitSentences(text, pinyin) {
     var zhParts = text.split(/(?<=[。！？…]+)/u);
     zhParts = zhParts.filter(function(s) { return s.trim().length > 0; });
 
-    // Split pinyin by matching sentence count (fallback: whole pinyin as one)
     var pyParts = [];
     if (pinyin) {
       pyParts = pinyin.split(/(?<=[.!?…]+\s)/u).filter(function(s) { return s.trim().length > 0; });
@@ -33,6 +33,7 @@ var Reading = (function() {
     _answers = {};
     _ttsRate = 1;
     _lastTTSText = '';
+    _activeRow = null;
     _bindEvents();
     _renderList();
   }
@@ -60,6 +61,33 @@ var Reading = (function() {
     }
   }
 
+  // ── Ruby pinyin ───────────────────────────────────────
+
+  function _makeRuby(zhText, pyText) {
+    var syl = (pyText || '').split(/\s+/).filter(Boolean);
+    var si = 0;
+    return zhText.split('').map(function(ch) {
+      if (/[一-鿿]/.test(ch)) {
+        return '<ruby>' + ch + '<rt>' + (syl[si++] || '') + '</rt></ruby>';
+      }
+      return ch;
+    }).join('');
+  }
+
+  // ── TTS sentence highlight ────────────────────────────
+
+  function _ttsHighlight(rowEl, utterance) {
+    if (_activeRow) _activeRow.classList.remove('read-active');
+    _activeRow = rowEl;
+    rowEl.classList.add('read-active');
+    utterance.onend = function() {
+      rowEl.classList.remove('read-active');
+      _activeRow = null;
+    };
+  }
+
+  // ── List render ───────────────────────────────────────
+
   function _renderList() {
     var container = document.getElementById('readingList');
     if (!container) return;
@@ -70,10 +98,18 @@ var Reading = (function() {
     container.innerHTML = passages.map(function(p, i) {
       var title = lang === 'vi' ? p.title_vi : p.title_en;
       var preview = (p.text || '').substring(0, 30) + '...';
+      var charCount = (p.text || '').replace(/[^一-鿿]/g, '').length;
+      var readTime = Math.max(1, Math.ceil(charCount / 200));
+      var levelLabel = 'HSK ' + _level;
+
       return '<div class="reading-card" data-idx="' + i + '">' +
         '<div class="read-card-num">' + (i + 1) + '</div>' +
         '<div class="read-card-body">' +
           '<h3 class="read-card-title">' + title + '</h3>' +
+          '<div class="read-card-meta">' +
+            '<span class="read-level-badge">' + levelLabel + '</span>' +
+            '<span class="read-time">~' + readTime + ' phút đọc</span>' +
+          '</div>' +
           '<p class="read-card-preview">' + preview + '</p>' +
         '</div>' +
         '<span class="read-card-arrow">→</span>' +
@@ -87,6 +123,8 @@ var Reading = (function() {
     });
   }
 
+  // ── Open passage ──────────────────────────────────────
+
   function _openPassage(idx) {
     var passages = _getPassages();
     _currentPassage = passages[idx];
@@ -95,12 +133,15 @@ var Reading = (function() {
     _showPinyin = false;
     _answers = {};
     _lastTTSText = '';
+    _activeRow = null;
 
     document.getElementById('readingList').style.display = 'none';
     var view = document.getElementById('readingView');
     view.style.display = '';
     _renderPassage();
   }
+
+  // ── Passage render ────────────────────────────────────
 
   function _renderPassage() {
     var view = document.getElementById('readingView');
@@ -112,22 +153,13 @@ var Reading = (function() {
 
     var sentences = _splitSentences(p.text || '', p.pinyin || '');
 
-    // Text body with per-sentence play buttons
+    // Text body — always use ruby (CSS controls rt visibility via .show-pinyin)
     var textHtml = sentences.map(function(s, si) {
-      return '<div class="read-sentence-row">' +
+      return '<div class="read-sentence-row" data-si="' + si + '">' +
         '<button class="read-sent-play" data-si="' + si + '" title="Phát câu này">▶</button>' +
-        '<p class="read-line">' + _makeClickable(s.zh) + '</p>' +
+        '<p class="read-line">' + _makeRuby(s.zh, s.py) + '</p>' +
       '</div>';
     }).join('');
-
-    // Pinyin block
-    var pinyinHtml = _showPinyin
-      ? '<div class="read-pinyin-block">' +
-          sentences.map(function(s) {
-            return '<p class="read-line read-py-line">' + (s.py || '') + '</p>';
-          }).join('') +
-        '</div>'
-      : '';
 
     // Listening controls
     var listeningHtml =
@@ -170,9 +202,8 @@ var Reading = (function() {
         '<h2>' + title + '</h2>' +
       '</div>' +
       listeningHtml +
-      '<div class="read-passage">' +
+      '<div class="read-passage' + (_showPinyin ? ' show-pinyin' : '') + '">' +
         '<div class="read-text">' + textHtml + '</div>' +
-        pinyinHtml +
         '<button class="btn-sm read-pinyin-toggle" id="togglePinyin">' +
           (_showPinyin ? 'Ẩn pinyin' : 'Hiện pinyin') +
         '</button>' +
@@ -190,10 +221,11 @@ var Reading = (function() {
       _currentPassage = null;
     });
 
-    // Pinyin toggle
+    // Pinyin toggle — DOM-only, no re-render
     document.getElementById('togglePinyin').addEventListener('click', function() {
       _showPinyin = !_showPinyin;
-      _renderPassage();
+      view.querySelector('.read-passage').classList.toggle('show-pinyin', _showPinyin);
+      this.textContent = _showPinyin ? 'Ẩn pinyin' : 'Hiện pinyin';
     });
 
     // Answer options
@@ -224,15 +256,19 @@ var Reading = (function() {
       });
     });
 
-    // Per-sentence play
+    // Per-sentence play with highlight
     view.querySelectorAll('.read-sent-play').forEach(function(btn) {
       btn.addEventListener('click', function(e) {
         e.stopPropagation();
         var si = parseInt(this.dataset.si);
-        if (sentences[si]) _playTTS(sentences[si].zh);
+        if (!sentences[si]) return;
+        var rowEl = this.closest('.read-sentence-row');
+        _playTTSWithHighlight(sentences[si].zh, rowEl);
       });
     });
   }
+
+  // ── TTS ───────────────────────────────────────────────
 
   function _playTTS(text) {
     if (!text) return;
@@ -245,7 +281,6 @@ var Reading = (function() {
       var msg = new SpeechSynthesisUtterance(text);
       msg.lang = 'zh-CN';
       msg.rate = _ttsRate;
-      // Reuse voice picker from Dictionary if available
       if (typeof Dictionary !== 'undefined' && Dictionary._pickZhVoice) {
         var voice = Dictionary._pickZhVoice();
         if (voice) msg.voice = voice;
@@ -255,16 +290,41 @@ var Reading = (function() {
     }
 
     var voices = synth.getVoices();
-    if (voices.length > 0) {
-      doSpeak();
-    } else {
-      synth.addEventListener('voiceschanged', doSpeak, { once: true });
+    if (voices.length > 0) { doSpeak(); }
+    else { synth.addEventListener('voiceschanged', doSpeak, { once: true }); }
+  }
+
+  function _playTTSWithHighlight(text, rowEl) {
+    if (!text) return;
+    _lastTTSText = text;
+    var synth = window.speechSynthesis;
+    if (!synth) return;
+
+    function doSpeak() {
+      if (synth.paused) synth.resume();
+      var msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'zh-CN';
+      msg.rate = _ttsRate;
+      if (typeof Dictionary !== 'undefined' && Dictionary._pickZhVoice) {
+        var voice = Dictionary._pickZhVoice();
+        if (voice) msg.voice = voice;
+      }
+      _ttsHighlight(rowEl, msg);
+      synth.cancel();
+      setTimeout(function() { synth.speak(msg); }, 50);
     }
+
+    var voices = synth.getVoices();
+    if (voices.length > 0) { doSpeak(); }
+    else { synth.addEventListener('voiceschanged', doSpeak, { once: true }); }
   }
 
   function _stopTTS() {
+    if (_activeRow) { _activeRow.classList.remove('read-active'); _activeRow = null; }
     if (window.speechSynthesis) window.speechSynthesis.cancel();
   }
+
+  // ── Utilities ─────────────────────────────────────────
 
   function _makeClickable(text) {
     return text.split('').map(function(ch) {

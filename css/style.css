@@ -3236,3 +3236,111 @@ body:has(#syncWindowBanner[style*="flex"]) .main-content {
 
 /* Closed modal — reuses auth-modal + mig-btn styles */
 /* No extra styles needed; inherits from existing auth modal CSS */
+
+/* ══════════════════════════════════════════════════════
+   F6v2 GRAMMAR — Lesson Cards
+   ══════════════════════════════════════════════════════ */
+
+.grammar-list { display: flex; flex-direction: column; gap: 16px; padding-bottom: 80px; }
+.gram-lesson-header { margin-bottom: 8px; }
+.gram-header-text { font-size: 14px; color: var(--text2); margin-bottom: 6px; }
+.gram-progress-bar { height: 6px; border-radius: 3px; background: var(--border); }
+.gram-progress-fill { height: 100%; border-radius: 3px; background: var(--primary); transition: width .4s; }
+
+.grammar-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 18px; position: relative; }
+.grammar-card.gram-done { border-color: #22c55e; opacity: .88; }
+
+.gram-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.gram-card-meta { display: flex; align-items: center; gap: 8px; }
+.gram-lesson-num { font-size: 12px; color: var(--text2); }
+.gram-hsk-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: rgba(229,57,53,.12); color: var(--primary); }
+.gram-done-badge { font-size: 11px; font-weight: 700; color: #22c55e; background: rgba(34,197,94,.12); padding: 2px 8px; border-radius: 10px; }
+
+.gram-pattern { font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 2px; display: block; }
+.gram-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: block; }
+.gram-explanation { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+
+.gram-examples { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.gram-example { background: rgba(0,0,0,.04); border-radius: 8px; padding: 10px 12px; }
+[data-theme="dark"] .gram-example { background: rgba(255,255,255,.04); }
+.gram-zh { font-size: 18px; margin-bottom: 3px; }
+.gram-py { font-size: 12px; color: var(--primary); margin-bottom: 2px; }
+.gram-meaning { font-size: 12px; color: var(--text2); }
+
+.gram-quiz-section { border-top: 1px solid var(--border); margin-top: 14px; padding-top: 14px; }
+.gram-quiz-label { font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+.gram-quiz-blank { font-size: 15px; margin-bottom: 4px; }
+.gram-quiz-sub { font-size: 11px; color: var(--text2); margin-bottom: 10px; }
+.gram-quiz-opts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.gram-quiz-opt { padding: 6px 14px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); font-size: 15px; cursor: pointer; transition: all .15s; }
+.gram-quiz-opt:hover:not([disabled]) { border-color: var(--primary); color: var(--primary); }
+.gram-quiz-opt.correct { background: rgba(34,197,94,.15); border-color: #22c55e; color: #22c55e; }
+.gram-quiz-opt.wrong { background: rgba(239,68,68,.12); border-color: #ef4444; color: #ef4444; }
+.gram-quiz-opt[disabled] { cursor: default; }
+
+.gram-mark-btn { width: 100%; padding: 10px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 12px; transition: all .15s; }
+.gram-mark-btn:hover:not([disabled]) { border-color: #22c55e; color: #22c55e; background: rgba(34,197,94,.06); }
+.gram-mark-btn[disabled] { opacity: .6; cursor: default; }
+
+/* ══════════════════════════════════════════════════════
+   F7v2 / F8 READING — List + Detail + Listen Mode
+   ══════════════════════════════════════════════════════ */
+
+/* --- List --- */
+.reading-list { display: flex; flex-direction: column; gap: 12px; padding-bottom: 80px; }
+.reading-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color .15s; }
+.reading-card:hover { border-color: var(--primary); }
+.read-card-num { width: 32px; height: 32px; border-radius: 50%; background: rgba(229,57,53,.12); color: var(--primary); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.read-card-body { flex: 1; min-width: 0; }
+.read-card-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.read-card-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; }
+.read-level-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: rgba(229,57,53,.12); color: var(--primary); }
+.read-time { font-size: 12px; color: var(--text2); }
+.read-card-preview { font-size: 13px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.read-card-arrow { color: var(--text2); flex-shrink: 0; }
+
+/* --- Detail view --- */
+.reading-view { padding-bottom: 80px; }
+.read-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.read-header h2 { font-size: 18px; font-weight: 700; }
+
+.read-listen-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; padding: 10px 14px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); }
+.read-listen-btn { padding: 6px 14px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); font-size: 13px; cursor: pointer; transition: border-color .15s, color .15s; }
+.read-listen-btn:hover { border-color: var(--primary); color: var(--primary); }
+.read-speed-group { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.read-speed-label { font-size: 12px; color: var(--text2); }
+.read-speed-btn { padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); background: none; color: var(--text2); font-size: 12px; cursor: pointer; transition: all .15s; }
+.read-speed-btn.active { border-color: var(--primary); color: var(--primary); background: rgba(229,57,53,.08); }
+
+.read-passage { margin-bottom: 20px; }
+.read-sentence-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; }
+.read-sentence-row.read-active { background: rgba(255,235,59,.08); border-radius: 8px; padding: 6px 8px; margin: 0 -8px; }
+.read-sent-play { background: none; border: none; color: var(--text2); cursor: pointer; font-size: 12px; padding: 4px 6px; border-radius: 6px; flex-shrink: 0; margin-top: 6px; transition: background .15s, color .15s; }
+.read-sent-play:hover { background: rgba(229,57,53,.1); color: var(--primary); }
+.read-line { font-size: 20px; line-height: 1.9; flex: 1; }
+.read-pinyin-toggle { margin-top: 8px; }
+
+/* --- Ruby pinyin --- */
+ruby { ruby-align: center; display: inline-ruby; }
+rt { font-size: 11px; color: var(--primary); line-height: 1; }
+.read-passage:not(.show-pinyin) rt { display: none; }
+
+/* --- Comprehension questions --- */
+.read-questions { padding-top: 16px; border-top: 1px solid var(--border); }
+.read-questions h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+.read-question { margin-bottom: 16px; }
+.read-q-text { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.read-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.read-option { padding: 7px 14px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); font-size: 14px; cursor: pointer; transition: all .15s; }
+.read-option:hover:not([disabled]) { border-color: var(--primary); color: var(--primary); }
+.read-option.correct { background: rgba(34,197,94,.15); border-color: #22c55e; color: #22c55e; }
+.read-option.wrong { background: rgba(239,68,68,.12); border-color: #ef4444; color: #ef4444; }
+.read-option[disabled] { cursor: default; }
+
+/* --- F8 Mode tabs --- */
+.read-mode-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+.read-mode-tab { padding: 7px 18px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; }
+.read-mode-tab.active { border-color: var(--primary); color: var(--primary); background: rgba(229,57,53,.08); }
+.read-passage.read-hidden { display: none; }
+.read-reveal-btn { display: block; width: 100%; padding: 10px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 16px; text-align: center; transition: all .15s; }
+.read-reveal-btn:hover { border-color: var(--primary); color: var(--primary); }

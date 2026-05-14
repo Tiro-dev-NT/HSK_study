@@ -114,6 +114,22 @@
         <div class="hw-setup-card">
           <label class="hw-option-row"><input type="checkbox" id="hwShowPinyin" checked/> <span data-vi="Hiện pinyin" data-en="Show pinyin">Hiện pinyin</span></label>
           <label class="hw-option-row"><input type="checkbox" id="hwShowMeaning" checked/> <span data-vi="Hiện nghĩa" data-en="Show meaning">Hiện nghĩa</span></label>
+          <div class="hw-option-row hw-slider-row">
+            <span data-vi="Ô trống/chữ:" data-en="Blank cells:">Ô trống/chữ:</span>
+            <input type="range" id="hwCellsPerChar" min="2" max="12" value="8"/>
+            <span class="hw-slider-val" id="hwCellsVal">8</span>
+          </div>
+        </div>
+
+        <!-- Live preview -->
+        <div class="hw-setup-card">
+          <h3 data-vi="Xem trước trang in" data-en="Print preview">Xem trước trang in</h3>
+          <div class="hw-livepreview-wrap">
+            <div class="hw-livepreview-scale">
+              <div id="hwLivePreview" class="hw-livepreview-inner"></div>
+            </div>
+          </div>
+          <p class="hw-preview-hint" data-vi="Trang đầu tiên · thay đổi tuỳ chọn để cập nhật" data-en="First page · change options to refresh">Trang đầu tiên · thay đổi tuỳ chọn để cập nhật</p>
         </div>
 
         <!-- Generate button -->

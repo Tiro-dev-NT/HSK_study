@@ -2687,3 +2687,29 @@ body {
   .quest-toast { bottom: 70px; left: 12px; right: 12px; transform: translateY(20px); max-width: none; }
   .quest-toast.quest-toast-show { transform: translateY(0); }
 }
+
+/* ═══════════════════════════════════════════════════════
+   HANDWRITING PRINT — LIVE PREVIEW + SLIDER (F.6)
+   ═══════════════════════════════════════════════════════ */
+.hw-slider-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; color: var(--text); }
+.hw-slider-row input[type=range] { flex: 1; accent-color: var(--primary); cursor: pointer; }
+.hw-slider-val { min-width: 22px; text-align: right; font-weight: 700; color: var(--primary); }
+
+.hw-livepreview-wrap {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  margin-top: 8px;
+}
+.hw-livepreview-scale {
+  transform: scale(0.335);
+  transform-origin: top left;
+  width: 298%;
+  pointer-events: none;
+}
+.hw-livepreview-inner { min-height: 297mm; font-family: sans-serif; }
+.hw-lp-empty { padding: 40px; text-align: center; color: #aaa; font-size: 14px; }
+.hw-preview-hint { font-size: 11px; color: var(--text2); text-align: center; margin-top: 6px; }

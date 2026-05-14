@@ -193,6 +193,7 @@ var Handwriting = {
       label.addEventListener('click', function() {
         document.querySelectorAll('.hw-layout-option').forEach(function(l) { l.classList.remove('active'); });
         label.classList.add('active');
+        Handwriting._updateLivePreview();
       });
     });
 
@@ -208,6 +209,20 @@ var Handwriting = {
     if (customInput) {
       customInput.addEventListener('input', function() {
         Handwriting._parseCustom(customInput.value);
+      });
+    }
+
+    var pinyin = document.getElementById('hwShowPinyin');
+    var meaning = document.getElementById('hwShowMeaning');
+    if (pinyin) pinyin.addEventListener('change', Handwriting._updateLivePreview);
+    if (meaning) meaning.addEventListener('change', Handwriting._updateLivePreview);
+
+    var slider = document.getElementById('hwCellsPerChar');
+    var sliderVal = document.getElementById('hwCellsVal');
+    if (slider && sliderVal) {
+      slider.addEventListener('input', function() {
+        sliderVal.textContent = slider.value;
+        Handwriting._updateLivePreview();
       });
     }
 
@@ -293,6 +308,45 @@ var Handwriting = {
     var preview = chars.slice(0, 30).map(function(c) { return c.h; }).join(' ');
     if (chars.length > 30) preview += ' ...';
     charsEl.textContent = preview;
+    Handwriting._updateLivePreview();
+  },
+
+  _updateLivePreview: function() {
+    var container = document.getElementById('hwLivePreview');
+    if (!container) return;
+
+    var chars = Handwriting.selectedChars;
+    if (!chars.length) {
+      container.innerHTML = '<p class="hw-lp-empty">Chọn chữ để xem trước</p>';
+      return;
+    }
+
+    var layoutEl = document.querySelector('input[name="hwLayout"]:checked');
+    var layout = layoutEl ? layoutEl.value : 'row';
+    var showPinyin = document.getElementById('hwShowPinyin') ? document.getElementById('hwShowPinyin').checked : true;
+    var showMeaning = document.getElementById('hwShowMeaning') ? document.getElementById('hwShowMeaning').checked : true;
+    var cellsPerChar = parseInt((document.getElementById('hwCellsPerChar') || {}).value) || 8;
+
+    // Expand for row/grid
+    var previewChars = chars.slice(0, 20);
+    if (layout === 'row' || layout === 'grid') {
+      var seen = {}; var expanded = [];
+      previewChars.forEach(function(c) {
+        c.h.split('').forEach(function(ch) {
+          if (/[一-鿿]/.test(ch) && !seen[ch]) { seen[ch] = true; expanded.push({ h: ch, p: c.p, v: c.v, e: c.e, ex: c.ex }); }
+        });
+      });
+      previewChars = layout === 'grid' ? expanded.slice(0, 1) : expanded.slice(0, 10);
+    }
+
+    var body;
+    if (layout === 'row') body = Handwriting._buildRowLayout(previewChars, showPinyin, showMeaning, cellsPerChar);
+    else if (layout === 'grid') body = Handwriting._buildGridLayout(previewChars, showPinyin, showMeaning);
+    else body = Handwriting._buildSentenceLayout(previewChars, showPinyin, showMeaning);
+
+    container.innerHTML = '<style>' + Handwriting._getPrintCSS() +
+      ' .print-page{page-break-after:auto;margin:0;}' +
+      '</style>' + body;
   },
 
   // ── Generate printable page ───────────────────────────
@@ -321,7 +375,8 @@ var Handwriting = {
     }
 
     var _doOpen = function(logoSrc) {
-      var html = Handwriting._buildPrintHTML(chars, layout, showPinyin, showMeaning, logoSrc);
+      var cellsPerChar = parseInt((document.getElementById('hwCellsPerChar') || {}).value) || 8;
+      var html = Handwriting._buildPrintHTML(chars, layout, showPinyin, showMeaning, logoSrc, cellsPerChar);
       var win = window.open('', '_blank');
       if (!win) {
         alert('Trình duyệt đã chặn popup. Vui lòng cho phép popup từ trang này rồi thử lại.');
@@ -349,12 +404,12 @@ var Handwriting = {
       .catch(function() { _doOpen(null); });
   },
 
-  _buildPrintHTML: function(chars, layout, showPinyin, showMeaning, logoSrc) {
+  _buildPrintHTML: function(chars, layout, showPinyin, showMeaning, logoSrc, cellsPerChar) {
     var css = Handwriting._getPrintCSS();
     var body = '';
 
     if (layout === 'row') {
-      body = Handwriting._buildRowLayout(chars, showPinyin, showMeaning);
+      body = Handwriting._buildRowLayout(chars, showPinyin, showMeaning, cellsPerChar);
     } else if (layout === 'grid') {
       body = Handwriting._buildGridLayout(chars, showPinyin, showMeaning);
     } else {
@@ -374,10 +429,14 @@ var Handwriting = {
       '</body></html>';
   },
 
-  // ── Layout A: Row (8 chars/page × 11 practice cells) ──
-  _buildRowLayout: function(chars, showPinyin, showMeaning) {
+  // ── Layout A: Row (chars/page configurable by cellsPerChar) ──
+  _buildRowLayout: function(chars, showPinyin, showMeaning, cellsPerChar) {
+    cellsPerChar = cellsPerChar || 8;
+    var faintCount = Math.min(3, cellsPerChar);
+    var blankCount = Math.max(0, cellsPerChar - faintCount);
+    // Estimate chars per page: A4 printable height ~257mm, each row 18mm
+    var perPage = Math.max(1, Math.floor(257 / 18));
     var pages = [];
-    var perPage = 8;
     for (var p = 0; p < chars.length; p += perPage) {
       var pageChars = chars.slice(p, p + perPage);
       var rows = '';
@@ -389,8 +448,8 @@ var Handwriting = {
         header += '</div>';
 
         var cells = '';
-        for (var i = 0; i < 3; i++) cells += '<div class="tiange tiange-faint"><span class="tiange-char">' + c.h + '</span></div>';
-        for (var j = 0; j < 8; j++) cells += '<div class="tiange"></div>';
+        for (var i = 0; i < faintCount; i++) cells += '<div class="tiange tiange-faint"><span class="tiange-char">' + c.h + '</span></div>';
+        for (var j = 0; j < blankCount; j++) cells += '<div class="tiange"></div>';
 
         rows += '<div class="row-line">' + header + '<div class="row-cells">' + cells + '</div></div>';
       });

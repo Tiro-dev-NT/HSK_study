@@ -441,8 +441,26 @@ body {
 
 /* â”€â”€ QUIZ â”€â”€ */
 .quiz-setup { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 20px; }
-.setup-row { display: flex; align-items: center; gap: 16px; }
+.setup-row { display: flex; align-items: center; gap: 12px; }
 .setup-row label { font-size: 14px; font-weight: 500; color: var(--text2); min-width: 70px; }
+.setup-row select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--surface);
+  border: 1.5px solid var(--primary);
+  border-radius: 20px;
+  padding: 5px 32px 5px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23e05252' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color .2s, box-shadow .2s;
+}
+.setup-row select:hover { box-shadow: 0 0 0 3px rgba(224,82,82,.15); }
+.setup-row select:focus { outline: none; box-shadow: 0 0 0 3px rgba(224,82,82,.25); }
 .quiz-area-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .quiz-area-header .quiz-progress { margin-bottom: 0; flex: 1; }
 .quiz-back-btn { font-size: 13px; padding: 4px 10px; white-space: nowrap; flex-shrink: 0; }

@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['loadSettings',         function() { Settings.load(); }],
     ['setupGames',           function() { if (typeof Games !== 'undefined') Games.setup(); }],
     ['setupAuth',            function() { if (typeof Auth !== 'undefined') { Auth.setup(); Auth.init(); Auth.checkExtensionBridge(); } }],
+    ['setupSyncWindow',      function() { if (typeof SyncWindow !== 'undefined') SyncWindow.init(); }],
     ['setupRightSidebar',   function() { if (typeof RightSidebar !== 'undefined') RightSidebar.init(); }],
     ['setupRevealBtn',      function() {
       var btn = document.getElementById('tyRevealBtn');

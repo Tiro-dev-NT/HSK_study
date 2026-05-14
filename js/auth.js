@@ -128,6 +128,12 @@ var Auth = {
   },
 
   _handleMigration: async function(userId) {
+    // CUTOFF GUARD: không migrate sau 15/6/2026
+    if (typeof SyncWindow !== 'undefined' && !SyncWindow.canSync()) {
+      console.log('[AUTH] Migration skipped — cửa sổ đồng bộ đã đóng.');
+      return;
+    }
+
     var local = Auth._localSummary();
     if (!local.hasData) return;
 
@@ -136,8 +142,10 @@ var Auth = {
     var cloudEmpty = !res.data || (res.data.total_xp || 0) === 0;
 
     if (cloudEmpty) {
-      // Auto upload — no conflict
+      // Auto upload — no conflict; sanitize trước khi push
+      if (typeof SyncWindow !== 'undefined') SyncWindow.sanitizeMigrationData();
       await Sync.pushAll();
+      if (typeof SyncWindow !== 'undefined') SyncWindow.markMigrated();
       showToast('✅ Đã tải ' + local.learned + ' từ đã học lên cloud!');
     } else {
       // Both local and cloud have data → ask user
@@ -221,19 +229,24 @@ var Auth = {
     // Migration buttons
     document.getElementById('migBtnUpload')?.addEventListener('click', async function() {
       showToast('📤 Đang upload...');
+      if (typeof SyncWindow !== 'undefined') SyncWindow.sanitizeMigrationData();
       await Sync.pushAll();
+      if (typeof SyncWindow !== 'undefined') SyncWindow.markMigrated();
       showToast('✅ Đã upload local lên cloud!');
       Auth.closeMigrationModal();
     });
     document.getElementById('migBtnDownload')?.addEventListener('click', async function() {
       showToast('📥 Đang tải cloud...');
       await Sync.pullAll();
+      // Download = lấy cloud về, không cần markMigrated (không có local→cloud push)
       showToast('✅ Đã lấy dữ liệu từ cloud!');
       Auth.closeMigrationModal();
     });
     document.getElementById('migBtnMerge')?.addEventListener('click', async function() {
       showToast('🔀 Đang gộp...');
+      if (typeof SyncWindow !== 'undefined') SyncWindow.sanitizeMigrationData();
       await Sync.mergeAll();
+      if (typeof SyncWindow !== 'undefined') SyncWindow.markMigrated();
       showToast('✅ Đã gộp dữ liệu!');
       Auth.closeMigrationModal();
     });

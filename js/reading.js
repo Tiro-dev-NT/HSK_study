@@ -11,6 +11,7 @@ var Reading = (function() {
   var _ttsRate = 1;
   var _lastTTSText = '';
   var _activeRow = null;
+  var _mode = 'read'; // 'read' | 'listen'
 
   // Split Chinese text into sentences on 。！？… boundaries
   function _splitSentences(text, pinyin) {
@@ -34,6 +35,7 @@ var Reading = (function() {
     _ttsRate = 1;
     _lastTTSText = '';
     _activeRow = null;
+    _mode = 'read';
     _bindEvents();
     _renderList();
   }
@@ -134,6 +136,7 @@ var Reading = (function() {
     _answers = {};
     _lastTTSText = '';
     _activeRow = null;
+    _mode = 'read';
 
     document.getElementById('readingList').style.display = 'none';
     var view = document.getElementById('readingView');
@@ -160,6 +163,13 @@ var Reading = (function() {
         '<p class="read-line">' + _makeRuby(s.zh, s.py) + '</p>' +
       '</div>';
     }).join('');
+
+    // Mode tabs (F8)
+    var tabsHtml =
+      '<div class="read-mode-tabs">' +
+        '<button class="read-mode-tab' + (_mode === 'read' ? ' active' : '') + '" data-mode="read">📖 Đọc</button>' +
+        '<button class="read-mode-tab' + (_mode === 'listen' ? ' active' : '') + '" data-mode="listen">🔊 Nghe</button>' +
+      '</div>';
 
     // Listening controls
     var listeningHtml =
@@ -196,13 +206,20 @@ var Reading = (function() {
       '</div>';
     }).join('');
 
+    var passageClass = 'read-passage' +
+      (_showPinyin ? ' show-pinyin' : '') +
+      (_mode === 'listen' ? ' read-hidden' : '');
+
+    var revealVisible = (_mode === 'listen' && Object.keys(_answers).length > 0) ? '' : 'display:none';
+
     view.innerHTML =
       '<div class="read-header">' +
         '<button class="btn-back" id="readBack">← Quay lại</button>' +
         '<h2>' + title + '</h2>' +
       '</div>' +
+      tabsHtml +
       listeningHtml +
-      '<div class="read-passage' + (_showPinyin ? ' show-pinyin' : '') + '">' +
+      '<div class="' + passageClass + '">' +
         '<div class="read-text">' + textHtml + '</div>' +
         '<button class="btn-sm read-pinyin-toggle" id="togglePinyin">' +
           (_showPinyin ? 'Ẩn pinyin' : 'Hiện pinyin') +
@@ -211,7 +228,8 @@ var Reading = (function() {
       '<div class="read-questions">' +
         '<h3>Câu hỏi</h3>' +
         questionsHtml +
-      '</div>';
+      '</div>' +
+      '<button id="readRevealPassage" class="read-reveal-btn" style="' + revealVisible + '">👁 Hiện bài đọc</button>';
 
     // Back
     document.getElementById('readBack').addEventListener('click', function() {
@@ -235,6 +253,36 @@ var Reading = (function() {
         _renderPassage();
       });
     });
+
+    // Mode tabs — DOM-only, no re-render
+    view.querySelectorAll('.read-mode-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var newMode = this.dataset.mode;
+        if (newMode === _mode) return;
+        _mode = newMode;
+        view.querySelectorAll('.read-mode-tab').forEach(function(t) {
+          t.classList.toggle('active', t.dataset.mode === newMode);
+        });
+        var passage = view.querySelector('.read-passage');
+        if (newMode === 'listen') {
+          passage.classList.add('read-hidden');
+          var fullText = sentences.map(function(s) { return s.zh; }).join('');
+          _playTTS(fullText);
+        } else {
+          passage.classList.remove('read-hidden');
+          _stopTTS();
+        }
+      });
+    });
+
+    // Reveal passage button
+    var revealBtn = document.getElementById('readRevealPassage');
+    if (revealBtn) {
+      revealBtn.addEventListener('click', function() {
+        view.querySelector('.read-passage').classList.remove('read-hidden');
+        this.style.display = 'none';
+      });
+    }
 
     // Play all
     document.getElementById('readPlayAll').addEventListener('click', function() {

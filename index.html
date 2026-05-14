@@ -20,6 +20,10 @@
   <link rel="stylesheet" href="css/handwriting-print.css?v=1.0"/>
 </head>
 <body>
+
+  <!-- ════ SYNC WINDOW BANNER (≤10 ngày → yellow, ≤3 ngày → red) ════ -->
+  <div id="syncWindowBanner" class="sync-banner" style="display:none" role="alert"></div>
+
   <!-- SIDEBAR (Desktop) -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
@@ -118,7 +122,7 @@
       <!-- Token balance -->
       <div class="rs-section rs-tokens-section">
         <div class="rs-token-row">
-          <span class="rs-token-label">🪙 Token</span>
+          <span class="rs-token-label"><img src="/token.png" class="token-img" alt=""> Token</span>
           <strong class="rs-token-balance" id="rs-token-balance">0</strong>
         </div>
         <a class="rs-quest-link" data-page="quests" href="#" onclick="Router.navigateTo('quests');return false;">⚔️ Nhiệm vụ →</a>
@@ -198,7 +202,7 @@
     <header class="mobile-header">
       <img class="mobile-logo-img" src="assets/logo.png" alt="Hanzi Genz"/>
       <div class="header-actions">
-        <span class="header-token" id="header-token-badge" title="Token của bạn">🪙 <span id="token-count">0</span></span>
+        <span class="header-token" id="header-token-badge" title="Token của bạn"><img src="/token.png" class="token-img" alt=""> <span id="token-count">0</span> token</span>
         <button class="btn-icon" id="themeToggleMobile">🌙</button>
         <button class="btn-lang-sm" id="langToggleMobile">VI</button>
         <button class="btn-icon auth-login-btn-sm" id="authLoginBtnMobile" title="Đăng nhập">👤</button>
@@ -346,12 +350,14 @@
   <script src="js/data/hsk6ad.js?v=2.9"></script>
   <script src="js/data/hsk6ae.js?v=2.9"></script>
   <script src="js/data/hsk6af.js?v=2.9"></script>
+  <script src="js/data/grammar.js?v=1.0"></script>
+  <script src="js/data/readings.js?v=1.1"></script>
   <script src="js/radicals.js?v=2.5"></script>
   <!-- ══ Utility / engine (no DOM dependency) ══ -->
   <script src="js/srs.js?v=2.5"></script>
   <!-- ══ Core modules (ordered by dependency) ══ -->
   <script src="js/state.js?v=2.8"></script>
-  <script src="js/router.js?v=3.0"></script>
+  <script src="js/router.js?v=3.1"></script>
   <script src="js/theme.js?v=2.5"></script>
   <script src="js/gamification.js?v=3.1"></script>
   <script src="js/dictionary.js?v=2.5"></script>
@@ -372,7 +378,9 @@
   <script src="js/games/cloze.js?v=1.2"></script>
   <!-- ══ Entry point (must be last) ══ -->
   <script src="js/quests.js?v=1.0"></script>
-  <script src="js/handwriting.js?v=1.0"></script>
+  <script src="js/grammar.js?v=1.1"></script>
+  <script src="js/reading.js?v=1.2"></script>
+  <script src="js/handwriting.js?v=1.1"></script>
   <script src="js/app.js?v=2.5"></script>
   <!-- ══ CDN libs ══ -->
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
@@ -380,6 +388,7 @@
   <script src="js/supabase.js?v=2.5"></script>
   <script src="js/auth.js?v=2.5"></script>
   <script src="js/sync.js?v=2.8"></script>
+  <script src="js/sync-window.js?v=1.0"></script>
   <script src="js/rightsidebar.js?v=2.7"></script>
   <!-- ════ SETTINGS MODAL ════ -->
   <div class="settings-overlay" id="settingsOverlay" style="display:none" onclick="if(event.target===this)closeSettings()">
@@ -585,6 +594,39 @@
 
       <button class="btn-guest-continue" onclick="Auth.closeLoginModal()">Tiếp tục không cần đăng nhập →</button>
       <p class="auth-legal">Bằng cách đăng nhập, bạn đồng ý với <a href="/terms.html" target="_blank">Điều khoản</a> và <a href="/privacy.html" target="_blank">Chính sách Bảo mật</a> của Hanzi Genz.</p>
+    </div>
+  </div>
+
+  <!-- ════ SYNC WINDOW CLOSED MODAL (hiện 1 lần sau 15/6/2026) ════ -->
+  <div class="auth-overlay" id="syncWindowClosedModal" style="display:none">
+    <div class="auth-modal">
+      <div class="auth-modal-icon">🔒</div>
+      <h2 class="auth-modal-title">Cửa sổ đồng bộ đã đóng</h2>
+      <p class="auth-modal-sub">
+        Kể từ <strong>15/6/2026</strong>, không thể đồng bộ dữ liệu local lên cloud nữa.<br><br>
+        Bạn vẫn có thể tiếp tục học offline — nhưng tiến độ sẽ <strong>mất nếu xóa cache</strong>
+        và không được tính vào leaderboard hay tính năng premium.<br><br>
+        Để bảo vệ dữ liệu, hãy <strong>đăng ký tài khoản</strong> và học với cloud từ bây giờ.
+      </p>
+      <div class="mig-buttons">
+        <button class="mig-btn" onclick="SyncWindow.closeClosedModal(); Auth.openLoginModal();">
+          <span class="mig-btn-icon">🔑</span>
+          <span class="mig-btn-label">Đăng nhập / Đăng ký</span>
+          <span class="mig-btn-desc">Tạo tài khoản và học với cloud</span>
+        </button>
+        <button class="mig-btn mig-btn-danger" onclick="SyncWindow.closeClosedModal()">
+          <span class="mig-btn-icon">📖</span>
+          <span class="mig-btn-label">Tiếp tục học offline</span>
+          <span class="mig-btn-desc">Không đồng bộ — dữ liệu chỉ ở trình duyệt này</span>
+        </button>
+      </div>
+    </div>
+    <div class="sm-footer">
+      <span>© 2026 Hanzi Genz</span>
+      <span class="sf-dot">·</span>
+      <a href="/privacy.html" target="_blank">Chính sách Bảo mật</a>
+      <span class="sf-dot">·</span>
+      <a href="/terms.html" target="_blank">Điều khoản Dịch vụ</a>
     </div>
   </div>
 

@@ -61,11 +61,11 @@ var SentenceBuilder = {
   },
 
   _renderHTML: function() {
-    return '<div class="sent-game premium">' +
-      '<div class="boss-header">' +
+    return '<div class="sent-game">' +
+      '<div class="sent-header">' +
         '<button class="btn-exit" id="sentExit">✕</button>' +
-        '<h2 style="margin:0">📝 Sentence Builder</h2>' +
-        '<div class="sent-progress" id="sentProgress">0/' + SentenceBuilder.totalRounds + '</div>' +
+        '<div class="sent-title">📝 Sentence Builder</div>' +
+        '<div class="sent-progress" id="sentProgress">1/' + SentenceBuilder.totalRounds + '</div>' +
       '</div>' +
       '<div class="sent-progress-dots" id="sentDots"></div>' +
       '<div class="sent-prompt" id="sentPrompt"></div>' +
@@ -166,7 +166,7 @@ var SentenceBuilder = {
     // Empty remaining slots
     var remaining = chars.length - SentenceBuilder.selected.length;
     for (var i = 0; i < remaining; i++) {
-      slotHTML += '<span class="sent-slot sent-empty" data-pos="' + (SentenceBuilder.selected.length + i) + '">_</span>';
+      slotHTML += '<span class="sent-slot sent-empty" data-pos="' + (SentenceBuilder.selected.length + i) + '"></span>';
     }
     slotsEl.innerHTML = slotHTML;
 

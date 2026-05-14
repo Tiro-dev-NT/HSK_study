@@ -224,6 +224,7 @@ var Handwriting = {
   _loadDeckChars: function(deckId) {
     if (!deckId) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
     var decks = JSON.parse(localStorage.getItem('hsk_decks') || '[]');
+    if (!Array.isArray(decks)) decks = [];
     var deck = decks.find(function(d) { return d.id === deckId; });
     if (!deck || !deck.wordIds) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
 
@@ -256,6 +257,7 @@ var Handwriting = {
     var select = document.getElementById('hwDeckSelect');
     if (!select) return;
     var decks = JSON.parse(localStorage.getItem('hsk_decks') || '[]');
+    if (!Array.isArray(decks)) decks = [];
     decks.forEach(function(d) {
       var opt = document.createElement('option');
       opt.value = d.id;

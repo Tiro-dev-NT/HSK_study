@@ -280,6 +280,7 @@ var SentenceBuilder = {
     document.getElementById('sentBank').style.display = 'none';
     document.querySelector('.sent-actions').style.display = 'none';
     document.getElementById('sentFeedback').style.display = 'none';
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('sentence_done');
 
     // Save score
     var scores = Games.getScores();

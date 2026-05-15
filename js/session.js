@@ -42,7 +42,11 @@ var Session = {
           fcSession = AppState.fcSession;
           setTimeout(function() {
             var fa = document.getElementById('flashcardArea');
-            if (fa) { fa.style.display = 'block'; Session.showFcCard(); }
+            if (fa) {
+              fa.style.display = 'block';
+              Session.showFcCard();
+              fa.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           }, 100);
         }
       } catch(e) { console.error('[Session] mv_learn_words parse error:', e); }

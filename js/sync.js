@@ -236,7 +236,7 @@ var Sync = {
           var local = AppState.srsData[row.hanzi];
           var localTags = (local && local.tags) ? local.tags : [];
           var cloudTags = row.tags || [];
-          // BUG-03: Union tags
+          // union tags from both sides
           var mergedTags = localTags.slice();
           cloudTags.forEach(function(t) {
             if (mergedTags.indexOf(t) < 0) mergedTags.push(t);
@@ -249,13 +249,13 @@ var Sync = {
               reps: row.reps || 0, lapses: row.lapses || 0, lastReview: row.last_review || null,
               tags: mergedTags
             };
-            // BUG-14: restore word_data if present
+            // restore word_data if present (imported vocab metadata)
             if (row.word_data) Object.assign(entry, row.word_data);
             AppState.srsData[row.hanzi] = entry;
           } else if (local) {
             // Local thắng nhưng vẫn union tags
             local.tags = mergedTags;
-            // BUG-14: if local missing word_data fields but cloud has them
+            // if local missing word_data fields but cloud has them, restore
             if (row.word_data && !local.source) Object.assign(local, row.word_data);
           }
         });
@@ -267,7 +267,7 @@ var Sync = {
       if (!xr.error && xr.data) {
         var d = xr.data;
         AppState.xpData.total = Math.max(AppState.xpData.total || 0, d.total_xp || 0);
-        // BUG-07: merge dailyXP (max per day)
+        // merge dailyXP: take max per day
         if (d.daily_xp) {
           var localDaily = AppState.xpData.dailyXP || {};
           var cloudDaily = d.daily_xp || {};
@@ -330,7 +330,7 @@ var Sync = {
         };
         if (mergedGS.memory_best === 9999) delete mergedGS.memory_best;
 
-        // BUG-08: C5-C7 game scores
+        // game scores: C5-C7 premium games
         // bossBestLevel: union cleared levels
         var localBoss = localGS.bossBestLevel || {};
         var cloudBoss = cloudGS.bossBestLevel || {};
@@ -348,6 +348,10 @@ var Sync = {
         // sentenceBest: max
         mergedGS.sentenceBest = Math.max(localGS.sentenceBest || 0, cloudGS.sentenceBest || 0);
         if (mergedGS.sentenceBest === 0) delete mergedGS.sentenceBest;
+
+        // handwritingBest: max
+        mergedGS.handwritingBest = Math.max(localGS.handwritingBest || 0, cloudGS.handwritingBest || 0);
+        if (mergedGS.handwritingBest === 0) delete mergedGS.handwritingBest;
 
         localStorage.setItem('game_scores', JSON.stringify(mergedGS));
       }

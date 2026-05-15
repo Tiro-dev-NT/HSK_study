@@ -246,6 +246,7 @@ var Grammar = (function() {
         if (markBtn && !markBtn.disabled) {
           var pid = markBtn.dataset.id;
           _saveProgress(pid, true);
+          if (typeof Quests !== 'undefined') Quests.incrementMetric('grammar_done');
 
           var card = markBtn.closest('.grammar-card');
           card.classList.add('gram-done');

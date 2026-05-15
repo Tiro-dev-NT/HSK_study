@@ -2844,6 +2844,20 @@ body {
 }
 .quest-card:hover { border-color: var(--primary); }
 .quest-card.quest-card-done { opacity: .6; }
+.quest-card.quest-card-premium { border-color: #f59e0b; }
+.quest-card.quest-card-premium:hover { border-color: #d97706; }
+.quest-premium-badge {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 700;
+  color: #92400e;
+  background: linear-gradient(135deg, #fde68a, #fbbf24);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: .02em;
+}
 .quest-card-top {
   display: flex;
   align-items: flex-start;

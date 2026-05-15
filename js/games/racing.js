@@ -208,6 +208,7 @@ var RacingQuiz = {
     var playerRank = RacingQuiz.finishOrder.indexOf(0) + 1;
     var xp = playerRank === 1 ? 100 : playerRank === 2 ? 60 : playerRank === 3 ? 30 : 0;
     if (xp > 0 && typeof addXP === 'function') addXP(xp);
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('racing_done');
 
     // Save best
     var scores = Games.getScores();

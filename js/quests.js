@@ -52,6 +52,16 @@ var DAILY_TIER_SKULL = [
   { id: 'perfect_day',  icon: '💀', title: 'Ngày hoàn hảo',      desc: 'Hoàn thành cả 2 quest kia + SRS', metric: 'perfect_day',    target: 1,  rewards: { token: 50, xp: 80  } },
 ];
 
+// Basic+ exclusive quests — shown as 4th daily slot for subscribers
+var DAILY_TIER_PREMIUM = [
+  { id: 'racing_finish',  icon: '🏎️', title: 'Tay đua tốc độ',      desc: 'Hoàn thành Racing Quiz 1 lần',    metric: 'racing_done',   target: 1, rewards: { token: 20, xp: 30 }, requires: 'basic' },
+  { id: 'sentence_build', icon: '📝', title: 'Xây câu hoàn hảo',    desc: 'Hoàn thành Sentence Builder',     metric: 'sentence_done', target: 1, rewards: { token: 20, xp: 30 }, requires: 'basic' },
+  { id: 'listen_session', icon: '🎧', title: 'Luyện nghe chuyên sâu',desc: 'Dùng chế độ Nghe trong Reading', metric: 'listen_used',   target: 1, rewards: { token: 25, xp: 35 }, requires: 'basic' },
+  { id: 'boss_premium',   icon: '👑', title: 'Chiến binh tinh nhuệ', desc: 'Thắng Boss Battle 2 lần hôm nay',metric: 'boss_won',      target: 2, rewards: { token: 30, xp: 40 }, requires: 'basic' },
+  { id: 'grammar_lesson', icon: '📖', title: 'Học ngữ pháp',         desc: 'Hoàn thành 1 bài ngữ pháp',      metric: 'grammar_done',  target: 1, rewards: { token: 15, xp: 25 }, requires: 'basic' },
+  { id: 'reading_passage',icon: '📰', title: 'Đọc hiểu nâng cao',   desc: 'Đọc 1 đoạn văn trong Reading',   metric: 'reading_done',  target: 1, rewards: { token: 15, xp: 20 }, requires: 'basic' },
+];
+
 var WEEKLY_QUESTS = [
   { id: 'w_100_cards',  icon: '📖', title: 'Học sinh tiêu biểu', desc: 'Học 100 thẻ trong tuần',          metric: 'weekly_cards',   target: 100,rewards: { token: 50,  xp: 100 } },
   { id: 'w_5_daily',    icon: '🏆', title: 'Tuần hoàn hảo',      desc: 'Daily Challenge 5 ngày',          metric: 'weekly_daily_done',target:5, rewards: { token: 80,  xp: 150 } },
@@ -98,7 +108,7 @@ var QUEST_CHAINS = {
 };
 
 // ── All daily quests flat (for lookup by id) ───────────
-var ALL_DAILY_QUESTS = DAILY_TIER_EASY.concat(DAILY_TIER_NORMAL, DAILY_TIER_HARD, DAILY_TIER_SKULL);
+var ALL_DAILY_QUESTS = DAILY_TIER_EASY.concat(DAILY_TIER_NORMAL, DAILY_TIER_HARD, DAILY_TIER_SKULL, DAILY_TIER_PREMIUM);
 
 var TOKEN_IMG = '<img src="token_2.png" class="token-img" width="14" height="14" alt="" style="vertical-align:middle;margin:0 2px">';
 
@@ -125,7 +135,9 @@ var Quests = {
         daily_challenge_done: false, boss_won: 0, xp_earned_today: 0,
         dict_opened: 0, tts_clicked: 0, sessions_done: 0, new_cards: 0,
         hard_studied: 0, typing_answers: 0, perfect_mcq: 0,
-        deck_completed: 0, app_opened: 1, perfect_day: 0
+        deck_completed: 0, app_opened: 1, perfect_day: 0,
+        racing_done: 0, sentence_done: 0, listen_used: 0,
+        grammar_done: 0, reading_done: 0
       };
     } else if (!qd.metrics || qd.metrics.date !== today) {
       qd.metrics = {
@@ -134,7 +146,9 @@ var Quests = {
         daily_challenge_done: false, boss_won: 0, xp_earned_today: 0,
         dict_opened: 0, tts_clicked: 0, sessions_done: 0, new_cards: 0,
         hard_studied: 0, typing_answers: 0, perfect_mcq: 0,
-        deck_completed: 0, app_opened: 1, perfect_day: 0
+        deck_completed: 0, app_opened: 1, perfect_day: 0,
+        racing_done: 0, sentence_done: 0, listen_used: 0,
+        grammar_done: 0, reading_done: 0
       };
     } else {
       // Mark app opened for login_bonus quest
@@ -185,14 +199,28 @@ var Quests = {
     return AppState.tokenData.balance || 0;
   },
 
-  // ── Daily pick (1 ⚡ + 1 📚 + 1 {🔥|💀}) ─────────────
+  // ── Daily pick (1 ⚡ + 1 📚 + 1 {🔥|💀} + 1 👑 for Basic+) ──
   _pickDaily: function(dateStr) {
     var seed  = Quests._seedFromStr(dateStr);
-    var easy  = Quests._seededPick(DAILY_TIER_EASY,  seed,       1);
-    var norm  = Quests._seededPick(DAILY_TIER_NORMAL, seed + 1,  1);
+    var easy  = Quests._seededPick(DAILY_TIER_EASY,   seed,      1);
+    var norm  = Quests._seededPick(DAILY_TIER_NORMAL,  seed + 1, 1);
     var pool  = (seed % 3 === 0) ? DAILY_TIER_SKULL : DAILY_TIER_HARD;
-    var hard  = Quests._seededPick(pool,              seed + 2,  1);
-    return [easy[0].id, norm[0].id, hard[0].id];
+    var hard  = Quests._seededPick(pool,               seed + 2, 1);
+    var ids   = [easy[0].id, norm[0].id, hard[0].id];
+    if (Quests._isPremium()) {
+      var prem = Quests._seededPick(DAILY_TIER_PREMIUM, seed + 3, 1);
+      ids.push(prem[0].id);
+    }
+    return ids;
+  },
+
+  _isPremium: function() {
+    try {
+      if (typeof Monetization !== 'undefined' && typeof Monetization.isPro === 'function') {
+        return Monetization.isPro() === true;
+      }
+    } catch(e) {}
+    return false;
   },
 
   // ── Weekly pick (2 from pool) ──────────────────────────
@@ -302,6 +330,7 @@ var Quests = {
     var def = type === 'weekly' ? Quests._getWeeklyDef(questId) : Quests._getDef(questId);
     if (!def) return;
     if (prog.current < def.target) return;
+    if (def.requires && !Quests._isPremium()) return;
 
     prog.claimed = true;
     AppState.saveQuests();
@@ -344,7 +373,7 @@ var Quests = {
   },
 
   _showClaimToast: function(def) {
-    Quests._toast('🎉 +' + def.rewards.token + '🪙' + (def.rewards.xp ? ' +' + def.rewards.xp + 'XP' : '') + ' — ' + def.title, 'quest-claim');
+    Quests._toast('🎉 +' + def.rewards.token + ' token' + (def.rewards.xp ? ' +' + def.rewards.xp + 'XP' : '') + ' — ' + def.title, 'quest-claim');
   },
 
   _toast: function(msg, cls) {
@@ -446,11 +475,12 @@ var Quests = {
       if (!def) return;
       var pct    = Math.min(100, Math.round(prog.current / def.target * 100));
       var isDone = prog.current >= def.target;
-      html += '<div class="quest-card' + (prog.claimed ? ' quest-card-done' : '') + '">' +
+      var premBadge = def.requires ? '<span class="quest-premium-badge">⭐ Basic+</span>' : '';
+      html += '<div class="quest-card' + (prog.claimed ? ' quest-card-done' : '') + (def.requires ? ' quest-card-premium' : '') + '">' +
         '<div class="quest-card-top">' +
           '<span class="quest-card-icon">' + def.icon + '</span>' +
           '<div class="quest-card-info">' +
-            '<div class="quest-card-title">' + def.title + '</div>' +
+            '<div class="quest-card-title">' + def.title + premBadge + '</div>' +
             '<div class="quest-card-desc">' + def.desc + '</div>' +
           '</div>' +
           (prog.claimed
@@ -463,7 +493,7 @@ var Quests = {
         '<div class="quest-progress-bar"><div class="quest-progress-fill" style="width:' + pct + '%"></div></div>' +
         '<div class="quest-card-footer">' +
           '<span class="quest-progress-label">' + prog.current + ' / ' + def.target + '</span>' +
-          '<span class="quest-rewards">+' + def.rewards.token + '🪙' + (def.rewards.xp ? ' +' + def.rewards.xp + 'XP' : '') + '</span>' +
+          '<span class="quest-rewards">+' + def.rewards.token + TOKEN_IMG + (def.rewards.xp ? ' +' + def.rewards.xp + 'XP' : '') + '</span>' +
         '</div>' +
       '</div>';
     });

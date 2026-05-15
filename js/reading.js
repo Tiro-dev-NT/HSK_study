@@ -60,6 +60,7 @@ var Reading = (function() {
         if (typeof Quests !== 'undefined' && Quests.spendToken(LISTEN_COST, 'Mở khóa Nghe 24h')) {
           _unlockListen();
           g.style.display = 'none';
+          if (typeof Quests !== 'undefined') Quests.incrementMetric('listen_used');
           // trigger listen mode
           var listenTab = document.querySelector('.read-mode-tab[data-mode="listen"]');
           if (listenTab) listenTab.click();
@@ -206,6 +207,7 @@ var Reading = (function() {
     document.getElementById('readingList').style.display = 'none';
     var view = document.getElementById('readingView');
     view.style.display = '';
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('reading_done');
     _renderPassage();
   }
 

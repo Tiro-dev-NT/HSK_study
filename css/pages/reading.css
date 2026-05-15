@@ -1,5 +1,4 @@
    F6v2 GRAMMAR — Controls + Lesson Cards
-   ══════════════════════════════════════════════════════ */
 
 /* Level tab selector (shared with Reading) */
 .grammar-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }

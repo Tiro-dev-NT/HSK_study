@@ -86,7 +86,6 @@
 /* â•â• ANKI-STYLE DECK DETAIL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
    WORD OF THE DAY (F1)
-   ═══════════════════════════════════════════════════════ */
 .wotd-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 24px; }
 .wotd-header { margin-bottom: 12px; }
 .wotd-badge { font-size: 14px; font-weight: 600; color: var(--primary); background: var(--primary-light, var(--primary))11; padding: 4px 12px; border-radius: 20px; }
@@ -141,7 +140,6 @@
 
 
    K.3 — PRICING PAGE
-══════════════════════════════════════════════ */
 .pricing-page { padding-bottom: 80px; }
 .pricing-hero { text-align: center; padding: 24px 0 20px; }
 .pricing-hero h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
@@ -169,7 +167,6 @@
 
 
    K.8 — ADMIN DASHBOARD
-══════════════════════════════════════════════ */
 .admin-page { padding-bottom: 80px; }
 .admin-header { padding: 16px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
 .admin-header h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }

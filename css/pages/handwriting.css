@@ -1,5 +1,4 @@
    HANDWRITING PRINT — LIVE PREVIEW + SLIDER (F.6)
-   ═══════════════════════════════════════════════════════ */
 .hw-slider-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; color: var(--text); }
 .hw-slider-row input[type=range] { flex: 1; accent-color: var(--primary); cursor: pointer; }
 .hw-slider-val { min-width: 22px; text-align: right; font-weight: 700; color: var(--primary); }

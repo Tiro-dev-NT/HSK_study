@@ -8,8 +8,7 @@
 
 var Auth = {
   user: null,
-  _tab: 'login',       // 'login' | 'register'
-  _loggingOut: false,  // true only when user explicitly clicks logout
+  _tab: 'login',  // 'login' | 'register'
 
   // ── Tab switch ─────────────────────────────────────
   switchTab: function(tab) {
@@ -122,15 +121,11 @@ var Auth = {
         Auth._saveUserCache(session.user);
         await Auth._onSignIn(session.user, true);
       } else if (event === 'SIGNED_OUT') {
-        // Only act on SIGNED_OUT when the user clicked logout explicitly.
-        // Ignore Supabase-initiated SIGNED_OUT (token refresh failure on paused project).
-        if (Auth._loggingOut) {
-          Auth._loggingOut = false;
-          Auth._clearUserCache();
-          Auth._onSignOut();
-        } else {
-          console.warn('[AUTH] SIGNED_OUT ignored (not user-initiated — Supabase unreachable?)');
-        }
+        // Ignore all SDK-fired SIGNED_OUT — explicit logout is handled directly
+        // in Auth.logout() which clears cache and calls _onSignOut() immediately.
+        // This prevents Supabase-initiated SIGNED_OUT (token refresh failure on
+        // paused free-tier project) from unexpectedly logging the user out.
+        console.warn('[AUTH] SIGNED_OUT event ignored — use Auth.logout() to sign out.');
       }
     });
 
@@ -153,8 +148,16 @@ var Auth = {
 
   logout: async function() {
     if (!SB) return;
-    Auth._loggingOut = true;
-    await SB.auth.signOut();
+    // Local logout immediately — don't wait for Supabase (may be sleeping)
+    Auth._clearUserCache();
+    Auth._onSignOut();
+    // Supabase signOut best-effort (5s timeout)
+    try {
+      await Promise.race([
+        SB.auth.signOut(),
+        new Promise(function(_, rej) { setTimeout(rej, 5000); })
+      ]);
+    } catch(e) { /* Supabase offline — local logout already done */ }
   },
 
   // ── Internal ───────────────────────────────────────

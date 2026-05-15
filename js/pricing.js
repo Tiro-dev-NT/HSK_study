@@ -54,10 +54,15 @@ var Pricing = {
 
     Pricing._setState('loading');
 
-    // Get fresh access token
+    // Get fresh access token (5s timeout phòng getSession() hang)
     var session = null;
     try {
-      var sessionRes = await SB.auth.getSession();
+      var sessionRes = await Promise.race([
+        SB.auth.getSession(),
+        new Promise(function(_, rej) {
+          setTimeout(function() { rej(new Error('getSession timeout')); }, 5000);
+        })
+      ]);
       session = sessionRes && sessionRes.data && sessionRes.data.session;
     } catch(e) {
       console.error('[Pricing] getSession error:', e);

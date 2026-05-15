@@ -212,9 +212,16 @@ var Router = (function() {
       Router.currentPage = initialPage;
       _navigateTo(initialPage, false);
 
-      // Replace current history entry so popstate has state on first back
-      var initPath = initialPage === 'home' ? '/' : '/' + initialPage;
-      history.replaceState({ page: initialPage }, '', initPath);
+      // Replace current history entry so popstate has state on first back.
+      // Skip if OAuth callback params are present — Supabase reads ?code= and
+      // #access_token= lazily (when onAuthStateChange fires), so stripping them
+      // here would prevent Google OAuth from completing.
+      var hasOAuthParams = window.location.search.includes('code=') ||
+                           window.location.hash.includes('access_token=');
+      if (!hasOAuthParams) {
+        var initPath = initialPage === 'home' ? '/' : '/' + initialPage;
+        history.replaceState({ page: initialPage }, '', initPath);
+      }
     },
 
     navigateTo: function(page, pushState) {

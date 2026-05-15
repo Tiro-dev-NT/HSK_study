@@ -52,13 +52,11 @@ var Auth = {
         var res2 = await SB.auth.signInWithPassword({ email: email, password: pass });
         if (res2.error) {
           showToast('❌ ' + (res2.error.message === 'Invalid login credentials' ? 'Email hoặc mật khẩu không đúng' : res2.error.message));
-        } else if (res2.data && res2.data.user && !Auth.user) {
-          // Update UI immediately — SIGNED_IN event will also fire _onSignIn(user, true)
-          // which handles toast + migration, so we only do the instant UI update here.
-          var u = res2.data.user;
-          Auth.user = u;
-          AppState.user = u;
-          Auth.renderUI();
+        } else if (res2.data && res2.data.user) {
+          // Close modal now; SIGNED_IN event fires _onSignIn(user, true) which handles
+          // Auth.user, toast, migration, and renderUI. Do NOT pre-set Auth.user here —
+          // that would make _onSignIn think it's a re-auth of the same user (reAuth=true)
+          // and skip migration/toast when switching accounts.
           Auth.closeLoginModal();
         }
       } catch (err) {
@@ -162,6 +160,10 @@ var Auth = {
 
   // ── Internal ───────────────────────────────────────
   _onSignIn: async function(user, isNew) {
+    // Clean up OAuth callback params now that Supabase has processed them
+    if (window.location.search.includes('code=') || window.location.hash.includes('access_token=')) {
+      history.replaceState({ page: 'home' }, '', '/');
+    }
     // reAuth = same user token expired then re-logged in (e.g. for payment)
     var reAuth = isNew && Auth.user && Auth.user.id === user.id;
     Auth._hidePrompt();
@@ -186,6 +188,14 @@ var Auth = {
   _onSignOut: function() {
     Auth.user = null;
     AppState.user = null;
+    // Clear synced user data so account B doesn't inherit account A's progress
+    AppState.progress = {};
+    AppState.srsData  = {};
+    AppState.xpData   = { total: 0, weeklyXP: 0, weekStart: '', lastActive: '' };
+    localStorage.removeItem('hsk_progress');
+    localStorage.removeItem('hsk_srs');
+    localStorage.removeItem('hsk_xp');
+    localStorage.removeItem('hsk_user_decks');
     if (typeof Monetization !== 'undefined') Monetization.resetCache();
     Auth.renderUI();
     showToast('👋 Đã đăng xuất');

@@ -93,6 +93,7 @@ var Auth = {
     }
 
     SB.auth.onAuthStateChange(async function(event, session) {
+      console.log('[AUTH] event:', event, '| user:', session ? session.user.email : 'null');
       if (event === 'INITIAL_SESSION') {
         if (session) {
           // If URL has OAuth callback params this is a fresh login, not a page reload

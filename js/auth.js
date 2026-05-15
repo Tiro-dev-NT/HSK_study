@@ -8,7 +8,8 @@
 
 var Auth = {
   user: null,
-  _tab: 'login',  // 'login' | 'register'
+  _tab: 'login',       // 'login' | 'register'
+  _loggingOut: false,  // true only when user explicitly clicks logout
 
   // ── Tab switch ─────────────────────────────────────
   switchTab: function(tab) {
@@ -86,22 +87,50 @@ var Auth = {
   init: function() {
     if (!SB) return;
 
-    // Use INITIAL_SESSION instead of getSession() — avoids hanging on Supabase
-    // free-tier project wake-up and ensures listener is registered before any event fires.
+    // Restore from cache immediately — no network call, no flash of "logged out".
+    // Cache is cleared only on explicit logout, not on Supabase token refresh failure.
+    var cached = Auth._loadUserCache();
+    if (cached) {
+      Auth.user = cached;
+      AppState.user = cached;
+    }
+
     SB.auth.onAuthStateChange(async function(event, session) {
       if (event === 'INITIAL_SESSION') {
         if (session) {
-          await Auth._onSignIn(session.user, false);
+          Auth._saveUserCache(session.user);
+          if (!Auth.user || Auth.user.id !== session.user.id) {
+            await Auth._onSignIn(session.user, false);
+          } else {
+            // Cache already showed this user — just refresh the data object
+            Auth.user = session.user;
+            AppState.user = session.user;
+            Auth.renderUI();
+          }
         } else {
-          Auth._scheduleSoftPrompt();
+          // Supabase couldn't restore session (project sleeping / token expired).
+          // If cache exists keep showing the user; they can still use the app.
+          // Only prompt login if there is no cached user at all.
+          if (!Auth.user) Auth._scheduleSoftPrompt();
+          else console.warn('[AUTH] INITIAL_SESSION null but cached user present — keeping profile.');
         }
-      } else if (event === 'TOKEN_REFRESHED' && session && !Auth.user) {
-        // Fallback: token refreshed before INITIAL_SESSION resolved
-        await Auth._onSignIn(session.user, false);
+      } else if (event === 'TOKEN_REFRESHED' && session) {
+        Auth._saveUserCache(session.user);
+        Auth.user = session.user;
+        AppState.user = session.user;
       } else if (event === 'SIGNED_IN' && session) {
+        Auth._saveUserCache(session.user);
         await Auth._onSignIn(session.user, true);
       } else if (event === 'SIGNED_OUT') {
-        Auth._onSignOut();
+        // Only act on SIGNED_OUT when the user clicked logout explicitly.
+        // Ignore Supabase-initiated SIGNED_OUT (token refresh failure on paused project).
+        if (Auth._loggingOut) {
+          Auth._loggingOut = false;
+          Auth._clearUserCache();
+          Auth._onSignOut();
+        } else {
+          console.warn('[AUTH] SIGNED_OUT ignored (not user-initiated — Supabase unreachable?)');
+        }
       }
     });
 
@@ -124,6 +153,7 @@ var Auth = {
 
   logout: async function() {
     if (!SB) return;
+    Auth._loggingOut = true;
     await SB.auth.signOut();
   },
 
@@ -132,6 +162,7 @@ var Auth = {
     Auth._hidePrompt();
     Auth.user = user;
     AppState.user = user;
+    Auth._saveUserCache(user);
     Auth.renderUI();
     Auth.closeLoginModal();
     if (isNew) {
@@ -287,6 +318,28 @@ var Auth = {
     if (!p) return;
     p.classList.remove('auth-prompt-visible');
     setTimeout(function() { p.style.display = 'none'; }, 250);
+  },
+
+  // ── User cache (survives Supabase token refresh failure) ──
+  _USER_CACHE_KEY: 'hsk_user_cache',
+
+  _saveUserCache: function(user) {
+    try {
+      localStorage.setItem(Auth._USER_CACHE_KEY, JSON.stringify({
+        id: user.id, email: user.email, user_metadata: user.user_metadata || {}
+      }));
+    } catch(e) {}
+  },
+
+  _loadUserCache: function() {
+    try {
+      var raw = localStorage.getItem(Auth._USER_CACHE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e) { return null; }
+  },
+
+  _clearUserCache: function() {
+    try { localStorage.removeItem(Auth._USER_CACHE_KEY); } catch(e) {}
   },
 
   // ── Setup modal event listeners ────────────────────

@@ -116,7 +116,7 @@ var Pricing = {
         ? 'Máy chủ không phản hồi (timeout 15s). Thử lại sau hoặc liên hệ hỗ trợ.'
         : (err.message || 'Không thể kết nối đến cổng thanh toán.');
       document.getElementById('pmErrorMsg').textContent =
-        errMsg + '\n\nLiên hệ dev.tiro.06@gmail.com để được hỗ trợ thủ công.';
+        errMsg + '\n\nLiên hệ genzstudy06@gmail.com để được hỗ trợ thủ công.';
     }
   },
 

@@ -1,0 +1,16 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        run: |
+          curl -sf "https://fvxdakuxbmvaynqggdpe.supabase.co/rest/v1/" \
+            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2eGRha3V4Ym12YXlucWdnZHBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwMzUzNDEsImV4cCI6MjA5MzYxMTM0MX0.b9VeQLAqdX6c3oZ0gQK2cp49-N8CRZaQbe2e3sZW-Q0" \
+            && echo "✓ Supabase alive" || echo "✗ Ping failed"

@@ -47,38 +47,30 @@ var Pricing = {
 
     var user = Auth && Auth.user;
     if (!user) {
+      // Chưa đăng nhập → yêu cầu đăng nhập
       Pricing.closeModal();
+      Pricing._pendingPlan = plan;
+      if (typeof showToast === 'function') showToast('Vui lòng đăng nhập để nâng cấp gói');
       if (typeof Auth !== 'undefined' && Auth.openLoginModal) Auth.openLoginModal();
       return;
     }
 
     Pricing._setState('loading');
 
-    // Get fresh access token (10s timeout phòng getSession() hang)
-    var session = null;
+    // Thử lấy access token — best-effort, không block nếu fail.
+    // Edge Function đã tắt JWT verification nên thiếu token vẫn hoạt động.
+    var accessToken = null;
     try {
       var sessionRes = await Promise.race([
         SB.auth.getSession(),
         new Promise(function(_, rej) {
-          setTimeout(function() { rej(new Error('getSession timeout')); }, 10000);
+          setTimeout(function() { rej(new Error('timeout')); }, 8000);
         })
       ]);
-      session = sessionRes && sessionRes.data && sessionRes.data.session;
+      var s = sessionRes && sessionRes.data && sessionRes.data.session;
+      if (s && s.access_token) accessToken = s.access_token;
     } catch(e) {
-      console.error('[Pricing] getSession error:', e);
-    }
-
-    if (!session || !session.access_token) {
-      // Token hết hạn — mở login để xác nhận lại, KHÔNG đăng xuất user khỏi UI.
-      // _pendingPlan đảm bảo payment tự resume sau khi re-login thành công.
-      Pricing.closeModal();
-      Pricing._pendingPlan = plan;
-      if (typeof showToast === 'function')
-        showToast('Cần xác nhận lại danh tính để thanh toán');
-      setTimeout(function() {
-        if (typeof Auth !== 'undefined' && Auth.openLoginModal) Auth.openLoginModal();
-      }, 500);
-      return;
+      console.warn('[Pricing] getSession failed, proceeding without token:', e.message);
     }
 
     // Call Edge Function
@@ -89,6 +81,8 @@ var Pricing = {
       userEmail: user.email,
       userName:  (user.user_metadata && user.user_metadata.name) || ''
     };
+    var headers = { 'Content-Type': 'application/json' };
+    if (accessToken) headers['Authorization'] = 'Bearer ' + accessToken;
 
     try {
       var controller = new AbortController();
@@ -96,10 +90,7 @@ var Pricing = {
 
       var res = await fetch(fnUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type':  'application/json',
-          'Authorization': 'Bearer ' + session.access_token
-        },
+        headers: headers,
         body: JSON.stringify(body),
         signal: controller.signal
       });

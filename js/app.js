@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     ['setupAuth',       function() { if (typeof Auth !== 'undefined') { Auth.setup(); Auth.init(); Auth.checkExtensionBridge(); } }],
     ['setupSyncWindow', function() { if (typeof SyncWindow !== 'undefined') SyncWindow.init(); }],
     ['setupRightSidebar', function() { if (typeof RightSidebar !== 'undefined') RightSidebar.init(); }],
+    ['initQuests',      function() { if (typeof Quests !== 'undefined') Quests.init(); }],
+    ['setupSidebar',    function() { _initSidebarCollapse(); }],
   ];
 
   initSteps.forEach(function(step) {
@@ -40,6 +42,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   console.log('[HSK] App initialized OK — modules: State, Router, Theme, Gamification, Dictionary, Quiz, Feedback, Settings, Session');
 });
+
+// ── Sidebar collapse ────────────────────────────────────────────
+function _initSidebarCollapse() {
+  var btn     = document.getElementById('sidebarCollapseBtn');
+  var sidebar = document.getElementById('sidebar');
+  if (!btn || !sidebar) return;
+
+  var KEY = 'hsk_sidebar_collapsed';
+  var isCollapsed = localStorage.getItem(KEY) === '1';
+  if (isCollapsed) {
+    sidebar.classList.add('collapsed');
+    btn.title = 'Mở rộng';
+  }
+
+  btn.addEventListener('click', function() {
+    var now = sidebar.classList.toggle('collapsed');
+    localStorage.setItem(KEY, now ? '1' : '0');
+    btn.title = now ? 'Mở rộng' : 'Thu gọn';
+  });
+}
 
 // ── showToast — kept here as a global utility used by Settings ──
 function showToast(msg) {

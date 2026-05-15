@@ -100,6 +100,8 @@ var QUEST_CHAINS = {
 // ── All daily quests flat (for lookup by id) ───────────
 var ALL_DAILY_QUESTS = DAILY_TIER_EASY.concat(DAILY_TIER_NORMAL, DAILY_TIER_HARD, DAILY_TIER_SKULL);
 
+var TOKEN_IMG = '<img src="token.png" class="token-img" width="14" height="14" alt="" style="vertical-align:middle;margin:0 2px">';
+
 // ── Quests Engine ──────────────────────────────────────
 
 var Quests = {
@@ -389,7 +391,7 @@ var Quests = {
           (claimed
             ? '<span class="quest-mini-status claimed">✅</span>'
             : isDone
-              ? '<button class="quest-mini-claim" onclick="Quests.claimQuest(\'' + id + '\',\'daily\')">Nhận 🪙' + def.rewards.token + '</button>'
+              ? '<button class="quest-mini-claim" onclick="Quests.claimQuest(\'' + id + '\',\'daily\')">Nhận ' + TOKEN_IMG + def.rewards.token + '</button>'
               : '<span class="quest-mini-progress-txt">' + prog.current + '/' + def.target + '</span>'
           ) +
         '</div>' +

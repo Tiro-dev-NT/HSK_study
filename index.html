@@ -40,7 +40,7 @@
   <!-- Features: cross-cutting concerns -->
   <link rel="stylesheet" href="css/features/auth.css?v=1.0"/>
   <link rel="stylesheet" href="css/features/hsk-switch.css?v=1.0"/>
-  <link rel="stylesheet" href="css/features/sync-banner.css?v=1.0"/>
+  <link rel="stylesheet" href="css/features/sync-banner.css?v=1.1"/>
   <!-- Responsive overrides: must come last to win cascade -->
   <link rel="stylesheet" href="css/base/responsive.css?v=1.0"/>
   <!-- Game-specific & print -->
@@ -615,12 +615,12 @@
       </div>
 
       <!-- Sync Recovery (only visible when logged in) -->
-      <div id="smSyncRecovery" style="display:none">
-        <h3 style="margin:18px 0 8px;font-size:1rem">🔄 Khôi phục dữ liệu</h3>
-        <p class="sm-desc-muted">Dùng khi sync tự động gặp lỗi. Thao tác này không thể hoàn tác.</p>
-        <div style="display:flex;gap:10px;margin-top:10px">
-          <button class="sm-btn-danger" onclick="Sync.forcePush()">⬆️ Đẩy local → cloud</button>
-          <button class="sm-btn-danger" onclick="Sync.forcePull()">⬇️ Tải cloud → local</button>
+      <div id="smSyncRecovery" class="sm-section sm-section-recovery" style="display:none">
+        <div class="sm-section-title">🔄 Khôi phục dữ liệu</div>
+        <p class="sm-desc-muted">Dùng khi sync tự động gặp lỗi. Thao tác này <strong>không thể hoàn tác</strong>.</p>
+        <div class="sm-sync-btns">
+          <button class="sm-btn-sync-push" onclick="Sync.forcePush()">⬆ Đẩy local → cloud</button>
+          <button class="sm-btn-sync-pull" onclick="Sync.forcePull()">⬇ Tải cloud → local</button>
         </div>
       </div>
 

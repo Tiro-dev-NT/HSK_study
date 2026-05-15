@@ -1,11 +1,37 @@
-/* ── Sync Recovery buttons ─────────────────── */
-.sm-btn-danger {
-  padding: 8px 16px; border-radius: 8px; border: 1px solid #e74c3c;
-  background: rgba(231,76,60,.12); color: #e74c3c; font-size: .875rem;
-  cursor: pointer; transition: background .2s;
+/* ── Sync Recovery section ──────────────────── */
+.sm-section-recovery {
+  background: rgba(231,76,60,.04);
+  border-bottom-color: rgba(231,76,60,.15) !important;
 }
-.sm-btn-danger:hover { background: rgba(231,76,60,.25); }
-.sm-desc-muted { font-size: .8rem; color: var(--text-muted, #888); margin: 4px 0 0; }
+[data-theme="dark"] .sm-section-recovery { background: rgba(231,76,60,.06); }
+
+.sm-desc-muted { font-size: .8rem; color: var(--text-muted, #888); margin: 4px 0 8px; }
+.sm-desc-muted strong { color: var(--text); }
+
+.sm-sync-btns { display: flex; gap: 8px; margin-top: 12px; }
+
+.sm-btn-sync-push, .sm-btn-sync-pull {
+  flex: 1; padding: 9px 12px; border-radius: 10px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  font-family: var(--font-ui); transition: background .15s, border-color .15s, color .15s;
+  white-space: nowrap;
+}
+/* Push → cloud: destructive → red */
+.sm-btn-sync-push {
+  border: 1.5px solid rgba(231,76,60,.55);
+  background: rgba(231,76,60,.09);
+  color: #e74c3c;
+}
+.sm-btn-sync-push:hover { background: rgba(231,76,60,.18); border-color: #e74c3c; }
+[data-theme="dark"] .sm-btn-sync-push { border-color: rgba(231,76,60,.4); }
+
+/* Pull ← cloud: restore → neutral turns blue */
+.sm-btn-sync-pull {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+}
+.sm-btn-sync-pull:hover { border-color: #3b82f6; color: #3b82f6; background: rgba(59,130,246,.07); }
 
    SYNC WINDOW — Banner & Closed Modal
 

@@ -69,20 +69,15 @@ var Pricing = {
     }
 
     if (!session || !session.access_token) {
-      // Session hết hạn — xóa cache, yêu cầu đăng nhập lại, rồi tự resume payment
+      // Token hết hạn — mở login để xác nhận lại, KHÔNG đăng xuất user khỏi UI.
+      // _pendingPlan đảm bảo payment tự resume sau khi re-login thành công.
       Pricing.closeModal();
       Pricing._pendingPlan = plan;
-      if (typeof Auth !== 'undefined') {
-        Auth._clearUserCache && Auth._clearUserCache();
-        Auth.user = null;
-        AppState.user = null;
-        Auth.renderUI && Auth.renderUI();
-      }
       if (typeof showToast === 'function')
-        showToast('Phiên làm việc hết hạn — vui lòng đăng nhập lại để tiếp tục thanh toán');
+        showToast('Cần xác nhận lại danh tính để thanh toán');
       setTimeout(function() {
         if (typeof Auth !== 'undefined' && Auth.openLoginModal) Auth.openLoginModal();
-      }, 600);
+      }, 500);
       return;
     }
 

@@ -159,13 +159,15 @@ var Auth = {
 
   // ── Internal ───────────────────────────────────────
   _onSignIn: async function(user, isNew) {
+    // reAuth = same user token expired then re-logged in (e.g. for payment)
+    var reAuth = isNew && Auth.user && Auth.user.id === user.id;
     Auth._hidePrompt();
     Auth.user = user;
     AppState.user = user;
     Auth._saveUserCache(user);
     Auth.renderUI();
     Auth.closeLoginModal();
-    if (isNew) {
+    if (isNew && !reAuth) {
       showToast('👋 Xin chào ' + (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email) + '!');
       await Auth._handleMigration(user.id);
     }

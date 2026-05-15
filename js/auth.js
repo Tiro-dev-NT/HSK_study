@@ -92,7 +92,9 @@ var Auth = {
       AppState.user = cached;
     }
 
+    console.log('[AUTH] init — URL:', window.location.href);
     SB.auth.onAuthStateChange(async function(event, session) {
+      console.log('[AUTH] event:', event, '| session:', session ? session.user.email : 'null');
       if (event === 'INITIAL_SESSION') {
         if (session) {
           Auth._saveUserCache(session.user);

@@ -93,7 +93,6 @@ var Auth = {
     }
 
     SB.auth.onAuthStateChange(async function(event, session) {
-      console.log('[AUTH] event:', event, '| user:', session ? session.user.email : 'null');
       if (event === 'INITIAL_SESSION') {
         if (session) {
           // If URL has OAuth callback params this is a fresh login, not a page reload
@@ -354,12 +353,9 @@ var Auth = {
       if (eq > -1) params[decodeURIComponent(part.slice(0, eq))] = decodeURIComponent(part.slice(eq + 1));
     });
     if (!params.access_token || !params.refresh_token) return;
-    console.log('[AUTH] OAuth hash detected — calling setSession()');
     SB.auth.setSession({
       access_token:  params.access_token,
       refresh_token: params.refresh_token
-    }).then(function(r) {
-      console.log('[AUTH] setSession result:', r.error ? r.error.message : 'OK', '| user:', r.data && r.data.user ? r.data.user.email : 'null');
     }).catch(function(e) {
       console.error('[AUTH] OAuth setSession failed:', e);
     });

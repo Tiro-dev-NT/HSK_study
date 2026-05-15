@@ -80,14 +80,19 @@ var Pricing = {
     };
 
     try {
+      var controller = new AbortController();
+      var _timer = setTimeout(function() { controller.abort(); }, 15000);
+
       var res = await fetch(fnUrl, {
         method: 'POST',
         headers: {
           'Content-Type':  'application/json',
           'Authorization': 'Bearer ' + session.access_token
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        signal: controller.signal
       });
+      clearTimeout(_timer);
 
       var data = await res.json();
 
@@ -102,9 +107,11 @@ var Pricing = {
     } catch(err) {
       console.error('[Pricing] create-payment error:', err);
       Pricing._setState('error');
+      var errMsg = err.name === 'AbortError'
+        ? 'Máy chủ không phản hồi (timeout 15s). Thử lại sau hoặc liên hệ hỗ trợ.'
+        : (err.message || 'Không thể kết nối đến cổng thanh toán.');
       document.getElementById('pmErrorMsg').textContent =
-        (err.message || 'Không thể kết nối đến cổng thanh toán.') +
-        '\n\nLiên hệ dev.tiro.06@gmail.com để được hỗ trợ thủ công.';
+        errMsg + '\n\nLiên hệ dev.tiro.06@gmail.com để được hỗ trợ thủ công.';
     }
   },
 

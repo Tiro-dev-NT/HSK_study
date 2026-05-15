@@ -53,14 +53,13 @@ var Auth = {
         if (res2.error) {
           showToast('❌ ' + (res2.error.message === 'Invalid login credentials' ? 'Email hoặc mật khẩu không đúng' : res2.error.message));
         } else if (res2.data && res2.data.user && !Auth.user) {
-          // Cập nhật UI ngay — không chờ onAuthStateChange (phòng race condition / event delay)
+          // Update UI immediately — SIGNED_IN event will also fire _onSignIn(user, true)
+          // which handles toast + migration, so we only do the instant UI update here.
           var u = res2.data.user;
           Auth.user = u;
           AppState.user = u;
           Auth.renderUI();
           Auth.closeLoginModal();
-          showToast('👋 Xin chào ' + ((u.user_metadata && u.user_metadata.name) || u.email) + '!');
-          Auth._handleMigration(u.id);
         }
       } catch (err) {
         showToast('❌ Lỗi kết nối. Kiểm tra mạng và thử lại.');
@@ -84,21 +83,22 @@ var Auth = {
   },
 
   // ── Init (call on app startup) ─────────────────────
-  init: async function() {
+  init: function() {
     if (!SB) return;
 
-    // Restore existing session
-    var sessionRes = await SB.auth.getSession();
-    if (sessionRes.data && sessionRes.data.session) {
-      await Auth._onSignIn(sessionRes.data.session.user, false);
-    } else {
-      // Anonymous browse — show soft prompt after delay (if not dismissed this session)
-      Auth._scheduleSoftPrompt();
-    }
-
-    // Listen for future auth events (OAuth redirect, magic link)
+    // Use INITIAL_SESSION instead of getSession() — avoids hanging on Supabase
+    // free-tier project wake-up and ensures listener is registered before any event fires.
     SB.auth.onAuthStateChange(async function(event, session) {
-      if (event === 'SIGNED_IN' && session) {
+      if (event === 'INITIAL_SESSION') {
+        if (session) {
+          await Auth._onSignIn(session.user, false);
+        } else {
+          Auth._scheduleSoftPrompt();
+        }
+      } else if (event === 'TOKEN_REFRESHED' && session && !Auth.user) {
+        // Fallback: token refreshed before INITIAL_SESSION resolved
+        await Auth._onSignIn(session.user, false);
+      } else if (event === 'SIGNED_IN' && session) {
         await Auth._onSignIn(session.user, true);
       } else if (event === 'SIGNED_OUT') {
         Auth._onSignOut();

@@ -54,13 +54,13 @@ var Pricing = {
 
     Pricing._setState('loading');
 
-    // Get fresh access token (5s timeout phòng getSession() hang)
+    // Get fresh access token (10s timeout phòng getSession() hang)
     var session = null;
     try {
       var sessionRes = await Promise.race([
         SB.auth.getSession(),
         new Promise(function(_, rej) {
-          setTimeout(function() { rej(new Error('getSession timeout')); }, 5000);
+          setTimeout(function() { rej(new Error('getSession timeout')); }, 10000);
         })
       ]);
       session = sessionRes && sessionRes.data && sessionRes.data.session;
@@ -69,9 +69,20 @@ var Pricing = {
     }
 
     if (!session || !session.access_token) {
-      Pricing._setState('error');
-      document.getElementById('pmErrorMsg').textContent =
-        'Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại rồi thử lại.';
+      // Session hết hạn — xóa cache, yêu cầu đăng nhập lại, rồi tự resume payment
+      Pricing.closeModal();
+      Pricing._pendingPlan = plan;
+      if (typeof Auth !== 'undefined') {
+        Auth._clearUserCache && Auth._clearUserCache();
+        Auth.user = null;
+        AppState.user = null;
+        Auth.renderUI && Auth.renderUI();
+      }
+      if (typeof showToast === 'function')
+        showToast('Phiên làm việc hết hạn — vui lòng đăng nhập lại để tiếp tục thanh toán');
+      setTimeout(function() {
+        if (typeof Auth !== 'undefined' && Auth.openLoginModal) Auth.openLoginModal();
+      }, 600);
       return;
     }
 

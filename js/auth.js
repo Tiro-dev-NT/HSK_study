@@ -122,6 +122,12 @@ var Auth = {
       await Auth._handleMigration(user.id);
     }
     if (typeof Sync !== 'undefined') Sync.autoSync();
+    // Resume pending payment flow (user clicked upgrade while not logged in)
+    if (typeof Pricing !== 'undefined' && Pricing._pendingPlan) {
+      var pendingPlan = Pricing._pendingPlan;
+      Pricing._pendingPlan = null;
+      setTimeout(function() { Pricing.openPayment(pendingPlan); }, 350);
+    }
   },
 
   _onSignOut: function() {

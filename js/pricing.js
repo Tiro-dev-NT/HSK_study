@@ -6,6 +6,7 @@
 
 var Pricing = {
   _plan: null,
+  _pendingPlan: null,   // remembered when login is required mid-flow
   _plans: {
     basic: { name: 'Basic', price: '49.000đ', sub: '/tháng' },
     pro:   { name: 'Pro',   price: '299.000đ', sub: '/tháng' },
@@ -15,10 +16,12 @@ var Pricing = {
   // ── Open modal ────────────────────────────────────────
   openPayment: function(plan) {
     if (!Auth || !Auth.user) {
+      Pricing._pendingPlan = plan;   // resume after login
       if (typeof showToast === 'function') showToast('Vui lòng đăng nhập để nâng cấp gói');
       if (typeof Auth !== 'undefined' && Auth.openLoginModal) Auth.openLoginModal();
       return;
     }
+    Pricing._pendingPlan = null;
 
     var p = Pricing._plans[plan];
     if (!p) return;

@@ -100,7 +100,7 @@ var QUEST_CHAINS = {
 // ── All daily quests flat (for lookup by id) ───────────
 var ALL_DAILY_QUESTS = DAILY_TIER_EASY.concat(DAILY_TIER_NORMAL, DAILY_TIER_HARD, DAILY_TIER_SKULL);
 
-var TOKEN_IMG = '<img src="token.png" class="token-img" width="14" height="14" alt="" style="vertical-align:middle;margin:0 2px">';
+var TOKEN_IMG = '<img src="token_2.png" class="token-img" width="14" height="14" alt="" style="vertical-align:middle;margin:0 2px">';
 
 // ── Quests Engine ──────────────────────────────────────
 

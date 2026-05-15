@@ -48,9 +48,23 @@ var Auth = {
         Auth.closeLoginModal();
       }
     } else {
-      var res2 = await SB.auth.signInWithPassword({ email: email, password: pass });
-      if (res2.error) {
-        showToast('❌ ' + (res2.error.message === 'Invalid login credentials' ? 'Email hoặc mật khẩu không đúng' : res2.error.message));
+      try {
+        var res2 = await SB.auth.signInWithPassword({ email: email, password: pass });
+        if (res2.error) {
+          showToast('❌ ' + (res2.error.message === 'Invalid login credentials' ? 'Email hoặc mật khẩu không đúng' : res2.error.message));
+        } else if (res2.data && res2.data.user && !Auth.user) {
+          // Cập nhật UI ngay — không chờ onAuthStateChange (phòng race condition / event delay)
+          var u = res2.data.user;
+          Auth.user = u;
+          AppState.user = u;
+          Auth.renderUI();
+          Auth.closeLoginModal();
+          showToast('👋 Xin chào ' + ((u.user_metadata && u.user_metadata.name) || u.email) + '!');
+          Auth._handleMigration(u.id);
+        }
+      } catch (err) {
+        showToast('❌ Lỗi kết nối. Kiểm tra mạng và thử lại.');
+        console.error('[AUTH] submitForm error:', err);
       }
     }
     btn.disabled = false;
@@ -102,6 +116,9 @@ var Auth = {
       options: { redirectTo: window.location.origin }
     }).then(function(res) {
       if (res.error) showToast('❌ ' + res.error.message);
+    }).catch(function(err) {
+      showToast('❌ Lỗi kết nối Google. Thử lại sau.');
+      console.error('[AUTH] Google OAuth error:', err);
     });
   },
 

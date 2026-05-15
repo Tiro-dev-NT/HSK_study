@@ -13,6 +13,10 @@ var Quiz = {
   _mode:  'forward',
   _survivalTimer: null,
   _survivalTimeLeft: 0,
+  _specialModeCosts: {
+    'tone-trainer': 120,
+    'cloze': 120
+  },
 
   setup: function() {
     document.querySelectorAll('.scope-tab').forEach(function(btn) {

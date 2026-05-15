@@ -92,9 +92,7 @@ var Auth = {
       AppState.user = cached;
     }
 
-    console.log('[AUTH] init — URL:', window.location.href);
     SB.auth.onAuthStateChange(async function(event, session) {
-      console.log('[AUTH] event:', event, '| session:', session ? session.user.email : 'null');
       if (event === 'INITIAL_SESSION') {
         if (session) {
           // If URL has OAuth callback params this is a fresh login, not a page reload
@@ -131,6 +129,11 @@ var Auth = {
         console.warn('[AUTH] SIGNED_OUT event ignored — use Auth.logout() to sign out.');
       }
     });
+
+    // Supabase JS v2 (latest CDN) no longer auto-processes #access_token= from
+    // the URL hash even with flowType:'implicit'. Detect and call setSession()
+    // manually so the SIGNED_IN event fires and the user is actually logged in.
+    Auth._handleOAuthHash();
 
     Auth.renderUI();
   },
@@ -338,6 +341,24 @@ var Auth = {
     if (!p) return;
     p.classList.remove('auth-prompt-visible');
     setTimeout(function() { p.style.display = 'none'; }, 250);
+  },
+
+  // ── Manual OAuth hash handler (Supabase v2 CDN no longer auto-processes) ──
+  _handleOAuthHash: function() {
+    var hash = window.location.hash;
+    if (!hash.includes('access_token=')) return;
+    var params = {};
+    hash.slice(1).split('&').forEach(function(part) {
+      var eq = part.indexOf('=');
+      if (eq > -1) params[decodeURIComponent(part.slice(0, eq))] = decodeURIComponent(part.slice(eq + 1));
+    });
+    if (!params.access_token || !params.refresh_token) return;
+    SB.auth.setSession({
+      access_token:  params.access_token,
+      refresh_token: params.refresh_token
+    }).catch(function(e) {
+      console.error('[AUTH] OAuth setSession failed:', e);
+    });
   },
 
   // ── User cache (survives Supabase token refresh failure) ──

@@ -1,0 +1,36 @@
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--font-ui);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(192,57,43,.4); }
+.btn-sm { padding: 8px 16px; font-size: 13px; }
+.w-full { width: 100%; margin-top: 16px; }
+
+
+.quick-add {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--primary);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all .2s;
+  line-height: 1;
+}
+.quick-add:hover { background: var(--primary); color: #fff; border-color: transparent; transform: scale(1.1); }
+.quick-add.added { background: #D1FAE5; color: #059669; border-color: #059669; font-size: 14px; }
+[data-theme="dark"] .quick-add.added { background: #064E3B; color: #6EE7B7; border-color: #059669; }
+

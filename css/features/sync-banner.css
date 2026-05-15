@@ -1,0 +1,88 @@
+/* ── Sync Recovery buttons ─────────────────── */
+.sm-btn-danger {
+  padding: 8px 16px; border-radius: 8px; border: 1px solid #e74c3c;
+  background: rgba(231,76,60,.12); color: #e74c3c; font-size: .875rem;
+  cursor: pointer; transition: background .2s;
+}
+.sm-btn-danger:hover { background: rgba(231,76,60,.25); }
+.sm-desc-muted { font-size: .8rem; color: var(--text-muted, #888); margin: 4px 0 0; }
+
+   SYNC WINDOW — Banner & Closed Modal
+   ══════════════════════════════════════════════════════ */
+
+/* Fixed top banner */
+.sync-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1200;
+  padding: 10px 48px 10px 20px;
+  font-size: 13px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Yellow warning (≤10 days) */
+.sync-banner-warn {
+  background: #fef9c3;
+  color: #854d0e;
+  border-bottom: 1px solid #fbbf24;
+}
+[data-theme="dark"] .sync-banner-warn {
+  background: #422006;
+  color: #fde68a;
+  border-bottom: 1px solid #92400e;
+}
+
+/* Red urgent (≤3 days) */
+.sync-banner-urgent {
+  background: #fee2e2;
+  color: #7f1d1d;
+  border-bottom: 2px solid #fca5a5;
+  animation: swBannerPulse 2s ease-in-out infinite;
+}
+[data-theme="dark"] .sync-banner-urgent {
+  background: #450a0a;
+  color: #fca5a5;
+  border-bottom: 2px solid #7f1d1d;
+}
+@keyframes swBannerPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.82; }
+}
+
+.sw-banner-link {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.sw-banner-link:hover { opacity: 0.8; }
+
+.sw-banner-close {
+  position: absolute;
+  right: 14px;
+  top: 50%; transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: inherit;
+  opacity: 0.55;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.sw-banner-close:hover { opacity: 1; background: rgba(0,0,0,.08); }
+
+/* When banner is visible, push page content down */
+body:has(#syncWindowBanner[style*="flex"]) .sidebar,
+body:has(#syncWindowBanner[style*="flex"]) .main-content {
+  margin-top: 42px;
+}
+
+/* Closed modal — reuses auth-modal + mig-btn styles */
+/* No extra styles needed; inherits from existing auth modal CSS */
+

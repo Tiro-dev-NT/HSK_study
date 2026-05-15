@@ -1,0 +1,27 @@
+/* â”€â”€ MAIN â”€â”€ */
+.main-content {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+  padding: 32px;
+  max-width: 960px;
+  transition: margin-left .25s;
+}
+.mobile-header { display: none; }
+
+/* â”€â”€ PAGES â”€â”€ */
+.page { display: none; animation: fadeIn .3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.page-header h1 { font-size: 26px; font-weight: 700; }
+.page-header p { color: var(--text2); margin-top: 4px; font-size: 14px; }
+
+
+.bottom-nav { display: none; }
+

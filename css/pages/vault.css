@@ -1,0 +1,115 @@
+.vault-empty { text-align: center; padding: 60px 0; color: var(--text3); font-size: 16px; }
+.vault-empty p:first-child { font-size: 48px; margin-bottom: 12px; }
+.vault-list { display: flex; flex-direction: column; gap: 10px; }
+.vault-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.vault-hanzi { font-family: var(--font-hanzi); font-size: 24px; min-width: 44px; }
+.vault-info { flex: 1; }
+.vault-pinyin { font-size: 12px; color: var(--accent); }
+.vault-meaning { font-size: 13px; color: var(--text2); }
+.btn-remove { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 18px; transition: .2s; padding: 4px; }
+.btn-remove:hover { color: var(--primary); }
+
+/* â”€â”€ BUTTONS â”€â”€ */
+
+   MY VOCAB PAGE (Phase 2.1)
+   ═══════════════════════════════════════════════════════ */
+.mv-search-wrap { margin-bottom: 16px; }
+.mv-search {
+  width: 100%; padding: 10px 14px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text);
+  font-size: 14px; outline: none; transition: border-color 0.2s;
+}
+.mv-search:focus { border-color: var(--primary); }
+
+.mv-filter-tabs {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.mv-tab {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--card); color: var(--text2); font-size: 13px; cursor: pointer;
+  transition: all 0.15s;
+}
+.mv-tab:hover { border-color: var(--primary); color: var(--primary); }
+.mv-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.mv-tag-chips {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; align-items: center;
+}
+.mv-chip {
+  padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer;
+  background: rgba(255,255,255,0.08); border: 1px solid var(--border); color: var(--text2);
+  transition: all 0.15s;
+}
+.mv-chip:hover { border-color: var(--primary); color: var(--primary); }
+.mv-chip.mv-chip-active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.mv-chip.mv-chip-clear { background: transparent; color: var(--text2); font-size: 11px; }
+
+.mv-bulk-bar {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 10px 14px; border-radius: 10px; margin-bottom: 12px;
+  background: rgba(var(--primary-rgb, 192,57,43), 0.1); border: 1px solid var(--primary);
+}
+.mv-bulk-bar span { font-size: 13px; font-weight: 600; color: var(--primary); margin-right: auto; }
+
+.mv-word-count { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
+
+.mv-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.mv-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px; position: relative; cursor: default; transition: border-color 0.15s;
+}
+.mv-card:hover { border-color: var(--primary-light); }
+.mv-card-selected { border-color: var(--primary); background: rgba(var(--primary-rgb,192,57,43),0.06); }
+.mv-card-check { position: absolute; top: 8px; right: 8px; }
+.mv-card-check input { width: 16px; height: 16px; cursor: pointer; }
+.mv-card-hanzi { font-size: 28px; font-family: 'Noto Sans SC', sans-serif; font-weight: 500; margin-bottom: 4px; }
+.mv-card-pinyin { font-size: 13px; color: var(--text2); margin-bottom: 2px; }
+.mv-card-meaning { font-size: 12px; color: var(--text2); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mv-card-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.mv-card-tag {
+  font-size: 10px; padding: 2px 6px; border-radius: 8px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--text2);
+}
+.mv-level-badge {
+  font-size: 10px; padding: 2px 6px; border-radius: 8px;
+  background: var(--primary); color: #fff; font-weight: 600;
+}
+
+.mv-empty { text-align: center; padding: 40px 20px; color: var(--text2); }
+
+.mv-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+}
+.mv-modal {
+  background: var(--card); border-radius: 14px; padding: 24px; width: 320px; max-width: 90vw;
+}
+.mv-modal-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+.mv-tag-input {
+  width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font-size: 14px; outline: none; margin-bottom: 8px;
+}
+.mv-tag-input:focus { border-color: var(--primary); }
+.mv-tag-suggestions { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; }
+.mv-suggest-btn {
+  padding: 4px 10px; border-radius: 12px; font-size: 12px; cursor: pointer;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--text2);
+}
+.mv-suggest-btn:hover { border-color: var(--primary); color: var(--primary); }
+.mv-modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+@media (max-width: 600px) {
+  .mv-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+  .mv-card-hanzi { font-size: 24px; }
+}

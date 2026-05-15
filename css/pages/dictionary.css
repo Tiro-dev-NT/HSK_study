@@ -1,0 +1,79 @@
+.search-box { position: relative; margin-bottom: 16px; }
+.search-box input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 48px 14px 20px;
+  font-size: 15px;
+  color: var(--text);
+  font-family: var(--font-ui);
+  outline: none;
+  transition: border .2s;
+}
+.search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,57,43,.1); }
+.search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 18px; pointer-events: none; }
+.search-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.stab {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: .2s;
+}
+.stab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.dict-results { display: flex; flex-direction: column; gap: 10px; }
+.dict-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all .2s;
+}
+.dict-card:hover { border-color: var(--primary); transform: translateX(4px); }
+.dict-hanzi { font-family: var(--font-hanzi); font-size: 28px; font-weight: 500; color: var(--text); flex-shrink: 0; width: 60px; }
+.dict-info { flex: 1; }
+.dict-pinyin { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+.dict-meaning { font-size: 14px; color: var(--text2); }
+.dict-hsk { font-size: 11px; background: var(--primary); color: #fff; border-radius: 6px; padding: 2px 8px; flex-shrink: 0; }
+.hint { color: var(--text3); text-align: center; padding: 40px 0; font-size: 15px; }
+
+/* â”€â”€ LEARN SECTION (MULTI-MODE) â”€â”€ */
+
+.radical-browser {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.rad-label { font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 10px; }
+.rad-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.rad-chip {
+  padding: 7px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+}
+.rad-chip .rc-char { font-family: var(--font-hanzi); font-size: 18px; line-height: 1; }
+.rad-chip .rc-info { font-size: 11px; color: var(--text3); }
+.rad-chip:hover { border-color: var(--primary); color: var(--primary); }
+.rad-chip:hover .rc-info { color: var(--primary); opacity:.7; }
+.rad-chip.active { background: var(--primary); color: #fff; border-color: transparent; }
+.rad-chip.active .rc-info { color: rgba(255,255,255,.75); }
+.rad-results-label { font-size: 13px; color: var(--text2); margin-bottom: 12px; font-weight: 500; }
+

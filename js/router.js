@@ -93,7 +93,7 @@ var Router = (function() {
       if (typeof Handwriting !== 'undefined') Handwriting.setup();
     },
     'pricing': function() {
-      // static page, no module init needed
+      if (typeof Pricing !== 'undefined') Pricing._checkReturnUrl();
     },
     'admin': function() {
       if (typeof Admin !== 'undefined') Admin.setup();

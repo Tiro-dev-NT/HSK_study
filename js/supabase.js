@@ -12,7 +12,9 @@ var SB = null;
   if (typeof window === 'undefined') return;
   // SDK loaded via CDN UMD build → window.supabase.createClient
   if (window.supabase && window.supabase.createClient) {
-    SB = window.supabase.createClient(SB_URL, SB_ANON);
+    SB = window.supabase.createClient(SB_URL, SB_ANON, {
+      auth: { flowType: 'implicit' }
+    });
     console.log('[SUPABASE] Client initialized');
   } else {
     console.warn('[SUPABASE] SDK not found — auth/sync disabled');

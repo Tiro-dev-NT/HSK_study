@@ -97,9 +97,12 @@ var Auth = {
       console.log('[AUTH] event:', event, '| session:', session ? session.user.email : 'null');
       if (event === 'INITIAL_SESSION') {
         if (session) {
+          // If URL has OAuth callback params this is a fresh login, not a page reload
+          var fromOAuth = window.location.hash.includes('access_token=') ||
+                          window.location.search.includes('code=');
           Auth._saveUserCache(session.user);
           if (!Auth.user || Auth.user.id !== session.user.id) {
-            await Auth._onSignIn(session.user, false);
+            await Auth._onSignIn(session.user, fromOAuth);
           } else {
             // Cache already showed this user — just refresh the data object
             Auth.user = session.user;

@@ -738,5 +738,17 @@
     </div>
   </div>
 
+  <!-- PRO GATE OVERLAY (static — shown via JS showGate()) -->
+  <div id="proGate" class="pro-gate-overlay" style="display:none"
+       onclick="if(event.target===this)this.style.display='none'">
+    <div class="pro-gate-card">
+      <div class="pro-gate-icon">🔒</div>
+      <h2 id="proGateTitle">Tính năng này</h2>
+      <p>Cần gói <strong>Basic</strong> trở lên để sử dụng.</p>
+      <button class="pro-gate-cta" id="proGateCta">Xem các gói</button>
+      <button class="pro-gate-close" id="proGateClose">← Quay lại</button>
+    </div>
+  </div>
+
 </body>
 </html>

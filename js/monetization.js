@@ -26,32 +26,21 @@ var Monetization = (function() {
 
   function resetCache() { _cache = null; }
 
-  // ── showGate: render locked-feature overlay ────────────
+  // ── showGate: show locked-feature overlay (element is static in HTML) ─
   function showGate(featureName) {
     var g = document.getElementById('proGate');
-    if (!g) {
-      g = document.createElement('div');
-      g.id = 'proGate';
-      g.className = 'pro-gate-overlay';
-      document.body.appendChild(g);
-    }
-    g.innerHTML =
-      '<div class="pro-gate-card">' +
-        '<div class="pro-gate-icon">🔒</div>' +
-        '<h2>' + (featureName || 'Tính năng này') + '</h2>' +
-        '<p>Cần gói <strong>Basic</strong> trở lên để sử dụng.</p>' +
-        '<button class="pro-gate-cta" id="proGateCta">Xem các gói</button>' +
-        '<button class="pro-gate-close" id="proGateClose">← Quay lại</button>' +
-      '</div>';
+    if (!g) return;
+    var titleEl = document.getElementById('proGateTitle');
+    if (titleEl) titleEl.textContent = featureName || 'Tính năng này';
     g.style.display = 'flex';
 
-    document.getElementById('proGateCta').addEventListener('click', function() {
+    document.getElementById('proGateCta').onclick = function() {
       g.style.display = 'none';
       if (typeof Router !== 'undefined') Router.navigateTo('pricing');
-    });
-    document.getElementById('proGateClose').addEventListener('click', function() {
+    };
+    document.getElementById('proGateClose').onclick = function() {
       g.style.display = 'none';
-    });
+    };
   }
 
   return { isPro: isPro, resetCache: resetCache, showGate: showGate };

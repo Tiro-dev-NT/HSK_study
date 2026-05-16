@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['setupRightSidebar', function() { if (typeof RightSidebar !== 'undefined') RightSidebar.init(); }],
     ['initQuests',      function() { if (typeof Quests !== 'undefined') Quests.init(); }],
     ['setupSidebar',    function() { _initSidebarCollapse(); }],
+    ['initHSKVersion',  function() { if (typeof HSKVersion !== 'undefined') HSKVersion.init(); }],
   ];
 
   initSteps.forEach(function(step) {

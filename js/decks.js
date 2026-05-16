@@ -6,6 +6,10 @@ const DECK_COLORS = ['#E74C3C','#27AE60','#2980B9','#E67E22','#8E44AD','#16A085'
 // HSK_META is now defined in data.js (alias of LEVEL_INFO)
 
 
+function _decksKey() {
+  return (typeof AppState !== 'undefined' && AppState.version === 3) ? 'hsk_decks_v3' : 'hsk_decks';
+}
+
 // ── State ──────────────────────────────────────────────
 let decks = {}; // { deckId: { id, title, isSystem, level?, words[], icon, color, createdAt } }
 let activeDeckId = null;
@@ -27,37 +31,37 @@ function setupDecks() {
 
 function loadDecks() {
   try {
-    decks = JSON.parse(localStorage.getItem('hsk_decks') || 'null') || {};
+    decks = JSON.parse(localStorage.getItem(_decksKey()) || 'null') || {};
   } catch(e) {
     decks = {};
   }
   // Always ensure system HSK decks exist (idempotent)
-  [1,2,3,4,5,6].forEach(lv => {
+  var count = activeLevelCount();
+  var levelInfo = activeLevelInfo();
+  for (var lv = 1; lv <= count; lv++) {
     const id = `sys_hsk${lv}`;
     if (!decks[id]) {
-      const m = (typeof HSK_META !== 'undefined' && HSK_META[lv]) 
-                 ? HSK_META[lv] 
-                 : { icon:'📕', color:'#E74C3C', count: 0 };
+      const m = levelInfo[lv] || { icon:'📕', color:'#E74C3C', count: 0 };
       decks[id] = {
-        id, title: `HSK ${lv}`,
+        id, title: m.label || `HSK ${lv}`,
         isSystem: true, level: lv, words: [],
         icon: m.icon, color: m.color, createdAt: new Date().toISOString()
       };
     } else {
-      // Ensure isSystem flag is preserved in case of old data
       decks[id].isSystem = true;
       decks[id].level = lv;
     }
-  });
+  }
   saveDecks();
-  // Debug: verify HSK_DATA loaded
-  const total = Object.values(HSK_DATA).reduce((s,a)=>s+a.length,0);
-  if (total === 0) console.warn('[HSK] HSK_DATA is empty! Check that hsk1-6.js files loaded correctly.');
-  else console.log(`[HSK] Loaded: ${total} words across ${Object.keys(HSK_DATA).filter(k=>HSK_DATA[k].length>0).length} levels`);
+  // Debug: verify active data loaded
+  const data = activeHSKData();
+  const total = Object.values(data).reduce((s,a)=>s+a.length,0);
+  if (total === 0) console.warn('[HSK] activeHSKData is empty! Check data files loaded correctly.');
+  else console.log(`[HSK] v${AppState.version} Loaded: ${total} words across ${Object.keys(data).filter(k=>data[k].length>0).length} levels`);
 }
 
 function saveDecks() {
-  localStorage.setItem('hsk_decks', JSON.stringify(decks));
+  localStorage.setItem(_decksKey(), JSON.stringify(decks));
 }
 
 function migrateVaultToDecks() {
@@ -81,8 +85,8 @@ function getDeckWords(deck) {
 
 function getDeckProgress(deck) {
   if (!deck.isSystem || !deck.level) return { learned: deck.words?.length || 0, total: deck.words?.length || 0, pct: deck.words?.length ? 100 : 0 };
-  const total = getNewWordsForLevel(deck.level).length || HSK_META[deck.level]?.count || 0;
-  const learned = (progress[deck.level] || []).length;
+  const total = getNewWordsForLevel(deck.level).length || activeLevelInfo()[deck.level]?.count || 0;
+  const learned = (AppState.progress[deck.level] || []).length;
   return { learned: Math.min(learned, total), total, pct: total ? Math.round(Math.min(learned, total) / total * 100) : 0 };
 }
 
@@ -146,9 +150,9 @@ function renderHSKDecks() {
   }
 }
 
-// Get topics grouped from HSK_DATA for a given level
+// Get topics grouped from active data for a given level
 function getTopicGroups(level) {
-  const words = (HSK_DATA[level] || []).map(w => ({...w, level}));
+  const words = (activeHSKData()[level] || []).map(w => ({...w, level}));
   const groups = {};
   words.forEach(w => {
     const t = w.t || 'general';
@@ -161,7 +165,7 @@ function getTopicGroups(level) {
 function hskListRowHTML(deck) {
   const words = getDeckWords(deck);
   const prog = getDeckProgress(deck);
-  const m = HSK_META[deck.level] || {};
+  const m = activeLevelInfo()[deck.level] || {};
   const isExpanded = expandedLevels[deck.level];
   const badge = typeof getSRSBadgeHTML === 'function' ? getSRSBadgeHTML(words) : '';
   const topicGroups = getTopicGroups(deck.level);

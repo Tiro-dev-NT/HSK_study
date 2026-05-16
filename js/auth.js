@@ -204,6 +204,10 @@ var Auth = {
     localStorage.removeItem('hsk_srs');
     localStorage.removeItem('hsk_xp');
     localStorage.removeItem('hsk_user_decks');
+    localStorage.removeItem('hsk_progress_v3');
+    localStorage.removeItem('hsk_srs_v3');
+    localStorage.removeItem('hsk_decks_v3');
+    localStorage.removeItem('hsk_user_decks_v3');
     if (typeof Monetization !== 'undefined') Monetization.resetCache();
     Auth.renderUI();
     showToast('👋 Đã đăng xuất');

@@ -11,11 +11,15 @@ var AppState = {
   theme:    localStorage.getItem('hsk_theme')  || 'dark',
   version:  parseInt(localStorage.getItem('hsk_version') || '2'),
   progress: (function() {
-    try { return JSON.parse(localStorage.getItem('hsk_progress') || '{}'); }
+    var ver = parseInt(localStorage.getItem('hsk_version') || '2');
+    var key = ver === 3 ? 'hsk_progress_v3' : 'hsk_progress';
+    try { return JSON.parse(localStorage.getItem(key) || '{}'); }
     catch(e) { return {}; }
   })(),
   srsData: (function() {
-    try { return JSON.parse(localStorage.getItem('hsk_srs') || '{}'); }
+    var ver = parseInt(localStorage.getItem('hsk_version') || '2');
+    var key = ver === 3 ? 'hsk_srs_v3' : 'hsk_srs';
+    try { return JSON.parse(localStorage.getItem(key) || '{}'); }
     catch(e) { return {}; }
   })(),
   xpData: (function() {
@@ -74,11 +78,11 @@ var AppState = {
   },
 
   saveProgress: function() {
-    this.save('hsk_progress', this.progress);
+    this.save(this.version === 3 ? 'hsk_progress_v3' : 'hsk_progress', this.progress);
   },
 
   saveSRSData: function() {
-    this.save('hsk_srs', this.srsData);
+    this.save(this.version === 3 ? 'hsk_srs_v3' : 'hsk_srs', this.srsData);
   },
 
   saveXP: function() {

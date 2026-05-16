@@ -25,7 +25,7 @@ var Sync = {
       var progressRows = Object.keys(prog).filter(function(lv) {
         return prog[lv] && prog[lv].length > 0;
       }).map(function(lv) {
-        return { user_id: uid, level: parseInt(lv), learned_words: prog[lv], updated_at: new Date().toISOString() };
+        return { user_id: uid, level: parseInt(lv), hsk_version: AppState.version, learned_words: prog[lv], updated_at: new Date().toISOString() };
       });
       if (progressRows.length > 0) {
         var r = await SB.from('user_progress').upsert(progressRows);
@@ -39,7 +39,7 @@ var Sync = {
         var srsRows = srsKeys.map(function(hanzi) {
           var c = srs[hanzi];
           return {
-            user_id: uid, hanzi: hanzi,
+            user_id: uid, hanzi: hanzi, hsk_version: AppState.version,
             interval_days: c.interval, ease: c.ease, due_date: c.dueDate,
             reps: c.reps || 0, lapses: c.lapses || 0, last_review: c.lastReview || null,
             tags: c.tags || [],
@@ -122,7 +122,7 @@ var Sync = {
 
     try {
       // 1. Progress
-      var pr = await SB.from('user_progress').select('level,learned_words').eq('user_id', uid);
+      var pr = await SB.from('user_progress').select('level,learned_words').eq('user_id', uid).eq('hsk_version', AppState.version);
       if (!pr.error && pr.data && pr.data.length > 0) {
         pr.data.forEach(function(row) {
           AppState.progress[row.level] = row.learned_words || [];
@@ -132,7 +132,7 @@ var Sync = {
       }
 
       // 2. SRS
-      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags,word_data').eq('user_id', uid);
+      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags,word_data').eq('user_id', uid).eq('hsk_version', AppState.version);
       if (!sr.error && sr.data && sr.data.length > 0) {
         sr.data.forEach(function(row) {
           var entry = {
@@ -216,7 +216,7 @@ var Sync = {
 
     try {
       // Pull cloud data first
-      var pr = await SB.from('user_progress').select('level,learned_words').eq('user_id', uid);
+      var pr = await SB.from('user_progress').select('level,learned_words').eq('user_id', uid).eq('hsk_version', AppState.version);
       if (!pr.error && pr.data) {
         pr.data.forEach(function(row) {
           var lv = row.level;
@@ -230,7 +230,7 @@ var Sync = {
         progress = AppState.progress;
       }
 
-      var sr = await SB.from('user_srs').select('*').eq('user_id', uid);
+      var sr = await SB.from('user_srs').select('*').eq('user_id', uid).eq('hsk_version', AppState.version);
       if (!sr.error && sr.data) {
         sr.data.forEach(function(row) {
           var local = AppState.srsData[row.hanzi];

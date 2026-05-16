@@ -2,7 +2,9 @@
 // Shared across Flashcard, Typing, MCQ modes
 // Storage key: "hsk_srs" → { [hanzi]: { interval, ease, dueDate, reps, lapses, lastReview } }
 
-const SRS_KEY = 'hsk_srs';
+function _srsKey() {
+  return (typeof AppState !== 'undefined' && AppState.version === 3) ? 'hsk_srs_v3' : 'hsk_srs';
+}
 const SRS_DAILY_KEY = 'hsk_srs_daily_reviews';
 const SRS_NEW_PER_DAY = 20; // configurable: max new cards per day per deck
 
@@ -11,11 +13,11 @@ const SRS_NEW_PER_DAY = 20; // configurable: max new cards per day per deck
 const QUALITY_LABELS = ['again', 'hard', 'good', 'easy'];
 
 function loadSRS() {
-  srsData = JSON.parse(localStorage.getItem(SRS_KEY) || '{}');
+  srsData = JSON.parse(localStorage.getItem(_srsKey()) || '{}');
 }
 
 function saveSRS() {
-  localStorage.setItem(SRS_KEY, JSON.stringify(srsData));
+  localStorage.setItem(_srsKey(), JSON.stringify(srsData));
 }
 
 function getSRSCard(hanzi) {

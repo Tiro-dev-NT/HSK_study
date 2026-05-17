@@ -4,6 +4,9 @@
 
 var HSK_DATA = { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[] };
 
+// ─── HSK 3.0 (New HSK 2021) — populated lazily when user switches version ──
+var HSK3_DATA = { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[] };
+
 // ─── Level / Meta Info ────────────────────────────────
 // Used by both app.js (home grid) and decks.js (deck cards)
 var LEVEL_INFO = {
@@ -15,8 +18,31 @@ var LEVEL_INFO = {
   6: { label:'HSK 6', count:3617, color:'#8E44AD', icon:'📓' },
 };
 
+var LEVEL_INFO_V3 = {
+  1: { label:'HSK 3.0 L1', count:506,  color:'#E74C3C', icon:'📕' },
+  2: { label:'HSK 3.0 L2', count:750,  color:'#E67E22', icon:'📙' },
+  3: { label:'HSK 3.0 L3', count:953,  color:'#F1C40F', icon:'📒' },
+  4: { label:'HSK 3.0 L4', count:500,  color:'#27AE60', icon:'📗' },
+  5: { label:'HSK 3.0 L5', count:500,  color:'#2980B9', icon:'📘' },
+  6: { label:'HSK 3.0 L6', count:500,  color:'#8E44AD', icon:'📓' },
+  7: { label:'HSK 3.0 L7', count:1000, color:'#16A085', icon:'📚' },
+  8: { label:'HSK 3.0 L8', count:1000, color:'#1ABC9C', icon:'📚' },
+  9: { label:'HSK 3.0 L9', count:2383, color:'#E91E63', icon:'📚' },
+};
+
 // Alias for backward compat (decks.js uses HSK_META)
 var HSK_META = LEVEL_INFO;
+
+// ─── Version-aware data accessors ─────────────────────
+function activeHSKData() {
+  return (typeof AppState !== 'undefined' && AppState.version === 3) ? HSK3_DATA : HSK_DATA;
+}
+function activeLevelInfo() {
+  return (typeof AppState !== 'undefined' && AppState.version === 3) ? LEVEL_INFO_V3 : LEVEL_INFO;
+}
+function activeLevelCount() {
+  return (typeof AppState !== 'undefined' && AppState.version === 3) ? Object.keys(LEVEL_INFO_V3).length : 6;
+}
 
 // ─── Topic metadata ───────────────────────────────────
 var TOPIC_META = {
@@ -56,8 +82,9 @@ var TOPIC_META = {
 
 // ─── Helpers ──────────────────────────────────────────
 function getAllWords() {
+  var data = activeHSKData();
   var all = [];
-  Object.entries(HSK_DATA).forEach(function(entry) {
+  Object.entries(data).forEach(function(entry) {
     var lv = entry[0], words = entry[1];
     words.forEach(function(w) { all.push(Object.assign({}, w, {level: parseInt(lv)})); });
   });
@@ -65,23 +92,25 @@ function getAllWords() {
 }
 
 function getWordsByLevel(lv) {
-  return (HSK_DATA[lv] || []).map(function(w) { return Object.assign({}, w, {level: lv}); });
+  return (activeHSKData()[lv] || []).map(function(w) { return Object.assign({}, w, {level: lv}); });
 }
 
 // Trả về từ MỚI của level (loại bỏ từ đã có ở level thấp hơn)
 function getNewWordsForLevel(level) {
+  var data = activeHSKData();
   var lowerWords = new Set();
   for (var i = 1; i < level; i++) {
-    (HSK_DATA[i] || []).forEach(function(w) { lowerWords.add(w.h); });
+    (data[i] || []).forEach(function(w) { lowerWords.add(w.h); });
   }
-  return (HSK_DATA[level] || []).filter(function(w) { return !lowerWords.has(w.h); });
+  return (data[level] || []).filter(function(w) { return !lowerWords.has(w.h); });
 }
 
 // Trả về TẤT CẢ từ tích lũy đến level X (dedup)
 function getCumulativeWords(level) {
+  var data = activeHSKData();
   var all = [];
   for (var i = 1; i <= level; i++) {
-    (HSK_DATA[i] || []).forEach(function(w) { all.push(Object.assign({}, w, {level: i})); });
+    (data[i] || []).forEach(function(w) { all.push(Object.assign({}, w, {level: i})); });
   }
   var seen = new Set();
   return all.filter(function(w) {

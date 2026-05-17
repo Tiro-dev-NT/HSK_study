@@ -42,15 +42,16 @@ var MyVocab = (function() {
     var result = words;
 
     // Filter by tab
+    var maxLv = activeLevelCount();
     if (_activeFilter === 'hsk') {
-      result = result.filter(function(w) { return w.level >= 1 && w.level <= 6; });
+      result = result.filter(function(w) { return w.level >= 1 && w.level <= maxLv; });
     } else if (_activeFilter === 'extension') {
       result = result.filter(function(w) { return w.tags.indexOf('extension') >= 0; });
     } else if (_activeFilter === 'manual') {
       result = result.filter(function(w) { return w.tags.indexOf('manual') >= 0; });
     } else if (_activeFilter === 'web') {
       result = result.filter(function(w) {
-        return w.tags.indexOf('extension') < 0 && w.tags.indexOf('manual') < 0 && !(w.level >= 1 && w.level <= 6);
+        return w.tags.indexOf('extension') < 0 && w.tags.indexOf('manual') < 0 && !(w.level >= 1 && w.level <= maxLv);
       });
     }
 

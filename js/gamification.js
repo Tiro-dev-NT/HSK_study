@@ -124,15 +124,18 @@ var Gamification = {
     const grid = document.getElementById('levelGrid');
     if (!grid) return;
     grid.innerHTML = '';
-    [1, 2, 3, 4, 5, 6].forEach(function(lv) {
-      const info        = LEVEL_INFO[lv];
-      const card        = document.createElement('div');
-      card.className    = 'level-card';
-      const newWords    = getNewWordsForLevel(lv);
-      const realCount   = newWords.length;
+    var count = activeLevelCount();
+    var levelInfo = activeLevelInfo();
+    for (let lv = 1; lv <= count; lv++) {
+      const info = levelInfo[lv];
+      if (!info) continue;
+      const card = document.createElement('div');
+      card.className = 'level-card';
+      const newWords = getNewWordsForLevel(lv);
+      const realCount = newWords.length;
       const displayCount = realCount || info.count;
-      const stats       = getLevelStats(lv);
-      const pct         = displayCount ? Math.round(stats.mastered / displayCount * 100) : 0;
+      const stats = getLevelStats(lv);
+      const pct = displayCount ? Math.round(stats.mastered / displayCount * 100) : 0;
 
       var isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
       var lblNew      = isEN ? 'New' : 'Chưa học';
@@ -158,7 +161,7 @@ var Gamification = {
         }, 50);
       });
       grid.appendChild(card);
-    });
+    }
   },
 
   // ── Helpers ────────────────────────────────────────
@@ -177,7 +180,8 @@ var Gamification = {
 
     var today = new Date().toISOString().split('T')[0];
     var cached = null;
-    try { cached = JSON.parse(localStorage.getItem('hsk_wotd') || 'null'); } catch(e) {}
+    var wotdKey = 'hsk_wotd_v' + (AppState.version || 2);
+    try { cached = JSON.parse(localStorage.getItem(wotdKey) || 'null'); } catch(e) {}
     var word;
     if (cached && cached.date === today && cached.hanzi) {
       word = all.find(function(w) { return w.h === cached.hanzi; });
@@ -190,7 +194,7 @@ var Gamification = {
       }
       var idx = Math.abs(hash) % all.length;
       word = all[idx];
-      localStorage.setItem('hsk_wotd', JSON.stringify({ date: today, hanzi: word.h }));
+      localStorage.setItem(wotdKey, JSON.stringify({ date: today, hanzi: word.h }));
     }
 
     document.getElementById('wotdHanzi').textContent = word.h.charAt(0);
@@ -245,19 +249,22 @@ var Gamification = {
     var el = document.getElementById('readinessChart');
     if (!el) return;
     var html = '';
-    [1,2,3,4,5,6].forEach(function(lv) {
+    var count = activeLevelCount();
+    var levelInfo = activeLevelInfo();
+    for (var lv = 1; lv <= count; lv++) {
+      var info = levelInfo[lv];
       var words = getNewWordsForLevel(lv);
-      var total = words.length || (LEVEL_INFO[lv] ? LEVEL_INFO[lv].count : 0);
-      if (!total) return;
+      var total = words.length || (info ? info.count : 0);
+      if (!total) continue;
       var stats = getLevelStats(lv);
       var pct = Math.round(stats.mastered / total * 100);
-      var color = LEVEL_INFO[lv] ? LEVEL_INFO[lv].color : 'var(--primary)';
+      var color = info ? info.color : 'var(--primary)';
       html += '<div class="readiness-row">' +
-        '<span class="readiness-label">HSK ' + lv + '</span>' +
+        '<span class="readiness-label">' + (info ? info.label : 'HSK ' + lv) + '</span>' +
         '<div class="readiness-bar"><div class="readiness-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
         '<span class="readiness-pct">' + pct + '%</span>' +
       '</div>';
-    });
+    }
     el.innerHTML = html;
   },
 

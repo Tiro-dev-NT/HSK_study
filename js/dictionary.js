@@ -251,37 +251,6 @@ var Dictionary = {
     res.appendChild(wrapper);
   },
 
-  // ── HSK Version Switch ─────────────────────────────
-  setupHSKVersion: function() {
-    const v20 = document.getElementById('ver20');
-    const v30 = document.getElementById('ver30');
-    if (!v20 || !v30) return;
-    v20.classList.toggle('active', AppState.version === 2);
-    v30.classList.toggle('active', AppState.version === 3);
-    v20.addEventListener('click', function() { Dictionary._switchVersion(2); });
-    v30.addEventListener('click', function() { Dictionary._switchVersion(3); });
-  },
-
-  _switchVersion: function(ver) {
-    AppState.version = ver;
-    hskVersion = ver; // compat alias
-    localStorage.setItem('hsk_version', ver);
-    document.getElementById('ver20').classList.toggle('active', ver === 2);
-    document.getElementById('ver30').classList.toggle('active', ver === 3);
-    const res = document.getElementById('dictResults');
-    if (ver === 3) {
-      res.innerHTML = '<div class="coming-soon-banner">' +
-        '<div class="cs-icon">🚧</div>' +
-        '<h3>HSK 3.0 (2021) — Đang phát triển</h3>' +
-        '<p>Bộ từ vựng HSK 3.0 mới nhất đang được cập nhật.<br/>Hiện tại vui lòng dùng HSK 2.0.</p>' +
-      '</div>';
-      document.getElementById('dictSearch').disabled = true;
-    } else {
-      document.getElementById('dictSearch').disabled = false;
-      res.innerHTML = '<p class="hint">' + (AppState.lang === 'vi' ? 'Nhập từ để tìm kiếm...' : 'Type to search...') + '</p>';
-    }
-  },
-
   // ── Utilities ──────────────────────────────────────
   stripTones: function(str) {
     return str.normalize('NFD')
@@ -344,7 +313,6 @@ function openModal(word)             { Dictionary.openModal(word); }
 function closeModal()                { Dictionary.closeModal(); }
 function buildRadicalBrowser()       { Dictionary.buildRadicalBrowser(); }
 function filterByRadical(rad)        { Dictionary.filterByRadical(rad); }
-function setupHSKVersion()           { Dictionary.setupHSKVersion(); }
 function stripTones(str)             { return Dictionary.stripTones(str); }
 function playTTS(text)               { Dictionary.playTTS(text); }
 function renderWordList(words, el)   { Dictionary._renderWordList(words, el); }

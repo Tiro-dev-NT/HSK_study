@@ -159,13 +159,15 @@ var Quiz = {
     if (scope === 'hsk') {
       var activeBtn = document.querySelector('.level-btn.active');
       var lv = activeBtn ? activeBtn.dataset.level : '1';
+      var activeData = activeHSKData();
       if (lv === 'mix') {
-        [1,2,3,4,5,6].forEach(function(l) {
-          (HSK_DATA[l] || []).forEach(function(w) { pool.push(Object.assign({}, w, {level: l})); });
-        });
+        var lvCount = activeLevelCount();
+        for (var l = 1; l <= lvCount; l++) {
+          (activeData[l] || []).forEach(function(w) { pool.push(Object.assign({}, w, {level: l})); });
+        }
       } else {
         var lvNum = parseInt(lv);
-        (HSK_DATA[lvNum] || []).forEach(function(w) { pool.push(Object.assign({}, w, {level: lvNum})); });
+        (activeData[lvNum] || []).forEach(function(w) { pool.push(Object.assign({}, w, {level: lvNum})); });
       }
 
     } else if (scope === 'topic') {

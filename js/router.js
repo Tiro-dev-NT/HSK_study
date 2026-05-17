@@ -48,7 +48,6 @@ var Router = (function() {
     'dictionary': function() {
       if (typeof Dictionary !== 'undefined') {
         Dictionary.setup();
-        Dictionary.setupHSKVersion();
         Dictionary.buildRadicalBrowser();
       }
     },

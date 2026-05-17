@@ -3,7 +3,6 @@
   var b = [
   // Travel & Transport
   {h:"护照",p:"hùzhào",v:"Hộ chiếu",e:"Passport",t:"objects"},
-  {h:"签证",p:"qiānzhèng",v:"Visa",e:"Visa",t:"objects"},
   {h:"行李",p:"xíngli",v:"Hành lý",e:"Luggage",t:"objects"},
   {h:"机场",p:"jīchǎng",v:"Sân bay",e:"Airport",t:"places"},
   {h:"出发",p:"chūfā",v:"Khởi hành",e:"Depart",t:"actions"},

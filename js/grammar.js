@@ -184,13 +184,27 @@ var Grammar = (function() {
         '<div class="gram-progress-bar"><div class="gram-progress-fill" style="width:' + pct + '%"></div></div>' +
       '</div>';
 
-    var cardsHtml = patterns.map(function(p, idx) {
-      var quiz = _makeQuiz(p, allPatterns);
-      var isCompleted = !!(done[p.id]);
-      return _renderLessonCard(p, allPatterns.indexOf(p), isCompleted, quiz);
-    }).join('');
+    var firstCard = (function() {
+      var p = patterns[0];
+      return _renderLessonCard(p, allPatterns.indexOf(p), !!(done[p.id]), _makeQuiz(p, allPatterns));
+    })();
+    container.innerHTML = headerHtml + firstCard;
 
-    container.innerHTML = headerHtml + cardsHtml;
+    var remaining = patterns.slice(1);
+    if (remaining.length === 0) return;
+
+    var renderRest = function() {
+      var html = remaining.map(function(p) {
+        return _renderLessonCard(p, allPatterns.indexOf(p), !!(done[p.id]), _makeQuiz(p, allPatterns));
+      }).join('');
+      container.insertAdjacentHTML('beforeend', html);
+    };
+
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(renderRest, { timeout: 1000 });
+    } else {
+      setTimeout(renderRest, 0);
+    }
   }
 
   // ── Events ────────────────────────────────────────────

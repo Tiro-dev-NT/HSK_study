@@ -63,7 +63,6 @@ HSK_DATA[4] = [
   {h:"同事",p:"tóngshì",v:"Đồng nghiệp",e:"Colleague",t:"work"},
   {h:"客户",p:"kèhù",v:"Khách hàng",e:"Client",t:"work"},
   {h:"会议",p:"huìyì",v:"Cuộc họp",e:"Meeting",t:"work"},
-  {h:"讨论",p:"tǎolùn",v:"Thảo luận",e:"Discussion",t:"work"},
   {h:"报告",p:"bàogào",v:"Báo cáo",e:"Report",t:"work"},
   {h:"合同",p:"hétong",v:"Hợp đồng",e:"Contract",t:"work"},
   {h:"签证",p:"qiānzhèng",v:"Visa",e:"Visa",t:"work"},
@@ -159,7 +158,6 @@ HSK_DATA[4] = [
   {h:"交通",p:"jiāotōng",v:"Giao thông",e:"Traffic",t:"transport"},
   {h:"航班",p:"hángbān",v:"Chuyến bay",e:"Flight",t:"transport"},
   {h:"旅游",p:"lǚyóu",v:"Du lịch",e:"Travel",t:"transport"},
-  {h:"签证",p:"qiānzhèng",v:"Thị thực",e:"Visa",t:"transport"},
   {h:"护照",p:"hùzhào",v:"Hộ chiếu",e:"Passport",t:"transport"},
   {h:"行李",p:"xíngli",v:"Hành lý",e:"Luggage",t:"transport"},
   // ── Life & Society ──

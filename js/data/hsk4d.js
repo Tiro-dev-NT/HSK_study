@@ -76,7 +76,6 @@
   {h:"联系",p:"liánxi",v:"Liên lạc",e:"Contact",t:"actions"},
   {h:"通知",p:"tōngzhī",v:"Thông báo",e:"Notify",t:"actions"},
   {h:"汇报",p:"huìbào",v:"Báo cáo",e:"Report",t:"actions"},
-  {h:"讨论",p:"tǎolùn",v:"Thảo luận",e:"Discuss",t:"actions"},
   {h:"建议",p:"jiànyì",v:"Đề xuất",e:"Suggest",t:"actions"},
   {h:"同意",p:"tóngyì",v:"Đồng ý",e:"Agree",t:"actions"},
   {h:"拒绝",p:"jùjué",v:"Từ chối",e:"Refuse",t:"actions"},

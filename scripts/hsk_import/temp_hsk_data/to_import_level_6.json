@@ -1,0 +1,7779 @@
+[
+  {
+    "h": "呵",
+    "p": "ā",
+    "v": "variant of 啊",
+    "e": "variant of 啊",
+    "t": "general"
+  },
+  {
+    "h": "哎哟",
+    "p": "āi yō",
+    "v": "hey",
+    "e": "hey",
+    "t": "emotions"
+  },
+  {
+    "h": "安居乐业",
+    "p": "ān jū lè yè",
+    "v": "to live in peace and work happily (idiom)",
+    "e": "to live in peace and work happily (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "把戏",
+    "p": "bǎ xì",
+    "v": "acrobatics; jugglery",
+    "e": "acrobatics; jugglery",
+    "t": "objects"
+  },
+  {
+    "h": "百分点",
+    "p": "bǎi fēn diǎn",
+    "v": "percentage point",
+    "e": "percentage point",
+    "t": "objects"
+  },
+  {
+    "h": "拜访",
+    "p": "bài fǎng",
+    "v": "to pay a visit; to call on",
+    "e": "to pay a visit; to call on",
+    "t": "actions"
+  },
+  {
+    "h": "斑纹",
+    "p": "bān wén",
+    "v": "stripe",
+    "e": "stripe",
+    "t": "objects"
+  },
+  {
+    "h": "榜样",
+    "p": "bǎng yàng",
+    "v": "example",
+    "e": "example",
+    "t": "objects"
+  },
+  {
+    "h": "报到",
+    "p": "bào dào",
+    "v": "to report for duty",
+    "e": "to report for duty",
+    "t": "actions"
+  },
+  {
+    "h": "报社",
+    "p": "bào shè",
+    "v": "newspaper (i.e. a company)",
+    "e": "newspaper (i.e. a company)",
+    "t": "objects"
+  },
+  {
+    "h": "爆发",
+    "p": "bào fā",
+    "v": "to break out",
+    "e": "to break out",
+    "t": "actions"
+  },
+  {
+    "h": "奔驰",
+    "p": "Bēn chí",
+    "v": "Benz (name)",
+    "e": "Benz (name)",
+    "t": "general"
+  },
+  {
+    "h": "本人",
+    "p": "běn rén",
+    "v": "I; me; myself",
+    "e": "I; me; myself",
+    "t": "pronouns"
+  },
+  {
+    "h": "本着",
+    "p": "běn zhe",
+    "v": "based on...",
+    "e": "based on...",
+    "t": "language"
+  },
+  {
+    "h": "必定",
+    "p": "bì dìng",
+    "v": "to be bound to",
+    "e": "to be bound to",
+    "t": "actions"
+  },
+  {
+    "h": "碧玉",
+    "p": "bì yù",
+    "v": "jasper",
+    "e": "jasper",
+    "t": "objects"
+  },
+  {
+    "h": "飙升",
+    "p": "biāo shēng",
+    "v": "to rise rapidly",
+    "e": "to rise rapidly",
+    "t": "actions"
+  },
+  {
+    "h": "并存",
+    "p": "bìng cún",
+    "v": "to exist at the same time",
+    "e": "to exist at the same time",
+    "t": "actions"
+  },
+  {
+    "h": "拨打",
+    "p": "bō dǎ",
+    "v": "to call",
+    "e": "to call",
+    "t": "actions"
+  },
+  {
+    "h": "波涛汹涌",
+    "p": "bō tāo xiōng yǒng",
+    "v": "waves surging forth",
+    "e": "waves surging forth",
+    "t": "general"
+  },
+  {
+    "h": "播放",
+    "p": "bō fàng",
+    "v": "to broadcast; to transmit (by radio or TV)",
+    "e": "to broadcast; to transmit (by radio or TV)",
+    "t": "actions"
+  },
+  {
+    "h": "不时",
+    "p": "bù shí",
+    "v": "from time to time",
+    "e": "from time to time",
+    "t": "actions"
+  },
+  {
+    "h": "布置",
+    "p": "bù zhì",
+    "v": "to put in order",
+    "e": "to put in order",
+    "t": "actions"
+  },
+  {
+    "h": "残酷",
+    "p": "cán kù",
+    "v": "cruel",
+    "e": "cruel",
+    "t": "adjectives"
+  },
+  {
+    "h": "猖狂",
+    "p": "chāng kuáng",
+    "v": "savage",
+    "e": "savage",
+    "t": "adjectives"
+  },
+  {
+    "h": "常年",
+    "p": "cháng nián",
+    "v": "all year round",
+    "e": "all year round",
+    "t": "actions"
+  },
+  {
+    "h": "常务",
+    "p": "cháng wù",
+    "v": "routine",
+    "e": "routine",
+    "t": "general"
+  },
+  {
+    "h": "场面",
+    "p": "chǎng miàn",
+    "v": "scene",
+    "e": "scene",
+    "t": "objects"
+  },
+  {
+    "h": "场所",
+    "p": "chǎng suǒ",
+    "v": "location",
+    "e": "location",
+    "t": "objects"
+  },
+  {
+    "h": "超级",
+    "p": "chāo jí",
+    "v": "super-",
+    "e": "super-",
+    "t": "general"
+  },
+  {
+    "h": "朝气蓬勃",
+    "p": "zhāo qì péng bó",
+    "v": "full of youthful energy (idiom); vigorous",
+    "e": "full of youthful energy (idiom); vigorous",
+    "t": "actions"
+  },
+  {
+    "h": "成员",
+    "p": "chéng yuán",
+    "v": "member",
+    "e": "member",
+    "t": "objects"
+  },
+  {
+    "h": "乘务员",
+    "p": "chéng wù yuán",
+    "v": "attendant on an airplane, train, boat etc",
+    "e": "attendant on an airplane, train, boat etc",
+    "t": "objects"
+  },
+  {
+    "h": "橙",
+    "p": "chéng",
+    "v": "orange tree",
+    "e": "orange tree",
+    "t": "general"
+  },
+  {
+    "h": "池塘",
+    "p": "chí táng",
+    "v": "pool",
+    "e": "pool",
+    "t": "objects"
+  },
+  {
+    "h": "充实",
+    "p": "chōng shí",
+    "v": "rich",
+    "e": "rich",
+    "t": "actions"
+  },
+  {
+    "h": "冲动",
+    "p": "chōng dòng",
+    "v": "to have an urge",
+    "e": "to have an urge",
+    "t": "adjectives"
+  },
+  {
+    "h": "崇敬",
+    "p": "chóng jìng",
+    "v": "to revere",
+    "e": "to revere",
+    "t": "actions"
+  },
+  {
+    "h": "抽空",
+    "p": "chōu kòng",
+    "v": "to find the time to do sth",
+    "e": "to find the time to do sth",
+    "t": "actions"
+  },
+  {
+    "h": "踌躇",
+    "p": "chóu chú",
+    "v": "to hesitate",
+    "e": "to hesitate",
+    "t": "actions"
+  },
+  {
+    "h": "出洋相",
+    "p": "chū yáng xiàng",
+    "v": "to make a fool of oneself",
+    "e": "to make a fool of oneself",
+    "t": "actions"
+  },
+  {
+    "h": "畜牧",
+    "p": "xù mù",
+    "v": "to raise animals",
+    "e": "to raise animals",
+    "t": "objects"
+  },
+  {
+    "h": "传记",
+    "p": "zhuàn jì",
+    "v": "biography",
+    "e": "biography",
+    "t": "objects"
+  },
+  {
+    "h": "幢",
+    "p": "chuáng",
+    "v": "banner",
+    "e": "banner",
+    "t": "numbers"
+  },
+  {
+    "h": "搭",
+    "p": "dā",
+    "v": "to put up",
+    "e": "to put up",
+    "t": "actions"
+  },
+  {
+    "h": "大厦",
+    "p": "dà shà",
+    "v": "(used in the names of grand buildings such as 百老汇大厦 Broadway Mansions (in Shanghai) or 帝国大厦 Empire State Building etc)",
+    "e": "(used in the names of grand buildings such as 百老汇大厦 Broadway Mansions (in Shanghai) or 帝国大厦 Empire State Building etc)",
+    "t": "objects"
+  },
+  {
+    "h": "诞生",
+    "p": "dàn shēng",
+    "v": "to be born",
+    "e": "to be born",
+    "t": "actions"
+  },
+  {
+    "h": "弹性",
+    "p": "tán xìng",
+    "v": "flexibility",
+    "e": "flexibility",
+    "t": "objects"
+  },
+  {
+    "h": "当心",
+    "p": "dāng xīn",
+    "v": "to take care",
+    "e": "to take care",
+    "t": "actions"
+  },
+  {
+    "h": "岛屿",
+    "p": "dǎo yǔ",
+    "v": "island",
+    "e": "island",
+    "t": "objects"
+  },
+  {
+    "h": "登录",
+    "p": "dēng lù",
+    "v": "to register",
+    "e": "to register",
+    "t": "actions"
+  },
+  {
+    "h": "雕刻",
+    "p": "diāo kè",
+    "v": "to carve",
+    "e": "to carve",
+    "t": "objects"
+  },
+  {
+    "h": "调和",
+    "p": "tiáo hé",
+    "v": "harmonious",
+    "e": "harmonious",
+    "t": "actions"
+  },
+  {
+    "h": "调剂",
+    "p": "tiáo jì",
+    "v": "to adjust",
+    "e": "to adjust",
+    "t": "actions"
+  },
+  {
+    "h": "调料",
+    "p": "tiáo liào",
+    "v": "condiment",
+    "e": "condiment",
+    "t": "objects"
+  },
+  {
+    "h": "定期",
+    "p": "dìng qī",
+    "v": "at set dates",
+    "e": "at set dates",
+    "t": "actions"
+  },
+  {
+    "h": "动手",
+    "p": "dòng shǒu",
+    "v": "to set about (a task)",
+    "e": "to set about (a task)",
+    "t": "actions"
+  },
+  {
+    "h": "洞穴",
+    "p": "dòng xué",
+    "v": "cave",
+    "e": "cave",
+    "t": "objects"
+  },
+  {
+    "h": "都市",
+    "p": "dū shì",
+    "v": "city; metropolis",
+    "e": "city; metropolis",
+    "t": "objects"
+  },
+  {
+    "h": "端",
+    "p": "duān",
+    "v": "end",
+    "e": "end",
+    "t": "actions"
+  },
+  {
+    "h": "断断续续",
+    "p": "duàn duàn xù xù",
+    "v": "intermittent",
+    "e": "intermittent",
+    "t": "general"
+  },
+  {
+    "h": "对付",
+    "p": "duì fu",
+    "v": "to handle; to deal with; to tackle",
+    "e": "to handle; to deal with; to tackle",
+    "t": "actions"
+  },
+  {
+    "h": "兑换",
+    "p": "duì huàn",
+    "v": "to convert",
+    "e": "to convert",
+    "t": "actions"
+  },
+  {
+    "h": "恶心",
+    "p": "ě xīn",
+    "v": "variant of 恶心",
+    "e": "variant of 恶心",
+    "t": "adjectives"
+  },
+  {
+    "h": "略微",
+    "p": "lu:è wēi",
+    "v": "a little bit",
+    "e": "a little bit",
+    "t": "actions"
+  },
+  {
+    "h": "耳环",
+    "p": "ěr huán",
+    "v": "earring",
+    "e": "earring",
+    "t": "objects"
+  },
+  {
+    "h": "发布",
+    "p": "fā bù",
+    "v": "to release",
+    "e": "to release",
+    "t": "actions"
+  },
+  {
+    "h": "发火",
+    "p": "fā huǒ",
+    "v": "to catch fire",
+    "e": "to catch fire",
+    "t": "actions"
+  },
+  {
+    "h": "反倒",
+    "p": "fǎn dào",
+    "v": "but on the contrary",
+    "e": "but on the contrary",
+    "t": "actions"
+  },
+  {
+    "h": "反动",
+    "p": "fǎn dòng",
+    "v": "reaction",
+    "e": "reaction",
+    "t": "adjectives"
+  },
+  {
+    "h": "反感",
+    "p": "fǎn gǎn",
+    "v": "to be disgusted with",
+    "e": "to be disgusted with",
+    "t": "actions"
+  },
+  {
+    "h": "防疫",
+    "p": "fáng yì",
+    "v": "to prevent epidemics",
+    "e": "to prevent epidemics",
+    "t": "actions"
+  },
+  {
+    "h": "防止",
+    "p": "fáng zhǐ",
+    "v": "to prevent",
+    "e": "to prevent",
+    "t": "actions"
+  },
+  {
+    "h": "匪徒",
+    "p": "fěi tú",
+    "v": "gangster",
+    "e": "gangster",
+    "t": "objects"
+  },
+  {
+    "h": "分手",
+    "p": "fēn shǒu",
+    "v": "to part company",
+    "e": "to part company",
+    "t": "actions"
+  },
+  {
+    "h": "粉末",
+    "p": "fěn mò",
+    "v": "fine powder",
+    "e": "fine powder",
+    "t": "objects"
+  },
+  {
+    "h": "粉色",
+    "p": "fěn sè",
+    "v": "pink",
+    "e": "pink",
+    "t": "objects"
+  },
+  {
+    "h": "福气",
+    "p": "fú qi",
+    "v": "good fortune",
+    "e": "good fortune",
+    "t": "objects"
+  },
+  {
+    "h": "俯仰",
+    "p": "fǔ yǎng",
+    "v": "lowering and raising of the head",
+    "e": "lowering and raising of the head",
+    "t": "general"
+  },
+  {
+    "h": "附件",
+    "p": "fù jiàn",
+    "v": "enclosure",
+    "e": "enclosure",
+    "t": "objects"
+  },
+  {
+    "h": "副",
+    "p": "fù",
+    "v": "secondary",
+    "e": "secondary",
+    "t": "general"
+  },
+  {
+    "h": "富裕",
+    "p": "Fù yù",
+    "v": "Fuyu county in Qiqihar 齐齐哈尔, Heilongjiang",
+    "e": "Fuyu county in Qiqihar 齐齐哈尔, Heilongjiang",
+    "t": "adjectives"
+  },
+  {
+    "h": "甘心",
+    "p": "gān xīn",
+    "v": "to be willing to",
+    "e": "to be willing to",
+    "t": "actions"
+  },
+  {
+    "h": "尴尬",
+    "p": "gān gà",
+    "v": "awkward",
+    "e": "awkward",
+    "t": "adjectives"
+  },
+  {
+    "h": "高峰",
+    "p": "gāo fēng",
+    "v": "peak",
+    "e": "peak",
+    "t": "objects"
+  },
+  {
+    "h": "高考",
+    "p": "gāo kǎo",
+    "v": "college entrance exam (especially as abbr. for 普通高等学校招生全国统一考试)",
+    "e": "college entrance exam (especially as abbr. for 普通高等学校招生全国统一考试)",
+    "t": "actions"
+  },
+  {
+    "h": "高明",
+    "p": "Gāo míng",
+    "v": "Gaoming District of Foshan City 市, Guangdong",
+    "e": "Gaoming District of Foshan City 市, Guangdong",
+    "t": "adjectives"
+  },
+  {
+    "h": "更新",
+    "p": "gēng xīn",
+    "v": "to replace the old with new",
+    "e": "to replace the old with new",
+    "t": "actions"
+  },
+  {
+    "h": "工夫",
+    "p": "gōng fū",
+    "v": "(old) laborer",
+    "e": "(old) laborer",
+    "t": "objects"
+  },
+  {
+    "h": "公安局",
+    "p": "gōng ān jú",
+    "v": "public security bureau (government office similar in function to a police station)",
+    "e": "public security bureau (government office similar in function to a police station)",
+    "t": "objects"
+  },
+  {
+    "h": "公告",
+    "p": "gōng gào",
+    "v": "post",
+    "e": "post",
+    "t": "objects"
+  },
+  {
+    "h": "公婆",
+    "p": "gōng pó",
+    "v": "husband's parents",
+    "e": "husband's parents",
+    "t": "objects"
+  },
+  {
+    "h": "功课",
+    "p": "gōng kè",
+    "v": "homework",
+    "e": "homework",
+    "t": "objects"
+  },
+  {
+    "h": "共和国",
+    "p": "gòng hé guó",
+    "v": "republic",
+    "e": "republic",
+    "t": "objects"
+  },
+  {
+    "h": "共计",
+    "p": "gòng jì",
+    "v": "to sum up to",
+    "e": "to sum up to",
+    "t": "actions"
+  },
+  {
+    "h": "钩子",
+    "p": "gōu zi",
+    "v": "hook",
+    "e": "hook",
+    "t": "objects"
+  },
+  {
+    "h": "固执",
+    "p": "gù zhí",
+    "v": "obstinate",
+    "e": "obstinate",
+    "t": "adjectives"
+  },
+  {
+    "h": "故乡",
+    "p": "gù xiāng",
+    "v": "home",
+    "e": "home",
+    "t": "objects"
+  },
+  {
+    "h": "顾问",
+    "p": "gù wèn",
+    "v": "adviser",
+    "e": "adviser",
+    "t": "objects"
+  },
+  {
+    "h": "观光",
+    "p": "guān guāng",
+    "v": "to tour",
+    "e": "to tour",
+    "t": "actions"
+  },
+  {
+    "h": "光彩",
+    "p": "guāng cǎi",
+    "v": "luster",
+    "e": "luster",
+    "t": "adjectives"
+  },
+  {
+    "h": "广阔",
+    "p": "guǎng kuò",
+    "v": "wide",
+    "e": "wide",
+    "t": "adjectives"
+  },
+  {
+    "h": "国务院",
+    "p": "Guó wù yuàn",
+    "v": "State Council (PRC)",
+    "e": "State Council (PRC)",
+    "t": "work"
+  },
+  {
+    "h": "过奖",
+    "p": "guò jiǎng",
+    "v": "to overpraise",
+    "e": "to overpraise",
+    "t": "actions"
+  },
+  {
+    "h": "嗨",
+    "p": "hāi",
+    "v": "oh alas",
+    "e": "oh alas",
+    "t": "emotions"
+  },
+  {
+    "h": "毫米",
+    "p": "háo mǐ",
+    "v": "millimeter",
+    "e": "millimeter",
+    "t": "numbers"
+  },
+  {
+    "h": "好客",
+    "p": "hào kè",
+    "v": "hospitality",
+    "e": "hospitality",
+    "t": "adjectives"
+  },
+  {
+    "h": "合乎",
+    "p": "hé hū",
+    "v": "to accord with; to conform to",
+    "e": "to accord with; to conform to",
+    "t": "actions"
+  },
+  {
+    "h": "合身",
+    "p": "hé shēn",
+    "v": "well-fitting (of clothes)",
+    "e": "well-fitting (of clothes)",
+    "t": "adjectives"
+  },
+  {
+    "h": "嘿",
+    "p": "hēi",
+    "v": "hey",
+    "e": "hey",
+    "t": "emotions"
+  },
+  {
+    "h": "烘",
+    "p": "hōng",
+    "v": "to bake",
+    "e": "to bake",
+    "t": "actions"
+  },
+  {
+    "h": "红包",
+    "p": "hóng bāo",
+    "v": "money wrapped in red as a gift",
+    "e": "money wrapped in red as a gift",
+    "t": "objects"
+  },
+  {
+    "h": "后代",
+    "p": "hòu dài",
+    "v": "descendant",
+    "e": "descendant",
+    "t": "objects"
+  },
+  {
+    "h": "后顾之忧",
+    "p": "hòu gù zhī yōu",
+    "v": "fears of trouble in the rear (idiom); family worries (obstructing freedom of action)",
+    "e": "fears of trouble in the rear (idiom); family worries (obstructing freedom of action)",
+    "t": "general"
+  },
+  {
+    "h": "怀孕",
+    "p": "huái yùn",
+    "v": "pregnant",
+    "e": "pregnant",
+    "t": "actions"
+  },
+  {
+    "h": "欢乐",
+    "p": "huān lè",
+    "v": "gaiety",
+    "e": "gaiety",
+    "t": "adjectives"
+  },
+  {
+    "h": "慌忙",
+    "p": "huāng máng",
+    "v": "in a great rush",
+    "e": "in a great rush",
+    "t": "adjectives"
+  },
+  {
+    "h": "混合",
+    "p": "hùn hé",
+    "v": "to mix",
+    "e": "to mix",
+    "t": "actions"
+  },
+  {
+    "h": "或许",
+    "p": "huò xǔ",
+    "v": "perhaps; maybe",
+    "e": "perhaps; maybe",
+    "t": "actions"
+  },
+  {
+    "h": "机关",
+    "p": "jī guān",
+    "v": "mechanism; gear",
+    "e": "mechanism; gear",
+    "t": "objects"
+  },
+  {
+    "h": "机灵",
+    "p": "jī ling",
+    "v": "clever",
+    "e": "clever",
+    "t": "adjectives"
+  },
+  {
+    "h": "及早",
+    "p": "jí zǎo",
+    "v": "at the earliest possible time; as soon as possible",
+    "e": "at the earliest possible time; as soon as possible",
+    "t": "actions"
+  },
+  {
+    "h": "即将",
+    "p": "jí jiāng",
+    "v": "on the eve of",
+    "e": "on the eve of",
+    "t": "actions"
+  },
+  {
+    "h": "记性",
+    "p": "jì xing",
+    "v": "memory (ability to retain information)",
+    "e": "memory (ability to retain information)",
+    "t": "objects"
+  },
+  {
+    "h": "技能",
+    "p": "jì néng",
+    "v": "technical ability",
+    "e": "technical ability",
+    "t": "objects"
+  },
+  {
+    "h": "技巧",
+    "p": "jì qiǎo",
+    "v": "skill",
+    "e": "skill",
+    "t": "objects"
+  },
+  {
+    "h": "家常",
+    "p": "jiā cháng",
+    "v": "the daily life of a family",
+    "e": "the daily life of a family",
+    "t": "objects"
+  },
+  {
+    "h": "家伙",
+    "p": "jiā huo",
+    "v": "variant of 伙",
+    "e": "variant of 伙",
+    "t": "objects"
+  },
+  {
+    "h": "家属",
+    "p": "jiā shǔ",
+    "v": "family member",
+    "e": "family member",
+    "t": "objects"
+  },
+  {
+    "h": "假使",
+    "p": "jiǎ shǐ",
+    "v": "if",
+    "e": "if",
+    "t": "language"
+  },
+  {
+    "h": "坚固",
+    "p": "jiān gù",
+    "v": "firm",
+    "e": "firm",
+    "t": "adjectives"
+  },
+  {
+    "h": "兼职",
+    "p": "jiān zhí",
+    "v": "to hold concurrent posts",
+    "e": "to hold concurrent posts",
+    "t": "actions"
+  },
+  {
+    "h": "简化",
+    "p": "jiǎn huà",
+    "v": "to simplify",
+    "e": "to simplify",
+    "t": "actions"
+  },
+  {
+    "h": "简体字",
+    "p": "jiǎn tǐ zì",
+    "v": "simplified Chinese character, as opposed to traditional Chinese character 繁体字",
+    "e": "simplified Chinese character, as opposed to traditional Chinese character 繁体字",
+    "t": "general"
+  },
+  {
+    "h": "奖励",
+    "p": "jiǎng lì",
+    "v": "to reward",
+    "e": "to reward",
+    "t": "actions"
+  },
+  {
+    "h": "交往",
+    "p": "jiāo wǎng",
+    "v": "to associate (with)",
+    "e": "to associate (with)",
+    "t": "actions"
+  },
+  {
+    "h": "揭发",
+    "p": "jiē fā",
+    "v": "to expose",
+    "e": "to expose",
+    "t": "actions"
+  },
+  {
+    "h": "尽快",
+    "p": "jǐn kuài",
+    "v": "as quickly as possible; as soon as possible",
+    "e": "as quickly as possible; as soon as possible",
+    "t": "actions"
+  },
+  {
+    "h": "紧密",
+    "p": "jǐn mì",
+    "v": "inseparably close",
+    "e": "inseparably close",
+    "t": "adjectives"
+  },
+  {
+    "h": "锦绣前程",
+    "p": "jǐn xiù qián chéng",
+    "v": "bright future",
+    "e": "bright future",
+    "t": "general"
+  },
+  {
+    "h": "劲头",
+    "p": "jìn tóu",
+    "v": "enthusiasm",
+    "e": "enthusiasm",
+    "t": "objects"
+  },
+  {
+    "h": "近视",
+    "p": "jìn shì",
+    "v": "shortsighted",
+    "e": "shortsighted",
+    "t": "adjectives"
+  },
+  {
+    "h": "进而",
+    "p": "jìn ér",
+    "v": "and then (what follows next)",
+    "e": "and then (what follows next)",
+    "t": "language"
+  },
+  {
+    "h": "经商",
+    "p": "jīng shāng",
+    "v": "to trade",
+    "e": "to trade",
+    "t": "actions"
+  },
+  {
+    "h": "经纬",
+    "p": "jīng wěi",
+    "v": "warp and woof",
+    "e": "warp and woof",
+    "t": "objects"
+  },
+  {
+    "h": "颈椎",
+    "p": "jǐng zhuī",
+    "v": "cervical vertebra",
+    "e": "cervical vertebra",
+    "t": "objects"
+  },
+  {
+    "h": "警告",
+    "p": "jǐng gào",
+    "v": "to warn",
+    "e": "to warn",
+    "t": "actions"
+  },
+  {
+    "h": "居住",
+    "p": "jū zhù",
+    "v": "to reside",
+    "e": "to reside",
+    "t": "actions"
+  },
+  {
+    "h": "局部",
+    "p": "jú bù",
+    "v": "part",
+    "e": "part",
+    "t": "objects"
+  },
+  {
+    "h": "举世闻名",
+    "p": "jǔ shì wén míng",
+    "v": "world-famous (idiom)",
+    "e": "world-famous (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "卡通",
+    "p": "kǎ tōng",
+    "v": "cartoon (loanword)",
+    "e": "cartoon (loanword)",
+    "t": "objects"
+  },
+  {
+    "h": "开水",
+    "p": "kāi shuǐ",
+    "v": "boiled water",
+    "e": "boiled water",
+    "t": "objects"
+  },
+  {
+    "h": "看望",
+    "p": "kàn wàng",
+    "v": "to pay a visit to; to see (sb)",
+    "e": "to pay a visit to; to see (sb)",
+    "t": "actions"
+  },
+  {
+    "h": "科目",
+    "p": "kē mù",
+    "v": "academic subject",
+    "e": "academic subject",
+    "t": "objects"
+  },
+  {
+    "h": "颗粒",
+    "p": "kē lì",
+    "v": "kernel",
+    "e": "kernel",
+    "t": "objects"
+  },
+  {
+    "h": "可口",
+    "p": "kě kǒu",
+    "v": "tasty; to taste good",
+    "e": "tasty; to taste good",
+    "t": "adjectives"
+  },
+  {
+    "h": "可笑",
+    "p": "kě xiào",
+    "v": "funny",
+    "e": "funny",
+    "t": "adjectives"
+  },
+  {
+    "h": "空白",
+    "p": "kòng bái",
+    "v": "blank space",
+    "e": "blank space",
+    "t": "objects"
+  },
+  {
+    "h": "空隙",
+    "p": "kòng xì",
+    "v": "crack",
+    "e": "crack",
+    "t": "objects"
+  },
+  {
+    "h": "空想",
+    "p": "kōng xiǎng",
+    "v": "daydream",
+    "e": "daydream",
+    "t": "objects"
+  },
+  {
+    "h": "孔",
+    "p": "Kǒng",
+    "v": "surname Kong",
+    "e": "surname Kong",
+    "t": "objects"
+  },
+  {
+    "h": "口气",
+    "p": "kǒu qì",
+    "v": "tone of voice",
+    "e": "tone of voice",
+    "t": "objects"
+  },
+  {
+    "h": "口音",
+    "p": "kǒu yīn",
+    "v": "oral speech sounds (linguistics)",
+    "e": "oral speech sounds (linguistics)",
+    "t": "objects"
+  },
+  {
+    "h": "枯竭",
+    "p": "kū jié",
+    "v": "used up",
+    "e": "used up",
+    "t": "actions"
+  },
+  {
+    "h": "挎",
+    "p": "kuà",
+    "v": "to carry (esp. slung over the arm, shoulder or side)",
+    "e": "to carry (esp. slung over the arm, shoulder or side)",
+    "t": "actions"
+  },
+  {
+    "h": "快活",
+    "p": "kuài huo",
+    "v": "happy",
+    "e": "happy",
+    "t": "adjectives"
+  },
+  {
+    "h": "筐",
+    "p": "kuāng",
+    "v": "basket",
+    "e": "basket",
+    "t": "objects"
+  },
+  {
+    "h": "旷课",
+    "p": "kuàng kè",
+    "v": "to play truant",
+    "e": "to play truant",
+    "t": "actions"
+  },
+  {
+    "h": "昆虫",
+    "p": "kūn chóng",
+    "v": "insect",
+    "e": "insect",
+    "t": "objects"
+  },
+  {
+    "h": "啦",
+    "p": "lā",
+    "v": "(onom.) sound of singing, cheering etc",
+    "e": "(onom.) sound of singing, cheering etc",
+    "t": "general"
+  },
+  {
+    "h": "朗读",
+    "p": "lǎng dú",
+    "v": "to read aloud",
+    "e": "to read aloud",
+    "t": "actions"
+  },
+  {
+    "h": "乐谱",
+    "p": "yuè pǔ",
+    "v": "a musical score",
+    "e": "a musical score",
+    "t": "objects"
+  },
+  {
+    "h": "乐趣",
+    "p": "lè qù",
+    "v": "delight; pleasure; joy",
+    "e": "delight; pleasure; joy",
+    "t": "objects"
+  },
+  {
+    "h": "冷淡",
+    "p": "lěng dàn",
+    "v": "cold",
+    "e": "cold",
+    "t": "adjectives"
+  },
+  {
+    "h": "冷却",
+    "p": "lěng què",
+    "v": "to cool (lit. and fig.)",
+    "e": "to cool (lit. and fig.)",
+    "t": "actions"
+  },
+  {
+    "h": "礼节",
+    "p": "lǐ jié",
+    "v": "etiquette",
+    "e": "etiquette",
+    "t": "objects"
+  },
+  {
+    "h": "理睬",
+    "p": "lǐ cǎi",
+    "v": "to heed",
+    "e": "to heed",
+    "t": "actions"
+  },
+  {
+    "h": "力图",
+    "p": "lì tú",
+    "v": "to try hard to",
+    "e": "to try hard to",
+    "t": "actions"
+  },
+  {
+    "h": "立交桥",
+    "p": "lì jiāo qiáo",
+    "v": "overpass",
+    "e": "overpass",
+    "t": "objects"
+  },
+  {
+    "h": "立体",
+    "p": "lì tǐ",
+    "v": "three-dimensional",
+    "e": "three-dimensional",
+    "t": "general"
+  },
+  {
+    "h": "连年",
+    "p": "lián nián",
+    "v": "successive years",
+    "e": "successive years",
+    "t": "general"
+  },
+  {
+    "h": "连同",
+    "p": "lián tóng",
+    "v": "together with",
+    "e": "together with",
+    "t": "language"
+  },
+  {
+    "h": "联欢",
+    "p": "lián huān",
+    "v": "to have a get-together",
+    "e": "to have a get-together",
+    "t": "actions"
+  },
+  {
+    "h": "联络",
+    "p": "lián luò",
+    "v": "to get in touch with",
+    "e": "to get in touch with",
+    "t": "actions"
+  },
+  {
+    "h": "晾",
+    "p": "liàng",
+    "v": "to dry in the air",
+    "e": "to dry in the air",
+    "t": "actions"
+  },
+  {
+    "h": "淋",
+    "p": "lín",
+    "v": "to sprinkle",
+    "e": "to sprinkle",
+    "t": "actions"
+  },
+  {
+    "h": "零星",
+    "p": "líng xīng",
+    "v": "fragmentary",
+    "e": "fragmentary",
+    "t": "adjectives"
+  },
+  {
+    "h": "领事馆",
+    "p": "lǐng shì guǎn",
+    "v": "consulate",
+    "e": "consulate",
+    "t": "objects"
+  },
+  {
+    "h": "伶俐",
+    "p": "líng lì",
+    "v": "clever",
+    "e": "clever",
+    "t": "adjectives"
+  },
+  {
+    "h": "流氓",
+    "p": "liú máng",
+    "v": "rogue",
+    "e": "rogue",
+    "t": "objects"
+  },
+  {
+    "h": "留念",
+    "p": "liú niàn",
+    "v": "to keep as a souvenir",
+    "e": "to keep as a souvenir",
+    "t": "actions"
+  },
+  {
+    "h": "聋哑",
+    "p": "lóng yǎ",
+    "v": "deaf and dumb",
+    "e": "deaf and dumb",
+    "t": "actions"
+  },
+  {
+    "h": "搂",
+    "p": "lōu",
+    "v": "to draw towards oneself",
+    "e": "to draw towards oneself",
+    "t": "actions"
+  },
+  {
+    "h": "率领",
+    "p": "shuài lǐng",
+    "v": "to lead",
+    "e": "to lead",
+    "t": "actions"
+  },
+  {
+    "h": "轮船",
+    "p": "lún chuán",
+    "v": "steamship; steamer; steamboat",
+    "e": "steamship; steamer; steamboat",
+    "t": "objects"
+  },
+  {
+    "h": "轮胎",
+    "p": "lún tāi",
+    "v": "tire; pneumatic tire",
+    "e": "tire; pneumatic tire",
+    "t": "objects"
+  },
+  {
+    "h": "啰唆",
+    "p": "luō suo",
+    "v": "variant of 啰嗦",
+    "e": "variant of 啰嗦",
+    "t": "general"
+  },
+  {
+    "h": "螺丝钉",
+    "p": "luó sī dīng",
+    "v": "screw",
+    "e": "screw",
+    "t": "objects"
+  },
+  {
+    "h": "落成",
+    "p": "luò chéng",
+    "v": "to complete a construction project",
+    "e": "to complete a construction project",
+    "t": "actions"
+  },
+  {
+    "h": "嘛",
+    "p": "má",
+    "v": "used in 吽",
+    "e": "used in 吽",
+    "t": "general"
+  },
+  {
+    "h": "埋怨",
+    "p": "mán yuàn",
+    "v": "to complain",
+    "e": "to complain",
+    "t": "actions"
+  },
+  {
+    "h": "埋葬",
+    "p": "mái zàng",
+    "v": "to bury",
+    "e": "to bury",
+    "t": "actions"
+  },
+  {
+    "h": "慢性",
+    "p": "màn xìng",
+    "v": "slow and patient",
+    "e": "slow and patient",
+    "t": "general"
+  },
+  {
+    "h": "漫画",
+    "p": "màn huà",
+    "v": "caricature",
+    "e": "caricature",
+    "t": "objects"
+  },
+  {
+    "h": "忙碌",
+    "p": "máng lù",
+    "v": "busy; bustling",
+    "e": "busy; bustling",
+    "t": "adjectives"
+  },
+  {
+    "h": "茫茫",
+    "p": "máng máng",
+    "v": "boundless",
+    "e": "boundless",
+    "t": "general"
+  },
+  {
+    "h": "没辙",
+    "p": "méi zhé",
+    "v": "at one's wit's end",
+    "e": "at one's wit's end",
+    "t": "actions"
+  },
+  {
+    "h": "美观",
+    "p": "měi guān",
+    "v": "pleasing to the eye",
+    "e": "pleasing to the eye",
+    "t": "adjectives"
+  },
+  {
+    "h": "美妙",
+    "p": "měi miào",
+    "v": "beautiful",
+    "e": "beautiful",
+    "t": "adjectives"
+  },
+  {
+    "h": "门诊",
+    "p": "mén zhěn",
+    "v": "outpatient service",
+    "e": "outpatient service",
+    "t": "objects"
+  },
+  {
+    "h": "蒙",
+    "p": "méng",
+    "v": "drizzle",
+    "e": "drizzle",
+    "t": "actions"
+  },
+  {
+    "h": "眯",
+    "p": "mí",
+    "v": "to blind (as with dust)",
+    "e": "to blind (as with dust)",
+    "t": "actions"
+  },
+  {
+    "h": "迷人",
+    "p": "mí rén",
+    "v": "fascinating",
+    "e": "fascinating",
+    "t": "adjectives"
+  },
+  {
+    "h": "迷失",
+    "p": "mí shī",
+    "v": "to lose (one's bearings)",
+    "e": "to lose (one's bearings)",
+    "t": "actions"
+  },
+  {
+    "h": "免得",
+    "p": "miǎn de",
+    "v": "so as not to; so as to avoid",
+    "e": "so as not to; so as to avoid",
+    "t": "actions"
+  },
+  {
+    "h": "勉励",
+    "p": "miǎn lì",
+    "v": "to encourage",
+    "e": "to encourage",
+    "t": "actions"
+  },
+  {
+    "h": "民用",
+    "p": "mín yòng",
+    "v": "(for) civilian use",
+    "e": "(for) civilian use",
+    "t": "general"
+  },
+  {
+    "h": "敏感",
+    "p": "mǐn gǎn",
+    "v": "sensitive",
+    "e": "sensitive",
+    "t": "adjectives"
+  },
+  {
+    "h": "名次",
+    "p": "míng cì",
+    "v": "position in a ranking of names",
+    "e": "position in a ranking of names",
+    "t": "objects"
+  },
+  {
+    "h": "名额",
+    "p": "míng é",
+    "v": "quota",
+    "e": "quota",
+    "t": "objects"
+  },
+  {
+    "h": "明明",
+    "p": "míng míng",
+    "v": "obviously",
+    "e": "obviously",
+    "t": "actions"
+  },
+  {
+    "h": "模样",
+    "p": "mú yàng",
+    "v": "look",
+    "e": "look",
+    "t": "objects"
+  },
+  {
+    "h": "膜",
+    "p": "mó",
+    "v": "membrane",
+    "e": "membrane",
+    "t": "objects"
+  },
+  {
+    "h": "魔鬼",
+    "p": "mó guǐ",
+    "v": "devil",
+    "e": "devil",
+    "t": "objects"
+  },
+  {
+    "h": "抹杀",
+    "p": "mǒ shā",
+    "v": "to erase",
+    "e": "to erase",
+    "t": "actions"
+  },
+  {
+    "h": "墨水儿",
+    "p": "mò shuǐ r",
+    "v": "erhua variant of 墨水",
+    "e": "erhua variant of 墨水",
+    "t": "general"
+  },
+  {
+    "h": "目光",
+    "p": "mù guāng",
+    "v": "gaze; (fig.) attention",
+    "e": "gaze; (fig.) attention",
+    "t": "objects"
+  },
+  {
+    "h": "嗯",
+    "p": "ēn",
+    "v": "(a groaning sound)",
+    "e": "(a groaning sound)",
+    "t": "emotions"
+  },
+  {
+    "h": "纳闷儿",
+    "p": "nà mèn r",
+    "v": "erhua variant of 纳闷",
+    "e": "erhua variant of 纳闷",
+    "t": "general"
+  },
+  {
+    "h": "难得",
+    "p": "nán dé",
+    "v": "seldom",
+    "e": "seldom",
+    "t": "adjectives"
+  },
+  {
+    "h": "宁愿",
+    "p": "nìng yuàn",
+    "v": "would rather ... (than ...)",
+    "e": "would rather ... (than ...)",
+    "t": "actions"
+  },
+  {
+    "h": "拧",
+    "p": "níng",
+    "v": "to pinch",
+    "e": "to pinch",
+    "t": "actions"
+  },
+  {
+    "h": "纽扣儿",
+    "p": "niǔ kòu er",
+    "v": "button",
+    "e": "button",
+    "t": "general"
+  },
+  {
+    "h": "农历",
+    "p": "nóng lì",
+    "v": "the traditional Chinese calendar",
+    "e": "the traditional Chinese calendar",
+    "t": "objects"
+  },
+  {
+    "h": "挪",
+    "p": "nuó",
+    "v": "to shift",
+    "e": "to shift",
+    "t": "actions"
+  },
+  {
+    "h": "哦",
+    "p": "é",
+    "v": "to chant",
+    "e": "to chant",
+    "t": "general"
+  },
+  {
+    "h": "欧洲",
+    "p": "Oū zhōu",
+    "v": "Europe (abbr. for 欧罗巴洲)",
+    "e": "Europe (abbr. for 欧罗巴洲)",
+    "t": "places"
+  },
+  {
+    "h": "趴",
+    "p": "pā",
+    "v": "to lie on one's stomach",
+    "e": "to lie on one's stomach",
+    "t": "actions"
+  },
+  {
+    "h": "畔",
+    "p": "pàn",
+    "v": "(bound form) side; edge; boundary",
+    "e": "(bound form) side; edge; boundary",
+    "t": "general"
+  },
+  {
+    "h": "培训",
+    "p": "péi xùn",
+    "v": "to cultivate",
+    "e": "to cultivate",
+    "t": "actions"
+  },
+  {
+    "h": "捧",
+    "p": "pěng",
+    "v": "to clasp",
+    "e": "to clasp",
+    "t": "actions"
+  },
+  {
+    "h": "疲倦",
+    "p": "pí juàn",
+    "v": "to tire",
+    "e": "to tire",
+    "t": "adjectives"
+  },
+  {
+    "h": "屁股",
+    "p": "pì gu",
+    "v": "buttocks",
+    "e": "buttocks",
+    "t": "objects"
+  },
+  {
+    "h": "片断",
+    "p": "piàn duàn",
+    "v": "section",
+    "e": "section",
+    "t": "objects"
+  },
+  {
+    "h": "漂浮",
+    "p": "piāo fú",
+    "v": "to float",
+    "e": "to float",
+    "t": "actions"
+  },
+  {
+    "h": "拼命",
+    "p": "pīn mìng",
+    "v": "to do one's utmost; with all one's might; at all costs; (to work or fight) as if one's life depends on it",
+    "e": "to do one's utmost; with all one's might; at all costs; (to work or fight) as if one's life depends on it",
+    "t": "actions"
+  },
+  {
+    "h": "品尝",
+    "p": "pǐn cháng",
+    "v": "to taste a small amount",
+    "e": "to taste a small amount",
+    "t": "actions"
+  },
+  {
+    "h": "品行",
+    "p": "pǐn xíng",
+    "v": "behavior",
+    "e": "behavior",
+    "t": "objects"
+  },
+  {
+    "h": "平面",
+    "p": "píng miàn",
+    "v": "plane (flat surface)",
+    "e": "plane (flat surface)",
+    "t": "objects"
+  },
+  {
+    "h": "平原",
+    "p": "píng yuán",
+    "v": "field",
+    "e": "field",
+    "t": "objects"
+  },
+  {
+    "h": "坡",
+    "p": "pō",
+    "v": "slope",
+    "e": "slope",
+    "t": "objects"
+  },
+  {
+    "h": "铺",
+    "p": "pù",
+    "v": "variant of 铺",
+    "e": "variant of 铺",
+    "t": "actions"
+  },
+  {
+    "h": "欺负",
+    "p": "qī fu",
+    "v": "to bully",
+    "e": "to bully",
+    "t": "actions"
+  },
+  {
+    "h": "欺骗",
+    "p": "qī piàn",
+    "v": "to deceive",
+    "e": "to deceive",
+    "t": "actions"
+  },
+  {
+    "h": "齐全",
+    "p": "qí quán",
+    "v": "complete",
+    "e": "complete",
+    "t": "adjectives"
+  },
+  {
+    "h": "奇妙",
+    "p": "qí miào",
+    "v": "fantastic; wonderful",
+    "e": "fantastic; wonderful",
+    "t": "adjectives"
+  },
+  {
+    "h": "旗袍",
+    "p": "qí páo",
+    "v": "Chinese-style dress",
+    "e": "Chinese-style dress",
+    "t": "objects"
+  },
+  {
+    "h": "乞丐",
+    "p": "qǐ gài",
+    "v": "beggar",
+    "e": "beggar",
+    "t": "objects"
+  },
+  {
+    "h": "启程",
+    "p": "qǐ chéng",
+    "v": "to set out on a journey",
+    "e": "to set out on a journey",
+    "t": "actions"
+  },
+  {
+    "h": "启事",
+    "p": "qǐ shì",
+    "v": "announcement (written, on billboard, letter, newspaper or website)",
+    "e": "announcement (written, on billboard, letter, newspaper or website)",
+    "t": "objects"
+  },
+  {
+    "h": "起初",
+    "p": "qǐ chū",
+    "v": "originally",
+    "e": "originally",
+    "t": "actions"
+  },
+  {
+    "h": "起哄",
+    "p": "qǐ hòng",
+    "v": "to heckle",
+    "e": "to heckle",
+    "t": "actions"
+  },
+  {
+    "h": "起义",
+    "p": "qǐ yì",
+    "v": "uprising",
+    "e": "uprising",
+    "t": "actions"
+  },
+  {
+    "h": "气功",
+    "p": "qì gōng",
+    "v": "qigong, a traditional Chinese system of cultivating vital energy 气 through coordinated breathing, movement and meditation",
+    "e": "qigong, a traditional Chinese system of cultivating vital energy 气 through coordinated breathing, movement and meditation",
+    "t": "objects"
+  },
+  {
+    "h": "气色",
+    "p": "qì sè",
+    "v": "complexion",
+    "e": "complexion",
+    "t": "objects"
+  },
+  {
+    "h": "气味",
+    "p": "qì wèi",
+    "v": "odor; scent",
+    "e": "odor; scent",
+    "t": "objects"
+  },
+  {
+    "h": "气象",
+    "p": "qì xiàng",
+    "v": "meteorological feature",
+    "e": "meteorological feature",
+    "t": "objects"
+  },
+  {
+    "h": "气压",
+    "p": "qì yā",
+    "v": "atmospheric pressure",
+    "e": "atmospheric pressure",
+    "t": "objects"
+  },
+  {
+    "h": "器材",
+    "p": "qì cái",
+    "v": "equipment",
+    "e": "equipment",
+    "t": "objects"
+  },
+  {
+    "h": "掐",
+    "p": "qiā",
+    "v": "to pick (flowers)",
+    "e": "to pick (flowers)",
+    "t": "actions"
+  },
+  {
+    "h": "恰巧",
+    "p": "qià qiǎo",
+    "v": "by chance; as chance would have it",
+    "e": "by chance; as chance would have it",
+    "t": "actions"
+  },
+  {
+    "h": "潜水",
+    "p": "qián shuǐ",
+    "v": "to dive",
+    "e": "to dive",
+    "t": "actions"
+  },
+  {
+    "h": "强迫",
+    "p": "qiǎng pò",
+    "v": "to compel",
+    "e": "to compel",
+    "t": "actions"
+  },
+  {
+    "h": "翘",
+    "p": "qiáo",
+    "v": "outstanding",
+    "e": "outstanding",
+    "t": "actions"
+  },
+  {
+    "h": "亲热",
+    "p": "qīn rè",
+    "v": "affectionate; intimate; warmhearted",
+    "e": "affectionate; intimate; warmhearted",
+    "t": "adjectives"
+  },
+  {
+    "h": "亲身",
+    "p": "qīn shēn",
+    "v": "personal",
+    "e": "personal",
+    "t": "actions"
+  },
+  {
+    "h": "勤恳",
+    "p": "qín kěn",
+    "v": "diligent and attentive",
+    "e": "diligent and attentive",
+    "t": "adjectives"
+  },
+  {
+    "h": "氢",
+    "p": "qīng",
+    "v": "hydrogen (chemistry)",
+    "e": "hydrogen (chemistry)",
+    "t": "objects"
+  },
+  {
+    "h": "轻而易举",
+    "p": "qīng ér yì jǔ",
+    "v": "easy",
+    "e": "easy",
+    "t": "general"
+  },
+  {
+    "h": "倾斜",
+    "p": "qīng xié",
+    "v": "to incline",
+    "e": "to incline",
+    "t": "actions"
+  },
+  {
+    "h": "清晨",
+    "p": "qīng chén",
+    "v": "early morning",
+    "e": "early morning",
+    "t": "time"
+  },
+  {
+    "h": "清洁",
+    "p": "qīng jié",
+    "v": "clean",
+    "e": "clean",
+    "t": "adjectives"
+  },
+  {
+    "h": "清真",
+    "p": "qīng zhēn",
+    "v": "Islamic",
+    "e": "Islamic",
+    "t": "general"
+  },
+  {
+    "h": "情理",
+    "p": "qíng lǐ",
+    "v": "reason",
+    "e": "reason",
+    "t": "objects"
+  },
+  {
+    "h": "晴朗",
+    "p": "qíng lǎng",
+    "v": "sunny and cloudless",
+    "e": "sunny and cloudless",
+    "t": "adjectives"
+  },
+  {
+    "h": "请教",
+    "p": "qǐng jiào",
+    "v": "to ask for guidance",
+    "e": "to ask for guidance",
+    "t": "actions"
+  },
+  {
+    "h": "请帖",
+    "p": "qǐng tiě",
+    "v": "invitation card",
+    "e": "invitation card",
+    "t": "objects"
+  },
+  {
+    "h": "丘陵",
+    "p": "qiū líng",
+    "v": "hills",
+    "e": "hills",
+    "t": "objects"
+  },
+  {
+    "h": "区分",
+    "p": "qū fēn",
+    "v": "to differentiate",
+    "e": "to differentiate",
+    "t": "actions"
+  },
+  {
+    "h": "曲子",
+    "p": "qǔ zi",
+    "v": "poem for singing",
+    "e": "poem for singing",
+    "t": "objects"
+  },
+  {
+    "h": "驱逐",
+    "p": "qū zhú",
+    "v": "to expel",
+    "e": "to expel",
+    "t": "actions"
+  },
+  {
+    "h": "趣味",
+    "p": "qù wèi",
+    "v": "fun; interest; delight",
+    "e": "fun; interest; delight",
+    "t": "objects"
+  },
+  {
+    "h": "圈套",
+    "p": "quān tào",
+    "v": "trap; snare; trick",
+    "e": "trap; snare; trick",
+    "t": "objects"
+  },
+  {
+    "h": "全局",
+    "p": "quán jú",
+    "v": "overall situation",
+    "e": "overall situation",
+    "t": "objects"
+  },
+  {
+    "h": "权益",
+    "p": "quán yì",
+    "v": "rights",
+    "e": "rights",
+    "t": "objects"
+  },
+  {
+    "h": "拳头",
+    "p": "quán tou",
+    "v": "fist",
+    "e": "fist",
+    "t": "objects"
+  },
+  {
+    "h": "犬",
+    "p": "quǎn",
+    "v": "dog",
+    "e": "dog",
+    "t": "general"
+  },
+  {
+    "h": "缺口",
+    "p": "quē kǒu",
+    "v": "nick",
+    "e": "nick",
+    "t": "objects"
+  },
+  {
+    "h": "缺席",
+    "p": "quē xí",
+    "v": "to be absent",
+    "e": "to be absent",
+    "t": "actions"
+  },
+  {
+    "h": "瘸",
+    "p": "qué",
+    "v": "lame",
+    "e": "lame",
+    "t": "actions"
+  },
+  {
+    "h": "确保",
+    "p": "què bǎo",
+    "v": "to ensure; to guarantee",
+    "e": "to ensure; to guarantee",
+    "t": "actions"
+  },
+  {
+    "h": "确立",
+    "p": "què lì",
+    "v": "to establish",
+    "e": "to establish",
+    "t": "actions"
+  },
+  {
+    "h": "确切",
+    "p": "què qiè",
+    "v": "definite",
+    "e": "definite",
+    "t": "adjectives"
+  },
+  {
+    "h": "确信",
+    "p": "què xìn",
+    "v": "to be convinced",
+    "e": "to be convinced",
+    "t": "actions"
+  },
+  {
+    "h": "染",
+    "p": "rǎn",
+    "v": "to dye",
+    "e": "to dye",
+    "t": "actions"
+  },
+  {
+    "h": "让步",
+    "p": "ràng bù",
+    "v": "to concede",
+    "e": "to concede",
+    "t": "actions"
+  },
+  {
+    "h": "饶恕",
+    "p": "ráo shù",
+    "v": "to forgive",
+    "e": "to forgive",
+    "t": "actions"
+  },
+  {
+    "h": "扰乱",
+    "p": "rǎo luàn",
+    "v": "to disturb",
+    "e": "to disturb",
+    "t": "actions"
+  },
+  {
+    "h": "惹祸",
+    "p": "rě huò",
+    "v": "to stir up trouble",
+    "e": "to stir up trouble",
+    "t": "actions"
+  },
+  {
+    "h": "热泪盈眶",
+    "p": "rè lèi yíng kuàng",
+    "v": "eyes brimming with tears of excitement (idiom)",
+    "e": "eyes brimming with tears of excitement (idiom)",
+    "t": "general"
+  },
+  {
+    "h": "热门",
+    "p": "rè mén",
+    "v": "popular; hot; in vogue",
+    "e": "popular; hot; in vogue",
+    "t": "adjectives"
+  },
+  {
+    "h": "人道",
+    "p": "rén dào",
+    "v": "human sympathy",
+    "e": "human sympathy",
+    "t": "objects"
+  },
+  {
+    "h": "人格",
+    "p": "rén gé",
+    "v": "personality",
+    "e": "personality",
+    "t": "objects"
+  },
+  {
+    "h": "人工",
+    "p": "rén gōng",
+    "v": "artificial",
+    "e": "artificial",
+    "t": "general"
+  },
+  {
+    "h": "人家",
+    "p": "rén jiā",
+    "v": "household",
+    "e": "household",
+    "t": "pronouns"
+  },
+  {
+    "h": "人间",
+    "p": "rén jiān",
+    "v": "the human world",
+    "e": "the human world",
+    "t": "objects"
+  },
+  {
+    "h": "人士",
+    "p": "rén shì",
+    "v": "person",
+    "e": "person",
+    "t": "objects"
+  },
+  {
+    "h": "人为",
+    "p": "rén wéi",
+    "v": "artificial",
+    "e": "artificial",
+    "t": "general"
+  },
+  {
+    "h": "人性",
+    "p": "rén xìng",
+    "v": "human nature",
+    "e": "human nature",
+    "t": "objects"
+  },
+  {
+    "h": "人质",
+    "p": "rén zhì",
+    "v": "hostage",
+    "e": "hostage",
+    "t": "objects"
+  },
+  {
+    "h": "仁慈",
+    "p": "rén cí",
+    "v": "benevolent",
+    "e": "benevolent",
+    "t": "adjectives"
+  },
+  {
+    "h": "忍耐",
+    "p": "rěn nài",
+    "v": "to endure",
+    "e": "to endure",
+    "t": "actions"
+  },
+  {
+    "h": "认定",
+    "p": "rèn dìng",
+    "v": "to maintain (that sth is true)",
+    "e": "to maintain (that sth is true)",
+    "t": "actions"
+  },
+  {
+    "h": "任命",
+    "p": "rèn mìng",
+    "v": "to appoint",
+    "e": "to appoint",
+    "t": "actions"
+  },
+  {
+    "h": "任性",
+    "p": "rèn xìng",
+    "v": "willful",
+    "e": "willful",
+    "t": "adjectives"
+  },
+  {
+    "h": "任意",
+    "p": "rèn yì",
+    "v": "any",
+    "e": "any",
+    "t": "actions"
+  },
+  {
+    "h": "仍旧",
+    "p": "réng jiù",
+    "v": "still (remaining)",
+    "e": "still (remaining)",
+    "t": "actions"
+  },
+  {
+    "h": "容貌",
+    "p": "róng mào",
+    "v": "one's appearance",
+    "e": "one's appearance",
+    "t": "objects"
+  },
+  {
+    "h": "容纳",
+    "p": "róng nà",
+    "v": "to hold",
+    "e": "to hold",
+    "t": "actions"
+  },
+  {
+    "h": "容器",
+    "p": "róng qì",
+    "v": "receptacle",
+    "e": "receptacle",
+    "t": "objects"
+  },
+  {
+    "h": "溶解",
+    "p": "róng jiě",
+    "v": "to dissolve",
+    "e": "to dissolve",
+    "t": "actions"
+  },
+  {
+    "h": "融洽",
+    "p": "róng qià",
+    "v": "harmonious",
+    "e": "harmonious",
+    "t": "adjectives"
+  },
+  {
+    "h": "柔和",
+    "p": "róu hé",
+    "v": "gentle",
+    "e": "gentle",
+    "t": "adjectives"
+  },
+  {
+    "h": "揉",
+    "p": "róu",
+    "v": "to knead",
+    "e": "to knead",
+    "t": "actions"
+  },
+  {
+    "h": "若干",
+    "p": "ruò gān",
+    "v": "a certain number or amount",
+    "e": "a certain number or amount",
+    "t": "numbers"
+  },
+  {
+    "h": "撒谎",
+    "p": "sā huǎng",
+    "v": "to tell lies",
+    "e": "to tell lies",
+    "t": "actions"
+  },
+  {
+    "h": "腮",
+    "p": "sāi",
+    "v": "cheek",
+    "e": "cheek",
+    "t": "objects"
+  },
+  {
+    "h": "三角",
+    "p": "sān jiǎo",
+    "v": "triangle",
+    "e": "triangle",
+    "t": "objects"
+  },
+  {
+    "h": "散布",
+    "p": "sàn bù",
+    "v": "to disseminate",
+    "e": "to disseminate",
+    "t": "actions"
+  },
+  {
+    "h": "散发",
+    "p": "sàn fā",
+    "v": "to distribute",
+    "e": "to distribute",
+    "t": "actions"
+  },
+  {
+    "h": "丧失",
+    "p": "sàng shī",
+    "v": "to lose",
+    "e": "to lose",
+    "t": "actions"
+  },
+  {
+    "h": "嫂子",
+    "p": "sǎo zi",
+    "v": "(coll.) older brother's wife; sister-in-law",
+    "e": "(coll.) older brother's wife; sister-in-law",
+    "t": "objects"
+  },
+  {
+    "h": "色彩",
+    "p": "sè cǎi",
+    "v": "tint; coloring; coloration",
+    "e": "tint; coloring; coloration",
+    "t": "objects"
+  },
+  {
+    "h": "刹车",
+    "p": "shā chē",
+    "v": "to brake (when driving)",
+    "e": "to brake (when driving)",
+    "t": "objects"
+  },
+  {
+    "h": "啥",
+    "p": "shá",
+    "v": "dialectal equivalent of 什么",
+    "e": "dialectal equivalent of 什么",
+    "t": "pronouns"
+  },
+  {
+    "h": "山脉",
+    "p": "shān mài",
+    "v": "mountain range",
+    "e": "mountain range",
+    "t": "objects"
+  },
+  {
+    "h": "闪烁",
+    "p": "shǎn shuò",
+    "v": "flickering",
+    "e": "flickering",
+    "t": "actions"
+  },
+  {
+    "h": "擅长",
+    "p": "shàn cháng",
+    "v": "to be good at; to be expert in",
+    "e": "to be good at; to be expert in",
+    "t": "actions"
+  },
+  {
+    "h": "擅自",
+    "p": "shàn zì",
+    "v": "without permission",
+    "e": "without permission",
+    "t": "actions"
+  },
+  {
+    "h": "伤脑筋",
+    "p": "shāng nǎo jīn",
+    "v": "to be a real headache",
+    "e": "to be a real headache",
+    "t": "actions"
+  },
+  {
+    "h": "商标",
+    "p": "shāng biāo",
+    "v": "trademark",
+    "e": "trademark",
+    "t": "objects"
+  },
+  {
+    "h": "上级",
+    "p": "shàng jí",
+    "v": "higher authorities",
+    "e": "higher authorities",
+    "t": "objects"
+  },
+  {
+    "h": "上进心",
+    "p": "shàng jìn xīn",
+    "v": "motivation",
+    "e": "motivation",
+    "t": "objects"
+  },
+  {
+    "h": "上任",
+    "p": "shàng rèn",
+    "v": "to take office",
+    "e": "to take office",
+    "t": "actions"
+  },
+  {
+    "h": "上瘾",
+    "p": "shàng yǐn",
+    "v": "to get into a habit",
+    "e": "to get into a habit",
+    "t": "actions"
+  },
+  {
+    "h": "上游",
+    "p": "shàng yóu",
+    "v": "upper reaches (of a river)",
+    "e": "upper reaches (of a river)",
+    "t": "places"
+  },
+  {
+    "h": "捎",
+    "p": "shāo",
+    "v": "to bring sth to sb",
+    "e": "to bring sth to sb",
+    "t": "actions"
+  },
+  {
+    "h": "梢",
+    "p": "shāo",
+    "v": "tip of branch",
+    "e": "tip of branch",
+    "t": "general"
+  },
+  {
+    "h": "哨",
+    "p": "shào",
+    "v": "a whistle",
+    "e": "a whistle",
+    "t": "general"
+  },
+  {
+    "h": "奢侈",
+    "p": "shē chǐ",
+    "v": "luxurious",
+    "e": "luxurious",
+    "t": "adjectives"
+  },
+  {
+    "h": "设立",
+    "p": "shè lì",
+    "v": "to set up; to establish",
+    "e": "to set up; to establish",
+    "t": "actions"
+  },
+  {
+    "h": "设想",
+    "p": "shè xiǎng",
+    "v": "to imagine",
+    "e": "to imagine",
+    "t": "actions"
+  },
+  {
+    "h": "设置",
+    "p": "shè zhì",
+    "v": "to set up; to install",
+    "e": "to set up; to install",
+    "t": "actions"
+  },
+  {
+    "h": "摄取",
+    "p": "shè qǔ",
+    "v": "to absorb (nutrients etc)",
+    "e": "to absorb (nutrients etc)",
+    "t": "actions"
+  },
+  {
+    "h": "摄氏度",
+    "p": "Shè shì dù",
+    "v": "°C (degrees Celsius)",
+    "e": "°C (degrees Celsius)",
+    "t": "numbers"
+  },
+  {
+    "h": "申报",
+    "p": "shēn bào",
+    "v": "to report (to the authorities)",
+    "e": "to report (to the authorities)",
+    "t": "actions"
+  },
+  {
+    "h": "呻吟",
+    "p": "shēn yín",
+    "v": "to moan",
+    "e": "to moan",
+    "t": "actions"
+  },
+  {
+    "h": "绅士",
+    "p": "shēn shì",
+    "v": "gentleman",
+    "e": "gentleman",
+    "t": "objects"
+  },
+  {
+    "h": "深奥",
+    "p": "shēn ào",
+    "v": "profound",
+    "e": "profound",
+    "t": "adjectives"
+  },
+  {
+    "h": "深沉",
+    "p": "shēn chén",
+    "v": "deep",
+    "e": "deep",
+    "t": "adjectives"
+  },
+  {
+    "h": "深情厚谊",
+    "p": "shēn qíng hòu yì",
+    "v": "deep friendship",
+    "e": "deep friendship",
+    "t": "general"
+  },
+  {
+    "h": "神奇",
+    "p": "shén qí",
+    "v": "magical",
+    "e": "magical",
+    "t": "adjectives"
+  },
+  {
+    "h": "神气",
+    "p": "shén qì",
+    "v": "expression",
+    "e": "expression",
+    "t": "adjectives"
+  },
+  {
+    "h": "神情",
+    "p": "shén qíng",
+    "v": "look; expression",
+    "e": "look; expression",
+    "t": "objects"
+  },
+  {
+    "h": "神色",
+    "p": "shén sè",
+    "v": "expression",
+    "e": "expression",
+    "t": "objects"
+  },
+  {
+    "h": "神圣",
+    "p": "shén shèng",
+    "v": "divine",
+    "e": "divine",
+    "t": "adjectives"
+  },
+  {
+    "h": "神态",
+    "p": "shén tài",
+    "v": "appearance",
+    "e": "appearance",
+    "t": "objects"
+  },
+  {
+    "h": "神仙",
+    "p": "shén xiān",
+    "v": "Daoist immortal",
+    "e": "Daoist immortal",
+    "t": "objects"
+  },
+  {
+    "h": "审理",
+    "p": "shěn lǐ",
+    "v": "to hear (a case)",
+    "e": "to hear (a case)",
+    "t": "actions"
+  },
+  {
+    "h": "审判",
+    "p": "shěn pàn",
+    "v": "a trial",
+    "e": "a trial",
+    "t": "actions"
+  },
+  {
+    "h": "生存",
+    "p": "shēng cún",
+    "v": "to exist",
+    "e": "to exist",
+    "t": "actions"
+  },
+  {
+    "h": "生机",
+    "p": "shēng jī",
+    "v": "opportunity to live",
+    "e": "opportunity to live",
+    "t": "objects"
+  },
+  {
+    "h": "生理",
+    "p": "shēng lǐ",
+    "v": "physiology",
+    "e": "physiology",
+    "t": "objects"
+  },
+  {
+    "h": "生疏",
+    "p": "shēng shū",
+    "v": "unfamiliar",
+    "e": "unfamiliar",
+    "t": "adjectives"
+  },
+  {
+    "h": "生效",
+    "p": "shēng xiào",
+    "v": "to take effect",
+    "e": "to take effect",
+    "t": "actions"
+  },
+  {
+    "h": "生锈",
+    "p": "shēng xiù",
+    "v": "to rust",
+    "e": "to rust",
+    "t": "actions"
+  },
+  {
+    "h": "生育",
+    "p": "shēng yù",
+    "v": "to bear",
+    "e": "to bear",
+    "t": "actions"
+  },
+  {
+    "h": "声明",
+    "p": "shēng míng",
+    "v": "to state",
+    "e": "to state",
+    "t": "objects"
+  },
+  {
+    "h": "声势",
+    "p": "shēng shì",
+    "v": "fame and power",
+    "e": "fame and power",
+    "t": "objects"
+  },
+  {
+    "h": "牲畜",
+    "p": "shēng chù",
+    "v": "domesticated animals",
+    "e": "domesticated animals",
+    "t": "objects"
+  },
+  {
+    "h": "省会",
+    "p": "shěng huì",
+    "v": "provincial capital",
+    "e": "provincial capital",
+    "t": "objects"
+  },
+  {
+    "h": "胜负",
+    "p": "shèng fù",
+    "v": "victory or defeat",
+    "e": "victory or defeat",
+    "t": "objects"
+  },
+  {
+    "h": "盛",
+    "p": "Shèng",
+    "v": "surname Sheng",
+    "e": "surname Sheng",
+    "t": "actions"
+  },
+  {
+    "h": "盛产",
+    "p": "shèng chǎn",
+    "v": "to produce in abundance",
+    "e": "to produce in abundance",
+    "t": "actions"
+  },
+  {
+    "h": "盛开",
+    "p": "shèng kāi",
+    "v": "blooming",
+    "e": "blooming",
+    "t": "actions"
+  },
+  {
+    "h": "盛情",
+    "p": "shèng qíng",
+    "v": "great kindness",
+    "e": "great kindness",
+    "t": "objects"
+  },
+  {
+    "h": "盛行",
+    "p": "shèng xíng",
+    "v": "to be in vogue; to be popular; to be prevalent",
+    "e": "to be in vogue; to be popular; to be prevalent",
+    "t": "actions"
+  },
+  {
+    "h": "尸体",
+    "p": "shī tǐ",
+    "v": "dead body",
+    "e": "dead body",
+    "t": "objects"
+  },
+  {
+    "h": "失误",
+    "p": "shī wù",
+    "v": "lapse",
+    "e": "lapse",
+    "t": "actions"
+  },
+  {
+    "h": "失踪",
+    "p": "shī zōng",
+    "v": "to be missing",
+    "e": "to be missing",
+    "t": "actions"
+  },
+  {
+    "h": "师范",
+    "p": "shī fàn",
+    "v": "teacher-training",
+    "e": "teacher-training",
+    "t": "general"
+  },
+  {
+    "h": "施加",
+    "p": "shī jiā",
+    "v": "to exert (effort or pressure)",
+    "e": "to exert (effort or pressure)",
+    "t": "actions"
+  },
+  {
+    "h": "施展",
+    "p": "shī zhǎn",
+    "v": "to use fully",
+    "e": "to use fully",
+    "t": "actions"
+  },
+  {
+    "h": "十足",
+    "p": "shí zú",
+    "v": "ample",
+    "e": "ample",
+    "t": "general"
+  },
+  {
+    "h": "石油",
+    "p": "shí yóu",
+    "v": "oil",
+    "e": "oil",
+    "t": "objects"
+  },
+  {
+    "h": "时差",
+    "p": "shí chā",
+    "v": "time difference",
+    "e": "time difference",
+    "t": "objects"
+  },
+  {
+    "h": "时常",
+    "p": "shí cháng",
+    "v": "often",
+    "e": "often",
+    "t": "actions"
+  },
+  {
+    "h": "时而",
+    "p": "shí ér",
+    "v": "occasionally",
+    "e": "occasionally",
+    "t": "actions"
+  },
+  {
+    "h": "时光",
+    "p": "shí guāng",
+    "v": "time",
+    "e": "time",
+    "t": "objects"
+  },
+  {
+    "h": "时机",
+    "p": "shí jī",
+    "v": "opportunity; opportune moment",
+    "e": "opportunity; opportune moment",
+    "t": "objects"
+  },
+  {
+    "h": "时事",
+    "p": "shí shì",
+    "v": "current trends; the present situation; how things are going",
+    "e": "current trends; the present situation; how things are going",
+    "t": "objects"
+  },
+  {
+    "h": "时装",
+    "p": "shí zhuāng",
+    "v": "fashion",
+    "e": "fashion",
+    "t": "objects"
+  },
+  {
+    "h": "实惠",
+    "p": "shí huì",
+    "v": "tangible benefit",
+    "e": "tangible benefit",
+    "t": "adjectives"
+  },
+  {
+    "h": "世代",
+    "p": "shì dài",
+    "v": "for many generations",
+    "e": "for many generations",
+    "t": "objects"
+  },
+  {
+    "h": "示范",
+    "p": "shì fàn",
+    "v": "to demonstrate",
+    "e": "to demonstrate",
+    "t": "actions"
+  },
+  {
+    "h": "示威",
+    "p": "shì wēi",
+    "v": "to demonstrate (as a protest)",
+    "e": "to demonstrate (as a protest)",
+    "t": "actions"
+  },
+  {
+    "h": "示意",
+    "p": "shì yì",
+    "v": "to hint",
+    "e": "to hint",
+    "t": "actions"
+  },
+  {
+    "h": "事故",
+    "p": "shì gù",
+    "v": "accident",
+    "e": "accident",
+    "t": "objects"
+  },
+  {
+    "h": "事迹",
+    "p": "shì jì",
+    "v": "deed",
+    "e": "deed",
+    "t": "objects"
+  },
+  {
+    "h": "事件",
+    "p": "shì jiàn",
+    "v": "event",
+    "e": "event",
+    "t": "objects"
+  },
+  {
+    "h": "事态",
+    "p": "shì tài",
+    "v": "situation",
+    "e": "situation",
+    "t": "objects"
+  },
+  {
+    "h": "事务",
+    "p": "shì wù",
+    "v": "(political, economic etc) affairs",
+    "e": "(political, economic etc) affairs",
+    "t": "objects"
+  },
+  {
+    "h": "事项",
+    "p": "shì xiàng",
+    "v": "matter",
+    "e": "matter",
+    "t": "objects"
+  },
+  {
+    "h": "事业",
+    "p": "shì yè",
+    "v": "undertaking",
+    "e": "undertaking",
+    "t": "objects"
+  },
+  {
+    "h": "势力",
+    "p": "shì li",
+    "v": "power",
+    "e": "power",
+    "t": "objects"
+  },
+  {
+    "h": "视力",
+    "p": "shì lì",
+    "v": "vision",
+    "e": "vision",
+    "t": "objects"
+  },
+  {
+    "h": "视线",
+    "p": "shì xiàn",
+    "v": "line of sight",
+    "e": "line of sight",
+    "t": "objects"
+  },
+  {
+    "h": "视野",
+    "p": "shì yě",
+    "v": "field of view",
+    "e": "field of view",
+    "t": "objects"
+  },
+  {
+    "h": "试图",
+    "p": "shì tú",
+    "v": "to attempt",
+    "e": "to attempt",
+    "t": "actions"
+  },
+  {
+    "h": "试验",
+    "p": "shì yàn",
+    "v": "experiment",
+    "e": "experiment",
+    "t": "actions"
+  },
+  {
+    "h": "是非",
+    "p": "shì fēi",
+    "v": "right and wrong",
+    "e": "right and wrong",
+    "t": "objects"
+  },
+  {
+    "h": "适宜",
+    "p": "shì yí",
+    "v": "suitable",
+    "e": "suitable",
+    "t": "actions"
+  },
+  {
+    "h": "逝世",
+    "p": "shì shì",
+    "v": "to pass away",
+    "e": "to pass away",
+    "t": "actions"
+  },
+  {
+    "h": "识别",
+    "p": "shí bié",
+    "v": "to distinguish; to discern; to identify; to recognize",
+    "e": "to distinguish; to discern; to identify; to recognize",
+    "t": "actions"
+  },
+  {
+    "h": "拾",
+    "p": "shè",
+    "v": "to ascend in light steps",
+    "e": "to ascend in light steps",
+    "t": "actions"
+  },
+  {
+    "h": "收藏",
+    "p": "shōu cáng",
+    "v": "to collect (works of art, dolls, antiques etc); to put away for safekeeping; (Internet) to bookmark",
+    "e": "to collect (works of art, dolls, antiques etc); to put away for safekeeping; (Internet) to bookmark",
+    "t": "actions"
+  },
+  {
+    "h": "收缩",
+    "p": "shōu suō",
+    "v": "to pull back",
+    "e": "to pull back",
+    "t": "actions"
+  },
+  {
+    "h": "收益",
+    "p": "shōu yì",
+    "v": "earnings",
+    "e": "earnings",
+    "t": "objects"
+  },
+  {
+    "h": "收音机",
+    "p": "shōu yīn jī",
+    "v": "radio",
+    "e": "radio",
+    "t": "objects"
+  },
+  {
+    "h": "手法",
+    "p": "shǒu fǎ",
+    "v": "technique",
+    "e": "technique",
+    "t": "objects"
+  },
+  {
+    "h": "手势",
+    "p": "shǒu shì",
+    "v": "gesture",
+    "e": "gesture",
+    "t": "objects"
+  },
+  {
+    "h": "手艺",
+    "p": "shǒu yì",
+    "v": "craftmanship",
+    "e": "craftmanship",
+    "t": "objects"
+  },
+  {
+    "h": "守护",
+    "p": "shǒu hù",
+    "v": "to guard",
+    "e": "to guard",
+    "t": "actions"
+  },
+  {
+    "h": "首要",
+    "p": "shǒu yào",
+    "v": "the most important",
+    "e": "the most important",
+    "t": "general"
+  },
+  {
+    "h": "受罪",
+    "p": "shòu zuì",
+    "v": "to endure",
+    "e": "to endure",
+    "t": "actions"
+  },
+  {
+    "h": "授予",
+    "p": "shòu yǔ",
+    "v": "to award",
+    "e": "to award",
+    "t": "actions"
+  },
+  {
+    "h": "书籍",
+    "p": "shū jí",
+    "v": "books",
+    "e": "books",
+    "t": "objects"
+  },
+  {
+    "h": "书记",
+    "p": "shū ji",
+    "v": "secretary (chief official of a branch of a socialist or communist party)",
+    "e": "secretary (chief official of a branch of a socialist or communist party)",
+    "t": "objects"
+  },
+  {
+    "h": "疏忽",
+    "p": "shū hu",
+    "v": "to neglect",
+    "e": "to neglect",
+    "t": "actions"
+  },
+  {
+    "h": "舒畅",
+    "p": "shū chàng",
+    "v": "happy; entirely free from worry",
+    "e": "happy; entirely free from worry",
+    "t": "adjectives"
+  },
+  {
+    "h": "束",
+    "p": "Shù",
+    "v": "surname Shu",
+    "e": "surname Shu",
+    "t": "numbers"
+  },
+  {
+    "h": "束缚",
+    "p": "shù fù",
+    "v": "to bind",
+    "e": "to bind",
+    "t": "actions"
+  },
+  {
+    "h": "竖",
+    "p": "shù",
+    "v": "variant of 竖",
+    "e": "variant of 竖",
+    "t": "actions"
+  },
+  {
+    "h": "数",
+    "p": "shǔ",
+    "v": "to count",
+    "e": "to count",
+    "t": "numbers"
+  },
+  {
+    "h": "数额",
+    "p": "shù é",
+    "v": "amount",
+    "e": "amount",
+    "t": "objects"
+  },
+  {
+    "h": "数目",
+    "p": "shù mù",
+    "v": "amount",
+    "e": "amount",
+    "t": "objects"
+  },
+  {
+    "h": "耍",
+    "p": "Shuǎ",
+    "v": "surname Shua",
+    "e": "surname Shua",
+    "t": "actions"
+  },
+  {
+    "h": "衰老",
+    "p": "shuāi lǎo",
+    "v": "to age",
+    "e": "to age",
+    "t": "adjectives"
+  },
+  {
+    "h": "涮",
+    "p": "shuàn",
+    "v": "to rinse",
+    "e": "to rinse",
+    "t": "actions"
+  },
+  {
+    "h": "双胞胎",
+    "p": "shuāng bāo tāi",
+    "v": "twin",
+    "e": "twin",
+    "t": "objects"
+  },
+  {
+    "h": "爽快",
+    "p": "shuǎng kuai",
+    "v": "refreshed",
+    "e": "refreshed",
+    "t": "adjectives"
+  },
+  {
+    "h": "水利",
+    "p": "shuǐ lì",
+    "v": "water conservancy",
+    "e": "water conservancy",
+    "t": "objects"
+  },
+  {
+    "h": "水龙头",
+    "p": "shuǐ lóng tóu",
+    "v": "faucet",
+    "e": "faucet",
+    "t": "objects"
+  },
+  {
+    "h": "水泥",
+    "p": "shuǐ ní",
+    "v": "cement",
+    "e": "cement",
+    "t": "objects"
+  },
+  {
+    "h": "司令",
+    "p": "sī lìng",
+    "v": "commanding officer",
+    "e": "commanding officer",
+    "t": "objects"
+  },
+  {
+    "h": "私自",
+    "p": "sī zì",
+    "v": "private; personal",
+    "e": "private; personal",
+    "t": "actions"
+  },
+  {
+    "h": "思念",
+    "p": "sī niàn",
+    "v": "to think of",
+    "e": "to think of",
+    "t": "actions"
+  },
+  {
+    "h": "思索",
+    "p": "sī suǒ",
+    "v": "to think deeply",
+    "e": "to think deeply",
+    "t": "actions"
+  },
+  {
+    "h": "思绪",
+    "p": "sī xù",
+    "v": "train of thought",
+    "e": "train of thought",
+    "t": "objects"
+  },
+  {
+    "h": "斯文",
+    "p": "sī wén",
+    "v": "refined",
+    "e": "refined",
+    "t": "adjectives"
+  },
+  {
+    "h": "死亡",
+    "p": "sǐ wáng",
+    "v": "to die",
+    "e": "to die",
+    "t": "actions"
+  },
+  {
+    "h": "四肢",
+    "p": "sì zhī",
+    "v": "the four limbs of the body",
+    "e": "the four limbs of the body",
+    "t": "objects"
+  },
+  {
+    "h": "饲养",
+    "p": "sì yǎng",
+    "v": "to raise",
+    "e": "to raise",
+    "t": "actions"
+  },
+  {
+    "h": "肆无忌惮",
+    "p": "sì wú jì dàn",
+    "v": "absolutely unrestrained",
+    "e": "absolutely unrestrained",
+    "t": "actions"
+  },
+  {
+    "h": "耸",
+    "p": "sǒng",
+    "v": "to excite",
+    "e": "to excite",
+    "t": "general"
+  },
+  {
+    "h": "艘",
+    "p": "sōu",
+    "v": "classifier for ships",
+    "e": "classifier for ships",
+    "t": "numbers"
+  },
+  {
+    "h": "苏醒",
+    "p": "sū xǐng",
+    "v": "to come to",
+    "e": "to come to",
+    "t": "actions"
+  },
+  {
+    "h": "俗话",
+    "p": "sú huà",
+    "v": "common saying",
+    "e": "common saying",
+    "t": "objects"
+  },
+  {
+    "h": "素食",
+    "p": "sù shí",
+    "v": "vegetarian food",
+    "e": "vegetarian food",
+    "t": "objects"
+  },
+  {
+    "h": "算了",
+    "p": "suàn le",
+    "v": "let it be",
+    "e": "let it be",
+    "t": "general"
+  },
+  {
+    "h": "算数",
+    "p": "suàn shù",
+    "v": "to count numbers",
+    "e": "to count numbers",
+    "t": "actions"
+  },
+  {
+    "h": "随即",
+    "p": "suí jí",
+    "v": "immediately",
+    "e": "immediately",
+    "t": "actions"
+  },
+  {
+    "h": "随身",
+    "p": "suí shēn",
+    "v": "to (carry) on one's person",
+    "e": "to (carry) on one's person",
+    "t": "actions"
+  },
+  {
+    "h": "随手",
+    "p": "suí shǒu",
+    "v": "conveniently",
+    "e": "conveniently",
+    "t": "actions"
+  },
+  {
+    "h": "随意",
+    "p": "suí yì",
+    "v": "as one wishes",
+    "e": "as one wishes",
+    "t": "adjectives"
+  },
+  {
+    "h": "岁月",
+    "p": "suì yuè",
+    "v": "years",
+    "e": "years",
+    "t": "objects"
+  },
+  {
+    "h": "隧道",
+    "p": "suì dào",
+    "v": "tunnel",
+    "e": "tunnel",
+    "t": "objects"
+  },
+  {
+    "h": "损坏",
+    "p": "sǔn huài",
+    "v": "to damage",
+    "e": "to damage",
+    "t": "actions"
+  },
+  {
+    "h": "索赔",
+    "p": "suǒ péi",
+    "v": "to ask for compensation",
+    "e": "to ask for compensation",
+    "t": "actions"
+  },
+  {
+    "h": "塌",
+    "p": "tā",
+    "v": "to collapse",
+    "e": "to collapse",
+    "t": "actions"
+  },
+  {
+    "h": "太空",
+    "p": "tài kōng",
+    "v": "outer space",
+    "e": "outer space",
+    "t": "places"
+  },
+  {
+    "h": "泰斗",
+    "p": "tài dǒu",
+    "v": "(abbr. for 斗) distinguished figure",
+    "e": "(abbr. for 斗) distinguished figure",
+    "t": "objects"
+  },
+  {
+    "h": "贪婪",
+    "p": "tān lán",
+    "v": "avaricious",
+    "e": "avaricious",
+    "t": "adjectives"
+  },
+  {
+    "h": "贪污",
+    "p": "tān wū",
+    "v": "to be corrupt",
+    "e": "to be corrupt",
+    "t": "actions"
+  },
+  {
+    "h": "摊儿",
+    "p": "tān r",
+    "v": "erhua variant of 摊",
+    "e": "erhua variant of 摊",
+    "t": "general"
+  },
+  {
+    "h": "瘫痪",
+    "p": "tān huàn",
+    "v": "paralysis",
+    "e": "paralysis",
+    "t": "actions"
+  },
+  {
+    "h": "叹气",
+    "p": "tàn qì",
+    "v": "to sigh",
+    "e": "to sigh",
+    "t": "actions"
+  },
+  {
+    "h": "探测",
+    "p": "tàn cè",
+    "v": "to probe; to survey",
+    "e": "to probe; to survey",
+    "t": "actions"
+  },
+  {
+    "h": "探望",
+    "p": "tàn wàng",
+    "v": "to visit",
+    "e": "to visit",
+    "t": "actions"
+  },
+  {
+    "h": "糖葫芦",
+    "p": "táng hú lu",
+    "v": "sugar-coated Chinese hawthorn or other fruit on a bamboo skewer",
+    "e": "sugar-coated Chinese hawthorn or other fruit on a bamboo skewer",
+    "t": "objects"
+  },
+  {
+    "h": "掏",
+    "p": "tāo",
+    "v": "to fish out (from pocket)",
+    "e": "to fish out (from pocket)",
+    "t": "actions"
+  },
+  {
+    "h": "滔滔不绝",
+    "p": "tāo tāo bù jué",
+    "v": "unceasing torrent (idiom)",
+    "e": "unceasing torrent (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "陶瓷",
+    "p": "táo cí",
+    "v": "pottery and porcelain",
+    "e": "pottery and porcelain",
+    "t": "objects"
+  },
+  {
+    "h": "淘气",
+    "p": "táo qì",
+    "v": "naughty",
+    "e": "naughty",
+    "t": "adjectives"
+  },
+  {
+    "h": "淘汰",
+    "p": "táo tài",
+    "v": "to wash out",
+    "e": "to wash out",
+    "t": "actions"
+  },
+  {
+    "h": "讨价还价",
+    "p": "tǎo jià huán jià",
+    "v": "to haggle over price",
+    "e": "to haggle over price",
+    "t": "actions"
+  },
+  {
+    "h": "特定",
+    "p": "tè dìng",
+    "v": "special",
+    "e": "special",
+    "t": "general"
+  },
+  {
+    "h": "特色",
+    "p": "tè sè",
+    "v": "characteristic",
+    "e": "characteristic",
+    "t": "objects"
+  },
+  {
+    "h": "特长",
+    "p": "tè cháng",
+    "v": "personal strength",
+    "e": "personal strength",
+    "t": "objects"
+  },
+  {
+    "h": "提拔",
+    "p": "tí bá",
+    "v": "to promote to a higher job",
+    "e": "to promote to a higher job",
+    "t": "actions"
+  },
+  {
+    "h": "提炼",
+    "p": "tí liàn",
+    "v": "to extract (ore, minerals etc)",
+    "e": "to extract (ore, minerals etc)",
+    "t": "actions"
+  },
+  {
+    "h": "提示",
+    "p": "tí shì",
+    "v": "to point out",
+    "e": "to point out",
+    "t": "actions"
+  },
+  {
+    "h": "提议",
+    "p": "tí yì",
+    "v": "proposal",
+    "e": "proposal",
+    "t": "objects"
+  },
+  {
+    "h": "题材",
+    "p": "tí cái",
+    "v": "subject matter",
+    "e": "subject matter",
+    "t": "objects"
+  },
+  {
+    "h": "体谅",
+    "p": "tǐ liàng",
+    "v": "to empathize",
+    "e": "to empathize",
+    "t": "actions"
+  },
+  {
+    "h": "体面",
+    "p": "tǐ miàn",
+    "v": "dignity; prestige; face",
+    "e": "dignity; prestige; face",
+    "t": "adjectives"
+  },
+  {
+    "h": "体系",
+    "p": "tǐ xì",
+    "v": "system",
+    "e": "system",
+    "t": "objects"
+  },
+  {
+    "h": "天才",
+    "p": "tiān cái",
+    "v": "talent",
+    "e": "talent",
+    "t": "objects"
+  },
+  {
+    "h": "天伦之乐",
+    "p": "tiān lún zhī lè",
+    "v": "family love and joy",
+    "e": "family love and joy",
+    "t": "general"
+  },
+  {
+    "h": "天然气",
+    "p": "tiān rán qì",
+    "v": "natural gas",
+    "e": "natural gas",
+    "t": "objects"
+  },
+  {
+    "h": "天生",
+    "p": "tiān shēng",
+    "v": "nature",
+    "e": "nature",
+    "t": "actions"
+  },
+  {
+    "h": "天堂",
+    "p": "tiān táng",
+    "v": "paradise",
+    "e": "paradise",
+    "t": "objects"
+  },
+  {
+    "h": "田径",
+    "p": "tián jìng",
+    "v": "track and field (athletics)",
+    "e": "track and field (athletics)",
+    "t": "objects"
+  },
+  {
+    "h": "舔",
+    "p": "tiǎn",
+    "v": "to lick",
+    "e": "to lick",
+    "t": "actions"
+  },
+  {
+    "h": "挑拨",
+    "p": "tiǎo bō",
+    "v": "to incite disharmony",
+    "e": "to incite disharmony",
+    "t": "actions"
+  },
+  {
+    "h": "挑剔",
+    "p": "tiāo ti",
+    "v": "picky",
+    "e": "picky",
+    "t": "actions"
+  },
+  {
+    "h": "挑衅",
+    "p": "tiǎo xìn",
+    "v": "to provoke",
+    "e": "to provoke",
+    "t": "actions"
+  },
+  {
+    "h": "条理",
+    "p": "tiáo lǐ",
+    "v": "arrangement",
+    "e": "arrangement",
+    "t": "objects"
+  },
+  {
+    "h": "跳跃",
+    "p": "tiào yuè",
+    "v": "to jump",
+    "e": "to jump",
+    "t": "actions"
+  },
+  {
+    "h": "亭子",
+    "p": "tíng zi",
+    "v": "pavilion",
+    "e": "pavilion",
+    "t": "objects"
+  },
+  {
+    "h": "停顿",
+    "p": "tíng dùn",
+    "v": "to halt",
+    "e": "to halt",
+    "t": "actions"
+  },
+  {
+    "h": "停泊",
+    "p": "tíng bó",
+    "v": "to anchor",
+    "e": "to anchor",
+    "t": "actions"
+  },
+  {
+    "h": "停滞",
+    "p": "tíng zhì",
+    "v": "stagnation",
+    "e": "stagnation",
+    "t": "actions"
+  },
+  {
+    "h": "挺拔",
+    "p": "tǐng bá",
+    "v": "tall and straight",
+    "e": "tall and straight",
+    "t": "adjectives"
+  },
+  {
+    "h": "通货",
+    "p": "tōng huò",
+    "v": "currency",
+    "e": "currency",
+    "t": "objects"
+  },
+  {
+    "h": "通俗",
+    "p": "tōng sú",
+    "v": "common",
+    "e": "common",
+    "t": "adjectives"
+  },
+  {
+    "h": "通用",
+    "p": "tōng yòng",
+    "v": "to use anywhere, anytime (card, ticket etc)",
+    "e": "to use anywhere, anytime (card, ticket etc)",
+    "t": "general"
+  },
+  {
+    "h": "同胞",
+    "p": "tóng bāo",
+    "v": "born of the same parents",
+    "e": "born of the same parents",
+    "t": "objects"
+  },
+  {
+    "h": "同志",
+    "p": "tóng zhì",
+    "v": "comrade",
+    "e": "comrade",
+    "t": "objects"
+  },
+  {
+    "h": "铜矿",
+    "p": "tóng kuàng",
+    "v": "copper mine",
+    "e": "copper mine",
+    "t": "objects"
+  },
+  {
+    "h": "童话",
+    "p": "tóng huà",
+    "v": "children's fairy tales",
+    "e": "children's fairy tales",
+    "t": "objects"
+  },
+  {
+    "h": "统统",
+    "p": "tǒng tǒng",
+    "v": "totally",
+    "e": "totally",
+    "t": "actions"
+  },
+  {
+    "h": "投机",
+    "p": "tóu jī",
+    "v": "to speculate (on financial markets)",
+    "e": "to speculate (on financial markets)",
+    "t": "actions"
+  },
+  {
+    "h": "投降",
+    "p": "tóu xiáng",
+    "v": "to surrender",
+    "e": "to surrender",
+    "t": "actions"
+  },
+  {
+    "h": "投票",
+    "p": "tóu piào",
+    "v": "to vote",
+    "e": "to vote",
+    "t": "actions"
+  },
+  {
+    "h": "投掷",
+    "p": "tóu zhì",
+    "v": "to throw sth a long distance",
+    "e": "to throw sth a long distance",
+    "t": "actions"
+  },
+  {
+    "h": "秃",
+    "p": "tū",
+    "v": "bald",
+    "e": "bald",
+    "t": "adjectives"
+  },
+  {
+    "h": "图案",
+    "p": "tú àn",
+    "v": "design; pattern",
+    "e": "design; pattern",
+    "t": "objects"
+  },
+  {
+    "h": "徒弟",
+    "p": "tú dì",
+    "v": "apprentice",
+    "e": "apprentice",
+    "t": "objects"
+  },
+  {
+    "h": "土壤",
+    "p": "tǔ rǎng",
+    "v": "soil",
+    "e": "soil",
+    "t": "objects"
+  },
+  {
+    "h": "涂抹",
+    "p": "tú mǒ",
+    "v": "to paint",
+    "e": "to paint",
+    "t": "actions"
+  },
+  {
+    "h": "团结",
+    "p": "tuán jié",
+    "v": "to unite",
+    "e": "to unite",
+    "t": "actions"
+  },
+  {
+    "h": "团体",
+    "p": "tuán tǐ",
+    "v": "group",
+    "e": "group",
+    "t": "objects"
+  },
+  {
+    "h": "团圆",
+    "p": "tuán yuán",
+    "v": "to have a reunion",
+    "e": "to have a reunion",
+    "t": "actions"
+  },
+  {
+    "h": "推翻",
+    "p": "tuī fān",
+    "v": "to overthrow",
+    "e": "to overthrow",
+    "t": "actions"
+  },
+  {
+    "h": "推论",
+    "p": "tuī lùn",
+    "v": "to infer",
+    "e": "to infer",
+    "t": "actions"
+  },
+  {
+    "h": "推销",
+    "p": "tuī xiāo",
+    "v": "to market",
+    "e": "to market",
+    "t": "actions"
+  },
+  {
+    "h": "吞咽",
+    "p": "tūn yàn",
+    "v": "to swallow",
+    "e": "to swallow",
+    "t": "actions"
+  },
+  {
+    "h": "托运",
+    "p": "tuō yùn",
+    "v": "to consign (goods)",
+    "e": "to consign (goods)",
+    "t": "actions"
+  },
+  {
+    "h": "拖延",
+    "p": "tuō yán",
+    "v": "to delay",
+    "e": "to delay",
+    "t": "actions"
+  },
+  {
+    "h": "脱离",
+    "p": "tuō lí",
+    "v": "to separate oneself from",
+    "e": "to separate oneself from",
+    "t": "actions"
+  },
+  {
+    "h": "妥当",
+    "p": "tuǒ dang",
+    "v": "appropriate",
+    "e": "appropriate",
+    "t": "adjectives"
+  },
+  {
+    "h": "椭圆",
+    "p": "tuǒ yuán",
+    "v": "oval",
+    "e": "oval",
+    "t": "objects"
+  },
+  {
+    "h": "唾沫",
+    "p": "tuò mo",
+    "v": "spittle",
+    "e": "spittle",
+    "t": "objects"
+  },
+  {
+    "h": "挖掘",
+    "p": "wā jué",
+    "v": "to excavate",
+    "e": "to excavate",
+    "t": "actions"
+  },
+  {
+    "h": "娃娃",
+    "p": "wá wa",
+    "v": "baby",
+    "e": "baby",
+    "t": "objects"
+  },
+  {
+    "h": "瓦解",
+    "p": "wǎ jiě",
+    "v": "to collapse; to disintegrate; to crumble",
+    "e": "to collapse; to disintegrate; to crumble",
+    "t": "actions"
+  },
+  {
+    "h": "哇",
+    "p": "wā",
+    "v": "Wow!",
+    "e": "Wow!",
+    "t": "general"
+  },
+  {
+    "h": "歪曲",
+    "p": "wāi qū",
+    "v": "to distort",
+    "e": "to distort",
+    "t": "actions"
+  },
+  {
+    "h": "外表",
+    "p": "wài biǎo",
+    "v": "external",
+    "e": "external",
+    "t": "objects"
+  },
+  {
+    "h": "外界",
+    "p": "wài jiè",
+    "v": "the outside world",
+    "e": "the outside world",
+    "t": "objects"
+  },
+  {
+    "h": "外行",
+    "p": "wài háng",
+    "v": "layman",
+    "e": "layman",
+    "t": "objects"
+  },
+  {
+    "h": "丸",
+    "p": "wán",
+    "v": "ball",
+    "e": "ball",
+    "t": "general"
+  },
+  {
+    "h": "完备",
+    "p": "wán bèi",
+    "v": "faultless",
+    "e": "faultless",
+    "t": "adjectives"
+  },
+  {
+    "h": "完毕",
+    "p": "wán bì",
+    "v": "to finish",
+    "e": "to finish",
+    "t": "actions"
+  },
+  {
+    "h": "玩弄",
+    "p": "wán nòng",
+    "v": "to play with",
+    "e": "to play with",
+    "t": "actions"
+  },
+  {
+    "h": "玩意儿",
+    "p": "wán yì r",
+    "v": "erhua variant of 玩意",
+    "e": "erhua variant of 玩意",
+    "t": "general"
+  },
+  {
+    "h": "顽强",
+    "p": "wán qiáng",
+    "v": "tenacious",
+    "e": "tenacious",
+    "t": "adjectives"
+  },
+  {
+    "h": "挽回",
+    "p": "wǎn huí",
+    "v": "to retrieve",
+    "e": "to retrieve",
+    "t": "actions"
+  },
+  {
+    "h": "挽救",
+    "p": "wǎn jiù",
+    "v": "to save",
+    "e": "to save",
+    "t": "actions"
+  },
+  {
+    "h": "惋惜",
+    "p": "wǎn xī",
+    "v": "to regret",
+    "e": "to regret",
+    "t": "adjectives"
+  },
+  {
+    "h": "万分",
+    "p": "wàn fēn",
+    "v": "very much",
+    "e": "very much",
+    "t": "actions"
+  },
+  {
+    "h": "往常",
+    "p": "wǎng cháng",
+    "v": "usual",
+    "e": "usual",
+    "t": "time"
+  },
+  {
+    "h": "往事",
+    "p": "wǎng shì",
+    "v": "past events",
+    "e": "past events",
+    "t": "objects"
+  },
+  {
+    "h": "妄想",
+    "p": "wàng xiǎng",
+    "v": "to attempt vainly",
+    "e": "to attempt vainly",
+    "t": "actions"
+  },
+  {
+    "h": "威风",
+    "p": "wēi fēng",
+    "v": "might",
+    "e": "might",
+    "t": "adjectives"
+  },
+  {
+    "h": "威力",
+    "p": "wēi lì",
+    "v": "might",
+    "e": "might",
+    "t": "objects"
+  },
+  {
+    "h": "威望",
+    "p": "wēi wàng",
+    "v": "prestige",
+    "e": "prestige",
+    "t": "objects"
+  },
+  {
+    "h": "微不足道",
+    "p": "wēi bù zú dào",
+    "v": "negligible; insignificant",
+    "e": "negligible; insignificant",
+    "t": "actions"
+  },
+  {
+    "h": "违背",
+    "p": "wéi bèi",
+    "v": "to go against",
+    "e": "to go against",
+    "t": "actions"
+  },
+  {
+    "h": "唯独",
+    "p": "wéi dú",
+    "v": "only",
+    "e": "only",
+    "t": "actions"
+  },
+  {
+    "h": "维生素",
+    "p": "wéi shēng sù",
+    "v": "vitamin",
+    "e": "vitamin",
+    "t": "objects"
+  },
+  {
+    "h": "伪造",
+    "p": "wěi zào",
+    "v": "to forge",
+    "e": "to forge",
+    "t": "actions"
+  },
+  {
+    "h": "委员",
+    "p": "wěi yuán",
+    "v": "committee member",
+    "e": "committee member",
+    "t": "objects"
+  },
+  {
+    "h": "为难",
+    "p": "wéi nán",
+    "v": "to feel embarrassed or awkward",
+    "e": "to feel embarrassed or awkward",
+    "t": "actions"
+  },
+  {
+    "h": "为期",
+    "p": "wéi qī",
+    "v": "(to be done) by (a certain date)",
+    "e": "(to be done) by (a certain date)",
+    "t": "actions"
+  },
+  {
+    "h": "为首",
+    "p": "wéi shǒu",
+    "v": "head",
+    "e": "head",
+    "t": "actions"
+  },
+  {
+    "h": "未免",
+    "p": "wèi miǎn",
+    "v": "unavoidably",
+    "e": "unavoidably",
+    "t": "actions"
+  },
+  {
+    "h": "位于",
+    "p": "wèi yú",
+    "v": "to be located at",
+    "e": "to be located at",
+    "t": "actions"
+  },
+  {
+    "h": "畏惧",
+    "p": "wèi jù",
+    "v": "to fear",
+    "e": "to fear",
+    "t": "actions"
+  },
+  {
+    "h": "胃口",
+    "p": "wèi kǒu",
+    "v": "appetite",
+    "e": "appetite",
+    "t": "objects"
+  },
+  {
+    "h": "慰问",
+    "p": "wèi wèn",
+    "v": "to express sympathy, greetings, consolation etc",
+    "e": "to express sympathy, greetings, consolation etc",
+    "t": "actions"
+  },
+  {
+    "h": "温带",
+    "p": "wēn dài",
+    "v": "temperate zone",
+    "e": "temperate zone",
+    "t": "objects"
+  },
+  {
+    "h": "文凭",
+    "p": "wén píng",
+    "v": "diploma",
+    "e": "diploma",
+    "t": "objects"
+  },
+  {
+    "h": "文献",
+    "p": "wén xiàn",
+    "v": "document",
+    "e": "document",
+    "t": "objects"
+  },
+  {
+    "h": "文雅",
+    "p": "wén yǎ",
+    "v": "elegant",
+    "e": "elegant",
+    "t": "adjectives"
+  },
+  {
+    "h": "文艺",
+    "p": "wén yì",
+    "v": "literature and art",
+    "e": "literature and art",
+    "t": "objects"
+  },
+  {
+    "h": "问世",
+    "p": "wèn shì",
+    "v": "to be published",
+    "e": "to be published",
+    "t": "actions"
+  },
+  {
+    "h": "窝",
+    "p": "wō",
+    "v": "nest",
+    "e": "nest",
+    "t": "objects"
+  },
+  {
+    "h": "乌黑",
+    "p": "wū hēi",
+    "v": "jet-black",
+    "e": "jet-black",
+    "t": "general"
+  },
+  {
+    "h": "污蔑",
+    "p": "wū miè",
+    "v": "variant of 污蔑",
+    "e": "variant of 污蔑",
+    "t": "actions"
+  },
+  {
+    "h": "诬陷",
+    "p": "wū xiàn",
+    "v": "to entrap",
+    "e": "to entrap",
+    "t": "actions"
+  },
+  {
+    "h": "无比",
+    "p": "wú bǐ",
+    "v": "incomparable",
+    "e": "incomparable",
+    "t": "general"
+  },
+  {
+    "h": "无偿",
+    "p": "wú cháng",
+    "v": "free; no charge; at no cost",
+    "e": "free; no charge; at no cost",
+    "t": "actions"
+  },
+  {
+    "h": "无耻",
+    "p": "wú chǐ",
+    "v": "without any sense of shame",
+    "e": "without any sense of shame",
+    "t": "adjectives"
+  },
+  {
+    "h": "无从",
+    "p": "wú cóng",
+    "v": "not to have access",
+    "e": "not to have access",
+    "t": "actions"
+  },
+  {
+    "h": "无动于衷",
+    "p": "wú dòng yú zhōng",
+    "v": "aloof",
+    "e": "aloof",
+    "t": "actions"
+  },
+  {
+    "h": "无精打采",
+    "p": "wú jīng dǎ cǎi",
+    "v": "dispirited and downcast (idiom); listless",
+    "e": "dispirited and downcast (idiom); listless",
+    "t": "actions"
+  },
+  {
+    "h": "无可奉告",
+    "p": "wú kě fèng gào",
+    "v": "(idiom) \"no comment\"",
+    "e": "(idiom) \"no comment\"",
+    "t": "actions"
+  },
+  {
+    "h": "无赖",
+    "p": "wú lài",
+    "v": "hoodlum",
+    "e": "hoodlum",
+    "t": "objects"
+  },
+  {
+    "h": "无理取闹",
+    "p": "wú lǐ qǔ nào",
+    "v": "to make trouble without reason (idiom); to be deliberately provocative",
+    "e": "to make trouble without reason (idiom); to be deliberately provocative",
+    "t": "actions"
+  },
+  {
+    "h": "无能为力",
+    "p": "wú néng wéi lì",
+    "v": "impotent (idiom)",
+    "e": "impotent (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "无穷无尽",
+    "p": "wú qióng wú jìn",
+    "v": "endless",
+    "e": "endless",
+    "t": "actions"
+  },
+  {
+    "h": "无微不至",
+    "p": "wú wēi bù zhì",
+    "v": "in every possible way (idiom); meticulous",
+    "e": "in every possible way (idiom); meticulous",
+    "t": "general"
+  },
+  {
+    "h": "无忧无虑",
+    "p": "wú yōu wú lǜ",
+    "v": "carefree and without worries (idiom)",
+    "e": "carefree and without worries (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "无知",
+    "p": "wú zhī",
+    "v": "ignorant",
+    "e": "ignorant",
+    "t": "adjectives"
+  },
+  {
+    "h": "武侠",
+    "p": "wǔ xiá",
+    "v": "martial arts chivalry (Chinese literary, theatrical and cinema genre)",
+    "e": "martial arts chivalry (Chinese literary, theatrical and cinema genre)",
+    "t": "objects"
+  },
+  {
+    "h": "武装",
+    "p": "wǔ zhuāng",
+    "v": "arms",
+    "e": "arms",
+    "t": "objects"
+  },
+  {
+    "h": "侮辱",
+    "p": "wǔ rǔ",
+    "v": "to insult",
+    "e": "to insult",
+    "t": "actions"
+  },
+  {
+    "h": "舞蹈",
+    "p": "wǔ dǎo",
+    "v": "dance (performance art)",
+    "e": "dance (performance art)",
+    "t": "objects"
+  },
+  {
+    "h": "勿",
+    "p": "wù",
+    "v": "do not",
+    "e": "do not",
+    "t": "actions"
+  },
+  {
+    "h": "物美价廉",
+    "p": "wù měi jià lián",
+    "v": "good quality and cheap",
+    "e": "good quality and cheap",
+    "t": "actions"
+  },
+  {
+    "h": "物资",
+    "p": "wù zī",
+    "v": "goods",
+    "e": "goods",
+    "t": "objects"
+  },
+  {
+    "h": "误解",
+    "p": "wù jiě",
+    "v": "to misunderstand",
+    "e": "to misunderstand",
+    "t": "actions"
+  },
+  {
+    "h": "务必",
+    "p": "wù bì",
+    "v": "must",
+    "e": "must",
+    "t": "actions"
+  },
+  {
+    "h": "务实",
+    "p": "wù shí",
+    "v": "pragmatic",
+    "e": "pragmatic",
+    "t": "actions"
+  },
+  {
+    "h": "夕阳",
+    "p": "xī yáng",
+    "v": "sunset",
+    "e": "sunset",
+    "t": "objects"
+  },
+  {
+    "h": "吸取",
+    "p": "xī qǔ",
+    "v": "to absorb",
+    "e": "to absorb",
+    "t": "actions"
+  },
+  {
+    "h": "昔日",
+    "p": "xī rì",
+    "v": "former days",
+    "e": "former days",
+    "t": "time"
+  },
+  {
+    "h": "牺牲",
+    "p": "xī shēng",
+    "v": "to sacrifice one's life",
+    "e": "to sacrifice one's life",
+    "t": "actions"
+  },
+  {
+    "h": "溪",
+    "p": "xī",
+    "v": "creek",
+    "e": "creek",
+    "t": "general"
+  },
+  {
+    "h": "熄灭",
+    "p": "xī miè",
+    "v": "to stop burning",
+    "e": "to stop burning",
+    "t": "actions"
+  },
+  {
+    "h": "膝盖",
+    "p": "xī gài",
+    "v": "knee",
+    "e": "knee",
+    "t": "objects"
+  },
+  {
+    "h": "袭击",
+    "p": "xí jī",
+    "v": "attack (esp. surprise attack)",
+    "e": "attack (esp. surprise attack)",
+    "t": "actions"
+  },
+  {
+    "h": "媳妇",
+    "p": "xí fù",
+    "v": "daughter-in-law",
+    "e": "daughter-in-law",
+    "t": "objects"
+  },
+  {
+    "h": "喜闻乐见",
+    "p": "xǐ wén lè jiàn",
+    "v": "to love to hear and see (idiom)",
+    "e": "to love to hear and see (idiom)",
+    "t": "general"
+  },
+  {
+    "h": "喜悦",
+    "p": "xǐ yuè",
+    "v": "happy",
+    "e": "happy",
+    "t": "adjectives"
+  },
+  {
+    "h": "峡谷",
+    "p": "xiá gǔ",
+    "v": "canyon",
+    "e": "canyon",
+    "t": "objects"
+  },
+  {
+    "h": "狭隘",
+    "p": "xiá ài",
+    "v": "narrow",
+    "e": "narrow",
+    "t": "adjectives"
+  },
+  {
+    "h": "狭窄",
+    "p": "xiá zhǎi",
+    "v": "narrow",
+    "e": "narrow",
+    "t": "adjectives"
+  },
+  {
+    "h": "霞",
+    "p": "xiá",
+    "v": "rose-tinted sky or clouds at sunrise or sunset",
+    "e": "rose-tinted sky or clouds at sunrise or sunset",
+    "t": "general"
+  },
+  {
+    "h": "下属",
+    "p": "xià shǔ",
+    "v": "subordinate",
+    "e": "subordinate",
+    "t": "actions"
+  },
+  {
+    "h": "夏令营",
+    "p": "xià lìng yíng",
+    "v": "summer camp",
+    "e": "summer camp",
+    "t": "objects"
+  },
+  {
+    "h": "先进",
+    "p": "xiān jìn",
+    "v": "advanced (technology)",
+    "e": "advanced (technology)",
+    "t": "adjectives"
+  },
+  {
+    "h": "先前",
+    "p": "xiān qián",
+    "v": "before; previously",
+    "e": "before; previously",
+    "t": "time"
+  },
+  {
+    "h": "纤维",
+    "p": "xiān wéi",
+    "v": "fiber",
+    "e": "fiber",
+    "t": "objects"
+  },
+  {
+    "h": "掀起",
+    "p": "xiān qǐ",
+    "v": "to lift; to raise (a lid etc)",
+    "e": "to lift; to raise (a lid etc)",
+    "t": "actions"
+  },
+  {
+    "h": "鲜明",
+    "p": "xiān míng",
+    "v": "bright",
+    "e": "bright",
+    "t": "adjectives"
+  },
+  {
+    "h": "闲话",
+    "p": "xián huà",
+    "v": "casual conversation",
+    "e": "casual conversation",
+    "t": "objects"
+  },
+  {
+    "h": "弦",
+    "p": "xián",
+    "v": "bow string",
+    "e": "bow string",
+    "t": "objects"
+  },
+  {
+    "h": "贤惠",
+    "p": "xián huì",
+    "v": "variant of 贤慧",
+    "e": "variant of 贤慧",
+    "t": "adjectives"
+  },
+  {
+    "h": "衔接",
+    "p": "xián jiē",
+    "v": "to link up; to connect; to join",
+    "e": "to link up; to connect; to join",
+    "t": "actions"
+  },
+  {
+    "h": "嫌",
+    "p": "xián",
+    "v": "to dislike",
+    "e": "to dislike",
+    "t": "actions"
+  },
+  {
+    "h": "嫌疑",
+    "p": "xián yí",
+    "v": "suspicion",
+    "e": "suspicion",
+    "t": "objects"
+  },
+  {
+    "h": "显著",
+    "p": "xiǎn zhù",
+    "v": "outstanding",
+    "e": "outstanding",
+    "t": "general"
+  },
+  {
+    "h": "现场",
+    "p": "xiàn chǎng",
+    "v": "the scene (of a crime, accident etc)",
+    "e": "the scene (of a crime, accident etc)",
+    "t": "places"
+  },
+  {
+    "h": "现成",
+    "p": "xiàn chéng",
+    "v": "ready-made",
+    "e": "ready-made",
+    "t": "general"
+  },
+  {
+    "h": "线索",
+    "p": "xiàn suǒ",
+    "v": "trail",
+    "e": "trail",
+    "t": "objects"
+  },
+  {
+    "h": "陷害",
+    "p": "xiàn hài",
+    "v": "to entrap",
+    "e": "to entrap",
+    "t": "actions"
+  },
+  {
+    "h": "陷入",
+    "p": "xiàn rù",
+    "v": "to sink into",
+    "e": "to sink into",
+    "t": "actions"
+  },
+  {
+    "h": "馅儿",
+    "p": "xiàn r",
+    "v": "erhua variant of 馅",
+    "e": "erhua variant of 馅",
+    "t": "objects"
+  },
+  {
+    "h": "乡镇",
+    "p": "xiāng zhèn",
+    "v": "village",
+    "e": "village",
+    "t": "objects"
+  },
+  {
+    "h": "相差",
+    "p": "xiāng chà",
+    "v": "to differ",
+    "e": "to differ",
+    "t": "actions"
+  },
+  {
+    "h": "相等",
+    "p": "xiāng děng",
+    "v": "equal",
+    "e": "equal",
+    "t": "actions"
+  },
+  {
+    "h": "相应",
+    "p": "xiāng yìng",
+    "v": "to correspond",
+    "e": "to correspond",
+    "t": "actions"
+  },
+  {
+    "h": "镶嵌",
+    "p": "xiāng qiàn",
+    "v": "to inlay",
+    "e": "to inlay",
+    "t": "actions"
+  },
+  {
+    "h": "响亮",
+    "p": "xiǎng liàng",
+    "v": "loud and clear",
+    "e": "loud and clear",
+    "t": "adjectives"
+  },
+  {
+    "h": "响应",
+    "p": "xiǎng yìng",
+    "v": "to respond to",
+    "e": "to respond to",
+    "t": "actions"
+  },
+  {
+    "h": "想方设法",
+    "p": "xiǎng fāng shè fǎ",
+    "v": "to think up every possible method (idiom); to devise ways and means",
+    "e": "to think up every possible method (idiom); to devise ways and means",
+    "t": "general"
+  },
+  {
+    "h": "向导",
+    "p": "xiàng dǎo",
+    "v": "guide",
+    "e": "guide",
+    "t": "objects"
+  },
+  {
+    "h": "巷",
+    "p": "xiàng",
+    "v": "lane",
+    "e": "lane",
+    "t": "general"
+  },
+  {
+    "h": "消毒",
+    "p": "xiāo dú",
+    "v": "to disinfect; to sterilize",
+    "e": "to disinfect; to sterilize",
+    "t": "actions"
+  },
+  {
+    "h": "消防",
+    "p": "xiāo fáng",
+    "v": "firefighting",
+    "e": "firefighting",
+    "t": "general"
+  },
+  {
+    "h": "消耗",
+    "p": "xiāo hào",
+    "v": "to use up",
+    "e": "to use up",
+    "t": "actions"
+  },
+  {
+    "h": "销毁",
+    "p": "xiāo huǐ",
+    "v": "to destroy (by melting or burning)",
+    "e": "to destroy (by melting or burning)",
+    "t": "actions"
+  },
+  {
+    "h": "小心翼翼",
+    "p": "xiǎo xīn yì yì",
+    "v": "cautious and solemn (idiom); very carefully",
+    "e": "cautious and solemn (idiom); very carefully",
+    "t": "general"
+  },
+  {
+    "h": "肖像",
+    "p": "xiào xiàng",
+    "v": "portrait (painting, photo etc)",
+    "e": "portrait (painting, photo etc)",
+    "t": "objects"
+  },
+  {
+    "h": "协会",
+    "p": "xié huì",
+    "v": "an association",
+    "e": "an association",
+    "t": "objects"
+  },
+  {
+    "h": "协商",
+    "p": "xié shāng",
+    "v": "to consult with",
+    "e": "to consult with",
+    "t": "actions"
+  },
+  {
+    "h": "协助",
+    "p": "xié zhù",
+    "v": "to provide assistance",
+    "e": "to provide assistance",
+    "t": "actions"
+  },
+  {
+    "h": "携带",
+    "p": "xié dài",
+    "v": "to carry (on one's person)",
+    "e": "to carry (on one's person)",
+    "t": "actions"
+  },
+  {
+    "h": "写作",
+    "p": "xiě zuò",
+    "v": "to write",
+    "e": "to write",
+    "t": "actions"
+  },
+  {
+    "h": "泄露",
+    "p": "xiè lù",
+    "v": "to leak (information); to divulge",
+    "e": "to leak (information); to divulge",
+    "t": "actions"
+  },
+  {
+    "h": "泄气",
+    "p": "xiè qì",
+    "v": "to leak (gas)",
+    "e": "to leak (gas)",
+    "t": "actions"
+  },
+  {
+    "h": "屑",
+    "p": "xiè",
+    "v": "bits",
+    "e": "bits",
+    "t": "general"
+  },
+  {
+    "h": "谢绝",
+    "p": "xiè jué",
+    "v": "to refuse politely",
+    "e": "to refuse politely",
+    "t": "actions"
+  },
+  {
+    "h": "心灵",
+    "p": "xīn líng",
+    "v": "bright",
+    "e": "bright",
+    "t": "objects"
+  },
+  {
+    "h": "心态",
+    "p": "xīn tài",
+    "v": "attitude (of the heart)",
+    "e": "attitude (of the heart)",
+    "t": "objects"
+  },
+  {
+    "h": "心疼",
+    "p": "xīn téng",
+    "v": "to love dearly",
+    "e": "to love dearly",
+    "t": "actions"
+  },
+  {
+    "h": "心血",
+    "p": "xīn xuè",
+    "v": "heart's blood",
+    "e": "heart's blood",
+    "t": "objects"
+  },
+  {
+    "h": "心眼儿",
+    "p": "xīn yǎn r",
+    "v": "one's thoughts",
+    "e": "one's thoughts",
+    "t": "general"
+  },
+  {
+    "h": "辛勤",
+    "p": "xīn qín",
+    "v": "hardworking",
+    "e": "hardworking",
+    "t": "adjectives"
+  },
+  {
+    "h": "欣欣向荣",
+    "p": "xīn xīn xiàng róng",
+    "v": "(idiom) flourishing",
+    "e": "(idiom) flourishing",
+    "t": "actions"
+  },
+  {
+    "h": "新郎",
+    "p": "xīn láng",
+    "v": "bridegroom",
+    "e": "bridegroom",
+    "t": "objects"
+  },
+  {
+    "h": "新娘",
+    "p": "xīn niáng",
+    "v": "bride",
+    "e": "bride",
+    "t": "objects"
+  },
+  {
+    "h": "新颖",
+    "p": "xīn yǐng",
+    "v": "lit. new bud",
+    "e": "lit. new bud",
+    "t": "adjectives"
+  },
+  {
+    "h": "信赖",
+    "p": "xìn lài",
+    "v": "to trust",
+    "e": "to trust",
+    "t": "actions"
+  },
+  {
+    "h": "信念",
+    "p": "xìn niàn",
+    "v": "faith",
+    "e": "faith",
+    "t": "objects"
+  },
+  {
+    "h": "腥",
+    "p": "xīng",
+    "v": "fishy (smell)",
+    "e": "fishy (smell)",
+    "t": "adjectives"
+  },
+  {
+    "h": "刑事",
+    "p": "xíng shì",
+    "v": "criminal; penal",
+    "e": "criminal; penal",
+    "t": "general"
+  },
+  {
+    "h": "形态",
+    "p": "xíng tài",
+    "v": "shape",
+    "e": "shape",
+    "t": "objects"
+  },
+  {
+    "h": "兴高采烈",
+    "p": "xìng gāo cǎi liè",
+    "v": "happy and excited (idiom)",
+    "e": "happy and excited (idiom)",
+    "t": "general"
+  },
+  {
+    "h": "兴隆",
+    "p": "Xīng lóng",
+    "v": "Xinglong county in Chengde 德, Hebei",
+    "e": "Xinglong county in Chengde 德, Hebei",
+    "t": "adjectives"
+  },
+  {
+    "h": "兴旺",
+    "p": "xīng wàng",
+    "v": "prosperous",
+    "e": "prosperous",
+    "t": "adjectives"
+  },
+  {
+    "h": "兴致勃勃",
+    "p": "xìng zhì bó bó",
+    "v": "to become exhilarated (idiom); in high spirits",
+    "e": "to become exhilarated (idiom); in high spirits",
+    "t": "general"
+  },
+  {
+    "h": "性感",
+    "p": "xìng gǎn",
+    "v": "sex appeal",
+    "e": "sex appeal",
+    "t": "adjectives"
+  },
+  {
+    "h": "性命",
+    "p": "xìng mìng",
+    "v": "life",
+    "e": "life",
+    "t": "objects"
+  },
+  {
+    "h": "性能",
+    "p": "xìng néng",
+    "v": "function; performance; behavior",
+    "e": "function; performance; behavior",
+    "t": "objects"
+  },
+  {
+    "h": "性情",
+    "p": "xìng qíng",
+    "v": "nature",
+    "e": "nature",
+    "t": "objects"
+  },
+  {
+    "h": "凶恶",
+    "p": "xiōng è",
+    "v": "fierce",
+    "e": "fierce",
+    "t": "adjectives"
+  },
+  {
+    "h": "凶手",
+    "p": "xiōng shǒu",
+    "v": "murderer",
+    "e": "murderer",
+    "t": "objects"
+  },
+  {
+    "h": "胸膛",
+    "p": "xiōng táng",
+    "v": "chest",
+    "e": "chest",
+    "t": "objects"
+  },
+  {
+    "h": "雄厚",
+    "p": "xióng hòu",
+    "v": "substantial; robust; ample; abundant",
+    "e": "substantial; robust; ample; abundant",
+    "t": "adjectives"
+  },
+  {
+    "h": "休养",
+    "p": "xiū yǎng",
+    "v": "to recuperate",
+    "e": "to recuperate",
+    "t": "actions"
+  },
+  {
+    "h": "修复",
+    "p": "xiū fù",
+    "v": "to restore; to renovate",
+    "e": "to restore; to renovate",
+    "t": "actions"
+  },
+  {
+    "h": "修建",
+    "p": "xiū jiàn",
+    "v": "to build",
+    "e": "to build",
+    "t": "actions"
+  },
+  {
+    "h": "羞耻",
+    "p": "xiū chǐ",
+    "v": "(a feeling of) shame",
+    "e": "(a feeling of) shame",
+    "t": "objects"
+  },
+  {
+    "h": "绣",
+    "p": "xiù",
+    "v": "variant of 绣",
+    "e": "variant of 绣",
+    "t": "actions"
+  },
+  {
+    "h": "嗅觉",
+    "p": "xiù jué",
+    "v": "sense of smell",
+    "e": "sense of smell",
+    "t": "objects"
+  },
+  {
+    "h": "须知",
+    "p": "xū zhī",
+    "v": "key information",
+    "e": "key information",
+    "t": "objects"
+  },
+  {
+    "h": "虚假",
+    "p": "xū jiǎ",
+    "v": "false",
+    "e": "false",
+    "t": "adjectives"
+  },
+  {
+    "h": "虚荣",
+    "p": "xū róng",
+    "v": "vanity",
+    "e": "vanity",
+    "t": "adjectives"
+  },
+  {
+    "h": "虚伪",
+    "p": "xū wěi",
+    "v": "false",
+    "e": "false",
+    "t": "adjectives"
+  },
+  {
+    "h": "序言",
+    "p": "xù yán",
+    "v": "preface",
+    "e": "preface",
+    "t": "objects"
+  },
+  {
+    "h": "酗酒",
+    "p": "xù jiǔ",
+    "v": "heavy drinking",
+    "e": "heavy drinking",
+    "t": "actions"
+  },
+  {
+    "h": "宣誓",
+    "p": "xuān shì",
+    "v": "to swear an oath (of office)",
+    "e": "to swear an oath (of office)",
+    "t": "actions"
+  },
+  {
+    "h": "悬挂",
+    "p": "xuán guà",
+    "v": "to suspend",
+    "e": "to suspend",
+    "t": "actions"
+  },
+  {
+    "h": "悬念",
+    "p": "xuán niàn",
+    "v": "suspense in a movie, play etc",
+    "e": "suspense in a movie, play etc",
+    "t": "objects"
+  },
+  {
+    "h": "悬崖峭壁",
+    "p": "xuán yá qiào bì",
+    "v": "sheer cliffs and precipitous rock faces (idiom)",
+    "e": "sheer cliffs and precipitous rock faces (idiom)",
+    "t": "general"
+  },
+  {
+    "h": "旋转",
+    "p": "xuán zhuǎn",
+    "v": "to rotate",
+    "e": "to rotate",
+    "t": "actions"
+  },
+  {
+    "h": "选拔",
+    "p": "xuǎn bá",
+    "v": "to select the best",
+    "e": "to select the best",
+    "t": "actions"
+  },
+  {
+    "h": "选手",
+    "p": "xuǎn shǒu",
+    "v": "athlete",
+    "e": "athlete",
+    "t": "objects"
+  },
+  {
+    "h": "削弱",
+    "p": "xuē ruò",
+    "v": "to weaken",
+    "e": "to weaken",
+    "t": "actions"
+  },
+  {
+    "h": "学说",
+    "p": "xué shuō",
+    "v": "theory",
+    "e": "theory",
+    "t": "objects"
+  },
+  {
+    "h": "学位",
+    "p": "xué wèi",
+    "v": "academic degree",
+    "e": "academic degree",
+    "t": "objects"
+  },
+  {
+    "h": "雪上加霜",
+    "p": "xuě shàng jiā shuāng",
+    "v": "(idiom) to make matters even worse",
+    "e": "(idiom) to make matters even worse",
+    "t": "actions"
+  },
+  {
+    "h": "熏陶",
+    "p": "xūn táo",
+    "v": "to seep in",
+    "e": "to seep in",
+    "t": "actions"
+  },
+  {
+    "h": "寻觅",
+    "p": "xún mì",
+    "v": "to look for",
+    "e": "to look for",
+    "t": "actions"
+  },
+  {
+    "h": "巡逻",
+    "p": "xún luó",
+    "v": "to patrol (police, army or navy)",
+    "e": "to patrol (police, army or navy)",
+    "t": "actions"
+  },
+  {
+    "h": "压迫",
+    "p": "yā pò",
+    "v": "to oppress",
+    "e": "to oppress",
+    "t": "actions"
+  },
+  {
+    "h": "压岁钱",
+    "p": "yā suì qián",
+    "v": "money given to children as a gift on Chinese New Year's Eve",
+    "e": "money given to children as a gift on Chinese New Year's Eve",
+    "t": "objects"
+  },
+  {
+    "h": "压缩",
+    "p": "yā suō",
+    "v": "to compress; compression",
+    "e": "to compress; compression",
+    "t": "actions"
+  },
+  {
+    "h": "压抑",
+    "p": "yā yì",
+    "v": "to constrain or repress emotions",
+    "e": "to constrain or repress emotions",
+    "t": "actions"
+  },
+  {
+    "h": "压榨",
+    "p": "yā zhà",
+    "v": "to press",
+    "e": "to press",
+    "t": "actions"
+  },
+  {
+    "h": "压制",
+    "p": "yā zhì",
+    "v": "to suppress",
+    "e": "to suppress",
+    "t": "general"
+  },
+  {
+    "h": "押金",
+    "p": "yā jīn",
+    "v": "deposit",
+    "e": "deposit",
+    "t": "objects"
+  },
+  {
+    "h": "亚军",
+    "p": "yà jūn",
+    "v": "second place (in a sports contest)",
+    "e": "second place (in a sports contest)",
+    "t": "objects"
+  },
+  {
+    "h": "烟花",
+    "p": "yān huā",
+    "v": "fireworks",
+    "e": "fireworks",
+    "t": "objects"
+  },
+  {
+    "h": "淹没",
+    "p": "yān mò",
+    "v": "to submerge",
+    "e": "to submerge",
+    "t": "actions"
+  },
+  {
+    "h": "延期",
+    "p": "yán qī",
+    "v": "to delay",
+    "e": "to delay",
+    "t": "actions"
+  },
+  {
+    "h": "延续",
+    "p": "yán xù",
+    "v": "to continue",
+    "e": "to continue",
+    "t": "actions"
+  },
+  {
+    "h": "严寒",
+    "p": "yán hán",
+    "v": "bitter cold",
+    "e": "bitter cold",
+    "t": "adjectives"
+  },
+  {
+    "h": "严禁",
+    "p": "yán jìn",
+    "v": "to strictly prohibit",
+    "e": "to strictly prohibit",
+    "t": "actions"
+  },
+  {
+    "h": "严厉",
+    "p": "yán lì",
+    "v": "severe",
+    "e": "severe",
+    "t": "adjectives"
+  },
+  {
+    "h": "严密",
+    "p": "yán mì",
+    "v": "strict",
+    "e": "strict",
+    "t": "adjectives"
+  },
+  {
+    "h": "岩石",
+    "p": "yán shí",
+    "v": "rock",
+    "e": "rock",
+    "t": "objects"
+  },
+  {
+    "h": "沿海",
+    "p": "yán hǎi",
+    "v": "coastal",
+    "e": "coastal",
+    "t": "places"
+  },
+  {
+    "h": "炎热",
+    "p": "yán rè",
+    "v": "blistering hot",
+    "e": "blistering hot",
+    "t": "adjectives"
+  },
+  {
+    "h": "掩盖",
+    "p": "yǎn gài",
+    "v": "to conceal",
+    "e": "to conceal",
+    "t": "actions"
+  },
+  {
+    "h": "掩护",
+    "p": "yǎn hù",
+    "v": "to screen",
+    "e": "to screen",
+    "t": "actions"
+  },
+  {
+    "h": "掩饰",
+    "p": "yǎn shì",
+    "v": "to cover up",
+    "e": "to cover up",
+    "t": "actions"
+  },
+  {
+    "h": "眼光",
+    "p": "yǎn guāng",
+    "v": "gaze",
+    "e": "gaze",
+    "t": "objects"
+  },
+  {
+    "h": "眼色",
+    "p": "yǎn sè",
+    "v": "signal made with one's eyes",
+    "e": "signal made with one's eyes",
+    "t": "objects"
+  },
+  {
+    "h": "眼神",
+    "p": "yǎn shén",
+    "v": "expression or emotion showing in one's eyes",
+    "e": "expression or emotion showing in one's eyes",
+    "t": "objects"
+  },
+  {
+    "h": "眼下",
+    "p": "yǎn xià",
+    "v": "now",
+    "e": "now",
+    "t": "time"
+  },
+  {
+    "h": "演讲",
+    "p": "yǎn jiǎng",
+    "v": "lecture",
+    "e": "lecture",
+    "t": "actions"
+  },
+  {
+    "h": "演习",
+    "p": "yǎn xí",
+    "v": "maneuver",
+    "e": "maneuver",
+    "t": "actions"
+  },
+  {
+    "h": "演奏",
+    "p": "yǎn zòu",
+    "v": "to perform on a musical instrument",
+    "e": "to perform on a musical instrument",
+    "t": "actions"
+  },
+  {
+    "h": "厌恶",
+    "p": "yàn wù",
+    "v": "to loathe",
+    "e": "to loathe",
+    "t": "actions"
+  },
+  {
+    "h": "验收",
+    "p": "yàn shōu",
+    "v": "to inspect and accept",
+    "e": "to inspect and accept",
+    "t": "actions"
+  },
+  {
+    "h": "氧气",
+    "p": "yǎng qì",
+    "v": "oxygen",
+    "e": "oxygen",
+    "t": "objects"
+  },
+  {
+    "h": "样品",
+    "p": "yàng pǐn",
+    "v": "sample; specimen",
+    "e": "sample; specimen",
+    "t": "objects"
+  },
+  {
+    "h": "谣言",
+    "p": "yáo yán",
+    "v": "rumor",
+    "e": "rumor",
+    "t": "objects"
+  },
+  {
+    "h": "摇摆",
+    "p": "yáo bǎi",
+    "v": "to sway",
+    "e": "to sway",
+    "t": "actions"
+  },
+  {
+    "h": "摇滚",
+    "p": "yáo gǔn",
+    "v": "rock 'n' roll (music)",
+    "e": "rock 'n' roll (music)",
+    "t": "objects"
+  },
+  {
+    "h": "摇晃",
+    "p": "yáo huàng",
+    "v": "to rock; to shake; to sway",
+    "e": "to rock; to shake; to sway",
+    "t": "actions"
+  },
+  {
+    "h": "遥控",
+    "p": "yáo kòng",
+    "v": "to direct operations from a remote location",
+    "e": "to direct operations from a remote location",
+    "t": "actions"
+  },
+  {
+    "h": "遥远",
+    "p": "yáo yuǎn",
+    "v": "distant",
+    "e": "distant",
+    "t": "adjectives"
+  },
+  {
+    "h": "咬牙切齿",
+    "p": "yǎo yá qiè chǐ",
+    "v": "(idiom) to gnash one's teeth; to fume with rage",
+    "e": "(idiom) to gnash one's teeth; to fume with rage",
+    "t": "general"
+  },
+  {
+    "h": "要不然",
+    "p": "yào bù rán",
+    "v": "otherwise",
+    "e": "otherwise",
+    "t": "language"
+  },
+  {
+    "h": "要点",
+    "p": "yào diǎn",
+    "v": "main point",
+    "e": "main point",
+    "t": "objects"
+  },
+  {
+    "h": "要命",
+    "p": "yào mìng",
+    "v": "to cause sb's death",
+    "e": "to cause sb's death",
+    "t": "actions"
+  },
+  {
+    "h": "要素",
+    "p": "yào sù",
+    "v": "essential factor",
+    "e": "essential factor",
+    "t": "objects"
+  },
+  {
+    "h": "耀眼",
+    "p": "yào yǎn",
+    "v": "to dazzle",
+    "e": "to dazzle",
+    "t": "adjectives"
+  },
+  {
+    "h": "野蛮",
+    "p": "yě mán",
+    "v": "barbarous",
+    "e": "barbarous",
+    "t": "adjectives"
+  },
+  {
+    "h": "野心",
+    "p": "yě xīn",
+    "v": "ambition",
+    "e": "ambition",
+    "t": "objects"
+  },
+  {
+    "h": "一度",
+    "p": "yī dù",
+    "v": "for a time",
+    "e": "for a time",
+    "t": "actions"
+  },
+  {
+    "h": "一贯",
+    "p": "yī guàn",
+    "v": "consistent",
+    "e": "consistent",
+    "t": "actions"
+  },
+  {
+    "h": "一举两得",
+    "p": "yī jǔ liǎng dé",
+    "v": "one move, two gains (idiom); two birds with one stone",
+    "e": "one move, two gains (idiom); two birds with one stone",
+    "t": "actions"
+  },
+  {
+    "h": "一流",
+    "p": "yī liú",
+    "v": "top quality",
+    "e": "top quality",
+    "t": "general"
+  },
+  {
+    "h": "一律",
+    "p": "yī lǜ",
+    "v": "same",
+    "e": "same",
+    "t": "actions"
+  },
+  {
+    "h": "一目了然",
+    "p": "yī mù liǎo rán",
+    "v": "obvious at a glance (idiom)",
+    "e": "obvious at a glance (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "一丝不苟",
+    "p": "yī sī bù gǒu",
+    "v": "not one thread loose (idiom); strictly according to the rules",
+    "e": "not one thread loose (idiom); strictly according to the rules",
+    "t": "actions"
+  },
+  {
+    "h": "一向",
+    "p": "yī xiàng",
+    "v": "always (previously)",
+    "e": "always (previously)",
+    "t": "actions"
+  },
+  {
+    "h": "一再",
+    "p": "yī zài",
+    "v": "repeatedly",
+    "e": "repeatedly",
+    "t": "actions"
+  },
+  {
+    "h": "衣裳",
+    "p": "yī shang",
+    "v": "(coll.) clothes",
+    "e": "(coll.) clothes",
+    "t": "objects"
+  },
+  {
+    "h": "依次",
+    "p": "yī cì",
+    "v": "in order",
+    "e": "in order",
+    "t": "actions"
+  },
+  {
+    "h": "依旧",
+    "p": "yī jiù",
+    "v": "as before",
+    "e": "as before",
+    "t": "general"
+  },
+  {
+    "h": "仪器",
+    "p": "yí qì",
+    "v": "instrument; apparatus",
+    "e": "instrument; apparatus",
+    "t": "objects"
+  },
+  {
+    "h": "仪式",
+    "p": "yí shì",
+    "v": "ceremony",
+    "e": "ceremony",
+    "t": "objects"
+  },
+  {
+    "h": "遗产",
+    "p": "yí chǎn",
+    "v": "heritage",
+    "e": "heritage",
+    "t": "objects"
+  },
+  {
+    "h": "遗传",
+    "p": "yí chuán",
+    "v": "heredity",
+    "e": "heredity",
+    "t": "actions"
+  },
+  {
+    "h": "遗留",
+    "p": "yí liú",
+    "v": "to leave behind",
+    "e": "to leave behind",
+    "t": "actions"
+  },
+  {
+    "h": "遗失",
+    "p": "yí shī",
+    "v": "to lose; to leave behind (inadvertently)",
+    "e": "to lose; to leave behind (inadvertently)",
+    "t": "actions"
+  },
+  {
+    "h": "疑惑",
+    "p": "yí huò",
+    "v": "to doubt",
+    "e": "to doubt",
+    "t": "actions"
+  },
+  {
+    "h": "以免",
+    "p": "yǐ miǎn",
+    "v": "in order to avoid",
+    "e": "in order to avoid",
+    "t": "language"
+  },
+  {
+    "h": "以至",
+    "p": "yǐ zhì",
+    "v": "down to",
+    "e": "down to",
+    "t": "general"
+  },
+  {
+    "h": "以致",
+    "p": "yǐ zhì",
+    "v": "to such an extent as to",
+    "e": "to such an extent as to",
+    "t": "language"
+  },
+  {
+    "h": "亦",
+    "p": "yì",
+    "v": "also",
+    "e": "also",
+    "t": "actions"
+  },
+  {
+    "h": "异常",
+    "p": "yì cháng",
+    "v": "unusual; abnormal",
+    "e": "unusual; abnormal",
+    "t": "adjectives"
+  },
+  {
+    "h": "抑制",
+    "p": "yì zhì",
+    "v": "to inhibit",
+    "e": "to inhibit",
+    "t": "actions"
+  },
+  {
+    "h": "意料",
+    "p": "yì liào",
+    "v": "to anticipate; to expect",
+    "e": "to anticipate; to expect",
+    "t": "actions"
+  },
+  {
+    "h": "意图",
+    "p": "yì tú",
+    "v": "intent",
+    "e": "intent",
+    "t": "objects"
+  },
+  {
+    "h": "意味着",
+    "p": "yì wèi zhe",
+    "v": "to signify",
+    "e": "to signify",
+    "t": "actions"
+  },
+  {
+    "h": "意向",
+    "p": "yì xiàng",
+    "v": "intention",
+    "e": "intention",
+    "t": "objects"
+  },
+  {
+    "h": "毅然",
+    "p": "yì rán",
+    "v": "firmly",
+    "e": "firmly",
+    "t": "actions"
+  },
+  {
+    "h": "翼",
+    "p": "Yì",
+    "v": "surname Yi",
+    "e": "surname Yi",
+    "t": "general"
+  },
+  {
+    "h": "阴谋",
+    "p": "yīn móu",
+    "v": "to conspire; to plot",
+    "e": "to conspire; to plot",
+    "t": "objects"
+  },
+  {
+    "h": "音响",
+    "p": "yīn xiǎng",
+    "v": "sound",
+    "e": "sound",
+    "t": "objects"
+  },
+  {
+    "h": "引导",
+    "p": "yǐn dǎo",
+    "v": "to guide",
+    "e": "to guide",
+    "t": "actions"
+  },
+  {
+    "h": "引擎",
+    "p": "yǐn qíng",
+    "v": "engine (loanword)",
+    "e": "engine (loanword)",
+    "t": "objects"
+  },
+  {
+    "h": "隐蔽",
+    "p": "yǐn bì",
+    "v": "to conceal",
+    "e": "to conceal",
+    "t": "adjectives"
+  },
+  {
+    "h": "隐瞒",
+    "p": "yǐn mán",
+    "v": "to conceal",
+    "e": "to conceal",
+    "t": "actions"
+  },
+  {
+    "h": "隐私",
+    "p": "yǐn sī",
+    "v": "secrets",
+    "e": "secrets",
+    "t": "objects"
+  },
+  {
+    "h": "隐约",
+    "p": "yǐn yuē",
+    "v": "vague",
+    "e": "vague",
+    "t": "general"
+  },
+  {
+    "h": "印刷",
+    "p": "yìn shuā",
+    "v": "to print",
+    "e": "to print",
+    "t": "actions"
+  },
+  {
+    "h": "应酬",
+    "p": "yìng chou",
+    "v": "to engage in social activities; to socialize",
+    "e": "to engage in social activities; to socialize",
+    "t": "actions"
+  },
+  {
+    "h": "应邀",
+    "p": "yìng yāo",
+    "v": "at sb's invitation",
+    "e": "at sb's invitation",
+    "t": "actions"
+  },
+  {
+    "h": "英明",
+    "p": "yīng míng",
+    "v": "wise",
+    "e": "wise",
+    "t": "adjectives"
+  },
+  {
+    "h": "英勇",
+    "p": "yīng yǒng",
+    "v": "heroic",
+    "e": "heroic",
+    "t": "adjectives"
+  },
+  {
+    "h": "婴儿",
+    "p": "yīng ér",
+    "v": "infant",
+    "e": "infant",
+    "t": "objects"
+  },
+  {
+    "h": "迎面",
+    "p": "yíng miàn",
+    "v": "directly; head-on (collision)",
+    "e": "directly; head-on (collision)",
+    "t": "actions"
+  },
+  {
+    "h": "荧屏",
+    "p": "yíng píng",
+    "v": "fluorescent screen",
+    "e": "fluorescent screen",
+    "t": "objects"
+  },
+  {
+    "h": "拥护",
+    "p": "yōng hù",
+    "v": "to endorse; to support",
+    "e": "to endorse; to support",
+    "t": "actions"
+  },
+  {
+    "h": "拥有",
+    "p": "yōng yǒu",
+    "v": "to have; to possess",
+    "e": "to have; to possess",
+    "t": "actions"
+  },
+  {
+    "h": "庸俗",
+    "p": "yōng sú",
+    "v": "vulgar",
+    "e": "vulgar",
+    "t": "adjectives"
+  },
+  {
+    "h": "永恒",
+    "p": "yǒng héng",
+    "v": "eternal",
+    "e": "eternal",
+    "t": "general"
+  },
+  {
+    "h": "勇于",
+    "p": "yǒng yú",
+    "v": "to dare to",
+    "e": "to dare to",
+    "t": "actions"
+  },
+  {
+    "h": "涌现",
+    "p": "yǒng xiàn",
+    "v": "to emerge in large numbers",
+    "e": "to emerge in large numbers",
+    "t": "actions"
+  },
+  {
+    "h": "踊跃",
+    "p": "yǒng yuè",
+    "v": "to leap",
+    "e": "to leap",
+    "t": "adjectives"
+  },
+  {
+    "h": "用功",
+    "p": "yòng gōng",
+    "v": "diligent",
+    "e": "diligent",
+    "t": "adjectives"
+  },
+  {
+    "h": "优胜劣汰",
+    "p": "yōu shèng liè tài",
+    "v": "survival of the fittest (idiom)",
+    "e": "survival of the fittest (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "优先",
+    "p": "yōu xiān",
+    "v": "to have priority",
+    "e": "to have priority",
+    "t": "actions"
+  },
+  {
+    "h": "优异",
+    "p": "yōu yì",
+    "v": "exceptional; outstandingly good",
+    "e": "exceptional; outstandingly good",
+    "t": "adjectives"
+  },
+  {
+    "h": "优越",
+    "p": "yōu yuè",
+    "v": "superior",
+    "e": "superior",
+    "t": "adjectives"
+  },
+  {
+    "h": "忧郁",
+    "p": "yōu yù",
+    "v": "sullen; depressed; melancholy; dejected",
+    "e": "sullen; depressed; melancholy; dejected",
+    "t": "adjectives"
+  },
+  {
+    "h": "犹如",
+    "p": "yóu rú",
+    "v": "similar to; like",
+    "e": "similar to; like",
+    "t": "actions"
+  },
+  {
+    "h": "油腻",
+    "p": "yóu nì",
+    "v": "greasy food; oily food",
+    "e": "greasy food; oily food",
+    "t": "adjectives"
+  },
+  {
+    "h": "油漆",
+    "p": "yóu qī",
+    "v": "oil paints",
+    "e": "oil paints",
+    "t": "objects"
+  },
+  {
+    "h": "幼稚",
+    "p": "yòu zhì",
+    "v": "young",
+    "e": "young",
+    "t": "adjectives"
+  },
+  {
+    "h": "诱惑",
+    "p": "yòu huò",
+    "v": "to entice",
+    "e": "to entice",
+    "t": "actions"
+  },
+  {
+    "h": "渔民",
+    "p": "yú mín",
+    "v": "fisherman",
+    "e": "fisherman",
+    "t": "objects"
+  },
+  {
+    "h": "愚蠢",
+    "p": "yú chǔn",
+    "v": "silly",
+    "e": "silly",
+    "t": "adjectives"
+  },
+  {
+    "h": "愚昧",
+    "p": "yú mèi",
+    "v": "ignorant; uneducated",
+    "e": "ignorant; uneducated",
+    "t": "adjectives"
+  },
+  {
+    "h": "羽绒服",
+    "p": "yǔ róng fú",
+    "v": "down-filled garment",
+    "e": "down-filled garment",
+    "t": "objects"
+  },
+  {
+    "h": "预料",
+    "p": "yù liào",
+    "v": "to forecast",
+    "e": "to forecast",
+    "t": "actions"
+  },
+  {
+    "h": "预期",
+    "p": "yù qī",
+    "v": "to expect",
+    "e": "to expect",
+    "t": "actions"
+  },
+  {
+    "h": "预赛",
+    "p": "yù sài",
+    "v": "preliminary competition",
+    "e": "preliminary competition",
+    "t": "objects"
+  },
+  {
+    "h": "预先",
+    "p": "yù xiān",
+    "v": "beforehand",
+    "e": "beforehand",
+    "t": "actions"
+  },
+  {
+    "h": "预言",
+    "p": "yù yán",
+    "v": "to predict",
+    "e": "to predict",
+    "t": "actions"
+  },
+  {
+    "h": "预兆",
+    "p": "yù zhào",
+    "v": "omen",
+    "e": "omen",
+    "t": "objects"
+  },
+  {
+    "h": "欲望",
+    "p": "yù wàng",
+    "v": "desire; longing; appetite; craving",
+    "e": "desire; longing; appetite; craving",
+    "t": "objects"
+  },
+  {
+    "h": "愈",
+    "p": "yù",
+    "v": "the more...(the more...)",
+    "e": "the more...(the more...)",
+    "t": "actions"
+  },
+  {
+    "h": "冤枉",
+    "p": "yuān wang",
+    "v": "to accuse wrongly",
+    "e": "to accuse wrongly",
+    "t": "actions"
+  },
+  {
+    "h": "元首",
+    "p": "yuán shǒu",
+    "v": "head of state",
+    "e": "head of state",
+    "t": "objects"
+  },
+  {
+    "h": "元素",
+    "p": "yuán sù",
+    "v": "element (key component of sth)",
+    "e": "element (key component of sth)",
+    "t": "objects"
+  },
+  {
+    "h": "元宵节",
+    "p": "Yuán xiāo jié",
+    "v": "Lantern Festival, the final event of the Spring Festival 春节, on 15th of first month of the lunar calendar",
+    "e": "Lantern Festival, the final event of the Spring Festival 春节, on 15th of first month of the lunar calendar",
+    "t": "general"
+  },
+  {
+    "h": "园林",
+    "p": "yuán lín",
+    "v": "gardens; park; landscape garden",
+    "e": "gardens; park; landscape garden",
+    "t": "objects"
+  },
+  {
+    "h": "原告",
+    "p": "yuán gào",
+    "v": "complainant",
+    "e": "complainant",
+    "t": "objects"
+  },
+  {
+    "h": "原始",
+    "p": "yuán shǐ",
+    "v": "first",
+    "e": "first",
+    "t": "adjectives"
+  },
+  {
+    "h": "原先",
+    "p": "yuán xiān",
+    "v": "originally",
+    "e": "originally",
+    "t": "actions"
+  },
+  {
+    "h": "圆满",
+    "p": "yuán mǎn",
+    "v": "satisfactory",
+    "e": "satisfactory",
+    "t": "adjectives"
+  },
+  {
+    "h": "源泉",
+    "p": "yuán quán",
+    "v": "fountainhead",
+    "e": "fountainhead",
+    "t": "objects"
+  },
+  {
+    "h": "岳父",
+    "p": "yuè fù",
+    "v": "wife's father, father-in-law",
+    "e": "wife's father, father-in-law",
+    "t": "objects"
+  },
+  {
+    "h": "孕育",
+    "p": "yùn yù",
+    "v": "to be pregnant",
+    "e": "to be pregnant",
+    "t": "actions"
+  },
+  {
+    "h": "运算",
+    "p": "yùn suàn",
+    "v": "to perform calculations",
+    "e": "to perform calculations",
+    "t": "actions"
+  },
+  {
+    "h": "运行",
+    "p": "yùn xíng",
+    "v": "to move along one's course (of celestial bodies etc)",
+    "e": "to move along one's course (of celestial bodies etc)",
+    "t": "actions"
+  },
+  {
+    "h": "酝酿",
+    "p": "yùn niàng",
+    "v": "(of alcohol) to ferment",
+    "e": "(of alcohol) to ferment",
+    "t": "actions"
+  },
+  {
+    "h": "熨",
+    "p": "yù",
+    "v": "reconciled",
+    "e": "reconciled",
+    "t": "actions"
+  },
+  {
+    "h": "蕴藏",
+    "p": "yùn cáng",
+    "v": "to hold in store",
+    "e": "to hold in store",
+    "t": "actions"
+  },
+  {
+    "h": "杂交",
+    "p": "zá jiāo",
+    "v": "to hybridize",
+    "e": "to hybridize",
+    "t": "actions"
+  },
+  {
+    "h": "砸",
+    "p": "zá",
+    "v": "to smash",
+    "e": "to smash",
+    "t": "actions"
+  },
+  {
+    "h": "咋",
+    "p": "zǎ",
+    "v": "dialectal equivalent of 怎么",
+    "e": "dialectal equivalent of 怎么",
+    "t": "pronouns"
+  },
+  {
+    "h": "灾难",
+    "p": "zāi nàn",
+    "v": "disaster; catastrophe",
+    "e": "disaster; catastrophe",
+    "t": "objects"
+  },
+  {
+    "h": "栽培",
+    "p": "zāi péi",
+    "v": "to grow",
+    "e": "to grow",
+    "t": "actions"
+  },
+  {
+    "h": "宰",
+    "p": "zǎi",
+    "v": "to slaughter; to butcher; to kill (animals etc)",
+    "e": "to slaughter; to butcher; to kill (animals etc)",
+    "t": "actions"
+  },
+  {
+    "h": "再接再厉",
+    "p": "zài jiē zài lì",
+    "v": "to continue the struggle (idiom); to persist",
+    "e": "to continue the struggle (idiom); to persist",
+    "t": "actions"
+  },
+  {
+    "h": "在乎",
+    "p": "zài hu",
+    "v": "to care about",
+    "e": "to care about",
+    "t": "actions"
+  },
+  {
+    "h": "在意",
+    "p": "zài yì",
+    "v": "to care about",
+    "e": "to care about",
+    "t": "actions"
+  },
+  {
+    "h": "攒",
+    "p": "cuán",
+    "v": "to bring together",
+    "e": "to bring together",
+    "t": "actions"
+  },
+  {
+    "h": "暂且",
+    "p": "zàn qiě",
+    "v": "for now",
+    "e": "for now",
+    "t": "actions"
+  },
+  {
+    "h": "赞叹",
+    "p": "zàn tàn",
+    "v": "to exclaim in admiration",
+    "e": "to exclaim in admiration",
+    "t": "actions"
+  },
+  {
+    "h": "赞同",
+    "p": "zàn tóng",
+    "v": "to approve of",
+    "e": "to approve of",
+    "t": "actions"
+  },
+  {
+    "h": "赞扬",
+    "p": "zàn yáng",
+    "v": "to praise",
+    "e": "to praise",
+    "t": "actions"
+  },
+  {
+    "h": "赞助",
+    "p": "zàn zhù",
+    "v": "to support",
+    "e": "to support",
+    "t": "actions"
+  },
+  {
+    "h": "遭受",
+    "p": "zāo shòu",
+    "v": "to suffer; to sustain (loss, misfortune)",
+    "e": "to suffer; to sustain (loss, misfortune)",
+    "t": "actions"
+  },
+  {
+    "h": "遭殃",
+    "p": "zāo yāng",
+    "v": "to suffer a calamity",
+    "e": "to suffer a calamity",
+    "t": "actions"
+  },
+  {
+    "h": "遭遇",
+    "p": "zāo yù",
+    "v": "to meet with",
+    "e": "to meet with",
+    "t": "objects"
+  },
+  {
+    "h": "糟蹋",
+    "p": "zāo tà",
+    "v": "to waste",
+    "e": "to waste",
+    "t": "actions"
+  },
+  {
+    "h": "造反",
+    "p": "zào fǎn",
+    "v": "to rebel",
+    "e": "to rebel",
+    "t": "actions"
+  },
+  {
+    "h": "造型",
+    "p": "zào xíng",
+    "v": "to model",
+    "e": "to model",
+    "t": "objects"
+  },
+  {
+    "h": "噪音",
+    "p": "zào yīn",
+    "v": "rumble",
+    "e": "rumble",
+    "t": "objects"
+  },
+  {
+    "h": "责怪",
+    "p": "zé guài",
+    "v": "to blame",
+    "e": "to blame",
+    "t": "actions"
+  },
+  {
+    "h": "贼",
+    "p": "zéi",
+    "v": "thief",
+    "e": "thief",
+    "t": "objects"
+  },
+  {
+    "h": "增添",
+    "p": "zēng tiān",
+    "v": "to add",
+    "e": "to add",
+    "t": "actions"
+  },
+  {
+    "h": "赠送",
+    "p": "zèng sòng",
+    "v": "to present as a gift",
+    "e": "to present as a gift",
+    "t": "actions"
+  },
+  {
+    "h": "扎",
+    "p": "zhā",
+    "v": "to prick",
+    "e": "to prick",
+    "t": "actions"
+  },
+  {
+    "h": "渣",
+    "p": "zhā",
+    "v": "slag (in mining or smelting)",
+    "e": "slag (in mining or smelting)",
+    "t": "general"
+  },
+  {
+    "h": "眨",
+    "p": "zhǎ",
+    "v": "to blink",
+    "e": "to blink",
+    "t": "actions"
+  },
+  {
+    "h": "诈骗",
+    "p": "zhà piàn",
+    "v": "to defraud",
+    "e": "to defraud",
+    "t": "actions"
+  },
+  {
+    "h": "沾光",
+    "p": "zhān guāng",
+    "v": "to bask in the light",
+    "e": "to bask in the light",
+    "t": "actions"
+  },
+  {
+    "h": "瞻仰",
+    "p": "zhān yǎng",
+    "v": "to revere",
+    "e": "to revere",
+    "t": "actions"
+  },
+  {
+    "h": "斩钉截铁",
+    "p": "zhǎn dīng jié tiě",
+    "v": "lit. to chop the nail and slice the iron (idiom)",
+    "e": "lit. to chop the nail and slice the iron (idiom)",
+    "t": "general"
+  },
+  {
+    "h": "展示",
+    "p": "zhǎn shì",
+    "v": "to reveal; to display; to show; to exhibit",
+    "e": "to reveal; to display; to show; to exhibit",
+    "t": "actions"
+  },
+  {
+    "h": "展望",
+    "p": "zhǎn wàng",
+    "v": "outlook",
+    "e": "outlook",
+    "t": "actions"
+  },
+  {
+    "h": "展现",
+    "p": "zhǎn xiàn",
+    "v": "to unfold before one's eyes; to emerge; to reveal; to display",
+    "e": "to unfold before one's eyes; to emerge; to reveal; to display",
+    "t": "actions"
+  },
+  {
+    "h": "崭新",
+    "p": "zhǎn xīn",
+    "v": "brand new",
+    "e": "brand new",
+    "t": "general"
+  },
+  {
+    "h": "占据",
+    "p": "zhàn jù",
+    "v": "to occupy",
+    "e": "to occupy",
+    "t": "actions"
+  },
+  {
+    "h": "占领",
+    "p": "zhàn lǐng",
+    "v": "to capture; to seize; to occupy by force",
+    "e": "to capture; to seize; to occupy by force",
+    "t": "actions"
+  },
+  {
+    "h": "占有",
+    "p": "zhàn yǒu",
+    "v": "to have",
+    "e": "to have",
+    "t": "actions"
+  },
+  {
+    "h": "战斗",
+    "p": "zhàn dòu",
+    "v": "to fight",
+    "e": "to fight",
+    "t": "actions"
+  },
+  {
+    "h": "战术",
+    "p": "zhàn shù",
+    "v": "tactics",
+    "e": "tactics",
+    "t": "objects"
+  },
+  {
+    "h": "战役",
+    "p": "zhàn yì",
+    "v": "military campaign",
+    "e": "military campaign",
+    "t": "objects"
+  },
+  {
+    "h": "章程",
+    "p": "zhāng chéng",
+    "v": "rules",
+    "e": "rules",
+    "t": "objects"
+  },
+  {
+    "h": "长辈",
+    "p": "zhǎng bèi",
+    "v": "one's elders",
+    "e": "one's elders",
+    "t": "objects"
+  },
+  {
+    "h": "帐篷",
+    "p": "zhàng peng",
+    "v": "tent",
+    "e": "tent",
+    "t": "objects"
+  },
+  {
+    "h": "招收",
+    "p": "zhāo shōu",
+    "v": "to hire",
+    "e": "to hire",
+    "t": "actions"
+  },
+  {
+    "h": "招投标",
+    "p": "zhāo tóu biāo",
+    "v": "bid inviting and bid offering",
+    "e": "bid inviting and bid offering",
+    "t": "general"
+  },
+  {
+    "h": "沼泽",
+    "p": "zhǎo zé",
+    "v": "marsh",
+    "e": "marsh",
+    "t": "objects"
+  },
+  {
+    "h": "照料",
+    "p": "zhào liào",
+    "v": "to tend",
+    "e": "to tend",
+    "t": "actions"
+  },
+  {
+    "h": "照样",
+    "p": "zhào yàng",
+    "v": "as before",
+    "e": "as before",
+    "t": "actions"
+  },
+  {
+    "h": "照耀",
+    "p": "zhào yào",
+    "v": "to shine",
+    "e": "to shine",
+    "t": "actions"
+  },
+  {
+    "h": "照应",
+    "p": "zhào yìng",
+    "v": "to correlate with",
+    "e": "to correlate with",
+    "t": "actions"
+  },
+  {
+    "h": "遮挡",
+    "p": "zhē dǎng",
+    "v": "to shelter",
+    "e": "to shelter",
+    "t": "actions"
+  },
+  {
+    "h": "折",
+    "p": "shé",
+    "v": "to snap",
+    "e": "to snap",
+    "t": "actions"
+  },
+  {
+    "h": "折磨",
+    "p": "zhé mó",
+    "v": "to torment",
+    "e": "to torment",
+    "t": "actions"
+  },
+  {
+    "h": "折腾",
+    "p": "zhē teng",
+    "v": "to toss from side to side (e.g. sleeplessly)",
+    "e": "to toss from side to side (e.g. sleeplessly)",
+    "t": "actions"
+  },
+  {
+    "h": "着迷",
+    "p": "zháo mí",
+    "v": "to be fascinated",
+    "e": "to be fascinated",
+    "t": "actions"
+  },
+  {
+    "h": "着手",
+    "p": "zhuó shǒu",
+    "v": "to put one's hand to it",
+    "e": "to put one's hand to it",
+    "t": "actions"
+  },
+  {
+    "h": "着想",
+    "p": "zhuó xiǎng",
+    "v": "to give thought (to others)",
+    "e": "to give thought (to others)",
+    "t": "actions"
+  },
+  {
+    "h": "着重",
+    "p": "zhuó zhòng",
+    "v": "to put emphasis on; to stress",
+    "e": "to put emphasis on; to stress",
+    "t": "actions"
+  },
+  {
+    "h": "侦探",
+    "p": "zhēn tàn",
+    "v": "detective",
+    "e": "detective",
+    "t": "objects"
+  },
+  {
+    "h": "珍贵",
+    "p": "zhēn guì",
+    "v": "precious",
+    "e": "precious",
+    "t": "adjectives"
+  },
+  {
+    "h": "珍稀",
+    "p": "zhēn xī",
+    "v": "rare",
+    "e": "rare",
+    "t": "adjectives"
+  },
+  {
+    "h": "珍珠",
+    "p": "zhēn zhū",
+    "v": "pearl",
+    "e": "pearl",
+    "t": "objects"
+  },
+  {
+    "h": "真相",
+    "p": "zhēn xiàng",
+    "v": "the truth about sth; the actual facts",
+    "e": "the truth about sth; the actual facts",
+    "t": "objects"
+  },
+  {
+    "h": "真挚",
+    "p": "zhēn zhì",
+    "v": "sincere",
+    "e": "sincere",
+    "t": "adjectives"
+  },
+  {
+    "h": "阵地",
+    "p": "zhèn dì",
+    "v": "(military) position",
+    "e": "(military) position",
+    "t": "objects"
+  },
+  {
+    "h": "阵容",
+    "p": "zhèn róng",
+    "v": "troop arrangement",
+    "e": "troop arrangement",
+    "t": "objects"
+  },
+  {
+    "h": "镇定",
+    "p": "zhèn dìng",
+    "v": "calm",
+    "e": "calm",
+    "t": "adjectives"
+  },
+  {
+    "h": "镇静",
+    "p": "zhèn jìng",
+    "v": "calm",
+    "e": "calm",
+    "t": "adjectives"
+  },
+  {
+    "h": "镇压",
+    "p": "zhèn yā",
+    "v": "suppression",
+    "e": "suppression",
+    "t": "actions"
+  },
+  {
+    "h": "震惊",
+    "p": "zhèn jīng",
+    "v": "to shock",
+    "e": "to shock",
+    "t": "actions"
+  },
+  {
+    "h": "争端",
+    "p": "zhēng duān",
+    "v": "dispute",
+    "e": "dispute",
+    "t": "objects"
+  },
+  {
+    "h": "争夺",
+    "p": "zhēng duó",
+    "v": "to fight over",
+    "e": "to fight over",
+    "t": "actions"
+  },
+  {
+    "h": "争气",
+    "p": "zhēng qì",
+    "v": "to work hard for sth",
+    "e": "to work hard for sth",
+    "t": "adjectives"
+  },
+  {
+    "h": "争先恐后",
+    "p": "zhēng xiān kǒng hòu",
+    "v": "striving to be first and fearing to be last (idiom); outdoing one another",
+    "e": "striving to be first and fearing to be last (idiom); outdoing one another",
+    "t": "general"
+  },
+  {
+    "h": "征服",
+    "p": "zhēng fú",
+    "v": "to conquer",
+    "e": "to conquer",
+    "t": "actions"
+  },
+  {
+    "h": "征收",
+    "p": "zhēng shōu",
+    "v": "to levy (a tax)",
+    "e": "to levy (a tax)",
+    "t": "actions"
+  },
+  {
+    "h": "蒸发",
+    "p": "zhēng fā",
+    "v": "to evaporate",
+    "e": "to evaporate",
+    "t": "actions"
+  },
+  {
+    "h": "整顿",
+    "p": "zhěng dùn",
+    "v": "to tidy up",
+    "e": "to tidy up",
+    "t": "actions"
+  },
+  {
+    "h": "正当",
+    "p": "zhèng dāng",
+    "v": "timely",
+    "e": "timely",
+    "t": "adjectives"
+  },
+  {
+    "h": "正负",
+    "p": "zhèng fù",
+    "v": "positive and negative",
+    "e": "positive and negative",
+    "t": "objects"
+  },
+  {
+    "h": "正规",
+    "p": "zhèng guī",
+    "v": "regular",
+    "e": "regular",
+    "t": "adjectives"
+  },
+  {
+    "h": "正经",
+    "p": "zhèng jīng",
+    "v": "decent",
+    "e": "decent",
+    "t": "adjectives"
+  },
+  {
+    "h": "正气",
+    "p": "zhèng qì",
+    "v": "healthy atmosphere; moral spirit",
+    "e": "healthy atmosphere; moral spirit",
+    "t": "objects"
+  },
+  {
+    "h": "正月",
+    "p": "Zhēng yuè",
+    "v": "first month of the lunar year",
+    "e": "first month of the lunar year",
+    "t": "time"
+  },
+  {
+    "h": "证实",
+    "p": "zhèng shí",
+    "v": "to confirm (sth to be true)",
+    "e": "to confirm (sth to be true)",
+    "t": "actions"
+  },
+  {
+    "h": "证书",
+    "p": "zhèng shū",
+    "v": "credentials",
+    "e": "credentials",
+    "t": "objects"
+  },
+  {
+    "h": "郑重",
+    "p": "zhèng zhòng",
+    "v": "serious",
+    "e": "serious",
+    "t": "adjectives"
+  },
+  {
+    "h": "政权",
+    "p": "zhèng quán",
+    "v": "regime",
+    "e": "regime",
+    "t": "objects"
+  },
+  {
+    "h": "支撑",
+    "p": "zhī chēng",
+    "v": "to prop up",
+    "e": "to prop up",
+    "t": "actions"
+  },
+  {
+    "h": "支出",
+    "p": "zhī chū",
+    "v": "to spend; to pay out",
+    "e": "to spend; to pay out",
+    "t": "objects"
+  },
+  {
+    "h": "支流",
+    "p": "zhī liú",
+    "v": "tributary (river)",
+    "e": "tributary (river)",
+    "t": "objects"
+  },
+  {
+    "h": "支配",
+    "p": "zhī pèi",
+    "v": "to control",
+    "e": "to control",
+    "t": "actions"
+  },
+  {
+    "h": "支援",
+    "p": "zhī yuán",
+    "v": "to provide assistance",
+    "e": "to provide assistance",
+    "t": "actions"
+  },
+  {
+    "h": "支柱",
+    "p": "zhī zhù",
+    "v": "mainstay",
+    "e": "mainstay",
+    "t": "objects"
+  },
+  {
+    "h": "枝",
+    "p": "zhī",
+    "v": "branch",
+    "e": "branch",
+    "t": "numbers"
+  },
+  {
+    "h": "知觉",
+    "p": "zhī jué",
+    "v": "perception",
+    "e": "perception",
+    "t": "objects"
+  },
+  {
+    "h": "脂肪",
+    "p": "zhī fáng",
+    "v": "fat (in the body, in a plant, or in food)",
+    "e": "fat (in the body, in a plant, or in food)",
+    "t": "objects"
+  },
+  {
+    "h": "直播",
+    "p": "zhí bō",
+    "v": "(TV, radio) to broadcast live",
+    "e": "(TV, radio) to broadcast live",
+    "t": "actions"
+  },
+  {
+    "h": "值班",
+    "p": "zhí bān",
+    "v": "to work a shift",
+    "e": "to work a shift",
+    "t": "actions"
+  },
+  {
+    "h": "职能",
+    "p": "zhí néng",
+    "v": "function",
+    "e": "function",
+    "t": "objects"
+  },
+  {
+    "h": "职务",
+    "p": "zhí wù",
+    "v": "post",
+    "e": "post",
+    "t": "objects"
+  },
+  {
+    "h": "殖民地",
+    "p": "zhí mín dì",
+    "v": "colony",
+    "e": "colony",
+    "t": "objects"
+  },
+  {
+    "h": "指定",
+    "p": "zhǐ dìng",
+    "v": "to appoint",
+    "e": "to appoint",
+    "t": "actions"
+  },
+  {
+    "h": "指甲",
+    "p": "zhǐ jia",
+    "v": "fingernail",
+    "e": "fingernail",
+    "t": "objects"
+  },
+  {
+    "h": "指令",
+    "p": "zhǐ lìng",
+    "v": "order",
+    "e": "order",
+    "t": "objects"
+  },
+  {
+    "h": "指南针",
+    "p": "zhǐ nán zhēn",
+    "v": "compass",
+    "e": "compass",
+    "t": "objects"
+  },
+  {
+    "h": "指示",
+    "p": "zhǐ shì",
+    "v": "to point out",
+    "e": "to point out",
+    "t": "objects"
+  },
+  {
+    "h": "指望",
+    "p": "zhǐ wàng",
+    "v": "to count on; to hope for",
+    "e": "to count on; to hope for",
+    "t": "actions"
+  },
+  {
+    "h": "指责",
+    "p": "zhǐ zé",
+    "v": "to criticize",
+    "e": "to criticize",
+    "t": "actions"
+  },
+  {
+    "h": "志气",
+    "p": "zhì qì",
+    "v": "ambition",
+    "e": "ambition",
+    "t": "objects"
+  },
+  {
+    "h": "制订",
+    "p": "zhì dìng",
+    "v": "to work out",
+    "e": "to work out",
+    "t": "actions"
+  },
+  {
+    "h": "制服",
+    "p": "zhì fú",
+    "v": "to subdue",
+    "e": "to subdue",
+    "t": "objects"
+  },
+  {
+    "h": "制止",
+    "p": "zhì zhǐ",
+    "v": "to curb",
+    "e": "to curb",
+    "t": "actions"
+  },
+  {
+    "h": "治安",
+    "p": "zhì ān",
+    "v": "law and order",
+    "e": "law and order",
+    "t": "objects"
+  },
+  {
+    "h": "治理",
+    "p": "zhì lǐ",
+    "v": "to govern",
+    "e": "to govern",
+    "t": "actions"
+  },
+  {
+    "h": "致辞",
+    "p": "zhì cí",
+    "v": "to express in words or writing",
+    "e": "to express in words or writing",
+    "t": "actions"
+  },
+  {
+    "h": "致使",
+    "p": "zhì shǐ",
+    "v": "to cause",
+    "e": "to cause",
+    "t": "actions"
+  },
+  {
+    "h": "智力",
+    "p": "zhì lì",
+    "v": "intelligence",
+    "e": "intelligence",
+    "t": "objects"
+  },
+  {
+    "h": "智能",
+    "p": "zhì néng",
+    "v": "intelligent",
+    "e": "intelligent",
+    "t": "objects"
+  },
+  {
+    "h": "智商",
+    "p": "zhì shāng",
+    "v": "IQ (intelligence quotient)",
+    "e": "IQ (intelligence quotient)",
+    "t": "objects"
+  },
+  {
+    "h": "滞留",
+    "p": "zhì liú",
+    "v": "(of a person) to remain in (a place) (due to circumstances that prevent one leaving); to be stranded",
+    "e": "(of a person) to remain in (a place) (due to circumstances that prevent one leaving); to be stranded",
+    "t": "actions"
+  },
+  {
+    "h": "中断",
+    "p": "zhōng duàn",
+    "v": "to cut short",
+    "e": "to cut short",
+    "t": "actions"
+  },
+  {
+    "h": "中立",
+    "p": "zhōng lì",
+    "v": "neutral",
+    "e": "neutral",
+    "t": "actions"
+  },
+  {
+    "h": "中央",
+    "p": "zhōng yāng",
+    "v": "central",
+    "e": "central",
+    "t": "objects"
+  },
+  {
+    "h": "忠实",
+    "p": "zhōng shí",
+    "v": "faithful",
+    "e": "faithful",
+    "t": "adjectives"
+  },
+  {
+    "h": "终点",
+    "p": "zhōng diǎn",
+    "v": "the end",
+    "e": "the end",
+    "t": "objects"
+  },
+  {
+    "h": "终究",
+    "p": "zhōng jiū",
+    "v": "in the end",
+    "e": "in the end",
+    "t": "actions"
+  },
+  {
+    "h": "终年",
+    "p": "zhōng nián",
+    "v": "entire year",
+    "e": "entire year",
+    "t": "objects"
+  },
+  {
+    "h": "终身",
+    "p": "zhōng shēn",
+    "v": "lifelong",
+    "e": "lifelong",
+    "t": "objects"
+  },
+  {
+    "h": "终止",
+    "p": "zhōng zhǐ",
+    "v": "to stop; to terminate",
+    "e": "to stop; to terminate",
+    "t": "actions"
+  },
+  {
+    "h": "衷心",
+    "p": "zhōng xīn",
+    "v": "heartfelt",
+    "e": "heartfelt",
+    "t": "actions"
+  },
+  {
+    "h": "种子",
+    "p": "zhǒng zi",
+    "v": "seed",
+    "e": "seed",
+    "t": "objects"
+  },
+  {
+    "h": "种族",
+    "p": "zhǒng zú",
+    "v": "race",
+    "e": "race",
+    "t": "objects"
+  },
+  {
+    "h": "众所周知",
+    "p": "zhòng suǒ zhōu zhī",
+    "v": "as everyone knows (idiom)",
+    "e": "as everyone knows (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "重心",
+    "p": "zhòng xīn",
+    "v": "center of gravity",
+    "e": "center of gravity",
+    "t": "objects"
+  },
+  {
+    "h": "重阳节",
+    "p": "Chóng yáng jié",
+    "v": "Double Ninth or Yang Festival",
+    "e": "Double Ninth or Yang Festival",
+    "t": "time"
+  },
+  {
+    "h": "州",
+    "p": "zhōu",
+    "v": "prefecture",
+    "e": "prefecture",
+    "t": "objects"
+  },
+  {
+    "h": "舟",
+    "p": "zhōu",
+    "v": "boat",
+    "e": "boat",
+    "t": "objects"
+  },
+  {
+    "h": "周边",
+    "p": "zhōu biān",
+    "v": "periphery",
+    "e": "periphery",
+    "t": "objects"
+  },
+  {
+    "h": "周年",
+    "p": "zhōu nián",
+    "v": "anniversary",
+    "e": "anniversary",
+    "t": "numbers"
+  },
+  {
+    "h": "周折",
+    "p": "zhōu zhé",
+    "v": "twists and turns",
+    "e": "twists and turns",
+    "t": "objects"
+  },
+  {
+    "h": "周转",
+    "p": "zhōu zhuǎn",
+    "v": "to rotate",
+    "e": "to rotate",
+    "t": "actions"
+  },
+  {
+    "h": "粥",
+    "p": "yù",
+    "v": "used in 荤粥",
+    "e": "used in 荤粥",
+    "t": "objects"
+  },
+  {
+    "h": "昼夜",
+    "p": "zhòu yè",
+    "v": "day and night",
+    "e": "day and night",
+    "t": "objects"
+  },
+  {
+    "h": "皱纹",
+    "p": "zhòu wén",
+    "v": "wrinkle",
+    "e": "wrinkle",
+    "t": "objects"
+  },
+  {
+    "h": "株",
+    "p": "zhū",
+    "v": "tree trunk",
+    "e": "tree trunk",
+    "t": "numbers"
+  },
+  {
+    "h": "诸位",
+    "p": "zhū wèi",
+    "v": "(pron) everyone",
+    "e": "(pron) everyone",
+    "t": "pronouns"
+  },
+  {
+    "h": "逐年",
+    "p": "zhú nián",
+    "v": "year after year",
+    "e": "year after year",
+    "t": "actions"
+  },
+  {
+    "h": "主办",
+    "p": "zhǔ bàn",
+    "v": "to organize",
+    "e": "to organize",
+    "t": "actions"
+  },
+  {
+    "h": "主导",
+    "p": "zhǔ dǎo",
+    "v": "leading",
+    "e": "leading",
+    "t": "objects"
+  },
+  {
+    "h": "主管",
+    "p": "zhǔ guǎn",
+    "v": "in charge",
+    "e": "in charge",
+    "t": "actions"
+  },
+  {
+    "h": "主流",
+    "p": "zhǔ liú",
+    "v": "main stream (of a river)",
+    "e": "main stream (of a river)",
+    "t": "objects"
+  },
+  {
+    "h": "拄",
+    "p": "zhǔ",
+    "v": "to lean on",
+    "e": "to lean on",
+    "t": "actions"
+  },
+  {
+    "h": "住宅",
+    "p": "zhù zhái",
+    "v": "residence; dwelling; abode",
+    "e": "residence; dwelling; abode",
+    "t": "objects"
+  },
+  {
+    "h": "助理",
+    "p": "zhù lǐ",
+    "v": "assistant",
+    "e": "assistant",
+    "t": "objects"
+  },
+  {
+    "h": "助手",
+    "p": "zhù shǒu",
+    "v": "assistant; helper",
+    "e": "assistant; helper",
+    "t": "objects"
+  },
+  {
+    "h": "注射",
+    "p": "zhù shè",
+    "v": "injection",
+    "e": "injection",
+    "t": "actions"
+  },
+  {
+    "h": "注视",
+    "p": "zhù shì",
+    "v": "to look attentively at; to closely watch; to gaze at",
+    "e": "to look attentively at; to closely watch; to gaze at",
+    "t": "actions"
+  },
+  {
+    "h": "注重",
+    "p": "zhù zhòng",
+    "v": "to pay attention to",
+    "e": "to pay attention to",
+    "t": "actions"
+  },
+  {
+    "h": "驻扎",
+    "p": "zhù zhā",
+    "v": "to station",
+    "e": "to station",
+    "t": "actions"
+  },
+  {
+    "h": "铸造",
+    "p": "zhù zào",
+    "v": "to cast (pour metal into a mold)",
+    "e": "to cast (pour metal into a mold)",
+    "t": "actions"
+  },
+  {
+    "h": "拽",
+    "p": "yè",
+    "v": "to drag",
+    "e": "to drag",
+    "t": "actions"
+  },
+  {
+    "h": "专程",
+    "p": "zhuān chéng",
+    "v": "specifically",
+    "e": "specifically",
+    "t": "actions"
+  },
+  {
+    "h": "专科",
+    "p": "zhuān kē",
+    "v": "specialized subject",
+    "e": "specialized subject",
+    "t": "objects"
+  },
+  {
+    "h": "专题",
+    "p": "zhuān tí",
+    "v": "specific topic (addressed by a book, lecture, TV program etc)",
+    "e": "specific topic (addressed by a book, lecture, TV program etc)",
+    "t": "objects"
+  },
+  {
+    "h": "专长",
+    "p": "zhuān cháng",
+    "v": "specialty",
+    "e": "specialty",
+    "t": "objects"
+  },
+  {
+    "h": "砖瓦",
+    "p": "zhuān wǎ",
+    "v": "tiles and bricks",
+    "e": "tiles and bricks",
+    "t": "objects"
+  },
+  {
+    "h": "转达",
+    "p": "zhuǎn dá",
+    "v": "to pass on",
+    "e": "to pass on",
+    "t": "actions"
+  },
+  {
+    "h": "转让",
+    "p": "zhuǎn ràng",
+    "v": "to transfer (ownership, rights etc)",
+    "e": "to transfer (ownership, rights etc)",
+    "t": "actions"
+  },
+  {
+    "h": "转移",
+    "p": "zhuǎn yí",
+    "v": "to shift; to relocate; to transfer",
+    "e": "to shift; to relocate; to transfer",
+    "t": "actions"
+  },
+  {
+    "h": "庄严",
+    "p": "zhuāng yán",
+    "v": "solemn; dignified; stately",
+    "e": "solemn; dignified; stately",
+    "t": "adjectives"
+  },
+  {
+    "h": "庄重",
+    "p": "zhuāng zhòng",
+    "v": "grave",
+    "e": "grave",
+    "t": "adjectives"
+  },
+  {
+    "h": "装备",
+    "p": "zhuāng bèi",
+    "v": "equipment",
+    "e": "equipment",
+    "t": "objects"
+  },
+  {
+    "h": "装卸",
+    "p": "zhuāng xiè",
+    "v": "to load or unload",
+    "e": "to load or unload",
+    "t": "actions"
+  },
+  {
+    "h": "壮观",
+    "p": "zhuàng guān",
+    "v": "spectacular",
+    "e": "spectacular",
+    "t": "adjectives"
+  },
+  {
+    "h": "壮丽",
+    "p": "zhuàng lì",
+    "v": "magnificence",
+    "e": "magnificence",
+    "t": "adjectives"
+  },
+  {
+    "h": "壮烈",
+    "p": "zhuàng liè",
+    "v": "brave",
+    "e": "brave",
+    "t": "adjectives"
+  },
+  {
+    "h": "追悼",
+    "p": "zhuī dào",
+    "v": "to mourn; to pay last respects",
+    "e": "to mourn; to pay last respects",
+    "t": "actions"
+  },
+  {
+    "h": "追究",
+    "p": "zhuī jiū",
+    "v": "to investigate",
+    "e": "to investigate",
+    "t": "actions"
+  },
+  {
+    "h": "准则",
+    "p": "zhǔn zé",
+    "v": "norm",
+    "e": "norm",
+    "t": "objects"
+  },
+  {
+    "h": "姿态",
+    "p": "zī tài",
+    "v": "attitude",
+    "e": "attitude",
+    "t": "objects"
+  },
+  {
+    "h": "资深",
+    "p": "zī shēn",
+    "v": "veteran (journalist etc)",
+    "e": "veteran (journalist etc)",
+    "t": "general"
+  },
+  {
+    "h": "资助",
+    "p": "zī zhù",
+    "v": "to subsidize",
+    "e": "to subsidize",
+    "t": "actions"
+  },
+  {
+    "h": "滋味",
+    "p": "zī wèi",
+    "v": "taste",
+    "e": "taste",
+    "t": "objects"
+  },
+  {
+    "h": "滋长",
+    "p": "zī zhǎng",
+    "v": "to grow (usually of abstract things)",
+    "e": "to grow (usually of abstract things)",
+    "t": "actions"
+  },
+  {
+    "h": "字母",
+    "p": "zì mǔ",
+    "v": "letter (of the alphabet)",
+    "e": "letter (of the alphabet)",
+    "t": "objects"
+  },
+  {
+    "h": "自卑",
+    "p": "zì bēi",
+    "v": "to have low self-esteem",
+    "e": "to have low self-esteem",
+    "t": "adjectives"
+  },
+  {
+    "h": "自发",
+    "p": "zì fā",
+    "v": "spontaneous",
+    "e": "spontaneous",
+    "t": "actions"
+  },
+  {
+    "h": "自力更生",
+    "p": "zì lì gēng shēng",
+    "v": "regeneration through one's own effort (idiom)",
+    "e": "regeneration through one's own effort (idiom)",
+    "t": "actions"
+  },
+  {
+    "h": "自满",
+    "p": "zì mǎn",
+    "v": "complacent",
+    "e": "complacent",
+    "t": "adjectives"
+  },
+  {
+    "h": "子弹",
+    "p": "zǐ dàn",
+    "v": "bullet",
+    "e": "bullet",
+    "t": "objects"
+  },
+  {
+    "h": "宗旨",
+    "p": "zōng zhǐ",
+    "v": "objective",
+    "e": "objective",
+    "t": "objects"
+  },
+  {
+    "h": "棕色",
+    "p": "zōng sè",
+    "v": "brown",
+    "e": "brown",
+    "t": "objects"
+  },
+  {
+    "h": "踪迹",
+    "p": "zōng jì",
+    "v": "tracks",
+    "e": "tracks",
+    "t": "objects"
+  },
+  {
+    "h": "总而言之",
+    "p": "zǒng ér yán zhī",
+    "v": "in short",
+    "e": "in short",
+    "t": "language"
+  },
+  {
+    "h": "总和",
+    "p": "zǒng hé",
+    "v": "sum",
+    "e": "sum",
+    "t": "objects"
+  },
+  {
+    "h": "纵横",
+    "p": "zòng héng",
+    "v": "lit. warp and weft in weaving; vertically and horizontal",
+    "e": "lit. warp and weft in weaving; vertically and horizontal",
+    "t": "actions"
+  },
+  {
+    "h": "走廊",
+    "p": "zǒu láng",
+    "v": "corridor",
+    "e": "corridor",
+    "t": "objects"
+  },
+  {
+    "h": "走漏",
+    "p": "zǒu lòu",
+    "v": "to leak (information, secrets etc)",
+    "e": "to leak (information, secrets etc)",
+    "t": "actions"
+  },
+  {
+    "h": "走私",
+    "p": "zǒu sī",
+    "v": "to smuggle",
+    "e": "to smuggle",
+    "t": "actions"
+  },
+  {
+    "h": "揍",
+    "p": "zòu",
+    "v": "to hit; to beat (sb)",
+    "e": "to hit; to beat (sb)",
+    "t": "actions"
+  },
+  {
+    "h": "租赁",
+    "p": "zū lìn",
+    "v": "to rent; to lease; to hire",
+    "e": "to rent; to lease; to hire",
+    "t": "actions"
+  },
+  {
+    "h": "足以",
+    "p": "zú yǐ",
+    "v": "sufficient to...",
+    "e": "sufficient to...",
+    "t": "actions"
+  },
+  {
+    "h": "阻拦",
+    "p": "zǔ lán",
+    "v": "to stop",
+    "e": "to stop",
+    "t": "actions"
+  },
+  {
+    "h": "阻挠",
+    "p": "zǔ náo",
+    "v": "to thwart",
+    "e": "to thwart",
+    "t": "actions"
+  },
+  {
+    "h": "组",
+    "p": "Zǔ",
+    "v": "surname Zu",
+    "e": "surname Zu",
+    "t": "objects"
+  },
+  {
+    "h": "祖父",
+    "p": "zǔ fù",
+    "v": "father's father",
+    "e": "father's father",
+    "t": "objects"
+  },
+  {
+    "h": "钻石",
+    "p": "zuàn shí",
+    "v": "diamond",
+    "e": "diamond",
+    "t": "objects"
+  },
+  {
+    "h": "嘴唇",
+    "p": "zuǐ chún",
+    "v": "lip",
+    "e": "lip",
+    "t": "objects"
+  },
+  {
+    "h": "琢磨",
+    "p": "zhuó mó",
+    "v": "to carve and polish (jade)",
+    "e": "to carve and polish (jade)",
+    "t": "actions"
+  },
+  {
+    "h": "左右",
+    "p": "zuǒ yòu",
+    "v": "left and right",
+    "e": "left and right",
+    "t": "numbers"
+  },
+  {
+    "h": "作弊",
+    "p": "zuò bì",
+    "v": "to practice fraud",
+    "e": "to practice fraud",
+    "t": "actions"
+  },
+  {
+    "h": "作废",
+    "p": "zuò fèi",
+    "v": "to become invalid",
+    "e": "to become invalid",
+    "t": "actions"
+  },
+  {
+    "h": "作风",
+    "p": "zuò fēng",
+    "v": "style",
+    "e": "style",
+    "t": "objects"
+  },
+  {
+    "h": "作息",
+    "p": "zuò xī",
+    "v": "to work and rest",
+    "e": "to work and rest",
+    "t": "objects"
+  },
+  {
+    "h": "座右铭",
+    "p": "zuò yòu míng",
+    "v": "motto",
+    "e": "motto",
+    "t": "objects"
+  },
+  {
+    "h": "做东",
+    "p": "zuò dōng",
+    "v": "to act as host",
+    "e": "to act as host",
+    "t": "actions"
+  },
+  {
+    "h": "做主",
+    "p": "zuò zhǔ",
+    "v": "see 主",
+    "e": "see 主",
+    "t": "actions"
+  }
+]

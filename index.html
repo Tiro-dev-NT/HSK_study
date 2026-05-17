@@ -14,6 +14,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="Hanzi Genz"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" as="image" href="assets/icon.webp" media="(min-width: 768px)" fetchpriority="high"/>
+  <link rel="preload" as="image" href="assets/logo.webp" media="(max-width: 767px)" fetchpriority="high"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <!-- Base: tokens & reset -->
   <link rel="stylesheet" href="css/base/variables.css?v=1.0"/>
@@ -27,25 +30,26 @@
   <link rel="stylesheet" href="css/components/word-detail.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/deck-browser.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/streak-calendar.css?v=1.0"/>
-  <!-- Pages: page-specific styles -->
+  <!-- Pages: critical styles (needed for initial render) -->
   <link rel="stylesheet" href="css/pages/home.css?v=1.0"/>
   <link rel="stylesheet" href="css/pages/dictionary.css?v=1.0"/>
   <link rel="stylesheet" href="css/pages/learn.css?v=1.0"/>
-  <link rel="stylesheet" href="css/pages/quiz.css?v=1.0"/>
-  <link rel="stylesheet" href="css/pages/vault.css?v=1.0"/>
-  <link rel="stylesheet" href="css/pages/games.css?v=1.0"/>
-  <link rel="stylesheet" href="css/pages/handwriting.css?v=1.0"/>
-  <link rel="stylesheet" href="css/pages/quests.css?v=1.0"/>
-  <link rel="stylesheet" href="css/pages/reading.css?v=1.0"/>
+  <!-- Pages: deferred (loaded async, not needed before first paint) -->
+  <link rel="stylesheet" href="css/pages/quiz.css?v=1.0" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/pages/vault.css?v=1.0" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/pages/games.css?v=1.0" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/pages/handwriting.css?v=1.0" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/pages/quests.css?v=1.0" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/pages/reading.css?v=1.0" media="print" onload="this.media='all'"/>
   <!-- Features: cross-cutting concerns -->
   <link rel="stylesheet" href="css/features/auth.css?v=1.0"/>
   <link rel="stylesheet" href="css/features/hsk-switch.css?v=1.0"/>
   <link rel="stylesheet" href="css/features/sync-banner.css?v=1.1"/>
   <!-- Responsive overrides: must come last to win cascade -->
   <link rel="stylesheet" href="css/base/responsive.css?v=1.0"/>
-  <!-- Game-specific & print -->
-  <link rel="stylesheet" href="css/games-premium.css?v=1.1"/>
-  <link rel="stylesheet" href="css/handwriting-print.css?v=1.0"/>
+  <!-- Game-specific & print: deferred -->
+  <link rel="stylesheet" href="css/games-premium.css?v=1.1" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/handwriting-print.css?v=1.0" media="print" onload="this.media='all'"/>
 </head>
 <body>
 
@@ -53,7 +57,7 @@
   <div id="authPrompt" class="auth-prompt" style="display:none">
     <button class="auth-prompt-close" id="authPromptClose" title="Ẩn">✕</button>
     <div class="auth-prompt-body">
-      <img src="logo_hanzigenz.png" alt="" class="auth-prompt-icon">
+      <img src="logo_hanzigenz.png" alt="" class="auth-prompt-icon" width="48" height="48" loading="lazy"/>
       <div class="auth-prompt-text">
         <div class="auth-prompt-title">Đồng bộ tiến trình của bạn</div>
         <div class="auth-prompt-sub">Đăng nhập để lưu từ đã học, streak và XP trên mọi thiết bị.</div>
@@ -75,7 +79,7 @@
   <aside class="sidebar" id="sidebar">
     <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Thu gọn">‹</button>
     <div class="sidebar-logo">
-      <img class="sidebar-logo-img" src="assets/icon.png" alt=""/>
+      <img class="sidebar-logo-img" src="assets/icon.webp" alt="" width="32" height="32" fetchpriority="high"/>
       <span class="logo-text">Hanzi Genz</span>
     </div>
     <nav class="sidebar-nav">
@@ -264,7 +268,7 @@
   <main class="main-content">
     <!-- HEADER (Mobile) -->
     <header class="mobile-header">
-      <img class="mobile-logo-img" src="assets/logo.png" alt="Hanzi Genz"/>
+      <img class="mobile-logo-img" src="assets/logo.webp" alt="Hanzi Genz" width="120" height="32" fetchpriority="high"/>
       <div class="header-actions">
         <span class="header-token" id="header-token-badge" title="Token của bạn"><img src="/token_2.png" class="token-img" width="16" height="16" alt=""> <span id="token-count">0</span> token</span>
         <button class="btn-icon" id="themeToggleMobile">🌙</button>
@@ -375,6 +379,7 @@
   <script src="js/data/hsk4d.js"></script>
   <script src="js/data/hsk4e.js"></script>
   <script src="js/data/hsk4f.js"></script>
+  <script src="js/data/hsk4g.js"></script>
   <script src="js/data/hsk5.js"></script>
   <script src="js/data/hsk5b.js"></script>
   <script src="js/data/hsk5c.js"></script>
@@ -390,6 +395,7 @@
   <script src="js/data/hsk5m.js"></script>
   <script src="js/data/hsk5n.js"></script>
   <script src="js/data/hsk5o.js"></script>
+  <script src="js/data/hsk5p.js"></script>
   <script src="js/data/hsk6.js"></script>
   <script src="js/data/hsk6b.js"></script>
   <script src="js/data/hsk6c.js"></script>
@@ -422,6 +428,7 @@
   <script src="js/data/hsk6ad.js?v=2.9"></script>
   <script src="js/data/hsk6ae.js?v=2.9"></script>
   <script src="js/data/hsk6af.js?v=2.9"></script>
+  <script src="js/data/hsk6ag.js"></script>
   <script src="js/data/grammar.js?v=1.0"></script>
   <script src="js/data/readings.js?v=1.1"></script>
   <script src="js/radicals.js?v=2.5"></script>

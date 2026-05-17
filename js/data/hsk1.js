@@ -155,5 +155,21 @@ HSK_DATA[1] = [
   {h:"怎么",p:"zěnme",v:"Thế nào",e:"How",t:"pronouns",ex:{zh:"这个字怎么读？",py:"Zhège zì zěnme dú?",vi:"Chữ này đọc thế nào?",en:"How do you read this character?"}},
   {h:"怎么样",p:"zěnmeyàng",v:"Thế nào/ra sao",e:"How about",t:"pronouns",ex:{zh:"你最近怎么样？",py:"Nǐ zuìjìn zěnmeyàng?",vi:"Gần đây bạn thế nào?",en:"How have you been lately?"}},
   {h:"多少",p:"duōshao",v:"Bao nhiêu",e:"How many/much",t:"pronouns",ex:{zh:"这里有多少个学生？",py:"Zhèlǐ yǒu duōshao ge xuésheng?",vi:"Ở đây có bao nhiêu học sinh?",en:"How many students are here?"}},
+,
+  {h:"杯子",p:"bēi zi",v:"cup",e:"cup",t:"objects",ex:{zh:"杯子。",py:"bēi zi.",vi:"cup.",en:"cup."}},
+  {h:"菜",p:"cài",v:"dish (type of food)",e:"dish (type of food)",t:"objects",ex:{zh:"菜。",py:"cài.",vi:"dish (type of food).",en:"dish (type of food)."}},
+  {h:"东西",p:"dōng xī",v:"east and west",e:"east and west",t:"objects",ex:{zh:"东西。",py:"dōng xī.",vi:"east and west.",en:"east and west."}},
+  {h:"饭馆",p:"fàn guǎn",v:"restaurant",e:"restaurant",t:"objects",ex:{zh:"饭馆。",py:"fàn guǎn.",vi:"restaurant.",en:"restaurant."}},
+  {h:"后面",p:"hòu mian",v:"the back; the rear; the last bit",e:"the back; the rear; the last bit",t:"places",ex:{zh:"后面。",py:"hòu mian.",vi:"the back; the rear; the last bit.",en:"the back; the rear; the last bit."}},
+  {h:"火车站",p:"huǒ chē zhàn",v:"train station",e:"train station",t:"objects",ex:{zh:"火车站。",py:"huǒ chē zhàn.",vi:"train station.",en:"train station."}},
+  {h:"看见",p:"kàn jiàn",v:"to see",e:"to see",t:"actions",ex:{zh:"看见。",py:"kàn jiàn.",vi:"to see.",en:"to see."}},
+  {h:"前面",p:"qián miàn",v:"ahead",e:"ahead",t:"places",ex:{zh:"前面。",py:"qián miàn.",vi:"ahead.",en:"ahead."}},
+  {h:"日",p:"Rì",v:"abbr. for 本, Japan",e:"abbr. for 本, Japan",t:"time",ex:{zh:"日。",py:"Rì.",vi:"abbr. for 本, Japan.",en:"abbr. for 本, Japan."}},
+  {h:"说话",p:"shuō huà",v:"to speak",e:"to speak",t:"actions",ex:{zh:"说话。",py:"shuō huà.",vi:"to speak.",en:"to speak."}},
+  {h:"喂",p:"wéi",v:"hello (when answering the phone)",e:"hello (when answering the phone)",t:"actions",ex:{zh:"喂。",py:"wéi.",vi:"hello (when answering the phone).",en:"hello (when answering the phone)."}},
+  {h:"先生",p:"xiān sheng",v:"teacher",e:"teacher",t:"objects",ex:{zh:"先生。",py:"xiān sheng.",vi:"teacher.",en:"teacher."}},
+  {h:"小姐",p:"xiǎo jie",v:"young lady",e:"young lady",t:"objects",ex:{zh:"小姐。",py:"xiǎo jie.",vi:"young lady.",en:"young lady."}},
+  {h:"些",p:"xiē",v:"classifier indicating a small amount or small number greater than 1: some, a few, several",e:"classifier indicating a small amount or small number greater than 1: some, a few, several",t:"numbers",ex:{zh:"些。",py:"xiē.",vi:"classifier indicating a small amount or small number greater than 1: some, a few, several.",en:"classifier indicating a small amount or small number greater than 1: some, a few, several."}},
+  {h:"字",p:"zì",v:"letter",e:"letter",t:"objects",ex:{zh:"字。",py:"zì.",vi:"letter.",en:"letter."}}
 ];
 console.log('[HSK1] Loaded', HSK_DATA[1].length, 'words');

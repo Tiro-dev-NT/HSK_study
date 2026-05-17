@@ -11,12 +11,13 @@ var HSKVersion = (function() {
   var _v3Loading = false;
   var _pendingCallbacks = [];
 
-  // Scripts loaded for MVP (Level 1-3 data)
+  // Scripts loaded for MVP (Level 1-4 data)
   var V3_SCRIPTS = [
     'js/data/v3/hsk3_data.js',
     'js/data/v3/hsk3_lvl1.js',
     'js/data/v3/hsk3_lvl2.js',
     'js/data/v3/hsk3_lvl3.js',
+    'js/data/v3/hsk3_lvl4.js',
   ];
 
   function _loadV3Data(callback) {

@@ -175,7 +175,7 @@ var Pricing = {
       if (type === 'token' && window.PLAN_CATALOG) {
         var pack = PLAN_CATALOG.getTokenPack(sku);
         var total = pack ? (pack.tokens + (pack.bonus || 0)) : 0;
-        msg = '🎉 Thanh toán thành công! ' + total.toLocaleString('vi-VN') + '🪙 đã được cộng.';
+        msg = '🎉 Thanh toán thành công! ' + total.toLocaleString('vi-VN') + ' token đã được cộng.';
       } else if (window.PLAN_CATALOG) {
         var item = PLAN_CATALOG.getSubscription(sku);
         var planName = item ? ('Pro ' + item.sub) : 'Pro';
@@ -186,6 +186,11 @@ var Pricing = {
       if (typeof showToast === 'function') showToast(msg);
       if (typeof Monetization !== 'undefined' && Monetization.resetCache)
         Monetization.resetCache();
+      // Pull new token bonus from server so the UI reflects it immediately.
+      // Webhook has already credited user_token_balance + ledger by now.
+      if (typeof Quests !== 'undefined' && Quests.syncFromServer) {
+        setTimeout(function() { Quests.syncFromServer(); }, 800);
+      }
     } else if (payment === 'cancel') {
       if (typeof showToast === 'function') showToast('Đã huỷ thanh toán.');
     }

@@ -169,6 +169,14 @@ var Quests = {
     AppState.saveQuests();
     Quests._updateTokenUI();
     Quests._checkCompletion();
+
+    // Sync any pending server-side token credits (purchases / subscription
+    // bonuses delivered via PayOS webhook). Best-effort, non-blocking.
+    if (window.Auth && Auth.user) {
+      setTimeout(function() {
+        if (Quests.syncFromServer) Quests.syncFromServer();
+      }, 1500);
+    }
   },
 
   // ── Token ops ─────────────────────────────────────────
@@ -197,6 +205,56 @@ var Quests = {
 
   getBalance: function() {
     return AppState.tokenData.balance || 0;
+  },
+
+  // ── Pull token bonuses from server (purchases + subscription rewards) ──
+  // Webhook credits tokens to user_token_balance after PayOS payment. We
+  // mirror the unsynced delta into AppState so the UI reflects it.
+  // Tracks last_synced_at in tokenData so we only add new rows from the
+  // ledger (no double-counting).
+  syncFromServer: async function() {
+    if (!window.SB || !window.Auth || !Auth.user) return 0;
+
+    var since = AppState.tokenData.last_synced_at || '1970-01-01T00:00:00Z';
+    var res = await SB.from('user_token_ledger')
+      .select('delta, reason, created_at, ref_id')
+      .eq('user_id', Auth.user.id)
+      .gt('created_at', since)
+      .order('created_at', { ascending: true });
+
+    if (res.error) {
+      console.warn('[Quests] syncFromServer failed:', res.error.message);
+      return 0;
+    }
+
+    var rows = res.data || [];
+    if (!rows.length) return 0;
+
+    var totalDelta = 0;
+    var today = new Date().toISOString().split('T')[0];
+    if (!AppState.tokenData.history) AppState.tokenData.history = [];
+
+    rows.forEach(function(r) {
+      totalDelta += r.delta;
+      AppState.tokenData.history.unshift({
+        amount: r.delta,
+        reason: r.reason,
+        date:   (r.created_at || '').split('T')[0] || today,
+        ref:    r.ref_id || null
+      });
+    });
+    if (AppState.tokenData.history.length > 50) AppState.tokenData.history.length = 50;
+
+    AppState.tokenData.balance = (AppState.tokenData.balance || 0) + totalDelta;
+    if (totalDelta > 0) {
+      AppState.tokenData.lifetime_earned = (AppState.tokenData.lifetime_earned || 0) + totalDelta;
+    }
+    AppState.tokenData.last_synced_at = rows[rows.length - 1].created_at;
+
+    AppState.saveTokens();
+    Quests._updateTokenUI();
+    console.log('[Quests] Synced', rows.length, 'ledger rows, delta=' + totalDelta);
+    return totalDelta;
   },
 
   // ── Daily pick (1 ⚡ + 1 📚 + 1 {🔥|💀} + 1 👑 for Pro) ──

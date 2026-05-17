@@ -65,11 +65,12 @@ var Admin = (function() {
     var res = await SB.rpc('admin_stats');
     if (res.error) { console.error('[Admin] stats:', res.error); return; }
     var s = (res.data && res.data[0]) || {};
-    document.getElementById('statTotalUsers').textContent = s.total_users || 0;
-    document.getElementById('statActive7d').textContent   = s.active_7d || 0;
-    document.getElementById('statPro').textContent        = s.pro_count || 0;
-    document.getElementById('statBasic').textContent      = s.basic_count || 0;
-    document.getElementById('statXP').textContent         = (s.total_xp || 0).toLocaleString();
+    document.getElementById('statTotalUsers').textContent  = s.total_users || 0;
+    document.getElementById('statActive7d').textContent    = s.active_7d || 0;
+    document.getElementById('statProActive').textContent   = s.pro_active || 0;
+    document.getElementById('statProLifetime').textContent = s.pro_lifetime || 0;
+    document.getElementById('statTokens').textContent      = (s.tokens_outstanding || 0).toLocaleString();
+    document.getElementById('statXP').textContent          = (s.total_xp || 0).toLocaleString();
   }
 
   async function _loadUsers() {
@@ -106,11 +107,17 @@ var Admin = (function() {
         '<span>Email</span><span>Gói</span><span>XP</span><span>Streak</span><span>Hết hạn</span>' +
       '</div>' +
       filtered.map(function(u) {
-        var planClass = 'aut-plan-' + (u.plan || 'free');
-        var expires = u.expires_at ? new Date(u.expires_at).toLocaleDateString('vi-VN') : '—';
+        var plan = u.plan || 'free';
+        var duration = u.duration || '';
+        var planClass = 'aut-plan-' + (plan === 'pro' ? (duration || 'pro') : 'free');
+        var label = plan === 'pro'
+          ? ('PRO' + (duration ? ' · ' + duration.toUpperCase() : ''))
+          : 'FREE';
+        var expires = duration === 'lifetime' ? '∞ vĩnh viễn'
+                     : (u.expires_at ? new Date(u.expires_at).toLocaleDateString('vi-VN') : '—');
         return '<div class="aut-row">' +
           '<span class="aut-email" title="' + u.email + '">' + u.email + '</span>' +
-          '<span class="aut-plan ' + planClass + '">' + (u.plan || 'free').toUpperCase() + '</span>' +
+          '<span class="aut-plan ' + planClass + '">' + label + '</span>' +
           '<span>' + (u.total_xp || 0) + '</span>' +
           '<span>' + (u.streak_days || 0) + '🔥</span>' +
           '<span>' + expires + '</span>' +
@@ -120,10 +127,10 @@ var Admin = (function() {
   }
 
   async function _grantSubscription() {
-    var email = (document.getElementById('grantEmail').value || '').trim();
-    var plan  = document.getElementById('grantPlan').value;
-    var days  = parseInt(document.getElementById('grantDays').value, 10) || 30;
-    var result = document.getElementById('grantResult');
+    var email    = (document.getElementById('grantEmail').value || '').trim();
+    var duration = document.getElementById('grantDuration').value;
+    var days     = parseInt(document.getElementById('grantDays').value, 10) || 30;
+    var result   = document.getElementById('grantResult');
 
     if (!email) { result.textContent = '⚠ Nhập email'; result.className = 'admin-result admin-result-error'; return; }
 
@@ -131,9 +138,9 @@ var Admin = (function() {
     result.className = 'admin-result';
 
     var res = await SB.rpc('admin_grant_subscription', {
-      target_email: email,
-      target_plan: plan,
-      days: days
+      target_email:    email,
+      target_duration: duration,
+      days:            days
     });
 
     if (res.error) {

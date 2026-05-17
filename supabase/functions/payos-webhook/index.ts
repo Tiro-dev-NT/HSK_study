@@ -36,12 +36,33 @@
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// ── Subscription duration per plan ────────────────────────────────────
+// ── Subscription catalog (mirrors create-payment) ─────────────────────
+// durationDays = null → lifetime (perpetual, expires_at NULL)
 
-const PLAN_DURATION_DAYS: Record<string, number> = {
-  basic: 30,
-  pro:   30,
-  max:   365,
+const SUBSCRIPTION_CONFIG: Record<
+  string,
+  { durationDays: number | null; tokenBonus: number }
+> = {
+  monthly:    { durationDays: 30,   tokenBonus: 150  },
+  quarterly:  { durationDays: 90,   tokenBonus: 500  },
+  semiannual: { durationDays: 180,  tokenBonus: 1200 },
+  yearly:     { durationDays: 365,  tokenBonus: 3000 },
+  lifetime:   { durationDays: null, tokenBonus: 8000 },
+};
+
+// Token Shop catalog — tokens credited on successful payment
+const TOKEN_PACK_CONFIG: Record<string, { tokens: number; bonus: number }> = {
+  pack100:  { tokens:  100, bonus:   0 },
+  pack500:  { tokens:  500, bonus:  50 },
+  pack1200: { tokens: 1200, bonus: 200 },
+  pack3000: { tokens: 3000, bonus: 600 },
+};
+
+// Legacy plan name → new duration mapping (for orders created before v7)
+const LEGACY_PLAN_TO_SKU: Record<string, string> = {
+  basic: "monthly",
+  pro:   "yearly",
+  max:   "lifetime",
 };
 
 // ── Signature verification ─────────────────────────────────────────────
@@ -172,7 +193,7 @@ Deno.serve(async (req: Request): Promise<Response> => {
   // ── Look up pending order ─────────────────────────────────────────
   const { data: order, error: orderErr } = await supabase
     .from("payment_orders")
-    .select("id, user_id, plan, amount, status")
+    .select("id, user_id, order_type, sku, plan, amount, status")
     .eq("order_code", orderCode)
     .maybeSingle();
 
@@ -192,31 +213,90 @@ Deno.serve(async (req: Request): Promise<Response> => {
     return ok("already_processed");
   }
 
-  const { user_id: userId, plan } = order;
+  const userId = order.user_id as string;
 
-  // ── Calculate subscription expiry ────────────────────────────────
-  const durationDays = PLAN_DURATION_DAYS[plan] ?? 30;
-  const expiresAt = new Date(Date.now() + durationDays * 24 * 60 * 60 * 1000).toISOString();
+  // Resolve order type + sku (with legacy fallback)
+  const orderType = (order.order_type as string) || "subscription";
+  let sku = (order.sku as string) || (order.plan as string);
+  if (orderType === "subscription" && LEGACY_PLAN_TO_SKU[sku]) {
+    sku = LEGACY_PLAN_TO_SKU[sku];
+  }
 
-  // ── Upsert subscription ───────────────────────────────────────────
-  // user_subscriptions has UNIQUE(user_id) so upsert on conflict.
-  const { error: subErr } = await supabase
-    .from("user_subscriptions")
-    .upsert(
-      {
-        user_id:          userId,
-        plan,
-        status:           "active",
-        started_at:       new Date().toISOString(),
-        expires_at:       expiresAt,
-        payos_order_code: orderCode,
-      },
-      { onConflict: "user_id" },
+  // ── Branch: subscription vs token ─────────────────────────────────
+  if (orderType === "subscription") {
+    const cfg = SUBSCRIPTION_CONFIG[sku];
+    if (!cfg) {
+      console.error(`[payos-webhook] Unknown subscription SKU '${sku}' for order ${orderCode}`);
+      return ok("unknown_sku");
+    }
+
+    const expiresAt = cfg.durationDays === null
+      ? null  // lifetime — perpetual
+      : new Date(Date.now() + cfg.durationDays * 24 * 60 * 60 * 1000).toISOString();
+
+    const { error: subErr } = await supabase
+      .from("user_subscriptions")
+      .upsert(
+        {
+          user_id:          userId,
+          plan:             "pro",
+          duration:         sku,
+          status:           "active",
+          started_at:       new Date().toISOString(),
+          expires_at:       expiresAt,
+          payos_order_code: orderCode,
+        },
+        { onConflict: "user_id" },
+      );
+
+    if (subErr) {
+      console.error("[payos-webhook] Failed to upsert user_subscriptions:", subErr.message);
+      return ok("sub_upsert_error");
+    }
+
+    // Grant one-time token bonus for this subscription tier
+    if (cfg.tokenBonus > 0) {
+      const { error: bonusErr } = await supabase.rpc("grant_tokens", {
+        p_user_id: userId,
+        p_delta:   cfg.tokenBonus,
+        p_reason:  `subscription_bonus_${sku}`,
+        p_ref:     String(orderCode),
+      });
+      if (bonusErr) {
+        console.error("[payos-webhook] Token bonus grant failed:", bonusErr.message);
+        // Non-fatal: subscription already active.
+      }
+    }
+
+    console.log(
+      `[payos-webhook] SUBSCRIPTION OK — user=${userId} duration=${sku} expires=${expiresAt} bonus=${cfg.tokenBonus} orderCode=${orderCode}`,
     );
+  } else if (orderType === "token") {
+    const cfg = TOKEN_PACK_CONFIG[sku];
+    if (!cfg) {
+      console.error(`[payos-webhook] Unknown token pack SKU '${sku}' for order ${orderCode}`);
+      return ok("unknown_sku");
+    }
 
-  if (subErr) {
-    console.error("[payos-webhook] Failed to upsert user_subscriptions:", subErr.message);
-    return ok("sub_upsert_error");
+    const totalTokens = cfg.tokens + cfg.bonus;
+    const { error: grantErr } = await supabase.rpc("grant_tokens", {
+      p_user_id: userId,
+      p_delta:   totalTokens,
+      p_reason:  `purchase_${sku}`,
+      p_ref:     String(orderCode),
+    });
+
+    if (grantErr) {
+      console.error("[payos-webhook] Token purchase grant failed:", grantErr.message);
+      return ok("token_grant_error");
+    }
+
+    console.log(
+      `[payos-webhook] TOKEN PURCHASE OK — user=${userId} sku=${sku} tokens=+${totalTokens} orderCode=${orderCode}`,
+    );
+  } else {
+    console.error(`[payos-webhook] Unknown order_type '${orderType}' for order ${orderCode}`);
+    return ok("unknown_order_type");
   }
 
   // ── Mark order as paid ────────────────────────────────────────────
@@ -226,13 +306,9 @@ Deno.serve(async (req: Request): Promise<Response> => {
     .eq("order_code", orderCode);
 
   if (updateErr) {
-    // Non-fatal: subscription is already activated
+    // Non-fatal: subscription / tokens already granted.
     console.error("[payos-webhook] Failed to mark order as paid:", updateErr.message);
   }
-
-  console.log(
-    `[payos-webhook] SUCCESS — user=${userId} plan=${plan} expires=${expiresAt} orderCode=${orderCode}`,
-  );
 
   return ok("success");
 });

@@ -1,35 +1,74 @@
 // ═══════════════════════════════════════════════════════
 // PRICING.JS — Payment modal logic (PayOS integration)
-// Loaded globally so Pricing.* is available when the
-// pricing page fragment is injected via innerHTML router.
+// Handles both Pro subscription purchases (5 durations)
+// and standalone Token Shop pack purchases (K.4).
+// Catalog lives in js/data/plans.js (window.PLAN_CATALOG).
 // ═══════════════════════════════════════════════════════
 
 var Pricing = {
-  _plan: null,
-  _pendingPlan: null,   // remembered when login is required mid-flow
-  _plans: {
-    basic: { name: 'Basic', price: '49.000đ', sub: '/tháng' },
-    pro:   { name: 'Pro',   price: '299.000đ', sub: '/tháng' },
-    max:   { name: 'Max',   price: '799.000đ', sub: '/năm'  }
+  _orderType: null,         // 'subscription' | 'token'
+  _sku:       null,         // e.g. 'yearly', 'pack500'
+  _pendingOrder: null,      // remembered when login required mid-flow
+
+  // ── Open subscription modal ───────────────────────────
+  openPayment: function(sku) {
+    if (!window.PLAN_CATALOG) return;
+    var item = PLAN_CATALOG.getSubscription(sku);
+    if (!item) return;
+
+    if (!Pricing._requireAuth({ type: 'subscription', sku: sku })) return;
+
+    Pricing._orderType = 'subscription';
+    Pricing._sku       = sku;
+    Pricing._renderConfirm({
+      icon:      '💳',
+      title:     'Nâng cấp Pro — ' + item.name,
+      priceText: item.priceLabel + ' / ' + item.sub,
+      activation:'Pro của bạn sẽ được kích hoạt'
+    });
   },
 
-  // ── Open modal ────────────────────────────────────────
-  openPayment: function(plan) {
+  // ── Open token pack modal ─────────────────────────────
+  openTokenPurchase: function(sku) {
+    if (!window.PLAN_CATALOG) return;
+    var pack = PLAN_CATALOG.getTokenPack(sku);
+    if (!pack) return;
+
+    if (!Pricing._requireAuth({ type: 'token', sku: sku })) return;
+
+    Pricing._orderType = 'token';
+    Pricing._sku       = sku;
+    var totalTokens = pack.tokens + (pack.bonus || 0);
+    Pricing._renderConfirm({
+      icon:      '🪙',
+      title:     'Mua ' + pack.tokens.toLocaleString('vi-VN') + '🪙'
+                 + (pack.bonus ? ' (+' + pack.bonus + '🪙 bonus)' : ''),
+      priceText: pack.priceLabel,
+      activation: totalTokens.toLocaleString('vi-VN') + '🪙 sẽ được cộng vào tài khoản'
+    });
+  },
+
+  // ── Auth gate (shared) ────────────────────────────────
+  _requireAuth: function(order) {
     if (!Auth || !Auth.user) {
-      Pricing._pendingPlan = plan;   // resume after login
-      if (typeof showToast === 'function') showToast('Vui lòng đăng nhập để nâng cấp gói');
+      Pricing._pendingOrder = order;
+      if (typeof showToast === 'function') showToast('Vui lòng đăng nhập để thanh toán');
       if (typeof Auth !== 'undefined' && Auth.openLoginModal) Auth.openLoginModal();
-      return;
+      return false;
     }
-    Pricing._pendingPlan = null;
+    Pricing._pendingOrder = null;
+    return true;
+  },
 
-    var p = Pricing._plans[plan];
-    if (!p) return;
-
-    Pricing._plan = plan;
-    document.getElementById('pmTitle').textContent = 'Nâng cấp lên ' + p.name;
-    document.getElementById('pmPrice').textContent = p.price + p.sub;
-
+  _renderConfirm: function(opts) {
+    var iconEl  = document.getElementById('pmIcon');
+    var titleEl = document.getElementById('pmTitle');
+    var priceEl = document.getElementById('pmPrice');
+    var noteEl  = document.getElementById('pmActivationNote');
+    if (iconEl)  iconEl.textContent  = opts.icon;
+    if (titleEl) titleEl.textContent = opts.title;
+    if (priceEl) priceEl.textContent = opts.priceText;
+    if (noteEl)  noteEl.textContent  = opts.activation;
     Pricing._setState('confirm');
     document.getElementById('paymentModal').style.display = 'flex';
   },
@@ -37,28 +76,28 @@ var Pricing = {
   closeModal: function() {
     var m = document.getElementById('paymentModal');
     if (m) m.style.display = 'none';
-    Pricing._plan = null;
+    Pricing._orderType = null;
+    Pricing._sku = null;
   },
 
   // ── Perform payment ───────────────────────────────────
   _doPayment: async function() {
-    var plan = Pricing._plan;
-    if (!plan) return;
+    var orderType = Pricing._orderType;
+    var sku       = Pricing._sku;
+    if (!orderType || !sku) return;
 
     var user = Auth && Auth.user;
     if (!user) {
-      // Chưa đăng nhập → yêu cầu đăng nhập
       Pricing.closeModal();
-      Pricing._pendingPlan = plan;
-      if (typeof showToast === 'function') showToast('Vui lòng đăng nhập để nâng cấp gói');
+      Pricing._pendingOrder = { type: orderType, sku: sku };
+      if (typeof showToast === 'function') showToast('Vui lòng đăng nhập để thanh toán');
       if (typeof Auth !== 'undefined' && Auth.openLoginModal) Auth.openLoginModal();
       return;
     }
 
     Pricing._setState('loading');
 
-    // Thử lấy access token — best-effort, không block nếu fail.
-    // Edge Function đã tắt JWT verification nên thiếu token vẫn hoạt động.
+    // Best-effort access token (Edge Function tolerates missing JWT)
     var accessToken = null;
     try {
       var sessionRes = await Promise.race([
@@ -73,10 +112,10 @@ var Pricing = {
       console.warn('[Pricing] getSession failed, proceeding without token:', e.message);
     }
 
-    // Call Edge Function
     var fnUrl = SB_URL + '/functions/v1/create-payment';
     var body = {
-      plan:      plan,
+      type:      orderType,        // 'subscription' | 'token'
+      sku:       sku,              // e.g. 'yearly' | 'pack500'
       userId:    user.id,
       userEmail: user.email,
       userName:  (user.user_metadata && user.user_metadata.name) || ''
@@ -89,21 +128,18 @@ var Pricing = {
       var _timer = setTimeout(function() { controller.abort(); }, 15000);
 
       var res = await fetch(fnUrl, {
-        method: 'POST',
+        method:  'POST',
         headers: headers,
-        body: JSON.stringify(body),
-        signal: controller.signal
+        body:    JSON.stringify(body),
+        signal:  controller.signal
       });
       clearTimeout(_timer);
 
       var data = await res.json();
-
       if (!res.ok || !data.checkoutUrl) {
         var msg = (data && data.error) ? data.error : ('Lỗi máy chủ (' + res.status + ')');
         throw new Error(msg);
       }
-
-      // Redirect to PayOS checkout
       window.location.href = data.checkoutUrl;
 
     } catch(err) {
@@ -117,7 +153,6 @@ var Pricing = {
     }
   },
 
-  // ── Switch modal state ────────────────────────────────
   _setState: function(state) {
     ['confirm', 'loading', 'error'].forEach(function(s) {
       var el = document.getElementById('pmState' + s.charAt(0).toUpperCase() + s.slice(1));
@@ -125,19 +160,30 @@ var Pricing = {
     });
   },
 
-  // ── Handle PayOS redirect-back (?payment=success) ─────
+  // ── Handle PayOS redirect-back (?payment=success&type=...&sku=...) ─
   _checkReturnUrl: function() {
-    var params  = new URLSearchParams(window.location.search);
+    var params = new URLSearchParams(window.location.search);
     var payment = params.get('payment');
-    var plan    = params.get('plan');
+    var type    = params.get('type') || 'subscription';
+    var sku     = params.get('sku')  || params.get('plan');  // 'plan' kept for legacy URLs
     if (!payment) return;
 
     window.history.replaceState({}, '', window.location.pathname);
 
     if (payment === 'success') {
-      var planName = plan ? ((Pricing._plans[plan] || {}).name || plan) : '';
-      if (typeof showToast === 'function')
-        showToast('🎉 Thanh toán thành công! Gói ' + planName + ' đã được kích hoạt.');
+      var msg;
+      if (type === 'token' && window.PLAN_CATALOG) {
+        var pack = PLAN_CATALOG.getTokenPack(sku);
+        var total = pack ? (pack.tokens + (pack.bonus || 0)) : 0;
+        msg = '🎉 Thanh toán thành công! ' + total.toLocaleString('vi-VN') + '🪙 đã được cộng.';
+      } else if (window.PLAN_CATALOG) {
+        var item = PLAN_CATALOG.getSubscription(sku);
+        var planName = item ? ('Pro ' + item.sub) : 'Pro';
+        msg = '🎉 Thanh toán thành công! Gói ' + planName + ' đã được kích hoạt.';
+      } else {
+        msg = '🎉 Thanh toán thành công!';
+      }
+      if (typeof showToast === 'function') showToast(msg);
       if (typeof Monetization !== 'undefined' && Monetization.resetCache)
         Monetization.resetCache();
     } else if (payment === 'cancel') {

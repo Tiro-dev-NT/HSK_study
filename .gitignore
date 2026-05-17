@@ -39,6 +39,11 @@ docs/reports/
 docs/marketing/
 docs/plans/css-organization-plan.md
 
+# Local-only assets — không cần cho production Cloudflare deploy
+# (2026-05-17) data prep tools + raw curriculum private
+scripts/
+content/
+
 # Temp word lists
 _hsk*_existing.txt
 

@@ -15,12 +15,16 @@
       <div class="ast-value" id="statActive7d">—</div>
     </div>
     <div class="admin-stat-card">
-      <div class="ast-label">Pro+Max</div>
-      <div class="ast-value" id="statPro">—</div>
+      <div class="ast-label">Pro đang hoạt động</div>
+      <div class="ast-value" id="statProActive">—</div>
     </div>
     <div class="admin-stat-card">
-      <div class="ast-label">Basic</div>
-      <div class="ast-value" id="statBasic">—</div>
+      <div class="ast-label">Pro Lifetime</div>
+      <div class="ast-value" id="statProLifetime">—</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="ast-label">Token outstanding</div>
+      <div class="ast-value" id="statTokens">—</div>
     </div>
     <div class="admin-stat-card">
       <div class="ast-label">Total XP</div>
@@ -56,16 +60,18 @@
         <input type="email" id="grantEmail" placeholder="user@example.com">
       </div>
       <div class="admin-form-row">
-        <label>Gói</label>
-        <select id="grantPlan">
-          <option value="basic">Basic (49k/tháng)</option>
-          <option value="pro">Pro (99k/tháng)</option>
-          <option value="max">Max (799k/năm)</option>
+        <label>Gói Pro (thời hạn)</label>
+        <select id="grantDuration">
+          <option value="monthly"    data-days="30">Linh hoạt — 1 tháng (75k)</option>
+          <option value="quarterly"  data-days="90">Chăm chỉ — 3 tháng (199k)</option>
+          <option value="semiannual" data-days="180">Bứt phá — 6 tháng (329k)</option>
+          <option value="yearly"     data-days="365" selected>Tiết kiệm — 1 năm (499k)</option>
+          <option value="lifetime"   data-days="0">Trọn đời (999k, vĩnh viễn)</option>
         </select>
       </div>
       <div class="admin-form-row">
-        <label>Số ngày</label>
-        <input type="number" id="grantDays" value="30" min="1" max="3650">
+        <label>Số ngày (bỏ qua nếu Lifetime)</label>
+        <input type="number" id="grantDays" value="365" min="1" max="3650">
       </div>
       <button class="admin-btn-primary" id="grantSubmit">✓ Cấp gói</button>
       <button class="admin-btn-danger" id="revokeSubmit">✗ Hủy gói (set free)</button>

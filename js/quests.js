@@ -52,14 +52,14 @@ var DAILY_TIER_SKULL = [
   { id: 'perfect_day',  icon: '💀', title: 'Ngày hoàn hảo',      desc: 'Hoàn thành cả 2 quest kia + SRS', metric: 'perfect_day',    target: 1,  rewards: { token: 50, xp: 80  } },
 ];
 
-// Basic+ exclusive quests — shown as 4th daily slot for subscribers
+// Pro-exclusive quests — shown as 4th daily slot for Pro subscribers
 var DAILY_TIER_PREMIUM = [
-  { id: 'racing_finish',  icon: '🏎️', title: 'Tay đua tốc độ',      desc: 'Hoàn thành Racing Quiz 1 lần',    metric: 'racing_done',   target: 1, rewards: { token: 20, xp: 30 }, requires: 'basic' },
-  { id: 'sentence_build', icon: '📝', title: 'Xây câu hoàn hảo',    desc: 'Hoàn thành Sentence Builder',     metric: 'sentence_done', target: 1, rewards: { token: 20, xp: 30 }, requires: 'basic' },
-  { id: 'listen_session', icon: '🎧', title: 'Luyện nghe chuyên sâu',desc: 'Dùng chế độ Nghe trong Reading', metric: 'listen_used',   target: 1, rewards: { token: 25, xp: 35 }, requires: 'basic' },
-  { id: 'boss_premium',   icon: '👑', title: 'Chiến binh tinh nhuệ', desc: 'Thắng Boss Battle 2 lần hôm nay',metric: 'boss_won',      target: 2, rewards: { token: 30, xp: 40 }, requires: 'basic' },
-  { id: 'grammar_lesson', icon: '📖', title: 'Học ngữ pháp',         desc: 'Hoàn thành 1 bài ngữ pháp',      metric: 'grammar_done',  target: 1, rewards: { token: 15, xp: 25 }, requires: 'basic' },
-  { id: 'reading_passage',icon: '📰', title: 'Đọc hiểu nâng cao',   desc: 'Đọc 1 đoạn văn trong Reading',   metric: 'reading_done',  target: 1, rewards: { token: 15, xp: 20 }, requires: 'basic' },
+  { id: 'racing_finish',  icon: '🏎️', title: 'Tay đua tốc độ',      desc: 'Hoàn thành Racing Quiz 1 lần',    metric: 'racing_done',   target: 1, rewards: { token: 20, xp: 30 }, requires: 'pro' },
+  { id: 'sentence_build', icon: '📝', title: 'Xây câu hoàn hảo',    desc: 'Hoàn thành Sentence Builder',     metric: 'sentence_done', target: 1, rewards: { token: 20, xp: 30 }, requires: 'pro' },
+  { id: 'listen_session', icon: '🎧', title: 'Luyện nghe chuyên sâu',desc: 'Dùng chế độ Nghe trong Reading', metric: 'listen_used',   target: 1, rewards: { token: 25, xp: 35 }, requires: 'pro' },
+  { id: 'boss_premium',   icon: '👑', title: 'Chiến binh tinh nhuệ', desc: 'Thắng Boss Battle 2 lần hôm nay',metric: 'boss_won',      target: 2, rewards: { token: 30, xp: 40 }, requires: 'pro' },
+  { id: 'grammar_lesson', icon: '📖', title: 'Học ngữ pháp',         desc: 'Hoàn thành 1 bài ngữ pháp',      metric: 'grammar_done',  target: 1, rewards: { token: 15, xp: 25 }, requires: 'pro' },
+  { id: 'reading_passage',icon: '📰', title: 'Đọc hiểu nâng cao',   desc: 'Đọc 1 đoạn văn trong Reading',   metric: 'reading_done',  target: 1, rewards: { token: 15, xp: 20 }, requires: 'pro' },
 ];
 
 var WEEKLY_QUESTS = [
@@ -199,7 +199,7 @@ var Quests = {
     return AppState.tokenData.balance || 0;
   },
 
-  // ── Daily pick (1 ⚡ + 1 📚 + 1 {🔥|💀} + 1 👑 for Basic+) ──
+  // ── Daily pick (1 ⚡ + 1 📚 + 1 {🔥|💀} + 1 👑 for Pro) ──
   _pickDaily: function(dateStr) {
     var seed  = Quests._seedFromStr(dateStr);
     var easy  = Quests._seededPick(DAILY_TIER_EASY,   seed,      1);

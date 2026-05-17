@@ -12,7 +12,7 @@
 - **Game Center** — 8 mini-games (Speed Quiz, Memory, Wordle, Boss Battle, Racing, Sentence Builder, Cloze, Handwriting)
 - **Gamification** — XP, streak, leaderboard, quests, token system, badges
 - **Cloud sync** — Supabase auth (Google OAuth + email/pass) + push/pull/merge
-- **Premium tier** — PayOS payment integration, 4 tier (Free/Basic/Pro/Lifetime)
+- **Premium tier** — PayOS payment integration. Free + 5 thời hạn Pro (1 tháng / 3 tháng / 6 tháng / 1 năm / Lifetime) + Token Shop standalone
 - **Dark mode + Bilingual** (Vietnamese primary, English secondary)
 - **PWA-ready** (Phase H — chưa làm)
 

@@ -1,9 +1,20 @@
 // ═══════════════════════════════════════════════════════════════════════
 // create-payment/index.ts — Supabase Edge Function
 // Creates a PayOS payment request and stores a pending order in Supabase.
+// Supports two order types:
+//   • subscription — Pro plan with 5 durations (monthly/quarterly/...)
+//   • token        — Token Shop standalone pack purchase
 //
 // Expected request body:
-//   { plan: 'basic'|'pro'|'max', userId: string, userEmail: string, userName?: string }
+//   {
+//     type: 'subscription' | 'token',
+//     sku:  'monthly'|'quarterly'|'semiannual'|'yearly'|'lifetime'
+//           | 'pack100'|'pack500'|'pack1200'|'pack3000',
+//     userId: string, userEmail: string, userName?: string
+//   }
+//
+// Prices are server-side authoritative — DO NOT trust client.
+// Must stay in sync with js/data/plans.js.
 //
 // Environment variables required:
 //   PAYOS_CLIENT_ID       — PayOS merchant client ID
@@ -20,10 +31,27 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const PAYOS_API_URL = "https://api-merchant.payos.vn/v2/payment-requests";
 const BASE_URL = "https://hanzigenz.com";
 
-const PLAN_CONFIG: Record<string, { amount: number; label: string; durationDays: number }> = {
-  basic: { amount: 49_000,  label: "Basic 1 tháng",  durationDays: 30  },
-  pro:   { amount: 299_000, label: "Pro 1 tháng",    durationDays: 30  },
-  max:   { amount: 799_000, label: "Max 1 năm",       durationDays: 365 },
+// Pro subscription catalog — durationDays=null means lifetime (perpetual).
+const SUBSCRIPTION_CONFIG: Record<
+  string,
+  { amount: number; label: string; durationDays: number | null; tokenBonus: number }
+> = {
+  monthly:    { amount: 75_000,    label: "Pro Linh hoạt (1 tháng)",  durationDays: 30,   tokenBonus: 150  },
+  quarterly:  { amount: 199_000,   label: "Pro Chăm chỉ (3 tháng)",   durationDays: 90,   tokenBonus: 500  },
+  semiannual: { amount: 329_000,   label: "Pro Bứt phá (6 tháng)",    durationDays: 180,  tokenBonus: 1200 },
+  yearly:     { amount: 499_000,   label: "Pro Tiết kiệm (1 năm)",    durationDays: 365,  tokenBonus: 3000 },
+  lifetime:   { amount: 999_000,   label: "Pro Trọn đời (Lifetime)",  durationDays: null, tokenBonus: 8000 },
+};
+
+// Token Shop catalog
+const TOKEN_PACK_CONFIG: Record<
+  string,
+  { amount: number; tokens: number; bonus: number; label: string }
+> = {
+  pack100:  { amount:  19_000, tokens:  100, bonus:   0, label: "Pack 100 token"  },
+  pack500:  { amount:  79_000, tokens:  500, bonus:  50, label: "Pack 500 token (+50 bonus)"   },
+  pack1200: { amount: 159_000, tokens: 1200, bonus: 200, label: "Pack 1.200 token (+200 bonus)" },
+  pack3000: { amount: 349_000, tokens: 3000, bonus: 600, label: "Pack 3.000 token (+600 bonus)" },
 };
 
 // CORS — allow production origin + localhost dev
@@ -105,20 +133,45 @@ Deno.serve(async (req: Request): Promise<Response> => {
     });
 
   // ── Parse body ────────────────────────────────────────────────────
-  let body: { plan?: string; userId?: string; userEmail?: string; userName?: string };
+  let body: {
+    type?: string;
+    sku?: string;
+    plan?: string;        // legacy
+    userId?: string;
+    userEmail?: string;
+    userName?: string;
+  };
   try {
     body = await req.json();
   } catch {
     return err(400, "Invalid JSON body");
   }
 
-  const { plan, userId, userEmail, userName } = body;
+  // Backward-compat: old clients sent `plan` only.
+  const orderType = body.type || "subscription";
+  const sku       = body.sku || body.plan;
+  const { userId, userEmail, userName } = body;
 
-  if (!plan || !userId || !userEmail) {
-    return err(400, "Missing required fields: plan, userId, userEmail");
+  if (!sku || !userId || !userEmail) {
+    return err(400, "Missing required fields: sku, userId, userEmail");
   }
-  if (!["basic", "pro", "max"].includes(plan)) {
-    return err(400, `Unknown plan '${plan}'. Must be basic, pro, or max.`);
+  if (!["subscription", "token"].includes(orderType)) {
+    return err(400, `Unknown order type '${orderType}'. Must be subscription or token.`);
+  }
+
+  // Resolve catalog entry server-side (do not trust client price)
+  let amount: number;
+  let label: string;
+  if (orderType === "subscription") {
+    const cfg = SUBSCRIPTION_CONFIG[sku];
+    if (!cfg) return err(400, `Unknown subscription SKU '${sku}'.`);
+    amount = cfg.amount;
+    label  = cfg.label;
+  } else {
+    const cfg = TOKEN_PACK_CONFIG[sku];
+    if (!cfg) return err(400, `Unknown token pack SKU '${sku}'.`);
+    amount = cfg.amount;
+    label  = cfg.label;
   }
 
   // ── Env vars ──────────────────────────────────────────────────────
@@ -133,22 +186,20 @@ Deno.serve(async (req: Request): Promise<Response> => {
     return err(500, "Server configuration error");
   }
 
-  const planCfg = PLAN_CONFIG[plan];
-
   // ── Generate order code ───────────────────────────────────────────
   // PayOS requires a positive integer ≤ 9007199254740991 (JS max safe int).
   // We use unix timestamp in ms, which fits comfortably.
   const orderCode = Date.now();
 
-  const returnUrl = `${BASE_URL}/?payment=success&plan=${plan}`;
+  const returnUrl = `${BASE_URL}/?payment=success&type=${orderType}&sku=${sku}`;
   const cancelUrl = `${BASE_URL}/`;
-  const description = `HanziGenz ${planCfg.label}`;
+  const description = `HanziGenz ${label}`;
 
   // ── Build PayOS signature ─────────────────────────────────────────
   let signature: string;
   try {
     signature = await buildPayOSSignature(
-      { amount: planCfg.amount, cancelUrl, description, orderCode, returnUrl },
+      { amount, cancelUrl, description, orderCode, returnUrl },
       payosChecksumKey,
     );
   } catch (e) {
@@ -159,7 +210,7 @@ Deno.serve(async (req: Request): Promise<Response> => {
   // ── Build PayOS request payload ───────────────────────────────────
   const payosPayload = {
     orderCode,
-    amount: planCfg.amount,
+    amount,
     description,
     buyerName:  userName  || "",
     buyerEmail: userEmail || "",
@@ -167,9 +218,9 @@ Deno.serve(async (req: Request): Promise<Response> => {
     buyerAddress: "",
     items: [
       {
-        name:     `HanziGenz ${planCfg.label}`,
+        name:     `HanziGenz ${label}`,
         quantity: 1,
-        price:    planCfg.amount,
+        price:    amount,
       },
     ],
     cancelUrl,
@@ -214,12 +265,15 @@ Deno.serve(async (req: Request): Promise<Response> => {
   const supabase = createClient(supabaseUrl, serviceRoleKey);
 
   const { error: dbError } = await supabase.from("payment_orders").insert({
-    order_code:  orderCode,
-    user_id:     userId,
-    user_email:  userEmail,
-    plan,
-    amount:      planCfg.amount,
-    status:      "pending",
+    order_code:   orderCode,
+    user_id:      userId,
+    user_email:   userEmail,
+    order_type:   orderType,
+    sku,
+    // Legacy `plan` column kept populated for back-compat with old reports.
+    plan:         orderType === "subscription" ? sku : "token",
+    amount,
+    status:       "pending",
     checkout_url: checkoutUrl,
   });
 
@@ -230,7 +284,7 @@ Deno.serve(async (req: Request): Promise<Response> => {
   }
 
   // ── Return checkout URL to frontend ──────────────────────────────
-  console.log(`[create-payment] Order ${orderCode} created for user ${userId}, plan=${plan}`);
+  console.log(`[create-payment] Order ${orderCode} created — user=${userId} type=${orderType} sku=${sku}`);
 
   return new Response(
     JSON.stringify({ checkoutUrl, orderCode }),

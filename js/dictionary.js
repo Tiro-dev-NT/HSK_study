@@ -22,6 +22,14 @@ var Dictionary = {
     }
     Dictionary._setupDone = true;
 
+    // Background-load HSK 3.0 data for integrated search
+    if (typeof HSKVersion !== 'undefined' && !HSKVersion.isV3Loaded()) {
+      HSKVersion.preloadV3(function() {
+        var inp = document.getElementById('dictSearch');
+        if (inp) Dictionary.searchDict(inp.value.trim());
+      });
+    }
+
     // Search input
     input.addEventListener('input', function() {
       Dictionary.searchDict(input.value.trim());
@@ -93,14 +101,14 @@ var Dictionary = {
       res.innerHTML = '';
       res.appendChild(label);
       const wrapper = document.createElement('div');
-      Dictionary._renderWordList(shuffle(getAllWords()).slice(0, 20), wrapper);
+      Dictionary._renderWordList(shuffle(getAllWordsBothVersions()).slice(0, 20), wrapper);
       res.appendChild(wrapper);
       return;
     }
     const q        = query.toLowerCase();
     const qStripped = Dictionary.stripTones(q);
     const mode     = AppState.searchMode;
-    const words    = getAllWords().filter(function(w) {
+    const words    = getAllWordsBothVersions().filter(function(w) {
       if (mode === 'hanzi')   return w.h.includes(query);
       if (mode === 'pinyin')  return w.p.toLowerCase().includes(q) || Dictionary.stripTones(w.p).includes(qStripped);
       if (mode === 'meaning') return w.v.toLowerCase().includes(q) || w.e.toLowerCase().includes(q);
@@ -121,13 +129,19 @@ var Dictionary = {
       return;
     }
     container.innerHTML = words.map(function(w) {
+      var ver = w.ver || 2;
+      var badge = (ver === 3 ? '3.0' : '2.0') + ' L' + w.level;
+      var alsoChip = w._alsoIn
+        ? ' <span class="dict-also">' + (w._alsoIn.ver === 3 ? '3.0' : '2.0') + '</span>'
+        : '';
+      var badgeClass = 'dict-hsk dict-hsk-v' + ver;
       return '<div class="dict-card" data-hanzi="' + w.h + '">' +
         '<div class="dict-hanzi">' + w.h + '</div>' +
         '<div class="dict-info">' +
           '<div class="dict-pinyin">' + w.p + '</div>' +
           '<div class="dict-meaning">' + (lang === 'vi' ? w.v : w.e) + '</div>' +
         '</div>' +
-        '<div class="dict-hsk">HSK ' + w.level + '</div>' +
+        '<div class="' + badgeClass + '">' + badge + alsoChip + '</div>' +
         '<button class="quick-add" data-hidx="' + w.h + '" title="' + (lang === 'vi' ? 'Thêm vào bộ thẻ' : 'Add to deck') + '">+</button>' +
       '</div>';
     }).join('');
@@ -151,8 +165,10 @@ var Dictionary = {
     currentWord = word; // compat alias
     document.getElementById('modalHanzi').textContent = word.h;
     document.getElementById('modalPinyin').textContent = word.p;
+    var wVer = word.ver || AppState.version;
+    var alsoStr = word._alsoIn ? ' · HSK ' + (word._alsoIn.ver === 3 ? '3.0' : '2.0') + ' L' + word._alsoIn.level : '';
     document.getElementById('modalLevel').innerHTML =
-      '<span>HSK ' + word.level + ' <span class="ver-chip">HSK ' + AppState.version + '.0</span></span>';
+      '<span>HSK ' + (wVer === 3 ? '3.0' : '2.0') + ' L' + word.level + alsoStr + '</span>';
     document.getElementById('modalVi').textContent = word.v;
     document.getElementById('modalEn').textContent = word.e;
 

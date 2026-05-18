@@ -42,7 +42,10 @@
 .dict-info { flex: 1; }
 .dict-pinyin { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
 .dict-meaning { font-size: 14px; color: var(--text2); }
-.dict-hsk { font-size: 11px; background: var(--primary); color: #fff; border-radius: 6px; padding: 2px 8px; flex-shrink: 0; }
+.dict-hsk { font-size: 11px; color: #fff; border-radius: 6px; padding: 2px 8px; flex-shrink: 0; white-space: nowrap; }
+.dict-hsk-v2 { background: var(--primary); }
+.dict-hsk-v3 { background: #16A085; }
+.dict-also { font-size: 10px; opacity: .8; margin-left: 3px; }
 .hint { color: var(--text3); text-align: center; padding: 40px 0; font-size: 15px; }
 
 /* â”€â”€ LEARN SECTION (MULTI-MODE) â”€â”€ */

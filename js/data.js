@@ -24,7 +24,7 @@ var LEVEL_INFO_V3 = {
   3: { label:'HSK 3.0 L3', count:953,  color:'#F1C40F', icon:'📒' },
   4: { label:'HSK 3.0 L4', count:246,  color:'#27AE60', icon:'📗' },
   5: { label:'HSK 3.0 L5', count:904,  color:'#2980B9', icon:'📘' },
-  6: { label:'HSK 3.0 L6', count:500,  color:'#8E44AD', icon:'📓' },
+  6: { label:'HSK 3.0 L6', count:2430, color:'#8E44AD', icon:'📓' },
   7: { label:'HSK 3.0 L7', count:1000, color:'#16A085', icon:'📚' },
   8: { label:'HSK 3.0 L8', count:1000, color:'#1ABC9C', icon:'📚' },
   9: { label:'HSK 3.0 L9', count:2383, color:'#E91E63', icon:'📚' },

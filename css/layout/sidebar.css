@@ -84,7 +84,8 @@
   border-radius: 10px;
   background: #000;
 }
-.sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 0 12px; }
+.sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 0 12px; overflow-y: auto; min-height: 0; scrollbar-width: none; }
+.sidebar-nav::-webkit-scrollbar { display: none; }
 .nav-item {
   display: flex;
   align-items: center;

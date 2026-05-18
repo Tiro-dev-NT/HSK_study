@@ -156,5 +156,5 @@ var HSKVersion = (function() {
     }
   }
 
-  return { init: init, switchTo: switchTo, isV3Loaded: function() { return _v3Loaded; } };
+  return { init: init, switchTo: switchTo, isV3Loaded: function() { return _v3Loaded; }, preloadV3: _loadV3Data };
 }());

@@ -43,6 +43,19 @@
 .ls-due { color: #e74c3c; }
 .ls-mastered { color: #27ae60; }
 
+.hsk3-count-note {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.hsk3-note-icon { margin-right: 4px; }
+
 /* â”€â”€ DICTIONARY â”€â”€ */
 
 .feedback-section {

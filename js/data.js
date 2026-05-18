@@ -91,6 +91,31 @@ function getAllWords() {
   return all;
 }
 
+// Merge cả HSK 2.0 + 3.0 — dùng cho từ điển tích hợp
+// Dedup theo hanzi; active version thắng khi trùng
+function getAllWordsBothVersions() {
+  var seen = {};
+  var result = [];
+  function addDataset(data, ver) {
+    Object.keys(data).forEach(function(lv) {
+      (data[lv] || []).forEach(function(w) {
+        if (!w.h) return;
+        if (seen[w.h]) {
+          seen[w.h]._alsoIn = { ver: ver, level: parseInt(lv) };
+        } else {
+          var word = Object.assign({}, w, { level: parseInt(lv), ver: ver });
+          seen[w.h] = word;
+          result.push(word);
+        }
+      });
+    });
+  }
+  var isV3 = typeof AppState !== 'undefined' && AppState.version === 3;
+  if (isV3) { addDataset(HSK3_DATA, 3); addDataset(HSK_DATA, 2); }
+  else       { addDataset(HSK_DATA, 2); addDataset(HSK3_DATA, 3); }
+  return result;
+}
+
 function getWordsByLevel(lv) {
   return (activeHSKData()[lv] || []).map(function(w) { return Object.assign({}, w, {level: lv}); });
 }

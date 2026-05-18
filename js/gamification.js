@@ -162,6 +162,21 @@ var Gamification = {
       });
       grid.appendChild(card);
     }
+
+    // Show dedup note for HSK 3.0 (explains why count differs from official ~11,092)
+    var note = document.getElementById('hsk3-count-note');
+    if (note) {
+      var isV3 = typeof AppState !== 'undefined' && AppState.version === 3;
+      var isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
+      if (isV3) {
+        note.style.display = 'block';
+        note.innerHTML = isEN
+          ? '<span class="hsk3-note-icon">ℹ️</span> HSK 3.0 L7–9 shows only words not already covered in L1–6 (duplicates removed). The official Hanban total (~11,092) counts overlapping words across levels.'
+          : '<span class="hsk3-note-icon">ℹ️</span> HSK 3.0 L7–9 chỉ hiển thị từ <em>mới</em> chưa có ở L1–6 (đã lọc trùng lặp). Tổng chính thức Hanban (~11,092) đếm cả từ xuất hiện ở nhiều cấp độ.';
+      } else {
+        note.style.display = 'none';
+      }
+    }
   },
 
   // ── Helpers ────────────────────────────────────────

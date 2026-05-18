@@ -11,6 +11,7 @@
 | [`implementation_plan.md`](./implementation_plan.md) | **Roadmap chính** — Phase A→Z, decision log, verification | Mỗi khi bắt đầu phase mới, plan task |
 | [`DEPLOY_GUIDE.md`](./DEPLOY_GUIDE.md) | Hướng dẫn deploy Cloudflare Pages | Khi cần deploy hoặc setup môi trường |
 | [`BUG_REPORT.md`](./BUG_REPORT.md) | Lịch sử bug + fix | Khi gặp bug tương tự cũ, hoặc audit |
+| [`SECURITY_PLAN.md`](./SECURITY_PLAN.md) | Audit + roadmap bảo mật (multi-platform) | Khi review threat model, trước khi build PWA/Tauri/Extension |
 
 ---
 

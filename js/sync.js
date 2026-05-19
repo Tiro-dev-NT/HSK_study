@@ -359,9 +359,17 @@ var Sync = {
         localStorage.setItem('game_scores', JSON.stringify(mergedGS));
       }
 
-      // Then push merged state back to cloud
-      await Sync.pushAll();
+      // Refresh UI first (data already saved to localStorage above)
       Sync._refreshUI();
+
+      // Then push merged state to cloud — wrap separately so a push failure
+      // does NOT undo the already-saved merged data or skip the UI refresh.
+      try {
+        await Sync.pushAll();
+      } catch(pushErr) {
+        console.warn('[SYNC mergeAll] push failed after merge — local data safe:', pushErr.message);
+        // Surface to caller as a soft warning, not a hard throw
+      }
 
     } catch(e) {
       console.error('[SYNC mergeAll error]', e);

@@ -149,8 +149,17 @@ var HSKVersion = (function() {
     // If user returns with v3 saved, auto-load data silently
     if (AppState.version === 3) {
       _loadV3Data(function() {
+        // Rebuild level grid (home page)
         if (typeof Gamification !== 'undefined' && Gamification.buildLevelGrid) {
           Gamification.buildLevelGrid();
+        }
+        // Rebuild deck browser (vault/learn page) — system decks now have correct word counts
+        if (typeof loadDecks === 'function')         loadDecks();
+        if (typeof renderDeckBrowser === 'function') renderDeckBrowser();
+        // Refresh dictionary if it's open
+        if (typeof Dictionary !== 'undefined' && Dictionary.searchDict) {
+          var inp = document.getElementById('dictSearch');
+          if (inp) Dictionary.searchDict(inp.value.trim());
         }
       });
     }

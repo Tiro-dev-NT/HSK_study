@@ -278,19 +278,34 @@ var Dictionary = {
 
   _zhVoice:    null,
   _ttsTimeout: null,
+  _voicesWired: false,
+
+  // Reset cache khi trình duyệt cập nhật danh sách voice (Chrome async)
+  _wireVoicesChanged: function() {
+    if (Dictionary._voicesWired) return;
+    Dictionary._voicesWired = true;
+    if (window.speechSynthesis) {
+      window.speechSynthesis.addEventListener('voiceschanged', function() {
+        Dictionary._zhVoice = null; // buộc re-pick lần sau
+      });
+    }
+  },
 
   _pickZhVoice: function() {
+    Dictionary._wireVoicesChanged();
     if (Dictionary._zhVoice) return Dictionary._zhVoice;
     var voices = window.speechSynthesis.getVoices();
-    Dictionary._zhVoice =
+    var found =
       voices.find(function(v) { return v.lang === 'zh-CN'; }) ||
       voices.find(function(v) { return v.lang === 'zh-TW'; }) ||
       voices.find(function(v) { return v.lang.startsWith('zh'); }) ||
       null;
-    if (!Dictionary._zhVoice && voices.length > 0) {
+    if (found) {
+      Dictionary._zhVoice = found; // chỉ cache khi tìm thấy
+    } else if (voices.length > 0) {
       console.warn('[TTS] Không tìm thấy giọng tiếng Trung. Voices:', voices.map(function(v) { return v.lang; }).join(', '));
     }
-    return Dictionary._zhVoice;
+    return found;
   },
 
   playTTS: function(text) {

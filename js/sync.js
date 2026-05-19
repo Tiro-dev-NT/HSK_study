@@ -29,7 +29,7 @@ var Sync = {
       });
       if (progressRows.length > 0) {
         var r = await SB.from('user_progress').upsert(progressRows);
-        if (r.error) console.error('[SYNC push progress]', r.error);
+        if (r.error) throw new Error('[push progress] ' + r.error.message);
       }
 
       // 2. SRS data (batch 500)
@@ -49,10 +49,12 @@ var Sync = {
             updated_at: new Date().toISOString()
           };
         });
+        var srsFailed = 0, srsLastErr = null;
         for (var i = 0; i < srsRows.length; i += 500) {
           var r2 = await SB.from('user_srs').upsert(srsRows.slice(i, i + 500));
-          if (r2.error) console.error('[SYNC push srs batch]', r2.error);
+          if (r2.error) { srsFailed++; srsLastErr = r2.error; }
         }
+        if (srsFailed > 0) throw new Error('[push srs] ' + srsFailed + ' batch(es) failed: ' + srsLastErr.message);
       }
 
       // 3. XP + streak — chỉ push nếu local có dữ liệu thực (tránh ghi đè cloud khi thiết bị mới)
@@ -71,7 +73,7 @@ var Sync = {
           daily_xp:   xp.dailyXP || {},
           updated_at:  new Date().toISOString()
         });
-        if (r3.error) console.error('[SYNC push xp]', r3.error);
+        if (r3.error) throw new Error('[push xp] ' + r3.error.message);
       }
 
       // 4. User decks
@@ -86,7 +88,7 @@ var Sync = {
           };
         });
         var r4 = await SB.from('user_decks').upsert(deckRows, { onConflict: 'user_id,name' });
-        if (r4.error) console.error('[SYNC push decks]', r4.error);
+        if (r4.error) throw new Error('[push decks] ' + r4.error.message);
       }
 
       // 5. Settings + quiz/game activity — chỉ push nếu local có cài đặt hoặc activity thực
@@ -106,7 +108,7 @@ var Sync = {
         var r5 = await SB.from('user_settings').upsert({
           user_id: uid, study: studySettings, global: globalData, updated_at: new Date().toISOString()
         });
-        if (r5.error) console.error('[SYNC push settings]', r5.error);
+        if (r5.error) throw new Error('[push settings] ' + r5.error.message);
       }
 
     } catch(e) {
@@ -132,7 +134,8 @@ var Sync = {
       }
 
       // 2. SRS
-      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags,word_data').eq('user_id', uid).eq('hsk_version', AppState.version);
+      // limit 2000 — paginate if user exceeds this (TODO Phase H)
+      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags,word_data').eq('user_id', uid).eq('hsk_version', AppState.version).limit(2000);
       if (!sr.error && sr.data && sr.data.length > 0) {
         sr.data.forEach(function(row) {
           var entry = {
@@ -162,7 +165,7 @@ var Sync = {
       }
 
       // 4. User decks
-      var dr = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid);
+      var dr = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid).limit(200);
       if (!dr.error && dr.data && dr.data.length > 0) {
         var pulledDecks = dr.data.map(function(row) {
           return { name: row.name, words: (row.word_ids || []).map(function(h) { return { h: h }; }) };
@@ -230,7 +233,7 @@ var Sync = {
         progress = AppState.progress;
       }
 
-      var sr = await SB.from('user_srs').select('*').eq('user_id', uid).eq('hsk_version', AppState.version);
+      var sr = await SB.from('user_srs').select('*').eq('user_id', uid).eq('hsk_version', AppState.version).limit(2000);
       if (!sr.error && sr.data) {
         sr.data.forEach(function(row) {
           var local = AppState.srsData[row.hanzi];
@@ -284,7 +287,7 @@ var Sync = {
       }
 
       // Decks: merge by name (union words)
-      var dr2 = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid);
+      var dr2 = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid).limit(200);
       if (!dr2.error && dr2.data && dr2.data.length > 0) {
         var localDecks = JSON.parse(localStorage.getItem('hsk_user_decks') || '[]');
         var deckMap = {};

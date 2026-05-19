@@ -112,6 +112,17 @@ var Pricing = {
       console.warn('[Pricing] getSession failed, proceeding without token:', e.message);
     }
 
+    // Client-side SKU guard — Edge Function validates again server-side
+    var _validSkus = {
+      subscription: ['monthly', 'quarterly', 'semiannual', 'yearly', 'lifetime'],
+      token:        ['pack100', 'pack500', 'pack1200', 'pack3500']
+    };
+    if (!_validSkus[orderType] || _validSkus[orderType].indexOf(sku) < 0) {
+      Pricing._setState('error');
+      document.getElementById('pmErrorMsg').textContent = 'Gói không hợp lệ. Vui lòng thử lại.';
+      return;
+    }
+
     var fnUrl = SB_URL + '/functions/v1/create-payment';
     var body = {
       type:      orderType,        // 'subscription' | 'token'

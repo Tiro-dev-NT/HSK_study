@@ -220,7 +220,8 @@ var Quests = {
       .select('delta, reason, created_at, ref_id')
       .eq('user_id', Auth.user.id)
       .gt('created_at', since)
-      .order('created_at', { ascending: true });
+      .order('created_at', { ascending: true })
+      .limit(500);
 
     if (res.error) {
       console.warn('[Quests] syncFromServer failed:', res.error.message);

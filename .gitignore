@@ -38,6 +38,11 @@ sync_fix_*.md
 docs/reports/
 docs/marketing/
 docs/plans/css-organization-plan.md
+docs/archive/
+
+# Design assets từ Claude Design — keep local only
+# (repo public — KHÔNG để PNG/HTML prototype leak ra ngoài)
+docs/design/
 
 # Local-only assets — không cần cho production Cloudflare deploy
 # (2026-05-17) data prep tools + raw curriculum private

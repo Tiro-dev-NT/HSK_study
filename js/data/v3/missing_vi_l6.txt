@@ -1,2 +1,3 @@
-L6 missing (1):
-  奔驰: xe Benz/Mercedes
+L6 missing (2):
+  儿科: khoa nhi
+  网页: trang web

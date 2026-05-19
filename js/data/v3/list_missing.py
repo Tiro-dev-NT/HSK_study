@@ -7,7 +7,7 @@ VI_RE = re.compile(
     re.IGNORECASE
 )
 
-for lv in (6, 7, 8, 9):
+for lv in (1, 2, 3, 4, 5, 6, 7, 8, 9):
     fn = f'hsk3_lvl{lv}.js'
     with open(fn, encoding='utf-8') as f:
         lines = f.readlines()

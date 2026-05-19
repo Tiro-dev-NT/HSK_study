@@ -2051,4 +2051,12 @@ HSK3_DATA[9] = [
   {h:'正能量', p:'zhèng néng liàng', v:'năng lượng tích cực', e:'positive energy', t:'general'},
   {h:'追尾', p:'zhuī wěi', v:'đâm đuôi xe', e:'to tailgate', t:'general'},
   {h:'做证', p:'zuò zhèng', v:'làm chứng (biến thể)', e:'variant of 作证', t:'general'}
+
+  {h:'结', p:'jiē', v:'kết, buộc, đơm', e:'tie, knit, knot, weave, congeal, form, forge, cement, settle, conclude', t:'general'},
+  {h:'盘', p:'pán', v:'đĩa, bàn, vòng', e:'m.[event]', t:'general'},
+  {h:'待', p:'dài', v:'ở lại, đối xử', e:'till', t:'general'},
+  {h:'签', p:'qiān', v:'ký tên, thẻ', e:'sign, autograph', t:'general'},
+  {h:'尽', p:'jǐn', v:'hết, tận', e:'use up, exhaust, try one\'s best, put to best use, end', t:'general'},
+  {h:'命', p:'mìng', v:'mạng, số mệnh', e:'life, lot, fate, destiny', t:'general'},
+  {h:'炸', p:'zhá', v:'chiên, nổ, nổ tung', e:'to deep fry, to explode', t:'general'},
 ];

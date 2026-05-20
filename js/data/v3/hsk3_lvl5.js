@@ -903,8 +903,7 @@ HSK3_DATA[5] = [
   {h:'醉', p:'zuì', v:'say rượu, say', e:'intoxicated', t:'general'},
   {h:'尊敬', p:'zūn jìng', v:'tôn kính, kính trọng', e:'to respect', t:'social'},
   {h:'遵守', p:'zūn shǒu', v:'tuân thủ, tôn trọng', e:'to comply with', t:'general'},
-  {h:'作为', p:'zuò wéi', v:'với tư cách là; hành vi', e:'one\'s conduct', t:'general'}
-
+  {h:'作为', p:'zuò wéi', v:'với tư cách là; hành vi', e:'one\'s conduct', t:'general'},
   {h:'怪', p:'guài', v:'kỳ lạ, trách móc', e:'find sth. strange, blame', t:'general'},
   {h:'落', p:'là', v:'rơi xuống, tụt hậu', e:'come down, have, remain where one is, go under, leave behind, lower, decline, stay behind, lag behin', t:'general'},
   {h:'散', p:'sǎn', v:'tan ra, tản đi', e:'break up', t:'general'},

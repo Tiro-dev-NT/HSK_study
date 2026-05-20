@@ -505,7 +505,6 @@ HSK3_DATA[1] = [
   {h:'左边', p:'zuǒ bian', v:'bên trái', e:'left', t:'general'},
   {h:'坐', p:'Zuò', v:'ngồi', e:'to sit, to travel by', t:'actions'},
   {h:'坐下', p:'zuò xia', v:'ngồi xuống', e:'to sit down', t:'actions'},
-  {h:'做', p:'zuò', v:'làm', e:'to make', t:'actions'}
-
+  {h:'做', p:'zuò', v:'làm', e:'to make', t:'actions'},
   {h:'〇', p:'líng', v:'số không, ký hiệu 0', e:'zero (circle symbol)', t:'numbers'},
 ];

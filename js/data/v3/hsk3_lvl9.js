@@ -2050,8 +2050,7 @@ HSK3_DATA[9] = [
   {h:'着眼于', p:'zhuóyǎn yú', v:'nhắm vào/tập trung vào', e:'Focus on', t:'mental'},
   {h:'正能量', p:'zhèng néng liàng', v:'năng lượng tích cực', e:'positive energy', t:'general'},
   {h:'追尾', p:'zhuī wěi', v:'đâm đuôi xe', e:'to tailgate', t:'general'},
-  {h:'做证', p:'zuò zhèng', v:'làm chứng (biến thể)', e:'to testify, to bear witness', t:'animals'}
-
+  {h:'做证', p:'zuò zhèng', v:'làm chứng (biến thể)', e:'to testify, to bear witness', t:'animals'},
   {h:'结', p:'jiē', v:'kết, buộc, đơm', e:'tie, knit, knot, weave, congeal, form, forge, cement, settle, conclude', t:'general'},
   {h:'盘', p:'pán', v:'đĩa, bàn, vòng', e:'m.[event]', t:'general'},
   {h:'待', p:'dài', v:'ở lại, đối xử', e:'till', t:'general'},

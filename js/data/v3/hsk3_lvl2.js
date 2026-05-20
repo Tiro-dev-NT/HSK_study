@@ -749,8 +749,7 @@ HSK3_DATA[2] = [
   {h:'座位', p:'zuò wèi', v:'chỗ ngồi, ghế', e:'seat', t:'general'},
   {h:'做到', p:'zuò dào', v:'làm được, hoàn thành', e:'to accomplish', t:'actions'},
   {h:'做法', p:'zuò fǎ', v:'cách làm', e:'way of handling sth', t:'body'},
-  {h:'做饭', p:'zuò fàn', v:'nấu cơm, nấu ăn', e:'to prepare a meal', t:'actions'}
-
+  {h:'做饭', p:'zuò fàn', v:'nấu cơm, nấu ăn', e:'to prepare a meal', t:'actions'},
   {h:'表示', p:'biǎoshì', v:'biểu thị, bày tỏ', e:'to express, to indicate, to show', t:'general'},
   {h:'称1', p:'chēng', v:'xưng là, gọi là', e:'to call, to address as, to name', t:'general'},
   {h:'面1', p:'miàn', v:'bề mặt, phía', e:'surface, side, face, aspect', t:'body'},

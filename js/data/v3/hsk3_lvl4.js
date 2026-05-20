@@ -245,8 +245,7 @@ HSK3_DATA[4] = [
   {h:'仔细', p:'zǐ xì', v:'cẩn thận, kỹ lưỡng', e:'careful', t:'general'},
   {h:'组织', p:'zǔ zhī', v:'tổ chức', e:'to organize', t:'general'},
   {h:'尊重', p:'zūn zhòng', v:'tôn trọng', e:'to esteem', t:'general'},
-  {h:'做生意', p:'zuò shēng yì', v:'kinh doanh, buôn bán', e:'to do business', t:'general'}
-
+  {h:'做生意', p:'zuò shēng yì', v:'kinh doanh, buôn bán', e:'to do business', t:'general'},
   {h:'阿姨', p:'āyí', v:'dì, cô', e:'aunt, child\'s address to woman of similar age as parents, girl, babysitter, aunty, elderly unattache', t:'family'},
   {h:'矮', p:'ǎi', v:'thấp, lùn', e:'short (of stature), low', t:'general'},
   {h:'矮小', p:'ǎixiǎo', v:'thấp bé, nhỏ con', e:'short and small, low and small, undersized', t:'general'},

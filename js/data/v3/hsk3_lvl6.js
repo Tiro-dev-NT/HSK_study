@@ -2429,8 +2429,7 @@ HSK3_DATA[6] = [
   {h:'作息', p:'zuò xī', v:'làm việc và nghỉ ngơi', e:'to work and rest', t:'work'},
   {h:'座右铭', p:'zuò yòu míng', v:'châm ngôn/phương châm sống', e:'motto', t:'general'},
   {h:'做东', p:'zuò dōng', v:'đứng ra đãi tiệc/làm chủ', e:'to act as host', t:'general'},
-  {h:'做主', p:'zuò zhǔ', v:'đưa ra quyết định/làm chủ', e:'see 主', t:'general'}
-
+  {h:'做主', p:'zuò zhǔ', v:'đưa ra quyết định/làm chủ', e:'see 主', t:'general'},
   {h:'局', p:'jú', v:'cục, văn phòng, tình thế', e:'m.[event]', t:'general'},
   {h:'首', p:'shǒu', v:'đầu', e:'m.[general]', t:'general'},
   {h:'转动', p:'zhuàndòng', v:'quay tròn, chuyển động', e:'turn (round), move', t:'general'},

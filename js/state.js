@@ -6,51 +6,44 @@
 // ═══════════════════════════════════════════════════════
 
 var AppState = {
-  // ── Persistent state (synced with localStorage) ──
-  lang:     localStorage.getItem('hsk_lang')   || 'vi',
-  theme:    localStorage.getItem('hsk_theme')  || 'dark',
-  version:  parseInt(localStorage.getItem('hsk_version') || '2'),
+  // ── Persistent state (synced via Storage API) ────────
+  // Primitives: try Storage (JSON-encoded, new) then raw localStorage (old users)
+  lang: (function() {
+    var v = Storage.get('hsk_lang');
+    return v !== null ? v : (localStorage.getItem('hsk_lang') || 'vi');
+  })(),
+  theme: (function() {
+    var v = Storage.get('hsk_theme');
+    return v !== null ? v : (localStorage.getItem('hsk_theme') || 'dark');
+  })(),
+  version: (function() {
+    var v = Storage.get('hsk_version');
+    if (v !== null) return parseInt(v);
+    return parseInt(localStorage.getItem('hsk_version') || '2');
+  })(),
+  // Objects: always stored via JSON.stringify — Storage.getOr works directly
   progress: (function() {
-    var ver = parseInt(localStorage.getItem('hsk_version') || '2');
+    var ver = (function() {
+      var v = Storage.get('hsk_version');
+      return v !== null ? parseInt(v) : parseInt(localStorage.getItem('hsk_version') || '2');
+    })();
     var key = ver === 3 ? 'hsk_progress_v3' : 'hsk_progress';
-    try { return JSON.parse(localStorage.getItem(key) || '{}'); }
-    catch(e) { return {}; }
+    return Storage.getOr(key, {});
   })(),
   srsData: (function() {
-    var ver = parseInt(localStorage.getItem('hsk_version') || '2');
+    var ver = (function() {
+      var v = Storage.get('hsk_version');
+      return v !== null ? parseInt(v) : parseInt(localStorage.getItem('hsk_version') || '2');
+    })();
     var key = ver === 3 ? 'hsk_srs_v3' : 'hsk_srs';
-    try { return JSON.parse(localStorage.getItem(key) || '{}'); }
-    catch(e) { return {}; }
+    return Storage.getOr(key, {});
   })(),
-  xpData: (function() {
-    try {
-      return JSON.parse(localStorage.getItem('hsk_xp') || '{"total":0,"weeklyXP":0,"weekStart":"","lastActive":""}');
-    } catch(e) { return {total:0, weeklyXP:0, weekStart:'', lastActive:''}; }
-  })(),
-  dailyChallenge: (function() {
-    try { return JSON.parse(localStorage.getItem('hsk_daily_challenge') || '{}'); }
-    catch(e) { return {}; }
-  })(),
-  dailyChallengeStreak: (function() {
-    try {
-      return JSON.parse(localStorage.getItem('hsk_daily_challenge_streak') || '{"current":0,"best":0,"lastDate":""}');
-    } catch(e) { return {current:0, best:0, lastDate:''}; }
-  })(),
-  survivalHighScore: (function() {
-    try {
-      return JSON.parse(localStorage.getItem('hsk_survival_high_score') || '{"score":0,"date":""}');
-    } catch(e) { return {score:0, date:''}; }
-  })(),
-  tokenData: (function() {
-    try {
-      return JSON.parse(localStorage.getItem('hsk_tokens') || '{"balance":0,"lifetime_earned":0,"history":[]}');
-    } catch(e) { return {balance:0, lifetime_earned:0, history:[]}; }
-  })(),
-  questData: (function() {
-    try {
-      return JSON.parse(localStorage.getItem('hsk_quests') || '{"daily":{},"weekly":{},"chains":{},"metrics":{}}');
-    } catch(e) { return {daily:{}, weekly:{}, chains:{}, metrics:{}}; }
-  })(),
+  xpData:               Storage.getOr('hsk_xp',                    {total:0, weeklyXP:0, weekStart:'', lastActive:''}),
+  dailyChallenge:       Storage.getOr('hsk_daily_challenge',        {}),
+  dailyChallengeStreak: Storage.getOr('hsk_daily_challenge_streak', {current:0, best:0, lastDate:''}),
+  survivalHighScore:    Storage.getOr('hsk_survival_high_score',    {score:0, date:''}),
+  tokenData:            Storage.getOr('hsk_tokens',                 {balance:0, lifetime_earned:0, history:[]}),
+  questData:            Storage.getOr('hsk_quests',                 {daily:{}, weekly:{}, chains:{}, metrics:{}}),
 
   // ── Session / transient state ──
   currentWord:    null,   // word currently shown in modal
@@ -71,10 +64,11 @@ var AppState = {
   qSessionType:  'standard',
   qMeta:         {},
 
-  // ── localStorage helpers ──────────────────────────
+  // ── Storage helpers ───────────────────────────────
   save: function(key, value) {
-    try { localStorage.setItem(key, JSON.stringify(value)); }
-    catch(e) { console.error('[STATE] save failed:', key, e); }
+    if (!Storage.set(key, value)) {
+      console.error('[STATE] save failed:', key);
+    }
   },
 
   saveProgress: function() {
@@ -182,4 +176,4 @@ var qAnswered           = AppState.qAnswered;
 var qSessionType        = AppState.qSessionType;
 var qMeta               = AppState.qMeta;
 
-console.log('[STATE] Initialized. Progress levels:', Object.keys(AppState.progress).filter(k => AppState.progress[k].length > 0));
+console.log('[STATE v2.9] Initialized via Storage API. Progress levels:', Object.keys(AppState.progress).filter(k => AppState.progress[k].length > 0));

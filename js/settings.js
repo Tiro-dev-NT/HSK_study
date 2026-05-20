@@ -32,12 +32,8 @@ var appSettings = { ...SETTINGS_DEFAULT };
 var Settings = {
 
   load: function() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
-      appSettings = Object.assign({}, SETTINGS_DEFAULT, saved);
-    } catch(e) {
-      appSettings = Object.assign({}, SETTINGS_DEFAULT);
-    }
+    var saved = Storage.getOr(SETTINGS_KEY, {});
+    appSettings = Object.assign({}, SETTINGS_DEFAULT, saved);
     Settings.apply();
   },
 
@@ -107,7 +103,7 @@ var Settings = {
       srsMode:          document.getElementById('setSrsMode').value,
       hintLevel:        document.getElementById('setHintLevel').value,
     });
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(appSettings));
+    Storage.set(SETTINGS_KEY, appSettings);
     Settings.apply();
     Settings.close();
     showToast('✅ Đã lưu cài đặt!');
@@ -116,7 +112,7 @@ var Settings = {
   reset: function() {
     if (!confirm('Đặt lại tất cả cài đặt về mặc định?')) return;
     appSettings = Object.assign({}, SETTINGS_DEFAULT);
-    localStorage.removeItem(SETTINGS_KEY);
+    Storage.remove(SETTINGS_KEY);
     document.documentElement.style.removeProperty('--primary');
     document.documentElement.style.removeProperty('--primary-light');
     Settings.open();
@@ -127,7 +123,7 @@ var Settings = {
   setLang: function(lang) {
     if (typeof Theme !== 'undefined') {
       AppState.lang = lang;
-      localStorage.setItem('hsk_lang', lang);
+      Storage.set('hsk_lang', lang);
       Theme.applyLang(lang);
     }
     document.getElementById('smLangVI')?.classList.toggle('active', lang === 'vi');
@@ -137,13 +133,13 @@ var Settings = {
   toggleDarkMode: function(isDark) {
     if (typeof Theme !== 'undefined') Theme.applyTheme(isDark ? 'dark' : 'light');
     AppState.theme = isDark ? 'dark' : 'light';
-    localStorage.setItem('hsk_theme', AppState.theme);
+    Storage.set('hsk_theme', AppState.theme);
   },
 
   setPrimaryColor: function(color, light) {
     appSettings.primaryColor = color;
     appSettings.primaryLight = light || color;
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(appSettings));
+    Storage.set(SETTINGS_KEY, appSettings);
     document.documentElement.style.setProperty('--primary', color);
     document.documentElement.style.setProperty('--primary-light', light || color);
     document.querySelectorAll('.sm-color-dot').forEach(function(d) {

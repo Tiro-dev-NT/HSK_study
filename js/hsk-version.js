@@ -82,15 +82,13 @@ var HSKVersion = (function() {
   function _applySwitch(ver) {
     // 1. Persist version
     AppState.version = ver;
-    localStorage.setItem('hsk_version', ver);
+    Storage.set('hsk_version', ver);
 
-    // 2. Reload namespaced progress + srs from localStorage
+    // 2. Reload namespaced progress + srs via Storage API
     var progKey = ver === 3 ? 'hsk_progress_v3' : 'hsk_progress';
     var srsKey  = ver === 3 ? 'hsk_srs_v3'      : 'hsk_srs';
-    try { AppState.progress = JSON.parse(localStorage.getItem(progKey) || '{}'); }
-    catch(e) { AppState.progress = {}; }
-    try { AppState.srsData = JSON.parse(localStorage.getItem(srsKey) || '{}'); }
-    catch(e) { AppState.srsData = {}; }
+    AppState.progress = Storage.getOr(progKey, {});
+    AppState.srsData  = Storage.getOr(srsKey,  {});
 
     // 3. Sync compat aliases used by older modules
     if (typeof progress !== 'undefined') progress = AppState.progress;

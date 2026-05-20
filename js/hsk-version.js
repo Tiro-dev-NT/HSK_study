@@ -40,7 +40,7 @@ var HSKVersion = (function() {
       if (existing) { loaded++; if (loaded === total) _onAllLoaded(); return; }
 
       var s = document.createElement('script');
-      s.src = src + '?v=1.0';
+      s.src = src + '?v=1.1';
       s.onload = function() {
         loaded++;
         if (loaded === total) _onAllLoaded();

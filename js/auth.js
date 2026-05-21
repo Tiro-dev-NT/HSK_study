@@ -191,6 +191,13 @@ var Auth = {
       Pricing._pendingPlan = null;
       setTimeout(function() { Pricing.openPayment(pendingPlan); }, 350);
     }
+    // Warm up Pro cache → rebuild level grid so L4-L9 lock/unlock is correct
+    // from the first render (isProSync() returns false until isPro() has run once)
+    if (typeof Monetization !== 'undefined') {
+      Monetization.isPro().then(function() {
+        if (typeof Gamification !== 'undefined') Gamification.buildLevelGrid();
+      });
+    }
   },
 
   _onSignOut: function() {

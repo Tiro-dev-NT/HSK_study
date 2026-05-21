@@ -1,35 +1,36 @@
 // ═══════════════════════════════════════════════════════
-// SYNC-WINDOW.JS — Cửa sổ đồng bộ localStorage → Supabase
+// SYNC-WINDOW.JS — Migration helper
 // ──────────────────────────────────────────────────────
-// Policy (chốt 2026-05-14):
-//   • Cho phép sync local→cloud đến hết ngày 15/6/2026 (GMT+7)
-//   • Sau cutoff: khoá vĩnh viễn — không bao giờ push local→cloud nữa
-//   • Supabase → localStorage (download/pull) vẫn hoạt động bình thường
-//   • User học local-only phải chấp nhận: mất data khi xóa cache,
-//     không leaderboard, không premium
+// 2026-05-20 — "Sync Cutoff 15/6" ĐÃ BỎ HẲN.
+//   Lý do: tính năng đó sai kiến trúc — server trigger
+//   khoá ghi cloud cho MỌI user (kể cả đã đăng nhập) sau
+//   15/6 → cloud DB tiến độ học thành read-only vĩnh viễn.
+//   Anti-abuse vẫn được đảm bảo bằng: anti-cheat caps ở SQL
+//   (validate_xp/validate_progress) + sanitize ở client.
+//
+// File này giờ chỉ còn 2 nhiệm vụ:
+//   1. sanitizeMigrationData() — cap XP/streak/token lần
+//      migrate đầu (chống upload data ẩn danh đã chế).
+//   2. markMigrated()/hasMigrated() — đánh dấu đã migrate
+//      để KHÔNG hỏi lại modal migration mỗi lần đăng nhập.
+//
+// Các hàm banner/modal deadline giữ lại dạng STUB để HTML
+// và app.js cũ không vỡ.
 // ═══════════════════════════════════════════════════════
 
 var SyncWindow = {
 
   // ── Config ─────────────────────────────────────────
-  CUTOFF: new Date('2026-06-15T23:59:59+07:00'),
-  KEY_MIGRATED:     'migrated_v1',         // đã migrate thành công
-  KEY_CLOSED_SHOWN: 'sync_closed_notified', // đã hiện modal "đã đóng" rồi
+  KEY_MIGRATED: 'migrated_v1',   // đã migrate localStorage→cloud lần đầu
 
-  // ── Core: có thể sync local → cloud không? ────────
-  // Trả về false nếu:
-  //   1. Đã migrate rồi (chỉ cần migrate 1 lần duy nhất)
-  //   2. Qua ngày cutoff 15/6/2026
-  canSync: function() {
-    if (localStorage.getItem(SyncWindow.KEY_MIGRATED)) return false;
-    return Date.now() < SyncWindow.CUTOFF.getTime();
-  },
+  // ── Cutoff đã bỏ → luôn cho phép sync local → cloud ──
+  // Giữ hàm để các call site cũ (sync.js, auth.js) không vỡ.
+  canSync: function() { return true; },
 
-  // ── Số ngày còn lại đến cutoff ────────────────────
-  getDaysRemaining: function() {
-    var diff = SyncWindow.CUTOFF.getTime() - Date.now();
-    if (diff <= 0) return 0;
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  // ── Đã migrate localStorage→cloud lần đầu chưa? ─────
+  // Dùng để KHÔNG bật lại modal migration cho user cũ.
+  hasMigrated: function() {
+    return !!localStorage.getItem(SyncWindow.KEY_MIGRATED);
   },
 
   // ── Sanitize data trước khi upload lần đầu ────────
@@ -80,92 +81,32 @@ var SyncWindow = {
       Math.min(streak, 7) + ', tokens=' + Math.min(tokens, 100));
   },
 
-  // ── Đánh dấu đã migrate thành công ────────────────
-  // Sau đây canSync() luôn trả false → không push nữa
+  // ── Đánh dấu đã migrate ───────────────────────────
+  // Sau đây hasMigrated()=true → không hỏi lại modal migration.
+  // KHÔNG còn khoá sync (cutoff đã bỏ).
   markMigrated: function() {
     localStorage.setItem(SyncWindow.KEY_MIGRATED, new Date().toISOString());
-    // Ẩn banner sau khi đã migrate
-    var banner = document.getElementById('syncWindowBanner');
-    if (banner) banner.style.display = 'none';
-    console.log('[SyncWindow] Marked as migrated — local→cloud sync locked.');
+    console.log('[SyncWindow] Marked as migrated.');
   },
 
-  // ── Hiện banner cảnh báo ≤10 ngày / ≤3 ngày ──────
+  // ── STUB — banner/modal deadline đã bỏ ────────────
+  // Giữ tên hàm để HTML (onclick) + app.js không vỡ.
   showBanner: function() {
-    var banner = document.getElementById('syncWindowBanner');
-    if (!banner) return;
-
-    // Đã migrate → không cần
-    if (localStorage.getItem(SyncWindow.KEY_MIGRATED)) {
-      banner.style.display = 'none';
-      return;
-    }
-    // Đã đăng nhập → không cần (đã có cloud data)
-    if (typeof Auth !== 'undefined' && Auth.user) {
-      banner.style.display = 'none';
-      return;
-    }
-
-    var days = SyncWindow.getDaysRemaining();
-
-    if (days <= 0) {
-      // Qua cutoff — banner ẩn, modal "đã đóng" sẽ hiện
-      banner.style.display = 'none';
-
-    } else if (days <= 3) {
-      // 🔴 Khẩn cấp đỏ — còn 1-3 ngày
-      banner.className = 'sync-banner sync-banner-urgent';
-      banner.innerHTML =
-        '<span>🚨 <strong>Chỉ còn ' + days + ' ngày!</strong> ' +
-        'Cửa sổ đồng bộ đóng lúc 23:59 ngày 15/6. ' +
-        '<a class="sw-banner-link" onclick="Auth.openLoginModal()">Đăng nhập ngay để không mất dữ liệu!</a>' +
-        '</span>' +
-        '<button class="sw-banner-close" onclick="SyncWindow._closeBanner()" aria-label="Đóng">✕</button>';
-      banner.style.display = 'flex';
-
-    } else if (days <= 10) {
-      // 🟡 Cảnh báo vàng — còn 4-10 ngày
-      banner.className = 'sync-banner sync-banner-warn';
-      banner.innerHTML =
-        '<span>⚠️ <strong>Còn ' + days + ' ngày</strong> để lưu tiến độ học lên cloud (hết hạn 15/6). ' +
-        '<a class="sw-banner-link" onclick="Auth.openLoginModal()">Đăng nhập để đồng bộ.</a>' +
-        '</span>' +
-        '<button class="sw-banner-close" onclick="SyncWindow._closeBanner()" aria-label="Đóng">✕</button>';
-      banner.style.display = 'flex';
-
-    } else {
-      banner.style.display = 'none';
-    }
+    var b = document.getElementById('syncWindowBanner');
+    if (b) b.style.display = 'none';
   },
-
   _closeBanner: function() {
-    var banner = document.getElementById('syncWindowBanner');
-    if (banner) banner.style.display = 'none';
+    var b = document.getElementById('syncWindowBanner');
+    if (b) b.style.display = 'none';
   },
-
-  // ── Hiện modal "Cửa sổ đã đóng" (chỉ 1 lần) ─────
-  showClosedModal: function() {
-    // Điều kiện: qua cutoff + chưa migrate + chưa login + chưa hiện modal này
-    if (SyncWindow.getDaysRemaining() > 0) return;
-    if (localStorage.getItem(SyncWindow.KEY_MIGRATED)) return;
-    if (typeof Auth !== 'undefined' && Auth.user) return;
-    if (localStorage.getItem(SyncWindow.KEY_CLOSED_SHOWN)) return;
-
-    localStorage.setItem(SyncWindow.KEY_CLOSED_SHOWN, '1');
-    var m = document.getElementById('syncWindowClosedModal');
-    if (m) m.style.display = 'flex';
-  },
-
+  showClosedModal: function() { /* cutoff đã bỏ — không hiện gì */ },
   closeClosedModal: function() {
     var m = document.getElementById('syncWindowClosedModal');
     if (m) m.style.display = 'none';
   },
 
-  // ── Init: gọi sau khi Auth đã khởi tạo ───────────
+  // ── Init: ẩn banner deadline cũ nếu còn trong DOM ──
   init: function() {
-    setTimeout(function() {
-      SyncWindow.showBanner();
-      SyncWindow.showClosedModal();
-    }, 900);
+    SyncWindow.showBanner();
   }
 };

@@ -214,9 +214,10 @@ var Auth = {
   },
 
   _handleMigration: async function(userId) {
-    // CUTOFF GUARD: không migrate sau 15/6/2026
-    if (typeof SyncWindow !== 'undefined' && !SyncWindow.canSync()) {
-      console.log('[AUTH] Migration skipped — cửa sổ đồng bộ đã đóng.');
+    // Đã migrate localStorage→cloud rồi → không hỏi lại modal migration.
+    // (Cutoff đã bỏ — đây chỉ là cờ "đã migrate", không khoá sync.)
+    if (typeof SyncWindow !== 'undefined' && SyncWindow.hasMigrated()) {
+      console.log('[AUTH] Migration skipped — đã migrate trước đó.');
       return;
     }
 
@@ -405,26 +406,41 @@ var Auth = {
     // Migration buttons
     document.getElementById('migBtnUpload')?.addEventListener('click', async function() {
       showToast('📤 Đang upload...');
-      if (typeof SyncWindow !== 'undefined') SyncWindow.sanitizeMigrationData();
-      await Sync.pushAll();
-      if (typeof SyncWindow !== 'undefined') SyncWindow.markMigrated();
-      showToast('✅ Đã upload local lên cloud!');
-      Auth.closeMigrationModal();
+      try {
+        if (typeof SyncWindow !== 'undefined') SyncWindow.sanitizeMigrationData();
+        await Sync.pushAll();
+        if (typeof SyncWindow !== 'undefined') SyncWindow.markMigrated();
+        showToast('✅ Đã upload local lên cloud!');
+        Auth.closeMigrationModal();
+      } catch(e) {
+        console.error('[AUTH migBtnUpload]', e);
+        showToast('❌ Upload lỗi: ' + (e.message || 'thử lại sau'));
+      }
     });
     document.getElementById('migBtnDownload')?.addEventListener('click', async function() {
       showToast('📥 Đang tải cloud...');
-      await Sync.pullAll();
-      // Download = lấy cloud về, không cần markMigrated (không có local→cloud push)
-      showToast('✅ Đã lấy dữ liệu từ cloud!');
-      Auth.closeMigrationModal();
+      try {
+        await Sync.pullAll();
+        // Download = lấy cloud về, không cần markMigrated (không có local→cloud push)
+        showToast('✅ Đã lấy dữ liệu từ cloud!');
+        Auth.closeMigrationModal();
+      } catch(e) {
+        console.error('[AUTH migBtnDownload]', e);
+        showToast('❌ Tải lỗi: ' + (e.message || 'thử lại sau'));
+      }
     });
     document.getElementById('migBtnMerge')?.addEventListener('click', async function() {
       showToast('🔀 Đang gộp...');
-      if (typeof SyncWindow !== 'undefined') SyncWindow.sanitizeMigrationData();
-      await Sync.mergeAll();
-      if (typeof SyncWindow !== 'undefined') SyncWindow.markMigrated();
-      showToast('✅ Đã gộp dữ liệu!');
-      Auth.closeMigrationModal();
+      try {
+        if (typeof SyncWindow !== 'undefined') SyncWindow.sanitizeMigrationData();
+        await Sync.mergeAll();
+        if (typeof SyncWindow !== 'undefined') SyncWindow.markMigrated();
+        showToast('✅ Đã gộp dữ liệu!');
+        Auth.closeMigrationModal();
+      } catch(e) {
+        console.error('[AUTH migBtnMerge]', e);
+        showToast('❌ Gộp lỗi: ' + (e.message || 'thử lại sau'));
+      }
     });
     // Sync button
     document.getElementById('syncStatusBtn')?.addEventListener('click', function() {

@@ -10,12 +10,8 @@
 var Sync = {
 
   // ── Push tất cả local data lên cloud ───────────────
+  // (Sync Cutoff 15/6 đã bỏ — pushAll luôn được phép cho user đã đăng nhập)
   pushAll: async function() {
-    // CUTOFF GUARD: chặn local→cloud sau 15/6/2026
-    if (typeof SyncWindow !== 'undefined' && !SyncWindow.canSync()) {
-      console.warn('[SYNC] pushAll blocked — cửa sổ đồng bộ đã đóng (sau 15/6/2026).');
-      return;
-    }
     if (!SB || !Auth.user) return;
     var uid = Auth.user.id;
 
@@ -418,10 +414,6 @@ var Sync = {
   // ── Force Push / Force Pull ────────────────────────
   forcePush: async function() {
     if (!Auth.user) { showToast('Cần đăng nhập'); return; }
-    if (typeof SyncWindow !== 'undefined' && !SyncWindow.canSync()) {
-      showToast('🔒 Cửa sổ đồng bộ đã đóng sau 15/6/2026.');
-      return;
-    }
     if (!confirm('⚠️ Đẩy toàn bộ dữ liệu LOCAL lên cloud?\nDữ liệu cloud sẽ bị ghi đè!')) return;
     Sync.updateBadge('syncing');
     try {

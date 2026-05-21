@@ -7,6 +7,11 @@ var HSK_DATA = { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[] };
 // ─── HSK 3.0 (New HSK 2021) — populated lazily when user switches version ──
 var HSK3_DATA = { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[] };
 
+// ─── Pro gate constants ────────────────────────────────
+// HSK 3.0 L4-L9 require Pro; free users get a 20-word preview.
+var PRO_LEVEL_MIN      = 4;   // first gated level (HSK 3.0 only)
+var PREVIEW_WORD_COUNT = 20;  // words free users can study per Pro level
+
 // ─── Level / Meta Info ────────────────────────────────
 // Used by both app.js (home grid) and decks.js (deck cards)
 var LEVEL_INFO = {

@@ -161,6 +161,24 @@ var Session = {
     }
     updateStats();
     buildLevelGrid();
+
+    // ── Pro gate upsell after preview session ends ────────────────────
+    if (AppState.fcIsPreview) {
+      var _previewFullCnt = AppState.fcPreviewFullCnt || 0;
+      AppState.fcIsPreview = false;
+      AppState.fcPreviewLevel = null;
+      AppState.fcPreviewFullCnt = null;
+      setTimeout(function() {
+        if (typeof Monetization !== 'undefined') {
+          var isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
+          var msg = isEN
+            ? 'Unlock ' + _previewFullCnt + ' full words in this level'
+            : 'Mở khoá ' + _previewFullCnt + ' từ đầy đủ của cấp này';
+          Monetization.showGate(msg);
+        }
+      }, 1200); // brief delay so result screen shows first
+    }
+    // ─────────────────────────────────────────────────────────────────
     // E8: clear related words
     if (typeof RightSidebar !== 'undefined' && RightSidebar.clearRelated) RightSidebar.clearRelated();
     // ── Extended stats ─────────────────────────────

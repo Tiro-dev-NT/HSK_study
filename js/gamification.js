@@ -126,6 +126,8 @@ var Gamification = {
     grid.innerHTML = '';
     var count = activeLevelCount();
     var levelInfo = activeLevelInfo();
+    var isV3  = typeof AppState !== 'undefined' && AppState.version === 3;
+    var isPro = typeof Monetization !== 'undefined' ? Monetization.isProSync() : false;
     for (let lv = 1; lv <= count; lv++) {
       const info = levelInfo[lv];
       if (!info) continue;
@@ -137,16 +139,28 @@ var Gamification = {
       const stats = getLevelStats(lv);
       const pct = displayCount ? Math.round(stats.mastered / displayCount * 100) : 0;
 
+      // Pro gate: HSK 3.0 L4-L9 locked for free users
+      var isGated = isV3 && lv >= PRO_LEVEL_MIN && !isPro;
+
       var isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
       var lblNew      = isEN ? 'New' : 'Chưa học';
       var lblLearning = isEN ? 'Learning' : 'Đang học';
       var lblDue      = isEN ? 'Due' : 'Cần ôn';
       var lblMastered = isEN ? 'Mastered' : 'Đã thuộc';
       var lblWords    = isEN ? 'new words' : 'từ mới';
+      var lblPreview  = isEN ? 'Preview' : 'Xem thử';
+
+      var badgeHtml = isGated
+        ? '<div class="level-badge">' + info.label + ' <span style="font-size:0.75em">🔒</span></div>'
+        : '<div class="level-badge">' + info.label + '</div>';
+
+      var countHtml = isGated
+        ? '<div class="level-count" style="color:#F59E0B">' + lblPreview + ' ' + PREVIEW_WORD_COUNT + '/' + displayCount + ' ' + lblWords + '</div>'
+        : '<div class="level-count">' + displayCount + ' ' + lblWords + (!realCount ? ' (coming soon)' : '') + '</div>';
 
       card.innerHTML =
-        '<div class="level-badge">' + info.label + '</div>' +
-        '<div class="level-count">' + displayCount + ' ' + lblWords + (!realCount ? ' (coming soon)' : '') + '</div>' +
+        badgeHtml +
+        countHtml +
         '<div class="level-progress-bar"><div class="level-progress-fill" style="width:' + pct + '%;background:' + info.color + '"></div></div>' +
         '<div class="level-stats-grid">' +
           '<span class="ls-item ls-new" title="' + lblNew + '">🆕 ' + stats.new + '</span>' +
@@ -234,7 +248,12 @@ var Gamification = {
         var writer = HanziWriter.create(writerEl, word.h.charAt(0), {
           width: 100, height: 100, padding: 5,
           strokeColor: getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#333',
-          delayBetweenStrokes: 300, autoAnimate: true
+          delayBetweenStrokes: 300, autoAnimate: true,
+          charDataLoader: function(char, onComplete) {
+            fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/' + encodeURIComponent(char) + '.json')
+              .then(function(res) { return res.json(); })
+              .then(onComplete);
+          }
         });
       } catch(e) {}
     }

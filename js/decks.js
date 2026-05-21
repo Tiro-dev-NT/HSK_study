@@ -280,6 +280,35 @@ function openDeckDetail(deckId, topicFilter = null) {
   if (!deck) return;
   let words = getDeckWords(deck);
   if (topicFilter) words = words.filter(w => (w.t || 'general') === topicFilter);
+
+  // ── Pro gate: HSK 3.0 L4-L9 preview for free users ──────────────────
+  var isV3       = typeof AppState !== 'undefined' && AppState.version === 3;
+  var isGated    = isV3 && deck.level >= PRO_LEVEL_MIN;
+  var isPro      = typeof Monetization !== 'undefined' ? Monetization.isProSync() : false;
+  var isPreview  = isGated && !isPro;
+  var fullCount  = words.length;
+  if (isPreview) words = words.slice(0, PREVIEW_WORD_COUNT);
+  // Store preview state for startLearn handler
+  var dd = document.getElementById('deckDetail');
+  if (dd) {
+    dd.dataset.preview   = isPreview  ? '1' : '';
+    dd.dataset.fullCount = isGated    ? fullCount : '';
+  }
+  // Show/hide preview banner
+  var banner = document.getElementById('deckPreviewBanner');
+  if (banner) {
+    if (isPreview) {
+      var isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
+      banner.style.display = 'block';
+      banner.innerHTML = isEN
+        ? '🔒 Free preview: <strong>' + PREVIEW_WORD_COUNT + ' of ' + fullCount + ' words</strong> — <a href="#" onclick="Router.navigateTo(\'pricing\');return false;" style="color:#92400E;font-weight:600;text-decoration:underline">Upgrade to Pro</a> for full access'
+        : '🔒 Xem thử: <strong>' + PREVIEW_WORD_COUNT + '/' + fullCount + ' từ</strong> — <a href="#" onclick="Router.navigateTo(\'pricing\');return false;" style="color:#92400E;font-weight:600;text-decoration:underline">Nâng lên Pro</a> để học đủ';
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+  // ─────────────────────────────────────────────────────────────────────
+
   const prog = getDeckProgress(deck);
 
   document.getElementById('deckBrowser').style.display = 'none';
@@ -474,17 +503,32 @@ function wireDecksUI() {
   });
 
   // Start learn button — SRS queue, no dropdowns
-  document.getElementById('startLearn')?.addEventListener('click', () => {
+  document.getElementById('startLearn')?.addEventListener('click', async () => {
     if (!activeDeckId) return;
     const deck = decks[activeDeckId];
     const topicFilter = document.getElementById('deckDetail').dataset.topicFilter || '';
     let words = getDeckWords(deck);
     if (topicFilter) words = words.filter(w => (w.t || 'general') === topicFilter);
 
-    // SRS queue for system decks; shuffle 20 for user decks
-    if (deck.isSystem && typeof buildStudyQueue === 'function') {
+    // ── Pro gate: authoritative async check before starting session ──────
+    var isV3      = typeof AppState !== 'undefined' && AppState.version === 3;
+    var isGated   = isV3 && deck.level >= PRO_LEVEL_MIN;
+    var pro       = isGated && typeof Monetization !== 'undefined'
+                    ? await Monetization.isPro()
+                    : true;
+    var isPreview = isGated && !pro;
+    if (isPreview) words = words.slice(0, PREVIEW_WORD_COUNT);
+    AppState.fcIsPreview      = isPreview;
+    AppState.fcPreviewLevel   = isPreview ? deck.level : null;
+    AppState.fcPreviewFullCnt = isPreview ? getDeckWords(deck).length : null;
+    // ─────────────────────────────────────────────────────────────────────
+
+    // SRS queue for system decks; preview/user decks get a simple slice
+    if (!isPreview && deck.isSystem && typeof buildStudyQueue === 'function') {
       const { queue } = buildStudyQueue(words, SRS_NEW_PER_DAY);
       AppState.fcDeck = queue.length ? queue : shuffle(words).slice(0, SRS_NEW_PER_DAY);
+    } else if (isPreview) {
+      AppState.fcDeck = words; // serve all 20 preview words without SRS
     } else {
       AppState.fcDeck = shuffle([...words]).slice(0, Math.min(words.length, 20));
     }

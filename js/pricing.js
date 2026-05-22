@@ -115,7 +115,7 @@ var Pricing = {
     // Client-side SKU guard — Edge Function validates again server-side
     var _validSkus = {
       subscription: ['monthly', 'quarterly', 'semiannual', 'yearly', 'lifetime'],
-      token:        ['pack100', 'pack500', 'pack1200', 'pack3500']
+      token:        ['pack100', 'pack500', 'pack1200', 'pack3000']
     };
     if (!_validSkus[orderType] || _validSkus[orderType].indexOf(sku) < 0) {
       Pricing._setState('error');

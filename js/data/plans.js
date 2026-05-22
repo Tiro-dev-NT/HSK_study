@@ -71,17 +71,17 @@ window.PLAN_CATALOG = (function () {
     lifetime: {
       name:        'Trọn đời',
       sub:         '1 lần',
-      priceOrig:   1999000,
-      price:       999000,
-      priceLabel:  '999.000đ',
+      priceOrig:   2990000,
+      price:       1490000,
+      priceLabel:  '1.490.000đ',
       perMonth:    'vĩnh viễn',
       saveLabel:   'Tốt nhất',
       durationDays: null,           // null = perpetual
       tokenBonus:  8000,
       icon:        '💎',
       colorClass:  'pc-icon-purple',
-      featured:    false,
-      diamondPerks: true            // Shadowing nâng cao, YouTube subtitle
+      featured:    false
+      // AI: Lifetime KHÔNG unlimited — allowance AI = gói tháng (chốt 2026-05-21)
     }
   };
 

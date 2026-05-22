@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['setupTheme',      function() { Theme.setupTheme(); }],
     ['setupLang',       function() { Theme.setupLang(); }],
     ['buildLevelGrid',  function() { Gamification.buildLevelGrid(); }],
+    ['renderHSKMap',    function() { Gamification.renderHSKMap(); }],
     ['updateStats',     function() { Gamification.updateStats(); }],
     ['setupFeedback',   function() { Feedback.setup(); }],
     ['loadSettings',    function() { Settings.load(); }],

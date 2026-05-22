@@ -67,8 +67,10 @@
     transition: transform .15s, box-shadow .15s;
   }
   .bnav-fab:active { transform: scale(.91); box-shadow: 0 2px 8px rgba(220,38,38,.25); }
-  .stats-row { grid-template-columns: repeat(3,1fr); gap: 10px; }
-  .stat-num { font-size: 26px; }
+  /* Mobile: 2-col stats, hide streak (shown in XP bar) */
+  .stats-row { grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .streak-card { display: none; }
+  .stat-num { font-size: 32px; }
   .level-grid { grid-template-columns: repeat(2,1fr); }
   .q-options { grid-template-columns: 1fr; }
   .page-header { flex-direction: column; align-items: flex-start; gap: 2px; margin-bottom: 20px; }

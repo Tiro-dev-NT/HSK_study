@@ -115,9 +115,15 @@ var Gamification = {
         return s.dueDate && s.dueDate <= today;
       }).length;
       dEl.textContent = due;
+      // Sync due review card on home page
+      var dEl2 = document.getElementById('statDue2');
+      if (dEl2) dEl2.textContent = due;
     }
     Gamification.renderXPBar();
     Gamification.renderStreakCalendar();
+    Gamification._updateContinueCard();
+    Gamification._updateGreeting();
+    Gamification.renderHSKMap();
     if (typeof RightSidebar !== 'undefined') RightSidebar.render();
   },
 
@@ -228,10 +234,18 @@ var Gamification = {
       localStorage.setItem(wotdKey, JSON.stringify({ date: today, hanzi: word.h }));
     }
 
-    document.getElementById('wotdHanzi').textContent = word.h.charAt(0);
+    document.getElementById('wotdHanzi').textContent = word.h;
     document.getElementById('wotdPinyin').textContent = word.p;
     var isEN = AppState.lang === 'en';
     document.getElementById('wotdMeaning').textContent = isEN ? word.e : word.v;
+    // HSK level badge
+    var badgesEl = document.getElementById('wotdBadges');
+    if (badgesEl) {
+      var lvLabel = word.level ? 'HSK ' + word.level : '';
+      badgesEl.innerHTML = lvLabel
+        ? '<span class="wotd-hsk-badge">' + lvLabel + '</span>'
+        : '';
+    }
     var exEl = document.getElementById('wotdExample');
     if (word.ex && word.ex.zh) {
       exEl.innerHTML = '<span class="wotd-ex-zh">' + word.ex.zh + '</span>' +
@@ -361,10 +375,123 @@ var Gamification = {
     });
     html += '</div>';
     el.innerHTML = html;
+  },
+
+  // ── HSK Map (visual progress path on home page) ───────
+  renderHSKMap: function() {
+    var map = document.getElementById('hskMap');
+    if (!map) return;
+    var isV3 = typeof AppState !== 'undefined' && AppState.version === 3;
+    var count = activeLevelCount();
+    var levelInfo = activeLevelInfo();
+
+    // Find current level = first level not yet 80% mastered
+    var currentLevel = count;
+    for (var lv = 1; lv <= count; lv++) {
+      var wds = getNewWordsForLevel(lv);
+      var st  = getLevelStats(lv);
+      var p   = wds.length ? Math.round(st.mastered / wds.length * 100) : 0;
+      if (p < 80) { currentLevel = lv; break; }
+    }
+
+    var titleEl = document.getElementById('hskMapTitle');
+    var linkEl  = document.getElementById('hskMapLink');
+    if (titleEl) titleEl.textContent = isV3 ? 'Bản đồ HSK 3.0' : 'Bản đồ HSK 2.0';
+    if (linkEl)  linkEl.textContent  = 'Bạn ở HSK ' + currentLevel + ' →';
+
+    // Build HTML — each step = bubble + connector + label
+    var html = '';
+    for (var lv = 1; lv <= count; lv++) {
+      var wds    = getNewWordsForLevel(lv);
+      var st     = getLevelStats(lv);
+      var pct    = wds.length ? Math.round(st.mastered / wds.length * 100) : 0;
+      var isDone    = pct >= 80;
+      var isCurrent = lv === currentLevel;
+      var stepCls   = 'hsk-map-step' +
+        (isDone ? ' hsk-map-step--done' : isCurrent ? ' hsk-map-step--current' : '');
+      var info  = levelInfo[lv] || {};
+      var lbl   = isV3 ? 'L' + lv : (info.label || ('L' + lv));
+      var lvStr = lv;
+
+      html += '<div class="' + stepCls + '" data-level="' + lv + '" title="' +
+        (info.label || 'HSK ' + lv) + ' — ' + pct + '%">' +
+        '<div class="hsk-map-top">' +
+          '<div class="hsk-map-bubble">' + (isDone ? '✓' : lvStr) + '</div>' +
+          (lv < count ? '<div class="hsk-map-line' + (isDone ? ' done' : '') + '"></div>' : '') +
+        '</div>' +
+        '<div class="hsk-map-step-lbl">' + lbl + '</div>' +
+      '</div>';
+    }
+    map.innerHTML = html;
+
+    // Event delegation for level click
+    map.onclick = function(e) {
+      var step = e.target.closest('.hsk-map-step');
+      if (!step) return;
+      var lvNum = parseInt(step.dataset.level);
+      Router.navigateTo('learn');
+      setTimeout(function() {
+        document.dispatchEvent(new CustomEvent('hsk:openDeck',
+          { detail: { deckId: 'sys_hsk' + lvNum } }));
+      }, 50);
+    };
+  },
+
+  // ── Continue card (home page big red card) ────────────
+  _updateContinueCard: function() {
+    var titleEl = document.getElementById('hccTitle');
+    var fillEl  = document.getElementById('hccBarFill');
+    var pctEl   = document.getElementById('hccPct');
+    if (!titleEl) return;
+    var count = activeLevelCount();
+    var levelInfo = activeLevelInfo();
+    var currentLevel = count;
+    for (var lv = 1; lv <= count; lv++) {
+      var wds = getNewWordsForLevel(lv);
+      var st  = getLevelStats(lv);
+      var p   = wds.length ? Math.round(st.mastered / wds.length * 100) : 0;
+      if (p < 80) { currentLevel = lv; break; }
+    }
+    var info    = levelInfo[currentLevel] || {};
+    var wds     = getNewWordsForLevel(currentLevel);
+    var st      = getLevelStats(currentLevel);
+    var total   = wds.length || (info.count || 0);
+    var mastered = st.mastered || 0;
+    var pct     = total ? Math.round(mastered / total * 100) : 0;
+    var isV3    = typeof AppState !== 'undefined' && AppState.version === 3;
+    var prefix  = isV3 ? 'HSK 3.0 · L' : 'HSK ';
+    var suffix  = info.label ? ' — ' + info.label : '';
+    titleEl.textContent = prefix + currentLevel + suffix;
+    if (fillEl) fillEl.style.width = pct + '%';
+    if (pctEl)  pctEl.textContent  = mastered + '/' + total + ' · ' + pct + '%';
+  },
+
+  // ── Greeting (personalised with name + time of day) ───
+  _updateGreeting: function() {
+    var el  = document.getElementById('greetingText');
+    if (!el) return;
+    var hour = new Date().getHours();
+    var time = hour < 5 ? 'buổi đêm' : hour < 12 ? 'buổi sáng' : hour < 18 ? 'buổi chiều' : 'buổi tối';
+    var name = '';
+    try {
+      var cache = JSON.parse(localStorage.getItem('hsk_user_cache') || '{}');
+      var meta  = (cache.user_metadata) || {};
+      var raw   = meta.name || meta.full_name || cache.email || '';
+      name = raw.split('@')[0].split(' ')[0];
+    } catch(e) {}
+    el.textContent = 'Chào ' + time + (name ? ', ' + name : '') + '! 👋';
+
+    // Avatar initial in greeting row + topbar button
+    var initial = name ? name.charAt(0).toUpperCase() : '学';
+    var avatarEl   = document.getElementById('greetingAvatar');
+    var topbarBtn  = document.getElementById('topbarUserBtn');
+    if (avatarEl)  avatarEl.textContent  = initial;
+    if (topbarBtn) topbarBtn.textContent = initial;
   }
 };
 
 // ── Backward-compat global functions ──────────────────
+function renderHSKMap()           { Gamification.renderHSKMap(); }
 function addXP(amount)            { Gamification.addXP(amount); }
 function checkAndUpdateStreak()   { Gamification.checkAndUpdateStreak(); }
 function updateStats()            { Gamification.updateStats(); }

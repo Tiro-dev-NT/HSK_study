@@ -3,30 +3,41 @@
 
       <!-- ── Greeting ── -->
       <div class="home-greeting">
-        <h1 class="home-greeting-title" id="greetingText">Chào buổi sáng, bạn! 👋</h1>
-        <p class="home-greeting-sub">Hôm nay mình học 15 phút nhé?</p>
+        <div class="home-greeting-row">
+          <div class="home-greeting-avatar" id="greetingAvatar">学</div>
+          <div>
+            <h1 class="home-greeting-title" id="greetingText">Chào buổi sáng! 👋</h1>
+            <p class="home-greeting-sub" id="greetingSub">Hôm nay mình học 15 phút nhé?</p>
+          </div>
+        </div>
       </div>
 
       <!-- ── Stats row ── -->
       <div class="stats-row">
         <div class="stat-card">
           <div class="stat-num" id="statLearned">0</div>
+          <div class="stat-unit" data-vi="từ" data-en="words">từ</div>
           <div class="stat-label" data-vi="Đã học" data-en="Learned">Đã học</div>
         </div>
         <div class="stat-card streak-card" id="streakCard">
           <div class="stat-num"><span id="statStreak">0</span><span class="streak-fire">🔥</span></div>
+          <div class="stat-unit" data-vi="ngày" data-en="days">ngày</div>
           <div class="stat-label" data-vi="Chuỗi ngày" data-en="Day streak">Chuỗi ngày</div>
         </div>
         <div class="stat-card">
           <div class="stat-num" id="statDue">0</div>
+          <div class="stat-unit" data-vi="từ" data-en="words">từ</div>
           <div class="stat-label" data-vi="Cần ôn" data-en="Due today">Cần ôn</div>
         </div>
       </div>
 
       <!-- ── Continue learning card (big red gradient) ── -->
       <div class="home-continue-card">
-        <div class="hcc-eyebrow">TIẾP TỤC HỌC</div>
+        <div class="hcc-eyebrow">TIẾP TỤC HỌC · <span id="hccMinutes">15</span> PHÚT</div>
         <div class="hcc-body">
+          <div class="hcc-play">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
           <div class="hcc-info">
             <div class="hcc-title" id="hccTitle">HSK — Bài tiếp theo</div>
             <div class="hcc-progress-row">
@@ -57,6 +68,7 @@
             <div class="wotd-info">
               <div class="wotd-pinyin" id="wotdPinyin"></div>
               <div class="wotd-meaning" id="wotdMeaning"></div>
+              <div class="wotd-badges" id="wotdBadges"></div>
               <div class="wotd-example" id="wotdExample"></div>
             </div>
           </div>
@@ -129,9 +141,18 @@
         <p>On-ramp miễn phí cho HSK 0-1: bảng Pinyin, thanh điệu, cặp âm dễ nhầm và ví dụ HSK1.</p>
       </div>
 
-      <!-- ── HSK level grid (existing) ── -->
-      <h2 data-vi="Chọn cấp độ HSK" data-en="Choose HSK Level">Chọn cấp độ HSK</h2>
-      <div class="level-grid" id="levelGrid"></div>
+      <!-- ── HSK map (visual progress path) ── -->
+      <div class="hsk-map-section">
+        <div class="hsk-map-header">
+          <span class="hsk-map-title" id="hskMapTitle">Bản đồ HSK</span>
+          <a class="hsk-map-link" id="hskMapLink" href="#" onclick="Router.navigateTo('learn');return false;">Xem chi tiết →</a>
+        </div>
+        <div class="hsk-map-track">
+          <div class="hsk-map" id="hskMap"></div>
+        </div>
+      </div>
+      <!-- Level grid: kept for JS buildLevelGrid(), visually hidden -->
+      <div class="level-grid" id="levelGrid" style="display:none"></div>
       <div id="hsk3-count-note" class="hsk3-count-note" style="display:none"></div>
 
       <!-- ── Progress Analytics ── -->

@@ -27,7 +27,7 @@
   <!-- Components: shared UI patterns -->
   <link rel="stylesheet" href="css/components/buttons.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/modals.css?v=1.0"/>
-  <link rel="stylesheet" href="css/components/word-detail.css?v=1.0"/>
+  <link rel="stylesheet" href="css/components/word-detail.css?v=2.0"/>
   <link rel="stylesheet" href="css/components/deck-browser.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/streak-calendar.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/empty-state.css?v=1.0"/>
@@ -344,39 +344,98 @@
 
   <!-- WORD DETAIL MODAL -->
   <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="modal-close" id="modalClose">✕</button>
+    <div class="wd-modal">
 
-      <!-- Hanzi + TTS -->
-      <div class="modal-hanzi-row">
-        <div class="modal-hanzi" id="modalHanzi"></div>
-        <button class="modal-tts-btn" id="modalTtsBtn" title="Phát âm">&#128266;</button>
+      <!-- Header: HSK badge + crumb + close -->
+      <div class="wd-header">
+        <div class="wd-header-left">
+          <div class="wd-level-wrap" id="modalLevel"></div>
+          <span class="wd-crumb">Từ điển</span>
+        </div>
+        <button class="wd-close" id="modalClose" aria-label="Đóng">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
-      <div class="modal-pinyin" id="modalPinyin"></div>
-      <div class="modal-level" id="modalLevel"></div>
 
-      <!-- Stroke animation (HanziWriter) -->
-      <div class="modal-stroke-container" id="modalStrokeContainer" style="display:none">
-        <div id="hanziWriterTarget" style="margin:0 auto"></div>
-        <div class="stroke-btns">
-          <button class="stroke-btn" id="btnAnimateStroke">▶ Viết mẫu</button>
-          <button class="stroke-btn outline" id="btnPracticeStroke">✍️ Luyện viết</button>
+      <!-- Scrollable body -->
+      <div class="wd-body">
+
+        <!-- Hero: big hanzi + pinyin + icon grid -->
+        <div class="wd-hero">
+          <div class="wd-hero-text">
+            <div class="wd-hanzi" id="modalHanzi"></div>
+            <div class="wd-pinyin" id="modalPinyin"></div>
+            <!-- Waveform shown when .wd-modal--playing is toggled by JS -->
+            <div class="wd-waveform" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="wd-hero-actions">
+            <!-- TTS play/pause -->
+            <button class="wd-icon-btn wd-icon-btn--accent" id="modalTtsBtn" title="Phát âm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+            <!-- Star (future: favourite) -->
+            <button class="wd-icon-btn" title="Yêu thích" disabled style="cursor:default;opacity:.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </button>
+            <!-- Stroke order (HanziWriter toggle) -->
+            <button class="wd-icon-btn" id="btnAnimateStroke" title="Viết mẫu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+            </button>
+            <!-- Practice stroke -->
+            <button class="wd-icon-btn" id="btnPracticeStroke" title="Luyện viết">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- HanziWriter stroke preview (shown by JS) -->
+        <div class="wd-stroke-container" id="modalStrokeContainer" style="display:none">
+          <div id="hanziWriterTarget" style="margin:0 auto"></div>
+        </div>
+
+        <!-- Meanings section -->
+        <div class="wd-section">
+          <div class="wd-section-title">Nghĩa</div>
+          <div class="wd-meanings">
+            <div class="wd-meaning-row">
+              <span class="wd-lang-badge wd-lang-badge--vi">VI</span>
+              <span class="wd-meaning-text" id="modalVi"></span>
+            </div>
+            <div class="wd-meaning-row">
+              <span class="wd-lang-badge wd-lang-badge--en">EN</span>
+              <span class="wd-meaning-text wd-meaning-text--en" id="modalEn"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example sentence -->
+        <div class="wd-example-section" id="modalExample" style="display:none">
+          <div class="wd-section-title">Ví dụ câu</div>
+          <div class="wd-example-card">
+            <div class="wd-ex-zh" id="exZh"></div>
+            <div class="wd-ex-py" id="exPy"></div>
+            <div class="wd-ex-vi" id="exVi"></div>
+            <div class="wd-ex-en" id="exEn"></div>
+          </div>
+        </div>
+
+      </div><!-- /.wd-body -->
+
+      <!-- Footer -->
+      <div class="wd-footer">
+        <button class="wd-btn wd-btn--ghost" onclick="Dictionary.closeModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Đóng
+        </button>
+        <div class="wd-footer-right">
+          <button class="wd-btn wd-btn--primary" id="addToVault">➕ Thêm vào bộ thẻ</button>
         </div>
       </div>
 
-      <div class="modal-meanings">
-        <div class="meaning-row"><span class="lang-badge vi">VI</span><span id="modalVi"></span></div>
-        <div class="meaning-row"><span class="lang-badge en">EN</span><span id="modalEn"></span></div>
-      </div>
-      <div class="modal-example" id="modalExample" style="display:none">
-        <div class="ex-label">Ví dụ câu / Example</div>
-        <div class="ex-zh" id="exZh"></div>
-        <div class="ex-py" id="exPy"></div>
-        <div class="ex-vi" id="exVi"></div>
-        <div class="ex-en" id="exEn"></div>
-      </div>
-      <button class="btn-primary w-full" id="addToVault">➕ Thêm vào bộ thẻ</button>
-    </div>
+    </div><!-- /.wd-modal -->
   </div>
 
   <!-- ══ Data layer (load first, no dependencies) ══ -->

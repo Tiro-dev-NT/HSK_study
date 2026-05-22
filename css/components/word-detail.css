@@ -1,53 +1,290 @@
+/* ══════════════════════════════════════════════════
+   WORD DETAIL MODAL  —  word-detail.css  v2.0
+   Prefix: wd-*  (avoids collision with modals.css)
+   overlay behaviour kept from modals.css baseline
+   ══════════════════════════════════════════════════ */
+
+/* Overlay: stays on top, opacity-fade in/out */
 .modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(6px);
-  z-index: 3000; display: flex; align-items: center; justify-content: center;
-  padding: 20px; opacity: 0; pointer-events: none; transition: opacity .25s;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 3000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
 }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: var(--surface); border-radius: 20px; padding: 28px 24px;
-  max-width: 420px; width: 100%; position: relative;
-  box-shadow: 0 24px 80px rgba(0,0,0,.4); animation: slideUp .25s ease;
-  max-height: 90vh; overflow-y: auto;
+
+/* ── Modal card ──────────────────────────────────── */
+.wd-modal {
+  background: var(--surface);
+  border-radius: 20px;
+  max-width: 520px; width: 100%;
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.18);
+  animation: wdSlideUp .25s cubic-bezier(.22,.61,.36,1) both;
 }
-.modal-close {
-  position: absolute; top: 14px; right: 14px; background: var(--surface2);
-  border: 1px solid var(--border); border-radius: 10px;
-  width: 32px; height: 32px; font-size: 14px; color: var(--text2);
-  cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center;
+@keyframes wdSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
-.modal-close:hover { background: var(--primary); color: #fff; border-color: transparent; }
-.modal-hanzi-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 6px; }
-.modal-hanzi { font-family: var(--font-hanzi); font-size: 62px; font-weight: 700; color: var(--text); line-height: 1; text-align: center; }
-.modal-tts-btn {
-  background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
-  width: 40px; height: 40px; font-size: 20px; cursor: pointer; transition: .2s;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+
+/* ── Header ──────────────────────────────────────── */
+.wd-header {
+  height: 60px;
+  padding: 0 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
-.modal-tts-btn:hover { background: var(--primary); border-color: transparent; transform: scale(1.1); }
-.modal-pinyin { font-size: 20px; color: var(--accent); font-weight: 500; text-align: center; margin-bottom: 4px; }
-.modal-level { text-align: center; margin-bottom: 16px; }
-.modal-level span { font-size: 13px; color: var(--text2); }
-.ver-chip { background: var(--primary); color: #fff; border-radius: 6px; padding: 2px 6px; font-size: 11px; margin-left: 6px; }
-.modal-stroke-container {
+.wd-header-left {
+  display: flex; align-items: center; gap: 10px;
+  min-width: 0; overflow: hidden;
+}
+/* JS sets #modalLevel innerHTML = '<span>HSK 2.0 L3</span>' */
+.wd-level-wrap { display: flex; align-items: center; flex-shrink: 0; }
+.wd-level-wrap span {
+  font-size: 12px; font-weight: 700; letter-spacing: .05em;
+  padding: 5px 12px; border-radius: 999px;
+  background: var(--primary); color: #fff;
+  white-space: nowrap; line-height: 1;
+}
+.wd-crumb {
+  font-size: 12px; color: var(--text2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.wd-close {
+  width: 32px; height: 32px; border-radius: 10px;
+  border: none; background: transparent; color: var(--text2);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .15s, color .15s; flex-shrink: 0;
+}
+.wd-close:hover { background: var(--surface2); color: var(--text); }
+
+/* ── Body (scrollable) ───────────────────────────── */
+.wd-body {
+  flex: 1; overflow-y: auto;
+  padding: 20px 22px 24px;
+  scrollbar-width: thin;
+}
+.wd-body::-webkit-scrollbar { width: 6px; }
+.wd-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+
+/* ── Hero ────────────────────────────────────────── */
+.wd-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px; align-items: flex-start;
+  padding: 8px 0 4px;
+  min-height: 120px;
+}
+.wd-hero-text { min-width: 0; }
+.wd-hanzi {
+  font-family: var(--font-hanzi);
+  font-size: 72px; font-weight: 700; line-height: 1;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.wd-pinyin {
+  margin-top: 10px;
+  font-size: 24px; font-weight: 400;
+  color: var(--accent); letter-spacing: 0.01em;
+}
+/* Waveform (shown when TTS playing via JS adding .wd-modal--playing) */
+.wd-waveform {
+  display: none;
+  align-items: flex-end; gap: 3px;
+  height: 22px; margin-top: 10px;
+}
+.wd-modal--playing .wd-waveform { display: flex; }
+.wd-waveform span {
+  width: 3px; border-radius: 999px;
+  background: var(--primary);
+  animation: wdWave .8s ease-in-out infinite;
+  height: 30%;
+}
+.wd-waveform span:nth-child(1) { animation-delay: 0s;    height: 35%; }
+.wd-waveform span:nth-child(2) { animation-delay: .07s;  height: 85%; }
+.wd-waveform span:nth-child(3) { animation-delay: .14s;  height: 55%; }
+.wd-waveform span:nth-child(4) { animation-delay: .21s;  height: 100%; }
+.wd-waveform span:nth-child(5) { animation-delay: .28s;  height: 45%; }
+.wd-waveform span:nth-child(6) { animation-delay: .35s;  height: 75%; }
+.wd-waveform span:nth-child(7) { animation-delay: .42s;  height: 30%; }
+.wd-waveform span:nth-child(8) { animation-delay: .49s;  height: 65%; }
+@keyframes wdWave {
+  0%, 100% { transform: scaleY(.35); }
+  50%       { transform: scaleY(1);   }
+}
+
+/* 2×2 icon-button grid */
+.wd-hero-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 40px);
+  grid-auto-rows: 40px;
+  gap: 8px; padding-top: 4px;
+}
+.wd-icon-btn {
+  width: 40px; height: 40px; border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--text2);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .15s;
+}
+.wd-icon-btn svg { width: 16px; height: 16px; }
+.wd-icon-btn:hover { background: var(--surface2); color: var(--text); }
+.wd-icon-btn--accent {
+  color: var(--primary);
+  border-color: rgba(220,38,38,.3);
+}
+.wd-icon-btn--accent:hover {
+  background: var(--primary); color: #fff;
+  border-color: var(--primary);
+}
+.wd-modal--playing .wd-icon-btn--accent {
+  background: var(--primary); color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(220,38,38,.35);
+}
+
+/* ── Stroke container ────────────────────────────── */
+.wd-stroke-container {
   background: var(--surface2); border: 1px solid var(--border); border-radius: 14px;
-  padding: 16px; margin-bottom: 16px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 16px; margin-top: 18px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
 }
-.stroke-btns { display: flex; gap: 8px; }
-.stroke-btn { background: var(--primary); color: #fff; border: none; border-radius: 10px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; transition: .2s; font-family: var(--font-ui); }
-.stroke-btn:hover { opacity: .85; transform: translateY(-1px); }
-.stroke-btn.outline { background: transparent; border: 1.5px solid var(--primary); color: var(--primary); }
-.stroke-btn.outline:hover { background: var(--primary); color: #fff; }
-.modal-meanings { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-.meaning-row { display: flex; align-items: flex-start; gap: 10px; }
-.lang-badge { background: var(--primary); color: #fff; border-radius: 6px; padding: 2px 7px; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-.lang-badge.en { background: #2980B9; }
-.modal-example { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 4px; }
-.ex-label { font-size: 11px; font-weight: 700; color: var(--text2); text-transform: uppercase; margin-bottom: 6px; }
-.ex-zh { font-family: var(--font-hanzi); font-size: 17px; color: var(--text); }
-.ex-py { font-size: 13px; color: var(--accent); }
-.ex-vi { font-size: 13px; color: var(--text2); }
-.ex-en { font-size: 12px; color: var(--text3); }
+.wd-stroke-btns { display: flex; gap: 8px; }
+.wd-stroke-btn {
+  background: var(--primary); color: #fff;
+  border: none; border-radius: 10px;
+  padding: 8px 14px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: opacity .15s, transform .15s;
+  font-family: var(--font-ui);
+}
+.wd-stroke-btn:hover { opacity: .85; transform: translateY(-1px); }
+.wd-stroke-btn--outline {
+  background: transparent;
+  border: 1.5px solid var(--primary); color: var(--primary);
+}
+.wd-stroke-btn--outline:hover { background: var(--primary); color: #fff; }
+
+/* ── Section title ───────────────────────────────── */
+.wd-section { margin-top: 22px; }
+.wd-section-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 10px;
+}
+
+/* ── Meanings ────────────────────────────────────── */
+.wd-meanings { display: flex; flex-direction: column; gap: 8px; }
+.wd-meaning-row { display: flex; align-items: baseline; gap: 10px; padding: 3px 0; }
+.wd-lang-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  padding: 3px 9px; border-radius: 6px; color: #fff;
+  flex-shrink: 0; line-height: 1.5;
+}
+.wd-lang-badge--vi { background: var(--accent); }
+.wd-lang-badge--en { background: #3B82F6; }
+.wd-meaning-text {
+  font-size: 17px; font-weight: 500;
+  color: var(--text); line-height: 1.4;
+}
+.wd-meaning-text--en {
+  font-size: 15px; font-weight: 400; color: var(--text2);
+}
+
+/* ── Example card ────────────────────────────────── */
+.wd-example-section { margin-top: 22px; }
+.wd-example-card {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.wd-ex-zh {
+  font-family: var(--font-hanzi);
+  font-size: 18px; color: var(--text);
+  line-height: 1.5; margin-bottom: 2px;
+}
+.wd-ex-py  { font-size: 13px; color: var(--accent); }
+.wd-ex-vi  { font-size: 13px; color: var(--text2); }
+.wd-ex-en  { font-size: 12px; color: var(--text3); font-style: italic; }
+
+/* ── Footer ──────────────────────────────────────── */
+.wd-footer {
+  height: 68px; padding: 0 18px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--surface); flex-shrink: 0;
+}
+.wd-footer-right { display: flex; gap: 8px; }
+.wd-btn {
+  font-family: var(--font-ui);
+  font-size: 14px; font-weight: 600;
+  padding: 9px 16px; border-radius: 10px; border: 1px solid transparent;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+  transition: all .15s; letter-spacing: .005em; white-space: nowrap;
+}
+.wd-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.wd-btn--ghost {
+  color: var(--text2); background: transparent; border-color: transparent;
+}
+.wd-btn--ghost:hover { background: var(--surface2); color: var(--text); }
+.wd-btn--outline {
+  color: var(--primary); border-color: rgba(220,38,38,.4); background: transparent;
+}
+.wd-btn--outline:hover { background: rgba(220,38,38,.07); border-color: var(--primary); }
+.wd-btn--primary {
+  color: #fff;
+  background: linear-gradient(180deg,#EF4444 0%,var(--primary) 60%,#B91C1C 100%);
+  box-shadow: 0 4px 14px rgba(220,38,38,.3);
+}
+.wd-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 20px rgba(220,38,38,.4);
+}
+
+/* ── Dark mode ───────────────────────────────────── */
+[data-theme="dark"] .wd-level-wrap span {
+  box-shadow: 0 0 0 1px rgba(239,68,68,.3), 0 4px 12px rgba(220,38,38,.3);
+}
+[data-theme="dark"] .wd-hanzi {
+  text-shadow: 0 0 24px rgba(245,158,11,.12);
+}
+[data-theme="dark"] .wd-btn--primary {
+  box-shadow: 0 0 0 1px rgba(239,68,68,.25), 0 6px 20px rgba(220,38,38,.4);
+}
+[data-theme="dark"] .wd-btn--outline {
+  border-color: rgba(239,68,68,.45); color: #FCA5A5;
+}
+[data-theme="dark"] .wd-btn--outline:hover {
+  background: rgba(220,38,38,.12); color: #FECACA;
+}
+
+/* ── Mobile bottom-sheet ─────────────────────────── */
+@media (max-width: 540px) {
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .wd-modal {
+    border-radius: 20px 20px 0 0;
+    max-height: 92vh;
+  }
+  .wd-hanzi  { font-size: 58px; }
+  .wd-pinyin { font-size: 20px; }
+  .wd-body   { padding: 16px 18px 20px; }
+  .wd-footer { height: auto; padding: 12px 18px 20px; flex-wrap: wrap; }
+  .wd-footer-right { flex: 1; }
+  .wd-btn--primary { flex: 1; justify-content: center; }
+}
+
+/* ════════════════════════════════════════════════════
+   BELOW: deck / SRS / XP / streak classes
+   Used by js/decks.js · js/srs.js · pages/home.html
+   DO NOT REMOVE
+   ════════════════════════════════════════════════════ */
+
 .w-full { width: 100%; }
 .sr-xp { font-size: 22px; font-weight: 700; color: var(--accent); text-align: center; margin: 8px 0; }
 

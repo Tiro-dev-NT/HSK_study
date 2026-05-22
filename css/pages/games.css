@@ -269,13 +269,13 @@
   background: var(--primary);
   color: #fff;
   border: 2px solid transparent;
-  box-shadow: 0 3px 10px rgba(192,57,43,.35);
+  box-shadow: 0 3px 10px rgba(var(--primary-rgb), .35);
   animation: slotPop .15s ease;
 }
 .sent-slot.sent-filled:hover {
-  background: #c0392b;
+  background: var(--primary-light);
   transform: translateY(-2px);
-  box-shadow: 0 5px 14px rgba(192,57,43,.4);
+  box-shadow: 0 5px 14px rgba(var(--primary-rgb), .4);
 }
 @keyframes slotPop {
   0% { transform: scale(.75); opacity: .4; }

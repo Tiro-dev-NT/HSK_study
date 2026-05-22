@@ -124,7 +124,7 @@ var HandwritingGame = {
       HandwritingGame.writer = HanziWriter.create(wrap, charToWrite, {
         width: 200, height: 200, padding: 10,
         showCharacter: false, showOutline: true,
-        strokeColor: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#C0392B',
+        strokeColor: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#DC2626',
         outlineColor: getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#ddd',
         drawingColor: getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#333',
         highlightColor: '#22C55E',

@@ -23,8 +23,8 @@ const SETTINGS_DEFAULT = {
   soundFx:           true,
   srsMode:           'simple',
   hintLevel:         'medium',
-  primaryColor:      '#C0392B',
-  primaryLight:      '#E74C3C',
+  primaryColor:      '#DC2626',
+  primaryLight:      '#EF4444',
 };
 
 var appSettings = { ...SETTINGS_DEFAULT };
@@ -33,6 +33,8 @@ var Settings = {
 
   load: function() {
     var saved = Storage.getOr(SETTINGS_KEY, {});
+    // Migration 2026-05-22: brand board v1.0 — old red #C0392B → Châu hồng #DC2626
+    if (saved.primaryColor === '#C0392B') { saved.primaryColor = '#DC2626'; saved.primaryLight = '#EF4444'; }
     appSettings = Object.assign({}, SETTINGS_DEFAULT, saved);
     Settings.apply();
   },
@@ -76,7 +78,7 @@ var Settings = {
     document.getElementById('smLangEN')?.classList.toggle('active', lang === 'en');
     // Color dots
     document.querySelectorAll('.sm-color-dot').forEach(function(dot) {
-      dot.classList.toggle('active', dot.dataset.color === (s.primaryColor || '#C0392B'));
+      dot.classList.toggle('active', dot.dataset.color === (s.primaryColor || '#DC2626'));
     });
     document.getElementById('settingsOverlay').style.display = 'flex';
     document.body.style.overflow = 'hidden';

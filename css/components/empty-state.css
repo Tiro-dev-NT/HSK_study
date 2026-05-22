@@ -1,0 +1,382 @@
+/* ============================================================
+   Empty State — reusable Bé Rồng centered block
+   ------------------------------------------------------------
+   Source: docs/design/10-empty-error-states/output/
+   Use:  UIStates.empty({ mood, title, description, primary, secondary, tip })
+         → HTML rồi inject vào container nào cũng được.
+   Pattern:
+     <div class="ui-state">
+       <div class="ui-state__inner">
+         <div class="ui-mascot ui-mascot--sleep" style="--mascot-size:200px">
+           <img src="assets/icon-soft.png" alt="Bé Rồng">
+           <span class="ui-mascot__zzz">…</span>
+         </div>
+         <h1 class="ui-state__title">…</h1>
+         <p class="ui-state__desc">…</p>
+         <div class="ui-state__actions">…</div>
+         <div class="ui-state__tip">TIP …</div>
+       </div>
+     </div>
+   ============================================================ */
+
+/* ───── Root layout ───── */
+.ui-state {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-10) var(--s-6);
+  font-family: var(--font-ui);
+  color: var(--fg);
+  position: relative;
+}
+
+.ui-state__inner {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ui-state__title {
+  font-family: var(--font-ui);
+  font-size: var(--t-h1);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg);
+  margin: var(--s-6) 0 var(--s-2);
+  line-height: var(--lh-tight);
+}
+
+.ui-state__desc {
+  font-size: var(--t-body-lg);
+  color: var(--fg-2);
+  line-height: var(--lh-normal);
+  margin: 0 0 var(--s-6);
+  max-width: 420px;
+}
+
+/* ───── Actions ───── */
+.ui-state__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: center;
+  width: 100%;
+}
+
+/* Primary CTA — red gradient pill */
+.ui-state__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: 12px 22px;
+  background: linear-gradient(135deg, var(--chau-hong-3), var(--chau-hong));
+  color: #fff;
+  border: none;
+  border-radius: var(--r-3);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--t-body);
+  cursor: pointer;
+  box-shadow: var(--shadow-red);
+  transition: transform var(--d-fast) var(--ease-out),
+              box-shadow var(--d-base) var(--ease-out),
+              filter var(--d-fast) var(--ease-out);
+  text-decoration: none;
+}
+.ui-state__cta:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.ui-state__cta:active { transform: translateY(0); }
+.ui-state__cta--full { width: 100%; }
+.ui-state__cta .ui-state__icon { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* Quiet link / ghost button */
+.ui-state__link {
+  background: transparent;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: var(--t-small);
+  color: var(--fg-3);
+  cursor: pointer;
+  padding: 4px 8px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-2);
+  transition: color var(--d-fast) var(--ease-out);
+}
+.ui-state__link:hover { color: var(--fg); }
+
+.ui-state__link-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: var(--t-small);
+}
+.ui-state__link-sep { color: var(--border-2); }
+
+/* ───── Tip pill (yellow) ───── */
+.ui-state__tip {
+  margin-top: var(--s-8);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 8px 14px;
+  background: var(--warning-bg);
+  border: 1px solid var(--hoang-kim-3);
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  color: var(--mac-hac-3);
+  line-height: 1.4;
+}
+.ui-state__tip-label {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--hoang-kim-2);
+  letter-spacing: .06em;
+}
+.ui-state__tip strong { color: var(--mac-hac); }
+
+/* ───── Stats card (offline / session complete) ───── */
+.ui-state__stats {
+  display: inline-flex;
+  align-items: stretch;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-4);
+  padding: 6px 4px;
+  box-shadow: var(--shadow-2);
+  margin-bottom: var(--s-6);
+}
+.ui-state__stat {
+  flex: 1;
+  padding: 10px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 100px;
+}
+.ui-state__stat-hanzi {
+  font-family: var(--font-hanzi);
+  font-size: 18px;
+  font-weight: 500;
+  opacity: .35;
+  margin-bottom: 2px;
+}
+.ui-state__stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+}
+.ui-state__stat-label {
+  font-size: 10px;
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 600;
+}
+.ui-state__stat-divider {
+  width: 1px;
+  background: var(--border);
+  margin: 4px 0;
+  flex-shrink: 0;
+}
+/* compact 2-col variant (used in offline) */
+.ui-state__stats--compact .ui-state__stat {
+  flex-direction: row;
+  gap: 10px;
+  padding: 6px 18px;
+}
+.ui-state__stats--compact .ui-state__stat-icon {
+  width: 32px; height: 32px;
+  border-radius: var(--r-2);
+  background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg-2);
+  flex-shrink: 0;
+}
+.ui-state__stats--compact .ui-state__stat-text { text-align: left; }
+.ui-state__stats--compact .ui-state__stat-label { display: block; }
+.ui-state__stats--compact .ui-state__stat-value { font-size: 15px; }
+
+/* ───── Celebrate halo (session complete) ───── */
+.ui-state--celebrate {
+  position: relative;
+  overflow: hidden;
+}
+.ui-state--celebrate::before {
+  content: "";
+  position: absolute;
+  top: -240px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(252, 211, 77, .30), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.ui-state--celebrate .ui-state__inner { position: relative; z-index: 1; }
+
+.ui-state__footer-note {
+  margin-top: var(--s-8);
+  font-size: var(--t-small);
+  color: var(--fg-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ============================================================
+   MASCOT — Bé Rồng with mood accessories
+   ============================================================ */
+.ui-mascot {
+  --mascot-size: 200px;
+  position: relative;
+  width: var(--mascot-size);
+  height: var(--mascot-size);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.ui-mascot > img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  transition: transform var(--d-base) var(--ease-out), filter var(--d-base) var(--ease-out);
+}
+
+/* mood tilt + saturation */
+.ui-mascot--sleep    > img { transform: rotate(-8deg); filter: saturate(.9); }
+.ui-mascot--sad      > img { transform: rotate(-3deg); filter: saturate(.85); }
+.ui-mascot--lost     > img { transform: rotate(4deg); }
+.ui-mascot--concerned> img { transform: rotate(-2deg); filter: saturate(.95); }
+.ui-mascot--celebrate> img { transform: rotate(0deg); filter: saturate(1.1); }
+
+/* mood halos (background, z-index:1) */
+.ui-mascot__halo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Zzz (sleep) */
+.ui-mascot__zzz {
+  position: absolute;
+  top: calc(var(--mascot-size) * -0.06);
+  right: calc(var(--mascot-size) * -0.04);
+  z-index: 3;
+  pointer-events: none;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  color: var(--hoang-kim);
+  text-shadow: 0 2px 0 #fff, 0 0 8px rgba(245, 158, 11, .3);
+  line-height: 1;
+  text-align: left;
+}
+.ui-mascot__zzz span { display: block; }
+.ui-mascot__zzz span:nth-child(1) { font-size: calc(var(--mascot-size) * 0.16); opacity: .65; }
+.ui-mascot__zzz span:nth-child(2) { font-size: calc(var(--mascot-size) * 0.22); opacity: .85; margin-left: calc(var(--mascot-size) * 0.04); }
+.ui-mascot__zzz span:nth-child(3) { font-size: calc(var(--mascot-size) * 0.32); margin-left: calc(var(--mascot-size) * 0.10); }
+
+/* Wifi-off badge (sad/offline) */
+.ui-mascot__wifi-off {
+  position: absolute;
+  right: calc(var(--mascot-size) * -0.04);
+  bottom: calc(var(--mascot-size) * 0.02);
+  width: calc(var(--mascot-size) * 0.36);
+  height: calc(var(--mascot-size) * 0.36);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(31, 41, 55, .18), inset 0 0 0 3px var(--danger-bg);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 3;
+}
+.ui-mascot__wifi-off svg { width: 62%; height: 62%; }
+
+/* Question mark + map (lost / 404) */
+.ui-mascot__q {
+  position: absolute;
+  top: calc(var(--mascot-size) * -0.04);
+  left: calc(var(--mascot-size) * -0.06);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: calc(var(--mascot-size) * 0.36);
+  color: var(--chau-hong);
+  line-height: 1;
+  transform: rotate(-12deg);
+  text-shadow: 0 2px 0 #fff, 0 6px 12px rgba(220, 38, 38, .25);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Warning badge (concerned / payment) */
+.ui-mascot__warning {
+  position: absolute;
+  right: calc(var(--mascot-size) * -0.04);
+  top: calc(var(--mascot-size) * 0.02);
+  width: calc(var(--mascot-size) * 0.34);
+  height: calc(var(--mascot-size) * 0.34);
+  border-radius: 50%;
+  background: var(--warning-bg);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, .28);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 3;
+}
+.ui-mascot__warning svg { width: 60%; height: 60%; }
+
+/* Streak +1 badge (celebrate) */
+.ui-mascot__streak {
+  position: absolute;
+  right: calc(var(--mascot-size) * -0.18);
+  top: calc(var(--mascot-size) * 0.42);
+  transform: rotate(8deg);
+  background: var(--thuy-luc);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: calc(var(--mascot-size) * 0.075);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, .36);
+  display: flex; align-items: center; gap: 4px;
+  z-index: 4;
+  white-space: nowrap;
+}
+.ui-mascot__streak::before { content: "🔥"; font-size: calc(var(--mascot-size) * 0.08); }
+
+/* ───── Responsive ───── */
+@media (max-width: 640px) {
+  .ui-state { padding: var(--s-8) var(--s-4); }
+  .ui-state__title { font-size: 22px; }
+  .ui-state__desc { font-size: var(--t-body); }
+  .ui-mascot { --mascot-size: 160px; }
+  .ui-state__stats { flex-wrap: wrap; }
+  .ui-state__stat { min-width: 80px; padding: 10px 12px; }
+}
+
+/* ───── Dark mode tweaks ───── */
+[data-theme="dark"] .ui-state__tip {
+  background: rgba(245, 158, 11, .12);
+  border-color: rgba(245, 158, 11, .35);
+  color: var(--fg-2);
+}
+[data-theme="dark"] .ui-state__tip strong { color: var(--fg); }
+[data-theme="dark"] .ui-state__cta { box-shadow: 0 8px 24px rgba(220, 38, 38, .45); }
+[data-theme="dark"] .ui-mascot__wifi-off { background: var(--surface); box-shadow: 0 6px 18px rgba(0, 0, 0, .4), inset 0 0 0 3px rgba(220, 38, 38, .25); }
+[data-theme="dark"] .ui-mascot__warning { background: rgba(245, 158, 11, .18); }
+[data-theme="dark"] .ui-mascot__q { text-shadow: 0 2px 0 var(--surface), 0 6px 12px rgba(220, 38, 38, .35); }

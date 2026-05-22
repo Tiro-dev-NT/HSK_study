@@ -1,39 +1,246 @@
-﻿:root {
-  --primary: #C0392B;
-  --primary-light: #E74C3C;
-  --accent: #F39C12;
-  --bg: #F0F2F5;
-  --surface: #FFFFFF;
-  --surface2: #F7F8FA;
-  --border: #E2E8F0;
-  --text: #1A202C;
-  --text2: #64748B;
-  --text3: #94A3B8;
-  --sidebar-w: 220px;
-  --rs-w: 260px;
-  --radius: 14px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.08);
-  --font-ui: 'Inter', sans-serif;
-  --font-hanzi: 'Noto Sans SC', serif;
+/* ============================================================
+   Hanzi Genz — Design Tokens (v2.0 — Brand Board sync 2026-05-22)
+   ------------------------------------------------------------
+   Source: docs/design/01-brand-board/output/project/colors_and_type.css
+   Quy ước:
+   - 5 màu brand: Châu hồng / Hoàng kim / Thúy lục / Mặc hắc / Mễ bạch
+   - Legacy aliases (--primary, --bg, --text...) GIỮ NGUYÊN tên,
+     chỉ đổi VALUE để map vào palette mới (không break CSS cũ).
+   - Token mới (--s-*, --r-*, --t-*, --shadow-1..4) dùng cho code mới.
+   ============================================================ */
+
+:root {
+  /* ───── Brand 5-color palette ───── */
+  --chau-hong:   #DC2626;        /* Châu hồng — vermilion, primary */
+  --chau-hong-2: #B91C1C;        /* press / deeper */
+  --chau-hong-3: #EF4444;        /* hover / lighter */
+  --hoang-kim:   #F59E0B;        /* Hoàng kim — gold, pinyin + accent */
+  --hoang-kim-2: #D97706;
+  --hoang-kim-3: #FCD34D;
+  --thuy-luc:    #10B981;        /* Thúy lục — jade, success */
+  --thuy-luc-2:  #059669;
+  --mac-hac:     #1F2937;        /* Mặc hắc — ink, text */
+  --mac-hac-2:   #111827;
+  --mac-hac-3:   #374151;
+  --me-bach:     #FAFAF9;        /* Mễ bạch — rice paper, canvas */
+
+  /* ───── Semantic surfaces (new naming) ───── */
+  --surface-2: #FAFAF9;
+  --surface-3: #F5F5F4;
+  --overlay:   rgba(31, 41, 55, 0.55);
+
+  /* ───── Foreground (new naming) ───── */
+  --fg:    #1F2937;
+  --fg-2:  #4B5563;
+  --fg-3:  #6B7280;
+  --fg-4:  #9CA3AF;
+  --fg-inv: #FFFFFF;
+
+  /* ───── Borders (new naming) ───── */
+  --border-2:      #D6D3D1;
+  --border-strong: #1F2937;
+
+  /* ============================================================
+     LEGACY ALIASES — tên cũ còn dùng nhiều nơi, GIỮ tên, đổi value
+     ============================================================ */
+  --primary:       #DC2626;       /* was #C0392B → Châu hồng */
+  --primary-light: #EF4444;       /* was #E74C3C → Châu hồng-3 */
+  --primary-soft:  rgba(220, 38, 38, 0.10);
+  --primary-rgb:   220, 38, 38;
+  --accent:        #F59E0B;       /* was #F39C12 → Hoàng kim */
+
+  --bg:       #FAFAF9;            /* was #F0F2F5 → Mễ bạch */
+  --bg2:      #F5F5F4;            /* warm stone-100 */
+  --surface:  #FFFFFF;
+  --surface1: #FFFFFF;            /* alias for --surface */
+  --surface2: #F5F5F4;            /* was #F7F8FA → stone-100 warmer */
+  --card:     #FFFFFF;            /* card bg */
+  --card-bg:  #FFFFFF;            /* alias */
+  --hover:    #F5F5F4;            /* hover state bg */
+
+  --border:   #E7E5E4;            /* was #E2E8F0 → warm stone-200 */
+
+  --text:        #1F2937;         /* was #1A202C → Mặc hắc */
+  --text1:       #1F2937;         /* alias */
+  --text2:       #4B5563;         /* was #64748B */
+  --text3:       #6B7280;         /* was #94A3B8 */
+  --text-muted:  #6B7280;         /* alias */
+
+  /* ───── Semantic state ───── */
+  --success:    #10B981;
+  --success-bg: #ECFDF5;
+  --warning:    #F59E0B;
+  --warning-bg: #FFFBEB;
+  --danger:     #DC2626;
+  --danger-bg:  #FEF2F2;
+  --info:       #6366F1;
+  --info-bg:    #EEF2FF;
+
+  /* ───── Pinyin tone colors (Mandarin Pinyin Project, tuned warm) ───── */
+  --tone-1: #EF4444;              /* high level — red */
+  --tone-2: #F59E0B;              /* rising — gold */
+  --tone-3: #10B981;              /* dipping — jade */
+  --tone-4: #6366F1;              /* falling — indigo */
+  --tone-0: #9CA3AF;              /* neutral — stone */
+
+  /* ───── HSK 3.0 — 9 levels, grouped into 3 bands ───── */
+  --hsk-1: #10B981; --hsk-2: #06B6D4; --hsk-3: #0EA5E9;     /* Sơ cấp */
+  --hsk-4: #6366F1; --hsk-5: #8B5CF6; --hsk-6: #A855F7;     /* Trung cấp */
+  --hsk-7: #F59E0B; --hsk-8: #EA580C; --hsk-9: #DC2626;     /* Cao cấp */
+  --band-so:    #10B981;
+  --band-trung: #6366F1;
+  --band-cao:   #DC2626;
+
+  /* ───── Pro tier ───── */
+  --pro-gem: #F59E0B;
+  --pro-bg:  linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+
+  /* ───── Typography ───── */
+  --font-ui:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hanzi: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-mono:  ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* type scale (px) */
+  --t-hero-hanzi: 96px;
+  --t-hanzi-lg:   72px;
+  --t-hanzi-md:   48px;
+  --t-hanzi-sm:   32px;
+  --t-display:    44px;
+  --t-h1:         26px;
+  --t-h2:         22px;
+  --t-h3:         18px;
+  --t-body-lg:    16px;
+  --t-body:       14px;
+  --t-small:      13px;
+  --t-pinyin:     22px;
+  --t-pinyin-lg:  28px;
+  --t-label:      11px;
+
+  --lh-tight:  1.15;
+  --lh-snug:   1.3;
+  --lh-normal: 1.55;
+  --lh-loose:  1.7;
+
+  --tracking-eyebrow: 0.08em;
+  --tracking-tight:   -0.01em;
+
+  /* ───── Spacing (4-pt grid) ───── */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-8:  32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+
+  /* ───── Radius scale ───── */
+  --r-1:    4px;
+  --r-2:    8px;
+  --r-3:    12px;
+  --r-4:    16px;                 /* default card */
+  --r-5:    20px;
+  --r-6:    24px;
+  --r-pill: 999px;
+  --radius: 14px;                 /* LEGACY — giữ nguyên value cũ để layout không xê dịch */
+
+  /* ───── Elevation ───── */
+  --shadow-1: 0 1px 2px rgba(31,41,55,.06), 0 1px 1px rgba(31,41,55,.04);
+  --shadow-2: 0 4px 12px rgba(31,41,55,.06), 0 2px 4px rgba(31,41,55,.04);
+  --shadow-3: 0 8px 28px rgba(31,41,55,.08), 0 4px 10px rgba(31,41,55,.04);
+  --shadow-4: 0 18px 48px rgba(31,41,55,.14), 0 6px 14px rgba(31,41,55,.06);
+  --shadow-red:    0 8px 24px rgba(220,38,38,.28);
+  --shadow-gold:   0 8px 24px rgba(245,158,11,.32);
+  --inset-hairline: inset 0 0 0 1px rgba(31,41,55,.06);
+  /* legacy aliases */
+  --shadow:    0 4px 12px rgba(31,41,55,.06), 0 2px 4px rgba(31,41,55,.04);
+  --shadow-sm: 0 1px 2px rgba(31,41,55,.06), 0 1px 1px rgba(31,41,55,.04);
+
+  /* ───── Motion ───── */
+  --ease-out:    cubic-bezier(.22,.61,.36,1);
+  --ease-in:     cubic-bezier(.55,.06,.68,.19);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --d-fast: 120ms;
+  --d-base: 200ms;
+  --d-slow: 320ms;
+
+  /* ───── Layout ───── */
+  --maxw-content: 1200px;
+  --maxw-narrow:  720px;
+  --sidebar-w:    220px;          /* giữ giá trị app hiện tại (mockup 260px) */
+  --rs-w:         260px;
+  --topbar-h:     64px;
 }
+
+/* ============================================================
+   DARK MODE — adapt tokens
+   ============================================================ */
 [data-theme="dark"] {
-  --bg: #0F0F1A;
-  --surface: #1A1A2E;
+  /* surfaces */
+  --bg:       #0F0F1A;
+  --bg2:      #16213E;
+  --surface:  #1A1A2E;
+  --surface1: #1A1A2E;
   --surface2: #16213E;
-  --border: #2D3748;
-  --text: #F1F5F9;
-  --text2: #94A3B8;
-  --text3: #4A5568;
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --surface-2: #1A1A2E;
+  --surface-3: #16213E;
+  --card:     #1A1A2E;
+  --card-bg:  #1A1A2E;
+  --hover:    #2D3748;
+  --overlay:  rgba(0, 0, 0, 0.65);
+
+  /* borders */
+  --border:        #2D3748;
+  --border-2:      #374151;
+  --border-strong: #F1F5F9;
+
+  /* text */
+  --text:       #F1F5F9;
+  --text1:      #F1F5F9;
+  --text2:      #94A3B8;
+  --text3:      #6B7280;
+  --text-muted: #94A3B8;
+  --fg:         #F1F5F9;
+  --fg-2:       #CBD5E1;
+  --fg-3:       #94A3B8;
+  --fg-4:       #64748B;
+  --fg-inv:     #1F2937;
+
+  /* state bg — dim down để không chói trên nền tối */
+  --success-bg: rgba(16,185,129,0.12);
+  --warning-bg: rgba(245,158,11,0.12);
+  --danger-bg:  rgba(220,38,38,0.12);
+  --info-bg:    rgba(99,102,241,0.12);
+  --primary-soft: rgba(220, 38, 38, 0.18);
+
+  /* shadows — đậm hơn cho contrast */
+  --shadow:    0 4px 24px rgba(0,0,0,0.4);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-1:  0 1px 2px rgba(0,0,0,0.35), 0 1px 1px rgba(0,0,0,0.25);
+  --shadow-2:  0 4px 12px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.25);
+  --shadow-3:  0 8px 28px rgba(0,0,0,0.45), 0 4px 10px rgba(0,0,0,0.25);
+  --shadow-4:  0 18px 48px rgba(0,0,0,0.55), 0 6px 14px rgba(0,0,0,0.35);
+  --inset-hairline: inset 0 0 0 1px rgba(255,255,255,.06);
 }
+
+/* ============================================================
+   Base reset
+   ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 button, a { touch-action: manipulation; }
 body {
   font-family: var(--font-ui);
+  font-size: var(--t-body);
+  line-height: var(--lh-normal);
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   display: flex;
   transition: background .3s, color .3s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

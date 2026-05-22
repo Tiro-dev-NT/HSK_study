@@ -85,3 +85,11 @@ config.local.*
 # Claude Code bootstrap (working style — auto-loaded by Claude Code)
 CLAUDE.md
 .claude/
+
+# Playwright MCP cache (browser session traces)
+.playwright-mcp/
+
+# Working tree debug artifacts (network logs, screenshots from local QA)
+*-network.txt
+*-warnings.txt
+*-errors-*.txt

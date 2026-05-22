@@ -20,6 +20,7 @@ var Router = (function() {
     '/grammar':        'grammar',
     '/reading':        'reading',
     '/learn':          'learn',
+    '/vocab':          'learn',
     '/quiz':           'quiz',
     '/vault':          'vault',
     '/feedback':       'feedback',
@@ -30,6 +31,7 @@ var Router = (function() {
     '/vocab-import':   'vocab-import',
     '/quests':         'quests',
     '/handwriting':    'handwriting',
+    '/pinyin-lab':     'pinyin-lab',
     '/pricing':        'pricing',
     '/admin':          'admin'
   };
@@ -90,6 +92,9 @@ var Router = (function() {
     },
     'handwriting': function() {
       if (typeof Handwriting !== 'undefined') Handwriting.setup();
+    },
+    'pinyin-lab': function() {
+      if (typeof PinyinLab !== 'undefined') PinyinLab.setup();
     },
     'pricing': function() {
       if (typeof Pricing !== 'undefined') Pricing._checkReturnUrl();
@@ -199,15 +204,17 @@ var Router = (function() {
       // Handle hash-based routes (fallback for #/page or #page)
       window.addEventListener('hashchange', function() {
         var hash = window.location.hash.replace(/^#\/?/, '') || 'home';
-        var page = _initMap.hasOwnProperty(hash) ? hash : 'home';
+        var page = hash === 'vocab' ? 'learn' : (_initMap.hasOwnProperty(hash) ? hash : 'home');
         _navigateTo(page, false);
       });
 
       // Initial navigation: honour URL path or hash for direct links / refresh
       var initialHash = window.location.hash.replace(/^#\/?/, '');
-      var initialPage = initialHash && _initMap.hasOwnProperty(initialHash)
-        ? initialHash
-        : _pageFromPath(window.location.pathname);
+      var initialPage = initialHash === 'vocab'
+        ? 'learn'
+        : (initialHash && _initMap.hasOwnProperty(initialHash)
+          ? initialHash
+          : _pageFromPath(window.location.pathname));
       Router.currentPage = initialPage;
       _navigateTo(initialPage, false);
 

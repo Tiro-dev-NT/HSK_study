@@ -1,0 +1,418 @@
+.pinyin-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.pinyin-hero-badge {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent, #F59E0B));
+  color: white;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pinyin-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 14px;
+  margin-bottom: 12px;
+}
+
+.pinyin-tab {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text2);
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.pinyin-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.pinyin-panel {
+  display: none;
+}
+
+.pinyin-panel.active {
+  display: block;
+}
+
+.pinyin-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.pinyin-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.pinyin-section-head h2 {
+  margin: 0 0 6px;
+}
+
+.pinyin-section-head p {
+  margin: 0;
+  color: var(--text2);
+}
+
+.pinyin-tone-picker {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.pinyin-tone-btn,
+.pinyin-initial-btn,
+.pinyin-chip,
+.pinyin-answer,
+.pinyin-pair-check {
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  border-radius: 12px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 9px 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pinyin-tone-btn.active,
+.pinyin-initial-btn.active,
+.pinyin-answer:hover,
+.pinyin-chip:hover,
+.pinyin-chip.selected {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 16%, transparent);
+  color: var(--primary);
+}
+
+.pinyin-table-wrap {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.pinyin-table {
+  border-collapse: separate;
+  border-spacing: 6px;
+  min-width: 1120px;
+  width: 100%;
+}
+
+.pinyin-table th {
+  color: var(--text2);
+  font-size: 12px;
+  text-align: center;
+  position: sticky;
+  left: 0;
+  background: var(--card-bg);
+  z-index: 1;
+}
+
+.pinyin-table thead th {
+  position: static;
+}
+
+.pinyin-table td,
+.pinyin-table th {
+  min-width: 58px;
+}
+
+.pinyin-cell {
+  position: relative;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pinyin-cell:hover,
+.pinyin-cell:focus {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.pinyin-empty {
+  opacity: .35;
+}
+
+.pinyin-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  min-width: 150px;
+  max-width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s ease;
+  z-index: 5;
+}
+
+.pinyin-cell:hover .pinyin-tooltip,
+.pinyin-cell:focus .pinyin-tooltip {
+  opacity: 1;
+}
+
+.pinyin-drill-box,
+.pinyin-sound-results {
+  min-height: 180px;
+}
+
+.pinyin-empty-state {
+  color: var(--text2);
+  background: var(--bg2);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  text-align: center;
+}
+
+.pinyin-drill-progress {
+  color: var(--text2);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.pinyin-drill-syllable {
+  font-size: clamp(48px, 12vw, 86px);
+  font-weight: 900;
+  text-align: center;
+  margin: 12px 0;
+}
+
+.pinyin-answer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pinyin-feedback {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.pinyin-feedback.ok {
+  background: color-mix(in srgb, #10B981 16%, transparent);
+  color: #10B981;
+}
+
+.pinyin-feedback.no {
+  background: color-mix(in srgb, #EF4444 16%, transparent);
+  color: #EF4444;
+}
+
+.pinyin-result {
+  text-align: center;
+  padding: 18px;
+}
+
+.pinyin-result h3 {
+  margin: 0 0 8px;
+}
+
+.pinyin-pairs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pinyin-pair-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.pinyin-pair-card h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.pinyin-pair-card p {
+  margin: 0 0 12px;
+  color: var(--text2);
+}
+
+.pinyin-pair-items,
+.pinyin-syllable-list,
+.pinyin-sound-picker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pinyin-pair-quiz {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pinyin-pair-prompt {
+  font-weight: 800;
+}
+
+.pinyin-pair-feedback {
+  margin-top: 10px;
+  min-height: 24px;
+  font-weight: 800;
+}
+
+.pinyin-pair-feedback.ok {
+  color: #10B981;
+}
+
+.pinyin-pair-feedback.no {
+  color: #EF4444;
+}
+
+.pinyin-sound-results h3,
+.pinyin-sound-results h4 {
+  margin: 18px 0 10px;
+}
+
+.pinyin-example-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.pinyin-word-example {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  text-align: left;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.pinyin-word-example strong {
+  grid-row: span 2;
+  font-size: 28px;
+}
+
+.pinyin-word-example span {
+  font-weight: 800;
+}
+
+.pinyin-word-example em {
+  color: var(--text2);
+  font-style: normal;
+}
+
+.pinyin-home-widget {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 16%, var(--card-bg)), var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+  margin: 18px 0;
+}
+
+.pinyin-home-widget-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.pinyin-home-widget-title {
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.pinyin-home-widget-link {
+  color: var(--primary);
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pinyin-home-widget p {
+  margin: 0;
+  color: var(--text2);
+}
+
+@media (max-width: 720px) {
+  .pinyin-hero,
+  .pinyin-section-head {
+    display: block;
+  }
+
+  .pinyin-hero-badge,
+  .pinyin-tone-picker,
+  #pinyinStartDrill {
+    margin-top: 12px;
+  }
+
+  .pinyin-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .pinyin-table {
+    min-width: 980px;
+    border-spacing: 4px;
+  }
+
+  .pinyin-table td,
+  .pinyin-table th {
+    min-width: 48px;
+  }
+
+  .pinyin-cell {
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .pinyin-answer-grid,
+  .pinyin-pairs-grid,
+  .pinyin-example-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pinyin-pair-quiz {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

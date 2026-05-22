@@ -1,0 +1,67 @@
+<section class="page active" id="page-pinyin-lab">
+  <div class="page-header pinyin-hero">
+    <div>
+      <h1>Pinyin Lab</h1>
+      <p>Học phát âm Pinyin từ nền tảng: âm đầu, vận mẫu, thanh điệu và các cặp dễ nhầm.</p>
+    </div>
+    <div class="pinyin-hero-badge">HSK 0-1</div>
+  </div>
+
+  <div class="pinyin-tabs" role="tablist" aria-label="Pinyin Lab sections">
+    <button class="pinyin-tab active" data-pinyin-tab="table" type="button" role="tab" aria-selected="true" aria-controls="pinyinPanelTable">Bảng Pinyin</button>
+    <button class="pinyin-tab" data-pinyin-tab="drill" type="button" role="tab" aria-selected="false" aria-controls="pinyinPanelDrill">Luyện thanh điệu</button>
+    <button class="pinyin-tab" data-pinyin-tab="pairs" type="button" role="tab" aria-selected="false" aria-controls="pinyinPanelPairs">Cặp dễ nhầm</button>
+    <button class="pinyin-tab" data-pinyin-tab="sounds" type="button" role="tab" aria-selected="false" aria-controls="pinyinPanelSounds">Học từng âm</button>
+  </div>
+
+  <div class="pinyin-panel active" id="pinyinPanelTable" role="tabpanel">
+    <div class="pinyin-card">
+      <div class="pinyin-section-head">
+        <div>
+          <h2>Bảng Pinyin tương tác</h2>
+          <p>Chọn thanh điệu rồi bấm một ô để nghe phát âm. Rê chuột hoặc chạm giữ để xem gợi ý tiếng Việt.</p>
+        </div>
+        <div class="pinyin-tone-picker" id="pinyinTonePicker"></div>
+      </div>
+      <div class="pinyin-table-wrap" id="pinyinTableWrap"></div>
+    </div>
+  </div>
+
+  <div class="pinyin-panel" id="pinyinPanelDrill" role="tabpanel">
+    <div class="pinyin-card">
+      <div class="pinyin-section-head">
+        <div>
+          <h2>Drill thanh điệu</h2>
+          <p>Nghe 10 câu, chọn thanh đúng. Hoàn thành round sẽ nhận XP theo số câu đúng.</p>
+        </div>
+        <button class="btn-primary" id="pinyinStartDrill" type="button">Bắt đầu</button>
+      </div>
+      <div id="pinyinDrillBox" class="pinyin-drill-box"></div>
+    </div>
+  </div>
+
+  <div class="pinyin-panel" id="pinyinPanelPairs" role="tabpanel">
+    <div class="pinyin-card">
+      <div class="pinyin-section-head">
+        <div>
+          <h2>Cặp âm dễ nhầm</h2>
+          <p>Nghe từng cặp để phân biệt bật hơi, uốn lưỡi và âm mặt lưỡi.</p>
+        </div>
+      </div>
+      <div id="pinyinPairsGrid" class="pinyin-pairs-grid"></div>
+    </div>
+  </div>
+
+  <div class="pinyin-panel" id="pinyinPanelSounds" role="tabpanel">
+    <div class="pinyin-card">
+      <div class="pinyin-section-head">
+        <div>
+          <h2>Học từng âm</h2>
+          <p>Chọn một initial để xem âm tiết phổ biến và ví dụ HSK1 đang có trong dữ liệu.</p>
+        </div>
+      </div>
+      <div id="pinyinSoundPicker" class="pinyin-sound-picker"></div>
+      <div id="pinyinSoundResults" class="pinyin-sound-results"></div>
+    </div>
+  </div>
+</section>

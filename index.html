@@ -19,7 +19,7 @@
   <link rel="preload" as="image" href="assets/logo.webp" media="(max-width: 767px)" fetchpriority="high"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <!-- Base: tokens & reset -->
-  <link rel="stylesheet" href="css/base/variables.css?v=1.0"/>
+  <link rel="stylesheet" href="css/base/variables.css?v=2.0"/>
   <!-- Layout: sidebar, main, right-sidebar -->
   <link rel="stylesheet" href="css/layout/sidebar.css?v=1.0"/>
   <link rel="stylesheet" href="css/layout/main.css?v=1.0"/>
@@ -30,6 +30,8 @@
   <link rel="stylesheet" href="css/components/word-detail.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/deck-browser.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/streak-calendar.css?v=1.0"/>
+  <link rel="stylesheet" href="css/components/empty-state.css?v=1.0"/>
+  <link rel="stylesheet" href="css/components/error-state.css?v=1.0"/>
   <!-- Pages: critical styles (needed for initial render) -->
   <link rel="stylesheet" href="css/pages/home.css?v=1.0"/>
   <link rel="stylesheet" href="css/pages/dictionary.css?v=1.0"/>
@@ -41,6 +43,7 @@
   <link rel="stylesheet" href="css/pages/handwriting.css?v=1.0" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="css/pages/quests.css?v=1.0" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="css/pages/reading.css?v=1.0" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/pages/pinyin-lab.css?v=1.0" media="print" onload="this.media='all'"/>
   <!-- Features: cross-cutting concerns -->
   <link rel="stylesheet" href="css/features/auth.css?v=1.0"/>
   <link rel="stylesheet" href="css/features/hsk-switch.css?v=1.0"/>
@@ -126,6 +129,10 @@
       <a class="nav-item" data-page="handwriting" href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>
         <span>Luyện viết</span>
+      </a>
+      <a class="nav-item" data-page="pinyin-lab" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 18V6a2 2 0 0 1 2-2h7l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M13 4v5h5"/><path d="M8 14h5"/><path d="M8 17h8"/></svg>
+        <span>Pinyin Lab</span>
       </a>
       <a class="nav-item" data-page="quests" href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
@@ -319,6 +326,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="6" width="20" height="12" rx="4"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
       <span>Trò chơi</span>
     </a>
+    <a class="bnav-item" data-page="pinyin-lab" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 18V6a2 2 0 0 1 2-2h7l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M13 4v5h5"/><path d="M8 15h8"/></svg>
+      <span>Pinyin</span>
+    </a>
   </nav>
 
   <!-- ADD TO DECK POPUP -->
@@ -434,6 +445,7 @@
   <script src="js/radicals.js?v=2.5"></script>
   <!-- ══ Utility / engine (no DOM dependency) ══ -->
   <script src="js/storage.js?v=1.0"></script>
+  <script src="js/ui-states.js?v=1.0"></script>
   <script src="js/content-filter.js?v=1.0"></script>
   <script src="js/srs.js?v=2.5"></script>
   <!-- ══ Core modules (ordered by dependency) ══ -->
@@ -462,6 +474,7 @@
   <script src="js/grammar.js?v=1.1"></script>
   <script src="js/reading.js?v=1.2"></script>
   <script src="js/handwriting.js?v=1.1"></script>
+  <script src="js/pinyin-lab.js?v=1.0"></script>
   <script src="js/app.js?v=2.6"></script>
   <!-- ══ CDN libs ══ -->
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>

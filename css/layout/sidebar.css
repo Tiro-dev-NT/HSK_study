@@ -130,3 +130,43 @@
   transition: .2s;
 }
 .btn-lang:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* ── Smart Hub: 4-tab primary + collapsible secondary ── */
+.nav-primary { display: flex; flex-direction: column; gap: 4px; }
+.nav-divider { height: 1px; background: var(--border); margin: 8px 12px; }
+
+.nav-more-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  color: var(--text3);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background .2s, color .2s;
+  text-align: left;
+}
+.nav-more-btn:hover { background: var(--surface2); color: var(--text2); }
+.nav-more-btn svg { flex-shrink: 0; }
+.nav-more-icon { font-size: 13px; margin-left: auto; transition: transform .2s; }
+
+.nav-secondary {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-secondary.open { max-height: 600px; }
+
+/* Collapsed sidebar: hide more-btn text/icon, hide secondary */
+.sidebar.collapsed .nav-more-btn { justify-content: center; padding: 11px 0; }
+.sidebar.collapsed .nav-more-btn span { display: none; }
+.sidebar.collapsed .nav-secondary { display: none; }
+.sidebar.collapsed .nav-divider { margin: 8px 4px; }

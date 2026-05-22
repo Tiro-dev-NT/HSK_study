@@ -414,10 +414,12 @@ var Quests = {
   // ── UI: token badge + sidebar balance ─────────────────
   _updateTokenUI: function() {
     var bal = Quests.getBalance();
-    var badge = document.getElementById('token-count');
-    var rs    = document.getElementById('rs-token-balance');
-    if (badge) badge.textContent = bal;
-    if (rs)    rs.textContent    = bal;
+    var badge  = document.getElementById('token-count');
+    var rs     = document.getElementById('rs-token-balance');
+    var topbar = document.getElementById('topbarTokenBadge');
+    if (badge)  badge.textContent  = bal;
+    if (rs)     rs.textContent     = bal;
+    if (topbar) topbar.textContent = '⭐ ' + bal;
   },
 
   // ── UI: re-render quest list wherever visible ─────────

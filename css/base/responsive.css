@@ -21,25 +21,21 @@
   }
   .bottom-nav {
     display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    align-items: center;
     position: fixed;
     bottom: 0; left: 0; right: 0;
     background: var(--surface);
     border-top: 1px solid var(--border);
     z-index: 100;
-    padding: 6px 0 max(env(safe-area-inset-bottom, 8px), 8px);
+    padding: 4px 0 max(env(safe-area-inset-bottom, 6px), 6px);
   }
   .bnav-item {
     flex: 1;
-    flex-shrink: 0;
-    min-width: 56px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3px;
-    padding: 8px 4px;
+    padding: 6px 4px;
     min-height: 48px;
     text-decoration: none;
     color: var(--text3);
@@ -51,6 +47,26 @@
   .bottom-nav::-webkit-scrollbar { display: none; }
   .bnav-item svg { width: 20px; height: 20px; }
   .bnav-item.active { color: var(--primary); }
+  /* Center FAB button */
+  .bnav-fab {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    top: -10px;
+    box-shadow: 0 4px 14px rgba(220,38,38,.40);
+    touch-action: manipulation;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .bnav-fab:active { transform: scale(.91); box-shadow: 0 2px 8px rgba(220,38,38,.25); }
   .stats-row { grid-template-columns: repeat(3,1fr); gap: 10px; }
   .stat-num { font-size: 26px; }
   .level-grid { grid-template-columns: repeat(2,1fr); }

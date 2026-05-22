@@ -30,6 +30,31 @@
   transition: transform .25s;
 }
 .right-sidebar.collapsed .rs-collapse-btn { transform: rotate(180deg); }
+/* ── Mascot companion section ── */
+.rs-mascot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 14px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.rs-mascot-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: var(--surface2);
+}
+.rs-mascot-msg {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text2);
+  text-align: center;
+  line-height: 1.4;
+}
+.right-sidebar.collapsed .rs-mascot { display: none; }
+
 .rs-inner { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 16px; }
 .right-sidebar.collapsed .rs-inner { opacity: 0; pointer-events: none; }
 .rs-section { display: flex; flex-direction: column; gap: 8px; }

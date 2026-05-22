@@ -1,10 +1,13 @@
     <!-- PAGE: HOME -->
     <section class="page active" id="page-home">
-      <div class="page-header">
-        <h1 data-vi="Chào mừng trở lại 👋" data-en="Welcome back 👋">Chào mừng trở lại 👋</h1>
-        <p data-vi="Hôm nay học gì?" data-en="What to study today?">Hôm nay học gì?</p>
+
+      <!-- ── Greeting ── -->
+      <div class="home-greeting">
+        <h1 class="home-greeting-title" id="greetingText">Chào buổi sáng, bạn! 👋</h1>
+        <p class="home-greeting-sub">Hôm nay mình học 15 phút nhé?</p>
       </div>
-      <!-- Stats row -->
+
+      <!-- ── Stats row ── -->
       <div class="stats-row">
         <div class="stat-card">
           <div class="stat-num" id="statLearned">0</div>
@@ -19,7 +22,58 @@
           <div class="stat-label" data-vi="Cần ôn" data-en="Due today">Cần ôn</div>
         </div>
       </div>
-      <!-- XP Progress bar -->
+
+      <!-- ── Continue learning card (big red gradient) ── -->
+      <div class="home-continue-card">
+        <div class="hcc-eyebrow">TIẾP TỤC HỌC</div>
+        <div class="hcc-body">
+          <div class="hcc-info">
+            <div class="hcc-title" id="hccTitle">HSK — Bài tiếp theo</div>
+            <div class="hcc-progress-row">
+              <div class="hcc-bar"><div class="hcc-bar-fill" id="hccBarFill" style="width:0%"></div></div>
+              <span class="hcc-pct" id="hccPct"></span>
+            </div>
+          </div>
+          <button class="hcc-btn" onclick="Router.navigateTo('learn')" data-page="learn">
+            Tiếp tục →
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Word of day + Due review ── -->
+      <div class="home-two-col">
+
+        <!-- Word of day (gamification.js populates) -->
+        <div class="wotd-card" id="wotdCard">
+          <div class="wotd-header">
+            <span class="wotd-badge">📖 Từ của ngày</span>
+            <button class="wotd-btn wotd-tts-sm" id="wotdTTS" title="Phát âm">🔊</button>
+          </div>
+          <div class="wotd-main">
+            <div class="wotd-hanzi-area">
+              <div class="wotd-hanzi" id="wotdHanzi"></div>
+              <div id="wotdWriter" style="margin:0 auto;display:none"></div>
+            </div>
+            <div class="wotd-info">
+              <div class="wotd-pinyin" id="wotdPinyin"></div>
+              <div class="wotd-meaning" id="wotdMeaning"></div>
+              <div class="wotd-example" id="wotdExample"></div>
+            </div>
+          </div>
+          <button class="wotd-btn wotd-btn-detail" id="wotdDetail">📖 Xem chi tiết</button>
+        </div>
+
+        <!-- Due reviews (stats) -->
+        <div class="home-due-card">
+          <div class="hdc-count"><span id="statDue2">0</span></div>
+          <div class="hdc-label">từ sắp quên</div>
+          <div class="hdc-hint">Ôn ngay để không quên!</div>
+          <button class="hdc-btn" onclick="Router.navigateTo('quiz')">Ôn tập →</button>
+        </div>
+
+      </div>
+
+      <!-- ── XP Progress bar ── -->
       <div class="xp-bar-wrap" id="xpBarWrap">
         <div class="xp-bar-header">
           <span class="xp-label">⚡ <span id="xpTotal">0</span> XP</span>
@@ -28,53 +82,11 @@
         <div class="xp-bar-track"><div class="xp-bar-fill" id="xpBarFill" style="width:0%"></div></div>
         <div class="xp-bar-footer"><span id="xpThisWeek">+0 XP tuần này</span></div>
       </div>
-      <!-- Streak calendar (last 7 days) -->
+
+      <!-- ── Streak calendar ── -->
       <div class="streak-calendar" id="streakCalendar"></div>
-      <!-- Word of the Day -->
-      <div class="wotd-card" id="wotdCard">
-        <div class="wotd-header">
-          <span class="wotd-badge">📖 Từ vựng hôm nay</span>
-        </div>
-        <div class="wotd-body">
-          <div class="wotd-hanzi-area">
-            <div class="wotd-hanzi" id="wotdHanzi"></div>
-            <div id="wotdWriter" style="margin:0 auto"></div>
-          </div>
-          <div class="wotd-info">
-            <div class="wotd-pinyin" id="wotdPinyin"></div>
-            <div class="wotd-meaning" id="wotdMeaning"></div>
-            <div class="wotd-example" id="wotdExample"></div>
-          </div>
-          <div class="wotd-actions">
-            <button class="wotd-btn" id="wotdTTS" title="Phát âm">🔊 Phát âm</button>
-            <button class="wotd-btn wotd-btn-detail" id="wotdDetail">📖 Xem chi tiết</button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Progress Analytics -->
-      <div class="analytics-section" id="analyticsSection">
-        <h2 data-vi="Phân tích tiến độ" data-en="Progress Analytics">Phân tích tiến độ</h2>
-        <div class="analytics-grid">
-          <!-- HSK Readiness -->
-          <div class="analytics-card" id="analyticsReadiness">
-            <div class="ac-title" data-vi="HSK Readiness" data-en="HSK Readiness">HSK Readiness</div>
-            <div class="ac-body" id="readinessChart"></div>
-          </div>
-          <!-- Weak Words -->
-          <div class="analytics-card" id="analyticsWeak">
-            <div class="ac-title" data-vi="Từ yếu nhất" data-en="Weakest Words">Từ yếu nhất</div>
-            <div class="ac-body" id="weakWordsList"></div>
-          </div>
-          <!-- XP Trends -->
-          <div class="analytics-card" id="analyticsXP">
-            <div class="ac-title" data-vi="XP 14 ngày qua" data-en="XP Last 14 Days">XP 14 ngày qua</div>
-            <div class="ac-body" id="xpTrendChart"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quest Widget (Phase L) -->
+      <!-- ── Quest widget ── -->
       <div class="quest-widget" id="home-quest-widget-wrap">
         <div class="quest-widget-header">
           <span class="quest-widget-title">⚔️ Nhiệm vụ hôm nay</span>
@@ -84,6 +96,31 @@
         <div id="quest-widget-list"></div>
       </div>
 
+      <!-- ── Game shortcuts ── -->
+      <div class="home-shortcuts">
+        <div class="home-shortcuts-header">
+          <span class="home-shortcuts-title">Học nữa / Tùy chọn</span>
+        </div>
+        <div class="home-shortcuts-grid">
+          <a class="home-sc-card" data-page="learn" href="#" onclick="Router.navigateTo('learn');return false;">
+            <span class="home-sc-icon">🃏</span>
+            <span class="home-sc-name">Ghép cặp</span>
+            <small class="home-sc-sub">Hanzi · nghĩa</small>
+          </a>
+          <a class="home-sc-card" data-page="learn" href="#" onclick="Router.navigateTo('learn');return false;">
+            <span class="home-sc-icon">🎵</span>
+            <span class="home-sc-name">Tone Trainer</span>
+            <small class="home-sc-sub">Nghe nhận thanh điệu</small>
+          </a>
+          <a class="home-sc-card" data-page="quiz" href="#" onclick="Router.navigateTo('quiz');return false;">
+            <span class="home-sc-icon">⚡</span>
+            <span class="home-sc-name">Cloze nhanh</span>
+            <small class="home-sc-sub">Điền từ vào ngữ cảnh</small>
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Pinyin on-ramp ── -->
       <div class="pinyin-home-widget">
         <div class="pinyin-home-widget-head">
           <span class="pinyin-home-widget-title">Pinyin Lab</span>
@@ -92,7 +129,28 @@
         <p>On-ramp miễn phí cho HSK 0-1: bảng Pinyin, thanh điệu, cặp âm dễ nhầm và ví dụ HSK1.</p>
       </div>
 
+      <!-- ── HSK level grid (existing) ── -->
       <h2 data-vi="Chọn cấp độ HSK" data-en="Choose HSK Level">Chọn cấp độ HSK</h2>
       <div class="level-grid" id="levelGrid"></div>
       <div id="hsk3-count-note" class="hsk3-count-note" style="display:none"></div>
+
+      <!-- ── Progress Analytics ── -->
+      <div class="analytics-section" id="analyticsSection">
+        <h2 data-vi="Phân tích tiến độ" data-en="Progress Analytics">Phân tích tiến độ</h2>
+        <div class="analytics-grid">
+          <div class="analytics-card" id="analyticsReadiness">
+            <div class="ac-title" data-vi="HSK Readiness" data-en="HSK Readiness">HSK Readiness</div>
+            <div class="ac-body" id="readinessChart"></div>
+          </div>
+          <div class="analytics-card" id="analyticsWeak">
+            <div class="ac-title" data-vi="Từ yếu nhất" data-en="Weakest Words">Từ yếu nhất</div>
+            <div class="ac-body" id="weakWordsList"></div>
+          </div>
+          <div class="analytics-card" id="analyticsXP">
+            <div class="ac-title" data-vi="XP 14 ngày qua" data-en="XP Last 14 Days">XP 14 ngày qua</div>
+            <div class="ac-body" id="xpTrendChart"></div>
+          </div>
+        </div>
+      </div>
+
     </section>

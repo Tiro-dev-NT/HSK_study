@@ -26,16 +26,18 @@ var Games = {
   _premiumGames: ['boss-battle', 'racing', 'sentence'],
 
   setup: function() {
-    // Game card click → launch game (with premium gate for boss-battle/racing/sentence)
+    // Game card click → launch game (premium = free 1 lượt/ngày, Pro unlimited; matrix 2026-05-21)
     document.querySelectorAll('.game-card:not(.game-coming)').forEach(function(card) {
       card.addEventListener('click', async function() {
         var game = card.dataset.game;
 
         if (Games._premiumGames.indexOf(game) !== -1) {
-          var pro = typeof Monetization !== 'undefined' ? await Monetization.isPro() : false;
-          if (!pro) {
-            var name = card.querySelector('.gc-name');
-            if (typeof Monetization !== 'undefined') Monetization.showGate(name ? name.textContent : game);
+          // Warm Pro cache (isProSync reads it inside checkDailyLimit)
+          if (typeof Monetization !== 'undefined') await Monetization.isPro();
+          var name = card.querySelector('.gc-name');
+          var label = name ? name.textContent : game;
+          if (typeof Monetization !== 'undefined' &&
+              !Monetization.checkDailyLimit('game_' + game, label)) {
             return;
           }
         }

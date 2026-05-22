@@ -13,72 +13,6 @@ var Reading = (function() {
   var _activeRow = null;
   var _mode = 'read'; // 'read' | 'listen'
 
-  var LISTEN_UNLOCK_KEY = 'hsk_listen_unlocked';
-  var LISTEN_COST = 50;
-
-  function _isListenUnlocked() {
-    try {
-      var data = JSON.parse(localStorage.getItem(LISTEN_UNLOCK_KEY) || 'null');
-      if (!data) return false;
-      return Date.now() < data.until;
-    } catch(e) { return false; }
-  }
-
-  function _unlockListen() {
-    var until = Date.now() + 24 * 60 * 60 * 1000;
-    localStorage.setItem(LISTEN_UNLOCK_KEY, JSON.stringify({ until: until }));
-  }
-
-  function _showListenGate() {
-    var balance = typeof Quests !== 'undefined' ? Quests.getBalance() : 0;
-    var g = document.getElementById('listenGate');
-    if (!g) {
-      g = document.createElement('div');
-      g.id = 'listenGate';
-      g.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:8000;display:flex;align-items:center;justify-content:center;';
-      document.body.appendChild(g);
-    }
-    var canAfford = balance >= LISTEN_COST;
-    g.innerHTML =
-      '<div style="background:var(--surface);border-radius:20px;padding:28px 24px;max-width:320px;width:90%;text-align:center;border:1.5px solid var(--border);">' +
-        '<div style="font-size:36px;margin-bottom:12px;">🎧</div>' +
-        '<h2 style="font-size:17px;font-weight:700;margin-bottom:8px;">Chế độ Nghe</h2>' +
-        '<p style="font-size:13px;color:var(--text2);margin-bottom:16px;">Mở khóa chế độ nghe trong <strong>24 giờ</strong> với <strong>50 token</strong>.</p>' +
-        '<div style="font-size:13px;color:var(--text2);margin-bottom:20px;">Token hiện tại: <strong style="color:var(--primary)">' + balance + '</strong></div>' +
-        (canAfford
-          ? '<button id="listenGateConfirm" style="width:100%;padding:12px;border-radius:10px;background:var(--primary);color:#fff;border:none;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:10px;">Dùng 50 token để mở khóa</button>'
-          : '<p style="font-size:12px;color:#e57373;margin-bottom:16px;">Không đủ token. Hoàn thành nhiệm vụ để kiếm thêm!</p>' +
-            '<button id="listenGateQuests" style="width:100%;padding:12px;border-radius:10px;background:var(--primary);color:#fff;border:none;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:10px;">Xem nhiệm vụ ⚔️</button>'
-        ) +
-        '<button id="listenGateClose" style="width:100%;padding:11px;border-radius:10px;border:1.5px solid var(--border);background:none;color:var(--text2);font-size:14px;cursor:pointer;">Đóng</button>' +
-      '</div>';
-    g.style.display = 'flex';
-
-    var confirmBtn = document.getElementById('listenGateConfirm');
-    if (confirmBtn) {
-      confirmBtn.addEventListener('click', function() {
-        if (typeof Quests !== 'undefined' && Quests.spendToken(LISTEN_COST, 'Mở khóa Nghe 24h')) {
-          _unlockListen();
-          g.style.display = 'none';
-          if (typeof Quests !== 'undefined') Quests.incrementMetric('listen_used');
-          // trigger listen mode
-          var listenTab = document.querySelector('.read-mode-tab[data-mode="listen"]');
-          if (listenTab) listenTab.click();
-        }
-      });
-    }
-    var questsBtn = document.getElementById('listenGateQuests');
-    if (questsBtn) {
-      questsBtn.addEventListener('click', function() {
-        g.style.display = 'none';
-        if (typeof Router !== 'undefined') Router.navigateTo('quests');
-      });
-    }
-    document.getElementById('listenGateClose').addEventListener('click', function() {
-      g.style.display = 'none';
-    });
-  }
-
   // Split Chinese text into sentences on 。！？… boundaries
   function _splitSentences(text, pinyin) {
     var zhParts = text.split(/(?<=[。！？…]+)/u);
@@ -109,9 +43,15 @@ var Reading = (function() {
   function _bindEvents() {
     document.querySelectorAll('.read-level-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
+        var lvl = parseInt(btn.dataset.level);
+        // Reading HSK 3-6 = Pro (matrix 2026-05-21). HSK 1-2 free.
+        if (lvl >= 3 && typeof Monetization !== 'undefined' && !Monetization.isProSync()) {
+          Monetization.showGate('Đọc hiểu HSK ' + lvl);
+          return;
+        }
         document.querySelectorAll('.read-level-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        _level = parseInt(btn.dataset.level);
+        _level = lvl;
         _currentPassage = null;
         document.getElementById('readingView').style.display = 'none';
         document.getElementById('readingList').style.display = '';
@@ -327,8 +267,9 @@ var Reading = (function() {
         var newMode = this.dataset.mode;
         if (newMode === _mode) return;
         if (newMode === 'listen') {
-          if (!_isListenUnlocked()) {
-            _showListenGate();
+          // Listening HSK 2-6 = Pro; HSK 1 free (matrix 2026-05-21)
+          if (_level >= 2 && typeof Monetization !== 'undefined' && !Monetization.isProSync()) {
+            Monetization.showGate('Nghe hiểu HSK ' + _level);
             return;
           }
         }

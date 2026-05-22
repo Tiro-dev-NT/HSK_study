@@ -66,6 +66,25 @@ var Monetization = (function() {
 
   function resetCache() { _cache = null; }
 
+  // Daily soft-gate: Pro bypass; free users get 1 use/day per feature key.
+  // localStorage gate_daily_{key} = 'YYYY-MM-DD' (local). Returns true if
+  // allowed (and marks used), false if blocked (and shows gate).
+  function checkDailyLimit(featureKey, featureName) {
+    if (isProSync()) return true;
+    var d = new Date();
+    var today = d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+    var storeKey = 'gate_daily_' + featureKey;
+    var last = localStorage.getItem(storeKey);
+    if (last === today) {
+      showGate(featureName || featureKey);
+      return false;
+    }
+    localStorage.setItem(storeKey, today);
+    return true;
+  }
+
   function showGate(featureName) {
     var g = document.getElementById('proGate');
     if (!g) return;
@@ -88,6 +107,7 @@ var Monetization = (function() {
     isProSync:       isProSync,
     getDurationSync: getDurationSync,
     resetCache:      resetCache,
-    showGate:        showGate
+    showGate:        showGate,
+    checkDailyLimit: checkDailyLimit
   };
 }());

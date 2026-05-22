@@ -496,6 +496,13 @@ var Quiz = {
   },
 
   _startSpecialMode: function(mode) {
+    // Cloze + Tone: free 1 lượt/ngày, Pro unlimited (matrix 2026-05-21)
+    if ((mode === 'tone-trainer' || mode === 'cloze') &&
+        typeof Monetization !== 'undefined' &&
+        !Monetization.checkDailyLimit('game_' + mode,
+          mode === 'cloze' ? 'Cloze Fill' : 'Tone Trainer')) {
+      return;
+    }
     if (mode === 'tone-trainer' && typeof ToneTrainer !== 'undefined') {
       ToneTrainer.start('quiz');
     } else if (mode === 'cloze' && typeof ClozeGame !== 'undefined') {
@@ -728,6 +735,12 @@ var Quiz = {
     var allWords = getAllWords();
     if (allWords.length < 20) {
       alert(AppState.lang === 'vi' ? 'Không đủ từ vựng!' : 'Not enough vocabulary!');
+      return;
+    }
+
+    // Survival: free 1 lượt/ngày, Pro unlimited (matrix 2026-05-21)
+    if (typeof Monetization !== 'undefined' &&
+        !Monetization.checkDailyLimit('survival', 'Survival Mode')) {
       return;
     }
 

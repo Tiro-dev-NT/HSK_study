@@ -115,7 +115,12 @@ var Handwriting = {
       showHintAfterMisses: 3,
       highlightOnComplete: true,
       drawingWidth: 20,
-      quiz: undefined
+      quiz: undefined,
+      charDataLoader: function(char, onComplete) {
+        fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/' + encodeURIComponent(char) + '.json')
+          .then(function(res) { return res.json(); })
+          .then(onComplete);
+      }
     });
 
     Handwriting._writer.quiz({

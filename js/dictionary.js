@@ -200,6 +200,11 @@ var Dictionary = {
           radicalColor: '#F5A623',
           delayBetweenStrokes: 200,
           strokeAnimationSpeed: 1.2,
+          charDataLoader: function(char, onComplete) {
+            fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/' + encodeURIComponent(char) + '.json')
+              .then(function(res) { return res.json(); })
+              .then(onComplete);
+          }
         });
         hanziWriter = AppState.hanziWriter; // compat alias
         AppState.hanziWriter.animateCharacter();

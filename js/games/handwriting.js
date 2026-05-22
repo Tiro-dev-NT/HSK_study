@@ -128,7 +128,12 @@ var HandwritingGame = {
         outlineColor: getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#ddd',
         drawingColor: getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#333',
         highlightColor: '#22C55E',
-        showHintAfterMisses: 2
+        showHintAfterMisses: 2,
+        charDataLoader: function(char, onComplete) {
+          fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/' + encodeURIComponent(char) + '.json')
+            .then(function(res) { return res.json(); })
+            .then(onComplete);
+        }
       });
       HandwritingGame.writer.quiz({
         onComplete: function(data) {

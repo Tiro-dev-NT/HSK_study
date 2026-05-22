@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hanzi Genz — Học HSK + HSKK dễ theo, dễ nhớ</title>
+  <meta name="description" content="Hanzi Genz giúp người Việt học từ vựng HSK 1–9, ôn SRS, luyện HSKK và theo dõi tiến độ — tất cả trong một app web miễn phí." />
+  <meta name="theme-color" content="#FAFAF9" />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hanzi Genz — Học HSK + HSKK dễ theo, dễ nhớ" />
+  <meta property="og:description" content="App học tiếng Trung dành cho người Việt. HSK 1–9 · HSKK · SRS · Sổ Tay Sống." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta property="og:url" content="https://hanzigenz.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/base/variables.css?v=2.0" />
+  <link rel="stylesheet" href="css/pages/landing.css?v=1.0" />
+</head>
+
+<body class="landing-body">
+
+  <!-- ════════════════ TOP NAV ════════════════ -->
+  <header class="container">
+    <nav class="l-nav">
+      <a href="#top" class="l-nav-brand">
+        <img src="assets/icon-soft.png" alt="" />
+        <span>Hanzi Genz</span>
+      </a>
+      <div class="l-nav-links">
+        <a href="#features">Tính năng</a>
+        <a href="#pricing">Giá</a>
+        <a href="#hskk">HSKK</a>
+        <a href="index.html">Đăng nhập</a>
+      </div>
+      <div class="l-nav-cta">
+        <a href="index.html" class="l-btn l-btn-primary l-btn-sm">Bắt đầu miễn phí</a>
+      </div>
+      <button class="l-nav-burger" aria-label="Mở menu" onclick="document.querySelectorAll('.l-nav-links, .l-nav-cta').forEach(el => el.style.display = el.style.display === 'flex' ? 'none' : 'flex')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ════════════════ HERO ════════════════ -->
+  <section class="l-hero" id="top">
+    <div class="l-hero-wash"></div>
+    <div class="container">
+      <div class="l-hero-grid">
+
+        <!-- Left: title + CTA -->
+        <div>
+          <div class="l-eyebrow" style="color: var(--chau-hong); margin-bottom: 16px;">HSK 1–9 · HSKK · Tiếng Việt</div>
+          <h1>Học <span class="accent">HSK + HSKK</span><br/>dễ theo, dễ nhớ.</h1>
+          <p class="sub">Hanzi Genz giúp người Việt học từ vựng, ôn SRS, luyện nói và theo dõi tiến độ — tất cả trong một app.</p>
+          <div class="l-hero-actions">
+            <a href="index.html" class="l-btn l-btn-primary l-btn-lg">
+              Bắt đầu miễn phí
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#features" class="l-hero-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              Xem demo
+            </a>
+          </div>
+          <div class="l-hero-meta">
+            <span class="l-hero-meta-item"><span class="dot"></span>Miễn phí — không cần thẻ</span>
+            <span class="l-hero-meta-item"><span class="dot" style="background: var(--hoang-kim);"></span>Hỗ trợ HSK 3.0 — 9 cấp</span>
+          </div>
+        </div>
+
+        <!-- Right: product mockup card -->
+        <div class="l-hero-mockup">
+          <div class="l-hero-mockup-meta">
+            <div class="left">
+              <img src="assets/icon-soft.png" alt="" />
+              <span>Phiên hôm nay · 12 từ</span>
+            </div>
+            <div class="streak"><span class="l-flame"></span> 12 ngày</div>
+          </div>
+
+          <div class="l-hero-card">
+            <div class="l-hero-card-head">
+              <span class="l-hero-card-eyebrow">Thẻ 4 / 12</span>
+              <span class="l-hsk-chip"><span class="dot"></span>HSK 3</span>
+            </div>
+            <div class="l-hero-hanzi">学习</div>
+            <div class="l-hero-pinyin">xué xí</div>
+            <div class="l-hero-gloss">học tập, học hành <span style="color: var(--fg-3);">· Động từ</span></div>
+            <div class="l-hero-card-actions">
+              <button class="l-mini-btn is-hard">Khó</button>
+              <button class="l-mini-btn">Tạm</button>
+              <button class="l-mini-btn is-good">Dễ</button>
+            </div>
+            <div class="l-hero-card-foot">
+              <span>Bài 12 · Du lịch</span>
+              <div class="progress"><div></div></div>
+              <span>7 / 12</span>
+            </div>
+          </div>
+
+          <!-- Bé Rồng companion -->
+          <div class="l-be-rong" aria-hidden="true"></div>
+          <div class="l-be-rong-bubble">Cùng học chữ Hán nhé!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ CORE BENEFITS ════════════════ -->
+  <section class="l-section alt" id="features">
+    <div class="container">
+      <div class="l-section-header">
+        <div class="l-eyebrow l-section-eyebrow">Vì sao Hanzi Genz</div>
+        <h2 class="l-section-title">Ba điều đơn giản giúp bạn tiến đều.</h2>
+        <p class="l-section-sub">Không nhồi nhét. Học đúng từ, vào đúng lúc, theo cách phù hợp với người Việt.</p>
+      </div>
+
+      <div class="l-benefits">
+        <div class="l-bcard">
+          <div class="l-bcard-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Học từ vựng theo HSK</h3>
+          <p>Toàn bộ từ vựng HSK 1–9 được sắp theo bài, theo chủ đề, có ví dụ và nghĩa tiếng Việt rõ ràng.</p>
+          <div class="b-tag"><span class="hanzi">词汇</span><span>cí huì · từ vựng</span></div>
+        </div>
+
+        <div class="l-bcard">
+          <div class="l-bcard-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.5 2.6"/><path d="M21 3v6h-6"/></svg>
+          </div>
+          <h3>Ôn đúng lúc bằng SRS</h3>
+          <p>Thuật toán lặp lại có khoảng cách nhắc bạn ôn từ vào ngày bạn sắp quên — không sớm, không muộn.</p>
+          <div class="b-tag"><span class="hanzi">复习</span><span>fù xí · ôn tập</span></div>
+        </div>
+
+        <div class="l-bcard">
+          <div class="l-bcard-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+          </div>
+          <h3>Luyện HSKK speaking</h3>
+          <p>Đề mô phỏng HSKK sơ–trung–cao, AI chấm phát âm theo từng âm tiết, kèm gợi ý cải thiện.</p>
+          <div class="b-tag"><span class="hanzi">口语</span><span>kǒu yǔ · khẩu ngữ</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ APP PREVIEW — Smart Hub ════════════════ -->
+  <section class="l-section l-preview">
+    <div class="container">
+      <div class="l-section-header center">
+        <div class="l-eyebrow l-section-eyebrow">Smart Hub</div>
+        <h2 class="l-section-title">Bốn nơi. Không lạc.</h2>
+        <p class="l-section-sub">Mọi thứ bạn cần nằm gọn trong bốn mục: Tổng quan, Học, Công cụ, Tôi. Không menu lồng nhau, không lạc đường.</p>
+      </div>
+
+      <div class="l-preview-shell">
+        <div class="l-preview-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <div class="addr">hanzigenz.com / tổng-quan</div>
+        </div>
+        <div class="l-preview-body">
+
+          <!-- Sidebar — exactly 4 destinations -->
+          <aside class="l-preview-side">
+            <div class="brand">
+              <img src="assets/icon-soft.png" alt="" />
+              <div>
+                <div class="brand-name">Hanzi Genz</div>
+                <div class="brand-sub">HSK 1–9 · HSKK</div>
+              </div>
+            </div>
+            <a class="l-preview-nav-item is-active">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Tổng quan
+            </a>
+            <a class="l-preview-nav-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              Học
+              <span class="badge-num">12</span>
+            </a>
+            <a class="l-preview-nav-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg>
+              Công cụ
+            </a>
+            <a class="l-preview-nav-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.7a8 8 0 0 1 10 0"/></svg>
+              Tôi
+            </a>
+
+            <div class="l-nav-pin">
+              <span class="gem">💎</span>
+              <div class="ttl">Mở khoá Pro</div>
+              <div class="desc">HSKK với AI, sổ tay không giới hạn.</div>
+            </div>
+          </aside>
+
+          <!-- Main content -->
+          <div class="l-preview-main">
+            <div class="l-preview-top">
+              <div>
+                <h4>Chào Linh nhé!</h4>
+                <div class="greet">Hôm nay 22 / 5 · Bé Rồng đã chuẩn bị xong bài cho bạn.</div>
+              </div>
+              <span class="l-hsk-chip"><span class="dot"></span>HSK 3 · Đang học</span>
+            </div>
+
+            <div class="l-preview-row">
+              <div class="l-preview-hero-card">
+                <div class="eb">Phiên hôm nay</div>
+                <div class="t">Ôn 12 từ HSK 3 — khoảng 8 phút.</div>
+                <div class="d">Bấm là chiến!</div>
+                <button class="gobtn">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  Bắt đầu
+                </button>
+                <div class="be"></div>
+              </div>
+              <div class="l-preview-streak">
+                <div class="eb">Chuỗi ngày</div>
+                <div class="big">12</div>
+                <div class="lbl">ngày liên tiếp 🔥</div>
+                <div class="days">
+                  <span class="done">T2</span><span class="done">T3</span><span class="done">T4</span><span class="done">T5</span><span class="done">T6</span><span class="today">T7</span><span>CN</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="l-preview-section-head">
+              <h5>Tiếp tục học</h5>
+              <span class="more">Xem tất cả →</span>
+            </div>
+            <div class="l-preview-cards">
+              <div class="pc">
+                <span class="chip" style="background: var(--hsk-3);">HSK 3</span>
+                <div class="t">Bài 12 — Du lịch</div>
+                <div class="d">24 / 40 từ</div>
+                <div class="pgw"><div style="width: 62%"></div></div>
+              </div>
+              <div class="pc">
+                <span class="chip" style="background: var(--hsk-3);">HSK 3</span>
+                <div class="t">Bài 13 — Sức khoẻ</div>
+                <div class="d">8 / 40 từ</div>
+                <div class="pgw"><div style="width: 20%"></div></div>
+              </div>
+              <div class="pc" style="position: relative;">
+                <span style="position: absolute; top: 10px; right: 10px;">💎</span>
+                <span class="chip" style="background: var(--hoang-kim);">HSKK</span>
+                <div class="t">Sơ cấp — Phần 2</div>
+                <div class="d">17 / 20 câu</div>
+                <div class="pgw"><div style="width: 85%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ WHY DIFFERENT — USP ════════════════ -->
+  <section class="l-section" id="hskk">
+    <div class="container">
+      <div class="l-section-header">
+        <div class="l-eyebrow l-section-eyebrow">Khác biệt</div>
+        <h2 class="l-section-title">Bốn lý do người Việt chọn Hanzi Genz.</h2>
+        <p class="l-section-sub">Không phải app dịch ngược tiếng Anh. Làm cho bạn — người học tiếng Việt — từ đầu.</p>
+      </div>
+
+      <div class="l-usp-grid">
+        <a href="index.html" class="l-usp">
+          <div class="l-usp-mark">龍</div>
+          <div class="l-usp-body">
+            <h4>Bé Rồng đồng hành</h4>
+            <p>Bạn đồng hành xuyên suốt: gợi ý phiên học, khen khi đạt mốc, nhắc khi bạn lười.</p>
+          </div>
+          <div class="l-usp-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <a href="index.html" class="l-usp">
+          <div class="l-usp-mark">图</div>
+          <div class="l-usp-body">
+            <h4>Bản Đồ HSK</h4>
+            <p>Toàn cảnh 9 cấp HSK 3.0 trong một bản đồ — biết mình đang ở đâu, còn bao xa.</p>
+          </div>
+          <div class="l-usp-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <a href="index.html" class="l-usp">
+          <div class="l-usp-mark">册</div>
+          <div class="l-usp-body">
+            <h4>Sổ Tay Sống</h4>
+            <p>Lưu mọi từ bạn gặp. Sổ tự liên kết với SRS, không phải nơi để từ đi vào rồi nằm yên.</p>
+          </div>
+          <div class="l-usp-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <a href="index.html" class="l-usp">
+          <div class="l-usp-mark">考</div>
+          <div class="l-usp-body">
+            <h4>HSKK Mock</h4>
+            <p>Đề thi mô phỏng đúng thời lượng, đúng dạng — chấm phát âm theo từng âm tiết.</p>
+          </div>
+          <div class="l-usp-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ PRICING ════════════════ -->
+  <section class="l-section alt" id="pricing">
+    <div class="container">
+      <div class="l-section-header center">
+        <div class="l-eyebrow l-section-eyebrow">Giá rất nhẹ</div>
+        <h2 class="l-section-title">Bắt đầu miễn phí. Lên Pro khi sẵn sàng.</h2>
+        <p class="l-section-sub">Không bắt buộc thẻ. Huỷ bất cứ lúc nào.</p>
+      </div>
+
+      <div class="l-pricing-grid">
+        <div class="l-plan">
+          <div class="l-plan-name">Miễn phí</div>
+          <div class="l-plan-price">
+            <span class="num">0₫</span>
+            <span class="per">/ tháng</span>
+          </div>
+          <p class="l-plan-sub">Đủ để học HSK 1–3 và quen với SRS.</p>
+          <ul class="l-plan-list">
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Toàn bộ từ vựng HSK 1–3</li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>SRS cơ bản · 50 từ / ngày</li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Sổ tay tối đa 100 từ</li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Chuỗi ngày & xu thưởng</li>
+          </ul>
+          <a href="index.html" class="l-btn l-btn-outline l-btn-md" style="width: 100%;">Dùng miễn phí</a>
+        </div>
+
+        <div class="l-plan recommended">
+          <span class="l-plan-rec">Được chọn nhiều</span>
+          <div class="l-plan-name">Pro <span class="gem">💎</span> · 6 tháng</div>
+          <div class="l-plan-price">
+            <span class="num">69.000₫</span>
+            <span class="per">/ tháng</span>
+            <span class="old">99.000₫</span>
+          </div>
+          <p class="l-plan-sub">Tất cả tính năng. Tốt nhất nếu bạn đang luyện HSKK hoặc đặt mục tiêu HSK 4+.</p>
+          <ul class="l-plan-list">
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Toàn bộ HSK 1–9 · HSK 2.0</li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>HSKK Mock có AI chấm</li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Sổ tay không giới hạn</li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Bản Đồ HSK chi tiết · báo cáo tuần</li>
+          </ul>
+          <a href="index.html#/pricing" class="l-btn l-btn-primary l-btn-md" style="width: 100%;">Xem gói học</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ FAQ ════════════════ -->
+  <section class="l-section">
+    <div class="container">
+      <div class="l-section-header center">
+        <div class="l-eyebrow l-section-eyebrow">Câu hỏi thường gặp</div>
+        <h2 class="l-section-title">Bạn còn băn khoăn gì không?</h2>
+      </div>
+
+      <div class="l-faq-list">
+        <details class="l-faq-item">
+          <summary>
+            Hanzi Genz có dùng được trên điện thoại không?
+            <span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="answer">Có. Hanzi Genz là app web, mở trên Safari / Chrome đều mượt. Trên di động bạn sẽ thấy thanh tab dưới với đúng 4 mục.</div>
+        </details>
+
+        <details class="l-faq-item">
+          <summary>
+            HSK 3.0 và HSK 2.0 khác nhau thế nào? Bản nào nên học?
+            <span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="answer">HSK 3.0 là chuẩn mới, chia 9 cấp theo 3 khối (Sơ cấp · Trung cấp · Cao cấp). HSK 2.0 vẫn còn dùng ở nhiều kỳ thi. Mình hỗ trợ cả hai.</div>
+        </details>
+
+        <details class="l-faq-item">
+          <summary>
+            AI chấm HSKK có chính xác không?
+            <span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="answer">AI chấm theo từng âm tiết và tông, gợi ý chỗ nên sửa. Đây là công cụ luyện tập — kết quả không thay thế kỳ thi thật.</div>
+        </details>
+
+        <details class="l-faq-item">
+          <summary>
+            Mình có thể huỷ Pro lúc nào không?
+            <span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="answer">Bạn huỷ bất cứ lúc nào trong mục Tôi → Gói học. Sau khi huỷ bạn vẫn dùng được Pro tới hết kỳ đã trả.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ FOOTER ════════════════ -->
+  <footer class="container">
+    <div class="l-foot">
+      <div class="brand">
+        <img src="assets/icon-soft.png" alt="" />
+        <span>Hanzi Genz</span>
+        <span style="color: var(--fg-3); font-weight: 400;">· hanzigenz.com</span>
+      </div>
+      <div class="l-foot-links">
+        <a href="#features">Tính năng</a>
+        <a href="#pricing">Giá</a>
+        <a href="#hskk">HSKK</a>
+        <a href="index.html#/feedback">Liên hệ</a>
+        <a href="index.html">Vào app</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile sticky CTA (hidden ≥768px via CSS) -->
+  <a href="index.html" class="l-sticky-cta">
+    <span>Bắt đầu miễn phí</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  </a>
+
+</body>
+</html>

@@ -18,9 +18,9 @@
   - ☑ Yearly → `priceOrig: null` (chưa từng bán 900k)
   - ☑ Quarterly → `priceOrig: null` (chưa từng bán 225k)
   - ☑ Semi → `priceOrig: null` (chưa từng bán 450k)
-- ☐ Test cookie banner hiện ra ở first visit (xoá localStorage `hsk_cookie_consent` rồi reload)
-- ☐ Test 4 route mới: `/privacy`, `/terms`, `/contact`, `/free-vs-pro` render đẹp
-- ☐ Test pricing.html mới (per-month + perDay messaging + Yearly card render)
+- ☑ Test cookie banner hiện ra ở first visit — code verify OK (v=1.1 deployed có modal-open check). Cần user smoke-test browser
+- ☑ Test 4 route mới: `/privacy`, `/terms`, `/contact`, `/free-vs-pro` — VERIFIED 2026-05-24: 4/4 routes 200 OK, content render đúng (title + h1 khớp). `/privacy.html` + `/terms.html` 301/308 → clean URL
+- ☑ Test pricing.html — VERIFIED 2026-05-24: fragment 13.8KB load OK, PricingUI moved to global `js/pricing.js?v=2.3` (Bug #5 fix), Token Shop wrapped `<!-- DISABLED -->`
 
 ### Trước launch chính thức (rộng rãi)
 
@@ -39,33 +39,36 @@
 
 > File master: [`content/assets/PROMPTS.md`](../content/assets/PROMPTS.md)
 
-### Wave A — Bé Rồng cơ bản
+### Wave A — Bé Rồng cơ bản ✅ DONE 2026-05-24
 
-- ☐ Gen **ref sheet Bé Rồng** chuẩn → `content/assets/output/reference/be-rong-ref.png`
-  - **BLOCKER:** ref sheet lock với `--cref` cho mọi prompt sau
-- ☐ Outfit 1 — Học sĩ (50🪙)
-- ☐ Outfit 2 — Cử nhân áo dài (100🪙)
-- ☐ Outfit 3 — Võ sư (150🪙)
-- ☐ Outfit 4 — Đầu bếp (150🪙)
-- ☐ Outfit 5 — Du khách (200🪙)
-- ☐ Outfit 6 — Nghệ sĩ thư pháp (200🪙)
-- ☐ Outfit 7 — Tiến sĩ trạng nguyên (250🪙)
-- ☐ Outfit 8 — Thám hiểm gia (300🪙)
+- ☑ Gen **ref sheet Bé Rồng** → `content/assets/output/reference/be-rong-clean-ref.png` (790KB)
+- ☑ Outfit 1 — Học sĩ (50🪙) — `outfits-basic/01-hoc-si.png`
+- ☑ Outfit 2 — Cử nhân áo dài (100🪙) — `outfits-basic/02-cu-nhan-ao-dai.png`
+- ☑ Outfit 3 — Võ sư (150🪙) — `outfits-basic/03-vo-su.png`
+- ☑ Outfit 4 — Đầu bếp (150🪙) — `outfits-basic/04-dau-bep.png`
+- ☑ Outfit 5 — Du khách (200🪙) — `outfits-basic/05-du-khach.png`
+- ☑ Outfit 6 — Nghệ sĩ thư pháp (200🪙) — `outfits-basic/06-nghe-si-thu-phap.png`
+- ☑ Outfit 7 — Tiến sĩ trạng nguyên (250🪙) — `outfits-basic/07-tien-si-trang-nguyen.png`
+- ☑ Outfit 8 — Thám hiểm gia (300🪙) — `outfits-basic/08-tham-hiem-gia.png`
 
-### Hộp Ân Cần — 12 outfit limited
+> Tool: AI Studio Nano Banana (Gemini 2.5 Flash Image), single-chat workflow with universal wrapper prompt.
 
-- ☐ Tháng 1 — Hồng Bao Đỏ 🧧
-- ☐ Tháng 2 — Mùa Xuân 🌸
-- ☐ Tháng 3 — Hiền Triết 📜
-- ☐ Tháng 4 — Tảo Mộ 🌿
-- ☐ Tháng 5 — Cử Nhân 🎓
-- ☐ Tháng 6 — Hè Tây Hồ 🌊
-- ☐ Tháng 7 — Du Khách 🎒
-- ☐ Tháng 8 — Áo Hiếu 🪷
-- ☐ Tháng 9 — Tể Tướng 🌕
-- ☐ Tháng 10 — Trùng Cửu 🍂
-- ☐ Tháng 11 — Tuyết Nhân ❄️
-- ☐ Tháng 12 — Đại Lễ 🐲
+### Hộp Ân Cần — 12 outfit limited ✅ DONE 2026-05-24
+
+- ☑ Tháng 1 — Hồng Bao Đỏ 🧧 (Tết)
+- ☑ Tháng 2 — Mùa Xuân 🌸
+- ☑ Tháng 3 — Hiền Triết 📜
+- ☑ Tháng 4 — Tảo Mộ 🌿 (Thanh Minh)
+- ☑ Tháng 5 — Cử Nhân 🎓
+- ☑ Tháng 6 — Hè Tây Hồ 🌊
+- ☑ Tháng 7 — Du Khách 🎒
+- ☑ Tháng 8 — Áo Hiếu 🪷 (Vu Lan)
+- ☑ Tháng 9 — Tể Tướng 🌕 (Trung Thu)
+- ☑ Tháng 10 — Trùng Cửu 🍂
+- ☑ Tháng 11 — Tuyết Nhân ❄️
+- ☑ Tháng 12 — Đại Lễ 🐲 (crown jewel, 1.1MB)
+
+> Tổng 21 file PNG (1 ref + 8 Wave A + 12 Honor) trong `content/assets/output/`
 
 ### Wave B — Ambient theme (8 scene)
 
@@ -374,3 +377,8 @@
 | 2026-05-23 | Tạo `ACTION_ITEMS.md` làm single source-of-truth checklist |
 | 2026-05-23 | CLAUDE.md ref file này để session sau auto-check |
 | 2026-05-23 | Pattern checkbox ☐/☑/⏸/❌/⚠️ |
+| 2026-05-24 | Pre-deploy hotfix lên prod (commits ca7914b, 48b1ba0, 5713531, eedf943, f5483c4): legal pages, cookie consent, Wave 2 publish, `_redirects` SPA-only, terms.html root removed, PricingUI → global js/pricing.js v=2.3 |
+| 2026-05-24 | Production verified clean — 4 legal routes 200, 11/11 file 500-prone giờ 200, PricingUI global confirmed |
+| 2026-05-24 | Asset prompts split → `content/assets/output/{reference,outfits-basic,outfits-honor,ambient-themes}/*.md` (29 prompt + 9 README) — Banana Pro primary tool |
+| 2026-05-24 | **Wave A + Hộp Ân Cần ✅ DONE** — 21/21 PNG file gen + saved (1 ref + 8 outfit Wave A + 12 outfit Honor) bằng AI Studio Nano Banana single-chat workflow |
+| 2026-05-24 | **Phase 2 Monetization v2 Slice 1 ✅ DONE** — branch `worktree-monetization-v2-slice1` push lên origin (5 commits): refactor pricing flow (HONOR_PACK + AI_CREDIT_PACKS) + Honor Hall page UI shell + wire-up route/nav. Chờ PR review trước khi merge main. |

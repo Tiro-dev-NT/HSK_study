@@ -185,6 +185,8 @@ var Auth = {
       await Auth._handleMigration(user.id);
     }
     if (typeof Sync !== 'undefined') Sync.autoSync();
+    // Fetch AI credit balance (non-blocking)
+    setTimeout(function() { if (typeof AICredit !== 'undefined') AICredit.fetch(); }, 800);
     // Resume pending payment flow (user clicked upgrade while not logged in)
     if (typeof Pricing !== 'undefined' && Pricing._pendingPlan) {
       var pendingPlan = Pricing._pendingPlan;
@@ -288,9 +290,11 @@ var Auth = {
       userBlock.style.display = 'flex';
       var name = (user.user_metadata && user.user_metadata.name) || user.email || 'User';
       if (emailEl) emailEl.textContent = name;
+      if (typeof AICredit !== 'undefined') AICredit.updateUI();
     } else {
       loginBtn.style.display  = 'flex';
       userBlock.style.display = 'none';
+      if (typeof AICredit !== 'undefined') AICredit.updateUI(null);
     }
     if (syncBtn) syncBtn.style.display = user ? '' : 'none';
     var syncRecovery = document.getElementById('smSyncRecovery');
@@ -393,6 +397,7 @@ var Auth = {
 
   _clearUserCache: function() {
     try { localStorage.removeItem(Auth._USER_CACHE_KEY); } catch(e) {}
+    localStorage.removeItem('hsk_ai_credit_balance');
   },
 
   // ── Setup modal event listeners ────────────────────
@@ -488,6 +493,8 @@ var Auth = {
     return true;
   },
 
+  signOut: async function() { await Auth.logout(); },
+
   _sendTokenToExtension: async function(extId, session) {
     document.getElementById('extAuthMsg').textContent = 'Đang kết nối với extension...';
     document.getElementById('extAuthLogin').style.display = 'none';
@@ -515,4 +522,55 @@ var Auth = {
       document.getElementById('extAuthError').style.display = '';
     }
   },
+};
+
+// ═══════════════════════════════════════════════════════
+// AI CREDIT BADGE — fetch & display user's AI credit
+// balance from user_ai_credit_balance Supabase table.
+// Shown only if user has ever purchased or received credits.
+// ═══════════════════════════════════════════════════════
+var AICredit = {
+  _CACHE_KEY: 'hsk_ai_credit_balance',
+  _lastBalance: null,
+
+  // Fetch from Supabase, update UI + low warnings
+  fetch: async function() {
+    if (!window.SB || !window.Auth || !Auth.user) return;
+    var res = await SB.from('user_ai_credit_balance')
+      .select('balance')
+      .eq('user_id', Auth.user.id)
+      .maybeSingle();
+    if (res.error) { console.warn('[AICredit] fetch error:', res.error.message); return; }
+    if (!res.data) { AICredit.updateUI(null); return; } // no row → never had credits
+    var prev = AICredit._lastBalance;
+    var bal  = res.data.balance || 0;
+    AICredit._lastBalance = bal;
+    try { localStorage.setItem(AICredit._CACHE_KEY, String(bal)); } catch(e) {}
+    AICredit.updateUI(bal);
+    if (prev !== null && bal < prev) AICredit._warnLow(bal, prev);
+  },
+
+  // Update badge UI. Pass null to hide (logged out / no credits).
+  // Pass undefined to read from localStorage cache.
+  updateUI: function(balance) {
+    if (balance === undefined) {
+      var cached = localStorage.getItem(AICredit._CACHE_KEY);
+      balance = cached !== null ? parseInt(cached, 10) : null;
+    }
+    var badge = document.getElementById('topbarAICreditBadge');
+    if (!badge) return;
+    if (balance === null) { badge.style.display = 'none'; return; }
+    badge.style.display = '';
+    badge.textContent   = '🔮 ' + balance.toLocaleString() + ' cr';
+  },
+
+  _warnLow: function(bal, prev) {
+    if (prev > 0 && bal === 0) {
+      showToast('🔮 Đã hết AI Credit! Vào Bảng giá để mua thêm Túi Linh Đan.');
+    } else if (prev > 100 && bal <= 100) {
+      showToast('🔮 AI Credit sắp hết — còn ' + bal + ' cr. Cân nhắc mua thêm!');
+    } else if (prev > 300 && bal <= 300) {
+      showToast('🔮 AI Credit còn ' + bal + ' cr (≤30%). Nên mua thêm sớm.');
+    }
+  }
 };

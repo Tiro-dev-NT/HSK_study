@@ -429,8 +429,17 @@ var Profile = (function() {
   function _deleteAccount() {
     var typed = prompt('Nhập "XOA" để xác nhận xoá tài khoản vĩnh viễn (không thể hoàn tác):');
     if (typed !== 'XOA') { if (typed !== null) _profileToast('Xác nhận không đúng, đã huỷ.', 'error'); return; }
-    _profileToast('Yêu cầu xoá tài khoản đã gửi. Tài khoản sẽ bị xoá trong 24h.', 'info');
-    // TODO: call server-side delete RPC when available (requires service-role key)
+    if (!window.SB) { _profileToast('Không thể kết nối server', 'error'); return; }
+    _profileToast('Đang xoá tài khoản...', 'info');
+    SB.rpc('delete_account_cascade').then(function(res) {
+      if (res.error) { _profileToast('Lỗi: ' + res.error.message, 'error'); return; }
+      // Clear all local data
+      localStorage.clear();
+      if (typeof Auth !== 'undefined') Auth._clearUserCache();
+      if (window.SB) SB.auth.signOut().catch(function() {});
+      _profileToast('Tài khoản đã bị xoá. Chuyển hướng...', 'success');
+      setTimeout(function() { window.location.reload(); }, 1800);
+    });
   }
 
   function _confirmAgeGate() {

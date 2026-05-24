@@ -3,6 +3,23 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
+# Secrets / credentials (CRITICAL — never commit)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+credentials/
+service-account*.json
+.supabase/
+firebase-config.json
+
+# API keys patterns (defense-in-depth, use git-secrets hook recommended)
+# Recommendation: install https://github.com/awslabs/git-secrets
+# Then: git secrets --register-aws · git secrets --add 'sk-[a-zA-Z0-9]+'
+
 # Editor
 .vscode/
 .idea/

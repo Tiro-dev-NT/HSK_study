@@ -1,8 +1,10 @@
 # 🎯 Hanzi Genz — Product Tier Matrix
 
 > Bảng tổng hợp tính năng × tier (Free/Pro) × token cost. Source-of-truth khi cần lock pricing decisions.
-> **Last updated:** 2026-05-21
-> **Liên quan:** [REVENUE_PROJECTION.md](REVENUE_PROJECTION.md) · [GAMIFICATION_PLAN.md](GAMIFICATION_PLAN.md) · [`js/data/plans.js`](../js/data/plans.js)
+> **Last updated:** 2026-05-23
+> **Liên quan:** [AI_CREDIT_PRICING.md](AI_CREDIT_PRICING.md) ⭐ NEW · [TOKEN_SINK_ROADMAP.md](TOKEN_SINK_ROADMAP.md) ⭐ NEW · [HONOR_PACK_DESIGN.md](HONOR_PACK_DESIGN.md) ⭐ NEW · [REVENUE_PROJECTION.md](REVENUE_PROJECTION.md) · [GAMIFICATION_PLAN.md](GAMIFICATION_PLAN.md) · [`js/data/plans.js`](../js/data/plans.js)
+>
+> ⚠️ **DECISION 2026-05-23 (Monetization v2):** BỎ Token Pack VND truyền thống → thay bằng **Hộp Ân Cần** 99k/lần (donation-framed). Bump Lifetime 1.49M → 2.49M. AI Credit Pack BETA 29k/99k/199k. Allowance Pro siết. Xem decision log cuối doc + 3 doc source-of-truth mới.
 
 ---
 
@@ -17,18 +19,18 @@
 
 ---
 
-## 💎 Pro Tier Mechanics (v2 — 2026-05-21)
+## 💎 Pro Tier Mechanics (v3 — 2026-05-23)
 
 | Tier | Giá | AI Credit allowance/tháng | Tặng kèm khi mua |
 |------|-----|---------------------------|-------------------|
-| **Free** | 0 | Nếm 3-5 lượt/tháng | — |
-| Linh hoạt | 75k/1m | Rộng* | — |
-| Chăm chỉ | 199k/3m | Rộng* | — |
-| Bứt phá | 329k/6m | Rộng* | — |
-| **Tiết kiệm** ⭐ | 499k/12m | Rộng* | gói AI Credit + bộ cosmetic Bé Rồng |
-| Trọn đời | **1.490.000đ**/lifetime | = gói tháng (KHÔNG unlimited) | gói AI Credit lớn + cosmetic Bé Rồng cao cấp |
+| **Free** | 0 | **50 cr** (cap 50/ngày) | — |
+| Linh hoạt | 75k/1m | **800 cr** (cap 200/ngày) | 150🪙 |
+| Chăm chỉ | 199k/3m | **700 cr/m** | 500🪙 |
+| Bứt phá | 329k/6m | **650 cr/m** | 800🪙 |
+| **Tiết kiệm** ⭐ | 499k/12m | **600 cr/m** | 1.500🪙 + **100 AI Credit (Túi Sơ)** 1 lần |
+| Trọn đời | **2.490.000đ**/lifetime | **500 cr/m** vĩnh viễn | 3.000🪙 + **500 AI Credit (Túi Trung)** 1 lần |
 
-*Allowance "Rộng" = đủ cho ~95% user dùng đều đặn không chạm trần. Con số cụ thể chốt sau khi có data dùng thật (ra mắt rộng tay → siết nhẹ theo phân bố).
+→ Số chi tiết + công thức margin: xem [AI_CREDIT_PRICING.md](AI_CREDIT_PRICING.md). Pro 95% user không chạm trần. Heavy user (~5%) vượt → mua AI Credit Pack.
 
 **Token tier-neutral:** Free và Pro kiếm token NHƯ NHAU (đều từ học). KHÔNG có earn multiplier, KHÔNG có token grant cho Pro. Token chỉ mua cosmetic → Pro không cần "vòi token". Bonus khi mua gói = AI Credit + cosmetic hữu hình, KHÔNG phải đống token chết.
 
@@ -268,16 +270,40 @@ Nguyên tắc: nội dung **LẶP LẠI** thì gen 1 lần, lưu lại, KHÔNG c
 - Premium TTS thử 10 từ: 20🪙
 - Mock test extra attempt: 50🪙
 
-### Token Shop (mua trực tiếp khi cần thêm)
+### ⛔ Token Shop — DEPRECATED 2026-05-23
 
-| Pack | Giá | Token | Bonus | Per token |
-|------|-----|-------|-------|-----------|
-| pack100 | 19k | 100 | 0 | 190đ/🪙 |
-| pack500 | 79k | 550 | 50 | 144đ/🪙 |
-| **pack1200** ⭐ | 159k | 1400 | 200 | 114đ/🪙 |
-| pack3000 | 349k | 3600 | 600 | 97đ/🪙 |
+> **BỎ HOÀN TOÀN** Token Pack VND truyền thống — chống tiếng "bào tiền" + hợp văn hoá VN "ủng hộ app indie".
+> Thay bằng **Hộp Ân Cần** (donation-framed). Xem [HONOR_PACK_DESIGN.md](HONOR_PACK_DESIGN.md).
 
-> **Lưu ý:** Token Pack bán TOKEN (tiền tệ cosmetic). **AI Credit Pack** là sản phẩm RIÊNG bán AI Credit (xem section AI Features). Hai cái khác nhau, KHÔNG lẫn, KHÔNG quy đổi.
+~~| Pack | Giá | Token | Bonus | Per token |~~
+~~|------|-----|-------|-------|-----------|~~
+~~| pack100 | 19k | 100 | 0 | 190đ/🪙 |~~
+~~| pack500 | 79k | 550 | 50 | 144đ/🪙 |~~
+~~| **pack1200** ⭐ | 159k | 1400 | 200 | 114đ/🪙 |~~
+~~| pack3000 | 349k | 3600 | 600 | 97đ/🪙 |~~
+
+### 📦 Hộp Ân Cần (thay thế Token Shop từ 2026-05-23)
+
+| SKU | Giá | Token | Bonus Pro | Outfit limited | Badge | Cap |
+|---|---|---|---|---|---|---|
+| `honor_pack` | 99.000đ/lần | 1.000🪙 | +200🪙 cho Pro | 1 outfit "Người Ủng Hộ" tháng đó | "Mạnh Thường Quân" vĩnh viễn | 12 lần/năm/user |
+
+**Framing:** donation tự nguyện, KHÔNG nudge banner/popup. Wording: *"Không quảng cáo, không bán dữ liệu. Đóng góp giúp duy trì gói cơ bản miễn phí + thêm content."* Xem [HONOR_PACK_DESIGN.md](HONOR_PACK_DESIGN.md).
+
+### 💳 AI Credit Pack (Túi Linh Đan AI — BETA)
+
+| SKU | Giá | Credit | Per credit | Margin |
+|---|---|---|---|---|
+| 🥉 `aipack_so` | 29.000đ | 100 | 290đ/cr | 70% |
+| 🥈 `aipack_trung` | 99.000đ | 500 | 198đ/cr | 57% |
+| 🥇 `aipack_cao` ⭐ | 199.000đ | 1.500 | 133đ/cr | 37% |
+
+Gói 4 (499k/5000cr) **chưa launch** — đợi data thật. Xem [AI_CREDIT_PRICING.md](AI_CREDIT_PRICING.md).
+
+> **3 stream rõ ràng, KHÔNG lẫn, KHÔNG quy đổi:**
+> 1. **Pro Sub** (75k-2.49M) = recurring chính, unlock + AI allowance
+> 2. **AI Credit Pack** (29k-199k beta) = consumable AI hạng 2 vượt allowance
+> 3. **Hộp Ân Cần** (99k/lần) = donation tự nguyện, nhận token + outfit limited + badge
 
 ---
 
@@ -386,3 +412,20 @@ Khi launch tính năng mới (Phase H, P, Q, R, S, T, U, V, W, X1-X5), **cập n
 | 2026-05-21 | **B cải tiến token:** token tier-neutral (Free=Pro earn) — bỏ multiplier 2-3x + token grant Pro. Bonus mua gói → AI Credit + cosmetic hữu hình. Sink = "thế giới Bé Rồng" tiến hoá, build từng bước |
 | 2026-05-21 | **AI Credit** = tiền tệ riêng cho AI, tách khỏi token, KHÔNG quy đổi. Chỉ từ Pro allowance / free-quota / mua VND. Token KHÔNG mua AI |
 | 2026-05-21 | KHÔNG bán "unlimited AI" flat. Thay bằng Gói AI Credit "đủ 1 tháng dùng nặng" (có đáy → định giá an toàn) |
+| **2026-05-23** | 💰 **MONETIZATION v2 LOCKED** — BỎ Token Pack VND truyền thống → thay bằng **Hộp Ân Cần** 99k/lần (donation-framed, cap 12/năm, outfit "Người Ủng Hộ" rotate). Chống tiếng "bào tiền" + hợp văn hoá VN "ủng hộ app indie". |
+| 2026-05-23 | **AI Credit Pack BETA** — 3 SKU 29k/100cr, 99k/500cr, 199k/1500cr. Gói 499k/5000cr chưa launch (đợi data). Beta 2-3 tháng + lock-in giá + +20% bonus credit khi chốt. |
+| 2026-05-23 | **Multiplier credit theo task**: Tutor 1cr · Pronunce 2cr · HSKK 3cr · Conversation 5cr · Essay-rewrite 5cr · Essay-grade 8cr · Story 10cr (xem AI_CREDIT_PRICING.md). KHÔNG bán phẳng "1 credit = 1 lượt bất kỳ" |
+| 2026-05-23 | **Pro allowance siết** để tránh lỗ: Free 50 · Monthly 800 · Quarterly 700 · Semi 650 · Yearly 600 · Lifetime 500 cr/tháng. **Cap 200 lượt AI/ngày cứng** kể cả còn credit |
+| 2026-05-23 | **Bump Lifetime 1.490.000đ → 2.490.000đ** (industry benchmark 5× yearly thay 3×) |
+| 2026-05-23 | **Tặng AI Credit kèm sub — CHỈ Yearly + Lifetime**: Yearly +100cr (Túi Sơ), Lifetime +500cr (Túi Trung). Monthly/Quarterly/Semi KHÔNG tặng AI |
+| 2026-05-23 | **TUYỆT ĐỐI KHÔNG tặng AI Credit qua streak/milestone/quest học** — AI có cost API thật, tặng free = lỗ vĩnh viễn |
+| 2026-05-23 | **Fallback model hard-code cùng hạng giá** (lệch ≤2-3×). Hạng 1: DS V3 → Gemini Flash-Lite → Qwen nhỏ. Hạng 2: DS V4 → Qwen3-Max → GLM-5 → Kimi K2.6. **CẤM** rơi sang Sonnet/GPT |
+| 2026-05-23 | **Streak milestone guardrail** chống token inflation: 30d 1000→300 · 60d 120→500 · level up 2000→500 · 1000 từ mastered 1500→400. Sub bonus: Semi 1200→800 · Yearly 3000→1500 · Lifetime 8000→3000 |
+| 2026-05-23 | **Streak 100 (mới)**: 800🪙 + outfit Bé Rồng. **Streak 365 (mới)**: 2000🪙 + outfit limited + cert "1 năm kiên trì" |
+| 2026-05-23 | **Anti double-grant streak**: token direct-grant từ `gamification.js` ngay khi hit milestone. Chain quest `sc_str30/60/100/365` chỉ badge + outfit + cert (token=0) |
+| 2026-05-23 | **Wave A-E token sink roadmap** — build từng bước, mỗi wave có success metric (token spend ≥30% earn). A: consumable (Streak Insurance + Double XP + Refresh — BỎ Skip flashcard) + 5-8 outfit Bé Rồng. B: Pomodoro+ambient+music. C: Vườn+Forest (cây HÉO không CHẾT — anti-anxiety). D: Pet companion. E: Phố Cổ |
+| 2026-05-23 | **Trang `/free-vs-pro`** (mới) — minh bạch Free/Pro scope. Defense pháp lý theo Luật Quảng cáo 2012 + NĐ 38/2021. Wording Hộp Ân Cần Option 4: "Không quảng cáo, không bán dữ liệu, duy trì gói cơ bản miễn phí" |
+| 2026-05-23 | **Cap mua pack/tháng** (chống fraud/RMT/AML): Free 2 · Monthly 5 · Quarterly/Semi 8 · Yearly/Lifetime 10 pack/tháng. Hộp Ân Cần: 12 lần/năm/user |
+| 2026-05-23 | **Phase O+ Visual Vocab** (mới): 7000 ảnh từ HSK pre-gen Midjourney + R2. Cost ~$50-200 + 2-4 tuần. Sau Phase O hiện tại |
+| 2026-05-23 | **Phase P video pipeline chốt**: slideshow Midjourney `--cref` + ElevenLabs (VN) + Azure Xiaoxiao (TQ) + Remotion. **KHÔNG** AI talking-head (miệng Trung sai tone), **KHÔNG** Sora/Veo full-video (character bể). 3 bài mẫu trước |
+| 2026-05-23 | **Vite migration ở Phase H** (cuối 2026). Vanilla JS giữ đến đó. Phase J/I bắt buộc Vite build |

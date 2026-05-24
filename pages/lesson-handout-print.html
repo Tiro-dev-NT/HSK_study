@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Giáo trình Mai · Bài 3: Đi chợ Bắc Kinh (Demo)</title>
+<style>
+/* ============================================================
+   TRANG GIÁO TRÌNH BÀI HỌC — DEMO (Hanzi Genz · Phase P)
+   Mục đích: đọc trên app, user TỰ chép vô vở riêng.
+   Optional: in ra PDF mang đi.
+   ============================================================ */
+
+:root {
+  --chau-hong: #DC2626;
+  --chau-hong-soft: #FEE2E2;
+  --hoang-kim: #F59E0B;
+  --hoang-kim-soft: #FEF3C7;
+  --thuy-luc: #10B981;
+  --thuy-luc-soft: #D1FAE5;
+  --mac-hac: #1F2937;
+  --me-bach: #FAFAF9;
+  --border: #E5E7EB;
+  --muted: #6B7280;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Segoe UI', 'Noto Sans SC', system-ui, sans-serif;
+  color: var(--mac-hac);
+  background: #F3F4F6;
+  line-height: 1.6;
+}
+
+/* --- Toolbar nổi (chỉ trên màn hình) --- */
+.toolbar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+.toolbar button {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--mac-hac);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.15s;
+}
+.toolbar button:hover {
+  border-color: var(--chau-hong);
+  color: var(--chau-hong);
+}
+.toolbar button.primary {
+  background: var(--chau-hong);
+  color: #fff;
+  border-color: var(--chau-hong);
+}
+.toolbar button.primary:hover {
+  background: #B91C1C;
+  color: #fff;
+}
+
+/* --- Container A4-friendly --- */
+.handout {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px 48px;
+  min-height: 100vh;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+/* === BREADCRUMB === */
+.breadcrumb {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.breadcrumb a {
+  color: var(--chau-hong);
+  text-decoration: none;
+}
+.breadcrumb .sep { margin: 0 6px; color: #ccc; }
+
+/* === HEADER === */
+.header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--chau-hong);
+  margin-bottom: 24px;
+}
+.header-icon {
+  font-size: 48px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.header-text h1 {
+  font-size: 26px;
+  color: var(--mac-hac);
+  margin-bottom: 4px;
+  font-weight: 800;
+}
+.header-text .lesson-no {
+  color: var(--chau-hong);
+}
+.header-text .subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+.header-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.header-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* === MỤC TIÊU BOX === */
+.objectives {
+  background: var(--thuy-luc-soft);
+  border-left: 4px solid var(--thuy-luc);
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin-bottom: 28px;
+}
+.objectives-title {
+  font-weight: 700;
+  color: #065F46;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.objectives ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+  font-size: 13px;
+}
+.objectives li::before {
+  content: '✓ ';
+  color: var(--thuy-luc);
+  font-weight: 700;
+}
+
+/* === SECTION === */
+.section { margin-bottom: 28px; }
+.section-h {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--chau-hong);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px dashed var(--chau-hong-soft);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-h .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--chau-hong);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* === STORY === */
+.story {
+  font-size: 14px;
+  color: #333;
+  background: #FAFAF9;
+  padding: 14px 18px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-style: italic;
+}
+.story strong {
+  color: var(--chau-hong);
+  font-style: normal;
+}
+
+/* === VOCAB TABLE === */
+.vocab-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+table.vocab {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+table.vocab thead {
+  background: var(--chau-hong);
+  color: #fff;
+}
+table.vocab th {
+  padding: 10px 12px;
+  font-weight: 700;
+  text-align: left;
+  font-size: 13px;
+}
+table.vocab th:first-child { width: 40px; text-align: center; }
+table.vocab td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+}
+table.vocab td:first-child {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+}
+table.vocab .hz {
+  font-family: 'Noto Sans SC', 'SimSun', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--mac-hac);
+}
+table.vocab .py {
+  color: var(--thuy-luc);
+  font-weight: 600;
+  font-size: 13px;
+}
+table.vocab tbody tr:nth-child(even) {
+  background: #FAFAF9;
+}
+table.vocab tbody tr.highlight {
+  background: var(--hoang-kim-soft) !important;
+}
+table.vocab tbody tr.highlight td:first-child::after {
+  content: ' 🔥';
+}
+
+/* === GRAMMAR BOX === */
+.grammar-box {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FEF9E7 100%);
+  border: 2px solid var(--hoang-kim);
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+.pattern {
+  font-size: 18px;
+  font-family: 'Noto Sans SC', 'SimSun', serif;
+  font-weight: 700;
+  color: #92400E;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 1px dashed var(--hoang-kim);
+}
+.pattern .var {
+  background: var(--chau-hong);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0 2px;
+}
+.pattern-meaning {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.example-list {
+  list-style: none;
+  font-size: 14px;
+}
+.example-list li {
+  margin-bottom: 6px;
+  padding-left: 20px;
+  position: relative;
+}
+.example-list li::before {
+  content: '▸';
+  color: var(--hoang-kim);
+  position: absolute;
+  left: 4px;
+}
+.example-list .py-small {
+  color: var(--thuy-luc);
+  font-size: 11px;
+  margin-left: 4px;
+}
+.example-list .vi-small {
+  color: var(--muted);
+  font-size: 12px;
+  display: block;
+  margin-left: 4px;
+}
+
+/* === DIALOG === */
+.dialog {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 0;
+  overflow: hidden;
+}
+.dialog-line {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.dialog-line:last-child { border-bottom: none; }
+.dialog-line.mai {
+  background: #FEF2F2;
+}
+.speaker {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--chau-hong);
+}
+.dialog-line.wang .speaker { color: var(--thuy-luc); }
+.dialog-line.mai .speaker::before { content: '🐲 '; }
+.dialog-line.wang .speaker::before { content: '👵 '; }
+.line-zh {
+  font-family: 'Noto Sans SC', 'SimSun', serif;
+  font-size: 17px;
+  color: var(--mac-hac);
+  margin-bottom: 2px;
+}
+.line-py {
+  color: var(--thuy-luc);
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+.line-vi {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* === GỢI Ý CHÉP VÀO VỞ === */
+.copy-guide {
+  background: var(--chau-hong-soft);
+  border: 2px dashed var(--chau-hong);
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+.copy-guide-title {
+  font-weight: 800;
+  color: var(--chau-hong);
+  font-size: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.copy-guide ul {
+  list-style: none;
+}
+.copy-guide li {
+  padding: 8px 0;
+  border-bottom: 1px dotted #FCA5A5;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+}
+.copy-guide li:last-child { border-bottom: none; }
+.copy-guide .check {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--chau-hong);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.copy-guide strong { color: var(--chau-hong); }
+
+/* === FOOTER === */
+.footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* === MASCOT TIP === */
+.mascot-tip {
+  background: #fff;
+  border: 2px solid var(--hoang-kim);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 24px 0;
+  position: relative;
+}
+.mascot-tip::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: -8px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-top: 2px solid var(--hoang-kim);
+  border-left: 2px solid var(--hoang-kim);
+  transform: rotate(45deg);
+}
+.mascot-tip .icon { font-size: 32px; flex-shrink: 0; }
+.mascot-tip .text { font-size: 13px; color: #555; }
+.mascot-tip .text strong { color: var(--chau-hong); }
+
+/* === COPY TOAST === */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--mac-hac);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 200;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* === PRINT === */
+@media print {
+  body { background: #fff; }
+  .toolbar, .toast { display: none !important; }
+  .handout {
+    box-shadow: none;
+    max-width: 100%;
+    padding: 0;
+  }
+  @page { size: A4; margin: 15mm; }
+  .section { page-break-inside: avoid; }
+  .vocab-table-wrap { page-break-inside: avoid; }
+}
+
+@media (max-width: 768px) {
+  .handout { padding: 20px; }
+  .objectives ul { grid-template-columns: 1fr; }
+  .header { flex-direction: column; }
+  .header-text h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TOOLBAR ===== -->
+<div class="toolbar">
+  <button onclick="copyVocab()">📋 Copy bảng từ</button>
+  <button onclick="window.print()">🖨️ In / PDF</button>
+  <button class="primary">📔 Đã chép xong</button>
+</div>
+
+<!-- ===== HANDOUT ===== -->
+<div class="handout">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="#">🐲 Hành trình Mai</a>
+    <span class="sep">›</span>
+    <a href="#">Chương 1: Bắc Kinh ngày đầu</a>
+    <span class="sep">›</span>
+    <span>Bài 3</span>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-icon">🛒</div>
+    <div class="header-text">
+      <h1><span class="lesson-no">Bài 3 ·</span> Mai đi chợ Bắc Kinh</h1>
+      <div class="subtitle">"Lần đầu mặc cả bằng tiếng Trung..."</div>
+      <div class="header-meta">
+        <span>📊 HSK 1</span>
+        <span>⏱️ ~25 phút</span>
+        <span>📝 12 từ mới</span>
+        <span>🎯 1 mẫu câu</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mục tiêu -->
+  <div class="objectives">
+    <div class="objectives-title">🎯 Sau bài này bạn sẽ làm được</div>
+    <ul>
+      <li>Hỏi giá bằng câu 多少钱?</li>
+      <li>Đọc số đếm 1-100</li>
+      <li>Dùng đơn vị tiền 块 / 毛</li>
+      <li>Mặc cả đơn giản (太贵了)</li>
+    </ul>
+  </div>
+
+  <!-- ===== 1. STORY ===== -->
+  <div class="section">
+    <h2 class="section-h"><span class="num">1</span> Tình huống</h2>
+    <div class="story">
+      Sáng thứ Bảy, <strong>Mai</strong> dậy sớm đi chợ gần ký túc xá. Hôm nay cô bé muốn mua táo về làm sinh tố.
+      Đến quầy của <strong>bà Wáng</strong>, Mai run run hít một hơi rồi mở miệng hỏi giá — lần đầu tiên giao tiếp
+      hoàn toàn bằng tiếng Trung. Liệu Mai có mặc cả thành công không?
+    </div>
+  </div>
+
+  <!-- ===== 2. VOCAB ===== -->
+  <div class="section">
+    <h2 class="section-h"><span class="num">2</span> Từ vựng <small style="font-size:12px;color:#888;font-weight:400;margin-left:auto">🔥 = từ trọng tâm</small></h2>
+    <div class="vocab-table-wrap">
+      <table class="vocab" id="vocab-table">
+        <thead>
+          <tr><th>#</th><th>Hán tự</th><th>Pinyin</th><th>Loại</th><th>Nghĩa Việt</th></tr>
+        </thead>
+        <tbody>
+          <tr class="highlight"><td>1</td><td class="hz">多少钱</td><td class="py">duōshǎo qián</td><td>cụm</td><td>Bao nhiêu tiền?</td></tr>
+          <tr><td>2</td><td class="hz">块</td><td class="py">kuài</td><td>danh</td><td>Đồng (khẩu ngữ)</td></tr>
+          <tr><td>3</td><td class="hz">毛</td><td class="py">máo</td><td>danh</td><td>Hào (1/10 đồng)</td></tr>
+          <tr class="highlight"><td>4</td><td class="hz">斤</td><td class="py">jīn</td><td>danh</td><td>Cân (500g)</td></tr>
+          <tr><td>5</td><td class="hz">苹果</td><td class="py">píngguǒ</td><td>danh</td><td>Quả táo</td></tr>
+          <tr><td>6</td><td class="hz">香蕉</td><td class="py">xiāngjiāo</td><td>danh</td><td>Quả chuối</td></tr>
+          <tr class="highlight"><td>7</td><td class="hz">便宜</td><td class="py">piányi</td><td>tính</td><td>Rẻ</td></tr>
+          <tr class="highlight"><td>8</td><td class="hz">贵</td><td class="py">guì</td><td>tính</td><td>Đắt</td></tr>
+          <tr><td>9</td><td class="hz">要</td><td class="py">yào</td><td>động</td><td>Muốn / cần</td></tr>
+          <tr><td>10</td><td class="hz">买</td><td class="py">mǎi</td><td>động</td><td>Mua</td></tr>
+          <tr><td>11</td><td class="hz">两</td><td class="py">liǎng</td><td>số</td><td>Hai (đứng trước lượng từ)</td></tr>
+          <tr><td>12</td><td class="hz">一点</td><td class="py">yìdiǎn</td><td>cụm</td><td>Một chút</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bé Rồng tip -->
+  <div class="mascot-tip">
+    <div class="icon">🐲</div>
+    <div class="text">
+      <strong>Bé Rồng mách nhỏ:</strong> 块 và 元 cùng nghĩa "đồng", nhưng người Trung **NÓI** 块 (khẩu ngữ),
+      **VIẾT** 元 (trên hóa đơn, ngân hàng). Đi chợ luôn dùng 块!
+    </div>
+  </div>
+
+  <!-- ===== 3. GRAMMAR ===== -->
+  <div class="section">
+    <h2 class="section-h"><span class="num">3</span> Mẫu câu chính</h2>
+    <div class="grammar-box">
+      <div class="pattern">
+        <span class="var">Đồ vật</span> + 多少钱? <span style="font-size:13px;color:#888;font-weight:400">→ ... bao nhiêu tiền?</span>
+      </div>
+      <div class="pattern-meaning">Câu hỏi giá phổ biến nhất. Có thể thêm "一斤" (một cân) sau để hỏi giá theo đơn vị.</div>
+      <ul class="example-list">
+        <li>
+          苹果多少钱? <span class="py-small">Píngguǒ duōshǎo qián?</span>
+          <span class="vi-small">Táo bao nhiêu tiền?</span>
+        </li>
+        <li>
+          香蕉多少钱一斤? <span class="py-small">Xiāngjiāo duōshǎo qián yì jīn?</span>
+          <span class="vi-small">Chuối bao nhiêu tiền một cân?</span>
+        </li>
+        <li>
+          这个多少钱? <span class="py-small">Zhège duōshǎo qián?</span>
+          <span class="vi-small">Cái này bao nhiêu tiền?</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 4. DIALOG ===== -->
+  <div class="section">
+    <h2 class="section-h"><span class="num">4</span> Hội thoại mẫu</h2>
+    <div class="dialog">
+      <div class="dialog-line mai">
+        <div class="speaker">Mai</div>
+        <div>
+          <div class="line-zh">阿姨，您好！苹果多少钱一斤？</div>
+          <div class="line-py">Āyí, nín hǎo! Píngguǒ duōshǎo qián yì jīn?</div>
+          <div class="line-vi">Cô ơi, xin chào! Táo bao nhiêu tiền một cân ạ?</div>
+        </div>
+      </div>
+      <div class="dialog-line wang">
+        <div class="speaker">Bà Wáng</div>
+        <div>
+          <div class="line-zh">五块一斤，很甜！</div>
+          <div class="line-py">Wǔ kuài yì jīn, hěn tián!</div>
+          <div class="line-vi">Năm đồng một cân, ngọt lắm!</div>
+        </div>
+      </div>
+      <div class="dialog-line mai">
+        <div class="speaker">Mai</div>
+        <div>
+          <div class="line-zh">太贵了，便宜一点吧？</div>
+          <div class="line-py">Tài guì le, piányi yìdiǎn ba?</div>
+          <div class="line-vi">Đắt quá, rẻ chút đi ạ?</div>
+        </div>
+      </div>
+      <div class="dialog-line wang">
+        <div class="speaker">Bà Wáng</div>
+        <div>
+          <div class="line-zh">好吧，四块五一斤。</div>
+          <div class="line-py">Hǎo ba, sì kuài wǔ yì jīn.</div>
+          <div class="line-vi">Thôi được, bốn đồng năm hào một cân.</div>
+        </div>
+      </div>
+      <div class="dialog-line mai">
+        <div class="speaker">Mai</div>
+        <div>
+          <div class="line-zh">好，我要两斤，谢谢！</div>
+          <div class="line-py">Hǎo, wǒ yào liǎng jīn, xièxie!</div>
+          <div class="line-vi">Vâng, cháu lấy hai cân, cảm ơn cô!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 5. GỢI Ý CHÉP VÀO VỞ ===== -->
+  <div class="section">
+    <h2 class="section-h"><span class="num">5</span> Mở vở ra, hôm nay chép gì?</h2>
+    <div class="copy-guide">
+      <div class="copy-guide-title">📔 Bé Rồng gợi ý cho bạn 4 việc cần chép vào vở:</div>
+      <ul>
+        <li>
+          <span class="check"></span>
+          <div>
+            <strong>1. Bảng từ vựng</strong> — chép cả 12 từ theo cột: <em>Hán tự · Pinyin · Nghĩa</em>.
+            Mỗi từ 🔥 (trọng tâm) chép lặp lại <strong>5 lần</strong>.
+          </div>
+        </li>
+        <li>
+          <span class="check"></span>
+          <div>
+            <strong>2. Mẫu câu 多少钱?</strong> — chép cấu trúc + 3 ví dụ, sau đó <strong>TỰ đặt thêm 3 câu</strong>
+            với đồ vật khác (vd: 笔, 书, 茶...).
+          </div>
+        </li>
+        <li>
+          <span class="check"></span>
+          <div>
+            <strong>3. Hội thoại Mai – bà Wáng</strong> — chép cả đoạn hội thoại bằng Hán tự (không cần pinyin),
+            sau đó che bản gốc, đọc lại bằng cách nhìn Hán tự.
+          </div>
+        </li>
+        <li>
+          <span class="check"></span>
+          <div>
+            <strong>4. Mini-task sáng tạo</strong> — viết 1 đoạn 3-4 câu kể về <strong>lần bạn đi chợ gần nhất</strong>
+            bằng tiếng Trung, dùng ít nhất 5 từ trong bài.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>🐲 Hanzi Genz · Hành trình Mai · Chương 1 · Bài 3/30</span>
+    <span><a href="#" style="color:var(--chau-hong);text-decoration:none">Bài tiếp theo →</a></span>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">✅ Đã copy bảng từ vào clipboard</div>
+
+<script>
+function copyVocab() {
+  const rows = document.querySelectorAll('#vocab-table tbody tr');
+  let text = 'STT\tHán tự\tPinyin\tLoại\tNghĩa Việt\n';
+  rows.forEach(r => {
+    const cells = r.querySelectorAll('td');
+    text += Array.from(cells).map(c => c.textContent.trim()).join('\t') + '\n';
+  });
+  navigator.clipboard.writeText(text).then(() => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  });
+}
+</script>
+
+</body>
+</html>

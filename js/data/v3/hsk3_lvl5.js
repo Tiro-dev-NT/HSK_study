@@ -1104,7 +1104,7 @@ HSK3_DATA[5] = [
   {h:'连接', p:'liánjiē', v:'kết nối, liên kết', e:'associate, coupled, conjoin, join, cable, interface, tie_in, joint, tie in, couple up, connect, brin', t:'body'},
   {h:'脸盆', p:'liǎnpén', v:'chậu rửa mặt', e:'washbowl, basin for washing hands and face, CL:個|个[ge4]', t:'body'},
   {h:'脸色', p:'liǎnsè', v:'nét mặt, sắc mặt', e:'brow, countenance, facial_expression, look, facial expression, colouring, complexion', t:'general'},
-  {h:'两岸', p:'liǎng\'àn', v:'hai bờ, hai bên bờ', e:'both sides of a river, both sides of the Taiwan Straits (I.e., Chinese Mainland and Taiwan)', t:'nature'},
+  {h:'两岸', p:'liǎng\'àn', v:'hai bờ, hai bên bờ (sông)', e:'both sides of a river', t:'nature'},
   {h:'邻居', p:'línjū', v:'hàng xóm', e:'neighbor', t:'general'},
   {h:'铃声', p:'língshēng', v:'tiếng chuông, nhạc chuông', e:'ring, ringtone, bell stroke, tintinnabulation', t:'general'},
   {h:'领带', p:'lǐngdài', v:'cà vạt, khăn quàng cổ', e:'necktie, CL:條|条[tiao2]', t:'general'},

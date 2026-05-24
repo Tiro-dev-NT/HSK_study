@@ -1,26 +1,41 @@
 // ═══════════════════════════════════════════════════════
-// PLANS.JS — Single source-of-truth for Pro subscription
-// durations + standalone Token Shop packs.
-// Loaded globally as window.PLAN_CATALOG.
+// PLANS.JS — Single source-of-truth for monetization
+// • Pro subscriptions (5 durations)
+// • AI Credit Packs (3 beta SKUs)
+// • Hộp Ân Cần (donation-framed support pack)
+// • ❌ NO Token Pack VND (removed 2026-05-23, chống tiếng "bào tiền")
+//
 // Edge Function `create-payment` mirrors these prices
 // server-side — KEEP IN SYNC manually.
+//
+// Decision sources:
+//   - docs/PRODUCT_TIER_MATRIX.md
+//   - docs/AI_CREDIT_PRICING.md
+//   - docs/TOKEN_SINK_ROADMAP.md
+//   - docs/HONOR_PACK_DESIGN.md
 // ═══════════════════════════════════════════════════════
 
 window.PLAN_CATALOG = (function () {
 
   // ── Pro subscription (5 durations, same Pro benefits) ─────────────────
-  // Pricing: 1 month flat, longer durations → cheaper per-month.
+  // Each plan: tokenBonus = 1-time gift on purchase
+  //            aiCreditBonus = 1-time AI credit gift (only Yearly + Lifetime)
+  //            aiAllowancePerMonth = monthly AI Credit allowance (Hạng 2 only)
   var SUBSCRIPTIONS = {
     monthly: {
       name:        'Linh hoạt',
       sub:         '1 tháng',
-      priceOrig:   null,            // no anchor for monthly
+      priceOrig:   null,
       price:       75000,
       priceLabel:  '75.000đ',
       perMonth:    '75.000đ',
-      saveLabel:   null,
+      perDay:      '~2.500đ',         // marketing helper — daily breakdown
+      saveLabel:   null,              // baseline tier — không so sánh
+      compareNote: 'Linh hoạt — huỷ bất cứ lúc nào',
       durationDays: 30,
       tokenBonus:  150,
+      aiCreditBonus: 0,
+      aiAllowancePerMonth: 800,
       icon:        '🪙',
       colorClass:  'pc-icon-slate',
       featured:    false
@@ -28,13 +43,17 @@ window.PLAN_CATALOG = (function () {
     quarterly: {
       name:        'Chăm chỉ',
       sub:         '3 tháng',
-      priceOrig:   225000,
+      priceOrig:   null,              // BỎ fake anchor 225k — chưa từng bán giá đó
       price:       199000,
       priceLabel:  '199.000đ',
       perMonth:    '~66.000đ',
-      saveLabel:   '-12%',
+      perDay:      '~2.200đ',
+      saveLabel:   'Rẻ hơn 12%/tháng',   // anchor = Monthly tier thật
+      compareNote: 'so với Monthly (75k → 66k/tháng)',
       durationDays: 90,
       tokenBonus:  500,
+      aiCreditBonus: 0,
+      aiAllowancePerMonth: 700,
       icon:        '⚡',
       colorClass:  'pc-icon-green',
       featured:    false
@@ -42,13 +61,17 @@ window.PLAN_CATALOG = (function () {
     semiannual: {
       name:        'Bứt phá',
       sub:         '6 tháng',
-      priceOrig:   450000,
+      priceOrig:   null,              // BỎ fake anchor 450k
       price:       329000,
       priceLabel:  '329.000đ',
       perMonth:    '~55.000đ',
-      saveLabel:   '-27%',
+      perDay:      '~1.800đ',
+      saveLabel:   'Rẻ hơn 27%/tháng',
+      compareNote: 'so với Monthly (75k → 55k/tháng)',
       durationDays: 180,
-      tokenBonus:  1200,
+      tokenBonus:  800,
+      aiCreditBonus: 0,
+      aiAllowancePerMonth: 650,
       icon:        '🔥',
       colorClass:  'pc-icon-orange',
       featured:    false
@@ -56,70 +79,133 @@ window.PLAN_CATALOG = (function () {
     yearly: {
       name:        'Tiết kiệm',
       sub:         '1 năm',
-      priceOrig:   900000,
+      priceOrig:   null,              // BỎ fake anchor 900k
       price:       499000,
       priceLabel:  '499.000đ',
       perMonth:    '~42.000đ',
-      saveLabel:   '-44%',
+      perDay:      '~1.400đ',         // ⭐ KEY MARKETING — "1 ly trà đá/ngày"
+      saveLabel:   'Rẻ hơn 44%/tháng',
+      compareNote: 'so với Monthly · ~1.400đ/ngày — rẻ hơn 1 ly trà đá',
       durationDays: 365,
-      tokenBonus:  3000,
+      tokenBonus:  1500,
+      aiCreditBonus: 100,
+      aiAllowancePerMonth: 600,
       icon:        '⭐',
       colorClass:  'pc-icon-yellow',
-      featured:    true,            // "Phổ biến nhất" anchor
+      featured:    true,
       badge:       '⭐ Phổ biến nhất'
     },
     lifetime: {
       name:        'Trọn đời',
       sub:         '1 lần',
-      priceOrig:   2990000,
-      price:       1490000,
-      priceLabel:  '1.490.000đ',
+      priceOrig:   null,
+      price:       2490000,
+      priceLabel:  '2.490.000đ',
       perMonth:    'vĩnh viễn',
-      saveLabel:   'Tốt nhất',
-      durationDays: null,           // null = perpetual
-      tokenBonus:  8000,
+      perDay:      null,                  // không tính daily cho lifetime
+      saveLabel:   'Hoà vốn sau ~33 tháng',
+      compareNote: 'so với Monthly 75k × 33 = 2.475k · sau đó MIỄN PHÍ vĩnh viễn',
+      durationDays: null,
+      tokenBonus:  3000,
+      aiCreditBonus: 500,
+      aiAllowancePerMonth: 500,
       icon:        '💎',
       colorClass:  'pc-icon-purple',
       featured:    false
-      // AI: Lifetime KHÔNG unlimited — allowance AI = gói tháng (chốt 2026-05-21)
+      // AI: Lifetime KHÔNG unlimited — allowance = gói tháng (chốt 2026-05-21)
     }
   };
 
-  // ── Token Shop (K.4) — standalone packs, paid in VND ──────────────────
-  var TOKEN_PACKS = {
-    pack100: {
-      tokens:     100,
-      bonus:      0,
-      price:      19000,
-      priceLabel: '19.000đ',
-      perToken:   '190đ/🪙',
-      icon:       '🪙'
+  // ── AI Credit Packs (BETA — 2026-05-23) ────────────────────────────────
+  // "Túi Linh Đan AI" — bán VND, mọi tier mua được kể cả Free
+  // 1 credit ≈ baseline cost 1 lượt Tutor (~30đ blended)
+  // Pricing formula: credit × cost × 2.5 / (1 - 2.5% phí cổng)
+  var AI_CREDIT_PACKS = {
+    aipack_so: {
+      sku:         'aipack_so',
+      tier:        'Sơ',
+      tierLabel:   'Linh Đan Sơ',
+      credits:     100,
+      price:       29000,
+      priceLabel:  '29.000đ',
+      perCredit:   '290đ/cr',
+      marginPct:   70,
+      icon:        '🥉',
+      featured:    false,
+      beta:        true
     },
-    pack500: {
-      tokens:     500,
-      bonus:      50,
-      price:      79000,
-      priceLabel: '79.000đ',
-      perToken:   '158đ/🪙',
-      icon:       '💰'
+    aipack_trung: {
+      sku:         'aipack_trung',
+      tier:        'Trung',
+      tierLabel:   'Linh Đan Trung',
+      credits:     500,
+      price:       99000,
+      priceLabel:  '99.000đ',
+      perCredit:   '198đ/cr',
+      marginPct:   57,
+      icon:        '🥈',
+      featured:    false,
+      beta:        true
     },
-    pack1200: {
-      tokens:     1200,
-      bonus:      200,
-      price:      159000,
-      priceLabel: '159.000đ',
-      perToken:   '133đ/🪙',
-      icon:       '👜',
-      featured:   true
-    },
-    pack3000: {
-      tokens:     3000,
-      bonus:      600,
-      price:      349000,
-      priceLabel: '349.000đ',
-      perToken:   '116đ/🪙',
-      icon:       '🎁'
+    aipack_cao: {
+      sku:         'aipack_cao',
+      tier:        'Cao',
+      tierLabel:   'Linh Đan Cao',
+      credits:     1500,
+      price:       199000,
+      priceLabel:  '199.000đ',
+      perCredit:   '133đ/cr',
+      marginPct:   37,
+      icon:        '🥇',
+      featured:    true,
+      beta:        true
     }
+    // Note: aipack_tien (5000cr / 499k / margin 17%) đợi data thật → chưa launch beta
+  };
+
+  // ── Hộp Ân Cần (Honor Pack — donation-framed) ─────────────────────────
+  // 1 SKU duy nhất 99k. Cap 12 lần/năm/user. Outfit rotate 1 món/tháng.
+  // Xem docs/HONOR_PACK_DESIGN.md cho danh sách 12 outfit/năm.
+  var HONOR_PACK = {
+    sku:          'honor_pack',
+    name:         'Hộp Ân Cần',
+    price:        99000,
+    priceLabel:   '99.000đ',
+    tokensFree:   1000,
+    tokensProBonus: 200,           // Pro user +200 token bonus (total 1200)
+    rewards: {
+      token:      1000,
+      outfit:     'monthly_rotate', // determined by month_year at purchase time
+      badge:      'mạnh_thường_quân',
+      honorHall:  true              // optional display in /honor-hall
+    },
+    capPerYear:   12,               // 1 outfit/tháng × 12 = full set 12 outfit/năm
+    proPerks: {
+      earlyAccess: true,            // outfit available to Pro 24h sooner
+      tokenBonus:  200
+    },
+    icon:         '📦',
+    framing:      'donation'        // NEVER use "purchase" framing in UI
+  };
+
+  // ── Daily AI usage caps (per tier) ────────────────────────────────────
+  var AI_DAILY_CAPS = {
+    free:        50,
+    monthly:     200,
+    quarterly:   200,
+    semiannual:  200,
+    yearly:      200,
+    lifetime:    200
+  };
+
+  // ── AI Credit Pack purchase caps (per month) ──────────────────────────
+  var AI_PACK_PURCHASE_CAPS = {
+    free:        2,
+    monthly:     5,
+    quarterly:   8,
+    semiannual:  8,
+    yearly:      10,
+    lifetime:    10
   };
 
   // ── Helpers ───────────────────────────────────────────────────────────
@@ -127,8 +213,16 @@ window.PLAN_CATALOG = (function () {
     return n.toLocaleString('vi-VN') + 'đ';
   }
 
-  function getSubscription(sku) { return SUBSCRIPTIONS[sku] || null; }
-  function getTokenPack(sku)    { return TOKEN_PACKS[sku] || null; }
+  function getSubscription(sku)   { return SUBSCRIPTIONS[sku] || null; }
+  function getAICreditPack(sku)   { return AI_CREDIT_PACKS[sku] || null; }
+  function getHonorPack()         { return HONOR_PACK; }
+  function getAIDailyCap(tier)    { return AI_DAILY_CAPS[tier] || 50; }
+  function getAIPackCap(tier)     { return AI_PACK_PURCHASE_CAPS[tier] || 2; }
+
+  function getAIAllowance(tier) {
+    var s = SUBSCRIPTIONS[tier];
+    return s ? s.aiAllowancePerMonth : 50; // free default
+  }
 
   // Map duration name → icon (used by sidebar plan badge if added later)
   function durationIcon(duration) {
@@ -136,12 +230,30 @@ window.PLAN_CATALOG = (function () {
     return s ? s.icon : '🪙';
   }
 
+  // ⚠️ DEPRECATED — backward compat for any old caller during transition.
+  // TOKEN_PACKS removed 2026-05-23 (chống tiếng "bào tiền").
+  // New code: use HONOR_PACK + AI_CREDIT_PACKS.
+  function getTokenPack(sku) {
+    console.warn('[PLAN_CATALOG] getTokenPack() is DEPRECATED. Token Pack VND removed 2026-05-23. Use HonorPack or AICreditPack.');
+    return null;
+  }
+
   return {
-    SUBSCRIPTIONS:  SUBSCRIPTIONS,
-    TOKEN_PACKS:    TOKEN_PACKS,
-    getSubscription: getSubscription,
-    getTokenPack:    getTokenPack,
-    durationIcon:    durationIcon,
-    fmtVND:          fmtVND
+    SUBSCRIPTIONS:      SUBSCRIPTIONS,
+    AI_CREDIT_PACKS:    AI_CREDIT_PACKS,
+    HONOR_PACK:         HONOR_PACK,
+    AI_DAILY_CAPS:      AI_DAILY_CAPS,
+    AI_PACK_PURCHASE_CAPS: AI_PACK_PURCHASE_CAPS,
+    getSubscription:    getSubscription,
+    getAICreditPack:    getAICreditPack,
+    getHonorPack:       getHonorPack,
+    getAIDailyCap:      getAIDailyCap,
+    getAIPackCap:       getAIPackCap,
+    getAIAllowance:     getAIAllowance,
+    durationIcon:       durationIcon,
+    fmtVND:             fmtVND,
+    // DEPRECATED — kept for transition safety
+    getTokenPack:       getTokenPack,
+    TOKEN_PACKS:        null  // explicit null instead of removed object
   };
 }());

@@ -1,0 +1,124 @@
+/* ── FAB Bottom Sheet (Mobile — "Xem thêm" quick nav) ──────────────
+   Triggers when user taps center FAB on mobile bottom nav.
+   Wave 2 design: 2-column icon grid, slide-up animation.
+   ─────────────────────────────────────────────────────────────── */
+
+.fab-sheet-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 900;
+  opacity: 0;
+  transition: opacity var(--d-base) var(--ease-out);
+}
+.fab-sheet-backdrop.open {
+  display: block;
+  opacity: 1;
+}
+
+.fab-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 901;
+  background: var(--surface);
+  border-radius: 20px 20px 0 0;
+  padding: 0 0 env(safe-area-inset-bottom, 0);
+  transform: translateY(100%);
+  transition: transform var(--d-base) var(--ease-out);
+  box-shadow: var(--shadow-4);
+}
+.fab-sheet.open {
+  transform: translateY(0);
+}
+
+.fab-sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--border);
+  border-radius: var(--r-pill);
+  margin: 12px auto 0;
+}
+
+.fab-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--s-5) 10px;
+}
+.fab-sheet-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.fab-sheet-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: none;
+  color: var(--text3);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.fab-sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-1);
+  padding: var(--s-2) var(--s-3) var(--s-5);
+}
+
+.fab-sheet-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: var(--s-3) var(--s-2);
+  border-radius: var(--r-3);
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-ui);
+  transition: background var(--d-fast);
+  text-decoration: none;
+}
+.fab-sheet-item:active,
+.fab-sheet-item:hover {
+  background: var(--surface2);
+}
+
+.fab-sheet-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-3);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text2);
+}
+.fab-sheet-item:hover .fab-sheet-icon,
+.fab-sheet-item:active .fab-sheet-icon {
+  background: var(--primary-soft);
+  border-color: var(--chau-hong);
+  color: var(--chau-hong);
+}
+
+.fab-sheet-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text2);
+  text-align: center;
+  line-height: 1.3;
+}

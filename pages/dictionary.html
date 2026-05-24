@@ -1,25 +1,92 @@
     <!-- PAGE: DICTIONARY -->
     <section class="page active" id="page-dictionary">
-      <div class="page-header">
-        <h1 data-vi="Từ điển" data-en="Dictionary">Từ điển</h1>
+
+      <!-- Breadcrumb -->
+      <nav class="dict-breadcrumb" aria-label="breadcrumb">
+        <span class="db-item">Công cụ</span>
+        <span class="db-sep">·</span>
+        <span class="db-item db-current">Từ điển</span>
+        <span class="db-sep">·</span>
+        <span class="db-item db-dim">Hán – Việt</span>
+      </nav>
+
+      <!-- Two-column layout -->
+      <div class="dict-layout">
+
+        <!-- ── Main column ── -->
+        <div class="dict-main">
+
+          <!-- Search bar with button -->
+          <div class="dict-search-bar">
+            <div class="dict-search-input-wrap">
+              <svg class="dict-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="dictSearch" placeholder="Tìm chữ Hán, pinyin hoặc nghĩa..." autocomplete="off"/>
+            </div>
+            <button class="dict-search-btn" id="dictSearchBtn">Tra từ</button>
+          </div>
+
+          <!-- Filter tabs -->
+          <div class="search-tabs">
+            <button class="stab active" data-mode="all">Tất cả</button>
+            <button class="stab" data-mode="hanzi">Hán tự</button>
+            <button class="stab" data-mode="pinyin">Pinyin</button>
+            <button class="stab" data-mode="meaning">Nghĩa Việt</button>
+            <button class="stab" data-mode="radical">🔑 Bộ thủ</button>
+          </div>
+
+          <!-- Recent searches -->
+          <div class="dict-recent" id="dictRecent" style="display:none">
+            <span class="dict-recent-label">GẦN ĐÂY:</span>
+            <div class="dict-recent-chips" id="dictRecentChips"></div>
+            <button class="dict-recent-clear" id="dictRecentClear" title="Xóa lịch sử">✕</button>
+          </div>
+
+          <!-- Radical browser -->
+          <div class="radical-browser" id="radicalBrowser" style="display:none">
+            <div class="rad-label">Chọn bộ thủ để lọc từ:</div>
+            <div class="rad-grid" id="radGrid"></div>
+          </div>
+
+          <!-- Results area -->
+          <div class="dict-results" id="dictResults">
+            <p class="hint" data-vi="Nhập từ để tìm kiếm..." data-en="Type to search...">Nhập từ để tìm kiếm...</p>
+          </div>
+        </div>
+
+        <!-- ── Right panel (desktop ≥1024px) ── -->
+        <aside class="dict-aside" id="dictAside">
+
+          <!-- Vocab progress card -->
+          <div class="dict-aside-card">
+            <div class="dac-label">Từ vựng đã học</div>
+            <div class="dac-count-row">
+              <span class="dac-num" id="dictKnownCount">0</span>
+              <span class="dac-denom">/ <span id="dictTotalCount">0</span> từ</span>
+            </div>
+            <div class="dac-bar-track">
+              <div class="dac-bar-fill" id="dictKnownBar" style="width:0%"></div>
+            </div>
+            <div class="dac-sub" id="dictKnownSub">trong tổng số từ HSK</div>
+          </div>
+
+          <!-- AI Reverse Lookup (Pro) -->
+          <div class="dict-aside-card dict-ai-card">
+            <span class="dac-pro-badge">⭐ Pro</span>
+            <div class="dac-ai-title">Tra nghĩa ngược</div>
+            <p class="dac-desc">Nhập nghĩa Việt / Anh, AI gợi ý từ Hán phù hợp nhất.</p>
+            <button class="dac-pro-btn" onclick="if(typeof Monetization!=='undefined')Monetization.showGate('ai-reverse-lookup')">Dùng thử →</button>
+          </div>
+
+          <!-- My decks mini -->
+          <div class="dict-aside-card">
+            <div class="dac-label">Bộ thẻ của tôi</div>
+            <div class="dac-deck-list" id="dictDeckList">
+              <div class="dac-deck-empty">Chưa có bộ thẻ nào</div>
+            </div>
+            <a class="dac-link" data-page="my-vocab" href="#" onclick="Router.navigateTo('my-vocab');return false;">Quản lý bộ thẻ →</a>
+          </div>
+
+        </aside>
       </div>
-      <div class="search-box">
-        <input type="text" id="dictSearch" placeholder="Tìm chữ Hán, pinyin hoặc nghĩa..." autocomplete="off"/>
-        <span class="search-icon">🔍</span>
-      </div>
-      <div class="search-tabs">
-        <button class="stab active" data-mode="all">Tất cả</button>
-        <button class="stab" data-mode="hanzi">Chữ Hán</button>
-        <button class="stab" data-mode="pinyin">Pinyin</button>
-        <button class="stab" data-mode="meaning">Nghĩa</button>
-        <button class="stab" data-mode="radical">🔑 Bộ thủ</button>
-      </div>
-      <!-- RADICAL BROWSER -->
-      <div class="radical-browser" id="radicalBrowser" style="display:none">
-        <div class="rad-label">Chọn bộ thủ để lọc từ:</div>
-        <div class="rad-grid" id="radGrid"></div>
-      </div>
-      <div class="dict-results" id="dictResults">
-        <p class="hint" data-vi="Nhập từ để tìm kiếm..." data-en="Type to search...">Nhập từ để tìm kiếm...</p>
-      </div>
+
     </section>

@@ -76,6 +76,18 @@
   --info:       #6366F1;
   --info-bg:    #EEF2FF;
 
+  /* ───── Learning-status tokens (Wave 2 cleanup) ─────
+     Áp cho ô trạng thái level / vocab card / map dot.
+     Map vào brand palette để không dùng màu "ngoài hệ". */
+  --status-new:       #6B7280;            /* fg-3 — chưa học, neutral */
+  --status-learning:  var(--hoang-kim);   /* đang học — gold */
+  --status-due:       var(--chau-hong);   /* tới hạn ôn — vermilion */
+  --status-mastered:  var(--thuy-luc);    /* thành thạo — jade */
+  --status-new-bg:       rgba(107,114,128,0.10);
+  --status-learning-bg:  rgba(245,158,11,0.12);
+  --status-due-bg:       rgba(220,38,38,0.10);
+  --status-mastered-bg:  rgba(16,185,129,0.12);
+
   /* ───── Pinyin tone colors (Mandarin Pinyin Project, tuned warm) ───── */
   --tone-1: #EF4444;              /* high level — red */
   --tone-2: #F59E0B;              /* rising — gold */

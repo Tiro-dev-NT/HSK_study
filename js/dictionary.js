@@ -11,16 +11,21 @@ var Dictionary = {
 
   _setupDone: false,
   _modalEventsBound: false,
+  _RECENT_KEY: 'hsk_dict_recent',
 
   setup: function() {
     const input = document.getElementById('dictSearch');
     if (!input) return;
     if (Dictionary._setupDone) {
       // Already wired — just refresh results
+      Dictionary._renderRecent();
+      Dictionary._populateAside();
       Dictionary.searchDict(input.value.trim());
       return;
     }
     Dictionary._setupDone = true;
+    Dictionary._renderRecent();
+    Dictionary._populateAside();
 
     // Background-load HSK 3.0 data for integrated search
     if (typeof HSKVersion !== 'undefined' && !HSKVersion.isV3Loaded()) {
@@ -64,6 +69,86 @@ var Dictionary = {
 
     // Default search on startup
     Dictionary.searchDict('');
+  },
+
+  // ── Recent searches ────────────────────────────────
+  _getRecent: function() {
+    try { return JSON.parse(localStorage.getItem(Dictionary._RECENT_KEY) || '[]'); }
+    catch(e) { return []; }
+  },
+  _saveRecent: function(list) {
+    try { localStorage.setItem(Dictionary._RECENT_KEY, JSON.stringify(list)); } catch(e) {}
+  },
+  _addToRecent: function(query) {
+    if (!query || query.length < 1) return;
+    var list = Dictionary._getRecent().filter(function(q) { return q !== query; });
+    list.unshift(query);
+    if (list.length > 8) list = list.slice(0, 8);
+    Dictionary._saveRecent(list);
+    Dictionary._renderRecent();
+  },
+  _renderRecent: function() {
+    var wrap  = document.getElementById('dictRecent');
+    var chips = document.getElementById('dictRecentChips');
+    var clear = document.getElementById('dictRecentClear');
+    if (!wrap || !chips) return;
+    var list = Dictionary._getRecent();
+    if (!list.length) { wrap.style.display = 'none'; return; }
+    wrap.style.display = 'flex';
+    chips.innerHTML = list.map(function(q) {
+      return '<button class="dict-recent-chip" data-q="' + q.replace(/"/g,'&quot;') + '">' + q + '</button>';
+    }).join('');
+    chips.querySelectorAll('.dict-recent-chip').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var inp = document.getElementById('dictSearch');
+        if (inp) { inp.value = btn.dataset.q; Dictionary.searchDict(btn.dataset.q); }
+      });
+    });
+    if (clear && !clear._bound) {
+      clear._bound = true;
+      clear.addEventListener('click', function() {
+        Dictionary._saveRecent([]);
+        Dictionary._renderRecent();
+      });
+    }
+  },
+
+  // ── Right aside ────────────────────────────────────
+  _populateAside: function() {
+    try {
+      // Vocab count
+      var countEl  = document.getElementById('dictKnownCount');
+      var totalEl  = document.getElementById('dictTotalCount');
+      var barEl    = document.getElementById('dictKnownBar');
+      var subEl    = document.getElementById('dictKnownSub');
+      if (countEl && typeof AppState !== 'undefined') {
+        var known = AppState.totalLearned ? AppState.totalLearned() : 0;
+        var total = typeof getAllWords === 'function' ? getAllWords().length : 0;
+        var pct   = total ? Math.min(100, Math.round(known / total * 100)) : 0;
+        countEl.textContent = known;
+        if (totalEl) totalEl.textContent = total.toLocaleString();
+        if (barEl)   barEl.style.width = pct + '%';
+        if (subEl) {
+          var ver = AppState.version === 3 ? 'HSK 3.0' : 'HSK 2.0';
+          subEl.textContent = pct + '% tổng từ ' + ver;
+        }
+      }
+      // Deck list
+      var deckList = document.getElementById('dictDeckList');
+      if (deckList && typeof AppState !== 'undefined' && AppState.userDecks) {
+        var decks = AppState.userDecks || [];
+        if (!decks.length) {
+          deckList.innerHTML = '<div class="dac-deck-empty">Chưa có bộ thẻ nào</div>';
+        } else {
+          deckList.innerHTML = decks.slice(0, 5).map(function(d) {
+            return '<div class="dac-deck-item">' +
+              '<span class="dac-deck-name">' + (d.name || 'Bộ thẻ') + '</span>' +
+              '<span class="dac-deck-count">' + (d.cards ? d.cards.length : 0) + ' từ</span>' +
+            '</div>';
+          }).join('');
+        }
+      }
+    } catch(e) { /* silent */ }
   },
 
   _bindModalEvents: function() {
@@ -161,6 +246,8 @@ var Dictionary = {
   // ── Modal ──────────────────────────────────────────
   openModal: function(word) {
     Dictionary._bindModalEvents();
+    // Track this word in recent searches
+    Dictionary._addToRecent(word.h);
     AppState.currentWord = word;
     currentWord = word; // compat alias
     document.getElementById('modalHanzi').textContent = word.h;

@@ -101,8 +101,13 @@ var QUEST_CHAINS = {
       { id: 'sc_srs7',  title: 'SRS Kỷ luật',  desc: 'Ôn SRS 7 ngày liên tiếp', metric: 'chain_srs_days',target: 7,  rewards: { token: 25, xp: 40 } },
       { id: 'sc_typ',   title: 'Typing Pro',    desc: 'Đúng 100 câu typing',     metric: 'chain_typing', target: 100,rewards: { token: 35, xp: 50 } },
       { id: 'sc_dc3',   title: 'Daily Champ',   desc: 'Daily Challenge 3 lần',   metric: 'chain_dc',     target: 3,  rewards: { token: 40, xp: 60 } },
-      { id: 'sc_str30', title: 'Streak 30',     desc: 'Giữ streak 30 ngày',      metric: 'streak_days',  target: 30, rewards: { token: 50, xp: 80 } },
-      { id: 'sc_str60', title: 'Devoted',       desc: 'Giữ streak 60 ngày',      metric: 'streak_days',  target: 60, rewards: { token: 120, xp: 0, badge: 'Devoted Scholar' } },
+      // ─── Streak milestones (chốt 2026-05-23, xem TOKEN_SINK_ROADMAP.md) ───
+      // Token cho streak được DIRECT-GRANT từ gamification.js checkAndUpdateStreak.
+      // Chain quest ở đây CHỈ badge + outfit + cert (avoid double-grant).
+      { id: 'sc_str30',  title: 'Streak 30',    desc: 'Giữ streak 30 ngày',      metric: 'streak_days',  target: 30,  rewards: { token: 0, xp: 100, badge: 'Streak 30' } },
+      { id: 'sc_str60',  title: 'Devoted',      desc: 'Giữ streak 60 ngày',      metric: 'streak_days',  target: 60,  rewards: { token: 0, xp: 0,   badge: 'Devoted Scholar' } },
+      { id: 'sc_str100', title: 'Centurion',    desc: 'Giữ streak 100 ngày',     metric: 'streak_days',  target: 100, rewards: { token: 0, xp: 0,   badge: 'Centurion', outfit: 'be_rong_centurion' } },
+      { id: 'sc_str365', title: 'Năm Kiên Trì', desc: 'Giữ streak 365 ngày',     metric: 'streak_days',  target: 365, rewards: { token: 0, xp: 0,  badge: 'Year of Persistence', outfit: 'be_rong_year_limited', cert: 'one_year_persistence' } },
     ]
   }
 };

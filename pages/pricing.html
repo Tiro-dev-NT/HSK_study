@@ -1,180 +1,200 @@
 <div class="pricing-page">
+
+  <!-- ── Hero ── -->
   <div class="pricing-hero">
-    <h1>Hanzi Genz Pro</h1>
-    <p>Mở khoá toàn bộ tính năng — chọn thời hạn phù hợp với bạn</p>
+    <div class="ph-inner">
+      <h1 class="ph-title">Nâng cấp Pro — học sâu hơn, AI rộng tay</h1>
+      <p class="ph-sub">Yearly từ <strong>~1.400đ/ngày</strong> — rẻ hơn 1 ly trà đá. Unlock HSK 3-6 grammar/reading/listening · Game premium · AI Tutor · Cosplay Bé Rồng</p>
+      <img src="assets/icon-soft.webp" class="ph-mascot" alt="Bé Rồng" width="100" height="100">
+      <div class="ph-stats">
+        <span>📚 7.000+ từ vựng</span>
+        <span>☕ ~1.400đ/ngày (Yearly)</span>
+        <span>🏆 Game premium unlimited (Pro)</span>
+      </div>
+      <p class="ph-disclaimer">Giá đã bao gồm VAT 10%. Chi tiết Free vs Pro: <a href="/free-vs-pro">/free-vs-pro</a> · <a href="/terms">Điều khoản</a> · <a href="/privacy">Quyền riêng tư</a></p>
+    </div>
   </div>
 
-  <!-- ── Free tier (always visible, single row) ───────────────────── -->
+  <!-- ── Free tier row ── -->
   <div class="pricing-free-card">
     <div class="pfc-left">
-      <div class="pfc-icon">📖</div>
+      <span class="pfc-icon">⭐</span>
       <div>
-        <div class="pfc-title">Free</div>
-        <div class="pfc-sub">Dùng thử miễn phí — mãi mãi</div>
+        <div class="pfc-title">Miễn phí · Forever Free</div>
+        <div class="pfc-sub">HSK 2.0 đầy đủ · HSK 3.0 L1-3 · SRS 4 nút · 5 lượt AI/ngày</div>
       </div>
     </div>
-    <ul class="pfc-features">
-      <li>✓ Toàn bộ từ vựng HSK 2.0 (6 cấp) + HSK 3.0 L1–3</li>
-      <li>✓ Từ điển 7.000+ từ · Luyện viết Hanzi (xuất PDF)</li>
-      <li>✓ Flashcard + SRS 4 nút thông minh</li>
-      <li>✓ Ngữ pháp HSK 1–2 · Speed Quiz, Memory, Wordle</li>
-      <li>✓ Game premium 1 lượt/ngày · 5 lượt AI/ngày</li>
-    </ul>
-    <button class="pfc-btn" disabled>Đang dùng</button>
+    <span class="pfc-badge">Đang sử dụng</span>
   </div>
 
-  <!-- ── Pro durations (5-card grid) ──────────────────────────────── -->
+  <!-- ── Pro tiers (calm hierarchy) ── -->
   <h2 class="pricing-section-title">Nâng cấp Pro</h2>
-  <p class="pricing-section-sub">Tất cả gói đều mở khoá <strong>toàn bộ tính năng Pro</strong> — gói càng dài, càng tiết kiệm/tháng + token bonus càng lớn.</p>
 
-  <div class="pricing-grid pricing-grid-5">
+  <div class="pro-tiers-layout">
 
-    <!-- 1 tháng - Linh hoạt -->
-    <div class="pricing-card">
-      <div class="pc-icon pc-icon-slate">🪙</div>
-      <div class="pc-plan-name">Linh hoạt</div>
-      <div class="pc-plan-sub">1 tháng</div>
-      <div class="pc-price-block">
-        <div class="pc-price-main">75.000đ</div>
-        <div class="pc-price-period">/tháng</div>
-      </div>
-      <div class="pc-per-month">75.000đ /tháng</div>
-      <div class="pc-token-bonus"><img src="/token_2.png" class="token-img" width="14" height="14" alt=""> +150 token tặng kèm</div>
-      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('monthly')">Nâng cấp ngay</button>
-    </div>
-
-    <!-- 3 tháng - Chăm chỉ -->
-    <div class="pricing-card">
-      <div class="pc-save-badge">-12%</div>
-      <div class="pc-icon pc-icon-green">⚡</div>
-      <div class="pc-plan-name">Chăm chỉ</div>
-      <div class="pc-plan-sub">3 tháng</div>
-      <div class="pc-price-block">
-        <div class="pc-price-original">225.000đ</div>
-        <div class="pc-price-main">199.000đ</div>
-        <div class="pc-price-period">/3 tháng</div>
-      </div>
-      <div class="pc-per-month">~66.000đ /tháng</div>
-      <div class="pc-token-bonus"><img src="/token_2.png" class="token-img" width="14" height="14" alt=""> +500 token tặng kèm</div>
-      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('quarterly')">Nâng cấp ngay</button>
-    </div>
-
-    <!-- 6 tháng - Bứt phá -->
-    <div class="pricing-card">
-      <div class="pc-save-badge">-27%</div>
-      <div class="pc-icon pc-icon-orange">🔥</div>
+    <!-- Featured: 6 tháng -->
+    <div class="pricing-card pc-featured">
+      <div class="pc-popular-badge">⭐ Phổ biến nhất</div>
       <div class="pc-plan-name">Bứt phá</div>
       <div class="pc-plan-sub">6 tháng</div>
       <div class="pc-price-block">
-        <div class="pc-price-original">450.000đ</div>
         <div class="pc-price-main">329.000đ</div>
-        <div class="pc-price-period">/6 tháng</div>
+        <div class="pc-price-period">/6 tháng · ~55.000đ/tháng · ~1.800đ/ngày · rẻ hơn 27% so Monthly</div>
       </div>
-      <div class="pc-per-month">~55.000đ /tháng</div>
-      <div class="pc-token-bonus"><img src="/token_2.png" class="token-img" width="14" height="14" alt=""> +1.200 token tặng kèm</div>
-      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('semiannual')">Nâng cấp ngay</button>
+      <div class="pc-save-chip">Rẻ hơn 27%/m</div>
+      <div class="pc-token-bonus">🪙 +800 token tặng kèm</div>
+      <ul class="pc-bullets">
+        <li>Toàn bộ HSK 3.0 (L1-9) + HSK 2.0</li>
+        <li>SRS 4 nút thông minh</li>
+        <li>Game premium unlimited</li>
+        <li>HSKK Mock Exam · AI allowance 650 cr/tháng</li>
+        <li>Cây Hán Tự + Sảnh Trà</li>
+      </ul>
+      <button class="pc-btn-primary" onclick="Pricing.openPayment('semiannual')">Chọn Pro 6 tháng</button>
     </div>
 
-    <!-- 1 năm - Tiết kiệm ★ FEATURED -->
-    <div class="pricing-card pc-highlighted">
-      <div class="pc-popular-badge">⭐ Phổ biến nhất</div>
-      <div class="pc-icon pc-icon-yellow">⭐</div>
-      <div class="pc-plan-name">Tiết kiệm</div>
-      <div class="pc-plan-sub">1 năm</div>
-      <div class="pc-price-block">
-        <div class="pc-price-original">900.000đ</div>
-        <div class="pc-price-main">499.000đ</div>
-        <div class="pc-price-period">/năm</div>
-      </div>
-      <div class="pc-per-month">~42.000đ /tháng (-44%)</div>
-      <div class="pc-token-bonus"><img src="/token_2.png" class="token-img" width="14" height="14" alt=""> +3.000 token tặng kèm</div>
-      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('yearly')">Nâng cấp ngay</button>
-    </div>
+    <div class="pc-right-col">
 
-    <!-- Lifetime - Trọn đời -->
-    <div class="pricing-card pc-lifetime">
-      <div class="pc-save-badge pc-save-badge-purple">Tốt nhất</div>
-      <div class="pc-icon pc-icon-purple">💎</div>
-      <div class="pc-plan-name">Trọn đời</div>
-      <div class="pc-plan-sub">Vĩnh viễn</div>
-      <div class="pc-price-block">
-        <div class="pc-price-original">2.990.000đ</div>
-        <div class="pc-price-main">1.490.000đ</div>
-        <div class="pc-price-period">1 lần</div>
+      <!-- Secondary: Lifetime -->
+      <div class="pricing-card pc-lifetime">
+        <div class="pc-plan-name">Trọn đời 💎</div>
+        <div class="pc-plan-sub">Vĩnh viễn · Một lần duy nhất</div>
+        <div class="pc-price-block">
+          <div class="pc-price-main">2.490.000đ</div>
+          <div class="pc-price-period">Hoà vốn sau ~33 tháng · sau đó miễn phí mãi mãi</div>
+        </div>
+        <div class="pc-token-bonus">🪙 +3.000 token · 💳 +500 AI Credit (Túi Trung) · cosplay Trạng nguyên</div>
+        <ul class="pc-bullets pc-bullets-sm">
+          <li>Không bao giờ hết hạn</li>
+          <li>Mọi tính năng Pro vĩnh viễn</li>
+          <li>500 AI Credit/tháng vĩnh viễn</li>
+          <li>Ưu tiên tính năng mới</li>
+        </ul>
+        <button class="pc-btn-outline" onclick="Pricing.openPayment('lifetime')">Mua trọn đời</button>
       </div>
-      <div class="pc-per-month">Không bao giờ hết hạn</div>
-      <div class="pc-token-bonus"><img src="/token_2.png" class="token-img" width="14" height="14" alt=""> +8.000 token tặng kèm</div>
-      <button class="pc-btn pc-btn-primary" onclick="Pricing.openPayment('lifetime')">Mua trọn đời</button>
-    </div>
 
+      <!-- Compact: ngắn hạn -->
+      <div class="pricing-card pc-compact">
+        <div class="pc-plan-name">Gói ngắn hạn</div>
+        <div class="pc-compact-options">
+          <label class="pc-compact-opt">
+            <input type="radio" name="pcShort" value="monthly" onchange="PricingUI.selectShort(this)">
+            <span class="pc-opt-label">
+              <span class="pc-opt-name">1 tháng</span>
+              <span class="pc-opt-price">75.000đ <span class="pc-opt-token">+150🪙</span></span>
+            </span>
+          </label>
+          <label class="pc-compact-opt pc-compact-opt--checked">
+            <input type="radio" name="pcShort" value="quarterly" checked onchange="PricingUI.selectShort(this)">
+            <span class="pc-opt-label">
+              <span class="pc-opt-name">3 tháng · ~66k/tháng</span>
+              <span class="pc-opt-price">199.000đ <span class="pc-opt-token">+500🪙 <span class="pc-save-chip pc-save-chip-sm">Rẻ hơn 12%</span></span></span>
+            </span>
+          </label>
+          <label class="pc-compact-opt">
+            <input type="radio" name="pcShort" value="yearly" onchange="PricingUI.selectShort(this)">
+            <span class="pc-opt-label">
+              <span class="pc-opt-name">1 năm · ~42k/tháng <span class="pc-daily-highlight">☕ ~1.400đ/ngày</span></span>
+              <span class="pc-opt-price">499.000đ <span class="pc-opt-token">+1.500🪙 +100cr <span class="pc-save-chip pc-save-chip-sm">Rẻ hơn 44%</span></span></span>
+            </span>
+          </label>
+        </div>
+        <button class="pc-btn-secondary" id="pcShortBtn" onclick="PricingUI.checkoutShort()">Chọn gói</button>
+      </div>
+
+    </div><!-- .pc-right-col -->
+
+  </div><!-- .pro-tiers-layout -->
+
+  <!-- Shared features summary -->
+  <p class="pricing-shared-note">Mọi gói Pro mở khóa cùng bộ tính năng: HSK 3-6 grammar/reading/listening · Game premium unlimited · HSKK Mock · SRS advanced · AI allowance theo gói. Khác nhau ở thời hạn + bonus mua.</p>
+
+  <!-- ── Token Shop ── -->
+  <!-- DISABLED 2026-05-24: TOKEN_PACKS = null, openTokenPurchase sẽ crash.
+       Sẽ enable lại sau khi có Hộp Ân Cần + AI Credit Pack (Wave A / Phase 2 Monetization).
+  <div class="pricing-section-header">
+    <h2 class="pricing-section-title">Kho Token 🪙</h2>
+    <p class="pricing-section-sub">Không cần Pro vẫn dùng được · Dùng để mở khóa cosplay, streak freeze, double XP, quà Lì Xì</p>
   </div>
-
-  <!-- ── Pro benefits list ───────────────────────────────────────── -->
-  <div class="pricing-benefits">
-    <h3>Mọi gói Pro đều bao gồm:</h3>
-    <div class="pb-grid">
-      <div>🔓 HSK 3.0 cấp L4–L9 đầy đủ</div>
-      <div>⚔️ Game premium không giới hạn (Boss, Racing, Sentence…)</div>
-      <div>📖 Ngữ pháp HSK 1–6 đầy đủ</div>
-      <div>📰 Reading Passages HSK 1–6</div>
-      <div>🎧 Listening Comprehension HSK 1–6</div>
-      <div>🎯 Survival không giới hạn (Free: 1 lượt/ngày)</div>
-      <div>📊 Progress Analytics chi tiết</div>
-      <div>🤖 AI hội thoại (Tutor, chấm bài) — allowance rộng</div>
-      <div>🔊 TTS giọng cao cấp (Edge/Google)</div>
-      <div><img src="/token_2.png" class="token-img" width="14" height="14" alt=""> Token thưởng x2 mỗi quest</div>
-    </div>
-  </div>
-
-  <!-- ── Token Shop (K.4) ────────────────────────────────────────── -->
-  <h2 class="pricing-section-title">Mua thêm token <img src="/token_2.png" class="token-img-lg" width="24" height="24" alt=""></h2>
-  <p class="pricing-section-sub">Token dùng để mua trang phục Bé Rồng, vật phẩm trang trí, streak freeze, double XP. Token không mua AI và không quy đổi ra tiền mặt.</p>
 
   <div class="token-shop-grid">
-
     <div class="token-pack-card">
-      <div class="tpc-icon"><img src="/token_2.png" width="40" height="40" alt=""></div>
-      <div class="tpc-tokens">100 <img src="/token_2.png" class="token-img" width="16" height="16" alt=""></div>
+      <div class="tpc-tokens">100 🪙</div>
       <div class="tpc-bonus tpc-bonus-empty">&nbsp;</div>
       <div class="tpc-price">19.000đ</div>
       <div class="tpc-rate">190đ/token</div>
       <button class="tpc-btn" onclick="Pricing.openTokenPurchase('pack100')">Mua</button>
     </div>
-
     <div class="token-pack-card">
-      <div class="tpc-icon"><img src="/token_2.png" width="40" height="40" alt=""></div>
-      <div class="tpc-tokens">500 <img src="/token_2.png" class="token-img" width="16" height="16" alt=""></div>
-      <div class="tpc-bonus">+50 <img src="/token_2.png" class="token-img" width="13" height="13" alt=""> bonus</div>
+      <div class="tpc-tokens">500 🪙</div>
+      <div class="tpc-bonus">+50 🪙 bonus</div>
       <div class="tpc-price">79.000đ</div>
       <div class="tpc-rate">158đ/token · -17%</div>
       <button class="tpc-btn" onclick="Pricing.openTokenPurchase('pack500')">Mua</button>
     </div>
-
     <div class="token-pack-card tpc-featured">
       <div class="tpc-badge">Tiết kiệm nhất</div>
-      <div class="tpc-icon"><img src="/token_2.png" width="40" height="40" alt=""></div>
-      <div class="tpc-tokens">1.200 <img src="/token_2.png" class="token-img" width="16" height="16" alt=""></div>
-      <div class="tpc-bonus">+200 <img src="/token_2.png" class="token-img" width="13" height="13" alt=""> bonus</div>
+      <div class="tpc-tokens">1.200 🪙</div>
+      <div class="tpc-bonus">+200 🪙 bonus</div>
       <div class="tpc-price">159.000đ</div>
       <div class="tpc-rate">133đ/token · -30%</div>
       <button class="tpc-btn tpc-btn-primary" onclick="Pricing.openTokenPurchase('pack1200')">Mua</button>
     </div>
-
     <div class="token-pack-card">
-      <div class="tpc-icon"><img src="/token_2.png" width="40" height="40" alt=""></div>
-      <div class="tpc-tokens">3.000 <img src="/token_2.png" class="token-img" width="16" height="16" alt=""></div>
-      <div class="tpc-bonus">+600 <img src="/token_2.png" class="token-img" width="13" height="13" alt=""> bonus</div>
+      <div class="tpc-tokens">3.000 🪙</div>
+      <div class="tpc-bonus">+600 🪙 bonus</div>
       <div class="tpc-price">349.000đ</div>
       <div class="tpc-rate">116đ/token · -39%</div>
       <button class="tpc-btn" onclick="Pricing.openTokenPurchase('pack3000')">Mua</button>
     </div>
+  </div>
+  -->
 
+  <!-- ── Comparison table ── -->
+  <details class="pricing-compare">
+    <summary class="pricing-compare-toggle">So sánh chi tiết các gói ▾</summary>
+    <div class="pricing-compare-body">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Tính năng</th>
+            <th>Free</th>
+            <th>Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>HSK 2.0 (6 cấp)</td><td>✓</td><td>✓</td></tr>
+          <tr><td>HSK 3.0 L1-3</td><td>✓</td><td>✓</td></tr>
+          <tr><td>HSK 3.0 L4-9</td><td>❌</td><td>✓</td></tr>
+          <tr><td>Từ điển 7.000+ từ</td><td>✓</td><td>✓</td></tr>
+          <tr><td>SRS flashcard</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Game premium không giới hạn</td><td>1 lượt/ngày</td><td>✓</td></tr>
+          <tr><td>HSKK Mock Exam</td><td>❌</td><td>✓</td></tr>
+          <tr><td>Luyện viết Hanzi (PDF)</td><td>✓</td><td>✓</td></tr>
+          <tr><td>AI Tutor / chấm bài</td><td>5 lượt/ngày</td><td>Nhiều hơn</td></tr>
+          <tr><td>Cây Hán Tự</td><td>❌</td><td>✓</td></tr>
+          <tr><td>Token quest x2</td><td>❌</td><td>✓</td></tr>
+          <tr><td>Sảnh Trà (cộng đồng)</td><td>❌</td><td>✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- ── FAQ ── -->
+  <div class="pricing-faq">
+    <h3 class="faq-title">Câu hỏi thường gặp</h3>
+    <details class="faq-item"><summary>Tôi có thể hủy gói không?</summary><p>Gói theo tháng/quý/6 tháng: hủy bất cứ lúc nào, không tự gia hạn. Gói Lifetime thanh toán 1 lần, không hoàn lại.</p></details>
+    <details class="faq-item"><summary>PayOS là gì?</summary><p>PayOS là cổng thanh toán được NHNN cấp phép, hỗ trợ chuyển khoản ngân hàng VN (Vietcombank, MB Bank, Techcombank...). An toàn, bảo mật.</p></details>
+    <details class="faq-item"><summary>Có thể đổi gói không?</summary><p>Hiện tại chưa hỗ trợ tự động. Liên hệ support để được hỗ trợ nâng cấp gói.</p></details>
+    <details class="faq-item"><summary>Hỗ trợ hoàn tiền không?</summary><p>Trong 7 ngày đầu nếu gặp lỗi kỹ thuật, liên hệ genzstudy06@gmail.com để được xét hoàn.</p></details>
+    <details class="faq-item"><summary>Dùng được bao nhiêu thiết bị?</summary><p>1 tài khoản dùng trên mọi thiết bị — PC, tablet, mobile đều được.</p></details>
   </div>
 
   <p class="pricing-footer">Thanh toán qua chuyển khoản ngân hàng / PayOS · Hỗ trợ: genzstudy06@gmail.com</p>
-</div>
 
-<!-- ── Payment modal (shared for subscription + token purchase) ── -->
+</div><!-- .pricing-page -->
+
+<!-- ── Payment modal (keep all IDs for js/pricing.js) ── -->
 <div id="paymentModal"
   style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:8000;
          align-items:center; justify-content:center;"
@@ -184,19 +204,16 @@
               max-width:340px; width:90%; border:1.5px solid var(--border);
               position:relative;">
 
-    <!-- ── State: confirm ── -->
     <div id="pmStateConfirm">
       <div style="font-size:36px; text-align:center; margin-bottom:14px;" id="pmIcon">💳</div>
       <h2 id="pmTitle" style="font-size:18px; font-weight:700; text-align:center; margin-bottom:6px;"></h2>
       <div id="pmPrice" style="text-align:center; font-size:22px; font-weight:800;
                                 color:var(--primary); margin-bottom:14px;"></div>
-
       <div style="background:var(--surface2); border-radius:12px; padding:12px 14px;
                   font-size:12.5px; color:var(--text2); line-height:1.7; margin-bottom:18px;">
         🔒 Thanh toán qua <strong style="color:var(--text)">PayOS</strong> — cổng thanh toán bảo mật được cấp phép bởi NHNN.<br>
-        Sau khi thanh toán thành công, <span id="pmActivationNote">gói của bạn sẽ được kích hoạt</span> <strong style="color:var(--text)">ngay lập tức</strong>.
+        Sau khi thành công, <span id="pmActivationNote">gói của bạn sẽ được kích hoạt</span> <strong style="color:var(--text)">ngay lập tức</strong>.
       </div>
-
       <button id="pmConfirmBtn" onclick="Pricing._doPayment()"
         style="width:100%; padding:13px; border-radius:12px; border:none;
                background:var(--primary); color:#fff; font-size:15px;
@@ -211,42 +228,44 @@
         Hủy
       </button>
       <p style="text-align:center; font-size:12px; color:var(--text2); margin-top:12px;">
-        Cần hỗ trợ? <a href="mailto:genzstudy06@gmail.com"
-          style="color:var(--text2); text-decoration:underline;">genzstudy06@gmail.com</a>
+        Cần hỗ trợ? <a href="mailto:genzstudy06@gmail.com" style="color:var(--text2); text-decoration:underline;">genzstudy06@gmail.com</a>
       </p>
     </div>
 
-    <!-- ── State: loading ── -->
     <div id="pmStateLoading" style="display:none; text-align:center; padding:12px 0 4px;">
       <div style="font-size:36px; animation:pmSpin 1s linear infinite; display:inline-block; margin-bottom:16px;">⏳</div>
       <p style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:6px;">Đang tạo đơn hàng…</p>
       <p style="font-size:13px; color:var(--text2);">Vui lòng không đóng trang này</p>
     </div>
 
-    <!-- ── State: error ── -->
     <div id="pmStateError" style="display:none; text-align:center;">
       <div style="font-size:36px; margin-bottom:14px;">⚠️</div>
-      <p id="pmErrorMsg"
-         style="font-size:14px; color:var(--text2); margin-bottom:18px; line-height:1.6;"></p>
+      <p id="pmErrorMsg" style="font-size:14px; color:var(--text2); margin-bottom:18px; line-height:1.6;"></p>
       <button onclick="Pricing._doPayment()"
         style="width:100%; padding:12px; border-radius:12px; border:none;
                background:var(--primary); color:#fff; font-size:14px;
                font-weight:700; cursor:pointer; margin-bottom:8px;
-               font-family:var(--font-ui);">
-        Thử lại
-      </button>
-      <a href="mailto:genzstudy06@gmail.com"
-         style="display:block; font-size:13px; color:var(--text2);
-                text-decoration:underline; margin-bottom:10px; cursor:pointer;">
-        Liên hệ hỗ trợ
-      </a>
+               font-family:var(--font-ui);">Thử lại</button>
       <button onclick="Pricing.closeModal()"
         style="width:100%; padding:10px; border-radius:12px; border:1.5px solid var(--border);
                background:none; color:var(--text2); font-size:13px; cursor:pointer;
-               font-family:var(--font-ui);">
-        Đóng
-      </button>
+               font-family:var(--font-ui);">Đóng</button>
     </div>
 
   </div>
 </div>
+
+<script>
+var PricingUI = {
+  _shortSku: 'quarterly',
+  selectShort: function(input) {
+    document.querySelectorAll('.pc-compact-opt').forEach(function(el) {
+      el.classList.toggle('pc-compact-opt--checked', el.querySelector('input') === input);
+    });
+    PricingUI._shortSku = input.value;
+  },
+  checkoutShort: function() {
+    Pricing.openPayment(PricingUI._shortSku);
+  }
+};
+</script>

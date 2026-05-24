@@ -1,0 +1,108 @@
+<div class="tools-page">
+
+  <div class="tools-header">
+    <h1 class="tools-title">Công cụ</h1>
+    <p class="tools-sub">Tra cứu, luyện tập và phân tích tiếng Trung</p>
+  </div>
+
+  <div class="tools-grid">
+
+    <!-- ✅ Từ điển -->
+    <a class="tool-card" href="#" onclick="Router.navigateTo('dictionary');return false;">
+      <div class="tool-card-icon tc-icon--red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Từ điển</div>
+        <div class="tool-card-desc">7.000+ từ HSK 2.0 & 3.0 · TTS · thêm vào bộ thẻ</div>
+      </div>
+      <span class="tool-badge tool-badge--available">Có sẵn</span>
+    </a>
+
+    <!-- ✅ Bản đồ HSK -->
+    <a class="tool-card" href="#" onclick="Router.navigateTo('ban-do-hsk');return false;">
+      <div class="tool-card-icon tc-icon--green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Bản đồ HSK</div>
+        <div class="tool-card-desc">Lộ trình HSK 1–9 · tiến độ từng cấp</div>
+      </div>
+      <span class="tool-badge tool-badge--available">Có sẵn</span>
+    </a>
+
+    <!-- ✅ Pinyin Lab -->
+    <a class="tool-card" href="#" onclick="Router.navigateTo('pinyin-lab');return false;">
+      <div class="tool-card-icon tc-icon--gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M4 18V6a2 2 0 0 1 2-2h7l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M13 4v5h5"/><path d="M8 14h5"/><path d="M8 17h8"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Pinyin Lab</div>
+        <div class="tool-card-desc">Bảng phiên âm · thanh điệu · luyện đọc</div>
+      </div>
+      <span class="tool-badge tool-badge--available">Có sẵn</span>
+    </a>
+
+    <!-- ✅ Luyện viết -->
+    <a class="tool-card" href="#" onclick="Router.navigateTo('handwriting');return false;">
+      <div class="tool-card-icon tc-icon--indigo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Luyện viết Hanzi</div>
+        <div class="tool-card-desc">Thứ tự nét · xuất phiếu PDF in luyện tập</div>
+      </div>
+      <span class="tool-badge tool-badge--available">Có sẵn</span>
+    </a>
+
+    <!-- 🔒 Cây Hán Tự (screen 20) -->
+    <div class="tool-card tool-card--locked">
+      <div class="tool-card-icon tc-icon--locked">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/><path d="M5.636 5.636l2.122 2.122M16.243 16.243l2.121 2.121M16.243 7.757l2.121-2.121M5.636 18.364l2.122-2.121"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Cây Hán Tự</div>
+        <div class="tool-card-desc">Bộ thủ 214 · phân tích cấu trúc chữ · liên kết từ vựng</div>
+      </div>
+      <span class="tool-badge tool-badge--soon">Sắp ra mắt</span>
+    </div>
+
+    <!-- 🔒 Dịch thuật (screen 22) -->
+    <div class="tool-card tool-card--locked">
+      <div class="tool-card-icon tc-icon--locked">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Dịch thuật</div>
+        <div class="tool-card-desc">Zh ↔ Vi ↔ En · phân tích câu · ghi chú từ vựng</div>
+      </div>
+      <span class="tool-badge tool-badge--soon">Sắp ra mắt</span>
+    </div>
+
+    <!-- 🔒 Phân tích văn bản (Phase O) -->
+    <div class="tool-card tool-card--locked">
+      <div class="tool-card-icon tc-icon--locked">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Phân tích văn bản</div>
+        <div class="tool-card-desc">Dán văn bản Trung → highlight từ theo HSK · tra nhanh</div>
+      </div>
+      <span class="tool-badge tool-badge--soon">Sắp ra mắt</span>
+    </div>
+
+    <!-- 🔒 HSKK Mock (screen 17) -->
+    <div class="tool-card tool-card--locked">
+      <div class="tool-card-icon tc-icon--locked">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">HSKK Nói</div>
+        <div class="tool-card-desc">Thi thử HSKK 3 cấp · AI chấm điểm · luyện phát âm</div>
+      </div>
+      <span class="tool-badge tool-badge--pro">Pro · Sắp ra</span>
+    </div>
+
+  </div>
+
+</div>

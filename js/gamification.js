@@ -63,7 +63,20 @@ var Gamification = {
     localStorage.setItem('hsk_streak', newStreak);
     localStorage.setItem('hsk_last_active', today);
     Gamification._recordActiveDay();
+    // Milestone XP rewards (existing)
     if (newStreak === 7 || newStreak === 30) Gamification.addXP(100);
+    // Milestone TOKEN rewards (added 2026-05-23, see TOKEN_SINK_ROADMAP.md)
+    // Direct grant — fires immediately when streak hits milestone.
+    // Complements chain quests in quests.js (sc_str30/60/100/365) which
+    // award the same token on view; double-grant guarded by the chain's
+    // own `claimed` flag (see Quests.claimChainStep).
+    if (typeof Quests !== 'undefined' && typeof Quests.addToken === 'function') {
+      if (newStreak === 7)   Quests.addToken(100,  'streak_7');
+      if (newStreak === 30)  Quests.addToken(300,  'streak_30');
+      if (newStreak === 60)  Quests.addToken(500,  'streak_60');
+      if (newStreak === 100) Quests.addToken(800,  'streak_100');
+      if (newStreak === 365) Quests.addToken(2000, 'streak_365');
+    }
     Gamification.updateStats();
   },
 

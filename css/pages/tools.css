@@ -1,0 +1,113 @@
+/* ============================================================
+   Tools Hub page — Wave 2
+   Grid of tool cards: available + locked (coming soon)
+   ============================================================ */
+
+.tools-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--s-8) var(--s-4) var(--s-16);
+}
+
+.tools-header { margin-bottom: var(--s-8); }
+.tools-title {
+  font-size: var(--t-h1);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: var(--s-1);
+}
+.tools-sub {
+  font-size: var(--t-body);
+  color: var(--text2);
+}
+
+/* ── Grid ── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-4);
+}
+@media (max-width: 540px) {
+  .tools-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 860px) {
+  .tools-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Tool card ── */
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-4);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color var(--d-fast), box-shadow var(--d-fast), transform var(--d-fast);
+  cursor: pointer;
+  position: relative;
+}
+a.tool-card:hover {
+  border-color: var(--chau-hong);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+.tool-card--locked {
+  opacity: .6;
+  cursor: default;
+}
+
+/* ── Icon ── */
+.tool-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tc-icon--red    { background: rgba(220,38,38,.12);   color: var(--chau-hong); }
+.tc-icon--green  { background: rgba(16,185,129,.12);  color: var(--thuy-luc); }
+.tc-icon--gold   { background: rgba(245,158,11,.12);  color: var(--hoang-kim); }
+.tc-icon--indigo { background: rgba(99,102,241,.12);  color: #6366F1; }
+.tc-icon--locked { background: var(--surface2);       color: var(--fg-4); }
+
+/* ── Body ── */
+.tool-card-body { flex: 1; min-width: 0; }
+.tool-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.tool-card-desc {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: var(--lh-snug);
+}
+
+/* ── Status badge ── */
+.tool-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.tool-badge--available {
+  background: var(--status-mastered-bg);
+  color: var(--status-mastered);
+}
+.tool-badge--soon {
+  background: var(--surface2);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+.tool-badge--pro {
+  background: rgba(245,158,11,.15);
+  color: var(--hoang-kim);
+}

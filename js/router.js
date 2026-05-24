@@ -33,7 +33,15 @@ var Router = (function() {
     '/handwriting':    'handwriting',
     '/pinyin-lab':     'pinyin-lab',
     '/pricing':        'pricing',
-    '/admin':          'admin'
+    '/admin':          'admin',
+    '/ban-do-hsk':    'ban-do-hsk',
+    '/tools':         'tools',
+    '/profile':       'profile',
+    // Legal pages (added 2026-05-23, see COMPLIANCE_CHECKLIST.md)
+    '/privacy':       'privacy',
+    '/terms':         'terms',
+    '/contact':       'contact',
+    '/free-vs-pro':   'free-vs-pro'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -101,6 +109,13 @@ var Router = (function() {
     },
     'admin': function() {
       if (typeof Admin !== 'undefined') Admin.setup();
+    },
+    'ban-do-hsk': function() {
+      if (typeof BanDoHsk !== 'undefined') BanDoHsk.setup();
+    },
+    'tools': function() { /* static hub — no JS init needed */ },
+    'profile': function() {
+      if (typeof Profile !== 'undefined') Profile.setup();
     }
   };
 
@@ -157,6 +172,7 @@ var Router = (function() {
         }
         _updateNav(page);
         _current = page;
+        if (typeof window.updateMascot === 'function') window.updateMascot(page);
         window.scrollTo(0, 0);
       })
       .catch(function(err) {

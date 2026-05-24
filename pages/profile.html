@@ -1,0 +1,185 @@
+<div class="profile-page">
+
+  <!-- ── Profile header card ── -->
+  <div class="prof-header-card">
+    <div class="prof-avatar" id="profAvatar">?</div>
+    <div class="prof-info">
+      <div class="prof-name-row">
+        <h2 class="prof-name" id="profName">...</h2>
+        <span class="prof-level-badge" id="profLevelBadge"></span>
+        <span class="prof-pro-badge" id="profProBadge" style="display:none">💎 Pro</span>
+      </div>
+      <div class="prof-meta" id="profMeta">Đang tải...</div>
+    </div>
+    <div class="prof-header-actions">
+      <button class="prof-settings-btn" onclick="Profile.goSettings()" title="Cài đặt">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Cài đặt
+      </button>
+      <button class="prof-upgrade-btn" id="profUpgradeBtn" onclick="Router.navigateTo('pricing')">
+        💎 Nâng cấp Pro
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Tab bar ── -->
+  <div class="prof-tabs" id="profTabs">
+    <button class="prof-tab active" data-tab="progress">Tiến độ</button>
+    <button class="prof-tab" data-tab="achv">Thành tích</button>
+    <button class="prof-tab" data-tab="settings">Cài đặt</button>
+    <button class="prof-tab" data-tab="upgrade">Nâng cấp 💎</button>
+  </div>
+
+  <!-- ══ TAB: Tiến độ ══ -->
+  <div class="prof-panel active" id="profPanel-progress">
+
+    <!-- Quick stats row -->
+    <div class="prof-stats-row">
+      <div class="prof-stat">
+        <div class="prof-stat-val" id="profStatStreak">0</div>
+        <div class="prof-stat-lbl">🔥 Chuỗi ngày</div>
+      </div>
+      <div class="prof-stat">
+        <div class="prof-stat-val" id="profStatWords">0</div>
+        <div class="prof-stat-lbl">📚 Từ đã học</div>
+      </div>
+      <div class="prof-stat">
+        <div class="prof-stat-val" id="profStatXP">0</div>
+        <div class="prof-stat-lbl">⭐ XP tuần này</div>
+      </div>
+      <div class="prof-stat">
+        <div class="prof-stat-val" id="profStatXPTotal">0</div>
+        <div class="prof-stat-lbl">✨ Tổng XP</div>
+      </div>
+    </div>
+
+    <!-- HSK progress card -->
+    <div class="prof-card">
+      <div class="prof-card-head">
+        <div>
+          <h3 class="prof-card-title" id="profHskTitle">Tiến độ HSK</h3>
+          <p class="prof-card-sub" id="profHskSub"></p>
+        </div>
+        <div class="prof-band-legend" id="profBandLegend"></div>
+      </div>
+      <div class="prof-bands-grid" id="profBandsGrid">
+        <!-- rendered by Profile.js -->
+      </div>
+    </div>
+
+    <!-- Secondary row: XP chart + achievements -->
+    <div class="prof-secondary-row">
+
+      <!-- XP weekly bar chart -->
+      <div class="prof-card prof-xp-card">
+        <div class="prof-card-head" style="margin-bottom:var(--s-3)">
+          <div>
+            <div class="prof-eyebrow">XP 7 ngày qua</div>
+            <div class="prof-xp-total" id="profXpWeek">0 XP</div>
+          </div>
+        </div>
+        <div class="prof-xp-bars" id="profXpBars">
+          <!-- 7 bars rendered by JS -->
+        </div>
+        <div class="prof-xp-labels">
+          <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+        </div>
+      </div>
+
+      <!-- Recent achievements -->
+      <div class="prof-card prof-achv-card">
+        <div class="prof-card-head">
+          <div class="prof-eyebrow">Thành tích gần đây</div>
+          <button class="prof-link-btn" onclick="Profile.switchTab('achv')">Xem tất cả →</button>
+        </div>
+        <div class="prof-achv-list" id="profAchvPreview">
+          <!-- rendered by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Leaderboard strip -->
+    <div class="prof-lb-strip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+      <span id="profLbText">Học thêm để lên bảng xếp hạng!</span>
+      <button class="prof-link-btn" onclick="Router.navigateTo('quests')">Xem bảng xếp hạng →</button>
+    </div>
+
+  </div>
+
+  <!-- ══ TAB: Thành tích ══ -->
+  <div class="prof-panel" id="profPanel-achv">
+    <div class="prof-card">
+      <h3 class="prof-card-title" style="margin-bottom:var(--s-4)">Huy hiệu & Thành tích</h3>
+      <div class="prof-badge-grid" id="profBadgeGrid">
+        <!-- rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TAB: Cài đặt ══ -->
+  <div class="prof-panel" id="profPanel-settings">
+    <div class="prof-card">
+      <h3 class="prof-card-title" style="margin-bottom:var(--s-4)">Cài đặt</h3>
+      <div class="prof-settings-list">
+
+        <div class="prof-setting-row">
+          <div class="prof-setting-info">
+            <div class="prof-setting-name">Giao diện</div>
+            <div class="prof-setting-desc">Sáng / Tối</div>
+          </div>
+          <button class="prof-setting-action" onclick="if(typeof toggleTheme==='function')toggleTheme()">
+            Chuyển màu
+          </button>
+        </div>
+
+        <div class="prof-setting-row">
+          <div class="prof-setting-info">
+            <div class="prof-setting-name">Phiên bản HSK</div>
+            <div class="prof-setting-desc" id="profHskVersionDesc">HSK 2.0 (6 cấp)</div>
+          </div>
+          <button class="prof-setting-action" onclick="Router.navigateTo('learn')">
+            Đổi trong Học →
+          </button>
+        </div>
+
+        <div class="prof-setting-row">
+          <div class="prof-setting-info">
+            <div class="prof-setting-name">Tài khoản</div>
+            <div class="prof-setting-desc" id="profSettingEmail">Chưa đăng nhập</div>
+          </div>
+          <button class="prof-setting-action" id="profLogoutBtn" onclick="Profile.handleLogout()">
+            Đăng xuất
+          </button>
+        </div>
+
+        <div class="prof-setting-row">
+          <div class="prof-setting-info">
+            <div class="prof-setting-name">Phản hồi & Góp ý</div>
+            <div class="prof-setting-desc">Báo lỗi hoặc đề xuất tính năng</div>
+          </div>
+          <button class="prof-setting-action" onclick="Router.navigateTo('feedback')">
+            Gửi phản hồi →
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TAB: Nâng cấp ══ -->
+  <div class="prof-panel" id="profPanel-upgrade">
+    <div class="prof-card prof-upgrade-card">
+      <div class="prof-upgrade-inner">
+        <div class="prof-upgrade-icon">💎</div>
+        <h3 class="prof-upgrade-title">Nâng cấp lên Pro</h3>
+        <p class="prof-upgrade-sub">Mở khóa toàn bộ tính năng: HSKK, Boss Battle, phân tích AI, và nhiều hơn nữa.</p>
+        <button class="btn-primary prof-upgrade-cta" onclick="Router.navigateTo('pricing')">
+          Xem các gói Pro →
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -100,14 +100,14 @@
 
 ### Refactor pricing flow
 
-- ☐ `js/pricing.js` — refactor `openTokenPurchase` → `openHonorPurchase` + `openAICreditPurchase`
-- ☐ `pages/pricing.html` — xoá section Token Shop, thêm section "💌 Ủng hộ" + grid AI Credit Pack
+- ☑ `js/pricing.js` — refactor `openTokenPurchase` → `openHonorPurchase` + `openAICreditPurchase` — DONE 2026-05-24 (UI shell, payment disabled until backend SKU slice)
+- ☑ `pages/pricing.html` — xoá section Token Shop, thêm section "💌 Ủng hộ" + grid AI Credit Pack — DONE 2026-05-24
 - ☐ Add modal mua: checkbox consent + log version copy + `consent_at` timestamp DB
 
 ### Hộp Ân Cần
 
-- ☐ `pages/honor-hall.html` — Sảnh Vinh Danh (NEW)
-- ☐ `js/honor.js` — logic mua + outfit tháng rotate (NEW)
+- ☑ `pages/honor-hall.html` — Sảnh Vinh Danh (NEW) — DONE 2026-05-24 (UI shell + 12-month grid)
+- ☑ `js/honor.js` — logic mua + outfit tháng rotate (NEW) — DONE 2026-05-24 (Honor.init, spotlight, grid render)
 - ☐ Outfit picker UI Settings
 - ☐ Cap 12/năm enforce client-side (server cũng enforce qua RPC)
 

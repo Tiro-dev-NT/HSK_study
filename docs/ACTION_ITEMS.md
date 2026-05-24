@@ -124,15 +124,15 @@
 
 ### AI Credit UI
 
-- ☐ Badge quota header `🔮 1.234 cr`
+- ☑ Badge quota header `🔮 1.234 cr` — DONE 2026-05-24 (topbarAICreditBadge, AICredit.fetch() on login, localStorage cache)
+- ☑ Cảnh báo low-balance (300/100/0 cr toast) — DONE 2026-05-24 (AICredit._warnLow)
 - ☐ Modal AI Credit detail (đủ dùng ~X cuộc Tutor + Y essay)
-- ☐ Cảnh báo 20% / 5% / 0% credit
 - ☐ Settings → "Mua thêm Túi Linh Đan" link
 
 ### Settings — BVQL TD compliance
 
 - ☑ "Huỷ Pro auto-renew" 1-click button (gọi RPC `cancel_subscription`) — DONE 2026-05-24 (profile.html + profile.js)
-- ☑ "Xoá tài khoản" hard-delete — UI+confirm DONE 2026-05-24; ⚠️ server RPC placeholder (cần delete_account_cascade RPC)
+- ☑ "Xoá tài khoản" hard-delete — UI+confirm+RPC DONE 2026-05-24 (sql/v9_delete_account.sql + profile.js calls delete_account_cascade RPC); ⚠️ user chưa chạy sql/v9 trên Supabase Dashboard
 - ☐ "Xuất dữ liệu của tôi" JSON/CSV
 - ☐ "Lưu lịch sử Tutor dài hạn (90 ngày)" toggle opt-in
 - ☐ "Quản lý consent cookie" link → trigger `CookieConsent.reset()`
@@ -286,10 +286,10 @@
 
 ### Phase Q (Priority 1 sau Phase N) — Learning Method Hub
 
-- ☐ Onboarding "Cách học hiệu quả"
-- ☐ Tips daily / weekly
-- ☐ Analytics weak point
+- ☑ Page `/learn-method` — 3 section: SRS principles, daily tip (30 tips), weakness analysis — DONE 2026-05-24
+- ☑ Nav link "Cách học" trong secondary nav sidebar — DONE 2026-05-24
 - ☐ Asset: hình minh hoạ bài giảng (Midjourney + Phase O+ pre-gen)
+- ☐ "Ôn ngay điểm yếu" → full quiz session với word override (cần Quiz nhận sessionStorage override)
 
 ### Phase O+ — Visual Vocab (NEW)
 

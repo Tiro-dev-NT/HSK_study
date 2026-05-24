@@ -161,9 +161,9 @@
 - ☑ `create-payment` — SKU whitelist server-side: 5 sub + aipack_so/trung/cao + honor_pack + price map (không tin client)
 - ☑ `create-payment` bump giá `lifetime` → 2.49M (server-side price map)
 - ☑ `payos-webhook` — HMAC verify + idempotency guard + dispatch: subscription → grant_subscription_server + token; aipack → grant_ai_credit; honor → grant_honor_outfit + 1000 token
-- ☐ **Deploy thủ công:** `supabase functions deploy create-payment payos-webhook` (USER tự chạy)
+- ☑ **Deploy Edge Functions** — DONE 2026-05-24: `supabase functions deploy create-payment payos-webhook`
 
-### RPC — sql/v8_monetization_v2_slice2.sql ✅ DONE 2026-05-24 (viết xong, chờ user chạy)
+### RPC — sql/v8_monetization_v2_slice2.sql ✅ DEPLOYED 2026-05-24
 
 - ☑ `grant_ai_credit(user_id, amount, reason)` — upsert balance + ledger
 - ☑ `grant_honor_outfit(user_id, month_year, outfit_id, order_id, amount_paid)` — insert + check cap 12/năm
@@ -171,8 +171,7 @@
 - ☑ `cancel_subscription()` — user self-cancel
 - ☑ `reset_monthly_allowance()` — cron reset daily_used_today
 - ☑ Bảng mới: `ai_credit_ledger` + `user_honor_purchases` (+ RLS)
-- ☐ **Chạy thủ công:** `sql/v8_monetization_v2_slice2.sql` trên Supabase Dashboard (USER tự làm)
-- ☐ **Verify RLS** sau khi chạy: `sql/audit_rls.sql`
+- ☑ **SQL chạy xong** trên Supabase Dashboard — DONE 2026-05-24
 
 ### Performance + Maintenance
 
@@ -385,4 +384,4 @@
 | 2026-05-24 | Asset prompts split → `content/assets/output/{reference,outfits-basic,outfits-honor,ambient-themes}/*.md` (29 prompt + 9 README) — Banana Pro primary tool |
 | 2026-05-24 | **Wave A + Hộp Ân Cần ✅ DONE** — 21/21 PNG file gen + saved (1 ref + 8 outfit Wave A + 12 outfit Honor) bằng AI Studio Nano Banana single-chat workflow |
 | 2026-05-24 | **Phase 2 Monetization v2 Slice 1 ✅ MERGED + DEPLOYED** — 6 commits merged main `5cb56d3`, deployed Cloudflare: Honor Hall `/honor-hall` page + Hộp Ân Cần + AI Credit grid + pricing.css v=2.0 cache bust. |
-| 2026-05-24 | **Phase 2 Monetization v2 Slice 2 ✅ CODE DONE** — commits `4b403b4` + `b2d93fe` trên main: SQL v8 (5 RPC + 2 bảng mới), Edge Function create-payment + payos-webhook viết lại hoàn chỉnh, pricing.js v=2.5 bật thanh toán thật. **USER CẦN LÀM:** (1) chạy `sql/v8_monetization_v2_slice2.sql` trên Supabase Dashboard, (2) `supabase functions deploy create-payment payos-webhook`, (3) verify RLS audit. |
+| 2026-05-24 | **Phase 2 Monetization v2 Slice 2 ✅ FULLY DEPLOYED** — commits `4b403b4`+`b2d93fe`, SQL v8 chạy xong trên Supabase, Edge Functions deployed. Thanh toán Túi Linh Đan AI + Hộp Ân Cần live. |

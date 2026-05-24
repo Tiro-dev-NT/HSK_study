@@ -1,0 +1,68 @@
+<!-- ════════════════════════════════════════════════════════
+     HONOR HALL — /honor-hall (SPA fragment, Phase 2 Monetization v2)
+     Hộp Ân Cần: 12 outfit Bé Rồng theo tháng, donate-framed
+     ════════════════════════════════════════════════════════ -->
+
+<div class="honor-page">
+
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <div class="honor-hero">
+    <div class="honor-hero-inner">
+      <div class="honor-hero-emoji">💌</div>
+      <h1 class="honor-hero-title">Hộp Ân Cần</h1>
+      <p class="honor-hero-subtitle">
+        Ủng hộ Hanzi Genz · Nhận outfit Bé Rồng độc quyền tháng này
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Current Month Spotlight ────────────────────────── -->
+  <section class="honor-spotlight-wrap">
+    <h2 class="honor-section-title">Outfit tháng này</h2>
+    <div class="honor-spotlight" id="honorCurrentSpotlight">
+      <!-- rendered by Honor.init() -->
+      <div class="honor-spotlight-img-wrap">
+        <div class="honor-img-placeholder">🐲</div>
+      </div>
+      <div class="honor-spotlight-info">
+        <div class="honor-spotlight-badge">Tháng này</div>
+        <h3 class="honor-spotlight-name" id="honorSpotlightName">Đang tải...</h3>
+        <p class="honor-spotlight-theme" id="honorSpotlightTheme"></p>
+        <p class="honor-spotlight-desc">Outfit độc quyền — chỉ có trong tháng này. Sau khi nhận, Bé Rồng sẽ mặc mãi mãi.</p>
+        <button class="btn-honor-cta" onclick="Pricing.openHonorPurchase()">
+          <span>💌 Ủng hộ &amp; nhận outfit tháng này</span>
+          <span class="honor-price-tag" id="honorPriceTag"></span>
+        </button>
+        <p class="honor-volunteer-note">Tự nguyện · Không ảnh hưởng tính năng học</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 12 Month Grid ──────────────────────────────────── -->
+  <section class="honor-grid-wrap">
+    <h2 class="honor-section-title">Bộ sưu tập 12 tháng</h2>
+    <div class="honor-grid" id="honorGrid">
+      <!-- rendered by Honor._renderGrid() -->
+    </div>
+  </section>
+
+  <!-- ── Hall of Fame placeholder ──────────────────────── -->
+  <section class="honor-hall-wrap">
+    <h2 class="honor-section-title">Sảnh Vinh Danh</h2>
+    <div class="honor-hall-placeholder">
+      <div class="honor-hall-icon">🏛️</div>
+      <p>Coming soon — danh sách user đã ủng hộ (opt-in hiện tên)</p>
+    </div>
+  </section>
+
+  <!-- ── Disclaimer ────────────────────────────────────── -->
+  <div class="honor-disclaimer">
+    <p>
+      💡 <strong>Hộp Ân Cần là ủng hộ tự nguyện.</strong>
+      Không ảnh hưởng tiến độ học hoặc unlock tính năng.
+      Outfit mang tính trang trí — có thể đeo cho Bé Rồng ở Settings.
+      Mỗi tháng có 1 outfit mới; outfit đã nhận giữ mãi mãi.
+    </p>
+  </div>
+
+</div>

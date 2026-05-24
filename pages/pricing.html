@@ -109,46 +109,71 @@
   <!-- Shared features summary -->
   <p class="pricing-shared-note">Mọi gói Pro mở khóa cùng bộ tính năng: HSK 3-6 grammar/reading/listening · Game premium unlimited · HSKK Mock · SRS advanced · AI allowance theo gói. Khác nhau ở thời hạn + bonus mua.</p>
 
-  <!-- ── Token Shop ── -->
-  <!-- DISABLED 2026-05-24: TOKEN_PACKS = null, openTokenPurchase sẽ crash.
-       Sẽ enable lại sau khi có Hộp Ân Cần + AI Credit Pack (Wave A / Phase 2 Monetization).
+  <!-- ── AI Credit Packs ── -->
   <div class="pricing-section-header">
-    <h2 class="pricing-section-title">Kho Token 🪙</h2>
-    <p class="pricing-section-sub">Không cần Pro vẫn dùng được · Dùng để mở khóa cosplay, streak freeze, double XP, quà Lì Xì</p>
+    <h2 class="pricing-section-title">Túi Linh Đan AI 🔮</h2>
+    <p class="pricing-section-sub">Dùng cho AI Tutor, chấm bài, HSKK và các tác vụ AI nặng vượt allowance Pro. Token và AI Credit tách riêng, không quy đổi.</p>
   </div>
 
-  <div class="token-shop-grid">
-    <div class="token-pack-card">
-      <div class="tpc-tokens">100 🪙</div>
-      <div class="tpc-bonus tpc-bonus-empty">&nbsp;</div>
-      <div class="tpc-price">19.000đ</div>
-      <div class="tpc-rate">190đ/token</div>
-      <button class="tpc-btn" onclick="Pricing.openTokenPurchase('pack100')">Mua</button>
+  <div class="ai-credit-grid">
+    <div class="ai-credit-card">
+      <span class="ai-beta-chip">BETA</span>
+      <div class="ai-pack-icon">🥉</div>
+      <div class="ai-pack-name">Linh Đan Sơ</div>
+      <div class="ai-pack-credit">100 cr</div>
+      <div class="ai-pack-price">29.000đ</div>
+      <p>Đủ dùng thử AI Tutor và vài lượt phân tích phát âm.</p>
+      <button class="pc-btn-secondary" onclick="Pricing.openAICreditPurchase('aipack_so')">Chọn gói Sơ</button>
     </div>
-    <div class="token-pack-card">
-      <div class="tpc-tokens">500 🪙</div>
-      <div class="tpc-bonus">+50 🪙 bonus</div>
-      <div class="tpc-price">79.000đ</div>
-      <div class="tpc-rate">158đ/token · -17%</div>
-      <button class="tpc-btn" onclick="Pricing.openTokenPurchase('pack500')">Mua</button>
+    <div class="ai-credit-card">
+      <span class="ai-beta-chip">BETA</span>
+      <div class="ai-pack-icon">🥈</div>
+      <div class="ai-pack-name">Linh Đan Trung</div>
+      <div class="ai-pack-credit">500 cr</div>
+      <div class="ai-pack-price">99.000đ</div>
+      <p>Phù hợp học đều với Tutor, essay rewrite và conversation scene.</p>
+      <button class="pc-btn-secondary" onclick="Pricing.openAICreditPurchase('aipack_trung')">Chọn gói Trung</button>
     </div>
-    <div class="token-pack-card tpc-featured">
-      <div class="tpc-badge">Tiết kiệm nhất</div>
-      <div class="tpc-tokens">1.200 🪙</div>
-      <div class="tpc-bonus">+200 🪙 bonus</div>
-      <div class="tpc-price">159.000đ</div>
-      <div class="tpc-rate">133đ/token · -30%</div>
-      <button class="tpc-btn tpc-btn-primary" onclick="Pricing.openTokenPurchase('pack1200')">Mua</button>
-    </div>
-    <div class="token-pack-card">
-      <div class="tpc-tokens">3.000 🪙</div>
-      <div class="tpc-bonus">+600 🪙 bonus</div>
-      <div class="tpc-price">349.000đ</div>
-      <div class="tpc-rate">116đ/token · -39%</div>
-      <button class="tpc-btn" onclick="Pricing.openTokenPurchase('pack3000')">Mua</button>
+    <div class="ai-credit-card ai-credit-card--featured">
+      <span class="pc-popular-badge">Dùng nặng</span>
+      <span class="ai-beta-chip">BETA</span>
+      <div class="ai-pack-icon">🥇</div>
+      <div class="ai-pack-name">Linh Đan Cao</div>
+      <div class="ai-pack-credit">1.500 cr</div>
+      <div class="ai-pack-price">199.000đ</div>
+      <p>Cho người dùng nhiều AI Tutor, chấm essay và luyện HSKK.</p>
+      <button class="pc-btn-primary" onclick="Pricing.openAICreditPurchase('aipack_cao')">Chọn gói Cao</button>
     </div>
   </div>
-  -->
+
+  <p class="pricing-beta-note">Giá AI Credit Pack đang ở beta 2-3 tháng. Giá đã mua được giữ nguyên; credit beta không hết hạn trong giai đoạn beta.</p>
+
+  <!-- ── Honor Pack ── -->
+  <div class="pricing-section-header">
+    <h2 class="pricing-section-title">Ủng hộ Hanzi Genz 💌</h2>
+    <p class="pricing-section-sub">Hộp Ân Cần là cách tự nguyện ủng hộ app indie Việt. Không quảng cáo, không bán dữ liệu; đóng góp giúp duy trì gói cơ bản miễn phí và thêm nội dung mới.</p>
+  </div>
+
+  <div class="honor-pack-card">
+    <div class="honor-pack-main">
+      <div class="honor-pack-icon">📦</div>
+      <div>
+        <div class="honor-pack-name">Hộp Ân Cần</div>
+        <div class="honor-pack-price">99.000đ/lần</div>
+        <div class="honor-pack-sub">Cap 12 lần/năm · 1 outfit Người Ủng Hộ rotate theo tháng</div>
+      </div>
+    </div>
+    <ul class="pc-bullets">
+      <li>1.000 token cảm ơn · Pro user thêm 200 token</li>
+      <li>1 outfit limited tháng này, không bán bằng token</li>
+      <li>Badge Mạnh Thường Quân vĩnh viễn</li>
+      <li>Tuỳ chọn hiện tên ở Sảnh Vinh Danh, mặc định tắt</li>
+    </ul>
+    <div class="honor-pack-actions">
+      <button class="pc-btn-outline" onclick="Pricing.openHonorPurchase()">Mở Hộp Ân Cần</button>
+      <button class="pc-btn-secondary honor-link" onclick="showToast('Sảnh Vinh Danh sẽ mở ở slice sau')">Xem Sảnh Vinh Danh</button>
+    </div>
+  </div>
 
   <!-- ── Comparison table ── -->
   <details class="pricing-compare">
@@ -214,6 +239,7 @@
         🔒 Thanh toán qua <strong style="color:var(--text)">PayOS</strong> — cổng thanh toán bảo mật được cấp phép bởi NHNN.<br>
         Sau khi thành công, <span id="pmActivationNote">gói của bạn sẽ được kích hoạt</span> <strong style="color:var(--text)">ngay lập tức</strong>.
       </div>
+      <p id="pmExtraNote" style="display:none; font-size:12px; color:var(--text3); line-height:1.5; margin:-8px 0 14px;"></p>
       <button id="pmConfirmBtn" onclick="Pricing._doPayment()"
         style="width:100%; padding:13px; border-radius:12px; border:none;
                background:var(--primary); color:#fff; font-size:15px;

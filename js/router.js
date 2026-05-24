@@ -41,7 +41,8 @@ var Router = (function() {
     '/privacy':       'privacy',
     '/terms':         'terms',
     '/contact':       'contact',
-    '/free-vs-pro':   'free-vs-pro'
+    '/free-vs-pro':   'free-vs-pro',
+    '/honor-hall':    'honor-hall'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -116,6 +117,9 @@ var Router = (function() {
     'tools': function() { /* static hub — no JS init needed */ },
     'profile': function() {
       if (typeof Profile !== 'undefined') Profile.setup();
+    },
+    'honor-hall': function() {
+      if (typeof Honor !== 'undefined') Honor.init();
     }
   };
 

@@ -1,13 +1,12 @@
 // ═══════════════════════════════════════════════════════
 // PRICING.JS — Payment modal logic (PayOS integration)
-// Handles both Pro subscription purchases (5 durations)
-// and standalone Token Shop pack purchases (K.4).
+// Handles Pro subscriptions plus Monetization v2 support/AI pack modals.
 // Catalog lives in js/data/plans.js (window.PLAN_CATALOG).
 // ═══════════════════════════════════════════════════════
 
 var Pricing = {
-  _orderType: null,         // 'subscription' | 'token'
-  _sku:       null,         // e.g. 'yearly', 'pack500'
+  _orderType: null,
+  _sku:       null,
   _pendingOrder: null,      // remembered when login required mid-flow
 
   // ── Open subscription modal ───────────────────────────
@@ -28,23 +27,47 @@ var Pricing = {
     });
   },
 
-  // ── Open token pack modal ─────────────────────────────
+  // DEPRECATED — use openHonorPurchase / openAICreditPurchase
   openTokenPurchase: function(sku) {
+    console.warn('[Pricing] openTokenPurchase() is deprecated:', sku);
+    if (typeof showToast === 'function') showToast('Kho Token đã được thay bằng Hộp Ân Cần và Túi Linh Đan AI');
+  },
+
+  openHonorPurchase: function() {
     if (!window.PLAN_CATALOG) return;
-    var pack = PLAN_CATALOG.getTokenPack(sku);
+    var pack = PLAN_CATALOG.getHonorPack();
     if (!pack) return;
 
-    if (!Pricing._requireAuth({ type: 'token', sku: sku })) return;
+    if (!Pricing._requireAuth({ type: 'honor', sku: pack.sku })) return;
 
-    Pricing._orderType = 'token';
-    Pricing._sku       = sku;
-    var totalTokens = pack.tokens + (pack.bonus || 0);
+    Pricing._orderType = 'honor';
+    Pricing._sku       = pack.sku;
     Pricing._renderConfirm({
-      icon:      '🪙',
-      title:     'Mua ' + pack.tokens.toLocaleString('vi-VN') + '🪙'
-                 + (pack.bonus ? ' (+' + pack.bonus + '🪙 bonus)' : ''),
+      icon:      '📦',
+      title:     pack.name + ' — Ủng hộ Hanzi Genz',
       priceText: pack.priceLabel,
-      activation: totalTokens.toLocaleString('vi-VN') + '🪙 sẽ được cộng vào tài khoản'
+      activation:'Bạn nhận 1.000 token, outfit Người Ủng Hộ tháng này, badge Mạnh Thường Quân và tuỳ chọn hiện tên ở Sảnh Vinh Danh',
+      extraNote: 'Thanh toán Hộp Ân Cần sẽ được mở sau khi backend Phase 2 cập nhật SKU honor_pack.',
+      disabledPayment: true
+    });
+  },
+
+  openAICreditPurchase: function(sku) {
+    if (!window.PLAN_CATALOG) return;
+    var pack = PLAN_CATALOG.getAICreditPack(sku);
+    if (!pack) return;
+
+    if (!Pricing._requireAuth({ type: 'aiCredit', sku: sku })) return;
+
+    Pricing._orderType = 'aiCredit';
+    Pricing._sku       = sku;
+    Pricing._renderConfirm({
+      icon:      pack.icon || '🔮',
+      title:     'Túi Linh Đan AI — ' + pack.tierLabel,
+      priceText: pack.priceLabel,
+      activation: pack.credits.toLocaleString('vi-VN') + ' AI Credit sẽ được cộng vào tài khoản',
+      extraNote: 'Gói AI Credit đang ở giai đoạn beta. Thanh toán sẽ được mở sau khi backend Phase 2 cập nhật SKU ' + sku + '.',
+      disabledPayment: true
     });
   },
 
@@ -65,10 +88,22 @@ var Pricing = {
     var titleEl = document.getElementById('pmTitle');
     var priceEl = document.getElementById('pmPrice');
     var noteEl  = document.getElementById('pmActivationNote');
+    var extraEl = document.getElementById('pmExtraNote');
+    var btnEl   = document.getElementById('pmConfirmBtn');
     if (iconEl)  iconEl.textContent  = opts.icon;
     if (titleEl) titleEl.textContent = opts.title;
     if (priceEl) priceEl.textContent = opts.priceText;
     if (noteEl)  noteEl.textContent  = opts.activation;
+    if (extraEl) {
+      extraEl.textContent = opts.extraNote || '';
+      extraEl.style.display = opts.extraNote ? 'block' : 'none';
+    }
+    if (btnEl) {
+      btnEl.disabled = !!opts.disabledPayment;
+      btnEl.textContent = opts.disabledPayment ? 'Thanh toán sắp mở' : 'Tiến hành thanh toán →';
+      btnEl.style.opacity = opts.disabledPayment ? '.55' : '1';
+      btnEl.style.cursor = opts.disabledPayment ? 'not-allowed' : 'pointer';
+    }
     Pricing._setState('confirm');
     document.getElementById('paymentModal').style.display = 'flex';
   },

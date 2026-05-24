@@ -341,69 +341,126 @@
   line-height: var(--lh-normal);
 }
 
-/* ── Token shop ── */
-.token-shop-grid {
+/* ── AI Credit packs ── */
+.ai-credit-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--s-3);
-  margin-bottom: var(--s-10);
+  margin-bottom: var(--s-8);
 }
-@media (max-width: 600px) {
-  .token-shop-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 740px) {
+  .ai-credit-grid { grid-template-columns: 1fr; }
 }
-.token-pack-card {
+.ai-credit-card {
   background: var(--surface);
   border: 1.5px solid var(--border);
   border-radius: var(--r-4);
-  padding: var(--s-4) var(--s-3);
-  text-align: center;
+  padding: var(--s-5);
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--s-2);
-  position: relative;
 }
-.token-pack-card.tpc-featured {
+.ai-credit-card--featured {
   border-color: var(--hoang-kim);
-  background: linear-gradient(135deg, rgba(245,158,11,.07) 0%, rgba(245,158,11,.02) 100%);
+  background: linear-gradient(135deg, rgba(245,158,11,.08) 0%, rgba(245,158,11,.02) 100%);
 }
-.tpc-badge {
+.ai-beta-chip {
   position: absolute;
   top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--hoang-kim);
-  color: #000;
+  left: 16px;
+  background: var(--text);
+  color: var(--surface);
   font-size: 10px;
   font-weight: 800;
-  padding: 2px 10px;
+  padding: 2px 8px;
   border-radius: var(--r-pill);
-  white-space: nowrap;
 }
-.tpc-tokens { font-size: 15px; font-weight: 800; color: var(--text); }
-.tpc-bonus { font-size: 11px; color: var(--hoang-kim); font-weight: 600; min-height: 16px; }
-.tpc-bonus-empty { visibility: hidden; }
-.tpc-price { font-size: 14px; font-weight: 700; color: var(--text); }
-.tpc-rate { font-size: 10px; color: var(--text3); }
-.tpc-btn {
-  width: 100%;
-  padding: 7px;
-  background: none;
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-2);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
+.ai-pack-icon {
+  font-size: 22px;
+}
+.ai-pack-name {
+  font-size: var(--t-h3);
+  font-weight: 800;
+  color: var(--text);
+}
+.ai-pack-credit {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--chau-hong);
+}
+.ai-pack-price {
+  font-size: 14px;
+  font-weight: 700;
   color: var(--text2);
-  font-family: var(--font-ui);
-  transition: .15s;
 }
-.tpc-btn:hover { border-color: var(--hoang-kim); color: var(--hoang-kim); }
-.tpc-btn-primary {
-  background: var(--hoang-kim);
-  color: #000;
-  border-color: var(--hoang-kim);
+.ai-credit-card p {
+  font-size: var(--t-small);
+  color: var(--text2);
+  line-height: var(--lh-normal);
+  margin: 0 0 var(--s-1);
 }
-.tpc-btn-primary:hover { background: var(--hoang-kim-2); border-color: var(--hoang-kim-2); color: #000; }
+.pricing-beta-note {
+  font-size: 12px;
+  color: var(--text3);
+  background: var(--surface2);
+  border: 1px dashed var(--border);
+  border-radius: var(--r-3);
+  padding: var(--s-3) var(--s-4);
+  margin-bottom: var(--s-10);
+  line-height: var(--lh-normal);
+}
+
+/* ── Honor pack ── */
+.honor-pack-card {
+  background: linear-gradient(135deg, rgba(220,38,38,.04) 0%, rgba(245,158,11,.04) 100%);
+  border: 1.5px solid rgba(220,38,38,.18);
+  border-radius: var(--r-4);
+  padding: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  margin-bottom: var(--s-10);
+}
+.honor-pack-main {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+}
+.honor-pack-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.honor-pack-name {
+  font-size: var(--t-h3);
+  font-weight: 800;
+  color: var(--text);
+}
+.honor-pack-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--hoang-kim);
+}
+.honor-pack-sub {
+  font-size: var(--t-small);
+  color: var(--text2);
+  margin-top: 2px;
+}
+.honor-pack-actions {
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+.honor-pack-actions > * {
+  flex: 1 1 200px;
+}
+.honor-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.honor-link:hover { text-decoration: none; }
 
 /* ── Comparison table ── */
 .pricing-compare {

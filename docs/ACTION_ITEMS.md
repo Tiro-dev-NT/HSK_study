@@ -112,15 +112,15 @@
 
 - ☑ `pages/honor-hall.html` — Sảnh Vinh Danh (NEW) — DONE 2026-05-24 (UI shell + 12-month grid)
 - ☑ `js/honor.js` — logic mua + outfit tháng rotate (NEW) — DONE 2026-05-24 (Honor.init, spotlight, grid render)
-- ☐ Outfit picker UI Settings (dùng 21 PNG asset đã có)
+- ☑ Outfit picker UI Settings (dùng 21 PNG asset đã có) — DONE 2026-05-24 (Slice 3, branch worktree-wave-a-slice3)
 - ☐ Cap 12/năm enforce client-side + hiển thị "Đã mua tháng này" state
 
 ### Wave A consumable UI
 
-- ☐ Streak Insurance modal khi mất streak (50🪙, max 2/tháng) — `js/gamification.js`
-- ☐ Double XP toggle trước quiz (30🪙/session, max 3/ngày) — `js/quiz.js`, `js/session.js`
-- ☐ Refresh quiz button (10🪙, max 5/session) — `js/quiz.js`
-- ☐ Outfit Bé Rồng picker — `js/profile.js`
+- ☑ Streak Insurance modal khi mất streak (50🪙, max 2/tháng) — DONE 2026-05-24 (gamification.js)
+- ☑ Double XP toggle trước quiz (30🪙/session, max 3/ngày) — DONE 2026-05-24 (quiz.js)
+- ☑ Refresh quiz button (10🪙, max 5/session) — DONE 2026-05-24 (quiz.js)
+- ☑ Outfit Bé Rồng picker — DONE 2026-05-24 (profile.js)
 
 ### AI Credit UI
 
@@ -131,16 +131,16 @@
 
 ### Settings — BVQL TD compliance
 
-- ☐ "Huỷ Pro auto-renew" 1-click button (gọi RPC `cancel_subscription`)
-- ☐ "Xoá tài khoản" hard-delete (gọi RPC `delete_account_cascade`)
+- ☑ "Huỷ Pro auto-renew" 1-click button (gọi RPC `cancel_subscription`) — DONE 2026-05-24 (profile.html + profile.js)
+- ☑ "Xoá tài khoản" hard-delete — UI+confirm DONE 2026-05-24; ⚠️ server RPC placeholder (cần delete_account_cascade RPC)
 - ☐ "Xuất dữ liệu của tôi" JSON/CSV
 - ☐ "Lưu lịch sử Tutor dài hạn (90 ngày)" toggle opt-in
 - ☐ "Quản lý consent cookie" link → trigger `CookieConsent.reset()`
 
 ### Sign-up flow — Trẻ em compliance
 
-- ☐ Age confirmation checkbox: "Tôi từ 16 tuổi trở lên hoặc có sự đồng ý của cha mẹ"
-- ☐ Lưu `age_confirmed_at` timestamp
+- ☑ Age confirmation checkbox: "Tôi từ 16 tuổi trở lên" — DONE 2026-05-24 (profile settings, hsk_age_confirmed localStorage)
+- ☑ Lưu `age_confirmed_at` timestamp — DONE 2026-05-24 (hsk_age_confirmed = ISO timestamp)
 
 ---
 

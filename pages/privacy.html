@@ -1,0 +1,206 @@
+<!--
+  /privacy — Privacy Policy theo NĐ 13/2023/NĐ-CP (PDPL) + GDPR-friendly
+  SPA fragment loaded by router. Standalone version: /privacy.html (chưa tạo)
+  Related: COMPLIANCE_CHECKLIST.md #3, legal_compliance_vn.md
+-->
+<section class="page page-legal page-privacy">
+  <header class="legal-hero">
+    <h1>🔒 Chính sách Quyền riêng tư</h1>
+    <p class="legal-sub">Hanzi Genz tôn trọng quyền riêng tư của bạn. Trang này nói rõ: thu thập dữ liệu gì, dùng làm gì, share với ai, bạn kiểm soát thế nào.</p>
+    <p class="legal-update">Cập nhật: 2026-05-23 · Hiệu lực: 1/6/2026</p>
+  </header>
+
+  <!-- TL;DR -->
+  <div class="legal-callout">
+    <h2>📌 Tóm tắt nhanh (TL;DR)</h2>
+    <ul>
+      <li>✅ <strong>Hanzi Genz KHÔNG bán dữ liệu</strong> của bạn cho bất kỳ bên thứ ba nào.</li>
+      <li>✅ <strong>KHÔNG có quảng cáo</strong> trong app — không cần tracking cho ads.</li>
+      <li>✅ Dữ liệu thu thập <strong>chỉ phục vụ học tập</strong> (progress, SRS, badge...) và thanh toán (PayOS).</li>
+      <li>⚠️ Một số dịch vụ phải share dữ liệu giới hạn: <strong>Supabase</strong> (lưu trữ), <strong>PayOS</strong> (thanh toán), <strong>DeepSeek/Qwen</strong> (AI nếu bạn dùng).</li>
+      <li>✅ Bạn có quyền <strong>xem, sửa, xoá</strong> dữ liệu của mình bất cứ lúc nào trong Settings.</li>
+    </ul>
+  </div>
+
+  <section class="legal-section">
+    <h2>1. Dữ liệu chúng tôi thu thập</h2>
+
+    <h3>1.1 Dữ liệu bạn cung cấp khi đăng ký</h3>
+    <ul>
+      <li><strong>Email</strong> + tên hiển thị + ảnh đại diện (qua Google OAuth)</li>
+      <li>Hoặc <strong>email + mật khẩu mã hoá</strong> (nếu đăng ký bằng email)</li>
+      <li>Tuỳ chọn: ngày sinh (kiểm tra độ tuổi), nickname</li>
+    </ul>
+
+    <h3>1.2 Dữ liệu phát sinh khi bạn học</h3>
+    <ul>
+      <li>Tiến độ học: từ đã học, từ đã master, SRS schedule</li>
+      <li>Hoạt động: streak, XP, badge, ngày học</li>
+      <li>My Decks: deck tự tạo và nội dung</li>
+      <li>Lịch sử quiz, game, mock test</li>
+      <li>Settings cá nhân (theme, hint level, HSK version...)</li>
+    </ul>
+
+    <h3>1.3 Dữ liệu kỹ thuật tự động</h3>
+    <ul>
+      <li>IP address (cho fraud detection + tuân thủ pháp luật)</li>
+      <li>User agent, loại thiết bị, browser</li>
+      <li>Thời điểm login/logout, session ID</li>
+      <li>Log lỗi (error logs) để debug</li>
+    </ul>
+
+    <h3>1.4 Dữ liệu thanh toán</h3>
+    <ul>
+      <li>Lịch sử mua Pro, AI Credit Pack, Hộp Ân Cần (order ID, SKU, ngày, amount)</li>
+      <li><strong>KHÔNG lưu thông tin thẻ.</strong> Mọi thanh toán xử lý bởi <strong>PayOS</strong> — chúng tôi chỉ nhận confirm "đã thanh toán"</li>
+    </ul>
+
+    <h3>1.5 Dữ liệu AI (text)</h3>
+    <ul>
+      <li>Câu chat với AI Tutor, essay gửi chấm — text only</li>
+      <li>Lưu để bạn xem lại lịch sử, đo usage AI Credit, và cải thiện chất lượng dịch vụ</li>
+      <li>KHÔNG dùng để train model — chúng tôi không train AI riêng</li>
+      <li>Retention: chat 7 ngày (opt-in 90 ngày), essay 30 ngày — xem section 8</li>
+    </ul>
+
+    <h3>1.6 🎤 Voice / Audio HSKK Speaking (Phase Y — chưa launch)</h3>
+    <ul>
+      <li><strong>Voice là sinh trắc học (biometric)</strong> theo PDPL NĐ 13/2023 — chúng tôi xử lý với mức bảo vệ cao nhất</li>
+      <li>Audio bạn ghi khi luyện HSKK Speaking lưu trên Cloudflare R2 (encrypted)</li>
+      <li>Mục đích: AI chấm phát âm + cho bạn nghe lại trong 24h</li>
+      <li><strong>Tự động xoá sau 24 giờ</strong> — đủ để bạn nghe lại sáng hôm sau, không lưu lâu hơn</li>
+      <li>Kết quả chấm (score, pinyin transcription, feedback text) lưu vĩnh viễn cho progress tracking — đây là TEXT, không phải voice</li>
+      <li>Mỗi lần ghi âm cần explicit consent trong app (sẽ hiện modal "Cho phép ghi âm")</li>
+      <li>KHÔNG share với bên thứ 3, KHÔNG dùng training AI, KHÔNG bán</li>
+      <li>Bạn có quyền yêu cầu xoá audio ngay lập tức (Settings hoặc email)</li>
+    </ul>
+  </section>
+
+  <section class="legal-section">
+    <h2>2. Mục đích sử dụng dữ liệu</h2>
+    <table class="legal-table">
+      <thead><tr><th>Mục đích</th><th>Dữ liệu dùng</th><th>Cơ sở pháp lý</th></tr></thead>
+      <tbody>
+        <tr><td>Cung cấp dịch vụ học HSK</td><td>Email, progress, SRS, settings</td><td>Thực hiện hợp đồng dịch vụ</td></tr>
+        <tr><td>Sync giữa thiết bị</td><td>Toàn bộ dữ liệu học</td><td>Thực hiện hợp đồng</td></tr>
+        <tr><td>Thanh toán Pro / AI Credit / Hộp Ân Cần</td><td>Email, order history</td><td>Thực hiện hợp đồng + tuân thủ thuế</td></tr>
+        <tr><td>Phòng chống gian lận, abuse</td><td>IP, device, session log</td><td>Lợi ích chính đáng + tuân thủ pháp luật</td></tr>
+        <tr><td>Hỗ trợ kỹ thuật & khiếu nại</td><td>Email + lịch sử dùng</td><td>Lợi ích chính đáng</td></tr>
+        <tr><td>Cải thiện UX (analytics tổng hợp, ẩn danh)</td><td>Usage pattern aggregate</td><td>Lợi ích chính đáng (opt-out được)</td></tr>
+        <tr><td>Email update sản phẩm (opt-in)</td><td>Email</td><td>Đồng ý của bạn</td></tr>
+      </tbody>
+    </table>
+    <p class="legal-note">Chúng tôi <strong>KHÔNG</strong> dùng dữ liệu cho: quảng cáo, bán cho bên thứ ba, profile học viên để bán cho trường/dịch vụ khác, train model AI.</p>
+  </section>
+
+  <section class="legal-section">
+    <h2>3. Bên thứ ba — chúng tôi chia sẻ dữ liệu với ai</h2>
+    <table class="legal-table">
+      <thead><tr><th>Đối tác</th><th>Mục đích</th><th>Dữ liệu được share</th><th>Vị trí</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Supabase</strong></td><td>Database + Auth (backend chính)</td><td>Toàn bộ dữ liệu app</td><td>USA</td></tr>
+        <tr><td><strong>Cloudflare</strong></td><td>CDN + R2 storage (audio cache + hình)</td><td>File audio + hình</td><td>Toàn cầu</td></tr>
+        <tr><td><strong>PayOS</strong></td><td>Xử lý thanh toán VND</td><td>Email + amount + order ID</td><td>Việt Nam</td></tr>
+        <tr><td><strong>Google OAuth</strong></td><td>Đăng nhập (nếu bạn chọn)</td><td>Email + tên + avatar</td><td>USA</td></tr>
+        <tr><td><strong>DeepSeek / Qwen / Gemini / Anthropic</strong></td><td>AI API (Tutor, chấm bài, gen story)</td><td>Câu chat / essay / audio bạn gửi AI</td><td>China / USA tuỳ provider</td></tr>
+        <tr><td><strong>ElevenLabs / Azure</strong></td><td>TTS giọng đọc tiếng Trung/Việt</td><td>Text muốn TTS</td><td>USA</td></tr>
+        <tr><td><strong>Telegram Bot</strong></td><td>Kênh khiếu nại + log feedback</td><td>Nội dung khiếu nại + email</td><td>Toàn cầu</td></tr>
+      </tbody>
+    </table>
+    <p class="legal-note"><strong>Chuyển dữ liệu ra nước ngoài (Cross-border transfer):</strong> Theo NĐ 13/2023/NĐ-CP, dữ liệu của bạn có thể được lưu trữ trên server ở USA (Supabase) hoặc các nước khác qua đối tác. Chúng tôi áp dụng Standard Contractual Clauses (SCC) tương đương và yêu cầu đối tác cam kết bảo mật.</p>
+  </section>
+
+  <section class="legal-section">
+    <h2>4. Cookie & Local Storage</h2>
+    <p>Hanzi Genz dùng <strong>cookie + localStorage</strong> cho 2 mục đích:</p>
+    <ul>
+      <li><strong>Cần thiết</strong> (không tắt được): auth session, settings UI, sync queue. Lý do: không có cookie này, app không hoạt động.</li>
+      <li><strong>Analytics</strong> (opt-out được trong Settings): đo flow học, A/B test feature mới. KHÔNG có third-party tracking (Google Analytics, Meta Pixel, TikTok Pixel...).</li>
+    </ul>
+    <p class="legal-note">App KHÔNG có advertising cookies. KHÔNG có third-party tracking cho ads.</p>
+  </section>
+
+  <section class="legal-section">
+    <h2>5. Quyền của bạn (theo NĐ 13/2023/NĐ-CP)</h2>
+    <p>Bạn có các quyền sau với dữ liệu cá nhân của mình:</p>
+    <table class="legal-table">
+      <thead><tr><th>Quyền</th><th>Cách thực hiện</th></tr></thead>
+      <tbody>
+        <tr><td>📖 <strong>Xem</strong> dữ liệu đang lưu</td><td>Settings → Tài khoản → "Xuất dữ liệu của tôi" (JSON/CSV)</td></tr>
+        <tr><td>✏️ <strong>Sửa</strong> dữ liệu sai</td><td>Settings → sửa trực tiếp / liên hệ support</td></tr>
+        <tr><td>🗑️ <strong>Xoá</strong> tài khoản & dữ liệu</td><td>Settings → "Xoá tài khoản" → hard-delete trong 30 ngày</td></tr>
+        <tr><td>📤 <strong>Chuyển</strong> dữ liệu sang dịch vụ khác</td><td>Xuất JSON/CSV → import sang Anki/Quizlet</td></tr>
+        <tr><td>🚫 <strong>Phản đối</strong> xử lý dữ liệu</td><td>Email <a href="mailto:support@hanzigenz.com">support@hanzigenz.com</a></td></tr>
+        <tr><td>📵 <strong>Rút lại đồng ý</strong></td><td>Settings → Privacy → tắt marketing/analytics</td></tr>
+        <tr><td>⚖️ <strong>Khiếu nại</strong> với cơ quan có thẩm quyền</td><td>Cục An toàn TT — <a href="https://vncert.vn">vncert.vn</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="legal-section">
+    <h2>6. Trẻ em dưới 16 tuổi</h2>
+    <p>Hanzi Genz target user <strong>từ 16 tuổi trở lên</strong>. Trẻ em dưới 16 tuổi:</p>
+    <ul>
+      <li>Cần sự đồng ý của cha mẹ / người giám hộ trước khi đăng ký</li>
+      <li>Cha mẹ có thể liên hệ <a href="mailto:support@hanzigenz.com">support@hanzigenz.com</a> để yêu cầu xoá tài khoản con</li>
+      <li>Chúng tôi KHÔNG cố ý thu thập dữ liệu trẻ em <13 tuổi. Nếu phát hiện → xoá ngay</li>
+    </ul>
+  </section>
+
+  <section class="legal-section">
+    <h2>7. Bảo mật dữ liệu</h2>
+    <ul>
+      <li>Mật khẩu được mã hoá bằng bcrypt (Supabase Auth)</li>
+      <li>Kết nối qua HTTPS bắt buộc</li>
+      <li>Row-Level Security (RLS) trên Supabase — user chỉ truy cập dữ liệu của chính mình</li>
+      <li>Backup encrypted, lưu trữ 30 ngày</li>
+      <li>Audit log truy cập admin</li>
+    </ul>
+    <p class="legal-note">Trong trường hợp có data breach, chúng tôi cam kết thông báo cho user và cơ quan có thẩm quyền trong vòng 72 giờ theo NĐ 13/2023/NĐ-CP.</p>
+  </section>
+
+  <section class="legal-section">
+    <h2>8. Lưu trữ & xoá dữ liệu</h2>
+    <table class="legal-table">
+      <thead><tr><th>Loại dữ liệu</th><th>Thời gian lưu</th><th>Lý do</th></tr></thead>
+      <tbody>
+        <tr><td>Tài khoản active</td><td>Cho tới khi user xoá tài khoản</td><td>Cung cấp dịch vụ</td></tr>
+        <tr><td>Tài khoản inactive >2 năm</td><td>Email nhắc nhở. Không phản hồi 30 ngày → xoá</td><td>Privacy hygiene</td></tr>
+        <tr><td>Lịch sử thanh toán + invoice</td><td>5 năm (anonymized sau khi user xoá tài khoản)</td><td>Yêu cầu Luật Thuế</td></tr>
+        <tr><td>Progress học (cards/SRS/XP/streak)</td><td>Cho tới khi user xoá tài khoản</td><td>Progress tracking</td></tr>
+        <tr><td><strong>🎤 Voice / Audio HSKK Speaking</strong> (Phase Y)</td><td><strong>24 giờ</strong> sau ghi âm, tự động xoá</td><td>Voice = sinh trắc học theo PDPL NĐ 13/2023 → giữ tối thiểu</td></tr>
+        <tr><td>Kết quả HSKK (score, pinyin transcription, feedback text)</td><td>Vĩnh viễn (text only, không nhạy cảm)</td><td>Progress tracking long-term</td></tr>
+        <tr><td>AI Tutor chat text (default)</td><td><strong>7 ngày</strong> — opt-in 90 ngày trong Settings</td><td>Continue context tuần</td></tr>
+        <tr><td>AI Essay submission</td><td>30 ngày</td><td>User xem lại + AI improve</td></tr>
+        <tr><td>AI Credit ledger</td><td>1 năm</td><td>Audit + compliance thuế</td></tr>
+        <tr><td>Consent log (privacy, ToS version đồng ý)</td><td>5 năm</td><td>Defense pháp lý</td></tr>
+        <tr><td>Log kỹ thuật (IP, error logs)</td><td>90 ngày</td><td>Debug + fraud detection</td></tr>
+        <tr><td>Backup database</td><td>30 ngày (rolling)</td><td>Disaster recovery</td></tr>
+      </tbody>
+    </table>
+    <p class="legal-note"><strong>Voice/biometric data:</strong> Khi bạn ghi âm cho HSKK Speaking (Phase Y), audio chỉ lưu 24 giờ trên server (encrypted) — đủ để bạn nghe lại sáng hôm sau, sau đó tự động xoá. Kết quả chấm (score, pinyin, feedback) lưu vĩnh viễn dưới dạng text để tracking progress. <strong>Bạn có thể yêu cầu xoá audio ngay lập tức</strong> qua Settings hoặc email.</p>
+  </section>
+
+  <section class="legal-section">
+    <h2>9. Thay đổi chính sách</h2>
+    <p>Khi cập nhật Privacy Policy, chúng tôi sẽ:</p>
+    <ul>
+      <li>Đăng version mới với ngày cập nhật</li>
+      <li>Email thông báo cho user đã đăng ký (đối với thay đổi quan trọng)</li>
+      <li>Trong app: banner thông báo + yêu cầu xem trước khi tiếp tục</li>
+      <li>Bạn có quyền không đồng ý → có thể xoá tài khoản</li>
+    </ul>
+  </section>
+
+  <section class="legal-section">
+    <h2>10. Liên hệ</h2>
+    <p><strong>Hanzi Genz</strong></p>
+    <p>Email: <a href="mailto:support@hanzigenz.com">support@hanzigenz.com</a> · Telegram: <a href="https://t.me/hanzigenzbot">@hanzigenzbot</a></p>
+    <p>Website: <a href="https://hanzigenz.com">hanzigenz.com</a></p>
+    <p class="legal-note">Cơ quan có thẩm quyền tại Việt Nam: Cục An toàn Thông tin (<a href="https://vncert.vn">vncert.vn</a>) — Bộ Thông tin và Truyền thông.</p>
+  </section>
+
+  <footer class="legal-footer">
+    <p>Xem thêm: <a href="/terms">Điều khoản Dịch vụ</a> · <a href="/free-vs-pro">Free vs Pro</a> · <a href="/contact">Liên hệ</a></p>
+  </footer>
+</section>

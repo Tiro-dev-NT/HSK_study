@@ -42,7 +42,8 @@ var Router = (function() {
     '/terms':         'terms',
     '/contact':       'contact',
     '/free-vs-pro':   'free-vs-pro',
-    '/honor-hall':    'honor-hall'
+    '/honor-hall':    'honor-hall',
+    '/learn-method':  'learn-method'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -120,6 +121,9 @@ var Router = (function() {
     },
     'honor-hall': function() {
       if (typeof Honor !== 'undefined') Honor.init();
+    },
+    'learn-method': function() {
+      if (typeof LearnMethod !== 'undefined') LearnMethod.setup();
     }
   };
 

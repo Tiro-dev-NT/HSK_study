@@ -1,0 +1,256 @@
+/* ═══════════════════════════════════════════════════════════
+   learn-method.css — Phase Q: Learning Method Hub
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Page layout ── */
+.lm-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.lm-header {
+  margin-bottom: 2rem;
+}
+
+.lm-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary, #f8fafc);
+  margin: 0 0 .4rem;
+}
+
+.lm-sub {
+  color: var(--text-secondary, #94a3b8);
+  font-size: .9rem;
+  margin: 0;
+}
+
+/* ── Sections ── */
+.lm-section {
+  margin-bottom: 2.5rem;
+}
+
+.lm-section-title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary, #f8fafc);
+  margin: 0 0 1rem;
+}
+
+.lm-section-icon {
+  font-size: 1.2rem;
+}
+
+.lm-section-sub {
+  color: var(--text-secondary, #94a3b8);
+  font-size: .85rem;
+  margin: -.5rem 0 1rem;
+}
+
+/* ── Principles grid ── */
+.lm-principles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .lm-principles-grid { grid-template-columns: 1fr; }
+}
+
+.lm-principle-card {
+  background: var(--bg-card, #1e293b);
+  border: 1px solid var(--border-card, rgba(255,255,255,.07));
+  border-radius: 12px;
+  padding: 1.1rem 1.1rem 1rem;
+  position: relative;
+  transition: border-color .2s;
+}
+
+.lm-principle-card:hover {
+  border-color: rgba(99,102,241,.4);
+}
+
+.lm-principle-num {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--color-indigo, #6366f1);
+  margin-bottom: .4rem;
+}
+
+.lm-principle-title {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--text-primary, #f8fafc);
+  margin: 0 0 .5rem;
+}
+
+.lm-principle-body {
+  font-size: .82rem;
+  color: var(--text-secondary, #94a3b8);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Interval visual timeline ── */
+.lm-interval-visual {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: .75rem;
+  flex-wrap: wrap;
+}
+
+.lm-iv-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-indigo, #6366f1);
+  flex-shrink: 0;
+}
+
+.lm-iv-line {
+  height: 2px;
+  background: var(--color-indigo, #6366f1);
+  opacity: .3;
+  flex-shrink: 0;
+}
+
+.lm-iv-label {
+  font-size: .65rem;
+  color: var(--text-secondary, #94a3b8);
+  white-space: nowrap;
+}
+
+/* ── Daily tip card ── */
+.lm-tip-card {
+  background: linear-gradient(135deg, rgba(245,158,11,.12) 0%, rgba(245,158,11,.04) 100%);
+  border: 1px solid rgba(245,158,11,.25);
+  border-radius: 14px;
+  padding: 1.4rem 1.4rem 1.3rem;
+  position: relative;
+}
+
+.lm-tip-day {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--color-gold, #f59e0b);
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.lm-tip-text {
+  font-size: .95rem;
+  color: var(--text-primary, #f8fafc);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Weakness list ── */
+.lm-weak-list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.lm-weak-empty {
+  color: var(--text-secondary, #94a3b8);
+  font-size: .88rem;
+  padding: 1.2rem;
+  background: var(--bg-card, #1e293b);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.lm-weak-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--bg-card, #1e293b);
+  border: 1px solid var(--border-card, rgba(255,255,255,.07));
+  border-radius: 10px;
+  padding: .7rem 1rem;
+}
+
+.lm-weak-rank {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--text-muted, #64748b);
+  width: 1.4rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.lm-weak-hanzi {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-red, #ef4444);
+  width: 2rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.lm-weak-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.lm-weak-pinyin {
+  font-size: .78rem;
+  color: var(--color-gold, #f59e0b);
+  margin-bottom: .1rem;
+}
+
+.lm-weak-meaning {
+  font-size: .85rem;
+  color: var(--text-secondary, #94a3b8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lm-weak-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.lm-weak-overdue {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--color-red, #ef4444);
+  white-space: nowrap;
+}
+
+.lm-weak-interval {
+  font-size: .7rem;
+  color: var(--text-muted, #64748b);
+  white-space: nowrap;
+}
+
+/* ── Actions ── */
+.lm-weak-actions {
+  margin-top: 1rem;
+}
+
+.lm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: var(--color-red, #ef4444);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: .6rem 1.2rem;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+
+.lm-btn-primary:hover { opacity: .87; }

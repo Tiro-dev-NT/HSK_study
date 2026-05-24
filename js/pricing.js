@@ -46,9 +46,7 @@ var Pricing = {
       icon:      '📦',
       title:     pack.name + ' — Ủng hộ Hanzi Genz',
       priceText: pack.priceLabel,
-      activation:'Bạn nhận 1.000 token, outfit Người Ủng Hộ tháng này, badge Mạnh Thường Quân và tuỳ chọn hiện tên ở Sảnh Vinh Danh',
-      extraNote: 'Thanh toán Hộp Ân Cần sẽ được mở sau khi backend Phase 2 cập nhật SKU honor_pack.',
-      disabledPayment: true
+      activation:'Bạn nhận 1.000 token, outfit Người Ủng Hộ tháng này, badge Mạnh Thường Quân và tuỳ chọn hiện tên ở Sảnh Vinh Danh'
     });
   },
 
@@ -65,9 +63,7 @@ var Pricing = {
       icon:      pack.icon || '🔮',
       title:     'Túi Linh Đan AI — ' + pack.tierLabel,
       priceText: pack.priceLabel,
-      activation: pack.credits.toLocaleString('vi-VN') + ' AI Credit sẽ được cộng vào tài khoản',
-      extraNote: 'Gói AI Credit đang ở giai đoạn beta. Thanh toán sẽ được mở sau khi backend Phase 2 cập nhật SKU ' + sku + '.',
-      disabledPayment: true
+      activation: pack.credits.toLocaleString('vi-VN') + ' AI Credit sẽ được cộng vào tài khoản'
     });
   },
 
@@ -150,7 +146,9 @@ var Pricing = {
     // Client-side SKU guard — Edge Function validates again server-side
     var _validSkus = {
       subscription: ['monthly', 'quarterly', 'semiannual', 'yearly', 'lifetime'],
-      token:        ['pack100', 'pack500', 'pack1200', 'pack3000']
+      token:        ['pack100', 'pack500', 'pack1200', 'pack3000'],
+      aiCredit:     ['aipack_so', 'aipack_trung', 'aipack_cao'],
+      honor:        ['honor_pack']
     };
     if (!_validSkus[orderType] || _validSkus[orderType].indexOf(sku) < 0) {
       Pricing._setState('error');
@@ -222,6 +220,12 @@ var Pricing = {
         var pack = PLAN_CATALOG.getTokenPack(sku);
         var total = pack ? (pack.tokens + (pack.bonus || 0)) : 0;
         msg = '🎉 Thanh toán thành công! ' + total.toLocaleString('vi-VN') + ' token đã được cộng.';
+      } else if (type === 'aiCredit' && window.PLAN_CATALOG) {
+        var aiPack = PLAN_CATALOG.getAICreditPack(sku);
+        var credits = aiPack ? aiPack.credits : 0;
+        msg = '🎉 Thanh toán thành công! ' + credits.toLocaleString('vi-VN') + ' AI Credit đã được cộng vào tài khoản.';
+      } else if (type === 'honor') {
+        msg = '🎉 Cảm ơn bạn đã ủng hộ! 1.000 token và outfit Người Ủng Hộ tháng này đã được ghi nhận.';
       } else if (window.PLAN_CATALOG) {
         var item = PLAN_CATALOG.getSubscription(sku);
         var planName = item ? ('Pro ' + item.sub) : 'Pro';

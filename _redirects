@@ -1,6 +1,2 @@
-# Static pages keep their own files
-/privacy        /privacy.html       200
-/terms          /terms.html         200
-
 # SPA fallback — Router handles all other routes
 /*              /index.html         200

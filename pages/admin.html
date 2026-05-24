@@ -1,82 +1,575 @@
-<div class="admin-page" id="adminPage">
-  <div class="admin-header">
-    <h1>🛠 Admin Dashboard</h1>
-    <p class="admin-sub">Quản trị viên: <span id="adminEmail"></span></p>
-  </div>
+<div class="admin-shell" id="adminShell">
 
-  <!-- Stats overview -->
-  <div class="admin-stats-grid" id="adminStatsGrid">
-    <div class="admin-stat-card">
-      <div class="ast-label">Tổng user</div>
-      <div class="ast-value" id="statTotalUsers">—</div>
-    </div>
-    <div class="admin-stat-card">
-      <div class="ast-label">Active 7 ngày</div>
-      <div class="ast-value" id="statActive7d">—</div>
-    </div>
-    <div class="admin-stat-card">
-      <div class="ast-label">Pro đang hoạt động</div>
-      <div class="ast-value" id="statProActive">—</div>
-    </div>
-    <div class="admin-stat-card">
-      <div class="ast-label">Pro Lifetime</div>
-      <div class="ast-value" id="statProLifetime">—</div>
-    </div>
-    <div class="admin-stat-card">
-      <div class="ast-label">Token outstanding</div>
-      <div class="ast-value" id="statTokens">—</div>
-    </div>
-    <div class="admin-stat-card">
-      <div class="ast-label">Total XP</div>
-      <div class="ast-value" id="statXP">—</div>
+  <!-- ── ACCESS DENIED ── -->
+  <div class="adm-denied" id="adminDenied" style="display:none">
+    <div class="adm-denied-inner">
+      <div class="adm-denied-icon">🚫</div>
+      <h2>Không có quyền truy cập</h2>
+      <p>Trang này chỉ dành cho quản trị viên Hanzi Genz.</p>
+      <button onclick="Router.navigateTo('home')" class="adm-btn-secondary">← Về trang chủ</button>
     </div>
   </div>
 
-  <!-- Tabs -->
-  <div class="admin-tabs">
-    <button class="admin-tab active" data-tab="users">👤 Users</button>
-    <button class="admin-tab" data-tab="grant">⚡ Cấp gói</button>
-  </div>
-
-  <!-- Users tab -->
-  <div class="admin-tab-panel" id="adminTabUsers">
-    <div class="admin-toolbar">
-      <input type="text" id="adminUserSearch" placeholder="Lọc theo email..." class="admin-search">
-      <button class="admin-btn-secondary" id="adminRefresh">🔄 Refresh</button>
-    </div>
-    <div class="admin-users-list" id="adminUsersList">
-      <p class="admin-empty">Đang tải...</p>
-    </div>
-  </div>
-
-  <!-- Grant subscription tab -->
-  <div class="admin-tab-panel" id="adminTabGrant" style="display:none">
-    <div class="admin-grant-card">
-      <h3>Cấp gói thủ công</h3>
-      <p class="admin-help">Dùng khi user đã chuyển khoản qua PayOS QR — cấp gói tay trong lúc chờ webhook tự động.</p>
-
-      <div class="admin-form-row">
-        <label>Email user</label>
-        <input type="email" id="grantEmail" placeholder="user@example.com">
+  <!-- ── LEFT NAV ── -->
+  <nav class="adm-nav" id="adminNav">
+    <div class="an-brand">
+      <span class="an-dragon">🐉</span>
+      <div class="an-brand-text">
+        <span class="an-title">Hanzi Genz</span>
+        <span class="an-sub">Admin Dashboard</span>
       </div>
-      <div class="admin-form-row">
-        <label>Gói Pro (thời hạn)</label>
-        <select id="grantDuration">
-          <option value="monthly"    data-days="30">Linh hoạt — 1 tháng (75k)</option>
-          <option value="quarterly"  data-days="90">Chăm chỉ — 3 tháng (199k)</option>
-          <option value="semiannual" data-days="180">Bứt phá — 6 tháng (329k)</option>
-          <option value="yearly"     data-days="365" selected>Tiết kiệm — 1 năm (499k)</option>
-          <option value="lifetime"   data-days="0">Trọn đời (999k, vĩnh viễn)</option>
-        </select>
-      </div>
-      <div class="admin-form-row">
-        <label>Số ngày (bỏ qua nếu Lifetime)</label>
-        <input type="number" id="grantDays" value="365" min="1" max="3650">
-      </div>
-      <button class="admin-btn-primary" id="grantSubmit">✓ Cấp gói</button>
-      <button class="admin-btn-danger" id="revokeSubmit">✗ Hủy gói (set free)</button>
-
-      <div id="grantResult" class="admin-result"></div>
     </div>
-  </div>
-</div>
+    <div class="an-menu">
+      <button class="an-item active" data-s="overview">
+        <span class="an-icon">📊</span><span class="an-label">Tổng quan</span>
+      </button>
+      <button class="an-item" data-s="users">
+        <span class="an-icon">👥</span><span class="an-label">Người dùng</span>
+      </button>
+      <button class="an-item" data-s="payments">
+        <span class="an-icon">💳</span><span class="an-label">Thanh toán</span>
+      </button>
+      <button class="an-item" data-s="content">
+        <span class="an-icon">📚</span><span class="an-label">Nội dung</span>
+      </button>
+      <button class="an-item" data-s="quest">
+        <span class="an-icon">🎯</span><span class="an-label">Quest &amp; Token</span>
+      </button>
+      <button class="an-item" data-s="feedback">
+        <span class="an-icon">💬</span><span class="an-label">Góp ý</span>
+        <span class="an-badge" id="navFeedbackBadge" style="display:none">0</span>
+      </button>
+      <button class="an-item" data-s="system">
+        <span class="an-icon">⚙️</span><span class="an-label">Hệ thống</span>
+      </button>
+    </div>
+    <div class="an-footer">
+      <div class="an-user" id="adminNavUser">
+        <span class="an-user-avatar">🐉</span>
+        <span class="an-user-email" id="adminNavEmail">—</span>
+      </div>
+      <button class="an-exit" onclick="Router.navigateTo('home')">← Thoát admin</button>
+    </div>
+  </nav>
+
+  <!-- ── MAIN AREA ── -->
+  <div class="adm-main" id="adminMain">
+
+    <!-- Top bar -->
+    <div class="adm-topbar">
+      <div class="atb-left">
+        <span class="atb-path">Admin /</span>
+        <span class="atb-section" id="adminSectionLabel">Tổng quan</span>
+      </div>
+      <input class="atb-search" id="adminSearch" placeholder="🔍 Tìm user, giao dịch, từ vựng...">
+      <div class="atb-right">
+        <button class="atb-bell" title="Thông báo">🔔</button>
+        <div class="atb-avatar">🐉 Tiro · Super Admin</div>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="adm-content" id="adminContent">
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 1 — TỔNG QUAN
+      ═══════════════════════════════════════════ -->
+      <section class="adm-section" id="adminSectionOverview">
+
+        <!-- KPI row (4 live + 3 dim) -->
+        <div class="adm-kpis" id="ovKPIs">
+          <div class="adm-kpi-card">
+            <span class="kpi-label">DAU hôm nay</span>
+            <strong class="kpi-value" id="kpiDAU">—</strong>
+            <em class="kpi-delta" id="kpiDAUDelta"></em>
+          </div>
+          <div class="adm-kpi-card">
+            <span class="kpi-label">Doanh thu tháng (VND)</span>
+            <strong class="kpi-value" id="kpiRevMonth">—</strong>
+            <em class="kpi-delta" id="kpiRevDelta"></em>
+          </div>
+          <div class="adm-kpi-card">
+            <span class="kpi-label">Retention D7</span>
+            <strong class="kpi-value" id="kpiRetention">—</strong>
+            <em class="kpi-delta" id="kpiRetDelta"></em>
+          </div>
+          <div class="adm-kpi-card">
+            <span class="kpi-label">Pro users active</span>
+            <strong class="kpi-value" id="kpiProRatio">—</strong>
+            <div class="kpi-bar"><div class="kpi-bar-fill" id="kpiProBar" style="width:0%"></div></div>
+          </div>
+          <div class="adm-kpi-card admin-coming-soon">
+            <span class="kpi-label">AI Tutor sessions</span>
+            <strong class="kpi-value">—</strong>
+            <em class="kpi-delta">Phase R</em>
+          </div>
+          <div class="adm-kpi-card admin-coming-soon">
+            <span class="kpi-label">HSKK exam attempts</span>
+            <strong class="kpi-value">—</strong>
+            <em class="kpi-delta">Phase Y</em>
+          </div>
+          <div class="adm-kpi-card admin-coming-soon">
+            <span class="kpi-label">Story Mai progress</span>
+            <strong class="kpi-value">—</strong>
+            <em class="kpi-delta">Phase P</em>
+          </div>
+        </div>
+
+        <!-- Charts row -->
+        <div class="adm-row-2">
+          <div class="adm-card adm-chart-card">
+            <div class="adm-card-head">
+              <h3 class="adm-card-title">Doanh thu 30 ngày</h3>
+              <button class="adm-refresh-sm" onclick="AdminOverview.loadRevChart()">🔄</button>
+            </div>
+            <canvas id="chartRevenue" height="200"></canvas>
+          </div>
+          <div class="adm-card adm-chart-card">
+            <div class="adm-card-head">
+              <h3 class="adm-card-title">User growth 30 ngày</h3>
+            </div>
+            <canvas id="chartUsers" height="200"></canvas>
+          </div>
+        </div>
+        <div class="adm-card adm-chart-card admin-coming-soon" style="margin-bottom:16px">
+          <h3 class="adm-card-title">Active hours by ambient theme</h3>
+          <div class="adm-placeholder-chart">Wave B chưa ra mắt</div>
+        </div>
+
+        <!-- Tables row -->
+        <div class="adm-row-2">
+          <div class="adm-card">
+            <div class="adm-card-head">
+              <h3 class="adm-card-title">Giao dịch gần nhất</h3>
+              <button class="adm-link" onclick="Admin.navTo('payments')">Xem tất cả →</button>
+            </div>
+            <div id="ovRecentTx"><p class="adm-empty">Đang tải...</p></div>
+          </div>
+          <div class="adm-card">
+            <div class="adm-card-head">
+              <h3 class="adm-card-title">Góp ý chưa trả lời</h3>
+              <button class="adm-link" onclick="Admin.navTo('feedback')">Xem tất cả →</button>
+            </div>
+            <div id="ovPendingFeedback"><p class="adm-empty">Đang tải...</p></div>
+          </div>
+        </div>
+
+        <!-- System health strip -->
+        <div class="adm-health-strip" id="ovHealth">
+          <span id="healthSupa">⏳ Supabase...</span>
+          <span class="adm-health-sep">·</span>
+          <span id="healthPayOS">⏳ PayOS webhook...</span>
+          <span class="adm-health-sep">·</span>
+          <span id="healthEdge">⏳ Edge Functions...</span>
+          <span class="adm-health-sep">·</span>
+          <span>🟢 CF Pages</span>
+          <span class="adm-health-ts" id="healthTs">—</span>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 2 — NGƯỜI DÙNG
+      ═══════════════════════════════════════════ -->
+      <section class="adm-section" id="adminSectionUsers" style="display:none">
+        <div class="adm-section-head">
+          <h2>Người dùng</h2>
+          <div class="adm-hd-actions">
+            <button class="adm-btn-secondary" id="usersExportBtn">Export CSV</button>
+            <button class="adm-btn-primary" id="usersGrantBtn">⚡ Cấp gói</button>
+          </div>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="adm-filter-bar">
+          <input class="adm-filter-search" id="usersSearch" placeholder="Tìm email...">
+          <div class="adm-chips" id="usersTierChips">
+            <button class="adm-chip active" data-tier="">Tất cả</button>
+            <button class="adm-chip" data-tier="free">Free</button>
+            <button class="adm-chip" data-tier="pro">Pro</button>
+          </div>
+          <div class="adm-chip admin-coming-soon" style="pointer-events:none;display:inline-flex">HSK 0 hoàn thành</div>
+          <span class="adm-filter-count" id="usersCount">—</span>
+        </div>
+
+        <!-- Bulk action bar -->
+        <div class="adm-bulk-bar" id="usersBulkBar" style="display:none">
+          <span id="usersBulkCount">0 đã chọn ·</span>
+          <button class="adm-btn-danger-sm" id="usersBulkSuspend">Suspend</button>
+          <button class="adm-btn-secondary-sm" id="usersBulkTier">Đổi tier</button>
+          <button class="adm-btn-secondary-sm" id="usersBulkNotify">Gửi noti</button>
+        </div>
+
+        <!-- Table + side panel layout -->
+        <div class="adm-users-layout" id="usersLayout">
+          <div class="adm-table-area">
+            <div class="adm-table-scroll" id="usersTableWrap">
+              <p class="adm-empty">Đang tải...</p>
+            </div>
+            <div class="adm-pagination" id="usersPagination"></div>
+          </div>
+
+          <!-- Side panel -->
+          <aside class="adm-side-panel" id="usersSidePanel" style="display:none">
+            <div class="asp-hd">
+              <div class="asp-user">
+                <div class="asp-ava" id="aspAvatar">👤</div>
+                <div class="asp-info">
+                  <strong class="asp-name" id="aspName">—</strong>
+                  <span class="asp-email" id="aspEmail">—</span>
+                  <span class="adm-badge" id="aspBadge">Free</span>
+                </div>
+              </div>
+              <button class="asp-close" id="aspClose">✕</button>
+            </div>
+
+            <div class="asp-tabs" id="aspTabs">
+              <button class="asp-tab active" data-ptab="overview">Overview</button>
+              <button class="asp-tab" data-ptab="srs">SRS</button>
+              <button class="asp-tab" data-ptab="payments">Payments</button>
+              <button class="asp-tab" data-ptab="activity">Activity</button>
+              <button class="asp-tab admin-coming-soon" disabled title="Phase P">Story Mai</button>
+              <button class="asp-tab admin-coming-soon" disabled title="Phase Y">HSKK</button>
+              <button class="asp-tab admin-coming-soon" disabled title="Phase R">AI Tutor</button>
+            </div>
+
+            <div class="asp-body" id="aspBody">
+              <p class="adm-empty">Chọn user để xem chi tiết.</p>
+            </div>
+
+            <div class="asp-footer">
+              <button class="adm-btn-secondary-sm" id="aspResetPwd">Reset password</button>
+              <button class="adm-btn-danger-sm" id="aspSuspend">Suspend user</button>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Grant subscription form (collapsible) -->
+        <div class="adm-card" id="usersGrantCard" style="display:none;margin-top:16px">
+          <h3 class="adm-card-title">Cấp / Hủy gói thủ công</h3>
+          <p class="adm-help">Dùng khi user đã chuyển khoản qua PayOS QR — cấp gói tay trong lúc chờ webhook tự động.</p>
+          <div class="adm-form-row">
+            <label>Email user</label>
+            <input type="email" id="grantEmail" class="adm-input" placeholder="user@example.com">
+          </div>
+          <div class="adm-form-row">
+            <label>Gói Pro (thời hạn)</label>
+            <select id="grantDuration" class="adm-input">
+              <option value="monthly" data-days="30">Linh hoạt — 1 tháng (75k)</option>
+              <option value="quarterly" data-days="90">Chăm chỉ — 3 tháng (199k)</option>
+              <option value="semiannual" data-days="180">Bứt phá — 6 tháng (329k)</option>
+              <option value="yearly" data-days="365" selected>Tiết kiệm — 1 năm (499k)</option>
+              <option value="lifetime" data-days="0">Trọn đời (999k, vĩnh viễn)</option>
+            </select>
+          </div>
+          <div class="adm-form-row">
+            <label>Số ngày (bỏ qua nếu Lifetime)</label>
+            <input type="number" id="grantDays" class="adm-input" value="365" min="1" max="3650">
+          </div>
+          <div class="adm-form-actions">
+            <button class="adm-btn-primary" id="grantSubmit">✓ Cấp gói</button>
+            <button class="adm-btn-danger" id="revokeSubmit">✗ Hủy gói</button>
+            <button class="adm-btn-secondary" id="usersGrantClose">Đóng</button>
+          </div>
+          <div id="grantResult" class="adm-result"></div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 3 — THANH TOÁN
+      ═══════════════════════════════════════════ -->
+      <section class="adm-section" id="adminSectionPayments" style="display:none">
+        <div class="adm-section-head">
+          <h2>Thanh toán</h2>
+          <div class="adm-tabs" id="payMainTabs">
+            <button class="adm-tab active" data-ptab2="main">Giao dịch</button>
+            <button class="adm-tab" data-ptab2="honor">Hộp Ân Cần</button>
+            <button class="adm-tab" data-ptab2="ai">AI Credit Pack</button>
+            <button class="adm-tab admin-coming-soon" disabled>Referral payouts</button>
+            <button class="adm-tab admin-coming-soon" disabled>Affiliate</button>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div class="adm-kpis adm-kpis-3">
+          <div class="adm-kpi-card">
+            <span class="kpi-label">Doanh thu hôm nay</span>
+            <strong class="kpi-value" id="kpiPayToday">—</strong>
+            <em class="kpi-delta" id="kpiPayTodaySub"></em>
+          </div>
+          <div class="adm-kpi-card kpi-warning">
+            <span class="kpi-label">Pending PayOS</span>
+            <strong class="kpi-value" id="kpiPayPending">—</strong>
+            <em class="kpi-delta" id="kpiPayPendingSub"></em>
+          </div>
+          <div class="adm-kpi-card kpi-danger">
+            <span class="kpi-label">Refund tháng này</span>
+            <strong class="kpi-value" id="kpiPayRefund">—</strong>
+            <em class="kpi-delta" id="kpiPayRefundSub"></em>
+          </div>
+        </div>
+
+        <!-- Main tab content -->
+        <div id="payTabMain">
+          <div class="adm-pay-layout">
+            <div class="adm-pay-table-area">
+              <div class="adm-filter-bar">
+                <input class="adm-filter-search" id="paySearch" placeholder="Tìm TX ID, email...">
+                <select class="adm-filter-select" id="payStatusFilter">
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="paid">Đã thanh toán</option>
+                  <option value="pending">Đang chờ</option>
+                  <option value="failed">Thất bại</option>
+                  <option value="expired">Hết hạn</option>
+                </select>
+              </div>
+              <div class="adm-table-scroll" id="payTableWrap">
+                <p class="adm-empty">Đang tải...</p>
+              </div>
+              <div class="adm-pagination" id="payPagination"></div>
+            </div>
+            <div class="adm-webhook-panel">
+              <h4>PayOS Webhook Log
+                <button class="adm-refresh-sm" id="webhookRefresh">🔄</button>
+              </h4>
+              <div class="adm-webhook-list" id="webhookList">
+                <p class="adm-empty">Đang tải...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Honor tab -->
+        <div id="payTabHonor" style="display:none">
+          <div class="adm-table-scroll" id="honorTableWrap">
+            <p class="adm-empty">Đang tải...</p>
+          </div>
+        </div>
+
+        <!-- AI Credit tab -->
+        <div id="payTabAI" style="display:none">
+          <div class="adm-table-scroll" id="aiCreditTableWrap">
+            <p class="adm-empty">Đang tải...</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 4 — NỘI DUNG
+      ═══════════════════════════════════════════ -->
+      <section class="adm-section" id="adminSectionContent" style="display:none">
+        <div class="adm-section-head">
+          <h2>Nội dung</h2>
+          <div class="adm-tabs" id="contentMainTabs">
+            <button class="adm-tab active" data-ctab="vocab">Từ vựng</button>
+            <button class="adm-tab" data-ctab="grammar">Ngữ pháp</button>
+            <button class="adm-tab" data-ctab="reading">Đọc hiểu</button>
+            <button class="adm-tab" data-ctab="decks">Bộ thẻ user</button>
+            <button class="adm-tab" data-ctab="quest-tpl">Quest templates</button>
+            <button class="adm-tab admin-coming-soon" disabled>Story Mai</button>
+            <button class="adm-tab admin-coming-soon" disabled>Radicals 214 UI</button>
+            <button class="adm-tab admin-coming-soon" disabled>HSKK practice</button>
+            <button class="adm-tab admin-coming-soon" disabled>Visual vocab</button>
+            <button class="adm-tab admin-coming-soon" disabled>Reading curated</button>
+          </div>
+        </div>
+
+        <!-- Vocab panel -->
+        <div class="adm-content-panel" id="contentVocab">
+          <div class="adm-filter-bar">
+            <div class="adm-sub-tabs" id="vocabVersionTabs">
+              <button class="adm-sub-tab active" data-vver="hsk3">HSK 3.0 (L1-L9)</button>
+              <button class="adm-sub-tab" data-vver="hsk2">HSK 2.0 (L1-L6)</button>
+            </div>
+            <select class="adm-filter-select" id="vocabLevelFilter"><option value="">Tất cả cấp</option></select>
+            <input class="adm-filter-search" id="vocabSearch" placeholder="Tìm Hanzi/Pinyin/nghĩa...">
+            <label class="adm-check-label"><input type="checkbox" id="vocabMissingVN"> Thiếu VN</label>
+            <label class="adm-check-label"><input type="checkbox" id="vocabMissingAudio"> Thiếu audio</label>
+            <span class="adm-filter-count" id="vocabCount">—</span>
+          </div>
+          <div class="adm-table-scroll" id="vocabTableWrap">
+            <p class="adm-empty">Đang tải dữ liệu từ vựng...</p>
+          </div>
+          <button class="adm-fab" id="vocabAddBtn">+ Thêm từ</button>
+        </div>
+
+        <!-- Grammar panel -->
+        <div class="adm-content-panel" id="contentGrammar" style="display:none">
+          <div class="adm-filter-bar">
+            <input class="adm-filter-search" id="grammarSearch" placeholder="Tìm pattern ngữ pháp...">
+            <span class="adm-filter-count" id="grammarCount">—</span>
+            <button class="adm-btn-primary adm-ml-auto" id="grammarAddBtn">+ Thêm pattern</button>
+          </div>
+          <div class="adm-table-scroll" id="grammarTableWrap">
+            <p class="adm-empty">Đang tải...</p>
+          </div>
+        </div>
+
+        <!-- Reading panel -->
+        <div class="adm-content-panel" id="contentReading" style="display:none">
+          <div class="adm-filter-bar">
+            <input class="adm-filter-search" id="readingSearch" placeholder="Tìm bài đọc...">
+            <span class="adm-filter-count" id="readingCount">—</span>
+            <button class="adm-btn-primary adm-ml-auto" id="readingAddBtn">+ Thêm bài</button>
+          </div>
+          <div class="adm-table-scroll" id="readingTableWrap">
+            <p class="adm-empty">Đang tải...</p>
+          </div>
+        </div>
+
+        <!-- Decks panel -->
+        <div class="adm-content-panel" id="contentDecks" style="display:none">
+          <div class="adm-table-scroll" id="decksTableWrap">
+            <p class="adm-empty">Đang tải...</p>
+          </div>
+        </div>
+
+        <!-- Quest templates panel -->
+        <div class="adm-content-panel" id="contentQuestTpl" style="display:none">
+          <div class="adm-table-scroll" id="questTplTableWrap">
+            <p class="adm-empty">Đang tải...</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 5 — QUEST & TOKEN
+      ═══════════════════════════════════════════ -->
+      <section class="adm-section" id="adminSectionQuest" style="display:none">
+        <h2>Quest &amp; Token</h2>
+
+        <div class="adm-kpis adm-kpis-3">
+          <div class="adm-kpi-card">
+            <span class="kpi-label">Token outstanding</span>
+            <strong class="kpi-value" id="kpiTokenOut">—</strong>
+          </div>
+          <div class="adm-kpi-card">
+            <span class="kpi-label">Daily quest completion</span>
+            <strong class="kpi-value" id="kpiQuestComp">—</strong>
+          </div>
+          <div class="adm-kpi-card">
+            <span class="kpi-label">Earners hôm nay</span>
+            <strong class="kpi-value" id="kpiTokenEarners">—</strong>
+          </div>
+        </div>
+
+        <div class="adm-quest-layout">
+          <div class="adm-quest-main">
+            <div class="adm-card adm-chart-card">
+              <h3 class="adm-card-title">Token supply 30 ngày</h3>
+              <canvas id="chartToken" height="200"></canvas>
+            </div>
+            <div class="adm-card">
+              <h3 class="adm-card-title">Top earners (token balance)</h3>
+              <div class="adm-table-scroll" id="topEarnersWrap">
+                <p class="adm-empty">Đang tải...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="adm-quest-side">
+            <div class="adm-card">
+              <h4 class="adm-card-title">Manual adjust tokens</h4>
+              <div class="adm-form-group">
+                <label>User ID (uuid)</label>
+                <input class="adm-input" id="tokenAdjUserId" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+              </div>
+              <div class="adm-form-group">
+                <label>Delta (+50 cộng / -20 trừ)</label>
+                <input class="adm-input" type="number" id="tokenAdjDelta" placeholder="+50">
+              </div>
+              <div class="adm-form-group">
+                <label>Lý do</label>
+                <input class="adm-input" id="tokenAdjReason" placeholder="manual_admin / bug_fix / promo">
+              </div>
+              <button class="adm-btn-primary" id="tokenAdjSubmit">Điều chỉnh</button>
+              <div id="tokenAdjResult" class="adm-result"></div>
+            </div>
+
+            <div class="adm-card admin-coming-soon"><h4>Wave B — Pomodoro stats</h4><p class="adm-muted">Token burn qua sessions Pomodoro + Ambient</p></div>
+            <div class="adm-card admin-coming-soon"><h4>Wave C — Vườn growth</h4><p class="adm-muted">Trees planted / watered, khu vườn toàn cầu</p></div>
+            <div class="adm-card admin-coming-soon"><h4>Wave D — Pet adoption</h4><p class="adm-muted">Pets alive / hungry / total adopted</p></div>
+            <div class="adm-card admin-coming-soon"><h4>Wave E — Phố Cổ</h4><p class="adm-muted">Cửa hàng mở / doanh thu token</p></div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 6 — GÓP Ý
+      ═══════════════════════════════════════════ -->
+      <section class="adm-section adm-section-flush" id="adminSectionFeedback" style="display:none">
+        <div class="adm-feedback-layout">
+          <!-- Left: list -->
+          <div class="adm-fb-list-col">
+            <div class="adm-fb-toolbar">
+              <div class="adm-tabs adm-fb-tabs" id="fbFilterTabs">
+                <button class="adm-tab active" data-fstatus="">Tất cả</button>
+                <button class="adm-tab" data-fstatus="unread">Chưa đọc <span class="adm-badge" id="fbUnreadBadge">0</span></button>
+                <button class="adm-tab" data-fstatus="replied">Đã trả lời</button>
+                <button class="adm-tab" data-fstatus="resolved">Đã giải quyết</button>
+                <button class="adm-tab admin-coming-soon" disabled title="Phase V Social">Sảnh Trà</button>
+              </div>
+              <input class="adm-filter-search" id="fbSearch" placeholder="Tìm góp ý...">
+            </div>
+            <div class="adm-fb-list" id="fbList">
+              <p class="adm-empty">Đang tải...</p>
+            </div>
+          </div>
+
+          <!-- Right: detail -->
+          <div class="adm-fb-detail-col" id="fbDetail">
+            <div class="adm-fb-empty">
+              <span style="font-size:48px">💬</span>
+              <p>Chọn 1 góp ý để xem chi tiết</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 7 — HỆ THỐNG
+      ═══════════════════════════════════════════ -->
+      <section class="adm-section" id="adminSectionSystem" style="display:none">
+        <h2>Hệ thống</h2>
+        <div class="adm-system-layout">
+          <div class="adm-sys-main">
+            <div class="adm-card">
+              <div class="adm-card-head">
+                <h3 class="adm-card-title">Supabase Health</h3>
+                <button class="adm-refresh-sm" id="sysRefreshHealth">🔄</button>
+              </div>
+              <div id="sysHealthDetail" class="adm-sys-health">
+                <p class="adm-empty">Đang kiểm tra...</p>
+              </div>
+            </div>
+
+            <div class="adm-card">
+              <h3 class="adm-card-title">Edge Function Logs (last 100)</h3>
+              <div class="adm-table-scroll" id="sysEdgeLogs">
+                <p class="adm-empty">Logs không có API public — xem trực tiếp trên Supabase Dashboard → Functions → Logs.</p>
+              </div>
+            </div>
+
+            <div class="adm-card">
+              <h3 class="adm-card-title">Sync Window Status</h3>
+              <div id="sysSyncWindow"><p class="adm-empty">Đang tải...</p></div>
+            </div>
+          </div>
+
+          <div class="adm-sys-side">
+            <div class="adm-card admin-coming-soon"><h4>Friend system events</h4><p class="adm-muted">Phase V Social chưa làm</p></div>
+            <div class="adm-card admin-coming-soon"><h4>Leaderboard cron</h4><p class="adm-muted">Phase V Social chưa làm</p></div>
+            <div class="adm-card admin-coming-soon"><h4>Voice biometric retention</h4><p class="adm-muted">Phase Y HSKK chưa làm · 24h auto-delete</p></div>
+            <div class="adm-card admin-coming-soon"><h4>Mobile push notification</h4><p class="adm-muted">Phase I Capacitor chưa làm</p></div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /adm-content -->
+  </div><!-- /adm-main -->
+</div><!-- /admin-shell -->

@@ -1,176 +1,198 @@
 // ═══════════════════════════════════════════════════════
-// ADMIN.JS — Admin Dashboard (K.8)
-// • Only accessible to ADMIN_EMAIL
-// • Reads via SECURITY DEFINER RPCs from Supabase
+// ADMIN.JS — Admin Dashboard Shell + Nav Router (v2.0)
+// Internal tool: requires ADMIN_EMAIL JWT.
+// Sub-modules: js/admin/{overview,users,payments,content,quest,feedback,system}.js
 // ═══════════════════════════════════════════════════════
 
 var Admin = (function() {
 
   var ADMIN_EMAIL = 'dev.tiro.06@gmail.com';
-  var _users = [];
+  var _currentSection = 'overview';
+  var _sectionLabels = {
+    overview: 'Tổng quan',
+    users:    'Người dùng',
+    payments: 'Thanh toán',
+    content:  'Nội dung',
+    quest:    'Quest & Token',
+    feedback: 'Góp ý',
+    system:   'Hệ thống'
+  };
+
+  // Map section id → init function (loaded from sub-modules)
+  var _initMap = {
+    overview: function() { if (window.AdminOverview) AdminOverview.init(); },
+    users:    function() { if (window.AdminUsers)    AdminUsers.init(); },
+    payments: function() { if (window.AdminPayments) AdminPayments.init(); },
+    content:  function() { if (window.AdminContent)  AdminContent.init(); },
+    quest:    function() { if (window.AdminQuest)    AdminQuest.init(); },
+    feedback: function() { if (window.AdminFeedback) AdminFeedback.init(); },
+    system:   function() { if (window.AdminSystem)   AdminSystem.init(); }
+  };
+  var _initialized = {};
 
   function isAdmin() {
     return !!(window.Auth && Auth.user && Auth.user.email === ADMIN_EMAIL);
   }
 
   async function setup() {
+    var shell = document.getElementById('adminShell');
+    if (!shell) return;
+
     if (!isAdmin()) {
-      var page = document.getElementById('adminPage');
-      if (page) {
-        page.innerHTML =
-          '<div class="admin-header"><h1>🚫 Không có quyền</h1>' +
-          '<p class="admin-sub">Trang này chỉ dành cho quản trị viên.</p>' +
-          '<button class="admin-btn-secondary" onclick="Router.navigateTo(\'home\')">← Về trang chủ</button></div>';
-      }
+      var denied = document.getElementById('adminDenied');
+      if (denied) denied.style.display = '';
+      var nav  = document.getElementById('adminNav');
+      var main = document.getElementById('adminMain');
+      if (nav)  nav.style.display  = 'none';
+      if (main) main.style.display = 'none';
       return;
     }
 
-    var emailEl = document.getElementById('adminEmail');
+    var emailEl = document.getElementById('adminNavEmail');
     if (emailEl) emailEl.textContent = Auth.user.email;
 
-    _bindEvents();
-    await _loadStats();
-    await _loadUsers();
+    _bindNav();
+    _bindSearch();
+    navTo('overview');
   }
 
-  function _bindEvents() {
-    document.querySelectorAll('.admin-tab').forEach(function(t) {
-      t.addEventListener('click', function() {
-        var tab = this.dataset.tab;
-        document.querySelectorAll('.admin-tab').forEach(function(x) {
-          x.classList.toggle('active', x.dataset.tab === tab);
-        });
-        document.getElementById('adminTabUsers').style.display  = tab === 'users' ? '' : 'none';
-        document.getElementById('adminTabGrant').style.display  = tab === 'grant' ? '' : 'none';
+  function _bindNav() {
+    document.querySelectorAll('.an-item[data-s]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        navTo(btn.dataset.s);
       });
     });
+  }
 
-    var refresh = document.getElementById('adminRefresh');
-    if (refresh) refresh.addEventListener('click', function() {
-      _loadStats(); _loadUsers();
+  function _bindSearch() {
+    var s = document.getElementById('adminSearch');
+    if (!s) return;
+    s.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        var q = s.value.trim();
+        if (!q) return;
+        // Route to users search if looks like email, else stay
+        if (q.indexOf('@') !== -1) {
+          navTo('users');
+          setTimeout(function() {
+            var us = document.getElementById('usersSearch');
+            if (us) { us.value = q; us.dispatchEvent(new Event('input')); }
+          }, 300);
+        }
+      }
+    });
+  }
+
+  function navTo(section) {
+    if (!_sectionLabels[section]) return;
+    _currentSection = section;
+
+    // Update nav buttons
+    document.querySelectorAll('.an-item[data-s]').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.s === section);
     });
 
-    var search = document.getElementById('adminUserSearch');
-    if (search) search.addEventListener('input', _renderUsers);
+    // Update breadcrumb
+    var label = document.getElementById('adminSectionLabel');
+    if (label) label.textContent = _sectionLabels[section];
 
-    var grant = document.getElementById('grantSubmit');
-    if (grant) grant.addEventListener('click', _grantSubscription);
+    // Show/hide sections
+    document.querySelectorAll('.adm-section').forEach(function(sec) {
+      sec.style.display = 'none';
+    });
+    var target = document.getElementById('adminSection' + _capitalize(section));
+    if (target) target.style.display = '';
 
-    var revoke = document.getElementById('revokeSubmit');
-    if (revoke) revoke.addEventListener('click', _revokeSubscription);
-  }
-
-  async function _loadStats() {
-    if (!window.SB) return;
-    var res = await SB.rpc('admin_stats');
-    if (res.error) { console.error('[Admin] stats:', res.error); return; }
-    var s = (res.data && res.data[0]) || {};
-    document.getElementById('statTotalUsers').textContent  = s.total_users || 0;
-    document.getElementById('statActive7d').textContent    = s.active_7d || 0;
-    document.getElementById('statProActive').textContent   = s.pro_active || 0;
-    document.getElementById('statProLifetime').textContent = s.pro_lifetime || 0;
-    document.getElementById('statTokens').textContent      = (s.tokens_outstanding || 0).toLocaleString();
-    document.getElementById('statXP').textContent          = (s.total_xp || 0).toLocaleString();
-  }
-
-  async function _loadUsers() {
-    if (!window.SB) return;
-    var list = document.getElementById('adminUsersList');
-    list.innerHTML = '<p class="admin-empty">Đang tải...</p>';
-
-    var res = await SB.rpc('admin_list_users');
-    if (res.error) {
-      list.innerHTML = '<p class="admin-empty">Lỗi: ' + res.error.message + '</p>';
-      return;
-    }
-    _users = res.data || [];
-    _renderUsers();
-  }
-
-  function _renderUsers() {
-    var list = document.getElementById('adminUsersList');
-    if (!list) return;
-    var q = (document.getElementById('adminUserSearch') || {}).value || '';
-    q = q.toLowerCase().trim();
-
-    var filtered = q ? _users.filter(function(u) {
-      return (u.email || '').toLowerCase().indexOf(q) !== -1;
-    }) : _users;
-
-    if (!filtered.length) {
-      list.innerHTML = '<p class="admin-empty">Không có user nào.</p>';
-      return;
+    // Init section once (lazy)
+    if (!_initialized[section]) {
+      _initialized[section] = true;
+      if (_initMap[section]) _initMap[section]();
     }
 
-    list.innerHTML = '<div class="admin-users-table">' +
-      '<div class="aut-head">' +
-        '<span>Email</span><span>Gói</span><span>XP</span><span>Streak</span><span>Hết hạn</span>' +
-      '</div>' +
-      filtered.map(function(u) {
-        var plan = u.plan || 'free';
-        var duration = u.duration || '';
-        var planClass = 'aut-plan-' + (plan === 'pro' ? (duration || 'pro') : 'free');
-        var label = plan === 'pro'
-          ? ('PRO' + (duration ? ' · ' + duration.toUpperCase() : ''))
-          : 'FREE';
-        var expires = duration === 'lifetime' ? '∞ vĩnh viễn'
-                     : (u.expires_at ? new Date(u.expires_at).toLocaleDateString('vi-VN') : '—');
-        return '<div class="aut-row">' +
-          '<span class="aut-email" title="' + u.email + '">' + u.email + '</span>' +
-          '<span class="aut-plan ' + planClass + '">' + label + '</span>' +
-          '<span>' + (u.total_xp || 0) + '</span>' +
-          '<span>' + (u.streak_days || 0) + '🔥</span>' +
-          '<span>' + expires + '</span>' +
-        '</div>';
-      }).join('') +
-    '</div>';
+    // Always re-init feedback to refresh unread badge
+    if (section === 'feedback' && window.AdminFeedback) {
+      AdminFeedback.refreshList();
+    }
   }
 
+  function _capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  // ── Grant subscription (legacy wrappers, kept for compatibility) ──
   async function _grantSubscription() {
     var email    = (document.getElementById('grantEmail').value || '').trim();
     var duration = document.getElementById('grantDuration').value;
     var days     = parseInt(document.getElementById('grantDays').value, 10) || 30;
     var result   = document.getElementById('grantResult');
-
-    if (!email) { result.textContent = '⚠ Nhập email'; result.className = 'admin-result admin-result-error'; return; }
-
-    result.textContent = 'Đang xử lý...';
-    result.className = 'admin-result';
-
-    var res = await SB.rpc('admin_grant_subscription', {
-      target_email:    email,
-      target_duration: duration,
-      days:            days
-    });
-
-    if (res.error) {
-      result.textContent = '❌ ' + res.error.message;
-      result.className = 'admin-result admin-result-error';
-    } else {
-      result.textContent = '✅ ' + res.data;
-      result.className = 'admin-result admin-result-ok';
-      _loadStats(); _loadUsers();
-    }
+    if (!email) { _setResult(result, '⚠ Nhập email', false); return; }
+    _setResult(result, 'Đang xử lý...', null);
+    var res = await SB.rpc('admin_grant_subscription', { target_email: email, target_duration: duration, days: days });
+    if (res.error) _setResult(result, '❌ ' + res.error.message, false);
+    else           _setResult(result, '✅ ' + res.data, true);
   }
 
   async function _revokeSubscription() {
     var email = (document.getElementById('grantEmail').value || '').trim();
     var result = document.getElementById('grantResult');
-
-    if (!email) { result.textContent = '⚠ Nhập email'; result.className = 'admin-result admin-result-error'; return; }
+    if (!email) { _setResult(result, '⚠ Nhập email', false); return; }
     if (!confirm('Hủy gói của ' + email + '?')) return;
-
     var res = await SB.rpc('admin_revoke_subscription', { target_email: email });
-
-    if (res.error) {
-      result.textContent = '❌ ' + res.error.message;
-      result.className = 'admin-result admin-result-error';
-    } else {
-      result.textContent = '✅ ' + res.data;
-      result.className = 'admin-result admin-result-ok';
-      _loadStats(); _loadUsers();
-    }
+    if (res.error) _setResult(result, '❌ ' + res.error.message, false);
+    else           _setResult(result, '✅ ' + res.data, true);
   }
 
-  return { setup: setup, isAdmin: isAdmin };
+  function _setResult(el, msg, ok) {
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'adm-result' + (ok === true ? ' adm-result-ok' : ok === false ? ' adm-result-err' : '');
+  }
+
+  // Public helpers
+  function fmt(n) {
+    return Number(n || 0).toLocaleString('vi-VN');
+  }
+  function fmtVND(n) {
+    return Number(n || 0).toLocaleString('vi-VN') + '₫';
+  }
+  function relTime(ts) {
+    if (!ts) return '—';
+    var diff = Date.now() - new Date(ts).getTime();
+    var m = Math.floor(diff / 60000);
+    if (m < 1)   return 'vừa xong';
+    if (m < 60)  return m + 'ph';
+    var h = Math.floor(m / 60);
+    if (h < 24)  return h + 'h';
+    var d = Math.floor(h / 24);
+    if (d < 7)   return d + 'n';
+    return new Date(ts).toLocaleDateString('vi-VN');
+  }
+  function absDate(ts) {
+    if (!ts) return '—';
+    return new Date(ts).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+
+  // Bind grant/revoke buttons when section shown
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'usersGrantBtn') {
+      var card = document.getElementById('usersGrantCard');
+      if (card) card.style.display = card.style.display === 'none' ? '' : 'none';
+    }
+    if (e.target && e.target.id === 'usersGrantClose') {
+      var card = document.getElementById('usersGrantCard');
+      if (card) card.style.display = 'none';
+    }
+    if (e.target && e.target.id === 'grantSubmit')  _grantSubscription();
+    if (e.target && e.target.id === 'revokeSubmit') _revokeSubscription();
+  });
+
+  return {
+    setup:    setup,
+    isAdmin:  isAdmin,
+    navTo:    navTo,
+    fmt:      fmt,
+    fmtVND:   fmtVND,
+    relTime:  relTime,
+    absDate:  absDate
+  };
 }());

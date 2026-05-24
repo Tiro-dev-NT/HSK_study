@@ -132,7 +132,8 @@
 ### Settings — BVQL TD compliance
 
 - ☑ "Huỷ Pro auto-renew" 1-click button (gọi RPC `cancel_subscription`) — DONE 2026-05-24 (profile.html + profile.js)
-- ☑ "Xoá tài khoản" hard-delete — UI+confirm+RPC DONE 2026-05-24 (sql/v9_delete_account.sql + profile.js calls delete_account_cascade RPC); ⚠️ user chưa chạy sql/v9 trên Supabase Dashboard
+- ☑ "Xoá tài khoản" hard-delete — UI+confirm+RPC DONE 2026-05-24 (sql/v9_delete_account.sql + profile.js calls delete_account_cascade RPC)
+- ☐ **Chạy sql/v9_delete_account.sql** trên Supabase Dashboard (🔴 chưa chạy)
 - ☐ "Xuất dữ liệu của tôi" JSON/CSV
 - ☐ "Lưu lịch sử Tutor dài hạn (90 ngày)" toggle opt-in
 - ☐ "Quản lý consent cookie" link → trigger `CookieConsent.reset()`
@@ -385,3 +386,4 @@
 | 2026-05-24 | **Wave A + Hộp Ân Cần ✅ DONE** — 21/21 PNG file gen + saved (1 ref + 8 outfit Wave A + 12 outfit Honor) bằng AI Studio Nano Banana single-chat workflow |
 | 2026-05-24 | **Phase 2 Monetization v2 Slice 1 ✅ MERGED + DEPLOYED** — 6 commits merged main `5cb56d3`, deployed Cloudflare: Honor Hall `/honor-hall` page + Hộp Ân Cần + AI Credit grid + pricing.css v=2.0 cache bust. |
 | 2026-05-24 | **Phase 2 Monetization v2 Slice 2 ✅ FULLY DEPLOYED** — commits `4b403b4`+`b2d93fe`, SQL v8 chạy xong trên Supabase, Edge Functions deployed. Thanh toán Túi Linh Đan AI + Hộp Ân Cần live. |
+| 2026-05-24 | **Monetization v2 Slice 3 + Phase Q MVP ✅ MERGED** — commits `21841df`+`bbc9741`+`14b6ed3`: AI Credit badge (🔮 topbar, low-balance toast), delete_account_cascade RPC (sql/v9 — chờ user chạy Dashboard), Phase Q /learn-method (SRS principles + daily tip + weakness analysis). Phase Q "Ôn ngay điểm yếu" + Quiz override còn dở. |

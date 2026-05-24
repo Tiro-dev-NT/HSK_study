@@ -1,0 +1,78 @@
+<div class="lm-page">
+
+  <!-- Header -->
+  <div class="lm-header">
+    <h1 class="lm-title">📖 Cách học hiệu quả</h1>
+    <p class="lm-sub">Phương pháp học từ vựng được khoa học chứng minh — áp dụng ngay hôm nay</p>
+  </div>
+
+  <!-- Section 1: SRS Principles -->
+  <section class="lm-section" id="lmSectionSRS">
+    <h2 class="lm-section-title">
+      <span class="lm-section-icon">🧠</span>
+      5 nguyên tắc Spaced Repetition
+    </h2>
+    <div class="lm-principles-grid">
+
+      <div class="lm-principle-card">
+        <div class="lm-principle-num">01</div>
+        <h3 class="lm-principle-title">Ôn đúng thời điểm</h3>
+        <p class="lm-principle-body">Não bộ ghi nhớ tốt nhất khi ôn lại ngay trước lúc quên. Ôn quá sớm = lãng phí. Ôn quá muộn = phải học lại từ đầu.</p>
+      </div>
+
+      <div class="lm-principle-card">
+        <div class="lm-principle-num">02</div>
+        <h3 class="lm-principle-title">Khoảng cách tăng dần</h3>
+        <p class="lm-principle-body">Từ mới: 1 ngày → 3 ngày → 7 ngày → 21 ngày → 60 ngày. Mỗi lần nhớ đúng, khoảng cách nhân lên — đỡ mệt, nhớ lâu hơn.</p>
+        <div class="lm-interval-visual" id="lmIntervalVis"></div>
+      </div>
+
+      <div class="lm-principle-card">
+        <div class="lm-principle-num">03</div>
+        <h3 class="lm-principle-title">Học ít, ôn nhiều</h3>
+        <p class="lm-principle-body">Đừng học 50 từ một buổi rồi bỏ. Học 10-15 từ mới mỗi ngày + ôn đủ lượt SRS. Sau 3 tháng bạn nhớ đến 90% thay vì 10%.</p>
+      </div>
+
+      <div class="lm-principle-card">
+        <div class="lm-principle-num">04</div>
+        <h3 class="lm-principle-title">Tích cực nhớ lại (Active Recall)</h3>
+        <p class="lm-principle-body">Nhìn thẻ và cố nhớ trước khi lật đáp án. Não "vật lộn" để nhớ mới tạo kết nối thần kinh bền. Đọc đáp án ngay = không hiệu quả.</p>
+      </div>
+
+      <div class="lm-principle-card">
+        <div class="lm-principle-num">05</div>
+        <h3 class="lm-principle-title">Tính nhất quán > Cường độ</h3>
+        <p class="lm-principle-body">10 phút mỗi ngày trong 6 tháng ≫ 3 tiếng một tuần rồi nghỉ 2 tuần. Streak mỗi ngày không phải "nice to have" — đó là cơ chế học hoạt động.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 2: Daily Tip -->
+  <section class="lm-section" id="lmSectionTip">
+    <h2 class="lm-section-title">
+      <span class="lm-section-icon">💡</span>
+      Mẹo hôm nay
+    </h2>
+    <div class="lm-tip-card" id="lmTipCard">
+      <div class="lm-tip-day" id="lmTipDay">Mẹo #1</div>
+      <p class="lm-tip-text" id="lmTipText">Đang tải mẹo...</p>
+    </div>
+  </section>
+
+  <!-- Section 3: Your Weaknesses -->
+  <section class="lm-section" id="lmSectionWeak">
+    <h2 class="lm-section-title">
+      <span class="lm-section-icon">🎯</span>
+      Điểm yếu của bạn
+    </h2>
+    <p class="lm-section-sub">Top 10 từ bạn hay quên nhất — dựa trên lịch sử ôn tập SRS</p>
+    <div class="lm-weak-list" id="lmWeakList">
+      <div class="lm-weak-empty">Chưa có dữ liệu ôn tập. Hãy học thêm vài buổi để xem phân tích.</div>
+    </div>
+    <div class="lm-weak-actions" id="lmWeakActions" style="display:none">
+      <button class="lm-btn-primary" onclick="LearnMethod.startWeakSession()">⚡ Ôn ngay những từ này</button>
+    </div>
+  </section>
+
+</div>

@@ -45,16 +45,17 @@ var AdminOverview = (function() {
       return;
     }
     var rows = res.data.map(function(r) {
-      var badge = _statusBadge(r.status);
-      return '<tr>' +
-        '<td>' + Admin.relTime(r.created_at) + '</td>' +
-        '<td title="' + (r.user_email || '') + '">' + _truncEmail(r.user_email) + '</td>' +
-        '<td>' + (r.duration || r.plan || '—') + '</td>' +
-        '<td style="font-weight:700">' + Admin.fmtVND(r.amount) + '</td>' +
-        '<td>' + badge + '</td>' +
+      var badgeHtml = _statusBadge(r.status);
+      var rowCls = r.status === 'failed' ? 'tbl-row-danger' : '';
+      return '<tr class="' + rowCls + '">' +
+        '<td class="adm-muted adm-nowrap">' + Admin.relTime(r.created_at) + '</td>' +
+        '<td class="adm-truncate" style="max-width:180px" title="' + (r.user_email || '') + '">' + _truncEmail(r.user_email) + '</td>' +
+        '<td class="adm-nowrap">' + (r.duration || r.plan || '—') + '</td>' +
+        '<td class="adm-tabular adm-nowrap" style="text-align:right;font-weight:600">' + Admin.fmtVND(r.amount) + '</td>' +
+        '<td>' + badgeHtml + '</td>' +
       '</tr>';
     }).join('');
-    el.innerHTML = '<table class="adm-table"><thead><tr><th>Time</th><th>User</th><th>Gói</th><th>Số tiền</th><th>Trạng thái</th></tr></thead><tbody>' + rows + '</tbody></table>';
+    el.innerHTML = '<table class="adm-tbl"><thead><tr><th>Thời gian</th><th>User</th><th>Gói</th><th style="text-align:right">Số tiền</th><th>Trạng thái</th></tr></thead><tbody>' + rows + '</tbody></table>';
   }
 
   async function _loadPendingFeedback() {
@@ -67,17 +68,21 @@ var AdminOverview = (function() {
       return;
     }
     var rows = res.data.map(function(r) {
-      var pBadge = r.priority === 'high'
-        ? '<span class="adm-badge badge-critical">High</span>'
-        : '<span class="adm-badge badge-normal">Normal</span>';
+      var pBadge = window.AdminUI
+        ? (r.priority === 'high' || r.priority === 'urgent'
+            ? AdminUI.badge('danger', 'Khẩn')
+            : r.priority === 'normal'
+              ? AdminUI.badge('warning', 'Bình thường')
+              : AdminUI.badge('neutral', 'Thấp'))
+        : r.priority;
       return '<tr>' +
-        '<td>' + Admin.relTime(r.created_at) + '</td>' +
-        '<td>' + (r.display_name || r.user_email || 'Ẩn danh') + '</td>' +
-        '<td>' + (r.subject || r.category || '—') + '</td>' +
+        '<td class="adm-muted adm-nowrap">' + Admin.relTime(r.created_at) + '</td>' +
+        '<td class="adm-nowrap">' + (r.display_name || r.user_email || 'Ẩn danh') + '</td>' +
+        '<td class="adm-truncate" style="max-width:220px">' + (r.subject || r.category || '—') + '</td>' +
         '<td>' + pBadge + '</td>' +
       '</tr>';
     }).join('');
-    el.innerHTML = '<table class="adm-table"><thead><tr><th>Time</th><th>User</th><th>Chủ đề</th><th>Priority</th></tr></thead><tbody>' + rows + '</tbody></table>';
+    el.innerHTML = '<table class="adm-tbl"><thead><tr><th style="width:100px">Thời gian</th><th style="width:110px">User</th><th>Subject</th><th style="width:90px">Ưu tiên</th></tr></thead><tbody>' + rows + '</tbody></table>';
 
     var badge = document.getElementById('navFeedbackBadge');
     if (badge) {
@@ -87,37 +92,42 @@ var AdminOverview = (function() {
   }
 
   async function _checkHealth() {
-    var ts = document.getElementById('healthTs');
-    if (ts) ts.textContent = 'Kiểm tra ' + new Date().toLocaleTimeString('vi-VN');
+    var healthItems = [];
+    var ts = new Date().toLocaleTimeString('vi-VN');
 
     // Supabase ping
-    var sbEl = document.getElementById('healthSupa');
-    if (window.SB && sbEl) {
+    var supaState = 'warn';
+    var supaLabel = 'Supabase…';
+    if (window.SB) {
       try {
         var r = await SB.rpc('admin_system_health');
-        if (!r.error) {
-          sbEl.textContent = '🟢 Supabase OK';
-        } else {
-          sbEl.textContent = '🔴 Supabase ' + r.error.code;
-        }
+        supaState = r.error ? 'bad' : 'ok';
+        supaLabel = r.error ? 'Supabase ' + r.error.code : 'Supabase OK';
       } catch(e) {
-        sbEl.textContent = '🔴 Supabase unreachable';
+        supaState = 'bad'; supaLabel = 'Supabase unreachable';
       }
     }
+    healthItems.push({ state: supaState, label: supaLabel });
 
-    // PayOS webhook — check via Edge function ping
-    var poEl = document.getElementById('healthPayOS');
-    if (poEl) {
+    // PayOS
+    var poState = 'warn', poLabel = 'PayOS webhook —';
+    if (window.SB) {
       try {
         var res = await SB.rpc('admin_recent_transactions', { p_limit: 1 });
-        poEl.textContent = res.error ? '🔴 PayOS webhook error' : '🟢 PayOS webhook OK';
-      } catch(e) {
-        poEl.textContent = '🟡 PayOS webhook — không kiểm tra được';
-      }
+        poState = res.error ? 'bad' : 'ok';
+        poLabel = res.error ? 'PayOS webhook error' : 'PayOS webhook OK';
+      } catch(e) { poState = 'warn'; poLabel = 'PayOS webhook không kiểm tra được'; }
     }
+    healthItems.push({ state: poState, label: poLabel });
+    healthItems.push({ state: 'warn', label: 'Edge Functions — xem Dashboard' });
+    healthItems.push({ state: 'ok',   label: 'CF Pages OK' });
 
-    var edgeEl = document.getElementById('healthEdge');
-    if (edgeEl) edgeEl.textContent = '🟡 Edge Functions — xem Supabase Dashboard';
+    var strip = document.getElementById('ovHealth');
+    if (!strip) return;
+    var partsHtml = healthItems.map(function(h) {
+      return '<span class="hv2-item h-' + h.state + '"><span class="hv2-pulse"></span>' + h.label + '</span>';
+    }).join('<span class="hv2-sep"></span>');
+    strip.innerHTML = partsHtml + '<span class="hv2-ts">Sync lần cuối · ' + ts + '</span>';
   }
 
   async function loadRevChart() {
@@ -243,10 +253,14 @@ var AdminOverview = (function() {
   }
 
   function _statusBadge(s) {
+    if (window.AdminUI) {
+      var map = { paid: ['success','Đã thanh toán'], pending: ['warning','Đang chờ'], failed: ['danger','Thất bại'], expired: ['neutral','Hết hạn'] };
+      var args = map[s] || ['neutral', s || '—'];
+      return AdminUI.badge(args[0], args[1]);
+    }
     var map = { paid: 'badge-paid', pending: 'badge-pending', failed: 'badge-failed', expired: 'badge-expired' };
-    var label = { paid: '✓ Đã TT', pending: '… Chờ', failed: '✗ Lỗi', expired: '— Hết hạn' };
-    var cls = map[s] || 'badge-expired';
-    return '<span class="adm-badge ' + cls + '">' + (label[s] || s) + '</span>';
+    var label = { paid: 'Đã TT', pending: 'Chờ', failed: 'Lỗi', expired: 'Hết hạn' };
+    return '<span class="adm-badge ' + (map[s] || 'badge-expired') + '">' + (label[s] || s) + '</span>';
   }
 
   function _fmtDay(d) {

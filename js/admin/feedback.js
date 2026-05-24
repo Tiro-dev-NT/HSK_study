@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════════
-// ADMIN/FEEDBACK.JS — Section 6: Góp ý
-// Gmail-style two-column: list + detail + reply
+// ADMIN/FEEDBACK.JS — Section 6: Góp ý (v1.1 — 3-column layout)
 // ═══════════════════════════════════════════════════════
 
 var AdminFeedback = (function() {
@@ -19,13 +18,15 @@ var AdminFeedback = (function() {
   }
 
   function _bindFilterTabs() {
-    document.querySelectorAll('#fbFilterTabs .adm-tab[data-fstatus]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('#fbFilterTabs .adm-tab').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        _statusFilter = btn.dataset.fstatus || '';
-        _renderList();
-      });
+    var bar = document.getElementById('fbFilterTabs');
+    if (!bar) return;
+    bar.addEventListener('click', function(e) {
+      var btn = e.target.closest('.adm-fbtab[data-fstatus]');
+      if (!btn) return;
+      bar.querySelectorAll('.adm-fbtab').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      _statusFilter = btn.dataset.fstatus || '';
+      _renderList();
     });
   }
 
@@ -38,34 +39,34 @@ var AdminFeedback = (function() {
     var listEl = document.getElementById('fbList');
     if (listEl) listEl.innerHTML = '<p class="adm-empty">Đang tải...</p>';
 
-    // Try Supabase first, fallback to localStorage feedback
     if (window.SB) {
       var res = await SB.rpc('admin_list_feedback', { p_limit: 100 });
       if (!res.error && res.data) {
         _items = res.data;
         _renderList();
-        _updateUnreadBadge();
+        _updateBadges();
         return;
       }
     }
 
-    // Fallback: load from localStorage (old feedback format)
+    // Fallback: localStorage
     var local = JSON.parse(localStorage.getItem('hsk_feedback') || '[]');
     _items = local.map(function(f, i) {
       return {
-        id:          f.id || i,
-        user_email:  'user@local',
+        id:           f.id || i,
+        user_email:   'user@local',
         display_name: 'Local user',
-        subject:     f.category || 'Góp ý',
-        message:     f.message || '',
-        priority:    f.rating >= 4 ? 'high' : 'normal',
-        status:      'unread',
-        created_at:  new Date(f.id || Date.now()).toISOString(),
-        category:    f.category || 'feature'
+        subject:      f.category || 'Góp ý',
+        message:      f.message || '',
+        priority:     f.rating >= 4 ? 'urgent' : 'normal',
+        status:       'unread',
+        created_at:   new Date(f.id || Date.now()).toISOString(),
+        category:     f.category || 'feature',
+        tier:         'free'
       };
     });
     _renderList();
-    _updateUnreadBadge();
+    _updateBadges();
   }
 
   function _renderList() {
@@ -74,32 +75,45 @@ var AdminFeedback = (function() {
 
     var q = ((document.getElementById('fbSearch') || {}).value || '').toLowerCase().trim();
     var filtered = _items.filter(function(f) {
-      if (_statusFilter && f.status !== _statusFilter) return false;
-      if (q && (f.subject || '').toLowerCase().indexOf(q) === -1 && (f.message || '').toLowerCase().indexOf(q) === -1) return false;
+      if (_statusFilter === 'unread' && f.status !== 'unread') return false;
+      if (_statusFilter === 'replied' && f.status !== 'replied') return false;
+      if (_statusFilter === 'resolved' && f.status !== 'resolved') return false;
+      if (_statusFilter && !['unread','replied','resolved'].includes(_statusFilter)) return false;
+      if (q && (f.subject || '').toLowerCase().indexOf(q) === -1 &&
+               (f.message || '').toLowerCase().indexOf(q) === -1 &&
+               (f.display_name || '').toLowerCase().indexOf(q) === -1) return false;
       return true;
     });
 
     if (!filtered.length) {
-      listEl.innerHTML = '<p class="adm-empty">Không có góp ý nào.</p>';
+      listEl.innerHTML = AdminUI
+        ? AdminUI.emptyState('💬', 'Không có góp ý nào', 'Thử đổi bộ lọc hoặc từ khoá tìm kiếm')
+        : '<p class="adm-empty">Không có góp ý nào.</p>';
       return;
     }
 
     listEl.innerHTML = filtered.map(function(f) {
-      var isUnread  = f.status === 'unread';
-      var isActive  = _selected && _selected.id === f.id;
-      var priDot = f.priority === 'high' ? ' style="border-left:3px solid var(--adm-chau)"' : '';
-      var cls = 'adm-fb-item' +
-        (isUnread ? ' unread' : '') +
-        (isActive ? ' active' : '');
-      return '<div class="' + cls + '" data-fbid="' + f.id + '"' + priDot + '>' +
-        '<div class="adm-fb-sender">' + (f.display_name || f.user_email || 'Ẩn danh') + '</div>' +
-        '<div class="adm-fb-subject">' + (f.subject || f.category || '—') + '</div>' +
-        '<div class="adm-fb-snippet">' + (f.message || '').slice(0, 80) + '</div>' +
-        '<div class="adm-fb-meta">' +
-          '<span class="adm-fb-ts">' + Admin.relTime(f.created_at) + '</span>' +
-          _priBadge(f.priority) +
-        '</div>' +
-      '</div>';
+      var isSelected = _selected && String(_selected.id) === String(f.id);
+      if (window.AdminUI) {
+        return AdminUI.fbItem({
+          id:           f.id,
+          name:         f.display_name || f.user_email || 'Ẩn danh',
+          email:        f.user_email,
+          subject:      f.subject || f.category || 'Góp ý',
+          snippet:      (f.message || '').slice(0, 80),
+          time_display: Admin.relTime(f.created_at),
+          priority:     f.priority,
+          unread:       f.status === 'unread',
+          tier:         f.tier || (f.is_pro ? 'pro' : 'free')
+        }, isSelected);
+      }
+      // minimal fallback
+      var cls = 'adm-fb-item' + (f.status === 'unread' ? ' unread' : '') + (isSelected ? ' active' : '');
+      return '<div class="' + cls + '" data-fbid="' + f.id + '">'
+        + '<div class="adm-fb-body"><div class="adm-fb-row1">'
+        + '<span class="adm-fb-sender">' + (f.display_name || f.user_email) + '</span>'
+        + '<span class="adm-fb-ts">' + Admin.relTime(f.created_at) + '</span>'
+        + '</div><div class="adm-fb-subject">' + (f.subject || '') + '</div></div></div>';
     }).join('');
 
     listEl.querySelectorAll('.adm-fb-item').forEach(function(el) {
@@ -115,54 +129,108 @@ var AdminFeedback = (function() {
     _selected = f;
     _renderList();
 
-    var detailCol = document.getElementById('fbDetail');
-    if (!detailCol) return;
-
     // Mark as read
     if (f.status === 'unread') {
       f.status = 'read';
       _markRead(f.id);
     }
 
-    var proBadge = f.is_pro ? '<span class="adm-badge badge-pro">💎 PRO</span>' : '<span class="adm-badge badge-free">Free</span>';
-    var tags = _categoryTags(f.category);
+    _renderDetail(f);
+    _renderUserAside(f);
+  }
 
-    detailCol.innerHTML =
-      '<div class="adm-fb-detail-hd">' +
-        '<div class="adm-fb-detail-from">' +
-          '<div style="width:40px;height:40px;background:var(--adm-surf2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">👤</div>' +
-          '<div>' +
-            '<div class="adm-fb-detail-name">' + (f.display_name || 'Ẩn danh') + ' ' + proBadge + '</div>' +
-            '<div class="adm-fb-detail-email">' + (f.user_email || '') + ' · ' + Admin.absDate(f.created_at) + '</div>' +
-          '</div>' +
-        '</div>' +
-        '<h2 class="adm-fb-detail-subject">' + (f.subject || f.category || 'Góp ý') + '</h2>' +
-        '<div style="display:flex;gap:6px;flex-wrap:wrap">' + tags + '</div>' +
-      '</div>' +
+  function _renderDetail(f) {
+    var col = document.getElementById('fbDetail');
+    if (!col) return;
 
-      '<div class="adm-fb-detail-body">' + (f.message || '') + '</div>' +
+    var tier      = f.tier || (f.is_pro ? 'pro' : 'free');
+    var tierHtml  = window.AdminUI ? AdminUI.tierBadge(tier) : '';
+    var priHtml   = window.AdminUI
+      ? (f.priority === 'urgent' ? AdminUI.badge('danger', 'Khẩn')
+        : f.priority === 'normal' ? AdminUI.badge('warning', 'Bình thường')
+        : AdminUI.badge('neutral', 'Thấp'))
+      : f.priority;
+    var name = f.display_name || f.user_email || 'Ẩn danh';
 
-      (f.reply_text ? '<div class="adm-card" style="margin:0 0 16px;background:#F0FDF4;border-color:#BBF7D0"><strong style="font-size:12px;color:#047857">✉ Reply đã gửi:</strong><p style="margin:8px 0 0;font-size:13px">' + f.reply_text + '</p></div>' : '') +
+    col.innerHTML =
+      // header
+      '<div class="adm-fb-detail-hd">'
+      + '<div class="adm-fb-detail-from">'
+      + (window.AdminUI ? AdminUI.avatar((name.split(' ').slice(-1)[0][0] || '?'), 'md', 'c1') : '<div style="width:32px;height:32px;border-radius:50%;background:#FEE2E2;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#B91C1C">' + name[0] + '</div>')
+      + '<div class="adm-col adm-gap-4" style="min-width:0">'
+      + '<div class="adm-center adm-gap-6"><span class="adm-fb-detail-name">' + name + '</span>' + tierHtml + '</div>'
+      + '<div class="adm-fb-detail-email">' + (f.user_email || '') + ' · ' + Admin.absDate(f.created_at) + '</div>'
+      + '</div>'
+      + '</div>'
+      + '<div class="adm-row adm-gap-6">'
+      + '<button class="adm-btn-secondary-sm" onclick="AdminFeedback._pinFeedback(\'' + f.id + '\')">📌 Pin</button>'
+      + '<button class="adm-btn-ghost" style="padding:4px 6px" title="Thêm">⋮</button>'
+      + '</div>'
+      + '</div>'
+      // subject + priority
+      + '<div style="padding:14px 20px 0">'
+      + '<h2 class="adm-fb-detail-subject">' + (f.subject || f.category || 'Góp ý') + '</h2>'
+      + '<div class="adm-row adm-gap-6 adm-center" style="margin-bottom:14px">'
+      + '<span class="adm-chip" style="background:#FEF2F2;border-color:#FECACA;color:#B91C1C;height:22px;font-size:10.5px">Bug</span>'
+      + '<span style="margin-left:auto;font-size:11px;color:var(--adm-text3)">Priority: ' + priHtml + '</span>'
+      + '</div>'
+      + '</div>'
+      // message body
+      + '<div class="scroll-y" style="flex:1;padding:0 20px">'
+      + '<div class="adm-fb-detail-body">' + (f.message || '') + '</div>'
+      + '</div>'
+      // reply area
+      + '<div class="adm-fb-reply" id="fbReplyArea">'
+      + '<div class="adm-fb-reply-templates">'
+      + '<span>Trả lời với template:</span>'
+      + '<span class="adm-chip" style="height:24px;font-size:11px;cursor:pointer" onclick="document.getElementById(\'fbReplyText\').value=\'Cảm ơn bạn đã góp ý! \'">Cảm ơn góp ý</span>'
+      + '<span class="adm-chip" style="height:24px;font-size:11px;cursor:pointer" onclick="document.getElementById(\'fbReplyText\').value=\'Đang fix trong v tiếp theo. \'">Đang fix</span>'
+      + '<span class="adm-chip" style="height:24px;font-size:11px;cursor:pointer" onclick="document.getElementById(\'fbReplyText\').value=\'Đã release trong bản mới nhất! \'">Đã release</span>'
+      + '</div>'
+      + '<textarea id="fbReplyText" placeholder="Trả lời góp ý này…">' + (f.reply_text || '') + '</textarea>'
+      + '<div class="adm-fb-reply-actions">'
+      + '<div class="adm-row adm-gap-6">'
+      + '<button class="adm-btn-secondary-sm" id="fbMarkResolved">✓ Đã giải quyết</button>'
+      + '<button class="adm-btn-ghost" style="font-size:12px">⭐ Promote Trang Tri Ân</button>'
+      + '</div>'
+      + '<div class="adm-row adm-gap-6">'
+      + '<button class="adm-btn-ghost" style="font-size:12px">Lưu nháp</button>'
+      + '<button class="adm-btn-primary-sm" id="fbReplySend">✉ Gửi reply</button>'
+      + '</div>'
+      + '</div>'
+      + '<div id="fbReplyResult" class="adm-result"></div>'
+      + '</div>';
 
-      '<div class="adm-fb-reply" id="fbReplyArea">' +
-        '<textarea id="fbReplyText" placeholder="Trả lời góp ý này..."></textarea>' +
-        '<div class="adm-fb-reply-actions">' +
-          '<button class="adm-btn-primary" id="fbReplySend">✉ Gửi reply</button>' +
-          '<button class="adm-btn-secondary" id="fbMarkResolved">✓ Đã giải quyết</button>' +
-          '<button class="adm-btn-ghost">⭐ Promote (Sảnh Trà)</button>' +
-        '</div>' +
-        '<div id="fbReplyResult" class="adm-result"></div>' +
-      '</div>';
+    var sendBtn = document.getElementById('fbReplySend');
+    if (sendBtn) sendBtn.addEventListener('click', function() { _sendReply(f.id); });
+    var resolveBtn = document.getElementById('fbMarkResolved');
+    if (resolveBtn) resolveBtn.addEventListener('click', function() { _markResolved(f.id); });
+  }
 
-    document.getElementById('fbReplySend') &&
-      document.getElementById('fbReplySend').addEventListener('click', function() { _sendReply(f.id); });
-    document.getElementById('fbMarkResolved') &&
-      document.getElementById('fbMarkResolved').addEventListener('click', function() { _markResolved(f.id); });
+  function _renderUserAside(f) {
+    var aside = document.getElementById('fbUserAside');
+    if (!aside) return;
+    aside.style.display = '';
+    if (window.AdminUI) {
+      aside.innerHTML = AdminUI.fbUserAside({
+        id:             f.user_id,
+        name:           f.display_name || f.user_email || 'Ẩn danh',
+        email:          f.user_email,
+        tier:           f.tier || (f.is_pro ? 'pro' : 'free'),
+        created_at:     f.user_created_at || f.created_at,
+        total_feedback: f.total_feedback || '—',
+        streak_days:    f.streak_days,
+        sentiment:      f.sentiment
+      });
+    } else {
+      aside.innerHTML = '<div style="padding:16px;font-size:12px;color:var(--adm-text3)">User info not available</div>';
+    }
   }
 
   async function _sendReply(fbId) {
-    var text  = (document.getElementById('fbReplyText').value || '').trim();
-    var resEl = document.getElementById('fbReplyResult');
+    var textEl = document.getElementById('fbReplyText');
+    var resEl  = document.getElementById('fbReplyResult');
+    var text   = (textEl ? textEl.value : '').trim();
     if (!text) { _setResult(resEl, '⚠ Nhập nội dung reply', false); return; }
     _setResult(resEl, 'Đang gửi...', null);
 
@@ -171,56 +239,47 @@ var AdminFeedback = (function() {
       if (res.error) { _setResult(resEl, '❌ ' + res.error.message, false); return; }
     }
 
-    // Update local
     var f = _items.find(function(x) { return x.id === fbId; });
     if (f) { f.status = 'replied'; f.reply_text = text; }
-
     _setResult(resEl, '✅ Đã gửi reply', true);
     _renderList();
   }
 
   async function _markResolved(fbId) {
-    if (window.SB) {
-      await SB.rpc('admin_resolve_feedback', { p_id: fbId });
-    }
+    if (window.SB) await SB.rpc('admin_resolve_feedback', { p_id: fbId });
     var f = _items.find(function(x) { return x.id === fbId; });
     if (f) f.status = 'resolved';
     _renderList();
-    if (document.getElementById('fbReplyResult')) {
-      _setResult(document.getElementById('fbReplyResult'), '✅ Đã đánh dấu đã giải quyết', true);
-    }
+    _setResult(document.getElementById('fbReplyResult'), '✅ Đã giải quyết', true);
+  }
+
+  function _pinFeedback(fbId) {
+    // placeholder — Phase V
   }
 
   async function _markRead(fbId) {
-    if (window.SB) {
-      await SB.rpc('admin_mark_feedback_read', { p_id: fbId });
-    }
-    _updateUnreadBadge();
+    if (window.SB) await SB.rpc('admin_mark_feedback_read', { p_id: fbId });
+    _updateBadges();
   }
 
-  function _updateUnreadBadge() {
+  function _updateBadges() {
     var unread = _items.filter(function(f) { return f.status === 'unread'; }).length;
-    var badge = document.getElementById('fbUnreadBadge');
-    if (badge) badge.textContent = unread;
+    var pending = _items.filter(function(f) { return f.status === 'unread' || f.status === 'read'; }).length;
+
+    var uBadge = document.getElementById('fbUnreadBadge');
+    if (uBadge) uBadge.textContent = unread;
+    var uDot = document.getElementById('fbUnreadDot');
+    if (uDot) uDot.style.display = unread > 0 ? '' : 'none';
+    var allCount = document.getElementById('fbCountAll');
+    if (allCount) allCount.textContent = _items.length;
+    var pending = document.getElementById('fbPendingCount');
+    if (pending) pending.textContent = unread;
+
     var navBadge = document.getElementById('navFeedbackBadge');
     if (navBadge) {
       navBadge.textContent = unread;
       navBadge.style.display = unread > 0 ? '' : 'none';
     }
-  }
-
-  function _priBadge(pri) {
-    if (pri === 'high')   return '<span class="adm-badge badge-critical" style="font-size:10px">High</span>';
-    if (pri === 'normal') return '<span class="adm-badge badge-normal" style="font-size:10px">Normal</span>';
-    return '<span class="adm-badge badge-low" style="font-size:10px">Low</span>';
-  }
-
-  function _categoryTags(cat) {
-    var cats = Array.isArray(cat) ? cat : [cat || 'feature'];
-    var colors = { bug: 'badge-failed', feature: 'badge-pending', praise: 'badge-paid', question: 'badge-free' };
-    return cats.map(function(c) {
-      return '<span class="adm-badge ' + (colors[c] || 'badge-free') + '">' + c + '</span>';
-    }).join('');
   }
 
   function _setResult(el, msg, ok) {
@@ -230,7 +289,8 @@ var AdminFeedback = (function() {
   }
 
   return {
-    init:        init,
-    refreshList: refreshList
+    init:          init,
+    refreshList:   refreshList,
+    _pinFeedback:  _pinFeedback
   };
 }());

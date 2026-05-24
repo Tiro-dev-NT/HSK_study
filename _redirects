@@ -1,2 +1,8 @@
+# Clean legal routes must use the SPA shell, not clean-url static HTML files
+/privacy        /index.html         200
+/terms          /index.html         200
+/contact        /index.html         200
+/free-vs-pro    /index.html         200
+
 # SPA fallback — Router handles all other routes
 /*              /index.html         200

@@ -207,3 +207,16 @@ var Pricing = {
     }
   }
 };
+
+var PricingUI = {
+  _shortSku: 'quarterly',
+  selectShort: function(input) {
+    document.querySelectorAll('.pc-compact-opt').forEach(function(el) {
+      el.classList.toggle('pc-compact-opt--checked', el.querySelector('input') === input);
+    });
+    PricingUI._shortSku = input.value;
+  },
+  checkoutShort: function() {
+    Pricing.openPayment(PricingUI._shortSku);
+  }
+};

@@ -158,7 +158,7 @@
 /* Add-to-Deck Popup */
 .popup-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
-  z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;
+  z-index: 4000; display: flex; align-items: center; justify-content: center; padding: 20px;
 }
 .add-deck-popup {
   background: var(--surface); border-radius: 16px; padding: 20px;

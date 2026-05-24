@@ -116,6 +116,11 @@
         <!-- rendered by JS -->
       </div>
     </div>
+
+    <!-- Outfit picker -->
+    <div class="prof-card prof-outfit-card-wrap" id="profOutfitWrap">
+      <!-- rendered by Profile._renderOutfitSection() -->
+    </div>
   </div>
 
   <!-- ══ TAB: Cài đặt ══ -->
@@ -161,6 +166,40 @@
           </div>
           <button class="prof-setting-action" onclick="Router.navigateTo('feedback')">
             Gửi phản hồi →
+          </button>
+        </div>
+
+        <!-- ── Quản lý tài khoản ── -->
+        <div class="prof-setting-divider">Quản lý tài khoản</div>
+
+        <div class="prof-setting-row" id="profAgeGateWrap" style="display:none">
+          <div class="prof-setting-info">
+            <div class="prof-setting-name" style="color:var(--hoang-kim)">⚠️ Xác nhận độ tuổi</div>
+            <div class="prof-setting-desc">Dịch vụ dành cho người từ 16 tuổi trở lên</div>
+          </div>
+          <label class="prof-age-label">
+            <input type="checkbox" id="profAgeCheck" onchange="if(this.checked)Profile.confirmAge()">
+            Tôi từ 16 tuổi trở lên
+          </label>
+        </div>
+
+        <div class="prof-setting-row">
+          <div class="prof-setting-info">
+            <div class="prof-setting-name">Huỷ gia hạn tự động</div>
+            <div class="prof-setting-desc">Vẫn dùng Pro đến hết kỳ đã thanh toán</div>
+          </div>
+          <button class="prof-setting-action" id="profCancelSubBtn" onclick="Profile.cancelSub()">
+            Huỷ gia hạn
+          </button>
+        </div>
+
+        <div class="prof-setting-row">
+          <div class="prof-setting-info">
+            <div class="prof-setting-name" style="color:#DC2626">Xoá tài khoản</div>
+            <div class="prof-setting-desc">Xoá vĩnh viễn toàn bộ dữ liệu (không thể hoàn tác)</div>
+          </div>
+          <button class="prof-setting-action prof-setting-action--danger" onclick="Profile.deleteAcct()">
+            Xoá tài khoản
           </button>
         </div>
 

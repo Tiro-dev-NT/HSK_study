@@ -258,6 +258,49 @@
 .survival-timer-badge { font-weight: 700; margin-left: 8px; color: var(--accent); }
 .survival-timer-badge.timer-danger { color: #EF4444; animation: pulse .4s infinite alternate; }
 
+/* Wave A: Double XP chip */
+.quiz-double-xp-wrap { margin-bottom: 4px; }
+
+.quiz-double-xp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--r-pill, 100px);
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-ui, inherit);
+  transition: background var(--d-fast, .15s), border-color var(--d-fast, .15s), color var(--d-fast, .15s);
+}
+.quiz-double-xp-chip:hover:not(:disabled) { border-color: #F59E0B; color: #F59E0B; }
+.quiz-double-xp-chip.active {
+  background: rgba(245,158,11,.14);
+  border-color: #F59E0B;
+  color: #F59E0B;
+}
+.quiz-double-xp-chip:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Wave A: Refresh quiz button */
+.quiz-refresh-btn {
+  padding: 4px 10px;
+  border-radius: var(--r-pill, 100px);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-ui, inherit);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background var(--d-fast, .15s);
+}
+.quiz-refresh-btn:hover { background: var(--hover); color: var(--text); }
+
 @media (max-width: 600px) {
   .special-modes-grid { grid-template-columns: 1fr; }
   .special-mode-card { flex-wrap: wrap; gap: 10px; padding: 14px; }

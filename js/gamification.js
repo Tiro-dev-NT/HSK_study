@@ -59,6 +59,7 @@ var Gamification = {
     const streak    = Gamification.getStreak();
     if (lastActive === today) return;
     const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+    const broke     = lastActive !== yesterday && streak > 1;
     const newStreak = lastActive === yesterday ? streak + 1 : 1;
     localStorage.setItem('hsk_streak', newStreak);
     localStorage.setItem('hsk_last_active', today);
@@ -66,10 +67,6 @@ var Gamification = {
     // Milestone XP rewards (existing)
     if (newStreak === 7 || newStreak === 30) Gamification.addXP(100);
     // Milestone TOKEN rewards (added 2026-05-23, see TOKEN_SINK_ROADMAP.md)
-    // Direct grant — fires immediately when streak hits milestone.
-    // Complements chain quests in quests.js (sc_str30/60/100/365) which
-    // award the same token on view; double-grant guarded by the chain's
-    // own `claimed` flag (see Quests.claimChainStep).
     if (typeof Quests !== 'undefined' && typeof Quests.addToken === 'function') {
       if (newStreak === 7)   Quests.addToken(100,  'streak_7');
       if (newStreak === 30)  Quests.addToken(300,  'streak_30');
@@ -78,6 +75,67 @@ var Gamification = {
       if (newStreak === 365) Quests.addToken(2000, 'streak_365');
     }
     Gamification.updateStats();
+    // Streak insurance modal — only if streak actually broke
+    if (broke) Gamification._showStreakInsurance(streak);
+  },
+
+  _showStreakInsurance: function(lostStreak) {
+    if (typeof Quests === 'undefined') return;
+    var bal = Quests.getBalance();
+    if (bal < 50) return; // can't afford, no point showing
+
+    var monthKey = new Date().toISOString().slice(0, 7); // 'YYYY-MM'
+    var used = JSON.parse(localStorage.getItem('hsk_streak_insurance_used') || '{"month":"","count":0}');
+    if (used.month !== monthKey) used = { month: monthKey, count: 0 };
+    if (used.count >= 2) return; // max 2/tháng
+
+    // Build modal
+    var overlay = document.createElement('div');
+    overlay.id = 'streakInsuranceOverlay';
+    overlay.style.cssText =
+      'position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10001;' +
+      'display:flex;align-items:center;justify-content:center;padding:20px';
+    overlay.innerHTML =
+      '<div style="background:var(--surface);border-radius:16px;padding:28px 24px;max-width:360px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.3)">' +
+        '<div style="font-size:40px;margin-bottom:12px">😢</div>' +
+        '<h3 style="margin:0 0 8px;font-size:18px;font-weight:700;color:var(--text)">Streak ' + lostStreak + ' ngày vừa mất!</h3>' +
+        '<p style="margin:0 0 20px;font-size:13px;color:var(--text2);line-height:1.5">' +
+          'Dùng bảo hiểm streak để khôi phục lại chuỗi ngày của bạn.<br>' +
+          '<strong style="color:var(--hoang-kim)">50 🪙</strong> · còn ' + (2 - used.count) + ' lần trong tháng này' +
+        '</p>' +
+        '<div style="display:flex;gap:12px;justify-content:center">' +
+          '<button id="streakInsuranceUse" style="flex:1;padding:10px 0;background:var(--chau-hong);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-ui)">' +
+            'Dùng bảo hiểm (50🪙)' +
+          '</button>' +
+          '<button id="streakInsuranceSkip" style="flex:1;padding:10px 0;background:var(--surface2);color:var(--text2);border:1px solid var(--border);border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-ui)">' +
+            'Bỏ qua' +
+          '</button>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    document.getElementById('streakInsuranceUse').addEventListener('click', function() {
+      if (!Quests.spendToken(50, 'streak_insurance')) return;
+      // Restore streak
+      localStorage.setItem('hsk_streak', lostStreak);
+      // Update usage counter
+      used.count++;
+      localStorage.setItem('hsk_streak_insurance_used', JSON.stringify(used));
+      overlay.remove();
+      Gamification.updateStats();
+      // Quick thank-you toast
+      var t = document.createElement('div');
+      t.textContent = 'Streak ' + lostStreak + ' ngày đã được khôi phục! 🔥';
+      t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#10B981;color:#fff;' +
+        'padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;z-index:10002;font-family:var(--font-ui)';
+      document.body.appendChild(t);
+      setTimeout(function() { t.remove(); }, 3000);
+    });
+
+    document.getElementById('streakInsuranceSkip').addEventListener('click', function() {
+      overlay.remove();
+    });
   },
 
   _recordActiveDay: function() {

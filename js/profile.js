@@ -19,6 +19,32 @@ var Profile = (function() {
     { id:'pro',      emoji:'💎', name:'Thành viên Pro',      cond:'isPro',         check: function(s) { return s.isPro; } },
   ];
 
+  // ── Outfit data ───────────────────────────────────────
+  var WAVE_A_OUTFITS = [
+    { id:'hoc-si',               name:'Học Sĩ',              cost:50,  file:'01-hoc-si.png' },
+    { id:'cu-nhan-ao-dai',       name:'Cử Nhân Áo Dài',      cost:100, file:'02-cu-nhan-ao-dai.png' },
+    { id:'vo-su',                name:'Võ Sư',                cost:150, file:'03-vo-su.png' },
+    { id:'dau-bep',              name:'Đầu Bếp',              cost:150, file:'04-dau-bep.png' },
+    { id:'du-khach',             name:'Du Khách',             cost:200, file:'05-du-khach.png' },
+    { id:'nghe-si-thu-phap',     name:'Nghệ Sĩ Thư Pháp',    cost:200, file:'06-nghe-si-thu-phap.png' },
+    { id:'tien-si-trang-nguyen', name:'Tiến Sĩ Trạng Nguyên',cost:250, file:'07-tien-si-trang-nguyen.png' },
+    { id:'tham-hiem-gia',        name:'Thám Hiểm Gia',        cost:300, file:'08-tham-hiem-gia.png' },
+  ];
+  var HONOR_OUTFITS = [
+    { id:'honor-01', month:1,  name:'Tháng 01 — Hồng Bao Đỏ', file:'01-thang-01-hong-bao-do.png' },
+    { id:'honor-02', month:2,  name:'Tháng 02 — Mùa Xuân',    file:'02-thang-02-mua-xuan.png' },
+    { id:'honor-03', month:3,  name:'Tháng 03 — Hiền Triết',  file:'03-thang-03-hien-triet.png' },
+    { id:'honor-04', month:4,  name:'Tháng 04 — Tạo Mộ',      file:'04-thang-04-tao-mo.png' },
+    { id:'honor-05', month:5,  name:'Tháng 05 — Cử Nhân',     file:'05-thang-05-cu-nhan.png' },
+    { id:'honor-06', month:6,  name:'Tháng 06 — Hè Tây Hồ',  file:'06-thang-06-he-tay-ho.png' },
+    { id:'honor-07', month:7,  name:'Tháng 07 — Du Khách',    file:'07-thang-07-du-khach.png' },
+    { id:'honor-08', month:8,  name:'Tháng 08 — Ao Hiệu',     file:'08-thang-08-ao-hieu.png' },
+    { id:'honor-09', month:9,  name:'Tháng 09 — Tể Tướng',    file:'09-thang-09-te-tuong.png' },
+    { id:'honor-10', month:10, name:'Tháng 10 — Trung Cửu',   file:'10-thang-10-trung-cuu.png' },
+    { id:'honor-11', month:11, name:'Tháng 11 — Tuyết Nhân',  file:'11-thang-11-tuyet-nhan.png' },
+    { id:'honor-12', month:12, name:'Tháng 12 — Đại Lễ',      file:'12-thang-12-dai-le.png' },
+  ];
+
   // ── Band config (v2.0 vs v3.0) ───────────────────────
   var BANDS_V2 = [
     { name:'Sơ cấp',   range:'1 – 2', levels:[1,2], tint:'rgba(16,185,129,.05)',  edge:'rgba(16,185,129,.18)',  dotColor:'#10B981' },
@@ -250,6 +276,170 @@ var Profile = (function() {
     if (versionEl) versionEl.textContent = snap.version === 3 ? 'HSK 3.0 (9 cấp)' : 'HSK 2.0 (6 cấp)';
   }
 
+  // ── Outfit helpers ────────────────────────────────────
+  function _profileToast(msg, type) {
+    var old = document.getElementById('profToastMsg');
+    if (old) old.remove();
+    var el = document.createElement('div');
+    el.id = 'profToastMsg';
+    el.className = 'prof-toast prof-toast--' + (type || 'info');
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(function() { el.classList.add('visible'); }, 10);
+    setTimeout(function() {
+      el.classList.remove('visible');
+      setTimeout(function() { if (el.parentNode) el.remove(); }, 320);
+    }, 3000);
+  }
+
+  function _wearOutfit(id) {
+    if (!id || id === 'null') {
+      localStorage.removeItem('hsk_active_outfit');
+    } else {
+      localStorage.setItem('hsk_active_outfit', id);
+    }
+    _renderOutfitSection();
+  }
+
+  function _buyWaveAOutfit(id, cost) {
+    if (typeof Quests === 'undefined') { _profileToast('Chưa sẵn sàng, thử lại sau', 'error'); return; }
+    if (!Quests.spendToken(cost, 'outfit_' + id)) {
+      _profileToast('Không đủ token! Cần ' + cost + ' 🪙', 'error');
+      return;
+    }
+    var owned = JSON.parse(localStorage.getItem('hsk_user_outfits') || '[]');
+    if (!owned.includes(id)) { owned.push(id); }
+    localStorage.setItem('hsk_user_outfits', JSON.stringify(owned));
+    _profileToast('Đã mở khóa trang phục! Nhấn "Mặc" để đeo ngay.', 'success');
+    _renderOutfitSection();
+  }
+
+  function _syncHonorOutfits() {
+    if (!window.SB || !window.Auth || !Auth.user) return;
+    SB.from('user_honor_purchases')
+      .select('month_year')
+      .eq('user_id', Auth.user.id)
+      .then(function(res) {
+        if (res.error || !res.data || !res.data.length) return;
+        var months = res.data.map(function(r) { return r.month_year; });
+        localStorage.setItem('hsk_honor_months', JSON.stringify(months));
+        _renderOutfitSection();
+      });
+  }
+
+  function _renderOutfitSection() {
+    var wrap = document.getElementById('profOutfitWrap');
+    if (!wrap) return;
+
+    var activeId     = localStorage.getItem('hsk_active_outfit') || null;
+    var ownedWaveA   = JSON.parse(localStorage.getItem('hsk_user_outfits') || '[]');
+    var honorMonths  = JSON.parse(localStorage.getItem('hsk_honor_months') || '[]');
+
+    var previewSrc  = 'assets/icon-soft.webp';
+    var previewName = 'Mặc định';
+    if (activeId) {
+      var fa = WAVE_A_OUTFITS.find(function(o) { return o.id === activeId; });
+      var fh = HONOR_OUTFITS.find(function(o) { return o.id === activeId; });
+      if (fa) { previewSrc = 'content/assets/output/outfits-basic/' + fa.file; previewName = fa.name; }
+      if (fh) { previewSrc = 'content/assets/output/outfits-honor/' + fh.file; previewName = fh.name; }
+    }
+
+    function _outfitCard(o, srcBase, isHonor) {
+      var isWearing = activeId === o.id;
+      var isOwned;
+      if (isHonor) {
+        var key = new Date().getFullYear() + '-' + String(o.month).padStart(2, '0');
+        isOwned = honorMonths.includes(key);
+      } else {
+        isOwned = ownedWaveA.includes(o.id);
+      }
+      var chip;
+      if (isWearing) {
+        chip = '<span class="prof-outfit-chip wearing">✅ Đang mặc</span>';
+      } else if (isOwned) {
+        chip = '<button class="prof-outfit-wear-btn" onclick="Profile.wearOutfit(\'' + o.id + '\')">Mặc</button>';
+      } else if (isHonor) {
+        chip = '<span class="prof-outfit-chip honor-lock">🔒 T' + o.month + '</span>';
+      } else {
+        chip = '<button class="prof-outfit-buy-btn" onclick="Profile.buyOutfit(\'' + o.id + '\',' + o.cost + ')">🔒 ' + o.cost + '🪙</button>';
+      }
+      return '<div class="prof-outfit-card' + (isWearing ? ' wearing' : '') + '">' +
+             '<img class="prof-outfit-img" src="' + srcBase + o.file + '" alt="' + o.name + '" loading="lazy">' +
+             '<div class="prof-outfit-name">' + o.name + '</div>' +
+             chip + '</div>';
+    }
+
+    var waveAHtml = WAVE_A_OUTFITS.map(function(o) {
+      return _outfitCard(o, 'content/assets/output/outfits-basic/', false);
+    }).join('');
+    var honorHtml = HONOR_OUTFITS.map(function(o) {
+      return _outfitCard(o, 'content/assets/output/outfits-honor/', true);
+    }).join('');
+
+    wrap.innerHTML =
+      '<div class="prof-outfit-header">' +
+        '<h3 class="prof-card-title" style="margin:0">🐲 Trang phục Bé Rồng</h3>' +
+      '</div>' +
+      '<div class="prof-outfit-layout">' +
+        '<div class="prof-outfit-preview-wrap">' +
+          '<img class="prof-outfit-preview-img" src="' + previewSrc + '" alt="Bé Rồng">' +
+          '<div class="prof-outfit-preview-label">Đang mặc: <strong>' + previewName + '</strong></div>' +
+          '<button class="prof-outfit-reset-btn" onclick="Profile.wearOutfit(null)">Mặc định</button>' +
+        '</div>' +
+        '<div class="prof-outfit-grid-wrap">' +
+          '<div class="prof-outfit-sublabel">Wave A — Mua bằng token</div>' +
+          '<div class="prof-outfit-grid">' + waveAHtml + '</div>' +
+          '<div class="prof-outfit-sublabel" style="margin-top:var(--s-4)">Hộp Ân Cần — Theo tháng</div>' +
+          '<div class="prof-outfit-grid">' + honorHtml + '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  // ── Account settings helpers ──────────────────────────
+  function _renderAccountSettings() {
+    var ageWrap = document.getElementById('profAgeGateWrap');
+    if (ageWrap) {
+      var confirmed = localStorage.getItem('hsk_age_confirmed');
+      if (confirmed) {
+        ageWrap.style.display = 'none';
+      } else {
+        ageWrap.style.display = '';
+      }
+    }
+    var subBtn = document.getElementById('profCancelSubBtn');
+    if (subBtn) {
+      var isPro = (typeof Monetization !== 'undefined') ? Monetization.isProSync() : false;
+      subBtn.disabled = !isPro;
+      subBtn.title = isPro ? '' : 'Bạn chưa có gói Pro đang hoạt động';
+    }
+  }
+
+  function _cancelSubscription() {
+    var user = (typeof AppState !== 'undefined') ? AppState.user : null;
+    if (!user) { _profileToast('Chưa đăng nhập', 'error'); return; }
+    if (!confirm('Huỷ gia hạn tự động? Bạn vẫn dùng Pro đến hết kỳ đã thanh toán.')) return;
+    if (!window.SB) { _profileToast('Không thể kết nối server', 'error'); return; }
+    SB.rpc('cancel_subscription', { p_user_id: user.id })
+      .then(function(res) {
+        if (res.error) { _profileToast('Lỗi: ' + res.error.message, 'error'); return; }
+        _profileToast('Đã huỷ gia hạn tự động. Pro còn hiệu lực đến hết kỳ.', 'success');
+      });
+  }
+
+  function _deleteAccount() {
+    var typed = prompt('Nhập "XOA" để xác nhận xoá tài khoản vĩnh viễn (không thể hoàn tác):');
+    if (typed !== 'XOA') { if (typed !== null) _profileToast('Xác nhận không đúng, đã huỷ.', 'error'); return; }
+    _profileToast('Yêu cầu xoá tài khoản đã gửi. Tài khoản sẽ bị xoá trong 24h.', 'info');
+    // TODO: call server-side delete RPC when available (requires service-role key)
+  }
+
+  function _confirmAgeGate() {
+    localStorage.setItem('hsk_age_confirmed', new Date().toISOString());
+    var wrap = document.getElementById('profAgeGateWrap');
+    if (wrap) wrap.style.display = 'none';
+    _profileToast('Đã xác nhận độ tuổi.', 'success');
+  }
+
   // ── Tab switching ─────────────────────────────────────
   function switchTab(tabId) {
     document.querySelectorAll('.prof-tab').forEach(function(btn) {
@@ -273,6 +463,9 @@ var Profile = (function() {
       _renderAchvPreview(snap);
       _renderBadgeGrid(snap);
       _renderSettings(snap);
+      _renderOutfitSection();
+      _renderAccountSettings();
+      _syncHonorOutfits();
 
       // Wire tab clicks
       document.querySelectorAll('.prof-tab').forEach(function(btn) {
@@ -282,7 +475,22 @@ var Profile = (function() {
 
     switchTab: switchTab,
 
-    goSettings: function() { Profile.switchTab('settings'); }
+    goSettings: function() { Profile.switchTab('settings'); },
+
+    wearOutfit:  function(id)        { _wearOutfit(id); },
+    buyOutfit:   function(id, cost)  { _buyWaveAOutfit(id, cost); },
+    cancelSub:   function()          { _cancelSubscription(); },
+    deleteAcct:  function()          { _deleteAccount(); },
+    confirmAge:  function()          { _confirmAgeGate(); },
+
+    handleLogout: function() {
+      if (!confirm('Đăng xuất?')) return;
+      if (window.Auth && typeof Auth.signOut === 'function') {
+        Auth.signOut();
+      } else if (window.SB) {
+        SB.auth.signOut().then(function() { location.reload(); });
+      }
+    }
   };
 
 }());

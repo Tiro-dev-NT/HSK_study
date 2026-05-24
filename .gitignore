@@ -51,15 +51,10 @@ extension_plan.md
 sync_fix_*.md
 *.sql
 
-# docs/ reorganize (2026-05-17) — keep reports + marketing local
-docs/reports/
-docs/marketing/
-docs/plans/css-organization-plan.md
-docs/archive/
-
-# Design assets từ Claude Design — keep local only
-# (repo public — KHÔNG để PNG/HTML prototype leak ra ngoài)
-docs/design/
+# docs/ — keep ENTIRE folder local only (2026-05-24)
+# Lý do: docs/ không ảnh hưởng web app (chỉ planning + AI context)
+# Repo PUBLIC — tránh leak business strategy + pricing + revenue projection
+docs/
 
 # Local-only assets — không cần cho production Cloudflare deploy
 # (2026-05-17) data prep tools + raw curriculum private

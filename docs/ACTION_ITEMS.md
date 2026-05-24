@@ -133,7 +133,7 @@
 
 - ☑ "Huỷ Pro auto-renew" 1-click button (gọi RPC `cancel_subscription`) — DONE 2026-05-24 (profile.html + profile.js)
 - ☑ "Xoá tài khoản" hard-delete — UI+confirm+RPC DONE 2026-05-24 (sql/v9_delete_account.sql + profile.js calls delete_account_cascade RPC)
-- ☐ **Chạy sql/v9_delete_account.sql** trên Supabase Dashboard (🔴 chưa chạy)
+- ☑ **Chạy sql/v9_delete_account.sql** trên Supabase Dashboard — DONE 2026-05-24
 - ☐ "Xuất dữ liệu của tôi" JSON/CSV
 - ☐ "Lưu lịch sử Tutor dài hạn (90 ngày)" toggle opt-in
 - ☐ "Quản lý consent cookie" link → trigger `CookieConsent.reset()`

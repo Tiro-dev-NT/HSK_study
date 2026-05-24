@@ -241,8 +241,8 @@
 - ☐ **Pricing page Featured card mismatch:** `plans.js` lock Yearly = featured, NHƯNG `pricing.html` show **Semi 6m** làm featured card. Yearly bị giấu trong compact → underexposed.
   - **Fix proposal:** swap layout — Yearly thành Featured big card (với badge "⭐ Phổ biến nhất" + daily highlight ☕), Semi xuống compact hoặc giữ right column
   - Effort: 30-60 phút redesign HTML + có thể CSS tinh chỉnh
-- ☐ **Thiếu section Hộp Ân Cần** trong pricing.html (Wave 2 monetization code)
-- ☐ **Thiếu section AI Credit Pack** trong pricing.html (Wave 2)
+- ☑ **Section Hộp Ân Cần** trong pricing.html — DONE 2026-05-24 (Slice 1)
+- ☑ **Section AI Credit Pack** trong pricing.html — DONE 2026-05-24 (Slice 1)
 - ☐ **Z-index map standardize** — thêm vào `variables.css`:
   ```
   --z-content: 1 · --z-sticky: 100 · --z-overlay: 1000
@@ -381,4 +381,4 @@
 | 2026-05-24 | Production verified clean — 4 legal routes 200, 11/11 file 500-prone giờ 200, PricingUI global confirmed |
 | 2026-05-24 | Asset prompts split → `content/assets/output/{reference,outfits-basic,outfits-honor,ambient-themes}/*.md` (29 prompt + 9 README) — Banana Pro primary tool |
 | 2026-05-24 | **Wave A + Hộp Ân Cần ✅ DONE** — 21/21 PNG file gen + saved (1 ref + 8 outfit Wave A + 12 outfit Honor) bằng AI Studio Nano Banana single-chat workflow |
-| 2026-05-24 | **Phase 2 Monetization v2 Slice 1 ✅ DONE** — branch `worktree-monetization-v2-slice1` push lên origin (5 commits): refactor pricing flow (HONOR_PACK + AI_CREDIT_PACKS) + Honor Hall page UI shell + wire-up route/nav. Chờ PR review trước khi merge main. |
+| 2026-05-24 | **Phase 2 Monetization v2 Slice 1 ✅ MERGED + DEPLOYED** — 6 commits merged main `5cb56d3`, deployed Cloudflare: Honor Hall `/honor-hall` page + Hộp Ân Cần + AI Credit grid + pricing.css v=2.0 cache bust. Slice 2 NEXT: PayOS wire-up + 5 Supabase RPC + Wave A consumable UI. |

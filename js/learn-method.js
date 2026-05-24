@@ -146,7 +146,10 @@ var LearnMethod = (function() {
 
     listEl.innerHTML = html;
     if (actionsEl) actionsEl.style.display = '';
-    LearnMethod._weakWords = top10.map(function(e) { return e.hanzi; });
+    LearnMethod._weakWords = top10.map(function(e) {
+      var w = _findWord(e.hanzi);
+      return { h: e.hanzi, p: w ? (w.p || '') : '', v: w ? (w.v || '') : '', e: w ? (w.e || '') : '', level: w ? (w.level || 0) : 0 };
+    });
   }
 
   function _findWord(hanzi) {

@@ -19,6 +19,7 @@ var Quiz = {
   },
   _doubleXP:    false,  // Wave A: Double XP active for this session
   _refreshUsed: 0,      // Wave A: Refresh count for this session (max 5)
+  _overrideDeck: null,  // Phase Q: weakness session override
 
   setup: function() {
     document.querySelectorAll('.scope-tab').forEach(function(btn) {
@@ -90,6 +91,43 @@ var Quiz = {
         Quiz._survivalTimer = null;
       }
     });
+
+    // Phase Q: weakness session override
+    var _ow = sessionStorage.getItem('hsk_quiz_override_words');
+    if (_ow) {
+      try { Quiz._overrideDeck = JSON.parse(_ow); } catch(e) {}
+      sessionStorage.removeItem('hsk_quiz_override_words');
+      if (Quiz._overrideDeck && Quiz._overrideDeck.length) Quiz._startOverride();
+    }
+  },
+
+  _startOverride: function() {
+    var pool = (Quiz._overrideDeck || []).filter(function(w) { return w && w.h; });
+    Quiz._overrideDeck = null;
+    if (!pool.length) return;
+    Quiz._mode = 'forward';
+    Quiz._wrongHistory = [];
+    Quiz._refreshUsed = 0;
+    AppState.qDeck     = shuffle(pool);
+    AppState.qIndex    = 0;
+    AppState.qScore    = 0;
+    AppState.qAnswered = false;
+    AppState.qSessionType = 'standard';
+    qDeck = AppState.qDeck; qIndex = 0; qScore = 0; qAnswered = false;
+    Quiz._hideAllPanels();
+    var quizArea = document.getElementById('quizArea');
+    if (quizArea) {
+      quizArea.style.display = 'block';
+      if (!document.getElementById('quizWeakBadge')) {
+        var badge = document.createElement('div');
+        badge.id = 'quizWeakBadge';
+        badge.className = 'quiz-weak-badge';
+        badge.textContent = '🎯 Ôn điểm yếu';
+        quizArea.insertBefore(badge, quizArea.firstChild);
+      }
+    }
+    document.getElementById('qTotal').textContent = AppState.qDeck.length;
+    Quiz._showQuestion();
   },
 
   _switchScope: function(scope) {

@@ -307,3 +307,18 @@
   .smc-icon { font-size: 26px; }
 }
 
+/* Phase Q: weakness session badge */
+.quiz-weak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary, #DC2626);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  letter-spacing: .3px;
+}
+

@@ -136,6 +136,13 @@
           </select>
         </div>
 
+        <!-- Wave A: Double XP toggle -->
+        <div class="quiz-double-xp-wrap" id="quizDoubleXpWrap">
+          <button class="quiz-double-xp-chip" id="quizDoubleXpBtn" onclick="Quiz.toggleDoubleXP()">
+            ⚡ Gấp đôi XP — 30🪙 · <span id="quizDoubleXpLeft">còn 3 lần hôm nay</span>
+          </button>
+        </div>
+
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn-primary" id="startQuiz" data-vi="Bắt đầu kiểm tra" data-en="Start Quiz">Bắt đầu kiểm tra</button>
           <button class="btn-outline" id="showQuizHistory" data-vi="📊 Lịch sử" data-en="📊 History">📊 Lịch sử</button>
@@ -147,6 +154,9 @@
         <div class="quiz-area-header">
           <button class="btn-back quiz-back-btn" id="quizBackBtn">← <span data-vi="Thoát" data-en="Exit">Thoát</span></button>
           <div class="quiz-progress"><span id="qCurrent">1</span>/<span id="qTotal">10</span> — <span id="qScore">0</span> <span data-vi="đúng" data-en="correct">đúng</span></div>
+          <button class="quiz-refresh-btn" id="quizRefreshBtn" onclick="Quiz.refreshQuestion()" title="Đổi câu hỏi — 10🪙">
+            🔄 10🪙
+          </button>
         </div>
         <div class="q-type-badge" id="qTypeBadge"></div>
         <div class="quiz-card">

@@ -17,6 +17,8 @@ var Quiz = {
     'tone-trainer': 120,
     'cloze': 120
   },
+  _doubleXP:    false,  // Wave A: Double XP active for this session
+  _refreshUsed: 0,      // Wave A: Refresh count for this session (max 5)
 
   setup: function() {
     document.querySelectorAll('.scope-tab').forEach(function(btn) {
@@ -56,6 +58,9 @@ var Quiz = {
         Quiz._startSpecialMode(card.dataset.quizMode);
       });
     });
+
+    // Wave A: init Double XP UI state
+    Quiz._updateDoubleXpUI();
 
     // B5g: Daily Challenge + Survival Mode
     document.getElementById('startDailyChallenge')?.addEventListener('click', Quiz._startDailyChallenge);
@@ -209,6 +214,67 @@ var Quiz = {
     return pool;
   },
 
+  // ── Wave A: Double XP toggle ──────────────────────────
+  toggleDoubleXP: function() {
+    var today = new Date().toISOString().split('T')[0];
+    var rec = JSON.parse(localStorage.getItem('hsk_double_xp_today') || '{"date":"","count":0}');
+    if (rec.date !== today) rec = { date: today, count: 0 };
+    var remaining = Math.max(0, 3 - rec.count);
+
+    if (Quiz._doubleXP) {
+      // Toggle off
+      Quiz._doubleXP = false;
+    } else {
+      if (remaining <= 0) {
+        alert('Đã dùng hết 3 lần Gấp đôi XP hôm nay!');
+        return;
+      }
+      Quiz._doubleXP = true;
+    }
+    Quiz._updateDoubleXpUI();
+  },
+
+  _updateDoubleXpUI: function() {
+    var btn = document.getElementById('quizDoubleXpBtn');
+    var leftEl = document.getElementById('quizDoubleXpLeft');
+    if (!btn) return;
+    var today = new Date().toISOString().split('T')[0];
+    var rec = JSON.parse(localStorage.getItem('hsk_double_xp_today') || '{"date":"","count":0}');
+    if (rec.date !== today) rec = { date: today, count: 0 };
+    var remaining = Math.max(0, 3 - rec.count);
+    if (leftEl) leftEl.textContent = 'còn ' + remaining + ' lần hôm nay';
+    btn.classList.toggle('active', Quiz._doubleXP);
+    if (remaining <= 0 && !Quiz._doubleXP) btn.disabled = true;
+  },
+
+  // ── Wave A: Refresh quiz question ─────────────────────
+  refreshQuestion: function() {
+    if (AppState.qAnswered) return; // already answered, use next naturally
+    if (Quiz._refreshUsed >= 5) {
+      alert('Đã dùng hết 5 lần đổi câu trong session này!');
+      return;
+    }
+    if (typeof Quests === 'undefined') return;
+    if (!Quests.spendToken(10, 'refresh_quiz')) {
+      alert('Không đủ token! Cần 10🪙 để đổi câu.');
+      return;
+    }
+    Quiz._refreshUsed++;
+    // Replace current word with a random different one from pool
+    var pool = AppState.qDeck;
+    var allW = getAllWords();
+    var currentH = (pool[AppState.qIndex] || {}).h;
+    var candidates = shuffle(allW.filter(function(w) { return w.h !== currentH; }));
+    if (candidates.length > 0) {
+      AppState.qDeck[AppState.qIndex] = candidates[0];
+      qDeck[AppState.qIndex] = candidates[0];
+    }
+    Quiz._showQuestion();
+    // Update refresh button label
+    var btn = document.getElementById('quizRefreshBtn');
+    if (btn) btn.title = '🔄 ' + (5 - Quiz._refreshUsed) + ' lần còn lại';
+  },
+
   start: function() {
     var pool = Quiz._buildPool();
     if (pool === null) return;
@@ -217,10 +283,26 @@ var Quiz = {
       return;
     }
 
+    // Wave A: deduct Double XP token on session start
+    if (Quiz._doubleXP) {
+      if (typeof Quests === 'undefined' || !Quests.spendToken(30, 'double_xp')) {
+        Quiz._doubleXP = false;
+        Quiz._updateDoubleXpUI();
+        alert('Không đủ token cho Gấp đôi XP (cần 30🪙).');
+      } else {
+        var today = new Date().toISOString().split('T')[0];
+        var rec = JSON.parse(localStorage.getItem('hsk_double_xp_today') || '{"date":"","count":0}');
+        if (rec.date !== today) rec = { date: today, count: 0 };
+        rec.count++;
+        localStorage.setItem('hsk_double_xp_today', JSON.stringify(rec));
+      }
+    }
+
     var count  = parseInt(document.getElementById('quizCount').value);
     var modeEl = document.querySelector('input[name="qMode"]:checked');
     Quiz._mode = modeEl ? modeEl.value : 'forward';
     Quiz._wrongHistory = [];
+    Quiz._refreshUsed  = 0;
 
     AppState.qDeck     = shuffle(pool).slice(0, Math.min(count, pool.length));
     AppState.qIndex    = 0;
@@ -370,6 +452,9 @@ var Quiz = {
 
   // B5d: show wrong list + save session
   _endQuiz: function() {
+    // Wave A: reset Double XP flag (standard quiz doesn't grant XP separately)
+    Quiz._doubleXP = false;
+    Quiz._updateDoubleXpUI();
     Quiz._hideAllPanels();
     document.getElementById('quizResult').style.display = 'block';
     var pct  = Math.round(AppState.qScore / AppState.qDeck.length * 100);
@@ -659,9 +744,12 @@ var Quiz = {
     var total = 10;
     var pct = Math.round(score / total * 100);
 
-    // XP: base 10 per correct, bonus 2x if ≥ 8/10
+    // XP: base 10 per correct, bonus 2x if ≥ 8/10; Wave A Double XP multiplier
     var baseXP = score * 10;
     var xpEarned = score >= 8 ? baseXP * 2 : baseXP;
+    if (Quiz._doubleXP) xpEarned = xpEarned * 2;
+    Quiz._doubleXP = false;
+    Quiz._updateDoubleXpUI();
     if (xpEarned > 0 && typeof addXP === 'function') addXP(xpEarned);
     if (typeof Quests !== 'undefined') Quests.incrementMetric('daily_challenge_done', 1);
 
@@ -813,8 +901,11 @@ var Quiz = {
     var score = AppState.qScore;
     var level = Quiz._getSurvivalLevel();
 
-    // XP: 5 per correct answer
+    // XP: 5 per correct answer; Wave A Double XP multiplier
     var xpEarned = score * 5;
+    if (Quiz._doubleXP) xpEarned = xpEarned * 2;
+    Quiz._doubleXP = false;
+    Quiz._updateDoubleXpUI();
     if (xpEarned > 0 && typeof addXP === 'function') addXP(xpEarned);
 
     // Update high score

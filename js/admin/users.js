@@ -61,7 +61,8 @@ var AdminUsers = (function() {
 
     var res = await SB.rpc('admin_list_users');
     if (res.error) {
-      if (wrap) wrap.innerHTML = '<p class="adm-empty">Lỗi: ' + res.error.message + '</p>';
+      console.error('[AdminUsers] admin_list_users RPC error:', res.error);
+      if (wrap) wrap.innerHTML = '<p class="adm-empty">Lỗi: ' + res.error.message + ' (code: ' + (res.error.code || '?') + ')</p>';
       return;
     }
     _users = res.data || [];

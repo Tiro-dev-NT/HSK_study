@@ -98,7 +98,7 @@
 
 /* ── Box (Info/Warning) ────────────────────────────── */
 .hsk0-box {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 18px;
@@ -174,7 +174,7 @@
 
 /* ── Group Cards ───────────────────────────────────── */
 .hsk0-group-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 16px;
@@ -204,7 +204,7 @@
 }
 
 .hsk0-initial-btn {
-  background: #fff;
+  background: var(--surface);
   border: 2px solid var(--border);
   border-radius: 10px;
   padding: 12px;
@@ -242,7 +242,7 @@
 }
 
 .hsk0-detail-panel {
-  background: #fff;
+  background: var(--surface);
   border-radius: 16px;
   max-width: 500px;
   width: 100%;
@@ -369,7 +369,7 @@
   padding: 13px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--surface);
   color: var(--text-secondary);
   font-size: 14px;
   font-weight: 600;
@@ -449,7 +449,7 @@
 }
 
 .hsk0-quiz-audio {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
@@ -473,7 +473,7 @@
 }
 
 .hsk0-quiz-option {
-  background: #fff;
+  background: var(--surface);
   border: 2.5px solid var(--border);
   border-radius: 12px;
   padding: 14px;
@@ -560,7 +560,7 @@
 }
 
 .hsk0-result-stats {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 20px;
@@ -688,7 +688,7 @@
   border-radius: 20px;
   padding: 4px 12px;
   border: 1px solid currentColor;
-  background: #fff;
+  background: var(--surface);
 }
 
 /* Demo grid: 2 columns */
@@ -700,7 +700,7 @@
 }
 
 .stroke-demo-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 12px;
@@ -833,7 +833,7 @@
 }
 
 .practice-area {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px;
@@ -898,7 +898,7 @@
 }
 
 .practice-ref {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 16px;
@@ -915,7 +915,7 @@
 
 /* Practice result list */
 .practice-result-list {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
@@ -997,7 +997,7 @@
 }
 
 .num-card {
-  background: #fff;
+  background: var(--surface);
   border: 2px solid var(--border);
   border-radius: 14px;
   padding: 12px 6px;
@@ -1104,7 +1104,7 @@
 }
 
 .num-day-card {
-  background: #fff;
+  background: var(--surface);
   border: 1.5px solid var(--border);
   border-radius: 12px;
   padding: 10px 4px;
@@ -1249,7 +1249,7 @@
   flex: 1;
   text-align: center;
   padding: 12px 8px;
-  background: #fff;
+  background: var(--surface);
   border-radius: 10px;
   border: 1px solid var(--border);
 }
@@ -1280,7 +1280,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px 14px;
-  background: #fff;
+  background: var(--surface);
   border-radius: 10px;
   border: 1px solid var(--border);
   margin-top: 10px;
@@ -1358,7 +1358,7 @@
 
 /* Typing drill */
 .typing-drill-card {
-  background: #fff;
+  background: var(--surface);
   border: 1.5px solid var(--border);
   border-radius: 16px;
   padding: 24px;
@@ -1427,7 +1427,7 @@
   text-align: center;
   letter-spacing: 2px;
   transition: border-color 0.2s;
-  background: #fff;
+  background: var(--surface);
   color: var(--text);
 }
 .typing-input:focus {

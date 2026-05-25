@@ -965,3 +965,276 @@
     max-height: 240px;
   }
 }
+
+/* ════════════════════════════════════════════════════════
+   NUMBERS & DATES — Phase O0.5
+   ════════════════════════════════════════════════════════ */
+
+/* Intro use-case grid */
+.num-use-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.num-use-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Number card grid */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.num-card {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.num-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.num-card:active {
+  transform: scale(0.95);
+}
+
+.num-card-char {
+  font-size: 30px;
+  font-family: 'Noto Serif SC', 'STSong', serif;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.num-card-arabic {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.num-card-pinyin {
+  font-size: 11px;
+  font-family: monospace;
+  color: var(--text-tertiary);
+}
+
+.num-card-vi {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* Compound examples */
+.num-compound-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.num-compound-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  flex-wrap: wrap;
+}
+
+.num-compound-row:hover { background: #FEF2F2; }
+
+.num-compound-val {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--text);
+  min-width: 32px;
+}
+
+.num-compound-arrow { color: var(--text-tertiary); }
+
+.num-compound-char {
+  font-size: 20px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.num-compound-py {
+  font-size: 12px;
+  font-family: monospace;
+  color: var(--text-secondary);
+}
+
+.num-compound-rule {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-left: auto;
+  font-style: italic;
+}
+
+/* Weekday grid (7 columns) */
+.num-weekday-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.num-day-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 52px;
+}
+
+.num-day-card:hover {
+  border-color: var(--red);
+  background: #FEF2F2;
+  transform: translateY(-2px);
+}
+
+.num-day-card.weekend {
+  background: #FFF7ED;
+  border-color: #FED7AA;
+}
+
+.num-day-char {
+  font-size: 10px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+
+.num-day-py {
+  font-size: 8px;
+  font-family: monospace;
+  color: var(--text-tertiary);
+  margin-bottom: 4px;
+}
+
+.num-day-vi {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 2px;
+}
+
+.num-day-alt {
+  font-size: 9px;
+  color: var(--text-tertiary);
+}
+
+/* Month chips row */
+.num-month-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.num-month-chip {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.15s;
+}
+
+.num-month-chip:hover {
+  background: #FEF2F2;
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* Date phrase list */
+.num-phrase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.num-phrase-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.num-phrase-row:hover { background: #FEF2F2; }
+
+.num-phrase-zh {
+  font-size: 18px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  color: var(--red);
+  min-width: 54px;
+}
+
+.num-phrase-py {
+  font-size: 12px;
+  font-family: monospace;
+  color: var(--text-secondary);
+  min-width: 86px;
+}
+
+.num-phrase-vi {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Responsive for numbers */
+@media (max-width: 480px) {
+  .num-grid {
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 8px;
+  }
+
+  .num-card-char { font-size: 26px; }
+
+  .num-weekday-grid {
+    grid-template-columns: repeat(7, minmax(44px, 1fr));
+    gap: 4px;
+  }
+
+  .num-day-char { font-size: 9px; }
+  .num-day-vi { font-size: 10px; }
+}

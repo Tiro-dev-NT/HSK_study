@@ -683,8 +683,8 @@ var HSK0Strokes = (function() {
 
   // ── Complete ──────────────────────────────────────────
   function _onComplete() {
-    _toast('🎉 Bài 4 hoàn thành! Bài 5 (Số đếm) sắp ra mắt.');
-    setTimeout(function() { Router.navigateTo('tools'); }, 1800);
+    _toast('🎉 Bài 4 xong! Tiếp tục Bài 5 — Số đếm.');
+    setTimeout(function() { Router.navigateTo('hsk0-numbers'); }, 1200);
   }
 
   // ── Utils ─────────────────────────────────────────────

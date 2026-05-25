@@ -47,7 +47,8 @@ var Router = (function() {
     '/hsk0-pinyin-initials': 'hsk0-pinyin-initials',
     '/hsk0-pinyin-finals': 'hsk0-pinyin-finals',
     '/hsk0-strokes': 'hsk0-strokes',
-    '/hsk0-numbers': 'hsk0-numbers'
+    '/hsk0-numbers': 'hsk0-numbers',
+    '/hsk0-typing':  'hsk0-typing'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -140,6 +141,9 @@ var Router = (function() {
     },
     'hsk0-numbers': function() {
       if (typeof initHSK0Numbers === 'function') initHSK0Numbers();
+    },
+    'hsk0-typing': function() {
+      if (typeof initHSK0Typing === 'function') initHSK0Typing();
     }
   };
 

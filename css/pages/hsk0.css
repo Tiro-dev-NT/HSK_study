@@ -1238,3 +1238,227 @@
   .num-day-char { font-size: 9px; }
   .num-day-vi { font-size: 10px; }
 }
+
+/* ── Typing Module (O0.6) ─────────────────────────────── */
+.typing-how-grid {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}
+.typing-how-step {
+  flex: 1;
+  text-align: center;
+  padding: 12px 8px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.typing-how-num {
+  width: 28px;
+  height: 28px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 auto 8px;
+}
+.typing-how-text {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.typing-how-sub {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.typing-example-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-top: 10px;
+  overflow-x: auto;
+}
+.typing-eg-input {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 5px;
+  white-space: nowrap;
+}
+.typing-eg-arrow {
+  font-size: 18px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+.typing-eg-cands {
+  display: flex;
+  gap: 6px;
+}
+.typing-eg-cand {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #F3F4F6;
+  color: var(--text-secondary);
+}
+.typing-eg-cand.active {
+  background: var(--red);
+  color: #fff;
+}
+
+/* Platform guide */
+.typing-platform-card {
+  border: 1.5px solid;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.typing-platform-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.typing-platform-icon { font-size: 22px; }
+.typing-steps { display: flex; flex-direction: column; gap: 8px; }
+.typing-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.typing-step-num {
+  min-width: 22px;
+  height: 22px;
+  background: #6B7280;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Typing drill */
+.typing-drill-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  margin: 16px 0;
+}
+.typing-drill-char {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.typing-drill-meaning {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+.typing-candidate-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.typing-candidates {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.typing-cand {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #F3F4F6;
+  color: var(--text-secondary);
+  border: 2px solid transparent;
+  transition: all 0.15s;
+}
+.typing-cand.active {
+  background: #EFF6FF;
+  border-color: #2563EB;
+  color: #1D4ED8;
+}
+.typing-cand.correct {
+  background: #ECFDF5;
+  border-color: #059669;
+  color: #065F46;
+}
+.typing-input-wrap {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.typing-input {
+  width: 180px;
+  padding: 12px 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: border-color 0.2s;
+  background: #fff;
+  color: var(--text);
+}
+.typing-input:focus {
+  border-color: var(--red);
+}
+.typing-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.typing-check-btn {
+  width: 48px;
+  height: 48px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+.typing-check-btn:hover { opacity: 0.85; }
+.typing-check-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .typing-how-grid { flex-direction: column; gap: 8px; }
+  .typing-drill-char { font-size: 64px; }
+  .typing-input { width: 140px; font-size: 16px; }
+  .typing-cand { font-size: 18px; padding: 6px 9px; }
+}

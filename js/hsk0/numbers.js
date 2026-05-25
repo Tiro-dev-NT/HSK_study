@@ -460,8 +460,8 @@ var HSK0Numbers = (function() {
 
   // ── Complete ──────────────────────────────────────────
   function _onComplete() {
-    _toast('🎉 Bài 5 hoàn thành! Bài 6 (Gõ Pinyin) sắp ra mắt.');
-    setTimeout(function() { Router.navigateTo('tools'); }, 1800);
+    _toast('🎉 Bài 5 xong! Tiếp tục Bài 6 — Gõ Pinyin.');
+    setTimeout(function() { Router.navigateTo('hsk0-typing'); }, 1200);
   }
 
   // ── TTS ───────────────────────────────────────────────

@@ -466,8 +466,8 @@ var HSK0Typing = (function() {
   // ── Complete ──────────────────────────────────────────
   function _onComplete() {
     _saveProgress({ typing_passed: true });
-    _toast('🎉 Bài 6 hoàn thành! Toàn bộ HSK 0 Nhập Môn đã xong — sẵn sàng Thi cuối!');
-    setTimeout(function() { Router.navigateTo('tools'); }, 2200);
+    _toast('🎉 Bài 6 xong! Sẵn sàng cho Thi cuối HSK 0!');
+    setTimeout(function() { Router.navigateTo('hsk0-final'); }, 1400);
   }
 
   // ── Utils ─────────────────────────────────────────────

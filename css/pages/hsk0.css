@@ -633,3 +633,335 @@
     font-size: 36px;
   }
 }
+
+/* ════════════════════════════════════════════════════════
+   BASIC STROKES — Phase O0.4
+   ════════════════════════════════════════════════════════ */
+
+/* Animated SVG stroke (CSS stroke-dashoffset trick) */
+@keyframes stroke-draw {
+  from { stroke-dashoffset: 600; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.stroke-path-anim {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: stroke-draw 1.3s ease-out forwards;
+}
+
+/* Intro: 大 breakdown demo */
+.stroke-intro-demo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.stroke-intro-char {
+  font-size: 42px;
+  font-family: 'Noto Serif SC', 'STSong', serif;
+  min-width: 48px;
+  text-align: center;
+  line-height: 1;
+}
+
+.stroke-intro-equals {
+  font-size: 22px;
+  color: var(--text-tertiary);
+}
+
+.stroke-intro-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stroke-tag {
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  background: #fff;
+}
+
+/* Demo grid: 2 columns */
+.stroke-demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.stroke-demo-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s;
+}
+
+.stroke-demo-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.stroke-demo-svg {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.stroke-demo-info {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.stroke-demo-char {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: 'Noto Serif SC', 'STSong', serif;
+}
+
+.stroke-demo-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stroke-demo-pinyin {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.stroke-demo-dir {
+  font-size: 14px;
+  margin-left: auto;
+  color: var(--text-tertiary);
+  font-weight: 700;
+}
+
+.stroke-demo-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.stroke-demo-examples {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.stroke-ex-label {
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+
+.stroke-ex-char {
+  font-size: 18px;
+  font-family: 'Noto Serif SC', 'STSong', serif;
+  cursor: pointer;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 5px;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.stroke-ex-char:hover {
+  border-color: var(--red);
+  background: #FEF2F2;
+}
+
+.stroke-replay-btn {
+  width: 100%;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.stroke-replay-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* Practice section */
+.practice-header {
+  margin-bottom: 16px;
+}
+
+.practice-counter {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+}
+
+.practice-title {
+  font-size: 21px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.practice-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.practice-area {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.practice-guide-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.practice-canvas-wrap {
+  position: relative;
+  max-width: 240px;
+  max-height: 240px;
+  margin: 0 auto 12px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: #FAFAF9;
+  overflow: hidden;
+}
+
+.practice-ghost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.practice-attempts {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.practice-feedback {
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 20px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.practice-feedback.correct {
+  background: #F0FDF4;
+  color: #065F46;
+  border: 1px solid #6EE7B7;
+}
+
+.practice-feedback.wrong {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FCA5A5;
+}
+
+.practice-ref {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.practice-ref-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+/* Practice result list */
+.practice-result-list {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.practice-result-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.practice-result-row:last-child {
+  border-bottom: none;
+}
+
+.practice-result-row.pass {
+  background: #F0FDF4;
+}
+
+.practice-result-row.fail {
+  background: #FFF5F5;
+}
+
+/* Responsive adjustments for strokes */
+@media (max-width: 480px) {
+  .stroke-demo-grid {
+    gap: 8px;
+  }
+
+  .stroke-demo-card {
+    padding: 10px;
+  }
+
+  .stroke-intro-demo {
+    justify-content: center;
+  }
+
+  .practice-canvas-wrap {
+    width: calc(100vw - 100px) !important;
+    height: calc(100vw - 100px) !important;
+    max-width: 240px;
+    max-height: 240px;
+  }
+}

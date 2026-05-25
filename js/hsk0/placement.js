@@ -83,7 +83,7 @@ var HSK0Placement = (function() {
       <button class="hsk0-btn-primary" onclick="HSK0Placement.startTest()">
         ${p.hsk0_placement_passed ? '↺ Kiểm tra lại' : '⚡ Bắt đầu kiểm tra →'}
       </button>
-      <button class="hsk0-btn-secondary" onclick="Router.navigateTo('tools')">Không, tôi muốn học từng bài</button>
+      <button class="hsk0-btn-secondary" onclick="Router.navigateTo('learn')">Không, tôi muốn học từng bài</button>
     `;
   }
 
@@ -262,7 +262,7 @@ var HSK0Placement = (function() {
            </div>
          </div>
          <button class="hsk0-btn-primary" onclick="Router.navigateTo('learn')">🚀 Vào học từ vựng HSK 1 →</button>
-         <button class="hsk0-btn-secondary" onclick="Router.navigateTo('tools')">Tham khảo bài học HSK 0</button>`
+         <button class="hsk0-btn-secondary" onclick="Router.navigateTo('learn')">Tham khảo bài học HSK 0</button>`
       : `<div class="hsk0-box" style="background:#FEF3C7;border-color:#FCD34D">
            <div style="font-size:13px;color:#92400E;line-height:1.9">
              💡 <strong>Kết quả ${pct}% — chưa đạt ${PASS_PCT}%:</strong><br>
@@ -271,7 +271,7 @@ var HSK0Placement = (function() {
              • Sau đó thi cuối HSK 0 (25 câu, cần ≥70%)
            </div>
          </div>
-         <button class="hsk0-btn-primary" onclick="Router.navigateTo('tools')">📚 Học từng bài HSK 0</button>
+         <button class="hsk0-btn-primary" onclick="Router.navigateTo('learn')">📚 Học từng bài HSK 0</button>
          <button class="hsk0-btn-secondary" onclick="HSK0Placement.startTest()">↺ Kiểm tra lại</button>`;
 
     document.getElementById('hsk0-content').innerHTML = `

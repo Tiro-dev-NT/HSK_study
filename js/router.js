@@ -50,7 +50,22 @@ var Router = (function() {
     '/hsk0-numbers': 'hsk0-numbers',
     '/hsk0-typing':     'hsk0-typing',
     '/hsk0-final':      'hsk0-final',
-    '/hsk0-placement':  'hsk0-placement'
+    '/hsk0-placement':  'hsk0-placement',
+    // Nav v2 — hub pages
+    '/practice':        'practice',
+    '/community':       'community',
+    // Nav v2 — off-path
+    '/stories':         'stories',
+    '/explore':         'explore',
+    // Nav v2 — stub pages (Phase R/S/Y/O/U/M)
+    '/speaking':        'speaking',
+    '/writing':         'writing',
+    '/hskk':            'hskk',
+    '/radicals':        'radicals',
+    '/translate':       'translate',
+    '/ocr':             'ocr',
+    '/text-analyzer':   'text-analyzer',
+    '/typing':          'typing'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -79,6 +94,7 @@ var Router = (function() {
     'learn': function() {
       if (typeof setupDecks === 'function') setupDecks();
       if (typeof Session !== 'undefined') Session.setup();
+      if (typeof initLearnHub === 'function') initLearnHub();
     },
     'quiz': function() {
       if (typeof Quiz !== 'undefined') Quiz.setup();
@@ -152,7 +168,20 @@ var Router = (function() {
     },
     'hsk0-placement': function() {
       if (typeof initHSK0Placement === 'function') initHSK0Placement();
-    }
+    },
+    // Nav v2 hub + stub pages (static, no JS init needed)
+    'practice':     function() {},
+    'community':    function() {},
+    'stories':      function() {},
+    'explore':      function() {},
+    'speaking':     function() {},
+    'writing':      function() {},
+    'hskk':         function() {},
+    'radicals':     function() {},
+    'translate':    function() {},
+    'ocr':          function() {},
+    'text-analyzer': function() {},
+    'typing':       function() {}
   };
 
   // ── Fetch fragment from server (or memory cache) ─────
@@ -208,6 +237,9 @@ var Router = (function() {
         }
         _updateNav(page);
         _current = page;
+        if (typeof RightSidebar !== 'undefined' && RightSidebar.onNavigate) {
+          try { RightSidebar.onNavigate(page); } catch(e) {}
+        }
         if (typeof window.updateMascot === 'function') window.updateMascot(page);
         window.scrollTo(0, 0);
       })

@@ -1,0 +1,190 @@
+/* ═══════════════════════════════════════════════════════
+   CMD-PALETTE.CSS — ⌘K / Ctrl+K Command Palette
+   Desktop Polish Wave 1 · Phase Q.alt
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Overlay ───────────────────────────────────────────── */
+.cmdp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9900;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
+}
+.cmdp-overlay.cmdp-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Dialog box ────────────────────────────────────────── */
+.cmdp-dialog {
+  width: min(560px, calc(100vw - 32px));
+  background: var(--surface, #1E1E2E);
+  border: 1px solid var(--border, rgba(255,255,255,.1));
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.6);
+  overflow: hidden;
+  transform: translateY(-12px) scale(.97);
+  transition: transform .15s ease;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+.cmdp-overlay.cmdp-visible .cmdp-dialog {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Search input row ──────────────────────────────────── */
+.cmdp-search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,.08));
+  flex-shrink: 0;
+}
+.cmdp-search-icon {
+  font-size: 17px;
+  opacity: .5;
+  flex-shrink: 0;
+}
+.cmdp-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: var(--text, #F0F0F0);
+  font-family: inherit;
+  caret-color: var(--primary, #DC2626);
+}
+.cmdp-input::placeholder {
+  color: var(--text2, #888);
+}
+.cmdp-esc-badge {
+  font-size: 11px;
+  background: var(--bg, #0F0F1A);
+  border: 1px solid var(--border, rgba(255,255,255,.12));
+  border-radius: 5px;
+  padding: 2px 7px;
+  color: var(--text2, #888);
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+/* ── Results list ──────────────────────────────────────── */
+.cmdp-results {
+  overflow-y: auto;
+  flex: 1;
+  padding: 6px 0 10px;
+}
+.cmdp-results::-webkit-scrollbar { width: 4px; }
+.cmdp-results::-webkit-scrollbar-track { background: transparent; }
+.cmdp-results::-webkit-scrollbar-thumb { background: var(--border, rgba(255,255,255,.15)); border-radius: 2px; }
+
+/* ── Section header ─────────────────────────────────────── */
+.cmdp-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text2, #888);
+  padding: 10px 16px 4px;
+}
+
+/* ── Single item ────────────────────────────────────────── */
+.cmdp-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background .1s;
+  border: none;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--text, #F0F0F0);
+  font-family: inherit;
+}
+.cmdp-item:hover,
+.cmdp-item.cmdp-active {
+  background: color-mix(in srgb, var(--primary, #DC2626) 12%, var(--surface, #1E1E2E));
+}
+.cmdp-item-icon {
+  font-size: 18px;
+  width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.cmdp-item-text {
+  flex: 1;
+  min-width: 0;
+}
+.cmdp-item-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cmdp-item-desc {
+  font-size: 11.5px;
+  color: var(--text2, #888);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cmdp-item-kbdwrap {
+  flex-shrink: 0;
+}
+.cmdp-kbd {
+  font-size: 10px;
+  background: var(--bg, #0F0F1A);
+  border: 1px solid var(--border, rgba(255,255,255,.12));
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: monospace;
+  color: var(--text2, #888);
+}
+
+/* ── Empty state ────────────────────────────────────────── */
+.cmdp-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text2, #888);
+  font-size: 13px;
+}
+
+/* ── Footer hint ────────────────────────────────────────── */
+.cmdp-footer {
+  padding: 8px 16px;
+  border-top: 1px solid var(--border, rgba(255,255,255,.08));
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text2, #666);
+  flex-shrink: 0;
+}
+.cmdp-footer kbd {
+  font-family: monospace;
+  background: var(--bg, #0F0F1A);
+  border: 1px solid var(--border, rgba(255,255,255,.12));
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 10px;
+}
+
+/* ── Mobile: hide on small screens (palette is desktop feature) ── */
+@media (max-width: 767px) {
+  .cmdp-overlay { display: none !important; }
+}

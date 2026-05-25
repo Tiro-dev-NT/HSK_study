@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['initQuests',      function() { if (typeof Quests !== 'undefined') Quests.init(); }],
     ['setupSidebar',    function() { _initSidebarCollapse(); }],
     ['initHSKVersion',  function() { if (typeof HSKVersion !== 'undefined') HSKVersion.init(); }],
+    ['setupCmdPalette', function() { if (typeof CmdPalette !== 'undefined') CmdPalette.setup(); }],
   ];
 
   initSteps.forEach(function(step) {

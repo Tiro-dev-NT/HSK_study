@@ -278,6 +278,8 @@ function openDeckDetail(deckId, topicFilter = null) {
   activeDeckId = deckId;
   const deck = decks[deckId];
   if (!deck) return;
+  // Track last opened deck for Learn Hub "Continue strip"
+  localStorage.setItem('hsk_last_deck_id', deckId);
   let words = getDeckWords(deck);
   if (topicFilter) words = words.filter(w => (w.t || 'general') === topicFilter);
 
@@ -783,4 +785,82 @@ function showDeckMenu(deckId) {
   else if (action === '2') exportDeck(deckId);
   else if (action === '3') { if (confirm(`Xóa "${deck.title}"?`)) { deleteDeck(deckId); renderMyDecks(); } }
 }
+
+// ── Deck Hover Preview (Desktop Polish Wave 1) ────────
+(function _initDeckHoverPreview() {
+  var popup = null;
+  var hideTimer = null;
+
+  function _getPopup() {
+    if (!popup) popup = document.getElementById('deckHoverPreview');
+    return popup;
+  }
+
+  function _show(card) {
+    var p = _getPopup();
+    if (!p) return;
+    var deckId = card.dataset.id;
+    var deck = decks[deckId];
+    if (!deck) return;
+
+    var prog  = (typeof getDeckProgress === 'function') ? getDeckProgress(deck) : { pct: 0 };
+    var words = getDeckWords(deck).slice(0, 6);
+
+    var chipsHtml = words.map(function(w) {
+      return '<div class="dhp-word-chip">' + w.h + '<small>' + (w.p || '') + '</small></div>';
+    }).join('');
+    var remaining = Math.max(0, getDeckWords(deck).length - 6);
+    var footerHtml = remaining > 0
+      ? '<div class="dhp-footer">+' + remaining + ' từ nữa…</div>'
+      : '';
+
+    p.innerHTML =
+      '<div class="dhp-header">' +
+        '<span class="dhp-icon">' + (deck.icon || '📕') + '</span>' +
+        '<span class="dhp-title">' + deck.title + '</span>' +
+        '<span class="dhp-pct">' + (prog.pct || 0) + '%</span>' +
+      '</div>' +
+      '<div class="dhp-bar-wrap"><div class="dhp-bar-fill" style="width:' + (prog.pct || 0) + '%"></div></div>' +
+      '<div class="dhp-words">' + chipsHtml + '</div>' +
+      footerHtml;
+
+    // Position: to the right of card (or left if near edge)
+    var rect = card.getBoundingClientRect();
+    var pw = 288; // popup width + margin
+    var leftPos = rect.right + 8;
+    if (leftPos + pw > window.innerWidth - 16) {
+      leftPos = rect.left - pw - 8;
+    }
+    var topPos = Math.max(8, Math.min(rect.top, window.innerHeight - 260));
+    p.style.left = leftPos + 'px';
+    p.style.top  = topPos  + 'px';
+    p.style.display = '';
+    requestAnimationFrame(function() { p.classList.add('dhp-visible'); });
+  }
+
+  function _hide() {
+    var p = _getPopup();
+    if (!p) return;
+    p.classList.remove('dhp-visible');
+    hideTimer = setTimeout(function() { if (p) p.style.display = 'none'; }, 160);
+  }
+
+  // Event delegation on document for cards rendered by renderDeckBrowser()
+  document.addEventListener('mouseover', function(e) {
+    // Only on desktop
+    if (window.innerWidth < 1024) return;
+    var card = e.target.closest('.deck-card[data-id]');
+    if (!card) return;
+    clearTimeout(hideTimer);
+    _show(card);
+  });
+
+  document.addEventListener('mouseout', function(e) {
+    var card = e.target.closest('.deck-card[data-id]');
+    if (!card) return;
+    // Don't hide if moving into the card's own children
+    if (card.contains(e.relatedTarget)) return;
+    _hide();
+  });
+}());
 

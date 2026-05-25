@@ -340,8 +340,8 @@ var Profile = (function() {
     if (activeId) {
       var fa = WAVE_A_OUTFITS.find(function(o) { return o.id === activeId; });
       var fh = HONOR_OUTFITS.find(function(o) { return o.id === activeId; });
-      if (fa) { previewSrc = 'content/assets/output/outfits-basic/' + fa.file; previewName = fa.name; }
-      if (fh) { previewSrc = 'content/assets/output/outfits-honor/' + fh.file; previewName = fh.name; }
+      if (fa) { previewSrc = 'assets/outfits/basic/' + fa.file; previewName = fa.name; }
+      if (fh) { previewSrc = 'assets/outfits/honor/' + fh.file; previewName = fh.name; }
     }
 
     function _outfitCard(o, srcBase, isHonor) {
@@ -370,10 +370,10 @@ var Profile = (function() {
     }
 
     var waveAHtml = WAVE_A_OUTFITS.map(function(o) {
-      return _outfitCard(o, 'content/assets/output/outfits-basic/', false);
+      return _outfitCard(o, 'assets/outfits/basic/', false);
     }).join('');
     var honorHtml = HONOR_OUTFITS.map(function(o) {
-      return _outfitCard(o, 'content/assets/output/outfits-honor/', true);
+      return _outfitCard(o, 'assets/outfits/honor/', true);
     }).join('');
 
     wrap.innerHTML =

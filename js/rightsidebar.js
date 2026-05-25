@@ -239,6 +239,73 @@ var RightSidebar = {
     if (section) section.style.display = 'none';
   },
 
+  // ── Smart Right-Rail: route-aware context (Desktop Polish Wave 1) ──
+  onNavigate: function(page) {
+    var section = document.getElementById('rsCtxSection');
+    if (!section) return;
+    var html = '';
+    if (page === 'learn') {
+      html = RightSidebar._ctxLearn();
+    } else if (page === 'practice' || page === 'quiz') {
+      html = RightSidebar._ctxPractice();
+    } else if (page === 'dictionary' || page === 'tools') {
+      html = RightSidebar._ctxTools();
+    }
+    if (!html) {
+      section.innerHTML = '';
+      section.style.display = 'none';
+      return;
+    }
+    section.innerHTML = html;
+    section.style.display = '';
+  },
+
+  _ctxLearn: function() {
+    var lastId = localStorage.getItem('hsk_last_deck_id') || 'sys_hsk1';
+    var deck = (typeof decks !== 'undefined') ? decks[lastId] : null;
+    if (!deck) return '';
+    var prog = (typeof getDeckProgress === 'function') ? getDeckProgress(deck) : { pct: 0, dueCount: 0 };
+    var pct  = prog.pct || 0;
+    var due  = prog.dueCount || 0;
+    return '<div class="rs-section-title">📚 Bộ thẻ gần đây</div>' +
+      '<div class="rs-ctx-deck-card">' +
+        '<div class="rs-ctx-deck-icon" style="background:' + (deck.color || '#DC2626') + '">' + (deck.icon || '📕') + '</div>' +
+        '<div class="rs-ctx-deck-info">' +
+          '<div class="rs-ctx-deck-name">' + deck.title + '</div>' +
+          '<div class="rs-ctx-bar-wrap"><div class="rs-ctx-bar-fill" style="width:' + pct + '%"></div></div>' +
+          '<div class="rs-ctx-meta">' + pct + '% · ' + due + ' cần ôn</div>' +
+        '</div>' +
+      '</div>' +
+      '<button class="rs-ctx-btn" onclick="learnHubOpenDeck && learnHubOpenDeck(\'' + lastId + '\')">▶ Học tiếp →</button>';
+  },
+
+  _ctxPractice: function() {
+    var today = new Date().toISOString().split('T')[0];
+    var due = 0;
+    if (typeof AppState !== 'undefined' && AppState.srsData) {
+      due = Object.values(AppState.srsData).filter(function(s) {
+        return s.dueDate && s.dueDate <= today;
+      }).length;
+    }
+    return '<div class="rs-section-title">⚡ Ôn luyện hôm nay</div>' +
+      '<div class="rs-ctx-big-row">' +
+        '<span class="rs-ctx-big-num">' + due + '</span>' +
+        '<span class="rs-ctx-big-label">từ cần ôn</span>' +
+      '</div>' +
+      (due > 0 ?
+        '<button class="rs-ctx-btn" onclick="Router.navigateTo(\'quiz\')">Ôn tập ngay →</button>' :
+        '<div class="rs-ctx-done">✅ Hôm nay đã ôn xong!</div>');
+  },
+
+  _ctxTools: function() {
+    var isMac = navigator.platform && navigator.platform.indexOf('Mac') !== -1;
+    var shortcut = isMac ? '⌘K' : 'Ctrl+K';
+    return '<div class="rs-section-title">🔍 Phím tắt</div>' +
+      '<div class="rs-ctx-tip"><kbd class="rs-ctx-kbd">' + shortcut + '</kbd><span>Command Palette</span></div>' +
+      '<div class="rs-ctx-tip"><kbd class="rs-ctx-kbd">/</kbd><span>Tìm kiếm topbar</span></div>' +
+      '<div class="rs-ctx-tip"><kbd class="rs-ctx-kbd">Esc</kbd><span>Đóng popup / palette</span></div>';
+  },
+
   setSrsMode: function(val) {
     if (typeof appSettings !== 'undefined') {
       appSettings.srsMode = val;

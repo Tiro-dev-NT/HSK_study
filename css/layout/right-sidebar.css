@@ -99,6 +99,62 @@
 .rs-related-p { color: var(--text2); font-size: 12px; margin-left: 6px; }
 .rs-related-v { color: var(--text2); font-size: 13px; margin-top: 2px; }
 
+/* ── Smart Right-Rail: contextual section ────────────── */
+.rs-ctx-deck-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 10px;
+}
+.rs-ctx-deck-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  color: #fff;
+}
+.rs-ctx-deck-info { flex: 1; min-width: 0; }
+.rs-ctx-deck-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rs-ctx-bar-wrap { height: 4px; background: var(--border); border-radius: 2px; margin: 4px 0; overflow: hidden; }
+.rs-ctx-bar-fill { height: 100%; background: var(--primary); border-radius: 2px; }
+.rs-ctx-meta { font-size: 11px; color: var(--text2); }
+.rs-ctx-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity .15s;
+  font-family: inherit;
+}
+.rs-ctx-btn:hover { opacity: .85; }
+.rs-ctx-big-row { display: flex; align-items: baseline; gap: 6px; }
+.rs-ctx-big-num { font-size: 32px; font-weight: 800; color: var(--primary); line-height: 1; }
+.rs-ctx-big-label { font-size: 12px; color: var(--text2); }
+.rs-ctx-done { font-size: 13px; color: #22C55E; font-weight: 500; }
+.rs-ctx-tip { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.rs-ctx-kbd {
+  font-family: monospace;
+  background: var(--bg, #0F0F1A);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* ── E4: SRS toggle group in settings ────────────────── */
 .toggle-group { display: flex; gap: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
 .toggle-opt { padding: 6px 12px; font-size: 13px; border: none; background: var(--surface2); color: var(--text2); cursor: pointer; transition: all .2s; }

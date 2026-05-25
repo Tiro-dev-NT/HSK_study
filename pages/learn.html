@@ -1,8 +1,75 @@
     <!-- PAGE: LEARN (DECK BROWSER + SESSION) -->
     <section class="page active" id="page-learn">
 
+      <!-- ── LEARN HUB v2 ───────────────────────────────── -->
+      <div id="learnHub">
+
+        <!-- 1. Continue strip (hero) -->
+        <div class="lh-hero">
+          <div class="lh-hero-label">Tiếp tục học</div>
+          <div class="lh-hero-row">
+            <div class="lh-hero-info">
+              <div class="lh-cont-name" id="lhContName">HSK 1</div>
+              <div class="lh-cont-meta" id="lhContMeta">Chưa bắt đầu</div>
+              <div class="lh-cont-bar-wrap"><div class="lh-cont-bar" id="lhContBar" style="width:0%"></div></div>
+            </div>
+            <button class="lh-cont-btn" id="lhContBtn">▶ Học tiếp ngay</button>
+          </div>
+        </div>
+
+        <!-- 2. Hôm nay -->
+        <div class="lh-section">
+          <div class="lh-section-label">📅 Hôm nay</div>
+          <div class="lh-today-grid">
+            <div class="lh-today-card lh-today-card--due" onclick="Router.navigateTo('quiz')">
+              <div class="lh-today-num" id="lhDueCount">—</div>
+              <div class="lh-today-lbl">Thẻ cần ôn</div>
+              <div class="lh-today-desc">SRS đến hạn hôm nay</div>
+            </div>
+            <div class="lh-today-card lh-today-card--new">
+              <div class="lh-today-num" id="lhNewCount">—</div>
+              <div class="lh-today-lbl">Từ mới</div>
+              <div class="lh-today-desc">Slot còn lại hôm nay</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Timeline -->
+        <div class="lh-section">
+          <div class="lh-section-label">🗺️ Lộ trình của bạn</div>
+          <div class="lh-timeline" id="lhTimeline">
+            <div style="padding:20px;text-align:center;color:var(--text2);font-size:14px">Đang tải…</div>
+          </div>
+        </div>
+
+        <!-- 4. Supporting resources -->
+        <div class="lh-section">
+          <div class="lh-section-label">📚 Tài nguyên bổ trợ</div>
+          <div class="lh-support-grid">
+            <button class="lh-support-item" onclick="Router.navigateTo('grammar')">
+              <span class="lh-support-icon">📝</span><span>Ngữ pháp</span>
+            </button>
+            <button class="lh-support-item" onclick="Router.navigateTo('reading')">
+              <span class="lh-support-icon">📖</span><span>Đọc hiểu</span>
+            </button>
+            <button class="lh-support-item" onclick="Router.navigateTo('learn-method')">
+              <span class="lh-support-icon">🧠</span><span>Cách học</span>
+            </button>
+            <button class="lh-support-item" onclick="Router.navigateTo('ban-do-hsk')">
+              <span class="lh-support-icon">🗺️</span><span>Bản đồ HSK</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- All decks link -->
+        <div class="lh-all-decks">
+          <button class="lh-all-btn" id="lhBtnAllDecks">📚 Tất cả bộ thẻ →</button>
+        </div>
+
+      </div><!-- /#learnHub -->
+
       <!-- ① DECK BROWSER -->
-      <div id="deckBrowser">
+      <div id="deckBrowser" style="display:none">
         <div class="page-header">
           <h1 data-vi="Học từ vựng" data-en="Vocabulary">Học từ vựng</h1>
           <div class="deck-view-toggle">

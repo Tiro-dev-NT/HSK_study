@@ -363,4 +363,106 @@
 .ddwl-tts:hover { opacity: 1; transform: scale(1.15); }
 
 
+/* ══ Learn Hub v2 (Nav v2 Phase 2) ═══════════════════════════ */
+#learnHub { padding: 4px 0 32px; }
+
+.lh-hero {
+  background: linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 60%, var(--surface2)) 100%);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.lh-hero-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .78; margin-bottom: 10px; }
+.lh-hero-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.lh-hero-info { flex: 1; min-width: 0; }
+.lh-cont-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lh-cont-meta { font-size: 13px; opacity: .85; margin-bottom: 8px; }
+.lh-cont-bar-wrap { height: 6px; background: rgba(255,255,255,.25); border-radius: 3px; overflow: hidden; }
+.lh-cont-bar { height: 100%; background: #fff; border-radius: 3px; transition: width .5s; }
+.lh-cont-btn {
+  background: #fff; color: var(--primary); border: none;
+  padding: 10px 20px; border-radius: 10px;
+  font-weight: 700; font-size: 15px; cursor: pointer;
+  white-space: nowrap; transition: .2s; flex-shrink: 0;
+}
+.lh-cont-btn:hover { transform: scale(1.04); opacity: .9; }
+
+.lh-section { margin-bottom: 24px; }
+.lh-section-label { font-size: 12px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+
+.lh-today-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lh-today-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 16px 18px;
+  cursor: pointer; transition: .18s; text-align: left;
+}
+.lh-today-card:hover { border-color: var(--primary); background: var(--surface2); }
+.lh-today-card--due .lh-today-num { color: #EF4444; }
+.lh-today-card--new .lh-today-num { color: var(--primary); }
+.lh-today-num { font-size: 32px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.lh-today-lbl { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.lh-today-desc { font-size: 12px; color: var(--text2); }
+
+.lh-timeline { display: flex; flex-direction: column; }
+.lh-tl-node {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  cursor: pointer; transition: .18s;
+  text-align: left; width: 100%; font: inherit; color: var(--text);
+}
+.lh-tl-node:hover { border-color: var(--primary); background: var(--surface2); }
+.lh-tl-node--active { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, var(--surface)); }
+.lh-tl-node--done { opacity: .65; }
+.lh-tl-node--soon { cursor: default; opacity: .5; }
+.lh-tl-node--soon:hover { border-color: var(--border); background: var(--surface); }
+.lh-tl-icon { font-size: 22px; min-width: 32px; text-align: center; }
+.lh-tl-body { flex: 1; min-width: 0; }
+.lh-tl-name { font-size: 15px; font-weight: 600; }
+.lh-tl-progress { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; margin: 5px 0 4px; }
+.lh-tl-bar { height: 100%; background: var(--primary); border-radius: 2px; transition: width .5s; }
+.lh-tl-sub { font-size: 12px; color: var(--text2); }
+.lh-here-chip { background: var(--primary); color: #fff; padding: 1px 7px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.lh-tl-badge-soon { font-style: italic; }
+.lh-tl-arrow-active { color: var(--primary); font-size: 14px; padding-left: 4px; }
+.lh-tl-connector { height: 8px; width: 2px; background: var(--border); margin: 0 0 0 28px; }
+.lh-tl-map-link {
+  margin-top: 10px; padding: 10px 14px;
+  text-align: center; font-size: 13px; font-weight: 600;
+  color: var(--primary); background: none;
+  border: 1px dashed var(--border); border-radius: 10px;
+  cursor: pointer; transition: .18s; width: 100%; font: inherit;
+}
+.lh-tl-map-link:hover { background: var(--surface2); border-style: solid; }
+
+.lh-support-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.lh-support-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 8px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  cursor: pointer; font-size: 13px; font-weight: 600;
+  color: var(--text); transition: .18s; font: inherit;
+}
+.lh-support-item:hover { border-color: var(--primary); background: var(--surface2); }
+.lh-support-icon { font-size: 22px; }
+
+.lh-all-decks { margin-top: 8px; text-align: center; }
+.lh-all-btn {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 24px;
+  font-size: 14px; font-weight: 600; color: var(--text2);
+  cursor: pointer; transition: .18s; font: inherit;
+}
+.lh-all-btn:hover { color: var(--primary); border-color: var(--primary); }
+
+@media (max-width: 600px) {
+  .lh-support-grid { grid-template-columns: repeat(2, 1fr); }
+  .lh-today-grid { gap: 10px; }
+  .lh-hero { padding: 16px; }
+  .lh-cont-name { font-size: 18px; }
+  .lh-cont-btn { width: 100%; text-align: center; }
+}
+
+
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•

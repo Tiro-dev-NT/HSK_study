@@ -23,17 +23,19 @@
   <!-- Layout: sidebar, main, right-sidebar -->
   <link rel="stylesheet" href="css/layout/sidebar.css?v=2.0"/>
   <link rel="stylesheet" href="css/layout/main.css?v=1.0"/>
-  <link rel="stylesheet" href="css/layout/right-sidebar.css?v=2.0"/>
+  <link rel="stylesheet" href="css/layout/right-sidebar.css?v=2.1"/>
   <!-- Components: shared UI patterns -->
   <link rel="stylesheet" href="css/components/buttons.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/modals.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/word-detail.css?v=2.0"/>
-  <link rel="stylesheet" href="css/components/deck-browser.css?v=1.1"/>
+  <link rel="stylesheet" href="css/components/deck-browser.css?v=1.2"/>
   <link rel="stylesheet" href="css/components/streak-calendar.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/empty-state.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/error-state.css?v=1.0"/>
   <link rel="stylesheet" href="css/components/fab-sheet.css?v=1.0"/>
+  <link rel="stylesheet" href="css/components/coming-soon.css?v=1.0" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="css/components/cookie-consent.css?v=1.0"/>
+  <link rel="stylesheet" href="css/components/cmd-palette.css?v=1.0"/>
   <!-- Pages: critical styles (needed for initial render) -->
   <link rel="stylesheet" href="css/pages/home.css?v=2.2"/>
   <link rel="stylesheet" href="css/pages/dictionary.css?v=2.1"/>
@@ -98,7 +100,7 @@
     </div>
     <nav class="sidebar-nav">
 
-      <!-- ── Primary 4-tab nav ── -->
+      <!-- ── Primary 6-tab nav (Nav v2 LOCKED 2026-05-25) ── -->
       <div class="nav-primary">
         <a class="nav-item active" data-page="home" href="#">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
@@ -108,6 +110,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           <span>Học</span>
         </a>
+        <a class="nav-item" data-page="practice" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>Luyện tập</span>
+        </a>
         <a class="nav-item" data-page="tools" href="#">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           <span>Công cụ</span>
@@ -116,67 +122,23 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           <span>Tôi</span>
         </a>
+        <a class="nav-item" data-page="community" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Cộng đồng</span>
+        </a>
       </div>
 
       <div class="nav-divider"></div>
 
-      <!-- ── More / Secondary nav toggle ── -->
+      <!-- ── More / Secondary nav toggle (Nav v2: Admin + Settings + Feedback only) ── -->
       <button class="nav-more-btn" id="navMoreBtn" onclick="toggleNavSecondary()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="5" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="19" cy="12" r="1" fill="currentColor"/></svg>
-        <span>Xem thêm</span>
+        <span>Thêm</span>
         <span class="nav-more-icon" id="navMoreIcon">›</span>
       </button>
 
       <!-- ── Secondary nav (collapsible) ── -->
       <div class="nav-secondary" id="navSecondary">
-        <a class="nav-item" data-page="quiz" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          <span>Kiểm tra</span>
-        </a>
-        <a class="nav-item" data-page="games" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="6" width="20" height="12" rx="4"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
-          <span>Trò chơi</span>
-        </a>
-        <a class="nav-item" data-page="grammar" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
-          <span>Ngữ pháp</span>
-        </a>
-        <a class="nav-item" data-page="reading" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          <span>Đọc hiểu</span>
-        </a>
-        <a class="nav-item" data-page="my-vocab" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          <span>Kho của tôi</span>
-        </a>
-        <a class="nav-item" data-page="vault" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17,21 17,13 7,13 7,21"/><polyline points="7,3 7,8 15,8"/></svg>
-          <span>Bộ thẻ</span>
-        </a>
-        <a class="nav-item" data-page="handwriting" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>
-          <span>Luyện viết</span>
-        </a>
-        <a class="nav-item" data-page="pinyin-lab" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 18V6a2 2 0 0 1 2-2h7l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M13 4v5h5"/><path d="M8 14h5"/><path d="M8 17h8"/></svg>
-          <span>Pinyin Lab</span>
-        </a>
-        <a class="nav-item" data-page="ban-do-hsk" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-          <span>Bản đồ HSK</span>
-        </a>
-        <a class="nav-item" data-page="quests" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-          <span>Nhiệm vụ</span>
-        </a>
-        <a class="nav-item" data-page="learn-method" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/><line x1="6" y1="8" x2="8" y2="8"/><line x1="6" y1="12" x2="8" y2="12"/></svg>
-          <span>Cách học</span>
-        </a>
-        <a class="nav-item" data-page="honor-hall" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-          <span>Hộp Ân Cần</span>
-        </a>
         <a class="nav-item" data-page="feedback" href="#">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span>Góp ý</span>
@@ -232,6 +194,8 @@
       <p class="rs-mascot-msg" id="rsMascotMsg">Học tốt nhé! 🐉</p>
     </div>
     <div class="rs-inner">
+      <!-- Contextual section (route-aware, populated by RightSidebar.onNavigate) -->
+      <div id="rsCtxSection" class="rs-section" style="display:none"></div>
       <!-- Mini stats -->
       <div class="rs-section">
         <div class="rs-stats">
@@ -317,6 +281,9 @@
     </div>
   </aside>
 
+  <!-- Deck hover preview (single floating popup, populated by decks.js) -->
+  <div id="deckHoverPreview" class="dhp-popup" style="display:none" aria-hidden="true"></div>
+
   <!-- MAIN CONTENT -->
   <main class="main-content">
     <!-- HEADER (Mobile) -->
@@ -349,7 +316,7 @@
 
     </main>
 
-  <!-- BOTTOM NAV (Mobile — 4 tabs + center FAB) -->
+  <!-- BOTTOM NAV (Mobile — 5-tab Nav v2: Tổng quan / Học / FAB / Tôi / Cộng đồng) -->
   <nav class="bottom-nav">
     <a class="bnav-item active" data-page="home" href="#">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
@@ -363,20 +330,20 @@
     <button class="bnav-fab" onclick="openFabSheet()" title="Xem thêm">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </button>
-    <a class="bnav-item" data-page="tools" href="#">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-      <span>Công cụ</span>
-    </a>
     <a class="bnav-item" data-page="profile" href="#">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       <span>Tôi</span>
+    </a>
+    <a class="bnav-item" data-page="community" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Cộng đồng</span>
     </a>
   </nav>
 
   <!-- FAB SHEET BACKDROP -->
   <div class="fab-sheet-backdrop" id="fabSheetBackdrop" onclick="closeFabSheet()"></div>
 
-  <!-- FAB SHEET -->
+  <!-- FAB SHEET (Nav v2 — Công cụ + Luyện tập + off-path + quick jumps) -->
   <div class="fab-sheet" id="fabSheet">
     <div class="fab-sheet-handle"></div>
     <div class="fab-sheet-header">
@@ -384,21 +351,32 @@
       <button class="fab-sheet-close" onclick="closeFabSheet()">✕</button>
     </div>
     <div class="fab-sheet-grid">
-      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('learn');return false;">
-        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
-        <span class="fab-sheet-label">Học ngay</span>
+      <!-- Hubs not in mobile bottom-nav -->
+      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('practice');return false;">
+        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <span class="fab-sheet-label">Luyện tập</span>
       </a>
-      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('quiz');return false;">
-        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-        <span class="fab-sheet-label">Kiểm tra</span>
+      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('tools');return false;">
+        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+        <span class="fab-sheet-label">Công cụ</span>
       </a>
+      <!-- Off-path entries -->
       <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('games');return false;">
         <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="6" width="20" height="12" rx="4"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg></span>
         <span class="fab-sheet-label">Trò chơi</span>
       </a>
-      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('ban-do-hsk');return false;">
-        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
-        <span class="fab-sheet-label">Bản đồ HSK</span>
+      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('stories');return false;">
+        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span class="fab-sheet-label">Truyện Mai</span>
+      </a>
+      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('explore');return false;">
+        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <span class="fab-sheet-label">Khám phá</span>
+      </a>
+      <!-- Quick jumps -->
+      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('dictionary');return false;">
+        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <span class="fab-sheet-label">Từ điển</span>
       </a>
       <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('grammar');return false;">
         <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></span>
@@ -408,17 +386,9 @@
         <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
         <span class="fab-sheet-label">Đọc hiểu</span>
       </a>
-      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('handwriting');return false;">
-        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></span>
-        <span class="fab-sheet-label">Luyện viết</span>
-      </a>
       <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('quests');return false;">
         <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></span>
         <span class="fab-sheet-label">Nhiệm vụ</span>
-      </a>
-      <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('my-vocab');return false;">
-        <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
-        <span class="fab-sheet-label">Kho của tôi</span>
       </a>
       <a class="fab-sheet-item" href="#" onclick="closeFabSheet();Router.navigateTo('vault');return false;">
         <span class="fab-sheet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17,21 17,13 7,13 7,21"/><polyline points="7,3 7,8 15,8"/></svg></span>
@@ -627,7 +597,7 @@
   <script src="js/srs.js?v=2.5"></script>
   <!-- ══ Core modules (ordered by dependency) ══ -->
   <script src="js/state.js?v=2.9"></script>
-  <script src="js/router.js?v=3.6"></script>
+  <script src="js/router.js?v=3.8"></script>
   <script src="js/theme.js?v=2.5"></script>
   <script src="js/gamification.js?v=3.3"></script>
   <script src="js/dictionary.js?v=2.9"></script>
@@ -637,7 +607,8 @@
   <script src="js/feedback.js?v=2.5"></script>
   <script src="js/settings.js?v=2.7"></script>
   <!-- ══ Deck & session (depends on state + modules above) ══ -->
-  <script src="js/decks.js?v=2.9"></script>
+  <script src="js/decks.js?v=3.0"></script>
+  <script src="js/learn-hub.js?v=1.0"></script>
   <script src="js/session.js?v=2.8"></script>
   <script src="js/games.js?v=3.2"></script>
   <script src="js/games/boss.js?v=2.1"></script>
@@ -654,6 +625,7 @@
   <script src="js/pinyin-lab.js?v=1.0"></script>
   <script src="js/ban-do-hsk.js?v=1.0"></script>
   <script src="js/cookie-consent.js?v=1.1"></script>
+  <script src="js/cmd-palette.js?v=1.0"></script>
   <script src="js/app.js?v=2.7"></script>
   <!-- ══ CDN libs ══ -->
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
@@ -673,7 +645,7 @@
   <script src="js/admin/system.js?v=1.1"></script>
   <script src="js/sync.js?v=2.9"></script>
   <script src="js/sync-window.js?v=1.0"></script>
-  <script src="js/rightsidebar.js?v=2.7"></script>
+  <script src="js/rightsidebar.js?v=2.8"></script>
   <script src="js/data/plans.js?v=1.0"></script>
   <script src="js/pricing.js?v=2.5"></script>
   <script src="js/honor.js?v=1.0"></script>
@@ -983,9 +955,21 @@
         'quests':      'Hoàn thành nhiệm vụ để nhận thưởng! ⚔️',
         'my-vocab':    'Kho từ của bạn đang lớn dần đấy! 🗂️',
         'pricing':     'Nâng cấp Pro — mở khóa toàn bộ! 💎',
-        'profile':     'Xem tiến độ và thành tích của bạn! 🏅',
-        'vault':       'Bộ thẻ của bạn thật phong phú! 🗃️',
-        'pinyin-lab':  'Luyện pinyin để phát âm chuẩn hơn! 🎵'
+        'profile':       'Xem tiến độ và thành tích của bạn! 🏅',
+        'vault':         'Bộ thẻ của bạn thật phong phú! 🗃️',
+        'pinyin-lab':    'Luyện pinyin để phát âm chuẩn hơn! 🎵',
+        'practice':      'Kiểm tra kiến thức — output thật mới biết giỏi! 🎯',
+        'community':     'Cộng đồng học tiếng Trung đang lớn dần! 🌏',
+        'stories':       'Học qua câu chuyện — hiệu quả và thú vị hơn! 📖',
+        'explore':       'Khám phá văn hoá để yêu tiếng Trung hơn! 🏮',
+        'speaking':      'Phát âm đúng từ đầu — đừng học lại thói quen xấu! 🎙️',
+        'writing':       'Viết tốt = hiểu sâu — AI sẽ giúp bạn! ✍️',
+        'hskk':          'HSKK là bước tiếp theo sau HSK — chuẩn bị sớm! 🎤',
+        'radicals':      '214 bộ thủ là chìa khoá đọc chữ Hán! 木',
+        'translate':     'Dịch + phân tích — học từ ngữ cảnh thật! 🔄',
+        'ocr':           'Chụp là tra được — tiện nhất khi ra ngoài! 📷',
+        'text-analyzer': 'Dán bất kỳ văn bản — biết ngay mình cần học gì! 🔍',
+        'typing':        'Gõ nhanh = tư duy tiếng Trung nhanh hơn! ⌨️'
       };
       el.textContent = msgs[page] || 'Học tốt nhé! 🐉';
     };

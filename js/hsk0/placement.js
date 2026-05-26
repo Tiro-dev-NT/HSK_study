@@ -238,6 +238,10 @@ var HSK0Placement = (function() {
     var total  = _state.examList.length;
     var pct    = Math.round(_state.examScore / total * 100);
     var passed = pct >= PASS_PCT;
+    var placementLevel = passed ? 'hsk1' : 'hsk0';
+
+    localStorage.setItem('hsk_placement_level', placementLevel);
+    if (passed) localStorage.setItem('hsk0_passed', '1');
 
     _saveProgress({
       hsk0_placement_pct: pct,

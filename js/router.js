@@ -50,6 +50,8 @@ var Router = (function() {
     '/hsk0-numbers': 'hsk0-numbers',
     '/hsk0-typing':     'hsk0-typing',
     '/hsk0-final':      'hsk0-final',
+    '/hsk0-final-exam': 'hsk0-final',
+    '/placement':       'hsk0-placement',
     '/hsk0-placement':  'hsk0-placement',
     // Nav v2 — hub pages
     '/practice':        'practice',

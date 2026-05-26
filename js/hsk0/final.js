@@ -267,7 +267,12 @@ var HSK0Final = (function() {
     var pct    = Math.round(_state.examScore / total * 100);
     var passed = pct >= PASS_PCT;
 
-    _saveProgress({ hsk0_final_pct: pct, hsk0_final_passed: passed });
+    if (passed) localStorage.setItem('hsk0_passed', '1');
+    _saveProgress({
+      hsk0_final_pct: pct,
+      hsk0_final_passed: passed || _state.progress.hsk0_final_passed,
+      hsk0_passed: passed || _state.progress.hsk0_passed
+    });
 
     var emoji = pct === 100 ? '🏆' : pct >= 80 ? '🎓' : pct >= PASS_PCT ? '🎉' : pct >= 55 ? '💪' : '📚';
 
@@ -345,5 +350,9 @@ var HSK0Final = (function() {
 })();
 
 function initHSK0Final() {
+  HSK0Final.init();
+}
+
+function initHsk0FinalExam() {
   HSK0Final.init();
 }

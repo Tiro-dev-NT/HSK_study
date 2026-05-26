@@ -21,28 +21,28 @@ var Profile = (function() {
 
   // ── Outfit data ───────────────────────────────────────
   var WAVE_A_OUTFITS = [
-    { id:'hoc-si',               name:'Học Sĩ',              cost:50,  file:'01-hoc-si.png' },
-    { id:'cu-nhan-ao-dai',       name:'Cử Nhân Áo Dài',      cost:100, file:'02-cu-nhan-ao-dai.png' },
-    { id:'vo-su',                name:'Võ Sư',                cost:150, file:'03-vo-su.png' },
-    { id:'dau-bep',              name:'Đầu Bếp',              cost:150, file:'04-dau-bep.png' },
-    { id:'du-khach',             name:'Du Khách',             cost:200, file:'05-du-khach.png' },
-    { id:'nghe-si-thu-phap',     name:'Nghệ Sĩ Thư Pháp',    cost:200, file:'06-nghe-si-thu-phap.png' },
-    { id:'tien-si-trang-nguyen', name:'Tiến Sĩ Trạng Nguyên',cost:250, file:'07-tien-si-trang-nguyen.png' },
-    { id:'tham-hiem-gia',        name:'Thám Hiểm Gia',        cost:300, file:'08-tham-hiem-gia.png' },
+    { id:'hoc-si',               name:'Học Sĩ',              cost:50,  file:'01-hoc-si.webp' },
+    { id:'cu-nhan-ao-dai',       name:'Cử Nhân Áo Dài',      cost:100, file:'02-cu-nhan-ao-dai.webp' },
+    { id:'vo-su',                name:'Võ Sư',                cost:150, file:'03-vo-su.webp' },
+    { id:'dau-bep',              name:'Đầu Bếp',              cost:150, file:'04-dau-bep.webp' },
+    { id:'du-khach',             name:'Du Khách',             cost:200, file:'05-du-khach.webp' },
+    { id:'nghe-si-thu-phap',     name:'Nghệ Sĩ Thư Pháp',    cost:200, file:'06-nghe-si-thu-phap.webp' },
+    { id:'tien-si-trang-nguyen', name:'Tiến Sĩ Trạng Nguyên',cost:250, file:'07-tien-si-trang-nguyen.webp' },
+    { id:'tham-hiem-gia',        name:'Thám Hiểm Gia',        cost:300, file:'08-tham-hiem-gia.webp' },
   ];
   var HONOR_OUTFITS = [
-    { id:'honor-01', month:1,  name:'Tháng 01 — Hồng Bao Đỏ', file:'01-thang-01-hong-bao-do.png' },
-    { id:'honor-02', month:2,  name:'Tháng 02 — Mùa Xuân',    file:'02-thang-02-mua-xuan.png' },
-    { id:'honor-03', month:3,  name:'Tháng 03 — Hiền Triết',  file:'03-thang-03-hien-triet.png' },
-    { id:'honor-04', month:4,  name:'Tháng 04 — Tạo Mộ',      file:'04-thang-04-tao-mo.png' },
-    { id:'honor-05', month:5,  name:'Tháng 05 — Cử Nhân',     file:'05-thang-05-cu-nhan.png' },
-    { id:'honor-06', month:6,  name:'Tháng 06 — Hè Tây Hồ',  file:'06-thang-06-he-tay-ho.png' },
-    { id:'honor-07', month:7,  name:'Tháng 07 — Du Khách',    file:'07-thang-07-du-khach.png' },
-    { id:'honor-08', month:8,  name:'Tháng 08 — Ao Hiệu',     file:'08-thang-08-ao-hieu.png' },
-    { id:'honor-09', month:9,  name:'Tháng 09 — Tể Tướng',    file:'09-thang-09-te-tuong.png' },
-    { id:'honor-10', month:10, name:'Tháng 10 — Trung Cửu',   file:'10-thang-10-trung-cuu.png' },
-    { id:'honor-11', month:11, name:'Tháng 11 — Tuyết Nhân',  file:'11-thang-11-tuyet-nhan.png' },
-    { id:'honor-12', month:12, name:'Tháng 12 — Đại Lễ',      file:'12-thang-12-dai-le.png' },
+    { id:'honor-01', month:1,  name:'Tháng 01 — Hồng Bao Đỏ', file:'01-thang-01-hong-bao-do.webp' },
+    { id:'honor-02', month:2,  name:'Tháng 02 — Mùa Xuân',    file:'02-thang-02-mua-xuan.webp' },
+    { id:'honor-03', month:3,  name:'Tháng 03 — Hiền Triết',  file:'03-thang-03-hien-triet.webp' },
+    { id:'honor-04', month:4,  name:'Tháng 04 — Tạo Mộ',      file:'04-thang-04-tao-mo.webp' },
+    { id:'honor-05', month:5,  name:'Tháng 05 — Cử Nhân',     file:'05-thang-05-cu-nhan.webp' },
+    { id:'honor-06', month:6,  name:'Tháng 06 — Hè Tây Hồ',  file:'06-thang-06-he-tay-ho.webp' },
+    { id:'honor-07', month:7,  name:'Tháng 07 — Du Khách',    file:'07-thang-07-du-khach.webp' },
+    { id:'honor-08', month:8,  name:'Tháng 08 — Ao Hiệu',     file:'08-thang-08-ao-hieu.webp' },
+    { id:'honor-09', month:9,  name:'Tháng 09 — Tể Tướng',    file:'09-thang-09-te-tuong.webp' },
+    { id:'honor-10', month:10, name:'Tháng 10 — Trung Cửu',   file:'10-thang-10-trung-cuu.webp' },
+    { id:'honor-11', month:11, name:'Tháng 11 — Tuyết Nhân',  file:'11-thang-11-tuyet-nhan.webp' },
+    { id:'honor-12', month:12, name:'Tháng 12 — Đại Lễ',      file:'12-thang-12-dai-le.webp' },
   ];
 
   // ── Band config (v2.0 vs v3.0) ───────────────────────

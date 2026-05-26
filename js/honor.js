@@ -5,7 +5,7 @@
 
 var Honor = (function() {
 
-  // 12 outfit mapping — slug must match filenames in /content/assets/output/outfits-honor/
+  // 12 outfit mapping — slug must match production outfit filenames
   var OUTFITS_BY_MONTH = {
     1:  { slug: '01-thang-01-hong-bao-do',  name: 'Hồng Bao Đỏ',  emoji: '🧧', theme: 'Tết Nguyên Đán' },
     2:  { slug: '02-thang-02-mua-xuan',     name: 'Mùa Xuân',     emoji: '🌸', theme: 'Lễ hội mùa xuân' },
@@ -21,10 +21,10 @@ var Honor = (function() {
     12: { slug: '12-thang-12-dai-le',       name: 'Đại Lễ',       emoji: '🐲', theme: 'Tổng kết năm' }
   };
 
-  var IMG_BASE = '/content/assets/output/outfits-honor/';
+  var IMG_BASE = 'assets/outfits/honor/';
 
   function _imgSrc(outfit) {
-    return IMG_BASE + outfit.slug + '.png';
+    return IMG_BASE + outfit.slug + '.webp';
   }
 
   function getCurrentMonthOutfit() {

@@ -68,7 +68,8 @@ var Router = (function() {
     '/ocr':             'ocr',
     '/text-analyzer':   'text-analyzer',
     '/typing':          'typing',
-    '/topics':          'topics'
+    '/topics':          'topics',
+    '/course':          'course'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -187,6 +188,9 @@ var Router = (function() {
     'typing':       function() {},
     'topics':       function() {
       if (typeof Topics !== 'undefined') Topics.init();
+    },
+    'course':       function() {
+      if (typeof Course !== 'undefined') Course.init();
     }
   };
 

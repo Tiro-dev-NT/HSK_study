@@ -1,0 +1,169 @@
+/* =============================================
+   HSKK Page — Phase Y Speaking Exam
+   ============================================= */
+
+.hskk-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Header */
+.hskk-header {
+  text-align: center;
+}
+
+.hskk-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-chau-hong);
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 99px;
+  padding: 3px 12px;
+  margin-bottom: 10px;
+}
+
+.hskk-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-on-surface, #121c2a);
+  margin: 0 0 8px;
+}
+
+.hskk-desc {
+  font-size: 14px;
+  color: var(--color-on-surface-variant, #5c403c);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Grid */
+.hskk-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .hskk-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card */
+.hskk-card {
+  background: #fff;
+  border: 1px solid var(--color-border-light, #E2E8F0);
+  border-radius: 16px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hskk-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.hskk-card-icon img {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+}
+
+.hskk-level-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 2px 10px;
+  border-radius: 99px;
+}
+
+.hskk-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.hskk-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-on-surface, #121c2a);
+  margin: 0;
+}
+
+.hskk-card-desc {
+  font-size: 13px;
+  color: var(--color-on-surface-variant, #5c403c);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.hskk-card-meta {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.hskk-meta-item {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-on-surface-variant, #5c403c);
+  background: var(--color-surface-container, #e6eeff);
+  border-radius: 99px;
+  padding: 2px 10px;
+}
+
+/* CTA button */
+.hskk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 99px;
+  padding: 7px 18px;
+  border: none;
+  cursor: not-allowed;
+  transition: opacity 0.2s;
+}
+
+.hskk-btn--locked {
+  background: var(--color-surface-container-high, #dee9fc);
+  color: var(--color-on-surface-variant, #5c403c);
+  opacity: 0.75;
+}
+
+/* ETA note */
+.hskk-eta {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-on-surface-variant, #5c403c);
+  background: var(--color-surface-container-low, #eff4ff);
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+/* Back */
+.hskk-back {
+  display: flex;
+  justify-content: center;
+}

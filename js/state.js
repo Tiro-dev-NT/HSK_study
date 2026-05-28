@@ -16,28 +16,12 @@ var AppState = {
     var v = Storage.get('hsk_theme');
     return v !== null ? v : (localStorage.getItem('hsk_theme') || 'dark');
   })(),
-  version: (function() {
-    var v = Storage.get('hsk_version');
-    if (v !== null) return parseInt(v);
-    return parseInt(localStorage.getItem('hsk_version') || '2');
-  })(),
+  // HSK 3.0 ONLY (2026-05-27) — hard-coded, no version switch
+  version: 3,
   // Objects: always stored via JSON.stringify — Storage.getOr works directly
-  progress: (function() {
-    var ver = (function() {
-      var v = Storage.get('hsk_version');
-      return v !== null ? parseInt(v) : parseInt(localStorage.getItem('hsk_version') || '2');
-    })();
-    var key = ver === 3 ? 'hsk_progress_v3' : 'hsk_progress';
-    return Storage.getOr(key, {});
-  })(),
-  srsData: (function() {
-    var ver = (function() {
-      var v = Storage.get('hsk_version');
-      return v !== null ? parseInt(v) : parseInt(localStorage.getItem('hsk_version') || '2');
-    })();
-    var key = ver === 3 ? 'hsk_srs_v3' : 'hsk_srs';
-    return Storage.getOr(key, {});
-  })(),
+  // HSK 3.0 ONLY — always use _v3 suffix
+  progress: Storage.getOr('hsk_progress_v3', {}),
+  srsData: Storage.getOr('hsk_srs_v3', {}),
   xpData:               Storage.getOr('hsk_xp',                    {total:0, weeklyXP:0, weekStart:'', lastActive:''}),
   dailyChallenge:       Storage.getOr('hsk_daily_challenge',        {}),
   dailyChallengeStreak: Storage.getOr('hsk_daily_challenge_streak', {current:0, best:0, lastDate:''}),
@@ -72,11 +56,11 @@ var AppState = {
   },
 
   saveProgress: function() {
-    this.save(this.version === 3 ? 'hsk_progress_v3' : 'hsk_progress', this.progress);
+    this.save('hsk_progress_v3', this.progress);
   },
 
   saveSRSData: function() {
-    this.save(this.version === 3 ? 'hsk_srs_v3' : 'hsk_srs', this.srsData);
+    this.save('hsk_srs_v3', this.srsData);
   },
 
   saveXP: function() {

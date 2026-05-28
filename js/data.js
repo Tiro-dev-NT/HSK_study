@@ -38,15 +38,15 @@ var LEVEL_INFO_V3 = {
 // Alias for backward compat (decks.js uses HSK_META)
 var HSK_META = LEVEL_INFO;
 
-// ─── Version-aware data accessors ─────────────────────
+// ─── HSK 3.0 ONLY (2026-05-27) — hard-coded, no version branch ─────────────────────
 function activeHSKData() {
-  return (typeof AppState !== 'undefined' && AppState.version === 3) ? HSK3_DATA : HSK_DATA;
+  return HSK3_DATA;
 }
 function activeLevelInfo() {
-  return (typeof AppState !== 'undefined' && AppState.version === 3) ? LEVEL_INFO_V3 : LEVEL_INFO;
+  return LEVEL_INFO_V3;
 }
 function activeLevelCount() {
-  return (typeof AppState !== 'undefined' && AppState.version === 3) ? Object.keys(LEVEL_INFO_V3).length : 6;
+  return Object.keys(LEVEL_INFO_V3).length;
 }
 
 // ─── Topic metadata ───────────────────────────────────
@@ -96,28 +96,16 @@ function getAllWords() {
   return all;
 }
 
-// Merge cả HSK 2.0 + 3.0 — dùng cho từ điển tích hợp
-// Dedup theo hanzi; active version thắng khi trùng
+// HSK 3.0 ONLY — từ điển chỉ dùng HSK3_DATA (2026-05-27)
 function getAllWordsBothVersions() {
-  var seen = {};
   var result = [];
-  function addDataset(data, ver) {
-    Object.keys(data).forEach(function(lv) {
-      (data[lv] || []).forEach(function(w) {
-        if (!w.h) return;
-        if (seen[w.h]) {
-          seen[w.h]._alsoIn = { ver: ver, level: parseInt(lv) };
-        } else {
-          var word = Object.assign({}, w, { level: parseInt(lv), ver: ver });
-          seen[w.h] = word;
-          result.push(word);
-        }
-      });
+  Object.keys(HSK3_DATA).forEach(function(lv) {
+    (HSK3_DATA[lv] || []).forEach(function(w) {
+      if (!w.h) return;
+      var word = Object.assign({}, w, { level: parseInt(lv), ver: 3 });
+      result.push(word);
     });
-  }
-  var isV3 = typeof AppState !== 'undefined' && AppState.version === 3;
-  if (isV3) { addDataset(HSK3_DATA, 3); addDataset(HSK_DATA, 2); }
-  else       { addDataset(HSK_DATA, 2); addDataset(HSK3_DATA, 3); }
+  });
   return result;
 }
 

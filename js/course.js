@@ -161,8 +161,14 @@ var Course = {
     var dialogueDone  = steps.slice(0, Course.step + 1).filter(function(x) { return x.type === 'dialogue'; }).length;
     var pct           = Math.round((dialogueDone / (dialogueSteps || 1)) * 50); // dialogue = 0-50%
 
-    var isMai = (s.speaker === 'mai');
-    var expr  = isMai ? s.expression : null;
+    var isMai    = (s.speaker === 'mai');
+    var expr     = isMai ? s.expression : null;
+    // Scene background class per speaker
+    var sceneClass = isMai ? '' : (s.speaker === 'laoli' || s.speaker === 'xiaomei') ? ' cs-scene--teacher' : ' cs-scene--class';
+    // Speaking dots — only when it's Mai's turn
+    var dotsHTML = isMai
+      ? '<div class="cs-speaking-dots"><span></span><span></span><span></span></div>'
+      : '';
 
     Course._getEl().innerHTML =
       '<div class="cs-header">' +
@@ -170,20 +176,29 @@ var Course = {
         '<span class="cs-lesson-num">Bài ' + l.id + ': ' + l.title + '</span>' +
         '<div class="cs-progress-wrap"><div class="cs-progress-bar" style="width:' + pct + '%"></div></div>' +
       '</div>' +
-      '<div class="cs-scene">' +
-        '<img src="' + Course._maiImg(expr) + '" alt="Mai" class="cs-mai-scene" onerror="this.src=\'assets/icon-soft.webp\'">' +
+      '<div class="cs-scene' + sceneClass + '" id="cs-scene-wrap">' +
+        '<img src="' + Course._maiImg(expr) + '" alt="Mai" class="cs-mai-scene" id="cs-mai-img" onerror="this.src=\'assets/icon-soft.webp\'">' +
+        dotsHTML +
       '</div>' +
-      '<div class="cs-dialogue-card">' +
+      '<div class="cs-dialogue-card" id="cs-dlg-card">' +
         '<div class="cs-speaker">' + Course._speakerLabel(s.speaker) + '</div>' +
         '<div class="cs-text-zh">' + s.text + '</div>' +
         '<div class="cs-text-py">' + s.pinyin + '</div>' +
         '<div class="cs-text-vn">' + s.meaning + '</div>' +
       '</div>' +
       '<div class="cs-controls">' +
-        '<button class="cs-btn-icon" onclick="Course._tts(\'' + s.text.replace(/'/g, "\\'") + '\')" title="Nghe">🔊</button>' +
+        '<button class="cs-btn-icon" id="cs-tts-btn" onclick="Course._tts(\'' + s.text.replace(/'/g, "\\'") + '\')" title="Nghe">🔊</button>' +
         '<button class="cs-btn-secondary" onclick="Course.prev()" ' + (Course.step === 0 ? 'disabled' : '') + '>◄ Trước</button>' +
         '<button class="cs-btn-primary" onclick="Course.next()">Tiếp ►</button>' +
       '</div>';
+
+    // Trigger entry animations after DOM is ready
+    requestAnimationFrame(function() {
+      var mai = document.getElementById('cs-mai-img');
+      var dlg = document.getElementById('cs-dlg-card');
+      if (mai) { mai.classList.add('cs-mai-enter'); }
+      if (dlg) { dlg.classList.add('cs-enter'); }
+    });
   },
 
   // ── PHASE: checkpoint ────────────────────────────────
@@ -516,6 +531,18 @@ var Course = {
     var utt  = new SpeechSynthesisUtterance(text);
     utt.lang = 'zh-CN';
     utt.rate = 0.85;
+
+    // Speaking animation on Mai
+    var mai = document.getElementById('cs-mai-img');
+    var btn = document.getElementById('cs-tts-btn');
+    if (mai) { mai.classList.add('cs-mai-speaking'); mai.classList.remove('cs-mai-enter'); }
+    if (btn) { btn.textContent = '🔉'; btn.style.opacity = '0.7'; }
+
+    utt.onend = utt.onerror = function() {
+      if (mai) { mai.classList.remove('cs-mai-speaking'); }
+      if (btn) { btn.textContent = '🔊'; btn.style.opacity = ''; }
+    };
+
     window.speechSynthesis.speak(utt);
   },
 

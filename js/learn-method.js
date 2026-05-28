@@ -85,7 +85,7 @@ var LearnMethod = (function() {
     var actionsEl = document.getElementById('lmWeakActions');
     if (!listEl) return;
 
-    var srsRaw = localStorage.getItem('hsk_srs');
+    var srsRaw = localStorage.getItem('hsk_srs_v3');
     if (!srsRaw) return;
 
     var srs;

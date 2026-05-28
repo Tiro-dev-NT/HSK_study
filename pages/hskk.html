@@ -1,12 +1,96 @@
 <section class="page active">
-  <div class="cs-page">
-    <div class="cs-mascot">🎤</div>
-    <div class="cs-badge">Phase Y · Pro · Sắp ra mắt</div>
-    <h1 class="cs-title">HSKK Thi thử Nói</h1>
-    <p class="cs-desc">Thi thử HSKK 3 cấp (Sơ cấp / Trung cấp / Cao cấp) theo đúng format kỳ thi. AI chấm điểm, phân tích phát âm và gợi ý cải thiện.</p>
-    <div class="cs-eta">⏳ Dự kiến Phase Y (sau Phase R)</div>
-    <div class="cs-actions">
+  <div class="hskk-page">
+
+    <!-- Header -->
+    <div class="hskk-header">
+      <div class="hskk-header-text">
+        <span class="hskk-badge">Phase Y · Pro · Sắp ra mắt</span>
+        <h1 class="hskk-title">HSKK Thi thử Nói</h1>
+        <p class="hskk-desc">Thi thử HSKK 3 cấp theo đúng format kỳ thi. AI chấm điểm, phân tích phát âm và gợi ý cải thiện từng câu.</p>
+      </div>
+    </div>
+
+    <!-- 3 Tier Cards -->
+    <div class="hskk-grid">
+
+      <!-- Sơ cấp -->
+      <div class="hskk-card hskk-card--so-cap">
+        <div class="hskk-card-icon">
+          <img src="/assets/hskk/so-cap.webp" alt="HSKK Sơ cấp" width="96" height="96">
+        </div>
+        <div class="hskk-card-body">
+          <div class="hskk-level-badge" style="background:#ECFCCB;color:#3F6212;">Sơ cấp</div>
+          <h2 class="hskk-card-title">HSKK Sơ cấp</h2>
+          <p class="hskk-card-desc">~200 từ HSK 1–2. Nghe và lặp lại, đọc to đoạn văn ngắn, trả lời câu hỏi đơn giản.</p>
+          <div class="hskk-card-meta">
+            <span class="hskk-meta-item">⏱ 17 phút</span>
+            <span class="hskk-meta-item">3 phần</span>
+          </div>
+        </div>
+        <div class="hskk-card-cta">
+          <button class="hskk-btn hskk-btn--locked" disabled>
+            <span class="material-symbols-outlined" style="font-size:18px;">lock</span>
+            Sắp ra mắt
+          </button>
+        </div>
+      </div>
+
+      <!-- Trung cấp -->
+      <div class="hskk-card hskk-card--trung-cap">
+        <div class="hskk-card-icon">
+          <img src="/assets/hskk/trung-cap.webp" alt="HSKK Trung cấp" width="96" height="96">
+        </div>
+        <div class="hskk-card-body">
+          <div class="hskk-level-badge" style="background:#FFEDD5;color:#9A3412;">Trung cấp</div>
+          <h2 class="hskk-card-title">HSKK Trung cấp</h2>
+          <p class="hskk-card-desc">~900 từ HSK 1–4. Đọc đoạn hội thoại, trả lời câu hỏi mở, nói theo chủ đề cho trước.</p>
+          <div class="hskk-card-meta">
+            <span class="hskk-meta-item">⏱ 21 phút</span>
+            <span class="hskk-meta-item">3 phần</span>
+          </div>
+        </div>
+        <div class="hskk-card-cta">
+          <button class="hskk-btn hskk-btn--locked" disabled>
+            <span class="material-symbols-outlined" style="font-size:18px;">lock</span>
+            Sắp ra mắt
+          </button>
+        </div>
+      </div>
+
+      <!-- Cao cấp -->
+      <div class="hskk-card hskk-card--cao-cap">
+        <div class="hskk-card-icon">
+          <img src="/assets/hskk/cao-cap.webp" alt="HSKK Cao cấp" width="96" height="96">
+        </div>
+        <div class="hskk-card-body">
+          <div class="hskk-level-badge" style="background:#FCE7F3;color:#831843;">Cao cấp</div>
+          <h2 class="hskk-card-title">HSKK Cao cấp</h2>
+          <p class="hskk-card-desc">~3000+ từ HSK 1–6. Tóm tắt bài nghe dài, phát biểu ý kiến, hội thoại chuyên đề.</p>
+          <div class="hskk-card-meta">
+            <span class="hskk-meta-item">⏱ 24 phút</span>
+            <span class="hskk-meta-item">3 phần</span>
+          </div>
+        </div>
+        <div class="hskk-card-cta">
+          <button class="hskk-btn hskk-btn--locked" disabled>
+            <span class="material-symbols-outlined" style="font-size:18px;">lock</span>
+            Sắp ra mắt
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Coming soon note -->
+    <div class="hskk-eta">
+      <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;">schedule</span>
+      Dự kiến Phase Y (sau Phase R – Speaking). Cần micro để thi.
+    </div>
+
+    <!-- Back button -->
+    <div class="hskk-back">
       <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Quay về Luyện tập</button>
     </div>
+
   </div>
 </section>

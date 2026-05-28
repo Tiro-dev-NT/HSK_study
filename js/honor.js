@@ -27,6 +27,31 @@ var Honor = (function() {
     return IMG_BASE + outfit.slug + '.webp';
   }
 
+  // Tier badge data (Asset Batch 2 — assets/honor/tiers/*.webp)
+  var TIERS = [
+    { slug: 'dong',     img: 'assets/honor/tiers/01-tier-dong.webp',     name: 'Đồng',     sub: '1 lần ủng hộ' },
+    { slug: 'bac',      img: 'assets/honor/tiers/02-tier-bac.webp',      name: 'Bạc',      sub: '3 lần ủng hộ' },
+    { slug: 'kim',      img: 'assets/honor/tiers/03-tier-kim.webp',      name: 'Kim',      sub: '6 lần ủng hộ' },
+    { slug: 'hoa-dang', img: 'assets/honor/tiers/04-tier-hoa-dang.webp', name: 'Hoa Đăng', sub: '12 lần ủng hộ' }
+  ];
+
+  function _renderTiers() {
+    var grid = document.getElementById('honorTiersGrid');
+    if (!grid) return;
+    var html = '';
+    for (var i = 0; i < TIERS.length; i++) {
+      var t = TIERS[i];
+      html +=
+        '<div class="honor-tier-card honor-tier-card--' + t.slug + '">' +
+          '<img class="honor-tier-img" src="' + t.img + '" alt="' + t.name + '" loading="lazy" ' +
+               'onerror="this.style.display=\'none\'">' +
+          '<div class="honor-tier-name">' + t.name + '</div>' +
+          '<div class="honor-tier-sub">' + t.sub + '</div>' +
+        '</div>';
+    }
+    grid.innerHTML = html;
+  }
+
   function getCurrentMonthOutfit() {
     return OUTFITS_BY_MONTH[new Date().getMonth() + 1];
   }
@@ -87,10 +112,12 @@ var Honor = (function() {
     var outfit = OUTFITS_BY_MONTH[month];
     if (outfit) _renderSpotlight(month, outfit);
     _renderGrid(month);
+    _renderTiers();
   }
 
   return {
     OUTFITS_BY_MONTH: OUTFITS_BY_MONTH,
+    TIERS: TIERS,
     getCurrentMonthOutfit: getCurrentMonthOutfit,
     init: init
   };

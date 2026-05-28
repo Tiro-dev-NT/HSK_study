@@ -112,12 +112,31 @@ function _lhRenderTimeline() {
 
   var html = '';
 
-  // HSK 0 node
-  html += '<button class="lh-tl-node" onclick="Router.navigateTo(\'hsk0-pinyin-initials\')">';
+  // HSK 0 node — expanded with 6 module mini-cards (Asset Batch 2)
+  var HSK0_MODS = [
+    { icon: '01-tones',    name: 'Thanh điệu', route: 'hsk0-pinyin-initials' },
+    { icon: '02-initials', name: 'Phụ âm',     route: 'hsk0-pinyin-initials' },
+    { icon: '03-finals',   name: 'Vần',         route: 'hsk0-pinyin-finals' },
+    { icon: '04-strokes',  name: 'Nét viết',    route: 'hsk0-strokes' },
+    { icon: '05-numbers',  name: 'Số đếm',      route: 'hsk0-numbers' },
+    { icon: '06-typing',   name: 'Gõ Pinyin',   route: 'hsk0-typing' }
+  ];
+  html += '<div class="lh-tl-node lh-tl-node--hsk0">';
   html += '<div class="lh-tl-icon">🔰</div>';
-  html += '<div class="lh-tl-body"><div class="lh-tl-name">HSK 0 · Nhập Môn</div>';
-  html += '<div class="lh-tl-sub">Pinyin · Nét · Số</div></div>';
-  html += '</button><div class="lh-tl-connector"></div>';
+  html += '<div class="lh-tl-body">';
+  html += '<div class="lh-tl-name">HSK 0 · Nhập Môn</div>';
+  html += '<div class="lh-tl-sub">Thanh điệu · Pinyin · Nét viết · Số đếm</div>';
+  html += '<div class="lh-hsk0-modules">';
+  for (var mi = 0; mi < HSK0_MODS.length; mi++) {
+    var m = HSK0_MODS[mi];
+    html += '<button class="lh-hsk0-mod" onclick="Router.navigateTo(\'' + m.route + '\')">';
+    html += '<img src="assets/hsk0-icons/' + m.icon + '.webp" alt="' + m.name + '" loading="lazy">';
+    html += '<span class="lh-hsk0-mod-name">' + m.name + '</span>';
+    html += '</button>';
+  }
+  html += '</div>'; // .lh-hsk0-modules
+  html += '</div>'; // .lh-tl-body
+  html += '</div><div class="lh-tl-connector"></div>';
 
   // Story Mai (coming soon)
   html += '<div class="lh-tl-node lh-tl-node--soon">';

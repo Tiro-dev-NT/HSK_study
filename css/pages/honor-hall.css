@@ -278,6 +278,41 @@
   font-size: 0.9rem;
 }
 
+/* ── Tier Badges (Asset Batch 2) ───────────────────────── */
+.honor-tiers-wrap {
+  margin-bottom: 2.5rem;
+}
+.honor-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.honor-tier-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 0.75rem 1rem;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center; transition: transform .15s, box-shadow .15s;
+}
+.honor-tier-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+.honor-tier-card--dong  { border-color: #cd7f32; }
+.honor-tier-card--bac   { border-color: #9ca3af; }
+.honor-tier-card--kim   { border-color: var(--hoang-kim); box-shadow: 0 0 0 3px rgba(245,158,11,.15); }
+.honor-tier-card--hoa-dang { border-color: var(--chau-hong); box-shadow: 0 0 0 3px rgba(220,38,38,.12); }
+.honor-tier-img {
+  width: 80px; height: 80px; object-fit: contain;
+}
+.honor-tier-name {
+  font-size: 0.9rem; font-weight: 700; color: var(--text);
+}
+.honor-tier-sub {
+  font-size: 0.75rem; color: var(--text3); line-height: 1.5;
+}
+@media (max-width: 600px) {
+  .honor-tiers-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ── Disclaimer ────────────────────────────────────────── */
 .honor-disclaimer {
   background: var(--info-bg);

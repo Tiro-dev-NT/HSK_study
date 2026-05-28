@@ -417,6 +417,21 @@
 .lh-tl-node--done { opacity: .65; }
 .lh-tl-node--soon { cursor: default; opacity: .5; }
 .lh-tl-node--soon:hover { border-color: var(--border); background: var(--surface); }
+/* HSK 0 expanded node — not a button, contains inner module cards */
+.lh-tl-node--hsk0 { cursor: default; align-items: flex-start; }
+.lh-tl-node--hsk0:hover { border-color: var(--border); background: var(--surface); }
+.lh-hsk0-modules {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px;
+}
+.lh-hsk0-mod {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 10px 6px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 10px;
+  cursor: pointer; font: inherit; transition: border-color .18s, background .18s;
+}
+.lh-hsk0-mod:hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, var(--surface)); }
+.lh-hsk0-mod img { width: 40px; height: 40px; object-fit: contain; }
+.lh-hsk0-mod-name { font-size: 11px; font-weight: 600; color: var(--text); text-align: center; line-height: 1.3; }
 .lh-tl-icon { font-size: 22px; min-width: 32px; text-align: center; }
 .lh-tl-body { flex: 1; min-width: 0; }
 .lh-tl-name { font-size: 15px; font-weight: 600; }

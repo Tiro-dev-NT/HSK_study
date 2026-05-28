@@ -34,6 +34,14 @@ var UIStates = (function () {
     return 'assets/icon-soft.png';
   }
 
+  // Mood-specific illustrations (Asset Batch 2 — empty-states WebP)
+  // When available, replaces generic icon + accessories with a full illustration.
+  var MASCOT_MOOD_IMGS = {
+    'sleep':     'assets/empty-states/01-empty-deck.webp',
+    'celebrate': 'assets/empty-states/03-lesson-complete.webp',
+    'lost':      'assets/empty-states/05-error-404.webp'
+  };
+
   /* ---------- SVG icon library (inline, no dep) ---------- */
   var ICONS = {
     plus:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
@@ -58,8 +66,17 @@ var UIStates = (function () {
   function mascot(mood, size) {
     mood = mood || 'neutral';
     var sz = size || 200;
-    var accessories = '';
 
+    // Mood-specific illustration: use full-scene WebP, no accessories needed
+    if (MASCOT_MOOD_IMGS[mood]) {
+      return (
+        '<div class="ui-mascot ui-mascot--' + esc(mood) + '" style="--mascot-size:' + parseInt(sz, 10) + 'px">' +
+          '<img src="' + MASCOT_MOOD_IMGS[mood] + '" alt="Bé Rồng">' +
+        '</div>'
+      );
+    }
+
+    var accessories = '';
     switch (mood) {
       case 'sleep':
         accessories =

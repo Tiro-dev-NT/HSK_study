@@ -67,7 +67,8 @@ var Router = (function() {
     '/translate':       'translate',
     '/ocr':             'ocr',
     '/text-analyzer':   'text-analyzer',
-    '/typing':          'typing'
+    '/typing':          'typing',
+    '/topics':          'topics'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -183,7 +184,10 @@ var Router = (function() {
     'translate':    function() {},
     'ocr':          function() {},
     'text-analyzer': function() {},
-    'typing':       function() {}
+    'typing':       function() {},
+    'topics':       function() {
+      if (typeof Topics !== 'undefined') Topics.init();
+    }
   };
 
   // ── Fetch fragment from server (or memory cache) ─────

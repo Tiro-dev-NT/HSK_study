@@ -190,6 +190,28 @@ var Gamification = {
       var dEl2 = document.getElementById('statDue2');
       if (dEl2) dEl2.textContent = due;
     }
+
+    // Word Journey widget
+    if (typeof getJourneyStats === 'function') {
+      const stages = getJourneyStats();
+      const total = stages.reduce(function(a,b){return a+b;}, 0);
+      const stagesEl = document.getElementById('journeyStages');
+      const barEl = document.getElementById('journeyBar');
+      if (stagesEl && total > 0) {
+        const icons = ['🌱','👀','🧠','💪','🔥'];
+        stagesEl.innerHTML = stages.map(function(count, i) {
+          return '<span title="' + ['Mới gặp','Đang học','Đang nhớ','Gần thuộc','Thuộc rồi'][i] + ': ' + count + ' từ">' + icons[i] + ' ' + count + '</span>';
+        }).join('');
+      }
+      if (barEl && total > 0) {
+        const colors = ['#6B7280','#3B82F6','#8B5CF6','#F59E0B','#10B981'];
+        barEl.innerHTML = stages.map(function(count, i) {
+          const pct = (count / total * 100).toFixed(1);
+          return '<div style="width:' + pct + '%;background:' + colors[i] + ';height:100%"></div>';
+        }).join('');
+      }
+    }
+
     Gamification.renderXPBar();
     Gamification.renderStreakCalendar();
     Gamification._updateContinueCard();

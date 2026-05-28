@@ -208,14 +208,41 @@ var Session = {
     document.getElementById('fcButtons').style.display = 'none';
     Session.updateSessionScore('fc');
     const w = AppState.fcDeck[AppState.fcIndex];
-    document.getElementById('fcHanzi').textContent     = w.h;
-    document.getElementById('fcPinyin').textContent    = w.p;
-    document.getElementById('fcHanziBack').textContent = w.h;
-    document.getElementById('fcPinyinBack').textContent = w.p;
-    document.getElementById('fcMeaningVi').textContent = w.v;
-    document.getElementById('fcMeaningEn').textContent = w.e;
+
+    // Active Recall: 30% chance flip for mature cards (interval >= 7)
+    const srsCard = typeof getSRSCard === 'function' ? getSRSCard(w.h) : null;
+    const shouldFlip = srsCard && srsCard.interval >= 7 && Math.random() < 0.3;
+
+    if (shouldFlip) {
+      // Show VN meaning first, user recalls Hanzi
+      document.getElementById('fcHanzi').textContent     = w.v;
+      document.getElementById('fcPinyin').textContent    = '(nhớ lại chữ Trung)';
+      document.getElementById('fcHanziBack').textContent = w.h;
+      document.getElementById('fcPinyinBack').textContent = w.p;
+      document.getElementById('fcMeaningVi').textContent = w.v;
+      document.getElementById('fcMeaningEn').textContent = w.e;
+    } else {
+      // Normal: show Hanzi first
+      document.getElementById('fcHanzi').textContent     = w.h;
+      document.getElementById('fcPinyin').textContent    = w.p;
+      document.getElementById('fcHanziBack').textContent = w.h;
+      document.getElementById('fcPinyinBack').textContent = w.p;
+      document.getElementById('fcMeaningVi').textContent = w.v;
+      document.getElementById('fcMeaningEn').textContent = w.e;
+    }
+
     // E8: show related words
     if (typeof RightSidebar !== 'undefined' && RightSidebar.renderRelated) RightSidebar.renderRelated(w);
+
+    // Context Card: show source sentence if available
+    const contextBox = document.getElementById('fcContextBlock');
+    if (contextBox && srsCard && srsCard.source_sentence) {
+      contextBox.style.display = 'block';
+      contextBox.innerHTML = '💬 Bạn gặp từ này trong: 「' + srsCard.source_sentence + '」';
+    } else if (contextBox) {
+      contextBox.style.display = 'none';
+    }
+
     const exBox = document.getElementById('fcExBlock');
     if (w.ex) {
       exBox.style.display = 'block';

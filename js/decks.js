@@ -512,6 +512,20 @@ function wireDecksUI() {
     let words = getDeckWords(deck);
     if (topicFilter) words = words.filter(w => (w.t || 'general') === topicFilter);
 
+    // ── SRS Debt Cap: block new lessons if pending reviews > 50 ──────────
+    if (typeof isDebtBlocked === 'function' && isDebtBlocked()) {
+      const dueCount = typeof getDueCount === 'function' ? getDueCount() : 0;
+      const isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
+      const msg = isEN
+        ? `You have ${dueCount} cards waiting for review — finish reviewing before learning new words! 💪`
+        : `Bạn có ${dueCount} từ đang chờ ôn — ôn xong rồi học tiếp nhé! 💪`;
+      if (confirm(msg + '\n\n' + (isEN ? '[Review now] or [Skip today]?' : '[Ôn ngay] hay [Bỏ qua hôm nay]?'))) {
+        if (typeof Router !== 'undefined') Router.navigateTo('practice');
+        return;
+      }
+    }
+    // ─────────────────────────────────────────────────────────────────────
+
     // ── Pro gate: authoritative async check before starting session ──────
     var isV3      = typeof AppState !== 'undefined' && AppState.version === 3;
     var isGated   = isV3 && deck.level >= PRO_LEVEL_MIN;

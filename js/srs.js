@@ -26,12 +26,21 @@ function getSRSCard(hanzi) {
 
 // Update SRS state after answering a card
 // quality: 0-3 (again/hard/good/easy)
-function updateSRSCard(hanzi, quality) {
+// opts: { source, source_lesson, source_sentence } for context card
+function updateSRSCard(hanzi, quality, opts) {
   const today = new Date().toISOString().split('T')[0];
   let card = srsData[hanzi] || {
     interval: 0, ease: 2.5, dueDate: today,
-    reps: 0, lapses: 0, lastReview: null
+    reps: 0, lapses: 0, lastReview: null,
+    source: null, source_lesson: null, source_sentence: null
   };
+
+  // Preserve or set context metadata
+  if (opts) {
+    if (opts.source) card.source = opts.source;
+    if (opts.source_lesson) card.source_lesson = opts.source_lesson;
+    if (opts.source_sentence) card.source_sentence = opts.source_sentence;
+  }
 
   card.lastReview = today;
 
@@ -140,4 +149,33 @@ function getIntervalLabel(quality) {
     3: '4 ngày'
   };
   return labels[quality] || '?';
+}
+
+// ── SRS Debt Cap ───────────────────────────────────────────────────
+function getDueCount() {
+  const today = new Date().toISOString().split('T')[0];
+  const data = JSON.parse(localStorage.getItem(_srsKey()) || '{}');
+  return Object.values(data).filter(function(w) { return w.dueDate <= today; }).length;
+}
+
+function isDebtBlocked() {
+  return getDueCount() > 50;
+}
+
+// ── Word Journey (5 stages) ────────────────────────────────────────
+function getStage(interval) {
+  if (interval <= 0)  return { id: 0, name: 'Mới gặp',   icon: '🌱', color: '#6B7280' };
+  if (interval <= 3)  return { id: 1, name: 'Đang học',  icon: '👀', color: '#3B82F6' };
+  if (interval <= 14) return { id: 2, name: 'Đang nhớ',  icon: '🧠', color: '#8B5CF6' };
+  if (interval <= 60) return { id: 3, name: 'Gần thuộc', icon: '💪', color: '#F59E0B' };
+  return              { id: 4, name: 'Thuộc rồi',        icon: '🔥', color: '#10B981' };
+}
+
+function getJourneyStats() {
+  const data = JSON.parse(localStorage.getItem(_srsKey()) || '{}');
+  const stages = [0, 0, 0, 0, 0];
+  Object.values(data).forEach(function(w) {
+    stages[getStage(w.interval).id]++;
+  });
+  return stages;
 }

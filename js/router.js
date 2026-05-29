@@ -69,7 +69,9 @@ var Router = (function() {
     '/text-analyzer':   'text-analyzer',
     '/typing':          'typing',
     '/topics':          'topics',
-    '/course':          'course'
+    '/course':          'course',
+    '/references':      'references',
+    '/mock-exam':       'mock-exam'
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -181,7 +183,9 @@ var Router = (function() {
     'speaking':     function() {},
     'writing':      function() {},
     'hskk':         function() {},
-    'radicals':     function() {},
+    'radicals':     function() {
+      if (typeof Radicals214 !== 'undefined') Radicals214.init();
+    },
     'translate':    function() {},
     'ocr':          function() {},
     'text-analyzer': function() {},
@@ -191,6 +195,10 @@ var Router = (function() {
     },
     'course':       function() {
       if (typeof Course !== 'undefined') Course.init();
+    },
+    'references':   function() {},
+    'mock-exam':    function() {
+      if (typeof MockExam !== 'undefined') MockExam.init();
     }
   };
 
@@ -320,6 +328,7 @@ var Router = (function() {
                            window.location.hash.includes('access_token=');
       if (!hasOAuthParams) {
         var initPath = initialPage === 'home' ? '/' : '/' + initialPage;
+        if (window.location.search) initPath += window.location.search;
         history.replaceState({ page: initialPage }, '', initPath);
       }
     },

@@ -105,3 +105,17 @@ CLAUDE.md
 *-network.txt
 *-warnings.txt
 *-errors-*.txt
+
+# Local QA screenshots (verify-*.png, admin-*.png, radicals-*.png, phase screenshots, learn-hub screenshots)
+verify-*.png
+admin-*.png
+radicals-*.png
+phase-p9-*.png
+learn-hub-*.png
+
+# Demo / mockup folders (local prototyping only)
+demo/
+hanzi-genz-mockup/
+
+# Competitor notes (business intel — never public)
+topikmaster-home.md

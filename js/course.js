@@ -5,6 +5,15 @@
 //           Gamification.addXP, Router.navigateTo
 // ═══════════════════════════════════════════════════════
 
+// ── Visual-novel cast registry ──────────────────────────
+var VN_CHARACTERS = {
+  narrator: { name: 'Người dẫn', role: '',           emoji: '📖', color: '#F59E0B', img: '',                              pitch: 1,    rate: 0.9  },
+  laoli:    { name: '李老师',    role: 'Giáo viên',  emoji: '👨‍🏫', color: '#1F2937', img: 'assets/mai/cast/laoli.webp',    pitch: 0.7,  rate: 0.85 },
+  mai:      { name: 'Mai',       role: 'Học sinh',   emoji: '👧',  color: '#DC2626', img: '',                              pitch: 1.25, rate: 0.95 },
+  xiaomei:  { name: '小美',      role: 'Bạn học',    emoji: '👩',  color: '#10B981', img: 'assets/mai/cast/xiaomei.webp',  pitch: 1.4,  rate: 1.0  },
+  class:    { name: 'Cả lớp',    role: '',           emoji: '👥',  color: '#6B7280', img: '',                              pitch: 1,    rate: 1.0  }
+};
+
 var Course = {
 
   // ── State ──────────────────────────────────────────
@@ -18,6 +27,7 @@ var Course = {
   workbookScore:     0,
   _srsAdded:         false,
   _pendingId:        null,   // set before Router.navigateTo('course') for in-app nav
+  _showPinyin:       true,   // VN pinyin toggle (persists across steps)
 
   // ── Entry point ─────────────────────────────────────
   init: function() {
@@ -40,8 +50,12 @@ var Course = {
   renderList: function() {
     var progress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
     var cards = [];
-    for (var id = 1; id <= 12; id++) {
-      var lesson = (typeof COURSE_DATA !== 'undefined') ? COURSE_DATA[id] : null;
+    var ids = (typeof COURSE_DATA !== 'undefined')
+      ? Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; })
+      : [];
+    for (var i = 0; i < ids.length; i++) {
+      var id = ids[i];
+      var lesson = COURSE_DATA[id];
       if (!lesson) continue;
       var prog = progress[id];
       var statusLabel = '';
@@ -201,16 +215,20 @@ var Course = {
     var s     = steps[Course.step];
     if (!s || s.type !== 'dialogue') { Course.phase = 'vocab'; Course.render(); return; }
 
-    // Count only dialogue steps for progress
+    // Dispatch to visual-novel renderer when step has cast data
+    if (s.cast && s.cast.length) {
+      Course._renderDialogueVN();
+      return;
+    }
+
+    // ── Legacy single-Mai renderer (steps without cast field) ──
     var dialogueSteps = steps.filter(function(x) { return x.type === 'dialogue'; }).length;
     var dialogueDone  = steps.slice(0, Course.step + 1).filter(function(x) { return x.type === 'dialogue'; }).length;
-    var pct           = Math.round((dialogueDone / (dialogueSteps || 1)) * 50); // dialogue = 0-50%
+    var pct           = Math.round((dialogueDone / (dialogueSteps || 1)) * 50);
 
     var isMai    = (s.speaker === 'mai');
     var expr     = isMai ? s.expression : null;
-    // Scene background class per speaker
     var sceneClass = isMai ? '' : (s.speaker === 'laoli' || s.speaker === 'xiaomei') ? ' cs-scene--teacher' : ' cs-scene--class';
-    // Speaking dots — only when it's Mai's turn
     var dotsHTML = isMai
       ? '<div class="cs-speaking-dots"><span></span><span></span><span></span></div>'
       : '';
@@ -237,13 +255,164 @@ var Course = {
         '<button class="cs-btn-primary" onclick="Course.next()">Tiếp ►</button>' +
       '</div>';
 
-    // Trigger entry animations after DOM is ready
     requestAnimationFrame(function() {
       var mai = document.getElementById('cs-mai-img');
       var dlg = document.getElementById('cs-dlg-card');
       if (mai) { mai.classList.add('cs-mai-enter'); }
       if (dlg) { dlg.classList.add('cs-enter'); }
     });
+  },
+
+  // ── PHASE: dialogue — Visual Novel renderer ───────────
+  _renderDialogueVN: function() {
+    var l     = Course.lesson;
+    var steps = l.steps;
+    var s     = steps[Course.step];
+
+    var dlgTotal = steps.filter(function(x) { return x.type === 'dialogue'; }).length;
+    var dlgDone  = steps.slice(0, Course.step + 1).filter(function(x) { return x.type === 'dialogue'; }).length;
+    var pct      = Math.round((dlgDone / (dlgTotal || 1)) * 50);
+
+    var isNarrator = (s.speaker === 'narrator');
+    var ch = Course._vnChar(s.speaker);
+
+    // Nearest scene tag — look backward
+    var sceneText = '📍 Lớp học tiếng Trung';
+    var sceneStep = null;
+    for (var si = Course.step; si >= 0; si--) {
+      if (steps[si] && steps[si].scene) { sceneText = steps[si].scene; sceneStep = steps[si]; break; }
+    }
+    var bgUrl = Course._sceneBg(sceneStep, sceneText);
+
+    // Cast row HTML
+    var CAST_ORDER = ['laoli', 'mai', 'xiaomei'];
+    var castHTML;
+    if (isNarrator) {
+      castHTML = '<div class="cs-vn-narrator-card">' + (s.text || '') + '</div>';
+    } else {
+      var castKeys = (s.cast || []).slice().sort(function(a, b) {
+        return CAST_ORDER.indexOf(a) - CAST_ORDER.indexOf(b);
+      });
+      castHTML = castKeys.map(function(k) {
+        var c      = Course._vnChar(k);
+        var active = (k === s.speaker);
+        var imgSrc = (k === 'mai') ? Course._maiImg(s.expression) : (c.img || '');
+        return '<div class="cs-vn-char ' + (active ? 'active' : 'inactive') + '" style="--char-color:' + c.color + '">' +
+          '<div class="cs-vn-avatar">' +
+            '<span class="cs-vn-avatar-emoji">' + c.emoji + '</span>' +
+            (imgSrc ? '<img src="' + imgSrc + '" alt="" class="cs-vn-avatar-img" onerror="this.style.display=\'none\'">' : '') +
+          '</div>' +
+          '<div class="cs-vn-char-name">' + c.name.split(/[\s(]/)[0] + '</div>' +
+          (c.role ? '<div class="cs-vn-char-role">' + c.role + '</div>' : '') +
+        '</div>';
+      }).join('');
+    }
+
+    // Dialogue box HTML (hidden for narrator steps)
+    var dlgHTML = '';
+    if (!isNarrator) {
+      var pyHTML = (Course._showPinyin !== false && s.pinyin)
+        ? '<div class="cs-vn-dlg-pinyin">' + s.pinyin + '</div>' : '';
+      dlgHTML =
+        '<div class="cs-vn-dlg" id="cs-vn-dlg">' +
+          '<div class="cs-vn-dlg-header">' +
+            '<div class="cs-vn-dlg-speaker" style="background:' + ch.color + '">' +
+              ch.emoji + '&thinsp;' + ch.name +
+            '</div>' +
+            '<button class="cs-vn-speak-btn" id="cs-vn-speak-btn" onclick="Course._vnTts()" title="Nghe">🔊</button>' +
+          '</div>' +
+          pyHTML +
+          '<div class="cs-vn-dlg-hanzi">' + s.text + '</div>' +
+          '<div class="cs-vn-dlg-vi">' + (s.meaning || '') + '</div>' +
+        '</div>';
+    }
+
+    Course._getEl().innerHTML =
+      '<div class="cs-header">' +
+        '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
+        '<span class="cs-lesson-num">Bài ' + l.id + ': ' + l.title + '</span>' +
+        '<button class="cs-vn-py-toggle" onclick="Course._togglePinyin()" title="Bật/tắt pinyin">' +
+          (Course._showPinyin !== false ? 'Py✓' : 'Py') +
+        '</button>' +
+        '<div class="cs-progress-wrap"><div class="cs-progress-bar" style="width:' + pct + '%"></div></div>' +
+      '</div>' +
+      '<div class="cs-vn-stage" style="background-image:url(\'' + bgUrl + '\')">' +
+        '<div class="cs-vn-scene-tag">' + sceneText + '</div>' +
+        '<div class="cs-vn-cast">' + castHTML + '</div>' +
+      '</div>' +
+      dlgHTML +
+      '<div class="cs-controls">' +
+        '<button class="cs-btn-secondary" onclick="Course.prev()" ' + (Course.step === 0 ? 'disabled' : '') + '>◄ Trước</button>' +
+        '<button class="cs-btn-primary" onclick="Course.next()">Tiếp ►</button>' +
+      '</div>';
+
+    // Auto-play TTS after render
+    if (!isNarrator) {
+      setTimeout(function() { Course._vnTts(); }, 150);
+    }
+  },
+
+  // ── VN: background image resolver ────────────────────
+  _sceneBg: function(step, sceneText) {
+    // Explicit bg field on step takes priority
+    if (step && step.bg) return 'assets/mai/scenes/' + step.bg + '.webp';
+    // Keyword fallback from scene text (Vietnamese, accent-insensitive)
+    var t = (sceneText || '').toLowerCase()
+      .replace(/[àáâãäå]/g,'a').replace(/[èéêë]/g,'e').replace(/[ìíîï]/g,'i')
+      .replace(/[òóôõö]/g,'o').replace(/[ùúûü]/g,'u').replace(/[ýÿ]/g,'y')
+      .replace(/[đ]/g,'d').replace(/[ă]/g,'a').replace(/[ơ]/g,'o').replace(/[ư]/g,'u');
+    if (/ky tuc|phong ngu|ky tuc xa/.test(t))              return 'assets/mai/scenes/dorm-room.webp';
+    if (/san truong|khuon vien|cong truong|truoc cong/.test(t)) return 'assets/mai/scenes/campus.webp';
+    if (/cang tin|can tin|nha an|bua trua/.test(t))        return 'assets/mai/scenes/cafeteria.webp';
+    if (/thu vien/.test(t))                                return 'assets/mai/scenes/library.webp';
+    if (/pho|duong|tram xe|cua hang|sieu thi/.test(t))    return 'assets/mai/scenes/street.webp';
+    if (/phong khach|nha|gia dinh|o nha/.test(t))         return 'assets/mai/scenes/home.webp';
+    if (/kham|benh vien|y te|phong y/.test(t))            return 'assets/mai/scenes/clinic.webp';
+    return 'assets/mai/scenes/classroom.webp'; // default
+  },
+
+  // ── VN: character lookup ──────────────────────────────
+  _vnChar: function(key) {
+    return VN_CHARACTERS[key] || { name: key, role: '', emoji: '👤', color: '#6B7280', img: '', pitch: 1, rate: 1 };
+  },
+
+  // ── VN: TTS per-character voice ───────────────────────
+  _vnTts: function() {
+    var lesson = Course.lesson;
+    if (!lesson || !window.speechSynthesis) return;
+    var s = lesson.steps[Course.step];
+    if (!s || s.speaker === 'narrator') return;
+
+    window.speechSynthesis.cancel();
+    var ch = Course._vnChar(s.speaker);
+    var u  = new SpeechSynthesisUtterance(s.text);
+    u.lang  = 'zh-CN';
+    u.pitch = ch.pitch || 1;
+    u.rate  = ch.rate  || 0.9;
+
+    // Prefer a zh-CN voice if available
+    var vs = window.speechSynthesis.getVoices().filter(function(v) {
+      return /zh|cmn|Chinese|Mandarin/i.test(v.lang + v.name);
+    });
+    if (vs.length) u.voice = vs[0];
+
+    var activeEl = document.querySelector('.cs-vn-char.active');
+    var btn      = document.getElementById('cs-vn-speak-btn');
+    if (activeEl) activeEl.classList.add('cs-vn-speaking');
+    if (btn) { btn.textContent = '🔉'; btn.style.opacity = '0.7'; }
+
+    u.onend = u.onerror = function() {
+      var el = document.querySelector('.cs-vn-char.cs-vn-speaking');
+      if (el) el.classList.remove('cs-vn-speaking');
+      if (btn) { btn.textContent = '🔊'; btn.style.opacity = ''; }
+    };
+    window.speechSynthesis.speak(u);
+  },
+
+  // ── VN: pinyin toggle ─────────────────────────────────
+  _togglePinyin: function() {
+    Course._showPinyin = !Course._showPinyin;
+    Course.render();
   },
 
   // ── PHASE: checkpoint ────────────────────────────────

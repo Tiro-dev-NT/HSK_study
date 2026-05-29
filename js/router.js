@@ -188,7 +188,9 @@ var Router = (function() {
     },
     'translate':    function() {},
     'ocr':          function() {},
-    'text-analyzer': function() {},
+    'text-analyzer': function() {
+      if (typeof TextAnalyzer !== 'undefined') TextAnalyzer.init();
+    },
     'typing':       function() {},
     'topics':       function() {
       if (typeof Topics !== 'undefined') Topics.init();

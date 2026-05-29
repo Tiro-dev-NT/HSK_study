@@ -66,6 +66,25 @@
   --text3:       #6B7280;         /* was #94A3B8 */
   --text-muted:  #6B7280;         /* alias */
 
+  /* ───── Compat aliases — tên token "ngoài hệ" lỡ dùng trong vài page CSS
+     (hsk0 / topics / learn-method / hskk được viết theo bộ token khác).
+     Map về token có sẵn → các trang này THEO theme đúng (sáng↔tối) thay vì
+     kẹt ở fallback hardcoded. var() resolve động nên tự nhận dark-override. ── */
+  --text-primary:                  var(--text);
+  --text-secondary:                var(--text2);
+  --text-tertiary:                 var(--text3);
+  --bg-secondary:                  var(--bg2);
+  --color-chau-hong:               var(--chau-hong);
+  --color-on-surface:              var(--text);
+  --color-on-surface-variant:      var(--text2);
+  --color-border-light:            var(--border);
+  --color-surface-container:       var(--surface);
+  --color-surface-container-high:  var(--surface2);
+  --color-surface-container-low:   var(--bg2);
+  --color-indigo:                  var(--info);
+  --color-gold:                    var(--hoang-kim);
+  --color-red:                     var(--danger);
+
   /* ───── Semantic state ───── */
   --success:    #10B981;
   --success-bg: #ECFDF5;

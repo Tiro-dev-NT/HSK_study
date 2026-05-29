@@ -1,12 +1,58 @@
 <section class="page active">
-  <div class="cs-page">
-    <div class="cs-mascot">🔍</div>
-    <div class="cs-badge">Phase O5 · Sắp ra mắt</div>
-    <h1 class="cs-title">Phân Tích Văn Bản</h1>
-    <p class="cs-desc">Dán bất kỳ đoạn văn tiếng Trung — highlight từ theo cấp HSK, thống kê mức độ khó, tra nghĩa nhanh, thêm vào bộ thẻ trong một click.</p>
-    <div class="cs-eta">⏳ Dự kiến Phase O5</div>
-    <div class="cs-actions">
-      <button class="cs-btn-back" onclick="Router.navigateTo('tools')">← Quay về Công cụ</button>
+  <div class="ta-container">
+
+    <div class="ta-header">
+      <h1 class="ta-title">Phân Tích Văn Bản</h1>
+      <p class="ta-subtitle">Dán đoạn văn tiếng Trung — highlight từ theo cấp HSK, tra nghĩa nhanh, thêm vào kho từ chỉ một click</p>
     </div>
+
+    <div class="ta-input-area">
+      <textarea id="taInput" class="ta-textarea" rows="6"
+        placeholder="Dán văn bản tiếng Trung vào đây...
+
+例：我喜欢学习汉语，因为汉字非常有意思。"></textarea>
+      <span class="ta-hint">Ctrl+Enter để phân tích nhanh</span>
+      <button id="taAnalyzeBtn" class="ta-analyze-btn">🔍 Phân tích</button>
+    </div>
+
+    <div id="taResult" class="ta-result" style="display:none">
+
+      <div class="ta-result-header">
+        <h2 class="ta-result-title">Kết quả phân tích</h2>
+        <div class="ta-legend">
+          <span class="ta-legend-item">
+            <span class="ta-legend-dot" style="background:var(--hsk-1)"></span>HSK 1-3 · Sơ cấp
+          </span>
+          <span class="ta-legend-item">
+            <span class="ta-legend-dot" style="background:var(--hsk-4)"></span>HSK 4-6 · Trung cấp
+          </span>
+          <span class="ta-legend-item">
+            <span class="ta-legend-dot" style="background:var(--hsk-7)"></span>HSK 7-9 · Cao cấp
+          </span>
+          <span class="ta-legend-item">
+            <span class="ta-legend-dot" style="background:var(--fg-4)"></span>Ngoài HSK
+          </span>
+        </div>
+      </div>
+
+      <div id="taHighlight" class="ta-highlight"></div>
+
+      <div id="taStats" class="ta-stats"></div>
+
+    </div>
+
+    <!-- Word popup (fixed, viewport-relative) -->
+    <div id="taPopup" class="ta-popup" role="dialog" aria-modal="true" style="display:none">
+      <div id="taPopupHanzi"   class="ta-popup-hanzi"></div>
+      <div id="taPopupPinyin"  class="ta-popup-pinyin"></div>
+      <div id="taPopupMeaning" class="ta-popup-meaning"></div>
+      <span id="taPopupLevel"  class="ta-popup-level"></span>
+      <div class="ta-popup-actions">
+        <button id="taPopupTts" class="ta-popup-tts" title="Phát âm">🔊</button>
+        <button id="taPopupAdd" class="ta-popup-add">➕ Thêm vào kho</button>
+      </div>
+    </div>
+    <div id="taPopupBackdrop" class="ta-popup-backdrop" style="display:none"></div>
+
   </div>
 </section>

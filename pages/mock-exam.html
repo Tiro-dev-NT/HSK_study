@@ -1,0 +1,71 @@
+<div id="mockExamRoot" class="me-root">
+
+  <!-- ── Setup ──────────────────────────────────────── -->
+  <div id="meSetup" class="me-panel me-setup-panel">
+    <button class="me-back-link" onclick="Router.navigateTo('practice');return false;">← Luyện tập</button>
+    <h1 class="me-setup-title">Thi thử HSK</h1>
+    <p class="me-setup-sub">Mô phỏng kỳ thi · Nghe + Đọc · Đếm ngược toàn bài</p>
+
+    <div class="me-level-row">
+      <button class="me-level-btn active" data-level="1">HSK 1</button>
+      <button class="me-level-btn" data-level="2">HSK 2</button>
+      <button class="me-level-btn" data-level="3">HSK 3</button>
+      <button class="me-level-btn" data-level="4">HSK 4</button>
+      <button class="me-level-btn" data-level="5">HSK 5</button>
+      <button class="me-level-btn" data-level="6">HSK 6</button>
+    </div>
+
+    <div class="me-preview-card" id="meSetupPreview"></div>
+
+    <p class="me-setup-disclaimer">
+      ※ Phần Nghe dùng TTS giọng tổng hợp &nbsp;·&nbsp; Phần Viết (写) HSK 4+ sẽ có ở Phase S
+    </p>
+
+    <button class="btn-primary me-start-btn" id="meStartBtn">🎓 Bắt đầu thi</button>
+  </div>
+
+  <!-- ── Exam ───────────────────────────────────────── -->
+  <div id="meExam" class="me-panel" style="display:none">
+    <div class="me-exam-header">
+      <button class="me-exit-btn" id="meExitBtn" title="Thoát bài thi">✕</button>
+      <span class="me-section-badge me-section-badge--listen" id="meSectionBadge">听力 · Nghe</span>
+      <span class="me-q-count"><span id="meCurrent">1</span>&thinsp;/&thinsp;<span id="meTotal">20</span></span>
+      <span class="me-timer" id="meTimer">20:00</span>
+    </div>
+    <div class="me-progress-bar"><div id="meProgress" style="width:0%"></div></div>
+
+    <div class="me-exam-body">
+
+      <!-- Audio controls — visible only in listening section -->
+      <div id="meAudioRow" class="me-audio-row" style="display:none">
+        <div class="me-audio-icon">🎧</div>
+        <div class="me-audio-controls">
+          <button class="me-play-btn" id="mePlayBtn">▶ Phát lại</button>
+          <span class="me-play-count" id="mePlayCount">còn 1 lần</span>
+        </div>
+      </div>
+
+      <!-- Question display -->
+      <div class="me-q-card">
+        <div class="me-q-hanzi" id="meQHanzi" style="display:none">好</div>
+        <div class="me-q-prompt">Chọn nghĩa đúng:</div>
+      </div>
+
+      <!-- Answer options -->
+      <div class="me-options" id="meOptions"></div>
+
+      <!-- Advance button -->
+      <div class="me-next-wrap">
+        <button class="btn-primary me-next-btn" id="meNextBtn" style="display:none">Câu tiếp →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Section break ──────────────────────────────── -->
+  <div id="meSectionBreak" class="me-panel me-break-panel" style="display:none"></div>
+
+  <!-- ── Result ─────────────────────────────────────── -->
+  <div id="meResult" class="me-panel" style="display:none"></div>
+
+</div>

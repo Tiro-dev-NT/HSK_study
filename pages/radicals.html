@@ -1,12 +1,79 @@
 <section class="page active">
-  <div class="cs-page">
-    <div class="cs-mascot">木</div>
-    <div class="cs-badge">Phase O1 · Sắp ra mắt</div>
-    <h1 class="cs-title">Cây Hán Tự — 214 Bộ Thủ</h1>
-    <p class="cs-desc">Khám phá 214 bộ thủ Khang Hy. Hiểu cấu trúc chữ Hán — tra bộ thủ, xem các chữ liên quan, luyện nhận diện. Cơ sở để học chữ Hán bền vững.</p>
-    <div class="cs-eta">⏳ Dữ liệu 214 bộ thủ đã sẵn sàng — UI đang xây dựng (Phase O1)</div>
-    <div class="cs-actions">
-      <button class="cs-btn-back" onclick="Router.navigateTo('tools')">← Quay về Công cụ</button>
+  <div class="page-header">
+    <h1>Cây Hán Tự</h1>
+    <p class="page-subtitle">214 bộ thủ Khang Hy — nền tảng chữ Hán</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="rad-filters">
+    <div class="rad-search-wrap">
+      <input type="text" id="radSearch" placeholder="Tìm bộ thủ, nghĩa, pinyin..." autocomplete="off">
+      <button class="rad-clear-btn" id="radClearSearch" style="display:none">✕</button>
+    </div>
+    <div class="rad-stroke-filter">
+      <button class="rad-stroke-btn active" data-strokes="all">Tất cả</button>
+      <button class="rad-stroke-btn" data-strokes="1">1 nét</button>
+      <button class="rad-stroke-btn" data-strokes="2">2 nét</button>
+      <button class="rad-stroke-btn" data-strokes="3">3 nét</button>
+      <button class="rad-stroke-btn" data-strokes="4">4 nét</button>
+      <button class="rad-stroke-btn" data-strokes="5">5 nét</button>
+      <button class="rad-stroke-btn" data-strokes="6-9">6-9 nét</button>
+      <button class="rad-stroke-btn" data-strokes="10+">10+ nét</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="rad-stats" id="radStats">Hiển thị 214 bộ thủ</div>
+
+  <!-- Grid -->
+  <div class="rad-grid" id="radGrid">
+    <div style="padding:40px;text-align:center;color:var(--text2)">Đang tải...</div>
+  </div>
+
+  <!-- Detail Panel (modal overlay) -->
+  <div class="rad-detail-overlay" id="radDetailOverlay" style="display:none">
+    <div class="rad-detail-panel">
+      <button class="rad-detail-close" id="radDetailClose">✕</button>
+
+      <div class="rad-detail-header">
+        <div class="rad-detail-char" id="radDetailChar">人</div>
+        <div class="rad-detail-info">
+          <div class="rad-detail-name" id="radDetailName">Người</div>
+          <div class="rad-detail-meta">
+            <span id="radDetailPinyin">rén</span>
+            <span class="rad-dot">·</span>
+            <span id="radDetailStrokes">2 nét</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rad-detail-body">
+        <!-- Stroke animation -->
+        <div class="rad-detail-section">
+          <div class="rad-section-label">Thứ tự nét</div>
+          <div class="rad-writer-wrap">
+            <div id="radWriter"></div>
+            <button class="rad-animate-btn" id="radAnimateBtn">▶ Xem lại</button>
+          </div>
+        </div>
+
+        <!-- Meaning -->
+        <div class="rad-detail-section">
+          <div class="rad-section-label">Nghĩa gốc</div>
+          <div class="rad-meaning-row">
+            <span class="rad-meaning-vi" id="radDetailMeaningVi">người</span>
+            <span class="rad-meaning-en" id="radDetailMeaningEn">person</span>
+          </div>
+        </div>
+
+        <!-- Example characters -->
+        <div class="rad-detail-section">
+          <div class="rad-section-label">Chữ HSK phổ biến chứa bộ này</div>
+          <div class="rad-examples" id="radExamples">
+            <div style="color:var(--text3);font-size:14px">Không có ví dụ</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

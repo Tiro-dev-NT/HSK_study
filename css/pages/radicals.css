@@ -1,0 +1,391 @@
+/* ═══════════════════════════════════════════════════════
+   RADICALS.CSS — Phase O1 Cây Hán Tự (214 Kangxi Radicals)
+   ═══════════════════════════════════════════════════════ */
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--text2);
+  margin-top: 4px;
+}
+
+/* ── Filters ──────────────────────────────────────────── */
+.rad-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.rad-search-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.rad-search-wrap input {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s;
+}
+
+.rad-search-wrap input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.rad-clear-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text2);
+  transition: .2s;
+}
+
+.rad-clear-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: transparent;
+}
+
+.rad-stroke-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rad-stroke-btn {
+  padding: 8px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  transition: .18s;
+  font-family: var(--font-ui);
+}
+
+.rad-stroke-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.rad-stroke-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ── Stats ────────────────────────────────────────────── */
+.rad-stats {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* ── Grid ─────────────────────────────────────────────── */
+.rad-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.rad-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: .18s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.rad-card:hover {
+  border-color: var(--primary);
+  background: var(--surface2);
+  transform: translateY(-2px);
+}
+
+.rad-card-char {
+  font-size: 48px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--text);
+  line-height: 1;
+}
+
+.rad-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.rad-card-meta {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.rad-card-strokes {
+  font-size: 11px;
+  color: var(--text3);
+  background: var(--surface2);
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 2px;
+}
+
+/* ── Detail Panel (Modal) ─────────────────────────────── */
+.rad-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rad-detail-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rad-detail-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--text2);
+  transition: .2s;
+  z-index: 1;
+}
+
+.rad-detail-close:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: transparent;
+}
+
+.rad-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.rad-detail-char {
+  font-size: 80px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--text);
+  line-height: 1;
+}
+
+.rad-detail-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.rad-detail-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.rad-detail-meta {
+  font-size: 14px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rad-dot {
+  color: var(--text3);
+}
+
+.rad-detail-body {
+  padding: 24px;
+}
+
+.rad-detail-section {
+  margin-bottom: 24px;
+}
+
+.rad-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.rad-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+/* ── HanziWriter Animation ────────────────────────────── */
+.rad-writer-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+#radWriter {
+  width: 200px;
+  height: 200px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.rad-animate-btn {
+  padding: 10px 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.rad-animate-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* ── Meaning ──────────────────────────────────────────── */
+.rad-meaning-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rad-meaning-vi {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.rad-meaning-en {
+  font-size: 16px;
+  color: var(--text2);
+}
+
+/* ── Examples ─────────────────────────────────────────── */
+.rad-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rad-example-char {
+  font-size: 32px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--text);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: .18s;
+}
+
+.rad-example-char:hover {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .rad-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+  }
+
+  .rad-card {
+    padding: 12px 8px;
+  }
+
+  .rad-card-char {
+    font-size: 36px;
+  }
+
+  .rad-detail-panel {
+    max-height: 95vh;
+  }
+
+  .rad-detail-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rad-detail-char {
+    font-size: 64px;
+  }
+
+  #radWriter {
+    width: 160px;
+    height: 160px;
+  }
+}

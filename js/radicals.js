@@ -36,3 +36,221 @@ var RADICALS = [
 ];
 
 console.log('[HSK] Loaded', RADICALS.length, 'radicals');
+
+// ═══════════════════════════════════════════════════════
+// RADICALS214 UI MODULE — Phase O1 Cây Hán Tự
+// ═══════════════════════════════════════════════════════
+
+var Radicals214 = (function() {
+  var _currentFilter = 'all';
+  var _searchQuery = '';
+  var _writer = null;
+
+  // ── Merge legacy RADICALS examples into RADICALS_214 ──
+  function _enrichWithExamples() {
+    if (typeof RADICALS === 'undefined') return;
+
+    RADICALS.forEach(function(legacy) {
+      var match = RADICALS_214.find(function(r) { return r.char === legacy.r; });
+      if (match && legacy.chars && legacy.chars.length > 0) {
+        match.examples = legacy.chars.slice(0, 12); // Max 12 examples
+      }
+    });
+  }
+
+  // ── Filter radicals by stroke count ──
+  function _filterByStrokes(radicals, filter) {
+    if (filter === 'all') return radicals;
+    if (filter === '10+') return radicals.filter(function(r) { return r.strokes >= 10; });
+    if (filter === '6-9') return radicals.filter(function(r) { return r.strokes >= 6 && r.strokes <= 9; });
+    var num = parseInt(filter);
+    return radicals.filter(function(r) { return r.strokes === num; });
+  }
+
+  // ── Search radicals ──
+  function _searchRadicals(radicals, query) {
+    if (!query) return radicals;
+    var q = query.toLowerCase();
+    return radicals.filter(function(r) {
+      return r.char.includes(q) ||
+             r.pinyin.toLowerCase().includes(q) ||
+             r.meaning_vi.toLowerCase().includes(q) ||
+             r.meaning_en.toLowerCase().includes(q);
+    });
+  }
+
+  // ── Render grid ──
+  function _renderGrid() {
+    var filtered = _filterByStrokes(RADICALS_214, _currentFilter);
+    filtered = _searchRadicals(filtered, _searchQuery);
+
+    var grid = document.getElementById('radGrid');
+    var stats = document.getElementById('radStats');
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text2)">Không tìm thấy bộ thủ nào</div>';
+      stats.textContent = 'Không tìm thấy bộ thủ nào';
+      return;
+    }
+
+    stats.textContent = 'Hiển thị ' + filtered.length + ' bộ thủ';
+
+    var html = filtered.map(function(r) {
+      return '<div class="rad-card" data-id="' + r.id + '">' +
+        '<div class="rad-card-char">' + r.char + '</div>' +
+        '<div class="rad-card-name">' + r.meaning_vi + '</div>' +
+        '<div class="rad-card-meta">' + r.pinyin + '</div>' +
+        '<div class="rad-card-strokes">' + r.strokes + ' nét</div>' +
+        '</div>';
+    }).join('');
+
+    grid.innerHTML = html;
+
+    // Attach click handlers
+    grid.querySelectorAll('.rad-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var id = parseInt(this.dataset.id);
+        _showDetail(id);
+      });
+    });
+  }
+
+  // ── Show detail panel ──
+  function _showDetail(id) {
+    var radical = RADICALS_214.find(function(r) { return r.id === id; });
+    if (!radical) return;
+
+    document.getElementById('radDetailChar').textContent = radical.char;
+    document.getElementById('radDetailName').textContent = radical.meaning_vi;
+    document.getElementById('radDetailPinyin').textContent = radical.pinyin;
+    document.getElementById('radDetailStrokes').textContent = radical.strokes + ' nét';
+    document.getElementById('radDetailMeaningVi').textContent = radical.meaning_vi;
+    document.getElementById('radDetailMeaningEn').textContent = radical.meaning_en;
+
+    // Render examples
+    var examplesEl = document.getElementById('radExamples');
+    if (radical.examples && radical.examples.length > 0) {
+      examplesEl.innerHTML = radical.examples.map(function(char) {
+        return '<div class="rad-example-char" title="' + char + '">' + char + '</div>';
+      }).join('');
+    } else {
+      examplesEl.innerHTML = '<div style="color:var(--text3);font-size:14px">Không có ví dụ</div>';
+    }
+
+    // Initialize HanziWriter
+    _initWriter(radical.char);
+
+    // Show overlay
+    document.getElementById('radDetailOverlay').style.display = 'flex';
+  }
+
+  // ── Initialize HanziWriter ──
+  function _initWriter(char) {
+    var writerEl = document.getElementById('radWriter');
+    writerEl.innerHTML = ''; // Clear previous
+
+    if (typeof HanziWriter === 'undefined') {
+      writerEl.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text2);font-size:14px">HanziWriter chưa tải</div>';
+      return;
+    }
+
+    try {
+      _writer = HanziWriter.create(writerEl, char, {
+        width: 200,
+        height: 200,
+        padding: 10,
+        strokeColor: '#DC2626',
+        radicalColor: '#F59E0B',
+        showOutline: true,
+        showCharacter: false
+      });
+
+      // Auto-animate once
+      setTimeout(function() {
+        if (_writer) _writer.animateCharacter();
+      }, 300);
+    } catch(e) {
+      console.error('[Radicals] HanziWriter error:', e);
+      writerEl.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text2);font-size:14px">Không thể tải nét chữ</div>';
+    }
+  }
+
+  // ── Close detail panel ──
+  function _closeDetail() {
+    document.getElementById('radDetailOverlay').style.display = 'none';
+    if (_writer) {
+      _writer = null;
+    }
+  }
+
+  // ── Setup event listeners ──
+  function _setupListeners() {
+    // Stroke filter buttons
+    document.querySelectorAll('.rad-stroke-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.rad-stroke-btn').forEach(function(b) {
+          b.classList.remove('active');
+        });
+        this.classList.add('active');
+        _currentFilter = this.dataset.strokes;
+        _renderGrid();
+      });
+    });
+
+    // Search input
+    var searchInput = document.getElementById('radSearch');
+    var clearBtn = document.getElementById('radClearSearch');
+
+    searchInput.addEventListener('input', function() {
+      _searchQuery = this.value.trim();
+      clearBtn.style.display = _searchQuery ? 'block' : 'none';
+      _renderGrid();
+    });
+
+    clearBtn.addEventListener('click', function() {
+      searchInput.value = '';
+      _searchQuery = '';
+      this.style.display = 'none';
+      _renderGrid();
+    });
+
+    // Detail panel close
+    document.getElementById('radDetailClose').addEventListener('click', _closeDetail);
+
+    // Close on overlay click
+    document.getElementById('radDetailOverlay').addEventListener('click', function(e) {
+      if (e.target === this) _closeDetail();
+    });
+
+    // Animate button
+    document.getElementById('radAnimateBtn').addEventListener('click', function() {
+      if (_writer) _writer.animateCharacter();
+    });
+
+    // ESC key to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var overlay = document.getElementById('radDetailOverlay');
+        if (overlay && overlay.style.display === 'flex') {
+          _closeDetail();
+        }
+      }
+    });
+  }
+
+  // ── Public init ──
+  function init() {
+    if (typeof RADICALS_214 === 'undefined') {
+      console.error('[Radicals] RADICALS_214 not loaded');
+      return;
+    }
+
+    _enrichWithExamples();
+    _renderGrid();
+    _setupListeners();
+
+    console.log('[Radicals] Initialized with', RADICALS_214.length, 'radicals');
+  }
+
+  return { init: init };
+})();

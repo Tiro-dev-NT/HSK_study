@@ -21,14 +21,56 @@ var Course = {
 
   // ── Entry point ─────────────────────────────────────
   init: function() {
-    var id = Course._pendingId || parseInt(new URLSearchParams(location.search).get('id') || '1', 10);
+    var urlId = new URLSearchParams(location.search).get('id');
+    var id = Course._pendingId || (urlId ? parseInt(urlId, 10) : null);
     Course._pendingId = null;
 
+    if (!id) {
+      Course.renderList();
+      return;
+    }
     if (typeof isDebtBlocked === 'function' && isDebtBlocked()) {
       Course._renderDebtWarning(id);
       return;
     }
     Course.loadLesson(id);
+  },
+
+  // ── Lesson list view ─────────────────────────────────
+  renderList: function() {
+    var progress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
+    var cards = [];
+    for (var id = 1; id <= 12; id++) {
+      var lesson = (typeof COURSE_DATA !== 'undefined') ? COURSE_DATA[id] : null;
+      if (!lesson) continue;
+      var prog = progress[id];
+      var statusLabel = '';
+      var cardClass = 'cs-lesson-card';
+      if (prog && prog.completed) {
+        statusLabel = '✓ Hoàn thành';
+        cardClass += ' cs-li-completed';
+      } else if (prog) {
+        statusLabel = '▶ Đang học dở';
+        cardClass += ' cs-li-progress';
+      }
+      cards.push(
+        '<button class="' + cardClass + '" onclick="Course.loadLesson(' + id + ')">' +
+          '<div class="cs-lc-num">Bài ' + id + '</div>' +
+          '<div class="cs-lc-title">' + lesson.title + '</div>' +
+          '<div class="cs-lc-context">' + lesson.context + '</div>' +
+          (statusLabel ? '<div class="cs-lc-status">' + statusLabel + '</div>' : '') +
+        '</button>'
+      );
+    }
+    Course._getEl().innerHTML =
+      '<div class="cs-header">' +
+        '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
+        '<span class="cs-lesson-num">Truyện Mai — HSK 1</span>' +
+      '</div>' +
+      '<div class="cs-list">' +
+        '<h2 class="cs-list-title">Chọn bài học</h2>' +
+        '<div class="cs-lesson-grid">' + cards.join('') + '</div>' +
+      '</div>';
   },
 
   loadLesson: function(id) {
@@ -46,6 +88,9 @@ var Course = {
       Course._renderComingSoon(id);
       return;
     }
+    // Sync URL so refresh / bookmark / "Bài tiếp theo" resume the right lesson.
+    // replaceState (not push) → no extra history entry, matches old in-place behavior.
+    try { history.replaceState({ page: 'course', id: id }, '', '/course?id=' + id); } catch (e) {}
     Course._loadProgress();
     Course.render();
   },
@@ -574,7 +619,7 @@ var Course = {
       '<div class="cs-coming-soon">' +
         '<div class="cs-coming-icon">📝</div>' +
         '<h3>Bài ' + id + ' đang được biên soạn</h3>' +
-        '<p>Sắp ra mắt! Hiện tại bạn có thể học Bài 1 → 3.</p>' +
+        '<p>Sắp ra mắt! Hiện tại bạn có thể học Bài 1 → 12.</p>' +
         '<button class="cs-btn-primary" onclick="Router.navigateTo(\'learn\')">← Về Học</button>' +
       '</div>';
   },

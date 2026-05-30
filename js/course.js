@@ -115,6 +115,7 @@ var Course = {
     var fns = {
       intro:       Course._renderIntro,
       dialogue:    Course._renderDialogue,
+      choice:      Course._renderChoiceVN,
       checkpoint:  Course._renderCheckpoint,
       vocab:       Course._renderVocab,
       workbook:    Course._renderWorkbook,
@@ -140,11 +141,16 @@ var Course = {
       } else if (steps[Course.step].type === 'checkpoint') {
         Course.phase = 'checkpoint';
         Course.checkpointAnswers = {};
+      } else if (steps[Course.step].type === 'choice') {
+        Course.phase = 'choice';
       } else {
         Course.phase = 'dialogue';
       }
       Course._saveProgress();
       Course.render();
+      return;
+    }
+    if (Course.phase === 'choice') {
       return;
     }
     if (Course.phase === 'checkpoint') {
@@ -160,12 +166,13 @@ var Course = {
   },
 
   prev: function() {
-    if (Course.phase === 'dialogue' && Course.step > 0) {
+    if ((Course.phase === 'dialogue' || Course.phase === 'choice') && Course.step > 0) {
       Course.step--;
-      // Skip back over checkpoints
+      // Skip back over checkpoints and choices
       var s = Course.lesson.steps[Course.step];
-      if (s && s.type === 'checkpoint') Course.step--;
+      if (s && (s.type === 'checkpoint' || s.type === 'choice')) Course.step--;
       if (Course.step < 0) Course.step = 0;
+      Course.phase = 'dialogue';
       Course.render();
     }
   },
@@ -353,10 +360,8 @@ var Course = {
         '<button class="cs-btn-primary" onclick="Course.next()">Tiếp ►</button>' +
       '</div>';
 
-    // Auto-play TTS after render
-    if (!isNarrator) {
-      setTimeout(function() { Course._vnTts(); }, 150);
-    }
+    // Auto-play TTS after render (narrator included — pre-gen MP3 available)
+    setTimeout(function() { Course._vnTts(); }, 150);
   },
 
   // ── VN: background image resolver ────────────────────
@@ -497,37 +502,217 @@ var Course = {
     return VN_CHARACTERS[key] || { name: key, role: '', emoji: '👤', color: '#6B7280', img: '', pitch: 1, rate: 1 };
   },
 
+  // ── PHASE: choice (active recall) ────────────────────
+  _renderChoiceVN: function() {
+    Course._hideWordPopup();
+    var l     = Course.lesson;
+    var steps = l.steps;
+    var s     = steps[Course.step];
+    if (!s || s.type !== 'choice') { Course.phase = 'dialogue'; Course.step++; Course.render(); return; }
+
+    var dlgTotal = steps.filter(function(x) { return x.type === 'dialogue'; }).length;
+    var dlgDone  = steps.slice(0, Course.step + 1).filter(function(x) { return x.type === 'dialogue'; }).length;
+    var pct      = Math.round((dlgDone / (dlgTotal || 1)) * 50);
+
+    var sceneText = '📍 Lớp học tiếng Trung';
+    var sceneStep = null;
+    for (var si = Course.step; si >= 0; si--) {
+      if (steps[si] && steps[si].scene) { sceneText = steps[si].scene; sceneStep = steps[si]; break; }
+    }
+    var bgUrl = Course._sceneBg(sceneStep, sceneText);
+
+    var CAST_ORDER = ['laoli', 'mai', 'xiaomei'];
+    var castKeys = (s.cast || []).slice().sort(function(a, b) {
+      return CAST_ORDER.indexOf(a) - CAST_ORDER.indexOf(b);
+    });
+    var castHTML = castKeys.map(function(k) {
+      var c      = Course._vnChar(k);
+      var active = (k === s.speaker);
+      var imgSrc = (k === 'mai') ? Course._maiImg(s.expression) : (c.img || '');
+      return '<div class="cs-vn-char ' + (active ? 'active' : 'inactive') + '" style="--char-color:' + c.color + '">' +
+        '<div class="cs-vn-avatar">' +
+          '<span class="cs-vn-avatar-emoji">' + c.emoji + '</span>' +
+          (imgSrc ? '<img src="' + imgSrc + '" alt="" class="cs-vn-avatar-img" onerror="this.style.display=\'none\'">' : '') +
+        '</div>' +
+        '<div class="cs-vn-char-name">' + c.name.split(/[\s(]/)[0] + '</div>' +
+        (c.role ? '<div class="cs-vn-char-role">' + c.role + '</div>' : '') +
+      '</div>';
+    }).join('');
+
+    // correctIdx: index of the correct option
+    var correctIdx = -1;
+    for (var i = 0; i < s.options.length; i++) {
+      if (s.options[i].correct) { correctIdx = i; break; }
+    }
+
+    // State: wrongSet = set of wrong indices tried; solved = correct was chosen
+    var stateKey  = 'choice_' + Course.step;
+    var wrongSet  = Course.checkpointAnswers[stateKey + '_wrong'] || {};
+    var solved    = Course.checkpointAnswers[stateKey + '_solved'] === true;
+    var lastWrong = Course.checkpointAnswers[stateKey + '_lastWrong'];
+
+    var optsHTML = s.options.map(function(opt, oi) {
+      var state    = '';
+      var disabled = '';
+      if (solved) {
+        // All locked after correct
+        disabled = 'disabled';
+        if (oi === correctIdx) state = ' is-correct';
+        else if (wrongSet[oi]) state = ' is-wrong';
+      } else {
+        // Only lock wrong ones already tried
+        if (wrongSet[oi]) { state = ' is-wrong'; disabled = 'disabled'; }
+      }
+      var pyHTML = (Course._showPinyin !== false && opt.pinyin)
+        ? '<div class="cs-vn-choice-py">' + opt.pinyin + '</div>' : '';
+      return '<button class="cs-vn-choice-opt' + state + '" ' + disabled + ' onclick="Course._answerChoice(' + oi + ')">' +
+        '<div class="cs-vn-choice-hanzi">' + opt.text + '</div>' +
+        pyHTML +
+      '</button>';
+    }).join('');
+
+    // Show feedback for last wrong attempt or for solved state
+    var feedbackHTML = '';
+    if (solved) {
+      feedbackHTML = '<div class="cs-vn-choice-feedback cs-vn-choice-feedback--ok">' + s.options[correctIdx].feedback + '</div>';
+    } else if (lastWrong !== undefined) {
+      feedbackHTML = '<div class="cs-vn-choice-feedback">' + s.options[lastWrong].feedback + '</div>';
+    }
+
+    Course._getEl().innerHTML =
+      '<div class="cs-header">' +
+        '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
+        '<span class="cs-lesson-num">Bài ' + l.id + ': ' + l.title + '</span>' +
+        '<button class="cs-vn-py-toggle" onclick="Course._togglePinyin()" title="Bật/tắt pinyin">' +
+          (Course._showPinyin !== false ? 'Py✓' : 'Py') +
+        '</button>' +
+        '<button class="cs-vn-py-toggle" onclick="Course._toggleVi()" title="Bật/tắt nghĩa">' +
+          (Course._showVi !== false ? 'Vi✓' : 'Vi') +
+        '</button>' +
+        '<div class="cs-progress-wrap"><div class="cs-progress-bar" style="width:' + pct + '%"></div></div>' +
+      '</div>' +
+      '<div class="cs-vn-stage" style="background-image:url(\'' + bgUrl + '\')">' +
+        '<div class="cs-vn-scene-tag">' + sceneText + '</div>' +
+        '<div class="cs-vn-cast">' + castHTML + '</div>' +
+      '</div>' +
+      '<div class="cs-vn-choice-box">' +
+        '<div class="cs-vn-choice-q">' + (s.q || '') + '</div>' +
+        '<div class="cs-vn-choice-opts">' + optsHTML + '</div>' +
+        feedbackHTML +
+      '</div>' +
+      '<div class="cs-controls">' +
+        '<button class="cs-btn-secondary" onclick="Course.prev()" ' + (Course.step === 0 ? 'disabled' : '') + '>◄ Trước</button>' +
+        (solved
+          ? '<button class="cs-btn-primary" onclick="Course._continueAfterChoice()">Tiếp ►</button>'
+          : '') +
+      '</div>';
+  },
+
+  _answerChoice: function(idx) {
+    var s = Course.lesson.steps[Course.step];
+    if (!s || s.type !== 'choice') return;
+
+    var correctIdx = -1;
+    for (var i = 0; i < s.options.length; i++) {
+      if (s.options[i].correct) { correctIdx = i; break; }
+    }
+
+    var stateKey = 'choice_' + Course.step;
+    if (Course.checkpointAnswers[stateKey + '_solved']) return; // already done
+
+    if (idx === correctIdx) {
+      Course.checkpointAnswers[stateKey + '_solved'] = true;
+      // Play TTS for correct answer
+      var opt = s.options[idx];
+      if (opt.text && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(opt.text);
+        u.lang = 'zh-CN'; u.rate = 0.85;
+        window.speechSynthesis.speak(u);
+      }
+    } else {
+      // Mark this option as wrong, allow retry on others
+      if (!Course.checkpointAnswers[stateKey + '_wrong']) {
+        Course.checkpointAnswers[stateKey + '_wrong'] = {};
+      }
+      Course.checkpointAnswers[stateKey + '_wrong'][idx] = true;
+      Course.checkpointAnswers[stateKey + '_lastWrong'] = idx;
+    }
+
+    Course.render();
+  },
+
+  _continueAfterChoice: function() {
+    Course.step++;
+    var steps = Course.lesson.steps;
+    if (Course.step >= steps.length) {
+      Course.phase = 'vocab';
+    } else {
+      Course.phase = 'dialogue';
+    }
+    Course._saveProgress();
+    Course.render();
+  },
+
   // ── VN: TTS per-character voice ───────────────────────
+  // Tries pre-gen MP3 cache first; falls back to Web Speech for non-narrator.
+  // Narrator steps with Vietnamese text (no CJK) have no MP3 → silently no-op.
+  // Content-stable audio slug — djb2 over UTF-8 of "speaker|text".
+  // MUST match scripts/mai-tts-gen.py slug_for() exactly so pre-gen MP3
+  // filenames line up. Keying by content (not step index) means inserting
+  // choice/checkpoint steps never shifts which file a dialogue plays.
+  _audioSlug: function(speaker, text) {
+    var bytes = new TextEncoder().encode((speaker || 'narrator') + '|' + text);
+    var h = 5381;
+    for (var i = 0; i < bytes.length; i++) { h = (h * 33 + bytes[i]) >>> 0; }
+    return ('00000000' + h.toString(16)).slice(-8);
+  },
+
   _vnTts: function() {
     var lesson = Course.lesson;
-    if (!lesson || !window.speechSynthesis) return;
+    if (!lesson) return;
     var s = lesson.steps[Course.step];
-    if (!s || s.speaker === 'narrator') return;
+    if (!s || s.type !== 'dialogue' || !s.text) return;
 
-    window.speechSynthesis.cancel();
-    var ch = Course._vnChar(s.speaker);
-    var u  = new SpeechSynthesisUtterance(s.text);
-    u.lang  = 'zh-CN';
-    u.pitch = ch.pitch || 1;
-    u.rate  = ch.rate  || 0.9;
-
-    // Prefer a zh-CN voice if available
-    var vs = window.speechSynthesis.getVoices().filter(function(v) {
-      return /zh|cmn|Chinese|Mandarin/i.test(v.lang + v.name);
-    });
-    if (vs.length) u.voice = vs[0];
-
+    var isNarr   = (s.speaker === 'narrator');
+    var slug     = Course._audioSlug(s.speaker, s.text);
+    var src      = 'assets/mai/audio/L' + Course.lessonId + '_' + slug + '.mp3';
     var activeEl = document.querySelector('.cs-vn-char.active');
     var btn      = document.getElementById('cs-vn-speak-btn');
-    if (activeEl) activeEl.classList.add('cs-vn-speaking');
-    if (btn) { btn.textContent = '🔉'; btn.style.opacity = '0.7'; }
 
-    u.onend = u.onerror = function() {
+    var cleanup = function() {
       var el = document.querySelector('.cs-vn-char.cs-vn-speaking');
       if (el) el.classList.remove('cs-vn-speaking');
       if (btn) { btn.textContent = '🔊'; btn.style.opacity = ''; }
     };
-    window.speechSynthesis.speak(u);
+
+    var usedFallback = false;
+    var speechFallback = function() {
+      if (usedFallback) return;
+      usedFallback = true;
+      // Narrator fallback is silent — avoid reading VN text with a ZH voice
+      if (isNarr || !window.speechSynthesis) { cleanup(); return; }
+      window.speechSynthesis.cancel();
+      var ch = Course._vnChar(s.speaker);
+      var u  = new SpeechSynthesisUtterance(s.text);
+      u.lang  = 'zh-CN';
+      u.pitch = ch.pitch || 1;
+      u.rate  = ch.rate  || 0.9;
+      var vs = window.speechSynthesis.getVoices().filter(function(v) {
+        return /zh|cmn|Chinese|Mandarin/i.test(v.lang + v.name);
+      });
+      if (vs.length) u.voice = vs[0];
+      u.onend = u.onerror = cleanup;
+      window.speechSynthesis.speak(u);
+    };
+
+    if (activeEl) activeEl.classList.add('cs-vn-speaking');
+    if (btn) { btn.textContent = '🔉'; btn.style.opacity = '0.7'; }
+
+    var a = new Audio(src);
+    a.onended = cleanup;
+    a.onerror = speechFallback;
+    a.play().catch(speechFallback);
   },
 
   // ── VN: pinyin toggle ─────────────────────────────────

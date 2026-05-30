@@ -178,6 +178,79 @@
   background: var(--primary, #DC2626);
   animation: cs-dot-bounce 1.1s ease-in-out infinite;
 }
+
+/* ── Choice step (active recall) ─────────────────────── */
+.cs-vn-choice-box {
+  background: var(--bg, #fff);
+  border-top: 1px solid var(--border-2);
+  padding: 20px 16px;
+  margin: 0;
+}
+.cs-vn-choice-q {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg-1);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.cs-vn-choice-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.cs-vn-choice-opt {
+  background: var(--bg-2);
+  border: 2px solid var(--border-2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.cs-vn-choice-opt:hover:not(:disabled) {
+  background: var(--bg-3);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+.cs-vn-choice-hanzi {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg-1);
+  margin-bottom: 4px;
+}
+.cs-vn-choice-py {
+  font-size: 13px;
+  color: var(--fg-3);
+  font-style: italic;
+}
+.cs-vn-choice-opt.is-correct {
+  background: var(--thuy-luc-soft, #D1FAE5);
+  border-color: var(--thuy-luc, #10B981);
+  animation: cs-pop-in 0.3s ease;
+}
+.cs-vn-choice-opt.is-wrong {
+  background: var(--chau-hong-soft, #FEE2E2);
+  border-color: var(--chau-hong, #DC2626);
+  animation: cs-shake 0.4s ease;
+}
+@keyframes cs-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+.cs-vn-choice-feedback {
+  background: var(--hoang-kim-soft, #FEF3C7);
+  border-left: 3px solid var(--hoang-kim, #F59E0B);
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--fg-2);
+  line-height: 1.5;
+  margin-top: 12px;
+}
+}
 .cs-speaking-dots span:nth-child(2) { animation-delay: 0.18s; background: var(--hoang-kim, #F59E0B); }
 .cs-speaking-dots span:nth-child(3) { animation-delay: 0.36s; background: var(--primary, #DC2626); }
 
@@ -754,9 +827,11 @@
   /* fallback gradient khi chưa có bg image */
   background: linear-gradient(180deg, #FDE68A22 0%, #10B98118 55%, #bfdbfe44 100%);
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   border-bottom: 1px solid var(--border-2);
-  min-height: 280px;
+  aspect-ratio: 16 / 9;
+  min-height: 320px;
+  max-height: 480px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -793,9 +868,9 @@
   font-weight: 600;
   backdrop-filter: blur(4px);
   max-width: calc(100% - 24px);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* ── Cast row ─────────────────────────────────────────── */
@@ -803,8 +878,9 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  gap: 8px;
-  min-height: 175px;
+  gap: 12px;
+  min-height: 220px;
+  padding-bottom: 8px;
 }
 
 .cs-vn-char {
@@ -813,65 +889,64 @@
   align-items: center;
   gap: 6px;
   flex: 0 0 auto;
-  width: 88px;
+  width: 120px;
   transition: transform 0.28s ease, opacity 0.28s ease, filter 0.28s ease;
 }
 
-/* Active: elevated, avatar glows, speaking animation */
-.cs-vn-char.active { transform: translateY(-12px); }
-.cs-vn-char.active .cs-vn-avatar {
-  transform: scale(1.1);
-  box-shadow: 0 0 0 5px rgba(0,0,0,0.14), 0 8px 20px rgba(0,0,0,0.14);
+/* Active: elevated, larger, full opacity */
+.cs-vn-char.active {
+  transform: translateY(-8px) scale(1.08);
+  opacity: 1;
+  z-index: 2;
 }
-@supports (background: color-mix(in srgb, red 25%, transparent)) {
-  .cs-vn-char.active .cs-vn-avatar {
-    box-shadow: 0 0 0 5px color-mix(in srgb, var(--char-color, #888) 28%, transparent),
-                0 8px 20px rgba(0,0,0,0.14);
-  }
+.cs-vn-char.active .cs-vn-avatar {
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.18));
 }
 
 /* Speaking pulse (added by JS during TTS) */
-.cs-vn-char.cs-vn-speaking .cs-vn-avatar {
+.cs-vn-char.cs-vn-speaking .cs-vn-avatar-img {
   animation: cs-vn-talk 0.9s ease-in-out infinite;
 }
 @keyframes cs-vn-talk {
-  0%, 100% { transform: scale(1.10); }
-  50%       { transform: scale(1.16); }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-4px) scale(1.02); }
 }
 
-/* Inactive: dimmed + grayscale */
-.cs-vn-char.inactive { opacity: 0.42; filter: grayscale(0.55); }
-.cs-vn-char.inactive .cs-vn-avatar { transform: scale(0.88); }
+/* Inactive: dimmed, smaller, grayscale, pushed back */
+.cs-vn-char.inactive {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+  transform: scale(0.85);
+  z-index: 1;
+}
 
-/* Avatar circle */
+/* Avatar container — full-body sprite */
 .cs-vn-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid var(--char-color, #888);
-  background: var(--surface-3, #F5F5F4);
+  width: 100%;
+  height: 180px;
   position: relative;
-  overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  transition: filter 0.28s ease;
 }
 
 .cs-vn-avatar-emoji {
-  font-size: 36px;
+  font-size: 48px;
   line-height: 1;
   pointer-events: none;
+  position: absolute;
+  bottom: 20px;
 }
 
-/* Image covers emoji fallback when loaded */
+/* Image — full-body sprite anchored to bottom */
 .cs-vn-avatar-img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: bottom center;
+  transition: transform 0.28s ease;
 }
 
 .cs-vn-char-name {
@@ -1051,13 +1126,17 @@
 
 /* ── VN responsive tweaks ─────────────────────────────── */
 @media (max-width: 375px) {
-  .cs-vn-char { width: 74px; }
-  .cs-vn-avatar { width: 68px; height: 68px; }
-  .cs-vn-avatar-emoji { font-size: 30px; }
+  .cs-vn-stage { min-height: 240px; }
+  .cs-vn-char { width: 90px; }
+  .cs-vn-avatar { height: 140px; }
+  .cs-vn-avatar-emoji { font-size: 36px; }
   .cs-vn-dlg-hanzi { font-size: 1.6rem; }
 }
 @media (min-width: 500px) {
-  .cs-vn-char { width: 100px; }
-  .cs-vn-avatar { width: 90px; height: 90px; }
-  .cs-vn-avatar-emoji { font-size: 42px; }
+  .cs-vn-char { width: 140px; }
+  .cs-vn-avatar { height: 210px; }
+  .cs-vn-avatar-emoji { font-size: 56px; }
+}
+@media (min-width: 640px) {
+  .cs-vn-stage { max-height: 520px; }
 }

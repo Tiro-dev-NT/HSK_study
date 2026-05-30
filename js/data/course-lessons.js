@@ -39,6 +39,20 @@ var COURSE_DATA = {
         expression: null, vocab: ['叫','什么','名字']
       },
       {
+        type: 'choice', speaker: 'mai', cast: ['laoli', 'mai'], bg: 'classroom',
+        scene: '📍 Lớp học tiếng Trung · Buổi đầu tiên',
+        expression: 'curious',
+        q: 'Thầy Lý hỏi tên. Mai nên đáp thế nào?',
+        options: [
+          { text: '我叫 Mai。', pinyin: 'Wǒ jiào Mai.', meaning: 'Em tên Mai ạ.', correct: true,
+            feedback: 'Đúng! 叫 + tên = cách giới thiệu tên chuẩn trong tiếng Trung.' },
+          { text: '我是老师。', pinyin: 'Wǒ shì lǎoshī.', meaning: 'Tôi là giáo viên.', correct: false,
+            feedback: 'Chưa đúng — câu này nghĩa "Tôi là giáo viên", không phải giới thiệu tên.' },
+          { text: '谢谢你。', pinyin: 'Xièxie nǐ.', meaning: 'Cảm ơn bạn.', correct: false,
+            feedback: 'Chưa đúng ngữ cảnh — đây là lời cảm ơn, không phải giới thiệu tên.' }
+        ]
+      },
+      {
         type: 'dialogue', speaker: 'mai', cast: ['laoli', 'mai'],
         text: '我叫 Mai。', pinyin: 'Wǒ jiào Mai.', meaning: 'Em tên Mai ạ.',
         expression: 'curious', vocab: ['我']
@@ -47,6 +61,20 @@ var COURSE_DATA = {
         type: 'dialogue', speaker: 'laoli', cast: ['laoli', 'mai'],
         text: '你是学生吗？', pinyin: 'Nǐ shì xuésheng ma?', meaning: 'Em là sinh viên phải không?',
         expression: null, vocab: ['是','学生']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['laoli', 'mai'], bg: 'classroom',
+        scene: '📍 Lớp học tiếng Trung · Buổi đầu tiên',
+        expression: 'happy',
+        q: 'Thầy hỏi Mai có phải sinh viên không. Mai xác nhận thế nào?',
+        options: [
+          { text: '是，我是学生。', pinyin: 'Shì, wǒ shì xuésheng.', meaning: 'Vâng, em là sinh viên.', correct: true,
+            feedback: 'Đúng! 是 ở đầu = xác nhận, rồi lặp lại câu đầy đủ — rất tự nhiên.' },
+          { text: '不，我是老师。', pinyin: 'Bù, wǒ shì lǎoshī.', meaning: 'Không, tôi là giáo viên.', correct: false,
+            feedback: 'Chưa đúng — Mai là học sinh, không phải giáo viên.' },
+          { text: '我叫 Mai。', pinyin: 'Wǒ jiào Mai.', meaning: 'Em tên Mai.', correct: false,
+            feedback: 'Chưa đúng ngữ cảnh — câu này giới thiệu tên, không xác nhận nghề nghiệp.' }
+        ]
       },
       {
         type: 'dialogue', speaker: 'mai', cast: ['laoli', 'mai'],
@@ -261,6 +289,18 @@ var COURSE_DATA = {
         vocab: ['有','弟弟','妹妹']
       },
       {
+        type: 'choice', speaker: 'mai',
+        q: 'Tiểu Mỹ hỏi Mai có em trai em gái không. Mai có một em gái, không có em trai. Mai nên nói gì?',
+        options: [
+          { text: '我有一个妹妹，没有弟弟。', pinyin: 'Wǒ yǒu yí ge mèimei, méiyǒu dìdi.', meaning: 'Tớ có một em gái, không có em trai.', correct: true,
+            feedback: 'Đúng! 有 = "có", 没有 = "không có" — khớp đúng gia đình Mai.' },
+          { text: '我有一个弟弟，没有妹妹。', pinyin: 'Wǒ yǒu yí ge dìdi, méiyǒu mèimei.', meaning: 'Tớ có một em trai, không có em gái.', correct: false,
+            feedback: 'Ngược rồi — câu này nói có em TRAI, không có em GÁI; Mai thì ngược lại.' },
+          { text: '我没有妹妹，有弟弟。', pinyin: 'Wǒ méiyǒu mèimei, yǒu dìdi.', meaning: 'Tớ không có em gái, có em trai.', correct: false,
+            feedback: 'Sai thực tế — Mai CÓ em gái (有妹妹), KHÔNG có em trai (没有弟弟).' }
+        ]
+      },
+      {
         type: 'dialogue',
         speaker: 'mai',
         text: '我有一个妹妹，没有弟弟。',
@@ -439,6 +479,18 @@ var COURSE_DATA = {
         vocab: ['多少']
       },
       {
+        type: 'choice', speaker: 'mai',
+        q: 'Thầy Lý hỏi lớp có bao nhiêu sinh viên. Lớp có mười sinh viên. Mai đáp thế nào?',
+        options: [
+          { text: '我们班有十个大学生。', pinyin: 'Wǒmen bān yǒu shí ge dàxuéshēng.', meaning: 'Lớp mình có mười sinh viên.', correct: true,
+            feedback: 'Đúng! Đếm người dùng lượng từ 个: 十个大学生.' },
+          { text: '我们班有十本大学生。', pinyin: 'Wǒmen bān yǒu shí běn dàxuéshēng.', meaning: 'Lớp mình có mười "quyển" sinh viên.', correct: false,
+            feedback: 'Sai lượng từ — 本 dùng cho sách/vở; người dùng 个: 十个.' },
+          { text: '我们班有十个大学。', pinyin: 'Wǒmen bān yǒu shí ge dàxué.', meaning: 'Lớp mình có mười trường đại học.', correct: false,
+            feedback: 'Sai từ — người học là 大学生 (sinh viên), 大学 là "trường đại học".' }
+        ]
+      },
+      {
         type: 'dialogue',
         speaker: 'mai',
         text: '我们班有十个大学生。',
@@ -602,6 +654,16 @@ var COURSE_DATA = {
       { type: 'dialogue', speaker: 'mai', text: '老师，明天是星期二吗？', pinyin: 'Lǎoshī, míngtiān shì xīngqī èr ma?', meaning: 'Thầy ơi, ngày mai là thứ Ba ạ?', expression: 'curious', vocab: ['明天','二'] },
       { type: 'dialogue', speaker: 'laoli', text: '对。昨天是星期日。', pinyin: 'Duì. Zuótiān shì xīngqī rì.', meaning: 'Đúng. Hôm qua là Chủ nhật.', expression: null, vocab: ['对','昨天','星期日'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '现在几点？', pinyin: 'Xiànzài jǐ diǎn?', meaning: 'Bây giờ mấy giờ?', expression: null, vocab: ['现在','几','点'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Tiểu Mỹ hỏi mấy giờ. Bây giờ 8 giờ, buổi sáng lớp học. Câu nào đúng?',
+        options: [
+          { text: '现在八点，我们上午上课。', pinyin: 'Xiànzài bā diǎn, wǒmen shàngwǔ shàngkè.', meaning: 'Bây giờ tám giờ, buổi sáng chúng ta học.', correct: true,
+            feedback: 'Đúng! Thời gian (上午) đứng TRƯỚC động từ (上课).' },
+          { text: '现在八点，我们上课上午。', pinyin: 'Xiànzài bā diǎn, wǒmen shàngkè shàngwǔ.', meaning: '(sai trật tự)', correct: false,
+            feedback: 'Sai trật tự — từ chỉ thời gian 上午 phải đứng trước động từ 上课.' },
+          { text: '现在八分，我们上午上课。', pinyin: 'Xiànzài bā fēn, wǒmen shàngwǔ shàngkè.', meaning: 'Bây giờ tám phút...', correct: false,
+            feedback: 'Sai từ — 分 là "phút"; "tám giờ" dùng 点: 八点.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '现在八点。我们上午上课。', pinyin: 'Xiànzài bā diǎn. Wǒmen shàngwǔ shàngkè.', meaning: 'Bây giờ tám giờ. Buổi sáng chúng ta học.', expression: 'focused', vocab: ['八','上午','上课'] },
       { type: 'checkpoint', questions: [
         { q: 'Mai nói bây giờ là mấy giờ?', options: ['七点', '八点', '九点', '十点'], answer: 1 },
@@ -667,6 +729,16 @@ var COURSE_DATA = {
       { type: 'dialogue', speaker: 'xiaomei', text: 'Mai，你饿吗？', pinyin: 'Mai, nǐ è ma?', meaning: 'Mai, cậu đói không?', expression: null, vocab: ['饿'] },
       { type: 'dialogue', speaker: 'mai', text: '我很饿，也很渴。', pinyin: 'Wǒ hěn è, yě hěn kě.', meaning: 'Tớ rất đói, cũng rất khát.', expression: 'sad', vocab: ['渴','也'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '我们去饭店吃饭吧。', pinyin: 'Wǒmen qù fàndiàn chīfàn ba.', meaning: 'Chúng ta đến nhà ăn ăn cơm nhé.', expression: null, vocab: ['去','饭店','吃饭','吧'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Mai khát và muốn uống nước. Mai nên nói gì?',
+        options: [
+          { text: '我想喝水。', pinyin: 'Wǒ xiǎng hē shuǐ.', meaning: 'Tớ muốn uống nước.', correct: true,
+            feedback: 'Đúng! Đồ uống (水) đi với động từ 喝 (uống).' },
+          { text: '我想吃水。', pinyin: 'Wǒ xiǎng chī shuǐ.', meaning: 'Tớ muốn "ăn" nước.', correct: false,
+            feedback: 'Sai cách dùng — 水 (nước) phải "uống" 喝, không "ăn" 吃.' },
+          { text: '我想喝菜。', pinyin: 'Wǒ xiǎng hē cài.', meaning: 'Tớ muốn "uống" món ăn.', correct: false,
+            feedback: 'Sai từ — 菜 là món ăn (dùng 吃); muốn uống thì 喝水.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '我想喝水。', pinyin: 'Wǒ xiǎng hē shuǐ.', meaning: 'Tớ muốn uống nước.', expression: 'focused', vocab: ['想','喝','水'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '这里有茶，也有牛奶。', pinyin: 'Zhèlǐ yǒu chá, yě yǒu niúnǎi.', meaning: 'Ở đây có trà, cũng có sữa bò.', expression: null, vocab: ['这里','茶','牛奶'] },
       { type: 'checkpoint', questions: [
@@ -742,6 +814,16 @@ var COURSE_DATA = {
         { q: '"怎么去" nghĩa là gì?', options: ['Đi đâu?', 'Đi bằng cách nào?', 'Đi với ai?', 'Đi khi nào?'], answer: 1 }
       ] },
       { type: 'dialogue', speaker: 'xiaomei', text: '可以走路，也可以坐车。', pinyin: 'Kěyǐ zǒulù, yě kěyǐ zuòchē.', meaning: 'Có thể đi bộ, cũng có thể đi xe.', expression: null, vocab: ['可以','坐','车'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Tiểu Mỹ nói có thể đi bộ hoặc đi xe. Mai muốn đi xe buýt. Mai nói sao?',
+        options: [
+          { text: '我想坐公共汽车。', pinyin: 'Wǒ xiǎng zuò gōnggòng qìchē.', meaning: 'Tớ muốn đi xe buýt.', correct: true,
+            feedback: 'Đúng! "Đi xe buýt" = 坐 + 公共汽车.' },
+          { text: '我想坐车站。', pinyin: 'Wǒ xiǎng zuò chēzhàn.', meaning: 'Tớ muốn "ngồi" bến xe.', correct: false,
+            feedback: 'Sai — 车站 là BẾN xe (địa điểm), không "ngồi" được; phương tiện là 公共汽车.' },
+          { text: '我想去商店。', pinyin: 'Wǒ xiǎng qù shāngdiàn.', meaning: 'Tớ muốn đi cửa hàng.', correct: false,
+            feedback: 'Lạc câu hỏi — đang chọn ĐI BẰNG GÌ, không phải đi đâu.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '我想坐公共汽车。', pinyin: 'Wǒ xiǎng zuò gōnggòng qìchē.', meaning: 'Tớ muốn đi xe buýt.', expression: 'happy', vocab: ['公共汽车'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '车站在那边，我们一起去吧！', pinyin: 'Chēzhàn zài nàbian, wǒmen yìqǐ qù ba!', meaning: 'Bến xe ở đằng kia, chúng ta cùng đi nhé!', expression: null, vocab: ['车站','那边','一起'] },
       { type: 'dialogue', speaker: 'mai', text: '太好了！你来我家玩儿吧。', pinyin: 'Tài hǎo le! Nǐ lái wǒ jiā wánr ba.', meaning: 'Tuyệt quá! Cậu đến nhà tớ chơi nhé.', expression: 'happy', vocab: ['来','玩儿','太'] },
@@ -799,6 +881,16 @@ var COURSE_DATA = {
     steps: [
       { type: 'dialogue', speaker: 'mai', text: '今天天气怎么样？', pinyin: 'Jīntiān tiānqì zěnmeyàng?', meaning: 'Hôm nay thời tiết thế nào?', expression: 'curious', vocab: ['天气','怎么样'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '今天下雨，很冷。', pinyin: 'Jīntiān xiàyǔ, hěn lěng.', meaning: 'Hôm nay mưa, rất lạnh.', expression: null, vocab: ['下雨','冷'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Trời đang mưa mà Mai quên mang ô. Mai thốt lên thế nào?',
+        options: [
+          { text: '我没有雨伞！', pinyin: 'Wǒ méiyǒu yǔsǎn!', meaning: 'Tớ không có ô!', correct: true,
+            feedback: 'Đúng! 没有 = "không có"; trời mưa cần 雨伞 (ô).' },
+          { text: '我有雨伞！', pinyin: 'Wǒ yǒu yǔsǎn!', meaning: 'Tớ có ô!', correct: false,
+            feedback: 'Ngược nghĩa — Mai KHÔNG có ô (没有) nên mới lo.' },
+          { text: '我没有裙子！', pinyin: 'Wǒ méiyǒu qúnzi!', meaning: 'Tớ không có váy!', correct: false,
+            feedback: 'Sai từ — trời mưa cần 雨伞 (ô), không liên quan 裙子 (váy).' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '我没有雨伞！', pinyin: 'Wǒ méiyǒu yǔsǎn!', meaning: 'Tớ không có ô!', expression: 'sad', vocab: ['雨伞'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '没关系，我有两把。给你一把。', pinyin: 'Méi guānxi, wǒ yǒu liǎng bǎ. Gěi nǐ yì bǎ.', meaning: 'Không sao, tớ có hai cái. Cho cậu một cái.', expression: null, vocab: ['把','给'] },
       { type: 'dialogue', speaker: 'mai', text: '谢谢！你穿的衣服很好看。', pinyin: 'Xièxie! Nǐ chuān de yīfu hěn hǎokàn.', meaning: 'Cảm ơn! Quần áo cậu mặc đẹp quá.', expression: 'happy', vocab: ['穿','衣服','好看'] },
@@ -871,6 +963,16 @@ var COURSE_DATA = {
         { q: '"在...里" diễn tả gì?', options: ['ở bên trong', 'ở bên ngoài', 'đi đến', 'mua đồ'], answer: 0 },
         { q: 'Hiệu sách ở đâu?', options: ['trên bàn', 'trong cặp', 'bên cạnh thư viện', 'ở bệnh viện'], answer: 2 }
       ] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Mai sắp xếp đồ: sách ở phía trên, vở ở phía dưới. Câu nào đúng?',
+        options: [
+          { text: '书在上边，本子在下边。', pinyin: 'Shū zài shàngbian, běnzi zài xiàbian.', meaning: 'Sách ở phía trên, vở ở phía dưới.', correct: true,
+            feedback: 'Đúng! 上边 = phía trên, 下边 = phía dưới.' },
+          { text: '书在下边，本子在上边。', pinyin: 'Shū zài xiàbian, běnzi zài shàngbian.', meaning: 'Sách ở dưới, vở ở trên.', correct: false,
+            feedback: 'Ngược vị trí — sách ở TRÊN (上边), vở ở DƯỚI (下边).' },
+          { text: '书在上边，本子在旁边。', pinyin: 'Shū zài shàngbian, běnzi zài pángbiān.', meaning: 'Sách ở trên, vở ở bên cạnh.', correct: false,
+            feedback: 'Sai hướng — đang nói trên/dưới (上边/下边), không phải 旁边 (bên cạnh).' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '书在上边，本子在下边。', pinyin: 'Shū zài shàngbian, běnzi zài xiàbian.', meaning: 'Sách ở phía trên, vở ở phía dưới.', expression: 'happy', vocab: ['上边','下边'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '你的手机在椅子下。', pinyin: 'Nǐ de shǒujī zài yǐzi xià.', meaning: 'Điện thoại của cậu ở dưới ghế.', expression: null, vocab: ['手机','椅子','下'] },
       { type: 'dialogue', speaker: 'mai', text: '啊，我找到了！谢谢。', pinyin: 'À, wǒ zhǎodào le! Xièxie.', meaning: 'À, tớ tìm thấy rồi! Cảm ơn.', expression: 'surprise', vocab: ['找到'] },
@@ -926,6 +1028,16 @@ var COURSE_DATA = {
     vocabPreview: ['起床','睡觉','常常','有时候','忘记'],
     steps: [
       { type: 'dialogue', speaker: 'laoli', text: 'Mai，你早上几点起床？', pinyin: 'Mai, nǐ zǎoshang jǐ diǎn qǐchuáng?', meaning: 'Mai, buổi sáng em mấy giờ dậy?', expression: null, vocab: ['早上','起床'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Thầy hỏi buổi sáng Mai mấy giờ dậy. Mai dậy lúc 6 giờ sáng. Câu nào đúng?',
+        options: [
+          { text: '我早上六点起床。', pinyin: 'Wǒ zǎoshang liù diǎn qǐchuáng.', meaning: 'Em sáu giờ sáng dậy.', correct: true,
+            feedback: 'Đúng! 起床 = thức dậy; thời gian 早上六点 đứng trước.' },
+          { text: '我早上六点睡觉。', pinyin: 'Wǒ zǎoshang liù diǎn shuìjiào.', meaning: 'Em sáu giờ sáng đi ngủ.', correct: false,
+            feedback: 'Ngược nghĩa — buổi sáng là 起床 (dậy), 睡觉 là đi ngủ.' },
+          { text: '我晚上六点起床。', pinyin: 'Wǒ wǎnshang liù diǎn qǐchuáng.', meaning: 'Em sáu giờ tối dậy.', correct: false,
+            feedback: 'Lạc ngữ cảnh — thầy hỏi BUỔI SÁNG (早上), không phải 晚上 (tối).' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '我早上六点起床。', pinyin: 'Wǒ zǎoshang liù diǎn qǐchuáng.', meaning: 'Em sáu giờ sáng dậy.', expression: 'focused', vocab: [] },
       { type: 'dialogue', speaker: 'laoli', text: '你几点上学？', pinyin: 'Nǐ jǐ diǎn shàngxué?', meaning: 'Em mấy giờ đi học?', expression: null, vocab: ['上学'] },
       { type: 'dialogue', speaker: 'mai', text: '我七点上学，下午五点放学。', pinyin: 'Wǒ qī diǎn shàngxué, xiàwǔ wǔ diǎn fàngxué.', meaning: 'Em bảy giờ đi học, năm giờ chiều tan học.', expression: 'happy', vocab: ['放学'] },
@@ -990,6 +1102,16 @@ var COURSE_DATA = {
     vocabPreview: ['身体','生病','医生','医院','觉得'],
     steps: [
       { type: 'dialogue', speaker: 'xiaomei', text: 'Mai，你今天不高兴吗？', pinyin: 'Mai, nǐ jīntiān bù gāoxìng ma?', meaning: 'Mai, hôm nay cậu không vui à?', expression: null, vocab: ['不高兴'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Tiểu Mỹ hỏi sao Mai không vui. Mai thấy rất mệt. Mai nói gì?',
+        options: [
+          { text: '我觉得很累。', pinyin: 'Wǒ juéde hěn lèi.', meaning: 'Tớ cảm thấy rất mệt.', correct: true,
+            feedback: 'Đúng! 觉得 = "cảm thấy", diễn tả cảm giác cơ thể.' },
+          { text: '我觉得很舒服。', pinyin: 'Wǒ juéde hěn shūfu.', meaning: 'Tớ thấy rất thoải mái.', correct: false,
+            feedback: 'Lạc ngữ cảnh — Mai đang mệt/khó chịu; 舒服 nghĩa "khỏe/dễ chịu".' },
+          { text: '我觉得很高兴。', pinyin: 'Wǒ juéde hěn gāoxìng.', meaning: 'Tớ thấy rất vui.', correct: false,
+            feedback: 'Sai cảm xúc — Mai mệt, không phải vui (高兴).' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '我觉得很累。', pinyin: 'Wǒ juéde hěn lèi.', meaning: 'Tớ cảm thấy rất mệt.', expression: 'sad', vocab: ['觉得','累'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '你的身体不舒服吗？', pinyin: 'Nǐ de shēntǐ bù shūfu ma?', meaning: 'Cơ thể cậu không khỏe à?', expression: null, vocab: ['身体','舒服'] },
       { type: 'dialogue', speaker: 'mai', text: '我可能生病了。', pinyin: 'Wǒ kěnéng shēngbìng le.', meaning: 'Có lẽ tớ bị ốm rồi.', expression: 'confused', vocab: ['可能','生病'] },
@@ -1054,6 +1176,16 @@ var COURSE_DATA = {
     vocabPreview: ['生日','喜欢','爱好','唱歌','送'],
     steps: [
       { type: 'dialogue', speaker: 'xiaomei', text: '今天是我的生日。', pinyin: 'Jīntiān shì wǒ de shēngrì.', meaning: 'Hôm nay là sinh nhật của tớ.', expression: null, vocab: ['生日'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Tiểu Mỹ nói hôm nay là sinh nhật. Mai chúc mừng và tặng một quyển sách. Câu nào đúng?',
+        options: [
+          { text: '生日快乐！我送你一本书。', pinyin: 'Shēngrì kuàilè! Wǒ sòng nǐ yì běn shū.', meaning: 'Chúc mừng sinh nhật! Tớ tặng cậu một quyển sách.', correct: true,
+            feedback: 'Đúng! 生日快乐 = chúc mừng sinh nhật; sách dùng lượng từ 本.' },
+          { text: '生日快乐！我送你一个书。', pinyin: 'Shēngrì kuàilè! Wǒ sòng nǐ yí ge shū.', meaning: 'Chúc mừng sinh nhật! Tớ tặng cậu một "cái" sách.', correct: false,
+            feedback: 'Sai lượng từ — sách dùng 本, không dùng 个: 一本书.' },
+          { text: '谢谢你！我送你一本书。', pinyin: 'Xièxie nǐ! Wǒ sòng nǐ yì běn shū.', meaning: 'Cảm ơn cậu! Tớ tặng cậu một quyển sách.', correct: false,
+            feedback: 'Sai lời — dịp sinh nhật phải nói 生日快乐, không phải 谢谢.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '生日快乐！我送你一本书。', pinyin: 'Shēngrì kuàilè! Wǒ sòng nǐ yì běn shū.', meaning: 'Chúc mừng sinh nhật! Tớ tặng cậu một quyển sách.', expression: 'happy', vocab: ['快乐','送'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '谢谢！我很喜欢看书。', pinyin: 'Xièxie! Wǒ hěn xǐhuan kànshū.', meaning: 'Cảm ơn! Tớ rất thích đọc sách.', expression: null, vocab: ['喜欢','看书'] },
       { type: 'dialogue', speaker: 'mai', text: '你的爱好是什么？', pinyin: 'Nǐ de àihào shì shénme?', meaning: 'Sở thích của cậu là gì?', expression: 'curious', vocab: ['爱好'] },
@@ -1130,6 +1262,16 @@ var COURSE_DATA = {
       { type: 'dialogue', speaker: 'laoli', text: '第一题：你叫什么名字？', pinyin: 'Dì yī tí: nǐ jiào shénme míngzi?', meaning: 'Câu một: Em tên là gì?', expression: null, vocab: ['第一','题'] },
       { type: 'dialogue', speaker: 'mai', text: '我叫 Mai。我是越南人。', pinyin: 'Wǒ jiào Mai. Wǒ shì Yuènán rén.', meaning: 'Em tên Mai. Em là người Việt Nam.', expression: 'happy', vocab: [] },
       { type: 'dialogue', speaker: 'laoli', text: '第二题：今天星期几？', pinyin: 'Dì èr tí: jīntiān xīngqī jǐ?', meaning: 'Câu hai: Hôm nay thứ mấy?', expression: null, vocab: ['第二'] },
+      { type: 'choice', speaker: 'mai',
+        q: 'Thầy hỏi hôm nay thứ mấy. Hôm nay thứ Sáu. Mai đáp thế nào?',
+        options: [
+          { text: '今天星期五。', pinyin: 'Jīntiān xīngqī wǔ.', meaning: 'Hôm nay thứ Sáu.', correct: true,
+            feedback: 'Đúng! Thứ trong tuần = 星期 + số: 星期五.' },
+          { text: '今天五星期。', pinyin: 'Jīntiān wǔ xīngqī.', meaning: '(sai trật tự)', correct: false,
+            feedback: 'Sai trật tự — phải là 星期 trước, số sau: 星期五.' },
+          { text: '今天五月。', pinyin: 'Jīntiān wǔ yuè.', meaning: 'Hôm nay tháng Năm.', correct: false,
+            feedback: 'Sai từ — 五月 là "tháng Năm"; thứ Sáu là 星期五.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', text: '今天星期五。', pinyin: 'Jīntiān xīngqī wǔ.', meaning: 'Hôm nay thứ Sáu.', expression: 'focused', vocab: [] },
       { type: 'dialogue', speaker: 'laoli', text: '最后一题：你喜欢学习汉语吗？', pinyin: 'Zuìhòu yì tí: nǐ xǐhuan xuéxí Hànyǔ ma?', meaning: 'Câu cuối: Em có thích học tiếng Trung không?', expression: null, vocab: ['最后','汉语'] },
       { type: 'dialogue', speaker: 'mai', text: '喜欢！我想继续学习。', pinyin: 'Xǐhuan! Wǒ xiǎng jìxù xuéxí.', meaning: 'Thích ạ! Em muốn tiếp tục học.', expression: 'happy', vocab: ['继续'] }
@@ -1201,6 +1343,16 @@ var COURSE_DATA = {
         text: 'Mai 打开门，走出房间。', pinyin: 'Mai dǎkāi mén, zǒu chū fángjiān.', meaning: 'Mai mở cửa, bước ra khỏi phòng.', expression: null, vocab: ['出'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: '你能帮我吗？我的书太多了。', pinyin: 'Nǐ néng bāng wǒ ma? Wǒ de shū tài duō le.', meaning: 'Cậu giúp tớ được không? Sách của tớ nhiều quá.', expression: null, vocab: ['帮'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'happy',
+        q: 'Tiểu Mỹ nhờ Mai giúp vì sách quá nhiều. Mai sẵn lòng giúp. Mai nói gì?',
+        options: [
+          { text: '好！我来帮忙。', pinyin: 'Hǎo! Wǒ lái bāngmáng.', meaning: 'Được! Để tớ giúp một tay.', correct: true,
+            feedback: 'Đúng! 帮忙 = giúp một tay, hợp ngữ cảnh.' },
+          { text: '好！我来打电话。', pinyin: 'Hǎo! Wǒ lái dǎ diànhuà.', meaning: 'Được! Để tớ gọi điện.', correct: false,
+            feedback: 'Lạc ngữ cảnh — bạn nhờ KHIÊNG sách → đáp 帮忙, không phải 打电话 (gọi điện).' },
+          { text: '好！我不帮忙。', pinyin: 'Hǎo! Wǒ bù bāngmáng.', meaning: 'Được! Tớ không giúp.', correct: false,
+            feedback: 'Mâu thuẫn — vừa nói 好 (được) lại 不帮忙 (không giúp).' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '好！我来帮忙。', pinyin: 'Hǎo! Wǒ lái bāngmáng.', meaning: 'Được! Để tớ giúp một tay.', expression: 'happy', vocab: ['帮忙'] },
       { type: 'checkpoint', questions: [
@@ -1307,6 +1459,16 @@ var COURSE_DATA = {
         text: '我得回到房间写汉字。', pinyin: 'Wǒ děi huídào fángjiān xiě Hànzì.', meaning: 'Mình phải về phòng viết chữ Hán.', expression: 'focused', vocab: ['回到'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: 'Mai，先进去图书馆看书吧？', pinyin: 'Mai, xiān jìnqù túshūguǎn kàn shū ba?', meaning: 'Mai, vào thư viện đọc sách trước nhé?', expression: null, vocab: ['进去','进','看'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'happy',
+        q: 'Tiểu Mỹ rủ cùng VÀO thư viện đọc sách. Mai đồng ý. Câu nào đúng?',
+        options: [
+          { text: '好，我们一起进去！', pinyin: 'Hǎo, wǒmen yìqǐ jìnqù!', meaning: 'Được, chúng mình cùng vào!', correct: true,
+            feedback: 'Đúng! Cùng ĐI VÀO (rời chỗ đang đứng) dùng 进去.' },
+          { text: '好，我们一起进来！', pinyin: 'Hǎo, wǒmen yìqǐ jìnlái!', meaning: 'Được, cùng đi vào (phía tớ)!', correct: false,
+            feedback: 'Sai hướng — đi vào nơi khác (rời chỗ hiện tại) là 进去; 进来 là đi vào phía người nói.' },
+          { text: '好，我们一起出去！', pinyin: 'Hǎo, wǒmen yìqǐ chūqù!', meaning: 'Được, chúng mình cùng ra ngoài!', correct: false,
+            feedback: 'Ngược nghĩa — rủ VÀO thư viện thì 进去, không phải 出去 (ra ngoài).' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '好，我们一起进去！明天见！', pinyin: 'Hǎo, wǒmen yìqǐ jìnqù! Míngtiān jiàn!', meaning: 'Được, chúng mình cùng vào! Hẹn mai gặp!', expression: 'happy', vocab: ['见'] }
     ],
@@ -1395,6 +1557,16 @@ var COURSE_DATA = {
         text: '没关系，不会就问。', pinyin: 'Méi guānxi, bú huì jiù wèn.', meaning: 'Không sao, không biết thì hỏi.', expression: null, vocab: ['问'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: 'Mai，你住在哪儿？', pinyin: 'Mai, nǐ zhù zài nǎr?', meaning: 'Mai, cậu ở đâu?', expression: null, vocab: ['住'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'happy',
+        q: 'Tiểu Mỹ hỏi Mai ở đâu. Mai ở ký túc xá của trường. Mai đáp thế nào?',
+        options: [
+          { text: '我住学校的宿舍。', pinyin: 'Wǒ zhù xuéxiào de sùshè.', meaning: 'Tớ ở ký túc xá của trường.', correct: true,
+            feedback: 'Đúng! 住 = ở/cư trú tại một nơi.' },
+          { text: '我学学校的宿舍。', pinyin: 'Wǒ xué xuéxiào de sùshè.', meaning: 'Tớ "học" ký túc xá của trường.', correct: false,
+            feedback: 'Sai động từ — "ở" dùng 住, còn 学 là "học".' },
+          { text: '我住学校的教室。', pinyin: 'Wǒ zhù xuéxiào de jiàoshì.', meaning: 'Tớ ở phòng học của trường.', correct: false,
+            feedback: 'Sai nơi — ở thì tại 宿舍 (ký túc xá), không phải 教室 (phòng học).' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '我住学校的宿舍。我会认真学，也会用心记。', pinyin: 'Wǒ zhù xuéxiào de sùshè. Wǒ huì rènzhēn xué, yě huì yòngxīn jì.', meaning: 'Mình ở ký túc xá của trường. Mình sẽ học nghiêm túc, cũng sẽ dùng tâm ghi nhớ.', expression: 'happy', vocab: ['住','学','用'] }
     ],
@@ -1454,6 +1626,16 @@ var COURSE_DATA = {
         text: '下课后，Mai 和小美一起去吃饭。', pinyin: 'Xiàkè hòu, Mai hé Xiǎoměi yìqǐ qù chī fàn.', meaning: 'Sau giờ học, Mai và Tiểu Mỹ cùng đi ăn cơm.', expression: null, vocab: ['和','后'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: '你想吃米饭还是面条？', pinyin: 'Nǐ xiǎng chī mǐfàn háishi miàntiáo?', meaning: 'Cậu muốn ăn cơm hay là mì?', expression: null, vocab: ['还是'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'happy',
+        q: 'Tiểu Mỹ hỏi: cậu muốn ăn cơm HAY mì? Mai chọn cơm. Câu trả lời nào đúng?',
+        options: [
+          { text: '我吃米饭吧。', pinyin: 'Wǒ chī mǐfàn ba.', meaning: 'Tớ ăn cơm vậy.', correct: true,
+            feedback: 'Đúng! Câu 还是 cần CHỌN một món; Mai chọn 米饭.' },
+          { text: '你吃米饭还是面条？', pinyin: 'Nǐ chī mǐfàn háishì miàntiáo?', meaning: 'Cậu ăn cơm hay mì?', correct: false,
+            feedback: 'Đây là câu HỎI lặp lại, không phải trả lời — cần chọn một món.' },
+          { text: '我不想吃饭。', pinyin: 'Wǒ bù xiǎng chīfàn.', meaning: 'Tớ không muốn ăn.', correct: false,
+            feedback: 'Lạc ngữ cảnh — đang chọn cơm hay mì, không phải nói không ăn.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '我吃米饭吧。面条我吃过很多次了。', pinyin: 'Wǒ chī mǐfàn ba. Miàntiáo wǒ chī guo hěn duō cì le.', meaning: 'Tớ ăn cơm vậy. Mì thì tớ ăn nhiều lần rồi.', expression: 'happy', vocab: ['吧','过','次'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
@@ -1540,6 +1722,16 @@ var COURSE_DATA = {
         text: '这部电影是不是很有名？票要多少块？', pinyin: 'Zhè bù diànyǐng shìbushì hěn yǒumíng? Piào yào duōshao kuài?', meaning: 'Bộ phim này có phải nổi tiếng lắm không? Vé bao nhiêu tiền?', expression: 'curious', vocab: ['是不是','要','块'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: '一张票四十块，不太贵。', pinyin: 'Yì zhāng piào sìshí kuài, bú tài guì.', meaning: 'Một vé bốn mươi đồng, không đắt lắm.', expression: null, vocab: ['太','块'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'happy',
+        q: 'Vé phim 40 tệ một vé, không đắt. Mai muốn mua HAI vé. Câu nào đúng?',
+        options: [
+          { text: '太好了！我马上买两张。', pinyin: 'Tài hǎo le! Wǒ mǎshàng mǎi liǎng zhāng.', meaning: 'Tốt quá! Tớ mua hai vé ngay.', correct: true,
+            feedback: 'Đúng! Vé dùng lượng từ 张: 两张票.' },
+          { text: '太好了！我马上买两个。', pinyin: 'Tài hǎo le! Wǒ mǎshàng mǎi liǎng ge.', meaning: 'Tốt quá! Tớ mua hai "cái" ngay.', correct: false,
+            feedback: 'Sai lượng từ — vé dùng 张, không dùng 个.' },
+          { text: '太好了！我马上买两块。', pinyin: 'Tài hǎo le! Wǒ mǎshàng mǎi liǎng kuài.', meaning: 'Tốt quá! Tớ mua "hai đồng" ngay.', correct: false,
+            feedback: 'Sai — 块 là đơn vị TIỀN; mua hai vé là 两张.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '太好了！我马上买两张。', pinyin: 'Tài hǎo le! Wǒ mǎshàng mǎi liǎng zhāng.', meaning: 'Tốt quá! Tớ mua hai vé ngay.', expression: 'happy', vocab: ['马上','太'] },
       { type: 'dialogue', speaker: 'narrator',
@@ -1626,6 +1818,16 @@ var COURSE_DATA = {
         text: '老师，中间的字太小，能再写一下儿吗？', pinyin: 'Lǎoshī, zhōngjiān de zì tài xiǎo, néng zài xiě yíxiàr ma?', meaning: 'Thầy ơi, chữ ở giữa nhỏ quá, thầy viết lại một chút được không?', expression: 'confused', vocab: ['中间','中','再','一下儿'] },
       { type: 'dialogue', speaker: 'laoli', cast: ['laoli', 'mai', 'xiaomei'],
         text: '好，我写大一些。右边的同学也看得到吗？', pinyin: 'Hǎo, wǒ xiě dà yìxiē. Yòubian de tóngxué yě kàn de dào ma?', meaning: 'Được, thầy viết to hơn một chút. Bạn bên phải cũng nhìn thấy chứ?', expression: null, vocab: ['一些','右边','右','也'] },
+      { type: 'choice', speaker: 'mai', cast: ['laoli', 'mai', 'xiaomei'], expression: 'happy',
+        q: 'Thầy viết to hơn rồi và hỏi Mai có nhìn thấy không. Mai thấy được. Mai đáp thế nào?',
+        options: [
+          { text: '看得到了！谢谢老师。', pinyin: 'Kàn de dào le! Xièxie lǎoshī.', meaning: 'Nhìn thấy rồi! Cảm ơn thầy.', correct: true,
+            feedback: 'Đúng! 看得到 = "nhìn thấy được" (bổ ngữ khả năng 得).' },
+          { text: '看不到，谢谢老师。', pinyin: 'Kàn bú dào, xièxie lǎoshī.', meaning: 'Không nhìn thấy, cảm ơn thầy.', correct: false,
+            feedback: 'Mâu thuẫn — thầy viết to rồi, Mai NHÌN THẤY nên dùng 看得到.' },
+          { text: '看到得了！谢谢老师。', pinyin: 'Kàn dào de le! Xièxie lǎoshī.', meaning: '(sai trật tự)', correct: false,
+            feedback: 'Sai trật tự — bổ ngữ khả năng là 看得到, không phải 看到得.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['laoli', 'mai', 'xiaomei'],
         text: '看得到了！谢谢老师。', pinyin: 'Kàn de dào le! Xièxie lǎoshī.', meaning: 'Nhìn thấy rồi! Cảm ơn thầy.', expression: 'happy', vocab: [] },
       { type: 'dialogue', speaker: 'narrator',
@@ -1708,10 +1910,30 @@ var COURSE_DATA = {
         text: '去年这个时候我还在越南，今年就来了中国。', pinyin: 'Qùnián zhège shíhou wǒ hái zài Yuènán, jīnnián jiù lái le Zhōngguó.', meaning: 'Năm ngoái giờ này tớ còn ở Việt Nam, năm nay đã sang Trung Quốc.', expression: null, vocab: ['去年','今年'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: 'Mai，你今年多大岁数？', pinyin: 'Mai, nǐ jīnnián duō dà suìshu?', meaning: 'Mai, năm nay cậu bao nhiêu tuổi?', expression: null, vocab: ['岁'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'happy',
+        q: 'Tiểu Mỹ hỏi năm nay Mai bao nhiêu tuổi. Mai 19 tuổi. Câu nào đúng?',
+        options: [
+          { text: '我十九岁。', pinyin: 'Wǒ shíjiǔ suì.', meaning: 'Tớ mười chín tuổi.', correct: true,
+            feedback: 'Đúng! Tuổi dùng 岁: 十九岁.' },
+          { text: '我十九点。', pinyin: 'Wǒ shíjiǔ diǎn.', meaning: 'Tớ "mười chín giờ".', correct: false,
+            feedback: 'Sai đơn vị — 点 là "giờ"; tuổi dùng 岁.' },
+          { text: '我十九块。', pinyin: 'Wǒ shíjiǔ kuài.', meaning: 'Tớ "mười chín đồng".', correct: false,
+            feedback: 'Sai đơn vị — 块 là tiền; tuổi dùng 岁.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '我十九岁。下个月就是我的新年。', pinyin: 'Wǒ shíjiǔ suì. Xià ge yuè jiùshì wǒ de xīnnián.', meaning: 'Tớ mười chín tuổi. Tháng sau là năm mới của tớ rồi.', expression: 'happy', vocab: ['岁','新年'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: '新年是几月几号？日期记得吗？', pinyin: 'Xīnnián shì jǐ yuè jǐ hào? Rìqī jìde ma?', meaning: 'Năm mới là ngày mấy tháng mấy? Cậu nhớ ngày không?', expression: null, vocab: ['号','日期','新年'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'curious',
+        q: 'Tiểu Mỹ hỏi năm mới của Mai là ngày mấy tháng mấy. Là mùng 1 tháng 1. Câu nào đúng?',
+        options: [
+          { text: '一月一号。', pinyin: 'Yī yuè yī hào.', meaning: 'Mùng một tháng Giêng.', correct: true,
+            feedback: 'Đúng! Tiếng Trung nói tháng trước, ngày sau: 一月一号.' },
+          { text: '一号一月。', pinyin: 'Yī hào yī yuè.', meaning: '(sai trật tự)', correct: false,
+            feedback: 'Sai trật tự — phải là tháng (月) trước rồi ngày (号): 一月一号.' },
+          { text: '一月一点。', pinyin: 'Yī yuè yī diǎn.', meaning: 'Tháng Giêng một "giờ".', correct: false,
+            feedback: 'Sai đơn vị — 点 là "giờ"; ngày dùng 号: 一月一号.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '一月一号。前天我就开始准备了。', pinyin: 'Yī yuè yī hào. Qiántiān wǒ jiù kāishǐ zhǔnbèi le.', meaning: 'Mùng một tháng Giêng. Hôm kia tớ đã bắt đầu chuẩn bị.', expression: null, vocab: ['前天','号'] },
       { type: 'dialogue', speaker: 'narrator', cast: ['mai', 'xiaomei'],
@@ -1790,6 +2012,16 @@ var COURSE_DATA = {
         scene: '📍 Cửa hàng · Chủ nhật', bg: 'street',
         cast: ['mai', 'xiaomei'],
         text: '星期天，Mai 和小美来到商店。这里东西很多。', pinyin: 'Xīngqītiān, Mai hé Xiǎoměi láidào shāngdiàn. Zhèlǐ dōngxi hěn duō.', meaning: 'Chủ nhật, Mai và Tiểu Mỹ đến cửa hàng. Ở đây rất nhiều đồ.', expression: null, vocab: ['这里'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'curious',
+        q: 'Mai cầm mấy quyển vở (ở gần mình), muốn hỏi giá người bán. Câu nào đúng?',
+        options: [
+          { text: '您好！这些本子多少钱？', pinyin: 'Nín hǎo! Zhèxiē běnzi duōshao qián?', meaning: 'Chào ạ! Mấy quyển vở này bao nhiêu tiền?', correct: true,
+            feedback: 'Đúng! Vật ở gần dùng 这些 (những...này); 您 lịch sự.' },
+          { text: '您好！那些本子多少钱？', pinyin: 'Nín hǎo! Nàxiē běnzi duōshao qián?', meaning: 'Chào ạ! Mấy quyển vở KIA bao nhiêu tiền?', correct: false,
+            feedback: 'Sai chỉ định — vở ở GẦN Mai → 这些 (này), không phải 那些 (kia).' },
+          { text: '您好！这本子多少钱？', pinyin: 'Nín hǎo! Zhè běnzi duōshao qián?', meaning: 'Chào ạ! Quyển vở này bao nhiêu tiền?', correct: false,
+            feedback: 'Hỏi NHIỀU quyển → 这些; 这 + danh từ chỉ một cái.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '您好！这些本子多少钱？', pinyin: 'Nín hǎo! Zhèxiē běnzi duōshao qián?', meaning: 'Chào ạ! Mấy quyển vở này bao nhiêu tiền?', expression: 'curious', vocab: ['这些','您'] },
       { type: 'dialogue', speaker: 'narrator', cast: ['mai', 'xiaomei'],
@@ -1805,6 +2037,16 @@ var COURSE_DATA = {
         { q: '"您好" dùng khi nào?', options: ['chào lịch sự', 'tạm biệt', 'xin lỗi', 'cảm ơn'], answer: 0 },
         { q: '"那边" nghĩa là gì?', options: ['bên kia', 'bên này', 'ở đây', 'người khác'], answer: 0 }
       ] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'focused',
+        q: 'Mai muốn mua HAI quyển vở. Dùng số và lượng từ nào cho đúng?',
+        options: [
+          { text: '我买两本，给小美一本。', pinyin: 'Wǒ mǎi liǎng běn, gěi Xiǎoměi yì běn.', meaning: 'Tớ mua hai quyển, cho Tiểu Mỹ một quyển.', correct: true,
+            feedback: 'Đúng! Trước lượng từ dùng 两 (không phải 二); sách/vở dùng 本.' },
+          { text: '我买二本，给小美一本。', pinyin: 'Wǒ mǎi èr běn, gěi Xiǎoměi yì běn.', meaning: '(sai số)', correct: false,
+            feedback: 'Sai — trước lượng từ dùng 两, không dùng 二: 两本.' },
+          { text: '我买两个，给小美一本。', pinyin: 'Wǒ mǎi liǎng ge, gěi Xiǎoměi yì běn.', meaning: '(sai lượng từ)', correct: false,
+            feedback: 'Sai lượng từ — vở/sách dùng 本, không dùng 个.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '我买两本，给小美一本，一半给别人。', pinyin: 'Wǒ mǎi liǎng běn, gěi Xiǎoměi yì běn, yíbàn gěi biéren.', meaning: 'Tớ mua hai quyển, cho Tiểu Mỹ một quyển, một nửa cho người khác.', expression: null, vocab: ['两','一半','别人'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
@@ -1875,6 +2117,16 @@ var COURSE_DATA = {
         text: '星期天早上，小美请 Mai 来家里吃早饭。', pinyin: 'Xīngqītiān zǎoshang, Xiǎoměi qǐng Mai lái jiālǐ chī zǎofàn.', meaning: 'Sáng chủ nhật, Tiểu Mỹ mời Mai đến nhà ăn sáng.', expression: null, vocab: ['请','早饭'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
         text: 'Mai，请进！请坐！', pinyin: 'Mai, qǐng jìn! Qǐng zuò!', meaning: 'Mai, mời vào! Mời ngồi!', expression: null, vocab: ['请进','请坐','请'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], expression: 'happy',
+        q: 'Tiểu Mỹ mời "Mời vào! Mời ngồi!". Là khách, Mai đáp lịch sự thế nào?',
+        options: [
+          { text: '谢谢！你家人真多呀。', pinyin: 'Xièxie! Nǐ jiārén zhēn duō ya.', meaning: 'Cảm ơn! Nhà cậu đông người thật.', correct: true,
+            feedback: 'Đúng! Khách được mời thì cảm ơn: 谢谢.' },
+          { text: '不客气！你家人真多呀。', pinyin: 'Bú kèqi! Nǐ jiārén zhēn duō ya.', meaning: 'Không có gì! Nhà cậu đông người thật.', correct: false,
+            feedback: 'Sai vai — 不客气 là lời ĐÁP LẠI cảm ơn; khách nên nói 谢谢.' },
+          { text: '请坐！你家人真多呀。', pinyin: 'Qǐng zuò! Nǐ jiārén zhēn duō ya.', meaning: 'Mời ngồi! Nhà cậu đông người thật.', correct: false,
+            feedback: 'Sai vai — 请坐 là lời CHỦ NHÀ mời khách; Mai là khách.' }
+        ] },
       { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
         text: '谢谢！你家人真多呀。', pinyin: 'Xièxie! Nǐ jiārén zhēn duō ya.', meaning: 'Cảm ơn! Nhà cậu đông người thật.', expression: null, vocab: ['家人'] },
       { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],

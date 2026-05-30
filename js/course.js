@@ -675,6 +675,10 @@ var Course = {
     if (!s || s.type !== 'dialogue' || !s.text) return;
 
     var isNarr   = (s.speaker === 'narrator');
+    // Narrator lines with Vietnamese-only text have no pre-gen MP3
+    // (mirrors the skip rule in scripts/mai-tts-gen.py) — stay silent
+    // instead of firing a guaranteed-404 fetch + Web Speech fallback.
+    if (isNarr && !/[一-鿿]/.test(s.text)) return;
     var slug     = Course._audioSlug(s.speaker, s.text);
     var src      = 'assets/mai/audio/L' + Course.lessonId + '_' + slug + '.mp3';
     var activeEl = document.querySelector('.cs-vn-char.active');

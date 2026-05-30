@@ -74,26 +74,102 @@ function _lhRenderContinue() {
   }
 }
 
-// ── Section 2: Hôm nay ────────────────────────────────
+// ── Section 2: Hôm nay (3 hoạt động trộn) ────────────
 function _lhRenderToday() {
-  var dueEl = document.getElementById('lhDueCount');
-  var newEl = document.getElementById('lhNewCount');
-  if (!dueEl && !newEl) return;
+  var today = new Date().toISOString().split('T')[0];
 
-  var today   = new Date().toISOString().split('T')[0];
-  var srs     = (typeof AppState !== 'undefined') ? AppState.srsData : {};
-  var due     = 0;
-  var entries = Object.values(srs);
-  for (var i = 0; i < entries.length; i++) {
-    if (entries[i].dueDate && entries[i].dueDate <= today) due++;
+  // ── Card 1: Bài mới (Truyện Mai) ──────────────────
+  var lessonBtn  = document.getElementById('lhTodayLesson');
+  var lessonDesc = document.getElementById('lhTodayLessonDesc');
+  var lessonCheck = document.getElementById('lhTodayLessonCheck');
+  if (lessonBtn && lessonDesc) {
+    var progress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
+    var nextId   = null;
+    var ids = (typeof COURSE_DATA !== 'undefined')
+      ? Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; })
+      : [];
+    for (var i = 0; i < ids.length; i++) {
+      var p = progress[ids[i]];
+      if (!p || !p.completed) { nextId = ids[i]; break; }
+    }
+    if (nextId) {
+      var lesson = COURSE_DATA[nextId];
+      lessonDesc.textContent = 'Bài ' + nextId + ': ' + (lesson ? lesson.title : '');
+      lessonBtn.onclick = function() {
+        if (typeof Course !== 'undefined') { Course._pendingId = nextId; }
+        Router.navigateTo('course');
+      };
+    } else {
+      lessonDesc.textContent = 'Đã hoàn thành tất cả bài!';
+      lessonBtn.disabled = true;
+    }
+    // Check if done today
+    var doneToday = JSON.parse(localStorage.getItem('hsk_today_done') || '{}');
+    if (doneToday.date === today && doneToday.lesson) {
+      if (lessonCheck) lessonCheck.textContent = '✓';
+      lessonBtn.classList.add('lh-today-card--done');
+    }
   }
 
-  if (dueEl) dueEl.textContent = Math.min(due, 99) + (due > 99 ? '+' : '');
+  // ── Card 2: Ôn tập SRS ────────────────────────────
+  var dueEl    = document.getElementById('lhDueCount');
+  var reviewBtn = document.getElementById('lhTodayReview');
+  var reviewCheck = document.getElementById('lhTodayReviewCheck');
+  if (dueEl) {
+    var srs     = (typeof AppState !== 'undefined') ? AppState.srsData : {};
+    var due     = 0;
+    var entries = Object.values(srs);
+    for (var j = 0; j < entries.length; j++) {
+      if (entries[j].dueDate && entries[j].dueDate <= today) due++;
+    }
+    dueEl.textContent = due > 0 ? (Math.min(due, 99) + (due > 99 ? '+' : '')) : '0';
+    if (due === 0 && reviewBtn) {
+      reviewBtn.querySelector && (reviewBtn.querySelector('.lh-today-desc') || {}).textContent;
+      var descEl = reviewBtn.querySelector ? reviewBtn.querySelector('.lh-today-desc') : null;
+      if (descEl) descEl.textContent = 'Không có từ đến hạn';
+    }
+    var doneToday2 = JSON.parse(localStorage.getItem('hsk_today_done') || '{}');
+    if (doneToday2.date === today && doneToday2.review) {
+      if (reviewCheck) reviewCheck.textContent = '✓';
+      if (reviewBtn) reviewBtn.classList.add('lh-today-card--done');
+    }
+  }
 
-  if (newEl) {
-    var reviewedToday = parseInt(localStorage.getItem('hsk_new_today') || '0');
-    var cap = (typeof SRS_NEW_PER_DAY !== 'undefined') ? SRS_NEW_PER_DAY : 20;
-    newEl.textContent = Math.max(0, cap - reviewedToday);
+  // ── Card 3: Đổi vị (game ngẫu nhiên hoặc Daily Challenge) ──
+  var gameLbl  = document.getElementById('lhTodayGameLbl');
+  var gameDesc = document.getElementById('lhTodayGameDesc');
+  var gameCheck = document.getElementById('lhTodayGameCheck');
+  var GAME_OPTIONS = [
+    { lbl: 'Daily Challenge', desc: 'Thử thách hôm nay', route: 'quiz', mode: 'daily' },
+    { lbl: 'Boss Battle',     desc: 'Chiến boss từ vựng', route: 'games', game: 'boss' },
+    { lbl: 'Racing Quiz',     desc: 'Đua từ vựng tốc độ', route: 'games', game: 'racing' },
+    { lbl: 'Sentence Builder',desc: 'Ghép câu tiếng Trung', route: 'games', game: 'sentence' }
+  ];
+  // Pick deterministically by day-of-year so it's stable within a day
+  var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  var pick = GAME_OPTIONS[dayOfYear % GAME_OPTIONS.length];
+  if (gameLbl) gameLbl.textContent = pick.lbl;
+  if (gameDesc) gameDesc.textContent = pick.desc;
+  // Store pick for click handler
+  window._lhTodayGamePick = pick;
+
+  var doneToday3 = JSON.parse(localStorage.getItem('hsk_today_done') || '{}');
+  if (doneToday3.date === today && doneToday3.game) {
+    if (gameCheck) gameCheck.textContent = '✓';
+    var gameBtn = document.getElementById('lhTodayGame');
+    if (gameBtn) gameBtn.classList.add('lh-today-card--done');
+  }
+}
+
+function lhTodayGameClick() {
+  var pick = window._lhTodayGamePick;
+  if (!pick) { Router.navigateTo('games'); return; }
+  if (pick.mode === 'daily') {
+    if (typeof Quiz !== 'undefined' && Quiz.startMode) Quiz.startMode('daily');
+    Router.navigateTo('quiz');
+  } else {
+    if (pick.game && typeof Games !== 'undefined' && Games.launch) Games.launch(pick.game);
+    Router.navigateTo('games');
   }
 }
 

@@ -35,17 +35,29 @@
         <!-- 2. Hôm nay -->
         <div class="lh-section">
           <div class="lh-section-label">📅 Hôm nay</div>
-          <div class="lh-today-grid">
-            <div class="lh-today-card lh-today-card--due" onclick="Router.navigateTo('quiz')">
+          <div class="lh-today-grid lh-today-grid--3" id="lhTodayGrid">
+            <!-- Card 1: Bài mới -->
+            <button class="lh-today-card lh-today-card--lesson" id="lhTodayLesson" onclick="Course._pendingId=null;Router.navigateTo('course')">
+              <div class="lh-today-icon">📖</div>
+              <div class="lh-today-lbl">Bài mới</div>
+              <div class="lh-today-desc" id="lhTodayLessonDesc">Truyện Mai</div>
+              <div class="lh-today-check" id="lhTodayLessonCheck"></div>
+            </button>
+            <!-- Card 2: Ôn tập SRS -->
+            <button class="lh-today-card lh-today-card--due" id="lhTodayReview" onclick="Router.navigateTo('quiz')">
+              <div class="lh-today-icon">🔁</div>
               <div class="lh-today-num" id="lhDueCount">—</div>
-              <div class="lh-today-lbl">Thẻ cần ôn</div>
-              <div class="lh-today-desc">SRS đến hạn hôm nay</div>
-            </div>
-            <div class="lh-today-card lh-today-card--new">
-              <div class="lh-today-num" id="lhNewCount">—</div>
-              <div class="lh-today-lbl">Từ mới</div>
-              <div class="lh-today-desc">Slot còn lại hôm nay</div>
-            </div>
+              <div class="lh-today-lbl">Ôn tập</div>
+              <div class="lh-today-desc">Từ SRS đến hạn</div>
+              <div class="lh-today-check" id="lhTodayReviewCheck"></div>
+            </button>
+            <!-- Card 3: Đổi vị -->
+            <button class="lh-today-card lh-today-card--game" id="lhTodayGame" onclick="lhTodayGameClick()">
+              <div class="lh-today-icon">🎮</div>
+              <div class="lh-today-lbl" id="lhTodayGameLbl">Đổi vị</div>
+              <div class="lh-today-desc" id="lhTodayGameDesc">Thư giãn & ôn từ</div>
+              <div class="lh-today-check" id="lhTodayGameCheck"></div>
+            </button>
           </div>
         </div>
 

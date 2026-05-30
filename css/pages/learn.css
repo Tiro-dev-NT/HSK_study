@@ -416,17 +416,26 @@
 .lh-section-label { font-size: 12px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
 
 .lh-today-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lh-today-grid--3 { grid-template-columns: repeat(3, 1fr); }
 .lh-today-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: 16px 18px;
+  border-radius: var(--r-lg); padding: 14px 12px;
   cursor: pointer; transition: .18s; text-align: left;
+  display: flex; flex-direction: column; gap: 4px;
+  position: relative;
 }
 .lh-today-card:hover { border-color: var(--primary); background: var(--surface2); }
+.lh-today-card--done { opacity: 0.6; }
 .lh-today-card--due .lh-today-num { color: #EF4444; }
 .lh-today-card--new .lh-today-num { color: var(--primary); }
-.lh-today-num { font-size: 32px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
-.lh-today-lbl { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-.lh-today-desc { font-size: 12px; color: var(--text2); }
+.lh-today-icon { font-size: 22px; line-height: 1; margin-bottom: 2px; }
+.lh-today-num { font-size: 28px; font-weight: 800; line-height: 1; margin-bottom: 2px; }
+.lh-today-lbl { font-size: 13px; font-weight: 600; }
+.lh-today-desc { font-size: 11px; color: var(--text2); }
+.lh-today-check {
+  position: absolute; top: 8px; right: 10px;
+  font-size: 14px; font-weight: 700; color: var(--thuy-luc, #10B981);
+}
 
 .lh-timeline { display: flex; flex-direction: column; }
 .lh-tl-node {

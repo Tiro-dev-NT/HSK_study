@@ -978,6 +978,62 @@
   line-height: 1.5;
 }
 
+/* ── Word-level tap lookup trong câu Hán ─────────────── */
+.cs-vn-dlg-hanzi .cs-vn-word {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0 1px;
+  transition: background .12s;
+}
+.cs-vn-dlg-hanzi .cs-vn-word:hover,
+.cs-vn-dlg-hanzi .cs-vn-word:active {
+  background: var(--primary-soft);
+}
+/* từ trọng tâm (vocab mới của bước) — gạch chân màu brand */
+.cs-vn-dlg-hanzi .cs-vn-h-focus {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+.cs-vn-h-skip { cursor: default; }
+
+/* Popup tra từ */
+.cs-vn-wordpop {
+  position: absolute;
+  z-index: 1200;
+  width: 220px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-3);
+  padding: 12px 14px;
+  font-family: var(--font-ui);
+  font-style: normal;
+}
+.cs-vn-wp-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.cs-vn-wp-h {
+  flex: 1;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-hanzi);
+  color: var(--text);
+}
+.cs-vn-wp-ic {
+  background: none; border: none; cursor: pointer;
+  font-size: 15px; color: var(--text2); padding: 2px 4px; line-height: 1;
+}
+.cs-vn-wp-ic:hover { color: var(--text); }
+.cs-vn-wp-py { color: var(--hoang-kim-2); font-size: 14px; margin-bottom: 2px; }
+.cs-vn-wp-vi { color: var(--text); font-size: 14px; margin-bottom: 8px; line-height: 1.4; }
+.cs-vn-wp-foot { display: flex; align-items: center; justify-content: space-between; }
+.cs-vn-wp-lv { font-size: 11px; font-weight: 700; color: var(--text3); }
+.cs-vn-wp-add {
+  background: var(--primary); color: #fff; border: none;
+  border-radius: 8px; padding: 5px 12px;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.cs-vn-wp-add:hover { background: var(--primary-light); }
+
 /* Pinyin toggle chip in header */
 .cs-vn-py-toggle {
   background: var(--surface-3, #F5F5F4);

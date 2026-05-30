@@ -28,6 +28,7 @@ var Course = {
   _srsAdded:         false,
   _pendingId:        null,   // set before Router.navigateTo('course') for in-app nav
   _showPinyin:       true,   // VN pinyin toggle (persists across steps)
+  _showVi:           true,   // VN nghĩa-Việt toggle (persists across steps)
 
   // ── Entry point ─────────────────────────────────────
   init: function() {
@@ -265,6 +266,7 @@ var Course = {
 
   // ── PHASE: dialogue — Visual Novel renderer ───────────
   _renderDialogueVN: function() {
+    Course._hideWordPopup();
     var l     = Course.lesson;
     var steps = l.steps;
     var s     = steps[Course.step];
@@ -322,8 +324,10 @@ var Course = {
             '<button class="cs-vn-speak-btn" id="cs-vn-speak-btn" onclick="Course._vnTts()" title="Nghe">🔊</button>' +
           '</div>' +
           pyHTML +
-          '<div class="cs-vn-dlg-hanzi">' + s.text + '</div>' +
-          '<div class="cs-vn-dlg-vi">' + (s.meaning || '') + '</div>' +
+          '<div class="cs-vn-dlg-hanzi">' + Course._vnHanziHTML(s.text, s.vocab) + '</div>' +
+          (Course._showVi !== false
+            ? '<div class="cs-vn-dlg-vi">' + (s.meaning || '') + '</div>'
+            : '') +
         '</div>';
     }
 
@@ -333,6 +337,9 @@ var Course = {
         '<span class="cs-lesson-num">Bài ' + l.id + ': ' + l.title + '</span>' +
         '<button class="cs-vn-py-toggle" onclick="Course._togglePinyin()" title="Bật/tắt pinyin">' +
           (Course._showPinyin !== false ? 'Py✓' : 'Py') +
+        '</button>' +
+        '<button class="cs-vn-py-toggle" onclick="Course._toggleVi()" title="Bật/tắt nghĩa">' +
+          (Course._showVi !== false ? 'Vi✓' : 'Vi') +
         '</button>' +
         '<div class="cs-progress-wrap"><div class="cs-progress-bar" style="width:' + pct + '%"></div></div>' +
       '</div>' +
@@ -369,6 +376,120 @@ var Course = {
     if (/phong khach|nha|gia dinh|o nha/.test(t))         return 'assets/mai/scenes/home.webp';
     if (/kham|benh vien|y te|phong y/.test(t))            return 'assets/mai/scenes/clinic.webp';
     return 'assets/mai/scenes/classroom.webp'; // default
+  },
+
+  // ── VN: word-level tap lookup (xem pinyin + nghĩa từng từ) ──
+  _vnLookup: null,
+  _vnCurWord: null,
+  _buildVnLookup: function() {
+    if (Course._vnLookup) return Course._vnLookup;
+    var m = {};
+    if (typeof HSK3_DATA !== 'undefined') {
+      for (var lv = 1; lv <= 9; lv++) {
+        var arr = HSK3_DATA[lv] || [];
+        for (var i = 0; i < arr.length; i++) {
+          var w = arr[i];
+          if (w && w.h && !m[w.h]) m[w.h] = { p: w.p, v: w.v, e: w.e, level: lv, _word: w };
+        }
+      }
+    }
+    Course._vnLookup = m;
+    return m;
+  },
+
+  _esc: function(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  },
+
+  // Tách câu Hán thành các từ chạm được; highlight từ trọng tâm (vocab) của bước
+  _vnHanziHTML: function(text, focus) {
+    if (!text) return '';
+    var map = Course._buildVnLookup();
+    var foc = {};
+    (focus || []).forEach(function(w) { foc[w] = 1; });
+    var out = '', i = 0, n = text.length;
+    while (i < n) {
+      var ch = text[i];
+      if (!/[一-鿿]/.test(ch)) {
+        out += '<span class="cs-vn-h-skip">' + Course._esc(ch) + '</span>';
+        i++; continue;
+      }
+      var word = ch;
+      for (var len = Math.min(4, n - i); len >= 1; len--) {
+        if (map[text.substr(i, len)]) { word = text.substr(i, len); break; }
+      }
+      var cls = 'cs-vn-word' + (map[word] ? ' cs-vn-h-known' : '') + (foc[word] ? ' cs-vn-h-focus' : '');
+      out += '<span class="' + cls + '" data-h="' + Course._esc(word) + '" onclick="Course._vnWordTap(this)">' + Course._esc(word) + '</span>';
+      i += word.length;
+    }
+    return out;
+  },
+
+  _vnWordTap: function(el) {
+    var h = el.getAttribute('data-h');
+    var info = Course._buildVnLookup()[h];
+    Course._vnCurWord = info ? info._word : { h: h };
+    Course._hideWordPopup();
+
+    var pop = document.createElement('div');
+    pop.className = 'cs-vn-wordpop';
+    pop.id = 'csVnWordpop';
+    pop.innerHTML =
+      '<div class="cs-vn-wp-head">' +
+        '<span class="cs-vn-wp-h">' + Course._esc(h) + '</span>' +
+        '<button class="cs-vn-wp-ic" onclick="Course._vnSpeakCur()" title="Nghe">🔊</button>' +
+        '<button class="cs-vn-wp-ic" onclick="Course._hideWordPopup()" title="Đóng">✕</button>' +
+      '</div>' +
+      (info
+        ? '<div class="cs-vn-wp-py">' + Course._esc(info.p) + '</div>' +
+          '<div class="cs-vn-wp-vi">' + Course._esc(info.v || info.e) + '</div>' +
+          '<div class="cs-vn-wp-foot">' +
+            '<span class="cs-vn-wp-lv">HSK ' + info.level + '</span>' +
+            '<button class="cs-vn-wp-add" onclick="Course._vnAddCur()">+ Kho</button>' +
+          '</div>'
+        : '<div class="cs-vn-wp-vi">Không có trong từ điển HSK</div>');
+    document.body.appendChild(pop);
+
+    var r = el.getBoundingClientRect();
+    var W = 220;
+    pop.style.left = Math.max(8, Math.min(r.left, window.innerWidth - W - 8)) + 'px';
+    pop.style.top  = (window.scrollY + r.bottom + 6) + 'px';
+
+    Course._vnSpeakCur();
+    setTimeout(function() { document.addEventListener('click', Course._vnPopOutside, true); }, 0);
+  },
+
+  _vnPopOutside: function(e) {
+    var pop = document.getElementById('csVnWordpop');
+    if (pop && !pop.contains(e.target) && !(e.target.classList && e.target.classList.contains('cs-vn-word'))) {
+      Course._hideWordPopup();
+    }
+  },
+
+  _hideWordPopup: function() {
+    var pop = document.getElementById('csVnWordpop');
+    if (pop && pop.parentNode) pop.parentNode.removeChild(pop);
+    document.removeEventListener('click', Course._vnPopOutside, true);
+  },
+
+  _vnSpeakCur: function() {
+    var w = Course._vnCurWord;
+    if (!w || !w.h) return;
+    if (typeof Dictionary !== 'undefined' && Dictionary.playTTS) { Dictionary.playTTS(w.h); return; }
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(w.h);
+      u.lang = 'zh-CN'; u.rate = 0.85;
+      window.speechSynthesis.speak(u);
+    }
+  },
+
+  _vnAddCur: function() {
+    var w = Course._vnCurWord;
+    if (w && w.h && typeof openAddToDeckPopup === 'function') openAddToDeckPopup(w);
+    Course._hideWordPopup();
   },
 
   // ── VN: character lookup ──────────────────────────────
@@ -412,6 +533,11 @@ var Course = {
   // ── VN: pinyin toggle ─────────────────────────────────
   _togglePinyin: function() {
     Course._showPinyin = !Course._showPinyin;
+    Course.render();
+  },
+
+  _toggleVi: function() {
+    Course._showVi = !Course._showVi;
     Course.render();
   },
 

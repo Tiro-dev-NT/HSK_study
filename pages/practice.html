@@ -9,6 +9,17 @@
   <div class="hub-section-label">Có sẵn ngay</div>
   <div class="hub-grid" style="margin-bottom:var(--s-6)">
 
+    <a class="tool-card" href="#" onclick="startReviewAllDue();return false;">
+      <div class="tool-card-icon tc-icon--gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Ôn tất cả <span id="practiceReviewCount" style="color:var(--accent,#F59E0B);font-weight:600"></span></div>
+        <div class="tool-card-desc" id="practiceReviewDesc">Gom tất cả từ đến hạn của mọi cấp vào 1 phiên</div>
+      </div>
+      <span class="tool-badge tool-badge--available">SRS</span>
+    </a>
+
     <a class="tool-card" href="#" onclick="Router.navigateTo('quiz');return false;">
       <div class="tool-card-icon tc-icon--red">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>

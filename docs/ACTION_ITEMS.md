@@ -23,6 +23,21 @@
 
 **Mô hình phủ phân tầng:** ~15-18 bài core (visual-novel đầy đủ, từ tần suất cao) + ~8-12 đọc thêm (nhẹ, phủ nốt → 100%). Chia bằng frequency ranking.
 
+**🧱 NGUYÊN TẮC XÂY DỰNG (CHỐT 2026-05-31): "bài nào hoàn thiện bài đấy" (dọc, không ngang).**
+> Từ nay xây Truyện Mai theo chiều DỌC: mỗi bài làm TRỌN VẸN đủ thành phần rồi mới sang bài kế — không làm 1 thành phần trải hết mọi bài. Mục tiêu: bài đã ship là dùng được ngay 100%.
+>
+> **Definition of Done — 1 bài Mai hoàn thiện = đủ 8 mục:**
+> 1. **Thoại** đầy đủ (`steps` dialogue + `cast`/`scene`/`bg` + tag `vocab` mỗi câu)
+> 2. **Choice step** ≥1 (active recall, distractor hợp lý, convergent — không rẽ nhánh)
+> 3. **Checkpoint** (quiz nhanh giữa/cuối bài)
+> 4. **Vocab list** (`lesson.vocab` = {h,p,v})
+> 5. **Workbook** 3 mức (`workbook.normal/hard/...`)
+> 6. **Audio** TTS per-voice (`scripts/mai-tts-gen.py`, skip-if-exists, content-hash slug)
+> 7. **Handout** ("Trang chép bài") — auto-derive đã đủ baseline cho MỌI bài; bài CORE nên enrich field `lesson.handout` (story_brief + vocab_highlight 🔥 + mascot_tips + copy_guide riêng)
+> 8. **Cliffhanger hook** cuối bài (B5④, lồng khi viết) + **coverage** từ nằm trong wordlist cấp
+>
+> **Workflow thực tế (hybrid):** soạn nội dung mục 1-5+7-8 trọn 1 bài (Opus), rồi chạy batch mục 6 (audio) + verify coverage cho bài đó (rẻ, skip-if-exists). Done bài → commit bài → sang bài kế.
+
 **Trình tự PROTOTYPE-FIRST:**
 - ☑ **B0 — Bài 1 prototype** DONE 2026-05-29: `course.js` v1.3 — visual-novel renderer (`_renderDialogueVN`): stage gradient + cast row (active/inactive/speaking pulse T1) + scene-tag + narrator-card + dlg box (speaker chip màu + pinyin toggle + hanzi 1.85rem + nghĩa). VN_CHARACTERS map (narrator/laoli/mai/xiaomei), `_vnTts` per-voice pitch/rate + fallback Web Speech. Data: `course-lessons.js` v1.1 Bài 1 — 2 narrator steps + `cast`/`scene` cho 14 dialogue steps. Fallback emoji onerror (laoli/xiaomei chưa có ảnh). CSS: `course.css` v1.1 — `.cs-vn-*` classes.
 - ☑ **B1-design — Style guide art DONE 2026-05-29**: `content/curriculum/mai-art-style-guide.md` — 4 phần: style guide (anchor Mai ảnh), prompt 3 nhân vật × (character sheet + 6 expr), prompt classroom bg, output spec + pipeline (paths khớp VN_CHARACTERS). Chờ user gen ảnh qua Nano Banana Pro + process cwebp → `assets/mai/cast/` + `assets/mai/scenes/`.
@@ -37,10 +52,16 @@
   - ☐ B3-ship: chờ B2-asset polish (T2 video loop idle sprite laoli/xiaomei) rồi gom feedback user thật.
 - 🟡 **B4 — Scale HSK 2** (đang chạy) bằng đúng pipeline coverage-driven.
   - ☑ **B4-mapping DONE 2026-05-30**: `scripts/mai-hsk2-coverage.js` map **754 từ HSK 2** → **41 bài** (35 CORE + 6 ĐỌC THÊM, Bài 31–71). Output `content/curriculum/mai-hsk2-coverage-map.md`. Phân tầng theo topic tag + frequency.
-  - 🟡 **B4-text (16/41 bài)**: đã viết **Bài 31–46** vào `js/data/course-lessons.js` (v1.5→v1.6, `index.html` bump). Bài 31–42 "Hành động hằng ngày" (232 từ) + Bài 43–46 "Từ chức năng & liên từ" (80 từ) = **312/754 từ (41%)**. ⚠️ Thay đổi CHƯA commit. CÒN LẠI: Bài 47–51 từ chức năng (98), 52–56 tính từ (98), 57–58 thời gian (40), 59–61 số đếm/đại từ (51), 62–63 địa điểm/đồ vật (41), 64–65 cơ thể/thiên nhiên (32), 66–71 đọc thêm (82).
-  - ☐ **B4-audio**: `scripts/mai-tts-gen.py` gen MP3 cho Bài 31–71 (skip-if-exists).
-  - ☐ **B4-verify + ship**: coverage 754/754 PASS + audio đủ + preview 0 lỗi.
+  - 🟡 **B4-text (16/41 bài)** — commit `5762058`: đã viết **Bài 31–46** (Bài 31–42 "Hành động hằng ngày" 232 từ + 43–46 "Từ chức năng & liên từ" 80 từ = **312/754 từ = 41%**). CÒN LẠI: Bài 47–51 từ chức năng (98), 52–56 tính từ (98), 57–58 thời gian (40), 59–61 số đếm/đại từ (51), 62–63 địa điểm/đồ vật (41), 64–65 cơ thể/thiên nhiên (32), 66–71 đọc thêm (82). **→ Từ Bài 47 áp DoD dọc (8 mục, xem nguyên tắc trên).**
+  - ☑ **B4-audio DONE 2026-05-31** — commit `8783fff`: `scripts/mai-tts-gen.py` gen 359 MP3 cho Bài 31–71 (edge-tts, skip-if-exists). `assets/mai/audio/` ~17MB (676 file HSK1+2 — chạm ngưỡng 15MB, cân nhắc R2 trước khi thêm HSK3).
+  - ☐ **B4-verify + ship**: coverage 754/754 PASS (sau khi xong Bài 47–71) + audio đủ + preview 0 lỗi.
   - ☑ **Refactor tách file DONE 2026-05-31**: `course-lessons.js` (6126 dòng) → `js/data/course/course-data.js` (container `var COURSE_DATA = COURSE_DATA||{}`) + `course-hsk1.js` (Bài 1-30, Object.assign) + `course-hsk2.js` (Bài 31-46). Pattern khớp `hsk3_lvl{N}`. `index.html`: 1 thẻ → 3 (data trước). 2 loader (`mai-hsk1-coverage.js`, `mai-tts-gen.py`) đọc cả thư mục `js/data/course/*.js` (sort → container trước). Verify: node -c 3 file OK · coverage 510/510 PASS · TTS dry-run 504 bước (đọc đủ 46 bài) · preview 46 bài, console 0 lỗi. Cấp HSK mới sau này = thêm `course-hsk{N}.js` + 1 thẻ index.html.
+
+**P12 — Trang chép bài (Lesson Handout)** — ☑ **DONE 2026-05-31** commit `e9f02de`: hiện thực màn "đọc trên app → tự chép vào vở" (design `42-lesson-handout`, bàn từ 2026-05-22). `js/handout.js` + `css/pages/handout.css` + `pages/handout.html` + route `/handout?id=N` + entry nút "📔 Trang chép bài" ở màn complete (`course.js`). **Auto-derive từ COURSE_DATA → chạy ngay cho cả 46 bài** (header + mục tiêu + tình huống + bảng từ + hội thoại + "Mở vở ra hôm nay chép gì?" 4 việc + toolbar Copy/In-PDF/Đã-chép-xong +15XP lưu `hsk_handout_completed`). Field tùy chọn `lesson.handout` (story_brief/vocab_highlight/mascot_tips/copy_guide) override khi enrich CORE sau. Verify Bài 14 + Bài 1 cũ render OK, console 0 lỗi.
+
+**UI lộ trình + polish (2026-05-31):**
+- ☑ **Lộ trình rõ hơn** commit `42bb819`: `_lhRenderTimeline` theo pattern app top (Duolingo/HelloChinese) — Truyện Mai = spine "Giáo trình chính" + 1 marker "Bạn ở đây" (đồng bộ hero); 9 deck HSK gom thành 1 accordion "Kho từ vựng theo cấp" (off-path, thu gọn). `learn-hub.js` v1.3, `learn.css` v1.2.
+- ☑ **Bỏ emoji đè ảnh nhân vật** commit `1f0fb20`: `course.js` v2.1 — cast có ảnh thì ẩn emoji (chỉ hiện lại khi ảnh lỗi), cả dialogue + choice path.
 
 **B5 — Engagement / chống chán (CHỐT 2026-05-30)** — lộ trình tuyến tính KHÔNG phải nguyên nhân chán; chán đến từ *mỗi bài cùng khuôn + bấm "Tiếp" thụ động*. Nguyên tắc: làm đúng 2 đòn bẩy cốt lõi, KHÔNG nhồi đủ 4 cơ chế (over-engineer).
 - ☑ **① Choice step (ƯU TIÊN)** — DONE 2026-05-30: renderer `choice` (`js/course.js` v1.8) + content nhân rộng. **Bài 1-21 CORE đều có choice** (22 choice: Bài 19+20 có 2, còn lại 1 mỗi bài); distractor đa dạng (sai từ/lượng từ/trật tự/ngữ cảnh/hướng/vai), feedback từng đáp án, từ trong wordlist của bài. CONVERGENT (1 mạch, không rẽ nhánh), coverage 510/510 vẫn PASS. Kèm fix audio keying: đổi tên file audio theo **content-hash slug** (`L{id}_{djb2(speaker|text)}.mp3`) thay vì index → chèn choice không phát nhầm tiếng (`Course._audioSlug` ⇄ `scripts/mai-tts-gen.py slug_for`, 317 file regen). Bài 22-30 ĐỌC THÊM: chưa thêm choice (tùy chọn).

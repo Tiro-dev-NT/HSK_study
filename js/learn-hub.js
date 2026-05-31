@@ -200,6 +200,59 @@ function lhTodayGameClick() {
   }
 }
 
+// ══════════════════════════════════════════════════════
+// "Ôn tất cả" — gom card due + relearning TOÀN BỘ cấp/deck
+// SRS lưu chung kho (hsk_srs_v3) nên chỉ cần quét srsData 1 lần.
+// Chỉ gom card ĐẾN HẠN (đã học) → KHÔNG kéo từ MỚI → không đụng
+// gate Pro (gate chỉ chặn học từ mới ở HSK 4+).
+// ══════════════════════════════════════════════════════
+
+// Trả về mảng hanzi đến hạn, sắp xếp: học lại trước → ôn (theo dueDate cũ nhất)
+function getAllDueHanzi() {
+  var srs   = (typeof AppState !== 'undefined' && AppState.srsData) ? AppState.srsData : {};
+  var today = new Date().toISOString().split('T')[0];
+  var relearn = [];
+  var due     = [];
+  Object.keys(srs).forEach(function(h) {
+    var c = srs[h];
+    if (!c || !c.dueDate || c.dueDate > today) return;   // chưa đến hạn / chưa học
+    if ((c.lapses || 0) > 0) relearn.push({ h: h, d: c.dueDate });
+    else                     due.push({ h: h, d: c.dueDate });
+  });
+  // dueDate cũ nhất trước (quá hạn lâu nhất ưu tiên)
+  relearn.sort(function(a, b) { return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
+  due.sort(function(a, b)     { return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
+  return relearn.concat(due).map(function(x) { return x.h; });
+}
+
+// Bắt đầu phiên ôn tất cả: nạp hanzi list → reuse Session player qua learn page
+function startReviewAllDue() {
+  var hanzis = getAllDueHanzi();
+  if (!hanzis.length) {
+    var msg = (typeof AppState !== 'undefined' && AppState.lang === 'en')
+      ? 'No cards due for review — great job! 🎉'
+      : 'Không có từ nào đến hạn ôn — tuyệt vời! 🎉';
+    if (typeof showToast === 'function') showToast(msg);
+    else alert(msg);
+    return;
+  }
+  try {
+    sessionStorage.setItem('mv_learn_words', JSON.stringify(hanzis));
+  } catch (e) {}
+  if (typeof Router !== 'undefined') Router.navigateTo('learn');
+}
+
+// Cập nhật badge "Ôn tất cả" trên trang Luyện tập (ẩn card nếu 0 due)
+function lhRefreshDueBadges() {
+  var n      = getAllDueHanzi().length;
+  var cntEl  = document.getElementById('practiceReviewCount');
+  var descEl = document.getElementById('practiceReviewDesc');
+  if (cntEl)  cntEl.textContent = n > 0 ? (n + ' thẻ đến hạn') : 'Không có thẻ đến hạn';
+  if (descEl) descEl.textContent = n > 0
+    ? 'Gom tất cả từ đến hạn của mọi cấp vào 1 phiên'
+    : 'Bạn đã ôn hết — quay lại sau nhé';
+}
+
 // ── Section 3: Timeline ───────────────────────────────
 function _lhRenderTimeline() {
   var container = document.getElementById('lhTimeline');

@@ -43,6 +43,11 @@ var Session = {
           setTimeout(function() {
             var fa = document.getElementById('flashcardArea');
             if (fa) {
+              // Hide hub + deck browser so the session shows cleanly
+              var _hub = document.getElementById('learnHub');
+              if (_hub) _hub.style.display = 'none';
+              var _br = document.getElementById('deckBrowser');
+              if (_br) _br.style.display = 'none';
               fa.style.display = 'block';
               Session.showFcCard();
               fa.scrollIntoView({ behavior: 'smooth', block: 'start' });

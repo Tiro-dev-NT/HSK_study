@@ -5416,5 +5416,1163 @@ Object.assign(COURSE_DATA, {
         { type: 'translate', prompt: 'Hồi nhỏ tớ rất thích chơi.', answer: '我小时候很爱玩。' }
       ]
     }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 59: Số đếm & đại từ (1) — 22 từ
+  // 不少, 大多数, 大量, 段, 多数, 份, 公斤, 好多, 好久, 件, 斤, 句, 辆, 零下, 大家, 多久, 该, 那会儿, 那么, 那时, 那样, 其他
+  // ───────────────────────────────────────────────────────────────────────────
+  59: {
+    id: 59,
+    level: 2,
+    title: 'Số đếm & đại từ (1)',
+    context: 'Cả nhóm đi siêu thị mua đồ chuẩn bị cho buổi dạ hội. Họ tính toán số lượng và nhớ lại chuyện ngày xưa.',
+    vocabPreview: ['大家', '不少', '公斤', '多久', '其他'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Siêu thị · Buổi chiều', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Cả nhóm đến siêu thị mua đồ cho buổi dạ hội.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '大家好久不见！我们要买不少东西。',
+        pinyin: 'Dàjiā hǎojiǔ bú jiàn! Wǒmen yào mǎi bù shǎo dōngxi.',
+        meaning: 'Mọi người lâu rồi không gặp! Chúng ta phải mua không ít đồ.',
+        expression: 'happy', vocab: ['大家', '好久', '不少']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '是啊，大多数同学都来了，多数人想买水果。',
+        pinyin: 'Shì a, dàduōshù tóngxué dōu lái le, duōshù rén xiǎng mǎi shuǐguǒ.',
+        meaning: 'Ừ, đa số các bạn đều đến, phần lớn muốn mua trái cây.',
+        expression: 'happy', vocab: ['大多数', '多数']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '买几斤苹果？还是几公斤？',
+        pinyin: 'Mǎi jǐ jīn píngguǒ? Háishì jǐ gōngjīn?',
+        meaning: 'Mua mấy cân táo? Hay mấy ký?',
+        expression: 'curious', vocab: ['斤', '公斤']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '买两份礼物，再买几件衣服，还有好多零食。',
+        pinyin: 'Mǎi liǎng fèn lǐwù, zài mǎi jǐ jiàn yīfu, hái yǒu hǎoduō língshí.',
+        meaning: 'Mua hai phần quà, mua thêm vài bộ quần áo, còn nhiều đồ ăn vặt nữa.',
+        expression: 'happy', vocab: ['份', '件', '好多']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Siêu thị',
+        expression: 'curious',
+        q: 'Mai muốn hỏi "Còn bao lâu nữa?". Nên dùng từ nào?',
+        options: [
+          { text: '还要多久？', pinyin: 'Hái yào duōjiǔ?', meaning: 'Còn bao lâu nữa?', correct: true,
+            feedback: 'Đúng! 多久 = bao lâu (hỏi thời lượng).' },
+          { text: '还要那么？', pinyin: 'Hái yào nàme?', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '那么 = như thế, đến thế; không hỏi thời lượng được.' },
+          { text: '还要该？', pinyin: 'Hái yào gāi?', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '该 = nên, đáng; không phải "bao lâu".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '还要多久？我们该走了。外面零下，开一辆车去吧。',
+        pinyin: 'Hái yào duōjiǔ? Wǒmen gāi zǒu le. Wàimiàn língxià, kāi yí liàng chē qù ba.',
+        meaning: 'Còn bao lâu nữa? Chúng ta nên đi thôi. Bên ngoài dưới 0 độ, lái một chiếc xe đi đi.',
+        expression: 'focused', vocab: ['多久', '该', '零下', '辆']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"不少" có nghĩa là gì?',
+            options: ['không ít, khá nhiều', 'rất ít', 'một chút', 'tất cả'],
+            answer: 0
+          },
+          {
+            q: '"斤" và "公斤" — đơn vị nào là "ký (kilogram)"?',
+            options: ['公斤', '斤', '份', '件'],
+            answer: 0
+          },
+          {
+            q: '"该走了" có nghĩa là gì?',
+            options: ['nên đi rồi', 'đừng đi', 'đã đi rồi', 'sắp đến'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Siêu thị · Tiếp tục', bg: 'street',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý kể chuyện đi chợ thời xưa.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '那时大家买东西不那么方便，那会儿东西很少。',
+        pinyin: 'Nàshí dàjiā mǎi dōngxi bú nàme fāngbiàn, nàhuìr dōngxi hěn shǎo.',
+        meaning: 'Hồi đó mọi người mua đồ không tiện như thế, dạo ấy hàng hóa rất ít.',
+        expression: 'focused', vocab: ['那时', '那么', '那会儿']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师那段话很有用！别像那样浪费。',
+        pinyin: 'Lǎoshī nà duàn huà hěn yǒuyòng! Bié xiàng nàyàng làngfèi.',
+        meaning: 'Đoạn lời đó của thầy rất hữu ích! Đừng lãng phí như vậy.',
+        expression: 'happy', vocab: ['段', '那样']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'street',
+        scene: '📍 Siêu thị',
+        expression: 'happy',
+        q: 'Tiểu Mỹ muốn nói "Những thứ khác cũng mua đi". Nên dùng từ nào cho "những thứ khác"?',
+        options: [
+          { text: '其他东西也买吧。', pinyin: 'Qítā dōngxi yě mǎi ba.', meaning: 'Những thứ khác cũng mua đi.', correct: true,
+            feedback: 'Đúng! 其他 = (những cái) khác.' },
+          { text: '那样东西也买吧。', pinyin: 'Nàyàng dōngxi yě mǎi ba.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '那样 = như vậy, kiểu đó; không phải "những cái khác".' },
+          { text: '多数东西也买吧。', pinyin: 'Duōshù dōngxi yě mǎi ba.', meaning: '(Lệch nghĩa)', correct: false,
+            feedback: '多数 = đa số; không bằng "những cái khác".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '其他东西也买大量吧，每句话我都记下了。',
+        pinyin: 'Qítā dōngxi yě mǎi dàliàng ba, měi jù huà wǒ dōu jì xià le.',
+        meaning: 'Những thứ khác cũng mua nhiều vào, mỗi câu nói tớ đều ghi lại rồi.',
+        expression: 'happy', vocab: ['其他', '大量', '句']
+      }
+    ],
+    vocab: [
+      { h: '不少', p: 'bùshǎo', v: 'không ít, khá nhiều' },
+      { h: '大多数', p: 'dàduōshù', v: 'đại đa số' },
+      { h: '大量', p: 'dàliàng', v: 'số lượng lớn' },
+      { h: '段', p: 'duàn', v: 'đoạn (lượng từ)' },
+      { h: '多数', p: 'duōshù', v: 'đa số, phần lớn' },
+      { h: '份', p: 'fèn', v: 'phần (lượng từ)' },
+      { h: '公斤', p: 'gōngjīn', v: 'kilogram, ký' },
+      { h: '好多', p: 'hǎoduō', v: 'rất nhiều' },
+      { h: '好久', p: 'hǎojiǔ', v: 'lâu, hồi lâu' },
+      { h: '件', p: 'jiàn', v: 'cái, bộ (lượng từ)' },
+      { h: '斤', p: 'jīn', v: 'cân (500g)' },
+      { h: '句', p: 'jù', v: 'câu (lượng từ)' },
+      { h: '辆', p: 'liàng', v: 'chiếc (lượng từ xe)' },
+      { h: '零下', p: 'língxià', v: 'dưới 0 độ' },
+      { h: '大家', p: 'dàjiā', v: 'mọi người' },
+      { h: '多久', p: 'duōjiǔ', v: 'bao lâu' },
+      { h: '该', p: 'gāi', v: 'nên, đáng' },
+      { h: '那会儿', p: 'nàhuìr', v: 'dạo ấy, lúc đó' },
+      { h: '那么', p: 'nàme', v: 'như thế, đến thế' },
+      { h: '那时', p: 'nàshí', v: 'hồi đó, khi đó' },
+      { h: '那样', p: 'nàyàng', v: 'như vậy, kiểu đó' },
+      { h: '其他', p: 'qítā', v: '(những cái) khác' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___好久不见！', options: ['大家', '其他', '多数'], answer: '大家' },
+        { type: 'fill', sentence: '我们要买___东西。', options: ['不少', '该', '那么'], answer: '不少' },
+        { type: 'fill', sentence: '买几___苹果？', options: ['斤', '辆', '句'], answer: '斤' },
+        { type: 'fill', sentence: '还是几___？', options: ['公斤', '段', '份'], answer: '公斤' },
+        { type: 'fill', sentence: '买两___礼物。', options: ['份', '辆', '斤'], answer: '份' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '还要___？', options: ['多久', '那么', '该'], answer: '多久' },
+        { type: 'fill', sentence: '我们___走了。', options: ['该', '那样', '好多'], answer: '该' },
+        { type: 'fill', sentence: '外面___，很冷。', options: ['零下', '大量', '好久'], answer: '零下' },
+        { type: 'fill', sentence: '开一___车去吧。', options: ['辆', '件', '句'], answer: '辆' },
+        { type: 'fill', sentence: '___同学都来了。', options: ['大多数', '其他', '那时'], answer: '大多数' },
+        { type: 'order', words: ['不少', '买', '东西', '要', '我们'], answer: '我们要买不少东西' },
+        { type: 'order', words: ['走了', '该', '我们'], answer: '我们该走了' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '那时买东西不___方便。', options: ['那么', '那样', '那会儿'], answer: '那么' },
+        { type: 'fill', sentence: '别像___浪费。', options: ['那样', '那么', '那时'], answer: '那样' },
+        { type: 'fill', sentence: '___东西也买吧。', options: ['其他', '多数', '大量'], answer: '其他' },
+        { type: 'fill', sentence: '每___话我都记下了。', options: ['句', '段', '件'], answer: '句' },
+        { type: 'translate', prompt: 'Còn bao lâu nữa?', answer: '还要多久？' },
+        { type: 'translate', prompt: 'Mọi người lâu rồi không gặp!', answer: '大家好久不见！' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 60: Số đếm & đại từ (2) — 22 từ
+  // 名, 篇, 片, 千克, 全部, 少数, 条, 位, 许多, 一部分, 亿, 只, 周年, 座, 其中, 什么样, 它, 它们, 为什么, 有人, 咱, 咱们
+  // ───────────────────────────────────────────────────────────────────────────
+  60: {
+    id: 60,
+    level: 2,
+    title: 'Số đếm & đại từ (2)',
+    context: 'Nhân dịp kỷ niệm thành lập trường, cả nhóm cùng làm một bài viết và chọn ảnh cho triển lãm.',
+    vocabPreview: ['咱们', '许多', '全部', '为什么', '它们'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Phòng học · Buổi tối', bg: 'classroom',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn chuẩn bị bài viết cho lễ kỷ niệm của trường.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '咱们写一篇文章吧！咱也选几片照片。',
+        pinyin: 'Zánmen xiě yì piān wénzhāng ba! Zán yě xuǎn jǐ piàn zhàopiàn.',
+        meaning: 'Chúng mình viết một bài văn đi! Mình cũng chọn vài tấm ảnh.',
+        expression: 'happy', vocab: ['咱们', '篇', '咱', '片']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '好！今年是学校五周年。有许多照片，全部都很美。',
+        pinyin: 'Hǎo! Jīnnián shì xuéxiào wǔ zhōunián. Yǒu xǔduō zhàopiàn, quánbù dōu hěn měi.',
+        meaning: 'Được! Năm nay là kỷ niệm 5 năm của trường. Có rất nhiều ảnh, tất cả đều đẹp.',
+        expression: 'happy', vocab: ['周年', '许多', '全部']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '其中一部分是动物的。你看那只猫和它的朋友。',
+        pinyin: 'Qízhōng yíbùfèn shì dòngwù de. Nǐ kàn nà zhī māo hé tā de péngyou.',
+        meaning: 'Trong đó một phần là về động vật. Cậu xem con mèo kia và bạn của nó.',
+        expression: 'curious', vocab: ['其中', '一部分', '只', '它']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '它们真可爱！为什么有人不喜欢动物呢？',
+        pinyin: 'Tāmen zhēn kě’ài! Wèishénme yǒurén bù xǐhuan dòngwù ne?',
+        meaning: 'Chúng thật đáng yêu! Vì sao lại có người không thích động vật nhỉ?',
+        expression: 'curious', vocab: ['它们', '为什么', '有人']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'classroom',
+        scene: '📍 Phòng học',
+        expression: 'curious',
+        q: 'Mai muốn hỏi "Cậu muốn loại ảnh như thế nào?". Nên dùng từ nào?',
+        options: [
+          { text: '你想要什么样的照片？', pinyin: 'Nǐ xiǎng yào shénmeyàng de zhàopiàn?', meaning: 'Cậu muốn loại ảnh như thế nào?', correct: true,
+            feedback: 'Đúng! 什么样 = như thế nào, kiểu gì.' },
+          { text: '你想要为什么的照片？', pinyin: 'Nǐ xiǎng yào wèishénme de zhàopiàn?', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '为什么 = vì sao; dùng để hỏi lý do, không hỏi "loại nào".' },
+          { text: '你想要其中的照片？', pinyin: 'Nǐ xiǎng yào qízhōng de zhàopiàn?', meaning: '(Lệch nghĩa)', correct: false,
+            feedback: '其中 = trong đó; không phải "loại nào".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '你想要什么样的照片？少数人喜欢黑白的。',
+        pinyin: 'Nǐ xiǎng yào shénmeyàng de zhàopiàn? Shǎoshù rén xǐhuan hēibái de.',
+        meaning: 'Cậu muốn loại ảnh như thế nào? Số ít người thích ảnh đen trắng.',
+        expression: 'curious', vocab: ['什么样', '少数']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"咱们" có nghĩa là gì?',
+            options: ['chúng mình (gồm cả người nghe)', 'họ', 'các bạn', 'nó'],
+            answer: 0
+          },
+          {
+            q: '"它" và "它们" dùng để chỉ gì?',
+            options: ['nó / chúng nó (vật, con vật)', 'tôi / chúng tôi', 'bạn / các bạn', 'ai đó'],
+            answer: 0
+          },
+          {
+            q: '"全部" có nghĩa là gì?',
+            options: ['toàn bộ, tất cả', 'một phần', 'số ít', 'đa số'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Phòng học · Tiếp tục', bg: 'classroom',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý đến xem công việc của hai bạn.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这座楼里有十位老师，三名学生帮忙。',
+        pinyin: 'Zhè zuò lóu lǐ yǒu shí wèi lǎoshī, sān míng xuésheng bāngmáng.',
+        meaning: 'Tòa nhà này có mười vị giáo viên, ba học sinh giúp việc.',
+        expression: 'happy', vocab: ['座', '位', '名']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这条信息说我们买了三千克水果，还存了一亿……开玩笑的！',
+        pinyin: 'Zhè tiáo xìnxī shuō wǒmen mǎi le sān qiānkè shuǐguǒ, hái cún le yí yì…… kāiwánxiào de!',
+        meaning: 'Tin nhắn này nói chúng ta mua ba ký trái cây, còn để dành một trăm triệu… đùa thôi!',
+        expression: 'happy', vocab: ['条', '千克', '亿']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'classroom',
+        scene: '📍 Phòng học',
+        expression: 'happy',
+        q: 'Tiểu Mỹ muốn rủ "Chúng mình cùng làm nhé". Nên dùng từ nào?',
+        options: [
+          { text: '咱们一起做吧！', pinyin: 'Zánmen yìqǐ zuò ba!', meaning: 'Chúng mình cùng làm nhé!', correct: true,
+            feedback: 'Đúng! 咱们 = chúng mình (gồm cả người nghe).' },
+          { text: '它们一起做吧！', pinyin: 'Tāmen yìqǐ zuò ba!', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '它们 = chúng nó (vật/con vật), không chỉ người.' },
+          { text: '有人一起做吧！', pinyin: 'Yǒurén yìqǐ zuò ba!', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '有人 = có người; không phải "chúng mình".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '咱们一起做吧！全部照片中，这几片最好。',
+        pinyin: 'Zánmen yìqǐ zuò ba! Quánbù zhàopiàn zhōng, zhè jǐ piàn zuì hǎo.',
+        meaning: 'Chúng mình cùng làm nhé! Trong tất cả ảnh, mấy tấm này đẹp nhất.',
+        expression: 'happy', vocab: ['咱们']
+      }
+    ],
+    vocab: [
+      { h: '名', p: 'míng', v: 'người (lượng từ)' },
+      { h: '篇', p: 'piān', v: 'bài (lượng từ văn bản)' },
+      { h: '片', p: 'piàn', v: 'tấm, miếng (lượng từ)' },
+      { h: '千克', p: 'qiānkè', v: 'kilogram' },
+      { h: '全部', p: 'quánbù', v: 'toàn bộ, tất cả' },
+      { h: '少数', p: 'shǎoshù', v: 'số ít, thiểu số' },
+      { h: '条', p: 'tiáo', v: 'cái, sợi (lượng từ)' },
+      { h: '位', p: 'wèi', v: 'vị (lượng từ người, lịch sự)' },
+      { h: '许多', p: 'xǔduō', v: 'rất nhiều' },
+      { h: '一部分', p: 'yíbùfèn', v: 'một phần' },
+      { h: '亿', p: 'yì', v: 'trăm triệu' },
+      { h: '只', p: 'zhī', v: 'con (lượng từ động vật)' },
+      { h: '周年', p: 'zhōunián', v: 'năm tròn (kỷ niệm)' },
+      { h: '座', p: 'zuò', v: 'tòa, ngọn (lượng từ)' },
+      { h: '其中', p: 'qízhōng', v: 'trong đó' },
+      { h: '什么样', p: 'shénmeyàng', v: 'như thế nào, kiểu gì' },
+      { h: '它', p: 'tā', v: 'nó (vật, con vật)' },
+      { h: '它们', p: 'tāmen', v: 'chúng nó (vật, con vật)' },
+      { h: '为什么', p: 'wèishénme', v: 'vì sao, tại sao' },
+      { h: '有人', p: 'yǒurén', v: 'có người, có ai đó' },
+      { h: '咱', p: 'zán', v: 'mình, tôi (khẩu ngữ)' },
+      { h: '咱们', p: 'zánmen', v: 'chúng mình (gồm người nghe)' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___写一篇文章吧！', options: ['咱们', '它们', '有人'], answer: '咱们' },
+        { type: 'fill', sentence: '写一___文章。', options: ['篇', '片', '条'], answer: '篇' },
+        { type: 'fill', sentence: '有___照片。', options: ['许多', '少数', '其中'], answer: '许多' },
+        { type: 'fill', sentence: '___都很美。', options: ['全部', '一部分', '为什么'], answer: '全部' },
+        { type: 'fill', sentence: '选几___照片。', options: ['片', '名', '座'], answer: '片' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___一部分是动物的。', options: ['其中', '全部', '什么样'], answer: '其中' },
+        { type: 'fill', sentence: '那只猫和___的朋友。', options: ['它', '它们', '咱'], answer: '它' },
+        { type: 'fill', sentence: '___真可爱！', options: ['它们', '有人', '咱们'], answer: '它们' },
+        { type: 'fill', sentence: '___有人不喜欢动物？', options: ['为什么', '什么样', '其中'], answer: '为什么' },
+        { type: 'fill', sentence: '___人喜欢黑白的。', options: ['少数', '许多', '全部'], answer: '少数' },
+        { type: 'order', words: ['一起', '做吧', '咱们'], answer: '咱们一起做吧' },
+        { type: 'order', words: ['文章', '一篇', '写', '咱们'], answer: '咱们写一篇文章' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这座楼里有十___老师。', options: ['位', '名', '条'], answer: '位' },
+        { type: 'fill', sentence: '三___学生帮忙。', options: ['名', '位', '片'], answer: '名' },
+        { type: 'fill', sentence: '这___信息说……', options: ['条', '篇', '座'], answer: '条' },
+        { type: 'fill', sentence: '你想要___的照片？', options: ['什么样', '为什么', '其中'], answer: '什么样' },
+        { type: 'translate', prompt: 'Chúng mình cùng làm nhé!', answer: '咱们一起做吧！' },
+        { type: 'translate', prompt: 'Vì sao có người không thích động vật?', answer: '为什么有人不喜欢动物？' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 61: Đại từ nâng cao — 7 từ
+  // 怎么办, 怎么样, 怎样, 这么, 这时, 这样, 自己
+  // ───────────────────────────────────────────────────────────────────────────
+  61: {
+    id: 61,
+    level: 2,
+    title: 'Đại từ nâng cao',
+    context: 'Mai quên mang sách, không biết xoay xở thế nào. Tiểu Mỹ giúp cô tìm cách giải quyết.',
+    vocabPreview: ['怎么办', '怎么样', '这样', '自己', '这么'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Ký túc xá · Buổi tối', bg: 'dorm-room',
+        cast: ['mai', 'xiaomei'],
+        text: 'Mai phát hiện mình quên mang sách về ôn bài.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '糟糕！我把书忘了，怎么办？',
+        pinyin: 'Zāogāo! Wǒ bǎ shū wàng le, zěnmebàn?',
+        meaning: 'Hỏng rồi! Tớ quên sách rồi, làm sao đây?',
+        expression: 'sad', vocab: ['怎么办']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '别急，自己先想想办法。',
+        pinyin: 'Bié jí, zìjǐ xiān xiǎngxiang bànfǎ.',
+        meaning: 'Đừng vội, tự mình nghĩ cách trước đã.',
+        expression: 'focused', vocab: ['自己']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这么晚了，怎么样才能拿到书？',
+        pinyin: 'Zhème wǎn le, zěnmeyàng cái néng ná dào shū?',
+        meaning: 'Muộn thế này rồi, làm thế nào mới lấy được sách?',
+        expression: 'sad', vocab: ['这么', '怎么样']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'dorm-room',
+        scene: '📍 Ký túc xá',
+        expression: 'happy',
+        q: 'Tiểu Mỹ muốn đề xuất "Thế này nhé, tớ cho cậu mượn". Nên dùng từ nào?',
+        options: [
+          { text: '这样吧，我借你。', pinyin: 'Zhèyàng ba, wǒ jiè nǐ.', meaning: 'Thế này nhé, tớ cho cậu mượn.', correct: true,
+            feedback: 'Đúng! 这样 = thế này, như vậy.' },
+          { text: '怎样吧，我借你。', pinyin: 'Zěnyàng ba, wǒ jiè nǐ.', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '怎样 = thế nào (dùng để hỏi), không dùng đề xuất kiểu này.' },
+          { text: '这时吧，我借你。', pinyin: 'Zhèshí ba, wǒ jiè nǐ.', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '这时 = lúc này (thời gian); không phải "thế này".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这样吧，我借你。这时图书馆还开着。',
+        pinyin: 'Zhèyàng ba, wǒ jiè nǐ. Zhèshí túshūguǎn hái kāizhe.',
+        meaning: 'Thế này nhé, tớ cho cậu mượn. Lúc này thư viện vẫn còn mở.',
+        expression: 'happy', vocab: ['这样', '这时']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"怎么办" có nghĩa là gì?',
+            options: ['làm sao đây, phải làm thế nào', 'thế nào rồi', 'tự mình', 'lúc này'],
+            answer: 0
+          },
+          {
+            q: '"自己" có nghĩa là gì?',
+            options: ['tự mình, bản thân', 'như vậy', 'thế nào', 'lúc này'],
+            answer: 0
+          },
+          {
+            q: 'Câu đề xuất "这样吧" có nghĩa gần với?',
+            options: ['Thế này nhé / Vậy thì thế này', 'Khi nào?', 'Tại sao?', 'Bao nhiêu?'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '谢谢！你觉得这个办法怎样？',
+        pinyin: 'Xièxie! Nǐ juéde zhège bànfǎ zěnyàng?',
+        meaning: 'Cảm ơn! Cậu thấy cách này thế nào?',
+        expression: 'happy', vocab: ['怎样']
+      }
+    ],
+    vocab: [
+      { h: '怎么办', p: 'zěnmebàn', v: 'làm sao đây, làm thế nào' },
+      { h: '怎么样', p: 'zěnmeyàng', v: 'thế nào, ra sao' },
+      { h: '怎样', p: 'zěnyàng', v: 'thế nào (như 怎么样)' },
+      { h: '这么', p: 'zhème', v: 'thế này, đến mức này' },
+      { h: '这时', p: 'zhèshí', v: 'lúc này, lúc đó' },
+      { h: '这样', p: 'zhèyàng', v: 'thế này, như vậy' },
+      { h: '自己', p: 'zìjǐ', v: 'tự mình, bản thân' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我把书忘了，___？', options: ['怎么办', '这样', '这么'], answer: '怎么办' },
+        { type: 'fill', sentence: '___先想想办法。', options: ['自己', '这时', '怎样'], answer: '自己' },
+        { type: 'fill', sentence: '___晚了。', options: ['这么', '这样', '怎样'], answer: '这么' },
+        { type: 'fill', sentence: '___吧，我借你。', options: ['这样', '这时', '怎么办'], answer: '这样' },
+        { type: 'fill', sentence: '你觉得这个办法___？', options: ['怎样', '这么', '自己'], answer: '怎样' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___才能拿到书？', options: ['怎么样', '这样', '这么'], answer: '怎么样' },
+        { type: 'fill', sentence: '___图书馆还开着。', options: ['这时', '这样', '怎样'], answer: '这时' },
+        { type: 'fill', sentence: '要___想办法。', options: ['自己', '这么', '这时'], answer: '自己' },
+        { type: 'fill', sentence: '你最近___？', options: ['怎么样', '怎么办', '这样'], answer: '怎么样' },
+        { type: 'order', words: ['办', '怎么', '我'], answer: '我怎么办' },
+        { type: 'order', words: ['你', '我', '这样吧', '借'], answer: '这样吧我借你' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '___晚了，怎么样才能拿到？', options: ['这么', '这样', '这时'], answer: '这么' },
+        { type: 'fill', sentence: '自己先想想___。', options: ['办法', '怎样', '这时'], answer: '办法' },
+        { type: 'fill', sentence: '这个办法___？', options: ['怎样', '这么', '自己'], answer: '怎样' },
+        { type: 'translate', prompt: 'Tớ quên sách rồi, làm sao đây?', answer: '我把书忘了，怎么办？' },
+        { type: 'translate', prompt: 'Tự mình nghĩ cách trước đã.', answer: '自己先想想办法。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 62: Địa điểm & đồ vật (1) — 21 từ
+  // 北方, 笔记本, 超市, 东北, 东方, 东南, 公园, 国际, 花园, 机会, 南方, 报纸, 笔, 灯, 黑板, 计算机, 筷子, 那时候, 瓶, 瓶子, 球鞋
+  // ───────────────────────────────────────────────────────────────────────────
+  62: {
+    id: 62,
+    level: 2,
+    title: 'Địa điểm & đồ vật (1)',
+    context: 'Mai và Tiểu Mỹ đi siêu thị gần công viên, nói về phương hướng và mua văn phòng phẩm.',
+    vocabPreview: ['超市', '公园', '机会', '笔记本', '国际'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trên phố · Buổi sáng', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn đi bộ đến siêu thị gần công viên.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '超市在公园东边，离花园很近。',
+        pinyin: 'Chāoshì zài gōngyuán dōngbiān, lí huāyuán hěn jìn.',
+        meaning: 'Siêu thị ở phía đông công viên, cách vườn hoa rất gần.',
+        expression: 'happy', vocab: ['超市', '公园', '花园']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我来自南方，她来自北方。',
+        pinyin: 'Wǒ láizì nánfāng, tā láizì běifāng.',
+        meaning: 'Tớ đến từ phương Nam, cô ấy đến từ phương Bắc.',
+        expression: 'happy', vocab: ['南方', '北方']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '东北和东南都很远，这是个国际城市。太阳从东方升起。这是难得的机会。',
+        pinyin: 'Dōngběi hé dōngnán dōu hěn yuǎn, zhè shì gè guójì chéngshì. Tàiyáng cóng dōngfāng shēngqǐ. Zhè shì nándé de jīhuì.',
+        meaning: 'Đông Bắc và Đông Nam đều rất xa, đây là một thành phố quốc tế. Mặt trời mọc từ phương Đông. Đây là cơ hội hiếm có.',
+        expression: 'happy', vocab: ['东北', '东南', '国际', '东方', '机会']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Siêu thị',
+        expression: 'curious',
+        q: 'Mai cần mua quyển vở để ghi chép. Nên dùng từ nào?',
+        options: [
+          { text: '我要买一个笔记本。', pinyin: 'Wǒ yào mǎi yí gè bǐjìběn.', meaning: 'Tớ muốn mua một quyển vở.', correct: true,
+            feedback: 'Đúng! 笔记本 = quyển vở, sổ ghi chép (cũng là laptop).' },
+          { text: '我要买一个报纸。', pinyin: 'Wǒ yào mǎi yí gè bàozhǐ.', meaning: '(Sai — báo không ghi chép)', correct: false,
+            feedback: '报纸 = báo (tin tức), không dùng để ghi chép.' },
+          { text: '我要买一个黑板。', pinyin: 'Wǒ yào mǎi yí gè hēibǎn.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '黑板 = bảng đen, không phải vở.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我要买笔记本、笔和一份报纸。',
+        pinyin: 'Wǒ yào mǎi bǐjìběn, bǐ hé yí fèn bàozhǐ.',
+        meaning: 'Tớ muốn mua vở, bút và một tờ báo.',
+        expression: 'happy', vocab: ['笔记本', '笔', '报纸']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"超市" có nghĩa là gì?',
+            options: ['siêu thị', 'công viên', 'vườn hoa', 'phương bắc'],
+            answer: 0
+          },
+          {
+            q: '"东方" có nghĩa là gì?',
+            options: ['phương Đông', 'phương Tây', 'phương Nam', 'phương Bắc'],
+            answer: 0
+          },
+          {
+            q: '"笔记本" có nghĩa là gì?',
+            options: ['quyển vở / sổ ghi chép', 'tờ báo', 'bảng đen', 'cây bút'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Lớp học · Tiếp tục', bg: 'classroom',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Về đến lớp, thầy Lý đang sửa đèn và bảng.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '教室的灯坏了，黑板前有一台计算机。',
+        pinyin: 'Jiàoshì de dēng huài le, hēibǎn qián yǒu yì tái jìsuànjī.',
+        meaning: 'Đèn lớp học hỏng rồi, trước bảng đen có một chiếc máy tính.',
+        expression: 'focused', vocab: ['灯', '黑板', '计算机']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '那时候我们用筷子吃饭，桌上有一瓶水。',
+        pinyin: 'Nà shíhou wǒmen yòng kuàizi chīfàn, zhuō shàng yǒu yì píng shuǐ.',
+        meaning: 'Hồi đó chúng em dùng đũa ăn cơm, trên bàn có một chai nước.',
+        expression: 'happy', vocab: ['那时候', '筷子', '瓶']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'classroom',
+        scene: '📍 Lớp học',
+        expression: 'happy',
+        q: 'Tiểu Mỹ chỉ vào cái chai rỗng. Cô ấy muốn nói "Cái chai này là của tớ". Nên dùng từ nào?',
+        options: [
+          { text: '这个瓶子是我的。', pinyin: 'Zhège píngzi shì wǒ de.', meaning: 'Cái chai này là của tớ.', correct: true,
+            feedback: 'Đúng! 瓶子 = cái chai (danh từ vật thể).' },
+          { text: '这个瓶是我的。', pinyin: 'Zhège píng shì wǒ de.', meaning: '(Thiếu tự nhiên)', correct: false,
+            feedback: '瓶 chủ yếu là lượng từ ("một chai"); chỉ vật thể nên dùng 瓶子.' },
+          { text: '这个球鞋是我的。', pinyin: 'Zhège qiúxié shì wǒ de.', meaning: '(Sai vật)', correct: false,
+            feedback: '球鞋 = giày thể thao, không phải cái chai.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这个瓶子是我的，那双球鞋也是。',
+        pinyin: 'Zhège píngzi shì wǒ de, nà shuāng qiúxié yě shì.',
+        meaning: 'Cái chai này là của tớ, đôi giày thể thao kia cũng vậy.',
+        expression: 'happy', vocab: ['瓶子', '球鞋']
+      }
+    ],
+    vocab: [
+      { h: '北方', p: 'běifāng', v: 'phương Bắc, miền Bắc' },
+      { h: '笔记本', p: 'bǐjìběn', v: 'quyển vở; máy tính xách tay' },
+      { h: '超市', p: 'chāoshì', v: 'siêu thị' },
+      { h: '东北', p: 'dōngběi', v: 'Đông Bắc' },
+      { h: '东方', p: 'dōngfāng', v: 'phương Đông' },
+      { h: '东南', p: 'dōngnán', v: 'Đông Nam' },
+      { h: '公园', p: 'gōngyuán', v: 'công viên' },
+      { h: '国际', p: 'guójì', v: 'quốc tế' },
+      { h: '花园', p: 'huāyuán', v: 'vườn hoa' },
+      { h: '机会', p: 'jīhuì', v: 'cơ hội' },
+      { h: '南方', p: 'nánfāng', v: 'phương Nam, miền Nam' },
+      { h: '报纸', p: 'bàozhǐ', v: 'báo, tờ báo' },
+      { h: '笔', p: 'bǐ', v: 'bút' },
+      { h: '灯', p: 'dēng', v: 'đèn' },
+      { h: '黑板', p: 'hēibǎn', v: 'bảng đen' },
+      { h: '计算机', p: 'jìsuànjī', v: 'máy tính' },
+      { h: '筷子', p: 'kuàizi', v: 'đũa' },
+      { h: '那时候', p: 'nàshíhou', v: 'hồi đó, lúc đó' },
+      { h: '瓶', p: 'píng', v: 'chai (lượng từ)' },
+      { h: '瓶子', p: 'píngzi', v: 'cái chai' },
+      { h: '球鞋', p: 'qiúxié', v: 'giày thể thao' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___在公园东边。', options: ['超市', '花园', '机会'], answer: '超市' },
+        { type: 'fill', sentence: '离___很近。', options: ['花园', '北方', '报纸'], answer: '花园' },
+        { type: 'fill', sentence: '我来自___。', options: ['南方', '东方', '国际'], answer: '南方' },
+        { type: 'fill', sentence: '她来自___。', options: ['北方', '南方', '东南'], answer: '北方' },
+        { type: 'fill', sentence: '这是个___城市。', options: ['国际', '公园', '超市'], answer: '国际' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '太阳从___升起。', options: ['东方', '北方', '南方'], answer: '东方' },
+        { type: 'fill', sentence: '这是难得的___。', options: ['机会', '国际', '黑板'], answer: '机会' },
+        { type: 'fill', sentence: '我要买一个___。', options: ['笔记本', '报纸', '黑板'], answer: '笔记本' },
+        { type: 'fill', sentence: '买笔记本、___和报纸。', options: ['笔', '灯', '瓶'], answer: '笔' },
+        { type: 'fill', sentence: '教室的___坏了。', options: ['灯', '笔', '瓶子'], answer: '灯' },
+        { type: 'order', words: ['公园', '在', '东边', '超市'], answer: '超市在公园东边' },
+        { type: 'order', words: ['北方', '她', '来自'], answer: '她来自北方' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '___前有一台计算机。', options: ['黑板', '花园', '公园'], answer: '黑板' },
+        { type: 'fill', sentence: '我们用___吃饭。', options: ['筷子', '笔', '灯'], answer: '筷子' },
+        { type: 'fill', sentence: '这个___是我的。', options: ['瓶子', '瓶', '球鞋'], answer: '瓶子' },
+        { type: 'fill', sentence: '那双___也是我的。', options: ['球鞋', '瓶子', '笔'], answer: '球鞋' },
+        { type: 'translate', prompt: 'Siêu thị ở phía đông công viên.', answer: '超市在公园东边。' },
+        { type: 'translate', prompt: 'Tớ muốn mua một quyển vở.', answer: '我要买一个笔记本。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 63: Địa điểm & đồ vật (2) — 20 từ
+  // 全国, 市, 停车场, 西北, 西餐, 西方, 西南, 药水, 银行, 银行卡, 日报, 晚报, 碗, 洗衣机, 相机, 鞋, 以上, 以下, 有点儿, 纸
+  // ───────────────────────────────────────────────────────────────────────────
+  63: {
+    id: 63,
+    level: 2,
+    title: 'Địa điểm & đồ vật (2)',
+    context: 'Mai và Tiểu Mỹ đi ngân hàng rồi sắm vài món đồ dùng. Họ nói về phương hướng và báo chí.',
+    vocabPreview: ['银行', '停车场', '相机', '以上', '有点儿'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trên phố · Buổi sáng', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn đến ngân hàng để rút tiền.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '银行在停车场旁边，你带银行卡了吗？',
+        pinyin: 'Yínháng zài tíngchēchǎng pángbiān, nǐ dài yínhángkǎ le ma?',
+        meaning: 'Ngân hàng ở cạnh bãi đỗ xe, cậu mang thẻ ngân hàng chưa?',
+        expression: 'curious', vocab: ['银行', '停车场', '银行卡']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '带了。这家西餐厅来自西方，很有名。',
+        pinyin: 'Dài le. Zhè jiā xīcāntīng láizì xīfāng, hěn yǒumíng.',
+        meaning: 'Mang rồi. Nhà hàng món Tây này đến từ phương Tây, rất nổi tiếng.',
+        expression: 'happy', vocab: ['西餐', '西方']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这座城市在全国西北，靠近西南。',
+        pinyin: 'Zhè zuò chéngshì zài quánguó xīběi, kàojìn xīnán.',
+        meaning: 'Thành phố này ở phía Tây Bắc của cả nước, gần Tây Nam.',
+        expression: 'happy', vocab: ['全国', '市', '西北', '西南']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我有点儿累。想买碗、洗衣机和相机。',
+        pinyin: 'Wǒ yǒudiǎnr lèi. Xiǎng mǎi wǎn, xǐyījī hé xiàngjī.',
+        meaning: 'Tớ hơi mệt. Muốn mua bát, máy giặt và máy ảnh.',
+        expression: 'sad', vocab: ['有点儿', '碗', '洗衣机', '相机']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Trên phố',
+        expression: 'curious',
+        q: 'Mai muốn nói "Tớ đọc báo hằng ngày (báo ngày)". Nên dùng từ nào?',
+        options: [
+          { text: '我每天看日报。', pinyin: 'Wǒ měitiān kàn rìbào.', meaning: 'Tớ đọc báo ngày mỗi ngày.', correct: true,
+            feedback: 'Đúng! 日报 = nhật báo (báo ra hằng ngày).' },
+          { text: '我每天看晚报。', pinyin: 'Wǒ měitiān kàn wǎnbào.', meaning: 'Tớ đọc báo chiều mỗi ngày.', correct: false,
+            feedback: '晚报 = báo buổi chiều/tối; ở đây ý là "báo ngày".' },
+          { text: '我每天看银行。', pinyin: 'Wǒ měitiān kàn yínháng.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '银行 = ngân hàng, không phải báo.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我每天看日报，晚上看晚报。',
+        pinyin: 'Wǒ měitiān kàn rìbào, wǎnshang kàn wǎnbào.',
+        meaning: 'Tớ đọc báo ngày mỗi ngày, buổi tối đọc báo chiều.',
+        expression: 'happy', vocab: ['日报', '晚报']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"银行卡" có nghĩa là gì?',
+            options: ['thẻ ngân hàng', 'bãi đỗ xe', 'máy ảnh', 'máy giặt'],
+            answer: 0
+          },
+          {
+            q: '"西方" có nghĩa là gì?',
+            options: ['phương Tây', 'phương Đông', 'Tây Bắc', 'Tây Nam'],
+            answer: 0
+          },
+          {
+            q: '"有点儿累" có nghĩa là gì?',
+            options: ['hơi mệt một chút', 'rất mệt', 'không mệt', 'mệt nhất'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Lớp học · Tiếp tục', bg: 'classroom',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý thông báo kết quả bài kiểm tra.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '成绩在八十分以上算好，六十分以下要努力。',
+        pinyin: 'Chéngjì zài bāshí fēn yǐshàng suàn hǎo, liùshí fēn yǐxià yào nǔlì.',
+        meaning: 'Điểm từ 80 trở lên là tốt, dưới 60 thì phải cố gắng.',
+        expression: 'focused', vocab: ['以上', '以下']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'], bg: 'classroom',
+        scene: '📍 Lớp học',
+        expression: 'curious',
+        q: 'Mai được 85 điểm. Cô ấy muốn nói "trên 80 điểm". Nên dùng từ nào?',
+        options: [
+          { text: '八十分以上', pinyin: 'bāshí fēn yǐshàng', meaning: 'trên 80 điểm', correct: true,
+            feedback: 'Đúng! 以上 = trở lên, trên (mức nào đó).' },
+          { text: '八十分以下', pinyin: 'bāshí fēn yǐxià', meaning: 'dưới 80 điểm', correct: false,
+            feedback: '以下 = trở xuống, dưới; ngược nghĩa.' },
+          { text: '八十分有点儿', pinyin: 'bāshí fēn yǒudiǎnr', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '有点儿 = hơi, một chút; không dùng cho "trên/dưới mức".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '我八十分以上，有点儿开心！还买了双鞋，有纸和药水。',
+        pinyin: 'Wǒ bāshí fēn yǐshàng, yǒudiǎnr kāixīn! Hái mǎi le shuāng xié, yǒu zhǐ hé yàoshuǐ.',
+        meaning: 'Em trên 80 điểm, hơi vui một chút! Còn mua đôi giày, có giấy và thuốc nước.',
+        expression: 'happy', vocab: ['鞋', '纸', '药水']
+      }
+    ],
+    vocab: [
+      { h: '全国', p: 'quánguó', v: 'cả nước, toàn quốc' },
+      { h: '市', p: 'shì', v: 'thành phố, thị' },
+      { h: '停车场', p: 'tíngchēchǎng', v: 'bãi đỗ xe' },
+      { h: '西北', p: 'xīběi', v: 'Tây Bắc' },
+      { h: '西餐', p: 'xīcān', v: 'món Tây, cơm Tây' },
+      { h: '西方', p: 'xīfāng', v: 'phương Tây' },
+      { h: '西南', p: 'xīnán', v: 'Tây Nam' },
+      { h: '药水', p: 'yàoshuǐ', v: 'thuốc nước' },
+      { h: '银行', p: 'yínháng', v: 'ngân hàng' },
+      { h: '银行卡', p: 'yínhángkǎ', v: 'thẻ ngân hàng' },
+      { h: '日报', p: 'rìbào', v: 'nhật báo' },
+      { h: '晚报', p: 'wǎnbào', v: 'báo buổi chiều/tối' },
+      { h: '碗', p: 'wǎn', v: 'bát, chén' },
+      { h: '洗衣机', p: 'xǐyījī', v: 'máy giặt' },
+      { h: '相机', p: 'xiàngjī', v: 'máy ảnh' },
+      { h: '鞋', p: 'xié', v: 'giày' },
+      { h: '以上', p: 'yǐshàng', v: 'trở lên, trên' },
+      { h: '以下', p: 'yǐxià', v: 'trở xuống, dưới' },
+      { h: '有点儿', p: 'yǒudiǎnr', v: 'hơi, một chút' },
+      { h: '纸', p: 'zhǐ', v: 'giấy' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___在停车场旁边。', options: ['银行', '相机', '碗'], answer: '银行' },
+        { type: 'fill', sentence: '你带___了吗？', options: ['银行卡', '洗衣机', '药水'], answer: '银行卡' },
+        { type: 'fill', sentence: '这家___厅很有名。', options: ['西餐', '西方', '西北'], answer: '西餐' },
+        { type: 'fill', sentence: '来自___。', options: ['西方', '全国', '银行'], answer: '西方' },
+        { type: 'fill', sentence: '我___累。', options: ['有点儿', '以上', '以下'], answer: '有点儿' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '这座城市在全国___。', options: ['西北', '西餐', '日报'], answer: '西北' },
+        { type: 'fill', sentence: '想买___、洗衣机和相机。', options: ['碗', '鞋', '纸'], answer: '碗' },
+        { type: 'fill', sentence: '我每天看___。', options: ['日报', '晚报', '银行'], answer: '日报' },
+        { type: 'fill', sentence: '晚上看___。', options: ['晚报', '日报', '相机'], answer: '晚报' },
+        { type: 'fill', sentence: '银行在___旁边。', options: ['停车场', '银行卡', '全国'], answer: '停车场' },
+        { type: 'order', words: ['停车场', '在', '银行', '旁边'], answer: '银行在停车场旁边' },
+        { type: 'order', words: ['有点儿', '我', '累'], answer: '我有点儿累' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '成绩在八十分___算好。', options: ['以上', '以下', '有点儿'], answer: '以上' },
+        { type: 'fill', sentence: '六十分___要努力。', options: ['以下', '以上', '全国'], answer: '以下' },
+        { type: 'fill', sentence: '买了双___。', options: ['鞋', '碗', '纸'], answer: '鞋' },
+        { type: 'fill', sentence: '有纸和___。', options: ['药水', '相机', '银行卡'], answer: '药水' },
+        { type: 'translate', prompt: 'Cậu mang thẻ ngân hàng chưa?', answer: '你带银行卡了吗？' },
+        { type: 'translate', prompt: 'Điểm từ 80 trở lên là tốt.', answer: '八十分以上算好。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 64: Cơ thể & thiên nhiên (1) — 16 từ
+  // 表, 家长, 脚, 脸, 球队, 手表, 头, 头发, 腿, 草, 大海, 大门, 大自然, 地球, 海, 河
+  // ───────────────────────────────────────────────────────────────────────────
+  64: {
+    id: 64,
+    level: 2,
+    title: 'Cơ thể & thiên nhiên (1)',
+    context: 'Cả nhóm đi dã ngoại ra biển. Họ đi bộ nhiều, nói về cơ thể mệt mỏi và vẻ đẹp thiên nhiên.',
+    vocabPreview: ['大海', '脚', '手表', '大自然', '地球'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trên phố ra biển · Cuối tuần', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Cuối tuần, cả nhóm đi dã ngoại ra biển.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我们去看大海吧！海边有河，还有绿草。',
+        pinyin: 'Wǒmen qù kàn dàhǎi ba! Hǎibiān yǒu hé, hái yǒu lǜ cǎo.',
+        meaning: 'Chúng ta đi ngắm biển đi! Bờ biển có sông, còn có cỏ xanh.',
+        expression: 'happy', vocab: ['大海', '海', '河', '草']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '走了好久，我的脚和腿都累了。',
+        pinyin: 'Zǒu le hǎojiǔ, wǒ de jiǎo hé tuǐ dōu lèi le.',
+        meaning: 'Đi lâu rồi, chân và cẳng chân tớ đều mỏi.',
+        expression: 'sad', vocab: ['脚', '腿']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '你脸红了，头发也乱了，先低下头休息吧。',
+        pinyin: 'Nǐ liǎn hóng le, tóufa yě luàn le, xiān dīxià tóu xiūxi ba.',
+        meaning: 'Mặt cậu đỏ rồi, tóc cũng rối, cúi đầu nghỉ một chút đi.',
+        expression: 'curious', vocab: ['脸', '头发', '头']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Bờ biển',
+        expression: 'curious',
+        q: 'Mai muốn xem giờ trên đồng hồ đeo tay. Nên dùng từ nào?',
+        options: [
+          { text: '看我的手表，几点了？', pinyin: 'Kàn wǒ de shǒubiǎo, jǐ diǎn le?', meaning: 'Xem đồng hồ của tớ, mấy giờ rồi?', correct: true,
+            feedback: 'Đúng! 手表 = đồng hồ đeo tay.' },
+          { text: '看我的头发，几点了？', pinyin: 'Kàn wǒ de tóufa, jǐ diǎn le?', meaning: '(Không hợp lý)', correct: false,
+            feedback: '头发 = tóc, không xem giờ được.' },
+          { text: '看我的大海，几点了？', pinyin: 'Kàn wǒ de dàhǎi, jǐ diǎn le?', meaning: '(Không hợp lý)', correct: false,
+            feedback: '大海 = biển lớn, không liên quan giờ giấc.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '看我的手表，几点了？这块表很准。',
+        pinyin: 'Kàn wǒ de shǒubiǎo, jǐ diǎn le? Zhè kuài biǎo hěn zhǔn.',
+        meaning: 'Xem đồng hồ của tớ, mấy giờ rồi? Cái đồng hồ này rất chuẩn.',
+        expression: 'happy', vocab: ['手表', '表']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"大海" có nghĩa là gì?',
+            options: ['biển lớn', 'sông', 'cỏ', 'cổng lớn'],
+            answer: 0
+          },
+          {
+            q: '"脚" và "腿" lần lượt là?',
+            options: ['bàn chân / chân (cẳng chân)', 'tay / chân', 'đầu / tóc', 'mặt / đầu'],
+            answer: 0
+          },
+          {
+            q: '"手表" có nghĩa là gì?',
+            options: ['đồng hồ đeo tay', 'tóc', 'mặt', 'biển'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Bờ biển · Tiếp tục', bg: 'street',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý nói về việc bảo vệ thiên nhiên.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '大自然很美，地球是我们的家，要爱护。',
+        pinyin: 'Dàzìrán hěn měi, dìqiú shì wǒmen de jiā, yào àihù.',
+        meaning: 'Thiên nhiên rất đẹp, Trái Đất là nhà của chúng ta, phải bảo vệ.',
+        expression: 'happy', vocab: ['大自然', '地球']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'], bg: 'street',
+        scene: '📍 Bờ biển',
+        expression: 'curious',
+        q: 'Mai muốn nói "Phụ huynh đồng ý cho tham gia đội bóng". Nên dùng từ nào cho "phụ huynh"?',
+        options: [
+          { text: '家长同意我们参加球队。', pinyin: 'Jiāzhǎng tóngyì wǒmen cānjiā qiúduì.', meaning: 'Phụ huynh đồng ý cho chúng em tham gia đội bóng.', correct: true,
+            feedback: 'Đúng! 家长 = phụ huynh; 球队 = đội bóng.' },
+          { text: '地球同意我们参加球队。', pinyin: 'Dìqiú tóngyì wǒmen cānjiā qiúduì.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '地球 = Trái Đất, không phải "phụ huynh".' },
+          { text: '大门同意我们参加球队。', pinyin: 'Dàmén tóngyì wǒmen cānjiā qiúduì.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '大门 = cổng lớn, không phải "phụ huynh".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '家长同意我们参加球队的活动。从大门出去就能看到大海。',
+        pinyin: 'Jiāzhǎng tóngyì wǒmen cānjiā qiúduì de huódòng. Cóng dàmén chūqù jiù néng kàndào dàhǎi.',
+        meaning: 'Phụ huynh đồng ý cho chúng em tham gia hoạt động của đội bóng. Ra khỏi cổng lớn là thấy biển.',
+        expression: 'happy', vocab: ['家长', '球队', '大门']
+      }
+    ],
+    vocab: [
+      { h: '表', p: 'biǎo', v: 'đồng hồ; bảng biểu' },
+      { h: '家长', p: 'jiāzhǎng', v: 'phụ huynh' },
+      { h: '脚', p: 'jiǎo', v: 'bàn chân' },
+      { h: '脸', p: 'liǎn', v: 'mặt' },
+      { h: '球队', p: 'qiúduì', v: 'đội bóng' },
+      { h: '手表', p: 'shǒubiǎo', v: 'đồng hồ đeo tay' },
+      { h: '头', p: 'tóu', v: 'đầu' },
+      { h: '头发', p: 'tóufa', v: 'tóc' },
+      { h: '腿', p: 'tuǐ', v: 'chân, cẳng chân' },
+      { h: '草', p: 'cǎo', v: 'cỏ' },
+      { h: '大海', p: 'dàhǎi', v: 'biển lớn' },
+      { h: '大门', p: 'dàmén', v: 'cổng lớn' },
+      { h: '大自然', p: 'dàzìrán', v: 'thiên nhiên' },
+      { h: '地球', p: 'dìqiú', v: 'Trái Đất' },
+      { h: '海', p: 'hǎi', v: 'biển' },
+      { h: '河', p: 'hé', v: 'sông' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我们去看___吧！', options: ['大海', '大门', '草'], answer: '大海' },
+        { type: 'fill', sentence: '海边有___。', options: ['河', '头', '脸'], answer: '河' },
+        { type: 'fill', sentence: '还有绿___。', options: ['草', '海', '腿'], answer: '草' },
+        { type: 'fill', sentence: '我的___和腿都累了。', options: ['脚', '头', '表'], answer: '脚' },
+        { type: 'fill', sentence: '你___红了。', options: ['脸', '草', '河'], answer: '脸' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___也乱了。', options: ['头发', '手表', '球队'], answer: '头发' },
+        { type: 'fill', sentence: '先低下___休息。', options: ['头', '脚', '腿'], answer: '头' },
+        { type: 'fill', sentence: '看我的___，几点了？', options: ['手表', '头发', '大海'], answer: '手表' },
+        { type: 'fill', sentence: '这块___很准。', options: ['表', '草', '河'], answer: '表' },
+        { type: 'fill', sentence: '走了好久，___都累了。', options: ['腿', '海', '门'], answer: '腿' },
+        { type: 'order', words: ['看', '大海', '去', '我们'], answer: '我们去看大海' },
+        { type: 'order', words: ['累了', '我的脚', '都', '和腿'], answer: '我的脚和腿都累了' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '___很美，地球是我们的家。', options: ['大自然', '大海', '大门'], answer: '大自然' },
+        { type: 'fill', sentence: '___是我们的家。', options: ['地球', '大海', '球队'], answer: '地球' },
+        { type: 'fill', sentence: '___同意我们参加球队。', options: ['家长', '地球', '大门'], answer: '家长' },
+        { type: 'fill', sentence: '从___出去就能看到大海。', options: ['大门', '球队', '大自然'], answer: '大门' },
+        { type: 'translate', prompt: 'Chúng ta đi ngắm biển đi!', answer: '我们去看大海吧！' },
+        { type: 'translate', prompt: 'Trái Đất là nhà của chúng ta.', answer: '地球是我们的家。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 65: Cơ thể & thiên nhiên (2) — 16 từ
+  // 外卖, 心里, 眼, 眼睛, 椅子, 院长, 嘴, 做法, 面, 街, 明星, 晴天, 太阳, 星星, 药, 月亮
+  // ───────────────────────────────────────────────────────────────────────────
+  65: {
+    id: 65,
+    level: 2,
+    title: 'Cơ thể & thiên nhiên (2)',
+    context: 'Một buổi tối trời quang, cả nhóm ngắm trăng sao, gọi đồ ăn và trò chuyện về một vị viện trưởng nổi tiếng.',
+    vocabPreview: ['太阳', '月亮', '眼睛', '外卖', '心里'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Ký túc xá · Buổi tối', bg: 'dorm-room',
+        cast: ['mai', 'xiaomei'],
+        text: 'Một buổi tối trời quang, hai bạn ngồi bên cửa sổ.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '今天是晴天，太阳很大。',
+        pinyin: 'Jīntiān shì qíngtiān, tàiyáng hěn dà.',
+        meaning: 'Hôm nay trời quang, nắng rất to.',
+        expression: 'happy', vocab: ['晴天', '太阳']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '晚上能看到月亮和星星。',
+        pinyin: 'Wǎnshang néng kàndào yuèliang hé xīngxing.',
+        meaning: 'Buổi tối có thể thấy trăng và các vì sao.',
+        expression: 'happy', vocab: ['月亮', '星星']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我眼睛累了，闭上眼休息一下。',
+        pinyin: 'Wǒ yǎnjing lèi le, bì shàng yǎn xiūxi yíxià.',
+        meaning: 'Mắt tớ mỏi rồi, nhắm mắt nghỉ một chút.',
+        expression: 'sad', vocab: ['眼睛', '眼']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我们坐在椅子上，点个外卖吧。',
+        pinyin: 'Wǒmen zuò zài yǐzi shàng, diǎn gè wàimài ba.',
+        meaning: 'Mình ngồi trên ghế, gọi đồ ăn ngoài đi.',
+        expression: 'happy', vocab: ['椅子', '外卖']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'dorm-room',
+        scene: '📍 Ký túc xá',
+        expression: 'happy',
+        q: 'Mai muốn nói "Trong lòng tớ rất vui, nhưng miệng không nói". Nên dùng từ nào cho "trong lòng"?',
+        options: [
+          { text: '我心里很高兴，嘴上不说。', pinyin: 'Wǒ xīnlǐ hěn gāoxìng, zuǐ shàng bù shuō.', meaning: 'Trong lòng tớ rất vui, ngoài miệng không nói.', correct: true,
+            feedback: 'Đúng! 心里 = trong lòng; 嘴 = miệng.' },
+          { text: '我眼里很高兴，嘴上不说。', pinyin: 'Wǒ yǎn lǐ hěn gāoxìng, zuǐ shàng bù shuō.', meaning: '(Thiếu tự nhiên)', correct: false,
+            feedback: 'Nói "vui trong lòng" dùng 心里, không dùng 眼里.' },
+          { text: '我街里很高兴，嘴上不说。', pinyin: 'Wǒ jiē lǐ hěn gāoxìng, zuǐ shàng bù shuō.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '街 = phố, không phải "trong lòng".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我心里很高兴，嘴上不说。',
+        pinyin: 'Wǒ xīnlǐ hěn gāoxìng, zuǐ shàng bù shuō.',
+        meaning: 'Trong lòng tớ rất vui, ngoài miệng không nói.',
+        expression: 'happy', vocab: ['心里', '嘴']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"晴天" có nghĩa là gì?',
+            options: ['trời quang, trời nắng', 'trời mưa', 'ban đêm', 'mặt trăng'],
+            answer: 0
+          },
+          {
+            q: '"月亮" và "太阳" lần lượt là?',
+            options: ['mặt trăng / mặt trời', 'mặt trời / mặt trăng', 'sao / trăng', 'mây / nắng'],
+            answer: 0
+          },
+          {
+            q: '"心里" có nghĩa là gì?',
+            options: ['trong lòng', 'trong miệng', 'trên phố', 'trên ghế'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trên phố · Hôm sau', bg: 'street',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Hôm sau, thầy Lý kể về một vị viện trưởng nổi tiếng.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这位院长是个明星，他的做法很特别。',
+        pinyin: 'Zhè wèi yuànzhǎng shì gè míngxīng, tā de zuòfǎ hěn tèbié.',
+        meaning: 'Vị viện trưởng này là một ngôi sao, cách làm của ông ấy rất đặc biệt.',
+        expression: 'happy', vocab: ['院长', '明星', '做法']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'], bg: 'street',
+        scene: '📍 Trên phố',
+        expression: 'curious',
+        q: 'Mai chỉ vào quán bán mì trên phố. Cô ấy muốn nói "Trên phố có quán bán mì". Nên dùng từ nào cho "mì"?',
+        options: [
+          { text: '街上有家店卖面。', pinyin: 'Jiē shàng yǒu jiā diàn mài miàn.', meaning: 'Trên phố có quán bán mì.', correct: true,
+            feedback: 'Đúng! 面 = mì (cũng nghĩa "mặt"); 街 = phố.' },
+          { text: '街上有家店卖药。', pinyin: 'Jiē shàng yǒu jiā diàn mài yào.', meaning: 'Trên phố có quán bán thuốc.', correct: false,
+            feedback: '药 = thuốc, không phải "mì".' },
+          { text: '街上有家店卖嘴。', pinyin: 'Jiē shàng yǒu jiā diàn mài zuǐ.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '嘴 = miệng, không bán được.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '街上有家店卖面，旁边还有药店。',
+        pinyin: 'Jiē shàng yǒu jiā diàn mài miàn, pángbiān hái yǒu yàodiàn.',
+        meaning: 'Trên phố có quán bán mì, bên cạnh còn có hiệu thuốc.',
+        expression: 'happy', vocab: ['街', '面', '药']
+      }
+    ],
+    vocab: [
+      { h: '外卖', p: 'wàimài', v: 'đồ ăn mang đi, đặt ship' },
+      { h: '心里', p: 'xīnlǐ', v: 'trong lòng' },
+      { h: '眼', p: 'yǎn', v: 'mắt' },
+      { h: '眼睛', p: 'yǎnjing', v: 'mắt (đôi mắt)' },
+      { h: '椅子', p: 'yǐzi', v: 'cái ghế' },
+      { h: '院长', p: 'yuànzhǎng', v: 'viện trưởng' },
+      { h: '嘴', p: 'zuǐ', v: 'miệng' },
+      { h: '做法', p: 'zuòfǎ', v: 'cách làm' },
+      { h: '面', p: 'miàn', v: 'mì; mặt' },
+      { h: '街', p: 'jiē', v: 'phố, đường phố' },
+      { h: '明星', p: 'míngxīng', v: 'ngôi sao, người nổi tiếng' },
+      { h: '晴天', p: 'qíngtiān', v: 'trời quang, trời nắng' },
+      { h: '太阳', p: 'tàiyáng', v: 'mặt trời' },
+      { h: '星星', p: 'xīngxing', v: 'ngôi sao (trên trời)' },
+      { h: '药', p: 'yào', v: 'thuốc' },
+      { h: '月亮', p: 'yuèliang', v: 'mặt trăng' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '今天是___。', options: ['晴天', '外卖', '街'], answer: '晴天' },
+        { type: 'fill', sentence: '___很大。', options: ['太阳', '椅子', '嘴'], answer: '太阳' },
+        { type: 'fill', sentence: '晚上能看到___和星星。', options: ['月亮', '太阳', '面'], answer: '月亮' },
+        { type: 'fill', sentence: '我___累了。', options: ['眼睛', '椅子', '街'], answer: '眼睛' },
+        { type: 'fill', sentence: '点个___吧。', options: ['外卖', '明星', '药'], answer: '外卖' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我们坐在___上。', options: ['椅子', '心里', '太阳'], answer: '椅子' },
+        { type: 'fill', sentence: '我___很高兴。', options: ['心里', '嘴', '街'], answer: '心里' },
+        { type: 'fill', sentence: '___上不说。', options: ['嘴', '眼', '面'], answer: '嘴' },
+        { type: 'fill', sentence: '闭上___休息。', options: ['眼', '嘴', '街'], answer: '眼' },
+        { type: 'fill', sentence: '能看到月亮和___。', options: ['星星', '太阳', '外卖'], answer: '星星' },
+        { type: 'order', words: ['晴天', '今天', '是'], answer: '今天是晴天' },
+        { type: 'order', words: ['外卖', '个', '点', '吧'], answer: '点个外卖吧' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这位___是个明星。', options: ['院长', '家长', '明星'], answer: '院长' },
+        { type: 'fill', sentence: '他的___很特别。', options: ['做法', '心里', '外卖'], answer: '做法' },
+        { type: 'fill', sentence: '街上有家店卖___。', options: ['面', '药', '嘴'], answer: '面' },
+        { type: 'fill', sentence: '旁边还有___店。', options: ['药', '面', '街'], answer: '药' },
+        { type: 'translate', prompt: 'Trong lòng tớ rất vui, ngoài miệng không nói.', answer: '我心里很高兴，嘴上不说。' },
+        { type: 'translate', prompt: 'Buổi tối có thể thấy trăng và sao.', answer: '晚上能看到月亮和星星。' }
+      ]
+    }
   }
 });

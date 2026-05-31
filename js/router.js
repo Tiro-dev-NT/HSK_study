@@ -299,6 +299,36 @@ var Router = (function() {
             Router.navigateTo(el.dataset.page);
             return;
           }
+          // Internal anchor links to known routes (legal/pricing pages use
+          // plain href="/terms" without data-page). Intercept so the SPA
+          // router handles them client-side — avoids a full reload that 404s
+          // on static servers lacking SPA fallback. Respect new-tab clicks.
+          if (el.tagName === 'A' && !e.defaultPrevented && e.button === 0 &&
+              !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+            var raw = el.getAttribute('href');
+            if (raw && raw.charAt(0) === '/' && raw.charAt(1) !== '/' &&
+                !el.target && !el.hasAttribute('download')) {
+              var hashIdx = raw.indexOf('#');
+              var linkPath = hashIdx === -1 ? raw : raw.slice(0, hashIdx);
+              var linkHash = hashIdx === -1 ? '' : raw.slice(hashIdx + 1);
+              var linkPage = _routes[linkPath];
+              if (!linkPage) {
+                var stripped = linkPath.replace(/^\//, '');
+                if (_initMap.hasOwnProperty(stripped)) linkPage = stripped;
+              }
+              if (linkPage) {
+                e.preventDefault();
+                Router.navigateTo(linkPage);
+                if (linkHash) {
+                  setTimeout(function() {
+                    var target = document.getElementById(linkHash);
+                    if (target) target.scrollIntoView();
+                  }, 400);
+                }
+                return;
+              }
+            }
+          }
           el = el.parentElement;
         }
       });

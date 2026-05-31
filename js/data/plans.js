@@ -19,8 +19,14 @@ window.PLAN_CATALOG = (function () {
 
   // ── Pro subscription (5 durations, same Pro benefits) ─────────────────
   // Each plan: tokenBonus = 1-time gift on purchase
-  //            aiCreditBonus = 1-time AI credit gift (only Yearly + Lifetime)
-  //            aiAllowancePerMonth = monthly AI Credit allowance (Hạng 2 only)
+  //            aiCreditBonus = 1-time AI Credit WELCOME GIFT on purchase (ALL tiers — Model C)
+  //            aiAllowancePerMonth = SMALL recurring AI Credit allowance (Hạng 2 only — Model C)
+  //
+  //   ⭐ Model C (LOCKED 2026-05-31): Pro = mở khóa nội dung/feature + recurring AI NHỎ
+  //      + welcome gift 1 lần hào phóng. Xài nặng → mua AI Credit Pack. ĐÃ BỎ mô hình
+  //      allowance lớn recurring cũ (800/700/650/600/500 cr/m) vì nó đẻ nợ API recurring
+  //      và Lifetime nợ vô thời hạn. Cost AI/user ~$0.10-0.30/tháng worst-case.
+  //      Khẩu vị: Comfortable. Recurring Monthly/Q 200 · Semi/Yearly 250 · Lifetime 200.
   var SUBSCRIPTIONS = {
     monthly: {
       name:        'Linh hoạt',
@@ -34,8 +40,8 @@ window.PLAN_CATALOG = (function () {
       compareNote: 'Linh hoạt — huỷ bất cứ lúc nào',
       durationDays: 30,
       tokenBonus:  150,
-      aiCreditBonus: 0,
-      aiAllowancePerMonth: 800,
+      aiCreditBonus: 100,           // welcome gift 1 lần (Model C)
+      aiAllowancePerMonth: 200,     // recurring nhỏ/tháng (Model C)
       icon:        '🪙',
       colorClass:  'pc-icon-slate',
       featured:    false
@@ -52,8 +58,8 @@ window.PLAN_CATALOG = (function () {
       compareNote: 'so với Monthly (75k → 66k/tháng)',
       durationDays: 90,
       tokenBonus:  500,
-      aiCreditBonus: 0,
-      aiAllowancePerMonth: 700,
+      aiCreditBonus: 250,           // welcome gift 1 lần (Model C)
+      aiAllowancePerMonth: 200,     // recurring nhỏ/tháng (Model C)
       icon:        '⚡',
       colorClass:  'pc-icon-green',
       featured:    false
@@ -70,8 +76,8 @@ window.PLAN_CATALOG = (function () {
       compareNote: 'so với Monthly (75k → 55k/tháng)',
       durationDays: 180,
       tokenBonus:  800,
-      aiCreditBonus: 0,
-      aiAllowancePerMonth: 650,
+      aiCreditBonus: 400,           // welcome gift 1 lần (Model C)
+      aiAllowancePerMonth: 250,     // recurring nhỏ/tháng (Model C)
       icon:        '🔥',
       colorClass:  'pc-icon-orange',
       featured:    false
@@ -88,8 +94,8 @@ window.PLAN_CATALOG = (function () {
       compareNote: 'so với Monthly · ~1.400đ/ngày — rẻ hơn 1 ly trà đá',
       durationDays: 365,
       tokenBonus:  1500,
-      aiCreditBonus: 100,
-      aiAllowancePerMonth: 600,
+      aiCreditBonus: 600,           // welcome gift 1 lần (Model C)
+      aiAllowancePerMonth: 250,     // recurring nhỏ/tháng (Model C)
       icon:        '⭐',
       colorClass:  'pc-icon-yellow',
       featured:    true,
@@ -107,12 +113,13 @@ window.PLAN_CATALOG = (function () {
       compareNote: 'so với Monthly 75k × 33 = 2.475k · sau đó MIỄN PHÍ vĩnh viễn',
       durationDays: null,
       tokenBonus:  3000,
-      aiCreditBonus: 500,
-      aiAllowancePerMonth: 500,
+      aiCreditBonus: 1000,          // welcome gift 1 lần (Model C)
+      aiAllowancePerMonth: 200,     // recurring nhỏ vĩnh viễn (Model C)
       icon:        '💎',
       colorClass:  'pc-icon-purple',
       featured:    false
-      // AI: Lifetime KHÔNG unlimited — allowance = gói tháng (chốt 2026-05-21)
+      // AI: Lifetime = recurring nhỏ 200cr/m + welcome gift 1.000cr 1 lần (Model C 2026-05-31).
+      // KHÔNG unlimited, KHÔNG allowance lớn vĩnh viễn (mô hình cũ đã bỏ)
     }
   };
 

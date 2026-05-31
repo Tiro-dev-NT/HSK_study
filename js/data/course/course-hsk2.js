@@ -3286,5 +3286,1091 @@ Object.assign(COURSE_DATA, {
         { type: 'translate', prompt: 'Cậu có ý kiến gì không?', answer: '你有什么看法？' }
       ]
     }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 47: Từ chức năng & liên từ (5) — 20 từ
+  // 老朋友, 礼物, 里头, 例子, 路边, 旅客, 面前, 名称, 名单, 目的, 难题, 墙, 青年, 青少年, 球场, 全身, 全体, 人口, 人们, 人数
+  // ───────────────────────────────────────────────────────────────────────────
+  47: {
+    id: 47,
+    level: 2,
+    title: 'Từ chức năng & liên từ (5)',
+    context: 'Một người bạn cũ sắp từ nước ngoài trở về. Mai và Tiểu Mỹ lên kế hoạch tổ chức buổi gặp mặt chào đón.',
+    vocabPreview: ['老朋友', '礼物', '名单', '目的', '球场'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Sân trường · Buổi sáng', bg: 'campus',
+        cast: ['mai', 'xiaomei'],
+        text: 'Mai và Tiểu Mỹ đang lên kế hoạch đón một người bạn cũ trở về.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我们的老朋友下周回来！我们准备礼物吧。',
+        pinyin: 'Wǒmen de lǎopéngyou xià zhōu huílái! Wǒmen zhǔnbèi lǐwù ba.',
+        meaning: 'Bạn cũ của chúng ta tuần sau về! Chúng ta chuẩn bị quà đi.',
+        expression: 'happy', vocab: ['老朋友', '礼物']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '好主意！这次聚会的目的是什么？',
+        pinyin: 'Hǎo zhǔyi! Zhè cì jùhuì de mùdì shì shénme?',
+        meaning: 'Ý hay! Mục đích buổi gặp lần này là gì?',
+        expression: 'curious', vocab: ['目的']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '目的就是让大家见面。我先做一份名单。',
+        pinyin: 'Mùdì jiùshì ràng dàjiā jiànmiàn. Wǒ xiān zuò yí fèn míngdān.',
+        meaning: 'Mục đích là để mọi người gặp nhau. Tớ làm một bản danh sách trước.',
+        expression: 'focused', vocab: ['目的', '名单']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '名单里头有多少人？人数会不会太多？',
+        pinyin: 'Míngdān lǐtou yǒu duōshǎo rén? Rénshù huì bu huì tài duō?',
+        meaning: 'Trong danh sách có bao nhiêu người? Số người có quá nhiều không?',
+        expression: 'curious', vocab: ['里头', '人数']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'campus',
+        scene: '📍 Sân trường · Buổi sáng',
+        expression: 'curious',
+        q: 'Mai muốn hỏi "Tên gọi của buổi gặp mặt là gì?". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '活动的名称叫什么？', pinyin: 'Huódòng de míngchēng jiào shénme?', meaning: 'Tên của hoạt động gọi là gì?', correct: true,
+            feedback: 'Đúng! 名称 = tên gọi (của sự vật, hoạt động).' },
+          { text: '活动的名单叫什么？', pinyin: 'Huódòng de míngdān jiào shénme?', meaning: 'Danh sách của hoạt động gọi là gì?', correct: false,
+            feedback: '名单 = danh sách (tên người), không phải tên gọi của hoạt động.' },
+          { text: '活动的人口叫什么？', pinyin: 'Huódòng de rénkǒu jiào shénme?', meaning: '(Không hợp lý)', correct: false,
+            feedback: '人口 = dân số, không dùng để chỉ tên gọi.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这次活动的名称叫"老朋友重逢"。我们请一些青年来帮忙，青少年也可以。',
+        pinyin: 'Zhè cì huódòng de míngchēng jiào "lǎopéngyou chóngféng". Wǒmen qǐng yìxiē qīngnián lái bāngmáng, qīngshàonián yě kěyǐ.',
+        meaning: 'Tên hoạt động lần này gọi là "Bạn cũ hội ngộ". Chúng ta mời vài thanh niên đến giúp, thanh thiếu niên cũng được.',
+        expression: 'happy', vocab: ['名称', '青年', '青少年']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"目的" có nghĩa là gì?',
+            options: ['mục đích', 'danh sách', 'tên gọi', 'số người'],
+            answer: 0
+          },
+          {
+            q: 'Muốn nói "trong danh sách" thì dùng từ nào?',
+            options: ['名单里头', '名单面前', '名单全身', '名单路边'],
+            answer: 0
+          },
+          {
+            q: '"青少年" có nghĩa là gì?',
+            options: ['thanh thiếu niên', 'người già', 'khách du lịch', 'mọi người'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trước cổng trường · Tiếp tục', bg: 'street',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Hai bạn ra ngoài để xem địa điểm tổ chức.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '路边有很多旅客，人们都很热情。',
+        pinyin: 'Lùbiān yǒu hěn duō lǚkè, rénmen dōu hěn rèqíng.',
+        meaning: 'Bên đường có rất nhiều khách, mọi người đều rất nhiệt tình.',
+        expression: 'happy', vocab: ['路边', '旅客', '人们']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '是啊，这座城市人口很多。',
+        pinyin: 'Shì a, zhè zuò chéngshì rénkǒu hěn duō.',
+        meaning: 'Ừ, dân số thành phố này rất đông.',
+        expression: 'happy', vocab: ['人口']
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '同学们，球场已经订好了，全体都能参加。',
+        pinyin: 'Tóngxuémen, qiúchǎng yǐjīng dìng hǎo le, quántǐ dōu néng cānjiā.',
+        meaning: 'Các em, sân bóng đã đặt xong rồi, toàn thể đều có thể tham gia.',
+        expression: 'happy', vocab: ['球场', '全体']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'street',
+        scene: '📍 Trước cổng trường',
+        expression: 'curious',
+        q: 'Tiểu Mỹ muốn nói "phát biểu trước mặt mọi người". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '在大家面前讲话', pinyin: 'Zài dàjiā miànqián jiǎnghuà', meaning: 'Phát biểu trước mặt mọi người', correct: true,
+            feedback: 'Đúng! 面前 = trước mặt (ai đó).' },
+          { text: '在大家里头讲话', pinyin: 'Zài dàjiā lǐtou jiǎnghuà', meaning: '(Không hợp lý)', correct: false,
+            feedback: '里头 = bên trong, không dùng cho "trước mặt người".' },
+          { text: '在大家路边讲话', pinyin: 'Zài dàjiā lùbiān jiǎnghuà', meaning: '(Không hợp lý)', correct: false,
+            feedback: '路边 = bên đường, không phải "trước mặt".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '在大家面前讲话是个难题，我全身都紧张。',
+        pinyin: 'Zài dàjiā miànqián jiǎnghuà shì gè nántí, wǒ quánshēn dōu jǐnzhāng.',
+        meaning: 'Phát biểu trước mặt mọi người là một bài toán khó, tớ căng thẳng toàn thân.',
+        expression: 'sad', vocab: ['面前', '难题', '全身']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '别担心！看墙上的例子，照着做就行。',
+        pinyin: 'Bié dānxīn! Kàn qiáng shàng de lìzi, zhàozhe zuò jiù xíng.',
+        meaning: 'Đừng lo! Nhìn ví dụ trên tường, làm theo là được.',
+        expression: 'happy', vocab: ['墙', '例子']
+      }
+    ],
+    vocab: [
+      { h: '老朋友', p: 'lǎopéngyou', v: 'bạn cũ, bạn lâu năm' },
+      { h: '礼物', p: 'lǐwù', v: 'quà, món quà' },
+      { h: '里头', p: 'lǐtou', v: 'bên trong' },
+      { h: '例子', p: 'lìzi', v: 'ví dụ' },
+      { h: '路边', p: 'lùbiān', v: 'bên đường, lề đường' },
+      { h: '旅客', p: 'lǚkè', v: 'lữ khách, hành khách' },
+      { h: '面前', p: 'miànqián', v: 'trước mặt' },
+      { h: '名称', p: 'míngchēng', v: 'tên gọi' },
+      { h: '名单', p: 'míngdān', v: 'danh sách (tên người)' },
+      { h: '目的', p: 'mùdì', v: 'mục đích' },
+      { h: '难题', p: 'nántí', v: 'bài toán khó, vấn đề nan giải' },
+      { h: '墙', p: 'qiáng', v: 'tường' },
+      { h: '青年', p: 'qīngnián', v: 'thanh niên' },
+      { h: '青少年', p: 'qīngshàonián', v: 'thanh thiếu niên' },
+      { h: '球场', p: 'qiúchǎng', v: 'sân bóng' },
+      { h: '全身', p: 'quánshēn', v: 'toàn thân, cả người' },
+      { h: '全体', p: 'quántǐ', v: 'toàn thể' },
+      { h: '人口', p: 'rénkǒu', v: 'dân số' },
+      { h: '人们', p: 'rénmen', v: 'mọi người, người ta' },
+      { h: '人数', p: 'rénshù', v: 'số người' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我们的___下周回来！', options: ['老朋友', '旅客', '青年'], answer: '老朋友' },
+        { type: 'fill', sentence: '我们准备___吧。', options: ['礼物', '名单', '球场'], answer: '礼物' },
+        { type: 'fill', sentence: '聚会的___是什么？', options: ['目的', '人口', '难题'], answer: '目的' },
+        { type: 'fill', sentence: '我先做一份___。', options: ['名单', '名称', '例子'], answer: '名单' },
+        { type: 'fill', sentence: '___都能参加。', options: ['全体', '全身', '里头'], answer: '全体' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '名单___有多少人？', options: ['里头', '面前', '路边'], answer: '里头' },
+        { type: 'fill', sentence: '这座城市___很多。', options: ['人口', '人数', '人们'], answer: '人口' },
+        { type: 'fill', sentence: '___已经订好了。', options: ['球场', '名单', '墙'], answer: '球场' },
+        { type: 'fill', sentence: '我们请一些___来帮忙。', options: ['青年', '旅客', '礼物'], answer: '青年' },
+        { type: 'fill', sentence: '___有很多旅客。', options: ['路边', '面前', '里头'], answer: '路边' },
+        { type: 'order', words: ['礼物', '我们', '准备'], answer: '我们准备礼物' },
+        { type: 'order', words: ['目的', '聚会的', '是什么'], answer: '聚会的目的是什么' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '在大家___讲话是个难题。', options: ['面前', '里头', '路边'], answer: '面前' },
+        { type: 'fill', sentence: '我___都紧张。', options: ['全身', '全体', '人数'], answer: '全身' },
+        { type: 'fill', sentence: '看墙上的___，照着做就行。', options: ['例子', '名称', '目的'], answer: '例子' },
+        { type: 'fill', sentence: '活动的___叫"老朋友重逢"。', options: ['名称', '名单', '人数'], answer: '名称' },
+        { type: 'translate', prompt: 'Mục đích buổi gặp lần này là gì?', answer: '这次聚会的目的是什么？' },
+        { type: 'translate', prompt: 'Dân số thành phố này rất đông.', answer: '这座城市人口很多。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 48: Từ chức năng & liên từ (6) — 20 từ
+  // 商人, 身边, 声音, 十分, 食物, 市长, 事情, 数字, 水平, 司机, 虽然, 随时, 所以, 太太, 态度, 特点, 体育场, 体育馆, 天上, 条件
+  // ───────────────────────────────────────────────────────────────────────────
+  48: {
+    id: 48,
+    level: 2,
+    title: 'Từ chức năng & liên từ (6)',
+    context: 'Buổi gặp mặt diễn ra ở sân vận động. Mai và Tiểu Mỹ gặp nhiều người và trò chuyện về công việc, thái độ và điều kiện tổ chức.',
+    vocabPreview: ['虽然', '所以', '态度', '条件', '体育场'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Sân vận động · Buổi chiều', bg: 'campus',
+        cast: ['mai', 'xiaomei'],
+        text: 'Buổi gặp mặt được tổ chức ở sân vận động của trường.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '体育场太大了！我们在体育馆里面比较好。',
+        pinyin: 'Tǐyùchǎng tài dà le! Wǒmen zài tǐyùguǎn lǐmiàn bǐjiào hǎo.',
+        meaning: 'Sân vận động lớn quá! Chúng ta ở trong nhà thi đấu thì tốt hơn.',
+        expression: 'curious', vocab: ['体育场', '体育馆']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '虽然体育馆小一点，所以更热闹，条件也不错。',
+        pinyin: 'Suīrán tǐyùguǎn xiǎo yìdiǎn, suǒyǐ gèng rènào, tiáojiàn yě búcuò.',
+        meaning: 'Tuy nhà thi đấu nhỏ hơn một chút, nên lại náo nhiệt hơn, điều kiện cũng khá tốt.',
+        expression: 'happy', vocab: ['虽然', '所以', '条件']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '你身边那位是谁？声音很大。',
+        pinyin: 'Nǐ shēnbiān nà wèi shì shéi? Shēngyīn hěn dà.',
+        meaning: 'Người bên cạnh cậu là ai vậy? Giọng nói rất to.',
+        expression: 'curious', vocab: ['身边', '声音']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '他是个商人，他太太是司机。他们准备了很多食物。',
+        pinyin: 'Tā shì gè shāngrén, tā tàitai shì sījī. Tāmen zhǔnbèi le hěn duō shíwù.',
+        meaning: 'Anh ấy là thương nhân, vợ anh ấy là tài xế. Họ đã chuẩn bị rất nhiều thức ăn.',
+        expression: 'happy', vocab: ['商人', '太太', '司机', '食物']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'campus',
+        scene: '📍 Nhà thi đấu',
+        expression: 'curious',
+        q: 'Tiểu Mỹ muốn khen "Thái độ của anh ấy rất tốt". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '他的态度很好。', pinyin: 'Tā de tàidù hěn hǎo.', meaning: 'Thái độ của anh ấy rất tốt.', correct: true,
+            feedback: 'Đúng! 态度 = thái độ.' },
+          { text: '他的特点很好。', pinyin: 'Tā de tèdiǎn hěn hǎo.', meaning: 'Đặc điểm của anh ấy rất tốt.', correct: false,
+            feedback: '特点 = đặc điểm, không phải thái độ.' },
+          { text: '他的水平很好。', pinyin: 'Tā de shuǐpíng hěn hǎo.', meaning: 'Trình độ của anh ấy rất tốt.', correct: false,
+            feedback: '水平 = trình độ, không phải thái độ ứng xử.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '对，他的态度很好，水平也高。这是他的特点。',
+        pinyin: 'Duì, tā de tàidù hěn hǎo, shuǐpíng yě gāo. Zhè shì tā de tèdiǎn.',
+        meaning: 'Đúng, thái độ của anh ấy rất tốt, trình độ cũng cao. Đây là đặc điểm của anh ấy.',
+        expression: 'happy', vocab: ['态度', '水平', '特点']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"虽然...所以..." dùng để nối hai vế thể hiện quan hệ gì?',
+            options: ['tuy... nên...', 'nếu... thì...', 'càng... càng...', 'vừa... vừa...'],
+            answer: 0
+          },
+          {
+            q: '"司机" có nghĩa là gì?',
+            options: ['tài xế', 'thương nhân', 'thị trưởng', 'vợ'],
+            answer: 0
+          },
+          {
+            q: 'Muốn nói "người bên cạnh" thì dùng từ nào?',
+            options: ['身边的人', '天上的人', '数字的人', '条件的人'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Nhà thi đấu · Tiếp tục', bg: 'campus',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý đến chào mọi người.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '今天市长也来了，这是件大事情！你们随时可以找我。',
+        pinyin: 'Jīntiān shìzhǎng yě lái le, zhè shì jiàn dà shìqing! Nǐmen suíshí kěyǐ zhǎo wǒ.',
+        meaning: 'Hôm nay thị trưởng cũng đến, đây là việc lớn! Các em bất cứ lúc nào cũng có thể tìm thầy.',
+        expression: 'happy', vocab: ['市长', '事情', '随时']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '谢谢老师！您看，天上的云十分漂亮。',
+        pinyin: 'Xièxie lǎoshī! Nín kàn, tiānshàng de yún shífēn piàoliang.',
+        meaning: 'Cảm ơn thầy! Thầy xem kìa, mây trên trời đẹp vô cùng.',
+        expression: 'happy', vocab: ['天上', '十分']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'campus',
+        scene: '📍 Nhà thi đấu',
+        expression: 'curious',
+        q: 'Tiểu Mỹ muốn hỏi "Có bao nhiêu người? Cho con số đi". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '一共多少人？给个数字吧。', pinyin: 'Yígòng duōshǎo rén? Gěi gè shùzì ba.', meaning: 'Tổng cộng bao nhiêu người? Cho một con số đi.', correct: true,
+            feedback: 'Đúng! 数字 = con số.' },
+          { text: '一共多少人？给个事情吧。', pinyin: 'Yígòng duōshǎo rén? Gěi gè shìqing ba.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '事情 = việc, sự việc, không phải con số.' },
+          { text: '一共多少人？给个条件吧。', pinyin: 'Yígòng duōshǎo rén? Gěi gè tiáojiàn ba.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '条件 = điều kiện, không phải con số.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '数字我记下了，今天来的人很多。',
+        pinyin: 'Shùzì wǒ jì xià le, jīntiān lái de rén hěn duō.',
+        meaning: 'Con số thầy ghi lại rồi, hôm nay người đến rất đông.',
+        expression: 'happy', vocab: ['数字']
+      }
+    ],
+    vocab: [
+      { h: '商人', p: 'shāngrén', v: 'thương nhân, người buôn bán' },
+      { h: '身边', p: 'shēnbiān', v: 'bên cạnh, bên mình' },
+      { h: '声音', p: 'shēngyīn', v: 'âm thanh, giọng nói' },
+      { h: '十分', p: 'shífēn', v: 'rất, vô cùng' },
+      { h: '食物', p: 'shíwù', v: 'thức ăn, thực phẩm' },
+      { h: '市长', p: 'shìzhǎng', v: 'thị trưởng' },
+      { h: '事情', p: 'shìqing', v: 'việc, sự việc' },
+      { h: '数字', p: 'shùzì', v: 'con số, chữ số' },
+      { h: '水平', p: 'shuǐpíng', v: 'trình độ' },
+      { h: '司机', p: 'sījī', v: 'tài xế' },
+      { h: '虽然', p: 'suīrán', v: 'tuy nhiên, mặc dù' },
+      { h: '随时', p: 'suíshí', v: 'bất cứ lúc nào' },
+      { h: '所以', p: 'suǒyǐ', v: 'cho nên, vì vậy' },
+      { h: '太太', p: 'tàitai', v: 'vợ, bà (xưng hô)' },
+      { h: '态度', p: 'tàidù', v: 'thái độ' },
+      { h: '特点', p: 'tèdiǎn', v: 'đặc điểm' },
+      { h: '体育场', p: 'tǐyùchǎng', v: 'sân vận động' },
+      { h: '体育馆', p: 'tǐyùguǎn', v: 'nhà thi đấu' },
+      { h: '天上', p: 'tiānshàng', v: 'trên trời' },
+      { h: '条件', p: 'tiáojiàn', v: 'điều kiện' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '他是个___。', options: ['商人', '司机', '市长'], answer: '商人' },
+        { type: 'fill', sentence: '他太太是___。', options: ['司机', '商人', '太太'], answer: '司机' },
+        { type: 'fill', sentence: '他们准备了很多___。', options: ['食物', '数字', '条件'], answer: '食物' },
+        { type: 'fill', sentence: '今天___也来了。', options: ['市长', '司机', '商人'], answer: '市长' },
+        { type: 'fill', sentence: '你___那位是谁？', options: ['身边', '天上', '面前'], answer: '身边' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___体育馆小一点，___更热闹。', options: ['虽然…所以', '因为…所以', '虽然…但是'], answer: '虽然…所以' },
+        { type: 'fill', sentence: '你们___可以找我。', options: ['随时', '十分', '所以'], answer: '随时' },
+        { type: 'fill', sentence: '他的___很好，水平也高。', options: ['态度', '特点', '条件'], answer: '态度' },
+        { type: 'fill', sentence: '这是件大___！', options: ['事情', '数字', '声音'], answer: '事情' },
+        { type: 'fill', sentence: '___的云十分漂亮。', options: ['天上', '身边', '路边'], answer: '天上' },
+        { type: 'order', words: ['态度', '他的', '很好'], answer: '他的态度很好' },
+        { type: 'order', words: ['随时', '你们', '可以', '找我'], answer: '你们随时可以找我' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '___体育场太大，我们在体育馆比较好。', options: ['虽然', '所以', '十分'], answer: '虽然' },
+        { type: 'fill', sentence: '给个___吧。', options: ['数字', '事情', '声音'], answer: '数字' },
+        { type: 'fill', sentence: '这是他的___。', options: ['特点', '态度', '水平'], answer: '特点' },
+        { type: 'fill', sentence: '天上的云___漂亮。', options: ['十分', '随时', '所以'], answer: '十分' },
+        { type: 'translate', prompt: 'Thái độ của anh ấy rất tốt.', answer: '他的态度很好。' },
+        { type: 'translate', prompt: 'Các em bất cứ lúc nào cũng có thể tìm thầy.', answer: '你们随时可以找我。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 49: Từ chức năng & liên từ (7) — 20 từ
+  // 挺好, 同时, 图片, 外地, 网站, 问题, 小组, 校园, 笑话, 笑话儿, 心情, 心中, 新闻, 信号, 信息, 信心, 信用卡, 行人, 行为, 姓名
+  // ───────────────────────────────────────────────────────────────────────────
+  49: {
+    id: 49,
+    level: 2,
+    title: 'Từ chức năng & liên từ (7)',
+    context: 'Mai và Tiểu Mỹ lập một nhóm nhỏ làm trang web đăng ký cho buổi gặp mặt. Họ xử lý thông tin và họ tên của khách.',
+    vocabPreview: ['网站', '信息', '小组', '心情', '姓名'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Phòng học · Buổi tối', bg: 'classroom',
+        cast: ['mai', 'xiaomei'],
+        text: 'Nhóm nhỏ tập trung trong phòng học để làm trang web đăng ký.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我们小组要做一个网站，方便大家报名。',
+        pinyin: 'Wǒmen xiǎozǔ yào zuò yí gè wǎngzhàn, fāngbiàn dàjiā bàomíng.',
+        meaning: 'Nhóm chúng ta phải làm một trang web, để mọi người đăng ký cho tiện.',
+        expression: 'focused', vocab: ['小组', '网站']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '挺好！网站上要放图片和信息。',
+        pinyin: 'Tǐng hǎo! Wǎngzhàn shàng yào fàng túpiàn hé xìnxī.',
+        meaning: 'Khá tốt! Trên trang web cần đặt hình ảnh và thông tin.',
+        expression: 'happy', vocab: ['挺好', '图片', '信息']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '同时也要填姓名。有外地的朋友吗？',
+        pinyin: 'Tóngshí yě yào tián xìngmíng. Yǒu wàidì de péngyou ma?',
+        meaning: 'Đồng thời cũng phải điền họ tên. Có bạn ở nơi khác không?',
+        expression: 'curious', vocab: ['同时', '姓名', '外地']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '有！但是这里信号不好，我有点担心。',
+        pinyin: 'Yǒu! Dànshì zhèlǐ xìnhào bù hǎo, wǒ yǒudiǎn dānxīn.',
+        meaning: 'Có! Nhưng ở đây tín hiệu không tốt, tớ hơi lo.',
+        expression: 'sad', vocab: ['信号']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'classroom',
+        scene: '📍 Phòng học',
+        expression: 'happy',
+        q: 'Tiểu Mỹ muốn động viên: "Đừng lo, phải có lòng tin". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '别担心，要有信心！', pinyin: 'Bié dānxīn, yào yǒu xìnxīn!', meaning: 'Đừng lo, phải có lòng tin!', correct: true,
+            feedback: 'Đúng! 信心 = lòng tin, sự tự tin.' },
+          { text: '别担心，要有信号！', pinyin: 'Bié dānxīn, yào yǒu xìnhào!', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '信号 = tín hiệu (sóng), không phải lòng tin.' },
+          { text: '别担心，要有信息！', pinyin: 'Bié dānxīn, yào yǒu xìnxī!', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '信息 = thông tin, không phải lòng tin.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '别担心，要有信心！你看这条新闻，心情就会变好。',
+        pinyin: 'Bié dānxīn, yào yǒu xìnxīn! Nǐ kàn zhè tiáo xīnwén, xīnqíng jiù huì biàn hǎo.',
+        meaning: 'Đừng lo, phải có lòng tin! Cậu xem tin này đi, tâm trạng sẽ tốt lên.',
+        expression: 'happy', vocab: ['信心', '新闻', '心情']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"网站" có nghĩa là gì?',
+            options: ['trang web', 'hình ảnh', 'tin tức', 'thông tin'],
+            answer: 0
+          },
+          {
+            q: 'Phân biệt: từ nào nghĩa là "lòng tin, sự tự tin"?',
+            options: ['信心', '信号', '信息', '信用卡'],
+            answer: 0
+          },
+          {
+            q: '"心情" có nghĩa là gì?',
+            options: ['tâm trạng', 'trong lòng', 'hành vi', 'họ tên'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Khuôn viên trường · Tiếp tục', bg: 'campus',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn đi dạo quanh khuôn viên để thử tín hiệu.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '校园里行人不多，信号好多了。',
+        pinyin: 'Xiàoyuán lǐ xíngrén bù duō, xìnhào hǎo duō le.',
+        meaning: 'Trong khuôn viên người đi bộ không nhiều, tín hiệu tốt hơn nhiều rồi.',
+        expression: 'happy', vocab: ['校园', '行人']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '哈哈，你刚才那个笑话儿真好笑！我心中很开心。',
+        pinyin: 'Hāhā, nǐ gāngcái nàge xiàohuar zhēn hǎoxiào! Wǒ xīnzhōng hěn kāixīn.',
+        meaning: 'Haha, câu chuyện cười vừa nãy của cậu thật buồn cười! Trong lòng tớ rất vui.',
+        expression: 'happy', vocab: ['笑话儿', '心中']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'campus',
+        scene: '📍 Khuôn viên trường',
+        expression: 'curious',
+        q: 'Mai muốn nhắc "Hành vi đó không tốt". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '那个行为不好。', pinyin: 'Nàge xíngwéi bù hǎo.', meaning: 'Hành vi đó không tốt.', correct: true,
+            feedback: 'Đúng! 行为 = hành vi.' },
+          { text: '那个行人不好。', pinyin: 'Nàge xíngrén bù hǎo.', meaning: 'Người đi bộ đó không tốt.', correct: false,
+            feedback: '行人 = người đi bộ, không phải hành vi.' },
+          { text: '那个笑话不好。', pinyin: 'Nàge xiàohua bù hǎo.', meaning: 'Câu chuyện cười đó không hay.', correct: false,
+            feedback: '笑话 = chuyện cười, không phải hành vi.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '那个行为确实不好，别学。对了，还有个问题：报名能用信用卡吗？别说笑话了。',
+        pinyin: 'Nàge xíngwéi quèshí bù hǎo, bié xué. Duìle, hái yǒu gè wèntí: bàomíng néng yòng xìnyòngkǎ ma? Bié shuō xiàohua le.',
+        meaning: 'Hành vi đó đúng là không tốt, đừng học theo. À, còn một vấn đề: đăng ký dùng thẻ tín dụng được không? Đừng nói đùa nữa.',
+        expression: 'curious', vocab: ['行为', '问题', '信用卡', '笑话']
+      }
+    ],
+    vocab: [
+      { h: '挺好', p: 'tǐng hǎo', v: 'khá tốt, ổn đấy' },
+      { h: '同时', p: 'tóngshí', v: 'đồng thời, cùng lúc' },
+      { h: '图片', p: 'túpiàn', v: 'hình ảnh, tranh ảnh' },
+      { h: '外地', p: 'wàidì', v: 'nơi khác, ngoại tỉnh' },
+      { h: '网站', p: 'wǎngzhàn', v: 'trang web' },
+      { h: '问题', p: 'wèntí', v: 'vấn đề, câu hỏi' },
+      { h: '小组', p: 'xiǎozǔ', v: 'nhóm nhỏ' },
+      { h: '校园', p: 'xiàoyuán', v: 'khuôn viên trường' },
+      { h: '笑话', p: 'xiàohua', v: 'chuyện cười, lời nói đùa' },
+      { h: '笑话儿', p: 'xiàohuar', v: 'chuyện cười (khẩu ngữ)' },
+      { h: '心情', p: 'xīnqíng', v: 'tâm trạng' },
+      { h: '心中', p: 'xīnzhōng', v: 'trong lòng' },
+      { h: '新闻', p: 'xīnwén', v: 'tin tức' },
+      { h: '信号', p: 'xìnhào', v: 'tín hiệu' },
+      { h: '信息', p: 'xìnxī', v: 'thông tin' },
+      { h: '信心', p: 'xìnxīn', v: 'lòng tin, sự tự tin' },
+      { h: '信用卡', p: 'xìnyòngkǎ', v: 'thẻ tín dụng' },
+      { h: '行人', p: 'xíngrén', v: 'người đi bộ' },
+      { h: '行为', p: 'xíngwéi', v: 'hành vi' },
+      { h: '姓名', p: 'xìngmíng', v: 'họ tên' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我们小组要做一个___。', options: ['网站', '图片', '新闻'], answer: '网站' },
+        { type: 'fill', sentence: '网站上要放___和信息。', options: ['图片', '信号', '姓名'], answer: '图片' },
+        { type: 'fill', sentence: '也要填___。', options: ['姓名', '心情', '行人'], answer: '姓名' },
+        { type: 'fill', sentence: '我们___要做网站。', options: ['小组', '校园', '新闻'], answer: '小组' },
+        { type: 'fill', sentence: '___！这个主意不错。', options: ['挺好', '同时', '心中'], answer: '挺好' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '这里___不好，我有点担心。', options: ['信号', '信心', '信息'], answer: '信号' },
+        { type: 'fill', sentence: '要有___！', options: ['信心', '信号', '信用卡'], answer: '信心' },
+        { type: 'fill', sentence: '你看这条___。', options: ['新闻', '图片', '心情'], answer: '新闻' },
+        { type: 'fill', sentence: '校园里___不多。', options: ['行人', '行为', '小组'], answer: '行人' },
+        { type: 'fill', sentence: '我___很开心。', options: ['心中', '心情', '同时'], answer: '心中' },
+        { type: 'order', words: ['网站', '做一个', '我们小组', '要'], answer: '我们小组要做一个网站' },
+        { type: 'order', words: ['信心', '要', '有'], answer: '要有信心' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '那个___不好。', options: ['行为', '行人', '笑话'], answer: '行为' },
+        { type: 'fill', sentence: '可以用___吗？', options: ['信用卡', '信号', '信息'], answer: '信用卡' },
+        { type: 'fill', sentence: '___也要填姓名。', options: ['同时', '挺好', '外地'], answer: '同时' },
+        { type: 'fill', sentence: '有___的朋友吗？', options: ['外地', '校园', '小组'], answer: '外地' },
+        { type: 'translate', prompt: 'Đừng lo, phải có lòng tin!', answer: '别担心，要有信心！' },
+        { type: 'translate', prompt: 'Trong khuôn viên người đi bộ không nhiều.', answer: '校园里行人不多。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 50: Từ chức năng & liên từ (8) — 20 từ
+  // 学期, 样子, 也许, 一共, 一路平安, 一生, 一直, 已经, 以后, 以前, 以外, 因为, 音节, 影片, 游客, 有空儿, 有一点儿, 有意思, 又, 原因
+  // ───────────────────────────────────────────────────────────────────────────
+  50: {
+    id: 50,
+    level: 2,
+    title: 'Từ chức năng & liên từ (8)',
+    context: 'Cuối học kỳ, buổi gặp mặt kết thúc. Bạn cũ sắp lên đường về nước. Mọi người cùng nhau xem phim kỷ niệm và tạm biệt.',
+    vocabPreview: ['学期', '已经', '一直', '一路平安', '原因'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Phòng học · Cuối học kỳ', bg: 'classroom',
+        cast: ['mai', 'xiaomei'],
+        text: 'Học kỳ đã gần kết thúc, buổi gặp mặt cũng tới hồi tạm biệt.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这个学期已经快结束了，时间过得真快！',
+        pinyin: 'Zhège xuéqī yǐjīng kuài jiéshù le, shíjiān guò de zhēn kuài!',
+        meaning: 'Học kỳ này đã sắp kết thúc rồi, thời gian trôi thật nhanh!',
+        expression: 'sad', vocab: ['学期', '已经']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '是啊，以前我们一直在一起，以后就少见了。',
+        pinyin: 'Shì a, yǐqián wǒmen yìzhí zài yìqǐ, yǐhòu jiù shǎo jiàn le.',
+        meaning: 'Ừ, trước đây chúng ta luôn ở bên nhau, sau này sẽ ít gặp hơn.',
+        expression: 'sad', vocab: ['以前', '一直', '以后']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '别难过！也许放假以后我们又能见面。',
+        pinyin: 'Bié nánguò! Yěxǔ fàngjià yǐhòu wǒmen yòu néng jiànmiàn.',
+        meaning: 'Đừng buồn! Có lẽ sau kỳ nghỉ chúng ta lại có thể gặp nhau.',
+        expression: 'happy', vocab: ['也许', '又']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '今天来的游客一共有多少人？',
+        pinyin: 'Jīntiān lái de yóukè yígòng yǒu duōshǎo rén?',
+        meaning: 'Du khách đến hôm nay tổng cộng có bao nhiêu người?',
+        expression: 'curious', vocab: ['游客', '一共']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'classroom',
+        scene: '📍 Phòng học',
+        expression: 'curious',
+        q: 'Tiểu Mỹ muốn hỏi "Vì sao nhiều người đến thế?". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '因为什么来了这么多人？', pinyin: 'Yīnwèi shénme lái le zhème duō rén?', meaning: 'Vì sao mà đến nhiều người thế?', correct: true,
+            feedback: 'Đúng! 因为 = vì, bởi vì (chỉ nguyên nhân).' },
+          { text: '以外什么来了这么多人？', pinyin: 'Yǐwài shénme lái le zhème duō rén?', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '以外 = ngoài ra, không dùng để hỏi nguyên nhân.' },
+          { text: '一共什么来了这么多人？', pinyin: 'Yígòng shénme lái le zhème duō rén?', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '一共 = tổng cộng, không phải nguyên nhân.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '原因很简单，因为这次活动很有意思！除了学生以外，还有很多游客。',
+        pinyin: 'Yuányīn hěn jiǎndān, yīnwèi zhè cì huódòng hěn yǒuyìsi! Chúle xuésheng yǐwài, hái yǒu hěn duō yóukè.',
+        meaning: 'Nguyên nhân rất đơn giản, vì hoạt động lần này rất thú vị! Ngoài học sinh ra, còn có rất nhiều du khách.',
+        expression: 'happy', vocab: ['原因', '因为', '有意思', '以外']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"已经" có nghĩa là gì?',
+            options: ['đã, đã rồi', 'sau này', 'trước đây', 'có lẽ'],
+            answer: 0
+          },
+          {
+            q: '"因为" và "原因" — từ nào là "nguyên nhân" (danh từ)?',
+            options: ['原因', '因为', '以外', '一共'],
+            answer: 0
+          },
+          {
+            q: '"有意思" có nghĩa là gì?',
+            options: ['thú vị', 'có lẽ', 'tổng cộng', 'luôn luôn'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Phòng học · Buổi chia tay', bg: 'classroom',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Cả lớp cùng nhau xem một bộ phim ngắn về một học kỳ đã qua.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这部影片记录了大家学习的样子，很感人。',
+        pinyin: 'Zhè bù yǐngpiàn jìlù le dàjiā xuéxí de yàngzi, hěn gǎnrén.',
+        meaning: 'Bộ phim này ghi lại dáng vẻ học tập của mọi người, rất cảm động.',
+        expression: 'happy', vocab: ['影片', '样子']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师，每个音节我都听得懂了！这一生我都不会忘记。',
+        pinyin: 'Lǎoshī, měi gè yīnjié wǒ dōu tīng de dǒng le! Zhè yìshēng wǒ dōu bú huì wàngjì.',
+        meaning: 'Thầy ơi, mỗi âm tiết em đều nghe hiểu được rồi! Cả đời này em sẽ không quên.',
+        expression: 'happy', vocab: ['音节', '一生']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'classroom',
+        scene: '📍 Phòng học',
+        expression: 'happy',
+        q: 'Bạn cũ sắp lên máy bay về nước. Tiểu Mỹ nên chúc thế nào?',
+        options: [
+          { text: '一路平安！', pinyin: 'Yílù píng’ān!', meaning: 'Thượng lộ bình an!', correct: true,
+            feedback: 'Đúng! 一路平安 = thượng lộ bình an, chúc đi đường an toàn.' },
+          { text: '一直平安！', pinyin: 'Yìzhí píng’ān!', meaning: '(Không phải lời chúc cố định)', correct: false,
+            feedback: '一直 = luôn luôn, không phải lời chúc lên đường.' },
+          { text: '一共平安！', pinyin: 'Yígòng píng’ān!', meaning: '(Không hợp lý)', correct: false,
+            feedback: '一共 = tổng cộng, không dùng làm lời chúc.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '一路平安！你有空儿一定要回来。我有一点儿舍不得。',
+        pinyin: 'Yílù píng’ān! Nǐ yǒu kòngr yídìng yào huílái. Wǒ yǒu yìdiǎnr shěbude.',
+        meaning: 'Thượng lộ bình an! Khi nào rảnh nhất định phải về nhé. Tớ có chút lưu luyến.',
+        expression: 'sad', vocab: ['一路平安', '有空儿', '有一点儿']
+      }
+    ],
+    vocab: [
+      { h: '学期', p: 'xuéqī', v: 'học kỳ' },
+      { h: '样子', p: 'yàngzi', v: 'dáng vẻ, bộ dạng' },
+      { h: '也许', p: 'yěxǔ', v: 'có lẽ, có thể' },
+      { h: '一共', p: 'yígòng', v: 'tổng cộng' },
+      { h: '一路平安', p: 'yílù píng’ān', v: 'thượng lộ bình an' },
+      { h: '一生', p: 'yìshēng', v: 'cả đời, cả cuộc đời' },
+      { h: '一直', p: 'yìzhí', v: 'luôn luôn, mãi' },
+      { h: '已经', p: 'yǐjīng', v: 'đã, đã rồi' },
+      { h: '以后', p: 'yǐhòu', v: 'sau này, về sau' },
+      { h: '以前', p: 'yǐqián', v: 'trước đây, trước kia' },
+      { h: '以外', p: 'yǐwài', v: 'ngoài ra, ngoài... ra' },
+      { h: '因为', p: 'yīnwèi', v: 'vì, bởi vì' },
+      { h: '音节', p: 'yīnjié', v: 'âm tiết' },
+      { h: '影片', p: 'yǐngpiàn', v: 'bộ phim' },
+      { h: '游客', p: 'yóukè', v: 'du khách' },
+      { h: '有空儿', p: 'yǒu kòngr', v: 'có thời gian rảnh' },
+      { h: '有一点儿', p: 'yǒu yìdiǎnr', v: 'có một chút' },
+      { h: '有意思', p: 'yǒuyìsi', v: 'thú vị, hay' },
+      { h: '又', p: 'yòu', v: 'lại (lặp lại)' },
+      { h: '原因', p: 'yuányīn', v: 'nguyên nhân, lý do' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '这个___已经快结束了。', options: ['学期', '样子', '原因'], answer: '学期' },
+        { type: 'fill', sentence: '时间___快结束了。', options: ['已经', '也许', '一共'], answer: '已经' },
+        { type: 'fill', sentence: '我们___在一起。', options: ['一直', '已经', '又'], answer: '一直' },
+        { type: 'fill', sentence: '游客___有多少人？', options: ['一共', '一直', '也许'], answer: '一共' },
+        { type: 'fill', sentence: '这次活动很___！', options: ['有意思', '有空儿', '有一点儿'], answer: '有意思' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___我们一直在一起，___就少见了。', options: ['以前…以后', '因为…所以', '虽然…但是'], answer: '以前…以后' },
+        { type: 'fill', sentence: '___放假以后我们又能见面。', options: ['也许', '已经', '一共'], answer: '也许' },
+        { type: 'fill', sentence: '___很简单。', options: ['原因', '因为', '以外'], answer: '原因' },
+        { type: 'fill', sentence: '除了学生___，还有很多游客。', options: ['以外', '以后', '以前'], answer: '以外' },
+        { type: 'fill', sentence: '这部___很感人。', options: ['影片', '样子', '音节'], answer: '影片' },
+        { type: 'order', words: ['已经', '学期', '这个', '快结束了'], answer: '这个学期已经快结束了' },
+        { type: 'order', words: ['又', '我们', '能见面'], answer: '我们又能见面' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '___这次活动很有意思！', options: ['因为', '原因', '以外'], answer: '因为' },
+        { type: 'fill', sentence: '这部影片记录了大家学习的___。', options: ['样子', '原因', '音节'], answer: '样子' },
+        { type: 'fill', sentence: '你___一定要回来。', options: ['有空儿', '有意思', '有一点儿'], answer: '有空儿' },
+        { type: 'fill', sentence: '每个___我都听得懂了。', options: ['音节', '影片', '样子'], answer: '音节' },
+        { type: 'translate', prompt: 'Thượng lộ bình an!', answer: '一路平安！' },
+        { type: 'translate', prompt: 'Học kỳ này đã sắp kết thúc rồi.', answer: '这个学期已经快结束了。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 51: Từ chức năng & liên từ (9) — 18 từ
+  // 越来越, 早餐, 早就, 找出, 照片, 正好, 只要, 中餐, 中心, 重新, 主人, 住房, 字典, 组长, 作文, 座位, 表示, 称(chēng)
+  // ───────────────────────────────────────────────────────────────────────────
+  51: {
+    id: 51,
+    level: 2,
+    title: 'Từ chức năng & liên từ (9)',
+    context: 'Sau kỳ nghỉ, Mai trở lại trung tâm học tập. Cô làm tổ trưởng, viết bài văn và sắp xếp lại chỗ ngồi cho nhóm.',
+    vocabPreview: ['中心', '组长', '作文', '只要', '重新'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trung tâm học tập · Buổi sáng', bg: 'library',
+        cast: ['mai', 'xiaomei'],
+        text: 'Mai đến trung tâm học tập sớm, mang theo bữa sáng.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我早就到学习中心了，还买了早餐。',
+        pinyin: 'Wǒ zǎojiù dào xuéxí zhōngxīn le, hái mǎi le zǎocān.',
+        meaning: 'Tớ đã đến trung tâm học tập từ sớm rồi, còn mua cả bữa sáng.',
+        expression: 'happy', vocab: ['早就', '中心', '早餐']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '正好！你现在是组长，大家越来越听你的。',
+        pinyin: 'Zhènghǎo! Nǐ xiànzài shì zǔzhǎng, dàjiā yuèláiyuè tīng nǐ de.',
+        meaning: 'Vừa hay! Cậu giờ là tổ trưởng, mọi người càng ngày càng nghe cậu.',
+        expression: 'happy', vocab: ['正好', '组长', '越来越']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '今天要写作文。我先用字典找出几个生词。',
+        pinyin: 'Jīntiān yào xiě zuòwén. Wǒ xiān yòng zìdiǎn zhǎochū jǐ gè shēngcí.',
+        meaning: 'Hôm nay phải viết bài văn. Tớ dùng từ điển tra ra vài từ mới trước.',
+        expression: 'focused', vocab: ['作文', '字典', '找出']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'library',
+        scene: '📍 Trung tâm học tập',
+        expression: 'curious',
+        q: 'Tiểu Mỹ muốn nói "Chỉ cần cố gắng là làm được". Cô ấy nên nói thế nào?',
+        options: [
+          { text: '只要努力就能做到。', pinyin: 'Zhǐyào nǔlì jiù néng zuòdào.', meaning: 'Chỉ cần cố gắng là làm được.', correct: true,
+            feedback: 'Đúng! 只要...就... = chỉ cần... thì...' },
+          { text: '正好努力就能做到。', pinyin: 'Zhènghǎo nǔlì jiù néng zuòdào.', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '正好 = vừa hay, vừa lúc; không dùng làm "chỉ cần".' },
+          { text: '重新努力就能做到。', pinyin: 'Chóngxīn nǔlì jiù néng zuòdào.', meaning: 'Cố gắng lại từ đầu là làm được.', correct: false,
+            feedback: '重新 = lại từ đầu, làm lại; nghĩa khác "chỉ cần".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '只要努力就能做到！写错了就重新写。',
+        pinyin: 'Zhǐyào nǔlì jiù néng zuòdào! Xiě cuò le jiù chóngxīn xiě.',
+        meaning: 'Chỉ cần cố gắng là làm được! Viết sai thì viết lại từ đầu.',
+        expression: 'happy', vocab: ['只要', '重新']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"越来越" có nghĩa là gì?',
+            options: ['càng ngày càng', 'vừa hay', 'chỉ cần', 'lại từ đầu'],
+            answer: 0
+          },
+          {
+            q: '"只要...就..." dùng để diễn đạt điều gì?',
+            options: ['chỉ cần... thì...', 'tuy... nhưng...', 'vì... nên...', 'vừa... vừa...'],
+            answer: 0
+          },
+          {
+            q: '"组长" có nghĩa là gì?',
+            options: ['tổ trưởng', 'chủ nhân', 'từ điển', 'bài văn'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trung tâm học tập · Tiếp tục', bg: 'library',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn sắp xếp lại chỗ ngồi cho cả nhóm.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这些座位不够，我们重新安排一下吧。',
+        pinyin: 'Zhèxiē zuòwèi bú gòu, wǒmen chóngxīn ānpái yíxià ba.',
+        meaning: 'Mấy chỗ ngồi này không đủ, chúng ta sắp xếp lại một chút đi.',
+        expression: 'focused', vocab: ['座位']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '好。这间住房的主人是谁？我们要表示感谢。',
+        pinyin: 'Hǎo. Zhè jiān zhùfáng de zhǔrén shì shéi? Wǒmen yào biǎoshì gǎnxiè.',
+        meaning: 'Được. Chủ nhân của căn nhà này là ai? Chúng ta phải bày tỏ lòng cảm ơn.',
+        expression: 'curious', vocab: ['住房', '主人', '表示']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'library',
+        scene: '📍 Trung tâm học tập',
+        expression: 'curious',
+        q: 'Mai muốn nói "Mọi người gọi cô ấy là tổ trưởng". Cô ấy nên dùng từ nào cho "gọi là"?',
+        options: [
+          { text: '大家称她为组长。', pinyin: 'Dàjiā chēng tā wéi zǔzhǎng.', meaning: 'Mọi người gọi cô ấy là tổ trưởng.', correct: true,
+            feedback: 'Đúng! 称 (chēng) = gọi là, xưng là.' },
+          { text: '大家表示她为组长。', pinyin: 'Dàjiā biǎoshì tā wéi zǔzhǎng.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '表示 = bày tỏ, biểu thị; không dùng cho "gọi là".' },
+          { text: '大家正好她为组长。', pinyin: 'Dàjiā zhènghǎo tā wéi zǔzhǎng.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '正好 = vừa hay, không phải "gọi là".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '大家称她为组长。中午我们一起吃中餐吧！',
+        pinyin: 'Dàjiā chēng tā wéi zǔzhǎng. Zhōngwǔ wǒmen yìqǐ chī zhōngcān ba!',
+        meaning: 'Mọi người gọi cô ấy là tổ trưởng. Trưa nay chúng ta cùng ăn cơm trưa nhé!',
+        expression: 'happy', vocab: ['称', '中餐']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '好！我把这张照片放进作文里，做个纪念。',
+        pinyin: 'Hǎo! Wǒ bǎ zhè zhāng zhàopiàn fàng jìn zuòwén lǐ, zuò gè jìniàn.',
+        meaning: 'Được! Tớ để bức ảnh này vào bài văn, làm kỷ niệm.',
+        expression: 'happy', vocab: ['照片']
+      }
+    ],
+    vocab: [
+      { h: '越来越', p: 'yuèláiyuè', v: 'càng ngày càng' },
+      { h: '早餐', p: 'zǎocān', v: 'bữa sáng' },
+      { h: '早就', p: 'zǎojiù', v: 'sớm đã, từ lâu đã' },
+      { h: '找出', p: 'zhǎochū', v: 'tìm ra' },
+      { h: '照片', p: 'zhàopiàn', v: 'bức ảnh' },
+      { h: '正好', p: 'zhènghǎo', v: 'vừa hay, vừa lúc' },
+      { h: '只要', p: 'zhǐyào', v: 'chỉ cần' },
+      { h: '中餐', p: 'zhōngcān', v: 'cơm trưa, món Trung' },
+      { h: '中心', p: 'zhōngxīn', v: 'trung tâm' },
+      { h: '重新', p: 'chóngxīn', v: 'lại từ đầu, làm lại' },
+      { h: '主人', p: 'zhǔrén', v: 'chủ nhân' },
+      { h: '住房', p: 'zhùfáng', v: 'nhà ở, chỗ ở' },
+      { h: '字典', p: 'zìdiǎn', v: 'từ điển (chữ)' },
+      { h: '组长', p: 'zǔzhǎng', v: 'tổ trưởng' },
+      { h: '作文', p: 'zuòwén', v: 'bài văn, bài tập làm văn' },
+      { h: '座位', p: 'zuòwèi', v: 'chỗ ngồi' },
+      { h: '表示', p: 'biǎoshì', v: 'biểu thị, bày tỏ' },
+      { h: '称', p: 'chēng', v: 'gọi là, xưng là' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我早就到学习___了。', options: ['中心', '中餐', '字典'], answer: '中心' },
+        { type: 'fill', sentence: '我还买了___。', options: ['早餐', '中餐', '作文'], answer: '早餐' },
+        { type: 'fill', sentence: '你现在是___。', options: ['组长', '主人', '座位'], answer: '组长' },
+        { type: 'fill', sentence: '今天要写___。', options: ['作文', '照片', '字典'], answer: '作文' },
+        { type: 'fill', sentence: '___！你来得真巧。', options: ['正好', '只要', '重新'], answer: '正好' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '大家___听你的。', options: ['越来越', '早就', '正好'], answer: '越来越' },
+        { type: 'fill', sentence: '___努力就能做到。', options: ['只要', '正好', '重新'], answer: '只要' },
+        { type: 'fill', sentence: '写错了就___写。', options: ['重新', '只要', '早就'], answer: '重新' },
+        { type: 'fill', sentence: '我先用___找出几个生词。', options: ['字典', '作文', '照片'], answer: '字典' },
+        { type: 'fill', sentence: '这些___不够。', options: ['座位', '住房', '主人'], answer: '座位' },
+        { type: 'order', words: ['组长', '你', '是', '现在'], answer: '你现在是组长' },
+        { type: 'order', words: ['只要', '努力', '就能做到'], answer: '只要努力就能做到' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这间___的主人是谁？', options: ['住房', '中心', '座位'], answer: '住房' },
+        { type: 'fill', sentence: '我们要___感谢。', options: ['表示', '重新', '找出'], answer: '表示' },
+        { type: 'fill', sentence: '大家___她为组长。', options: ['称', '表示', '正好'], answer: '称' },
+        { type: 'fill', sentence: '我把这张___放进作文里。', options: ['照片', '字典', '座位'], answer: '照片' },
+        { type: 'translate', prompt: 'Chỉ cần cố gắng là làm được!', answer: '只要努力就能做到！' },
+        { type: 'translate', prompt: 'Mọi người gọi cô ấy là tổ trưởng.', answer: '大家称她为组长。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 52: Tính từ miêu tả (1) — 20 từ
+  // 安静, 安全, 饱, 便宜, 遍, 不错, 不够, 不好意思, 不满, 不同, 不行, 常见, 常用, 大大, 低, 短, 多么, 方便, 感动, 高级
+  // ───────────────────────────────────────────────────────────────────────────
+  52: {
+    id: 52,
+    level: 2,
+    title: 'Tính từ miêu tả (1)',
+    context: 'Cả nhóm tìm một quán ăn mới gần trường để ăn mừng. Mai và Tiểu Mỹ miêu tả quán và món ăn.',
+    vocabPreview: ['安静', '便宜', '不错', '方便', '感动'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Quán ăn gần trường · Buổi trưa', bg: 'cafeteria',
+        cast: ['mai', 'xiaomei'],
+        text: 'Cả nhóm tìm thấy một quán ăn mới yên tĩnh ngay gần cổng trường.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这家店很安静，环境不错！',
+        pinyin: 'Zhè jiā diàn hěn ānjìng, huánjìng búcuò!',
+        meaning: 'Quán này rất yên tĩnh, không gian khá tốt!',
+        expression: 'happy', vocab: ['安静', '不错']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '而且离学校很近，又方便又便宜。',
+        pinyin: 'Érqiě lí xuéxiào hěn jìn, yòu fāngbiàn yòu piányi.',
+        meaning: 'Hơn nữa cách trường rất gần, vừa tiện vừa rẻ.',
+        expression: 'happy', vocab: ['方便', '便宜']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这里很安全，价格也低。这道菜很常见，我们点吧。',
+        pinyin: 'Zhèlǐ hěn ānquán, jiàgé yě dī. Zhè dào cài hěn chángjiàn, wǒmen diǎn ba.',
+        meaning: 'Ở đây rất an toàn, giá cũng thấp. Món này rất thường gặp, chúng ta gọi đi.',
+        expression: 'happy', vocab: ['安全', '低', '常见']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'cafeteria',
+        scene: '📍 Quán ăn',
+        expression: 'curious',
+        q: 'Mai thấy phần ăn ít. Cô ấy muốn nói "Như vậy không đủ no". Nên nói thế nào?',
+        options: [
+          { text: '这样吃不饱，分量不够。', pinyin: 'Zhèyàng chī bù bǎo, fènliàng bú gòu.', meaning: 'Ăn vậy không no, phần ăn không đủ.', correct: true,
+            feedback: 'Đúng! 饱 = no; 不够 = không đủ.' },
+          { text: '这样吃不行，分量不同。', pinyin: 'Zhèyàng chī bù xíng, fènliàng bù tóng.', meaning: 'Ăn vậy không được, phần ăn khác nhau.', correct: false,
+            feedback: '不同 = khác nhau; không hợp với ý "không đủ no".' },
+          { text: '这样吃不错，分量不满。', pinyin: 'Zhèyàng chī búcuò, fènliàng bùmǎn.', meaning: '(Mâu thuẫn)', correct: false,
+            feedback: '不错 = khá tốt (khen), mâu thuẫn với "không đủ".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这样吃不饱，分量不够。再加一份吧，不然不行。',
+        pinyin: 'Zhèyàng chī bù bǎo, fènliàng bú gòu. Zài jiā yí fèn ba, bùrán bùxíng.',
+        meaning: 'Ăn vậy không no, phần ăn không đủ. Thêm một phần đi, không thì không được.',
+        expression: 'curious', vocab: ['饱', '不够', '不行']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"便宜" có nghĩa là gì?',
+            options: ['rẻ', 'yên tĩnh', 'an toàn', 'thấp'],
+            answer: 0
+          },
+          {
+            q: 'Phân biệt: từ nào nghĩa là "no" (đã ăn đủ)?',
+            options: ['饱', '不够', '不满', '不行'],
+            answer: 0
+          },
+          {
+            q: '"不错" có nghĩa là gì?',
+            options: ['khá tốt, không tệ', 'không đủ', 'không được', 'khác nhau'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Quán ăn · Tiếp tục', bg: 'cafeteria',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý đến và ngồi cùng cả nhóm.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这家店是高级餐厅吗？菜单上的字很短，很常用。',
+        pinyin: 'Zhè jiā diàn shì gāojí cāntīng ma? Càidān shàng de zì hěn duǎn, hěn chángyòng.',
+        meaning: 'Quán này là nhà hàng cao cấp à? Chữ trên thực đơn rất ngắn, rất thông dụng.',
+        expression: 'curious', vocab: ['高级', '短', '常用']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '不是高级餐厅，但每道菜都不同，很好吃！',
+        pinyin: 'Bú shì gāojí cāntīng, dàn měi dào cài dōu bùtóng, hěn hǎochī!',
+        meaning: 'Không phải nhà hàng cao cấp, nhưng mỗi món đều khác nhau, rất ngon!',
+        expression: 'happy', vocab: ['不同']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'cafeteria',
+        scene: '📍 Quán ăn',
+        expression: 'happy',
+        q: 'Thầy mời cả nhóm ăn. Tiểu Mỹ muốn cảm thán "Thầy tốt biết bao!". Nên nói thế nào?',
+        options: [
+          { text: '老师多么好啊！', pinyin: 'Lǎoshī duōme hǎo a!', meaning: 'Thầy tốt biết bao!', correct: true,
+            feedback: 'Đúng! 多么 = biết bao, biết mấy (cảm thán).' },
+          { text: '老师不满好啊！', pinyin: 'Lǎoshī bùmǎn hǎo a!', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '不满 = bất mãn, không hài lòng; trái nghĩa với khen.' },
+          { text: '老师大大好啊！', pinyin: 'Lǎoshī dàdà hǎo a!', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '大大 = rất lớn, to lớn; không dùng cảm thán "tốt biết bao".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师多么好啊！我们都很感动，没有人不满。',
+        pinyin: 'Lǎoshī duōme hǎo a! Wǒmen dōu hěn gǎndòng, méiyǒu rén bùmǎn.',
+        meaning: 'Thầy tốt biết bao! Chúng em đều rất cảm động, không ai bất mãn cả.',
+        expression: 'happy', vocab: ['多么', '感动', '不满']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这道菜我吃了好几遍都吃不腻，大大地满足了！不好意思，我又饿了。',
+        pinyin: 'Zhè dào cài wǒ chī le hǎojǐ biàn dōu chī bú nì, dàdà de mǎnzú le! Bù hǎoyìsi, wǒ yòu è le.',
+        meaning: 'Món này tớ ăn mấy lượt rồi mà không ngán, thỏa mãn ghê! Ngại quá, tớ lại đói rồi.',
+        expression: 'happy', vocab: ['遍', '大大', '不好意思']
+      }
+    ],
+    vocab: [
+      { h: '安静', p: 'ānjìng', v: 'yên tĩnh' },
+      { h: '安全', p: 'ānquán', v: 'an toàn' },
+      { h: '饱', p: 'bǎo', v: 'no (đã ăn đủ)' },
+      { h: '便宜', p: 'piányi', v: 'rẻ' },
+      { h: '遍', p: 'biàn', v: 'lượt, lần (làm trọn vẹn)' },
+      { h: '不错', p: 'búcuò', v: 'khá tốt, không tệ' },
+      { h: '不够', p: 'búgòu', v: 'không đủ' },
+      { h: '不好意思', p: 'bù hǎoyìsi', v: 'ngại, ngượng' },
+      { h: '不满', p: 'bùmǎn', v: 'bất mãn, không hài lòng' },
+      { h: '不同', p: 'bùtóng', v: 'khác nhau' },
+      { h: '不行', p: 'bùxíng', v: 'không được' },
+      { h: '常见', p: 'chángjiàn', v: 'thường gặp' },
+      { h: '常用', p: 'chángyòng', v: 'thường dùng, thông dụng' },
+      { h: '大大', p: 'dàdà', v: 'rất, to lớn, đáng kể' },
+      { h: '低', p: 'dī', v: 'thấp' },
+      { h: '短', p: 'duǎn', v: 'ngắn' },
+      { h: '多么', p: 'duōme', v: 'biết bao, biết mấy' },
+      { h: '方便', p: 'fāngbiàn', v: 'tiện lợi' },
+      { h: '感动', p: 'gǎndòng', v: 'cảm động' },
+      { h: '高级', p: 'gāojí', v: 'cao cấp' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '这家店很___。', options: ['安静', '便宜', '不错'], answer: '安静' },
+        { type: 'fill', sentence: '又方便又___。', options: ['便宜', '安全', '高级'], answer: '便宜' },
+        { type: 'fill', sentence: '环境___！', options: ['不错', '不够', '不行'], answer: '不错' },
+        { type: 'fill', sentence: '离学校很近，很___。', options: ['方便', '安静', '低'], answer: '方便' },
+        { type: 'fill', sentence: '这里很___。', options: ['安全', '常见', '短'], answer: '安全' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '这样吃不___，分量不够。', options: ['饱', '满', '行'], answer: '饱' },
+        { type: 'fill', sentence: '分量___。', options: ['不够', '不错', '不同'], answer: '不够' },
+        { type: 'fill', sentence: '这道菜很___。', options: ['常见', '常用', '高级'], answer: '常见' },
+        { type: 'fill', sentence: '价格也___。', options: ['低', '短', '饱'], answer: '低' },
+        { type: 'fill', sentence: '菜单上的字很___。', options: ['短', '低', '饱'], answer: '短' },
+        { type: 'order', words: ['安静', '这家店', '很'], answer: '这家店很安静' },
+        { type: 'order', words: ['方便', '又', '便宜', '又'], answer: '又方便又便宜' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我们都很___。', options: ['感动', '不满', '不行'], answer: '感动' },
+        { type: 'fill', sentence: '老师___好啊！', options: ['多么', '大大', '不满'], answer: '多么' },
+        { type: 'fill', sentence: '这道菜我吃了好几___。', options: ['遍', '低', '短'], answer: '遍' },
+        { type: 'fill', sentence: '这是___餐厅吗？', options: ['高级', '常用', '安全'], answer: '高级' },
+        { type: 'translate', prompt: 'Quán này rất yên tĩnh, không gian khá tốt!', answer: '这家店很安静，环境不错！' },
+        { type: 'translate', prompt: 'Thầy tốt biết bao!', answer: '老师多么好啊！' }
+      ]
+    }
   }
 });

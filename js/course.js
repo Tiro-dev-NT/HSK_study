@@ -1092,8 +1092,10 @@ var Course = {
         '<h2 class="cs-complete-title">Hoàn thành Bài ' + l.id + '! 🎉</h2>' +
         '<div class="cs-xp-badge">+' + xpGain + ' XP</div>' +
         '<p class="cs-complete-msg">Bạn đã học được ' + (l.vocab || []).length + ' từ mới. Từ đã được thêm vào SRS để ôn luyện.</p>' +
+        '<p class="cs-complete-msg" style="margin-top:-4px">📔 Mở <b>Trang chép bài</b> để xem tóm tắt &amp; gợi ý chép vào vở.</p>' +
         '<div class="cs-complete-btns">' +
           (hasNext ? '<button class="cs-btn-primary" onclick="Course.loadLesson(' + nextId + ')">Bài tiếp theo →</button>' : '') +
+          '<button class="cs-btn-secondary" onclick="Handout.open(' + l.id + ')">📔 Trang chép bài</button>' +
           '<button class="cs-btn-secondary" onclick="Router.navigateTo(\'learn\')">← Về Học</button>' +
         '</div>' +
       '</div>';

@@ -70,6 +70,7 @@ var Router = (function() {
     '/typing':          'typing',
     '/topics':          'topics',
     '/course':          'course',
+    '/handout':         'handout',
     '/references':      'references',
     '/mock-exam':       'mock-exam'
   };
@@ -176,7 +177,9 @@ var Router = (function() {
       if (typeof initHSK0Placement === 'function') initHSK0Placement();
     },
     // Nav v2 hub + stub pages (static, no JS init needed)
-    'practice':     function() {},
+    'practice':     function() {
+      if (typeof lhRefreshDueBadges === 'function') lhRefreshDueBadges();
+    },
     'community':    function() {},
     'stories':      function() {},
     'explore':      function() {},
@@ -197,6 +200,9 @@ var Router = (function() {
     },
     'course':       function() {
       if (typeof Course !== 'undefined') Course.init();
+    },
+    'handout':      function() {
+      if (typeof Handout !== 'undefined') Handout.init();
     },
     'references':   function() {},
     'mock-exam':    function() {

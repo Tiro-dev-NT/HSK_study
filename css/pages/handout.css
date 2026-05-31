@@ -1,0 +1,156 @@
+/* ============================================================
+   HANDOUT.CSS — Trang giáo trình bài học (Lesson Handout, Phase P12)
+   "Đọc trên app → tự chép vào vở". Print-friendly A4.
+   Tất cả selector scope dưới .handout-page để không đụng style app.
+   Giữ giao diện "giấy trắng" cố ý (kể cả dark mode) — đây là tài liệu đọc/in.
+   ============================================================ */
+
+.handout-page {
+  --ho-chau-hong: #DC2626;
+  --ho-chau-hong-soft: #FEE2E2;
+  --ho-hoang-kim: #F59E0B;
+  --ho-hoang-kim-soft: #FEF3C7;
+  --ho-thuy-luc: #10B981;
+  --ho-thuy-luc-soft: #D1FAE5;
+  --ho-mac-hac: #1F2937;
+  --ho-border: #E5E7EB;
+  --ho-muted: #6B7280;
+  color: var(--ho-mac-hac);
+  background: #F3F4F6;
+  line-height: 1.6;
+  font-family: 'Segoe UI', 'Noto Sans SC', system-ui, sans-serif;
+}
+.handout-page * { box-sizing: border-box; }
+
+/* Toolbar nổi */
+.handout-page .ho-toolbar {
+  position: fixed; top: 70px; right: 16px;
+  display: flex; gap: 8px; z-index: 90;
+}
+.handout-page .ho-toolbar button {
+  background: #fff; border: 1.5px solid var(--ho-border);
+  padding: 8px 14px; border-radius: 8px; font: inherit;
+  font-size: 13px; font-weight: 600; cursor: pointer; color: var(--ho-mac-hac);
+  box-shadow: 0 2px 8px rgba(0,0,0,.08); transition: all .15s;
+}
+.handout-page .ho-toolbar button:hover { border-color: var(--ho-chau-hong); color: var(--ho-chau-hong); }
+.handout-page .ho-toolbar button.primary { background: var(--ho-chau-hong); color: #fff; border-color: var(--ho-chau-hong); }
+.handout-page .ho-toolbar button.primary:hover { background: #B91C1C; color: #fff; }
+.handout-page .ho-toolbar button.done { background: var(--ho-thuy-luc); border-color: var(--ho-thuy-luc); color: #fff; }
+
+/* Container A4 */
+.handout-page .ho-doc {
+  max-width: 820px; margin: 0 auto; background: #fff;
+  padding: 36px 44px; box-shadow: 0 4px 24px rgba(0,0,0,.06);
+}
+
+.handout-page .ho-breadcrumb { font-size: 12px; color: var(--ho-muted); margin-bottom: 12px; }
+.handout-page .ho-back { background: none; border: none; color: var(--ho-chau-hong); font: inherit; font-size: 12px; cursor: pointer; padding: 0; }
+
+/* Header */
+.handout-page .ho-header {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding-bottom: 18px; border-bottom: 3px solid var(--ho-chau-hong); margin-bottom: 22px;
+}
+.handout-page .ho-header-icon { font-size: 44px; line-height: 1; flex-shrink: 0; }
+.handout-page .ho-header h1 { font-size: 24px; margin: 0 0 4px; font-weight: 800; color: var(--ho-mac-hac); }
+.handout-page .ho-header h1 .ho-no { color: var(--ho-chau-hong); }
+.handout-page .ho-subtitle { color: var(--ho-muted); font-size: 14px; font-style: italic; }
+.handout-page .ho-meta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; font-size: 12px; color: var(--ho-muted); }
+
+/* Objectives */
+.handout-page .ho-objectives {
+  background: var(--ho-thuy-luc-soft); border-left: 4px solid var(--ho-thuy-luc);
+  padding: 14px 18px; border-radius: 6px; margin-bottom: 26px;
+}
+.handout-page .ho-objectives-title { font-weight: 700; color: #065F46; font-size: 14px; margin-bottom: 6px; }
+.handout-page .ho-objectives ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; font-size: 13px; margin: 0; padding: 0; }
+.handout-page .ho-objectives li::before { content: '✓ '; color: var(--ho-thuy-luc); font-weight: 700; }
+
+/* Section */
+.handout-page .ho-section { margin-bottom: 26px; }
+.handout-page .ho-section-h {
+  font-size: 18px; font-weight: 800; color: var(--ho-chau-hong);
+  margin: 0 0 12px; padding-bottom: 6px; border-bottom: 2px dashed var(--ho-chau-hong-soft);
+  display: flex; align-items: center; gap: 8px;
+}
+.handout-page .ho-section-h .ho-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; background: var(--ho-chau-hong); color: #fff;
+  border-radius: 50%; font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+
+/* Story */
+.handout-page .ho-story {
+  font-size: 14px; color: #333; background: #FAFAF9; padding: 14px 18px;
+  border-radius: 6px; border: 1px solid var(--ho-border); font-style: italic;
+}
+
+/* Vocab table */
+.handout-page .ho-vocab-wrap { border: 1px solid var(--ho-border); border-radius: 8px; overflow: hidden; }
+.handout-page table.ho-vocab { width: 100%; border-collapse: collapse; font-size: 14px; }
+.handout-page table.ho-vocab thead { background: var(--ho-chau-hong); color: #fff; }
+.handout-page table.ho-vocab th { padding: 10px 12px; font-weight: 700; text-align: left; font-size: 13px; }
+.handout-page table.ho-vocab th:first-child { width: 40px; text-align: center; }
+.handout-page table.ho-vocab td { padding: 9px 12px; border-top: 1px solid var(--ho-border); }
+.handout-page table.ho-vocab td:first-child { text-align: center; color: var(--ho-muted); font-weight: 600; }
+.handout-page table.ho-vocab .hz { font-family: 'Noto Sans SC', 'SimSun', serif; font-size: 20px; font-weight: 700; color: var(--ho-mac-hac); }
+.handout-page table.ho-vocab .py { color: var(--ho-thuy-luc); font-weight: 600; font-size: 13px; }
+.handout-page table.ho-vocab tbody tr:nth-child(even) { background: #FAFAF9; }
+.handout-page table.ho-vocab tbody tr.hl { background: var(--ho-hoang-kim-soft) !important; }
+.handout-page table.ho-vocab tbody tr.hl td:first-child::after { content: ' 🔥'; }
+
+/* Dialog */
+.handout-page .ho-dialog { background: #fff; border: 1px solid var(--ho-border); border-radius: 8px; overflow: hidden; }
+.handout-page .ho-dl { padding: 12px 18px; border-bottom: 1px solid var(--ho-border); display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: start; }
+.handout-page .ho-dl:last-child { border-bottom: none; }
+.handout-page .ho-dl.mai { background: #FEF2F2; }
+.handout-page .ho-dl .ho-spk { font-weight: 700; font-size: 13px; color: var(--ho-chau-hong); }
+.handout-page .ho-dl:not(.mai) .ho-spk { color: var(--ho-thuy-luc); }
+.handout-page .ho-zh { font-family: 'Noto Sans SC', 'SimSun', serif; font-size: 17px; color: var(--ho-mac-hac); margin-bottom: 2px; }
+.handout-page .ho-py { color: var(--ho-thuy-luc); font-size: 12px; margin-bottom: 2px; }
+.handout-page .ho-vi { color: var(--ho-muted); font-size: 12px; font-style: italic; }
+
+/* Mascot tip */
+.handout-page .ho-tip { background: #fff; border: 2px solid var(--ho-hoang-kim); border-radius: 12px; padding: 14px 18px; display: flex; gap: 14px; align-items: flex-start; margin: 22px 0; }
+.handout-page .ho-tip .ho-tip-ic { font-size: 30px; flex-shrink: 0; }
+.handout-page .ho-tip .ho-tip-tx { font-size: 13px; color: #555; }
+.handout-page .ho-tip .ho-tip-tx strong { color: var(--ho-chau-hong); }
+
+/* Copy guide */
+.handout-page .ho-guide { background: var(--ho-chau-hong-soft); border: 2px dashed var(--ho-chau-hong); border-radius: 8px; padding: 16px 20px; }
+.handout-page .ho-guide-title { font-weight: 800; color: var(--ho-chau-hong); font-size: 15px; margin-bottom: 10px; }
+.handout-page .ho-guide ul { list-style: none; margin: 0; padding: 0; }
+.handout-page .ho-guide li { padding: 9px 0; border-bottom: 1px dotted #FCA5A5; display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+.handout-page .ho-guide li:last-child { border-bottom: none; }
+.handout-page .ho-guide .ho-check { width: 16px; height: 16px; border: 1.5px solid var(--ho-chau-hong); border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
+.handout-page .ho-guide strong { color: var(--ho-chau-hong); }
+
+/* Footer */
+.handout-page .ho-footer { margin-top: 30px; padding-top: 16px; border-top: 1px dashed var(--ho-border); display: flex; justify-content: space-between; font-size: 12px; color: var(--ho-muted); }
+.handout-page .ho-footer a, .handout-page .ho-next { color: var(--ho-chau-hong); text-decoration: none; background: none; border: none; font: inherit; cursor: pointer; }
+
+/* Toast */
+.handout-page .ho-toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--ho-mac-hac); color: #fff; padding: 10px 20px;
+  border-radius: 8px; font-size: 13px; opacity: 0; transition: all .3s; z-index: 200;
+}
+.handout-page .ho-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* Print A4 */
+@media print {
+  .handout-page { background: #fff; }
+  .handout-page .ho-toolbar, .handout-page .ho-toast, .handout-page .ho-breadcrumb { display: none !important; }
+  .handout-page .ho-doc { box-shadow: none; max-width: 100%; padding: 0; }
+  @page { size: A4; margin: 15mm; }
+  .handout-page .ho-section, .handout-page .ho-vocab-wrap, .handout-page .ho-dialog { page-break-inside: avoid; }
+}
+
+@media (max-width: 768px) {
+  .handout-page .ho-doc { padding: 20px; }
+  .handout-page .ho-objectives ul { grid-template-columns: 1fr; }
+  .handout-page .ho-header { flex-direction: column; }
+  .handout-page .ho-toolbar { top: auto; bottom: 12px; right: 12px; left: 12px; justify-content: center; }
+}

@@ -170,16 +170,16 @@ var VocabImport = (function() {
     items.forEach(function(it) {
       var icon = it.ok ? (it.isDup ? '⏭️' : '✅') : '❌';
       var extra = '';
-      if (it.errors.length) extra += '<div class="vi-word-error">' + it.errors.join('; ') + '</div>';
-      if (it.warnings.length) extra += '<div class="vi-word-warn">⚠ ' + it.warnings.join('; ') + '</div>';
+      if (it.errors.length) extra += '<div class="vi-word-error">' + escapeHtml(it.errors.join('; ')) + '</div>';
+      if (it.warnings.length) extra += '<div class="vi-word-warn">⚠ ' + escapeHtml(it.warnings.join('; ')) + '</div>';
       if (it.isDup) extra += '<div class="vi-word-skip">Đã có trong kho từ — bỏ qua</div>';
 
       html += '<div class="vi-preview-item">' +
         '<span class="vi-status">' + icon + '</span>' +
         '<div class="vi-word-info">' +
-          '<span class="vi-word-hanzi">' + (it.word.h || '?') + '</span>' +
-          '<span class="vi-word-pinyin">' + (it.word.p || '') + '</span>' +
-          '<div class="vi-word-meaning">' + (it.word.v || '') + ' / ' + (it.word.e || '') + '</div>' +
+          '<span class="vi-word-hanzi">' + escapeHtml(it.word.h || '?') + '</span>' +
+          '<span class="vi-word-pinyin">' + escapeHtml(it.word.p || '') + '</span>' +
+          '<div class="vi-word-meaning">' + escapeHtml(it.word.v || '') + ' / ' + escapeHtml(it.word.e || '') + '</div>' +
           extra +
         '</div>' +
       '</div>';

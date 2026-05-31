@@ -257,7 +257,7 @@ function deckCardHTML(deck, showMenu = false) {
     ${showMenu ? `<button class="deck-card-menu" data-id="${deck.id}">⋮</button>` : ''}
     <div class="deck-card-body">
       <div class="deck-card-icon">${deck.icon}</div>
-      <div class="deck-card-title">${deck.title}</div>
+      <div class="deck-card-title">${escapeHtml(deck.title)}</div>
       <div class="deck-card-count">${total} từ</div>
       ${deck.isSystem ? `<div class="deck-srs-badges">${badge}</div>` : ''}
       <div class="deck-progress-bar"><div class="deck-progress-fill" style="width:${prog.pct}%"></div></div>
@@ -628,7 +628,7 @@ function renderVaultDeckList() {
     <div class="vault-deck-item">
       <div class="vdi-icon">${d.icon}</div>
       <div class="vdi-info">
-        <div class="vdi-title">${d.title}</div>
+        <div class="vdi-title">${escapeHtml(d.title)}</div>
         <div class="vdi-meta">${d.words.length} từ · Tạo: ${new Date(d.createdAt).toLocaleDateString('vi-VN')}</div>
       </div>
       <div class="vdi-actions">
@@ -668,9 +668,9 @@ function renderEditWordsList() {
   count.textContent = deck.words.length;
   list.innerHTML = deck.words.map(w => `
     <div class="edit-word-chip">
-      <span class="ewc-hanzi">${w.h}</span>
-      <span class="ewc-meaning">${w.v}</span>
-      <button class="ewc-del" data-h="${w.h}">✕</button>
+      <span class="ewc-hanzi">${escapeHtml(w.h)}</span>
+      <span class="ewc-meaning">${escapeHtml(w.v)}</span>
+      <button class="ewc-del" data-h="${escapeAttr(w.h)}">✕</button>
     </div>
   `).join('') || '<span style="color:var(--text3);font-size:13px">Chưa có từ nào</span>';
   list.querySelectorAll('.ewc-del').forEach(btn => {
@@ -688,9 +688,9 @@ function searchWordsForEditDeck(q) {
   res.innerHTML = words.map(w => {
     const inDeck = decks[editingDeckId]?.words.find(x => x.h === w.h);
     return `<div class="edit-search-item">
-      <span class="esi-hanzi">${w.h}</span>
-      <div class="esi-info"><div class="esi-pinyin">${w.p}</div><div class="esi-meaning">${w.v}</div></div>
-      <button class="esi-add ${inDeck ? 'added' : ''}" data-h="${w.h}">${inDeck ? '✓' : '+'}</button>
+      <span class="esi-hanzi">${escapeHtml(w.h)}</span>
+      <div class="esi-info"><div class="esi-pinyin">${escapeHtml(w.p)}</div><div class="esi-meaning">${escapeHtml(w.v)}</div></div>
+      <button class="esi-add ${inDeck ? 'added' : ''}" data-h="${escapeAttr(w.h)}">${inDeck ? '✓' : '+'}</button>
     </div>`;
   }).join('');
   res.querySelectorAll('.esi-add').forEach((btn, i) => {
@@ -725,7 +725,7 @@ function openAddToDeckPopup(word) {
     ? mine.map(d => {
         const has = d.words.find(w => w.h === word.h);
         return `<div class="adp-item ${has ? 'in-deck' : ''}" data-id="${d.id}">
-          <span>${d.icon} ${d.title}</span>
+          <span>${d.icon} ${escapeHtml(d.title)}</span>
           <span class="adp-check">${has ? '✓' : ''}</span>
         </div>`;
       }).join('')

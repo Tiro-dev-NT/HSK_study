@@ -84,7 +84,7 @@ var MyVocab = (function() {
     var html = '<span style="color:var(--text2);font-size:12px;margin-right:4px">Tags:</span>';
     tags.forEach(function(tag) {
       var active = _activeTag === tag ? ' mv-chip-active' : '';
-      html += '<button class="mv-chip' + active + '" data-tag="' + tag + '">' + tag + '</button>';
+      html += '<button class="mv-chip' + active + '" data-tag="' + escapeAttr(tag) + '">' + escapeHtml(tag) + '</button>';
     });
     if (_activeTag) {
       html += '<button class="mv-chip mv-chip-clear" data-tag="">✕ Xóa filter</button>';
@@ -120,7 +120,7 @@ var MyVocab = (function() {
       var tagsHtml = '';
       if (w.tags && w.tags.length > 0) {
         w.tags.forEach(function(t) {
-          tagsHtml += '<span class="mv-card-tag">' + t + '</span>';
+          tagsHtml += '<span class="mv-card-tag">' + escapeHtml(t) + '</span>';
         });
       }
       var levelBadge = w.level ? '<span class="mv-level-badge">HSK ' + w.level + '</span>' : '';
@@ -179,7 +179,7 @@ var MyVocab = (function() {
 
     var html = '';
     filtered.forEach(function(t) {
-      html += '<button class="mv-suggest-btn" data-tag="' + t + '">' + t + '</button>';
+      html += '<button class="mv-suggest-btn" data-tag="' + escapeAttr(t) + '">' + escapeHtml(t) + '</button>';
     });
     container.innerHTML = html;
   }

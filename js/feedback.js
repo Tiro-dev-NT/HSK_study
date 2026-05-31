@@ -82,10 +82,10 @@ var Feedback = {
         return '<div class="fb-hist-item">' +
           '<div class="fb-hist-header">' +
             '<span>' + '★'.repeat(fb.rating) + '☆'.repeat(5 - fb.rating) + '</span>' +
-            '<span class="fb-hist-cat">' + (catIcon[fb.category] || '📦') + ' ' + fb.category + '</span>' +
-            '<span class="fb-hist-date">' + fb.date + ' ' + fb.time + '</span>' +
+            '<span class="fb-hist-cat">' + (catIcon[fb.category] || '📦') + ' ' + escapeHtml(fb.category) + '</span>' +
+            '<span class="fb-hist-date">' + escapeHtml(fb.date) + ' ' + escapeHtml(fb.time) + '</span>' +
           '</div>' +
-          '<div class="fb-hist-msg">' + fb.message + '</div>' +
+          '<div class="fb-hist-msg">' + escapeHtml(fb.message) + '</div>' +
         '</div>';
       }).join('');
   },

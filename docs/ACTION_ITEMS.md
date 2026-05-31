@@ -7,12 +7,8 @@
 > dung do **user khác** nhập → nếu dùng `innerHTML` chuỗi thô → **stored XSS** →
 > kẻ tấn công đọc `localStorage` lấy session token trong `hsk_user_cache` → chiếm tài khoản.
 
-- ☐ **BLOCKER cho Phase V** — Trước khi build bất kỳ feature nào render nội dung user
-  (V2 Sảnh Trà chat · V3 Lưu Ý Hay mnemonics · V4 Tủ Sách deck marketplace ·
-  Q3.7 Trang Tri Ân feedback wall): viết helper `escapeHtml(str)` và dùng cho MỌI
-  field do user nhập, hoặc render bằng `textContent` thay vì `innerHTML`.
-- ☐ Audit nhanh các nơi đã nhận input user hiện tại (feedback form, deck name, tên hiển thị)
-  xem có render lại bằng `innerHTML` ở đâu không.
+- ☑ **BLOCKER cho Phase V** DONE 2026-05-31 — Viết helper `escapeHtml(str)` + `escapeAttr(str)` trong `js/security.js`, load trước mọi module trong `index.html`. Dùng cho MỌI field do user nhập khi render bằng innerHTML.
+- ☑ Audit nhanh các nơi đã nhận input user hiện tại DONE 2026-05-31 — Đã escape: feedback message/category/date (`js/feedback.js`), deck title (`js/decks.js` 6 điểm), tag names (`js/my-vocab.js` 3 điểm), vocab import preview (`js/vocab-import.js`), admin user display_name/email (`js/admin/users.js`).
 - 📌 Note: localStorage tự thân không "bị hack" cho Pro/tiền (đã enforce server-side:
   `user_subscriptions`, PayOS webhook, `game_sessions`, AI credit RPC). Rủi ro DUY NHẤT
   đáng kể là XSS → trộm session. → escape user content là việc bắt buộc trước Phase V.

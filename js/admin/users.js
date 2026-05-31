@@ -95,14 +95,14 @@ var AdminUsers = (function() {
     var rows = page.map(function(u) {
       var plan  = u.plan || 'free';
       var planBadge = plan === 'pro'
-        ? '<span class="adm-badge badge-pro">💎 PRO' + (u.duration ? ' · ' + u.duration : '') + '</span>'
+        ? '<span class="adm-badge badge-pro">💎 PRO' + (u.duration ? ' · ' + escapeHtml(u.duration) : '') + '</span>'
         : '<span class="adm-badge badge-free">Free</span>';
       var expires = u.duration === 'lifetime' ? '∞'
         : u.expires_at ? new Date(u.expires_at).toLocaleDateString('vi-VN') : '—';
       var sel = _checked[u.user_id] ? ' adm-selected' : '';
-      return '<tr class="adm-clickable' + sel + '" data-uid="' + u.user_id + '">' +
-        '<td style="width:32px"><input type="checkbox" class="user-chk" data-uid="' + u.user_id + '"' + (sel ? ' checked' : '') + '></td>' +
-        '<td><div style="font-weight:700;font-size:12px">' + (u.display_name || '') + '</div><div style="font-size:11px;color:#6B7280">' + u.email + '</div></td>' +
+      return '<tr class="adm-clickable' + sel + '" data-uid="' + escapeAttr(u.user_id) + '">' +
+        '<td style="width:32px"><input type="checkbox" class="user-chk" data-uid="' + escapeAttr(u.user_id) + '"' + (sel ? ' checked' : '') + '></td>' +
+        '<td><div style="font-weight:700;font-size:12px">' + escapeHtml(u.display_name || '') + '</div><div style="font-size:11px;color:#6B7280">' + escapeHtml(u.email) + '</div></td>' +
         '<td>' + planBadge + '</td>' +
         '<td>' + (u.streak_days || 0) + ' 🔥</td>' +
         '<td>' + Admin.relTime(u.last_active) + '</td>' +
@@ -110,7 +110,7 @@ var AdminUsers = (function() {
         '<td>' + Admin.fmt(u.token_balance) + '</td>' +
         '<td>' + expires + '</td>' +
         '<td>' + new Date(u.joined_at || u.created_at || 0).toLocaleDateString('vi-VN') + '</td>' +
-        '<td><button class="adm-btn-ghost" data-uid="' + u.user_id + '" onclick="AdminUsers.openPanel(\'' + u.user_id + '\')">⋯</button></td>' +
+        '<td><button class="adm-btn-ghost" data-uid="' + escapeAttr(u.user_id) + '" onclick="AdminUsers.openPanel(\'' + escapeAttr(u.user_id) + '\')">⋯</button></td>' +
       '</tr>';
     }).join('');
 

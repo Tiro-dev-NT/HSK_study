@@ -395,8 +395,10 @@ var Course = {
         var imgSrc = (k === 'mai') ? Course._maiImg(s.expression) : (c.img || '');
         return '<div class="cs-vn-char ' + (active ? 'active' : 'inactive') + '" style="--char-color:' + c.color + '">' +
           '<div class="cs-vn-avatar">' +
-            '<span class="cs-vn-avatar-emoji">' + c.emoji + '</span>' +
-            (imgSrc ? '<img src="' + imgSrc + '" alt="" class="cs-vn-avatar-img" onerror="this.style.display=\'none\'">' : '') +
+            (imgSrc
+              ? '<img src="' + imgSrc + '" alt="" class="cs-vn-avatar-img" onerror="this.style.display=\'none\';var e=this.parentNode.querySelector(\'.cs-vn-avatar-emoji\');if(e)e.style.display=\'\'">' +
+                '<span class="cs-vn-avatar-emoji" style="display:none">' + c.emoji + '</span>'
+              : '<span class="cs-vn-avatar-emoji">' + c.emoji + '</span>') +
           '</div>' +
           '<div class="cs-vn-char-name">' + c.name.split(/[\s(]/)[0] + '</div>' +
           (c.role ? '<div class="cs-vn-char-role">' + c.role + '</div>' : '') +
@@ -618,8 +620,10 @@ var Course = {
       var imgSrc = (k === 'mai') ? Course._maiImg(s.expression) : (c.img || '');
       return '<div class="cs-vn-char ' + (active ? 'active' : 'inactive') + '" style="--char-color:' + c.color + '">' +
         '<div class="cs-vn-avatar">' +
-          '<span class="cs-vn-avatar-emoji">' + c.emoji + '</span>' +
-          (imgSrc ? '<img src="' + imgSrc + '" alt="" class="cs-vn-avatar-img" onerror="this.style.display=\'none\'">' : '') +
+          (imgSrc
+            ? '<img src="' + imgSrc + '" alt="" class="cs-vn-avatar-img" onerror="this.style.display=\'none\';var e=this.parentNode.querySelector(\'.cs-vn-avatar-emoji\');if(e)e.style.display=\'\'">' +
+              '<span class="cs-vn-avatar-emoji" style="display:none">' + c.emoji + '</span>'
+            : '<span class="cs-vn-avatar-emoji">' + c.emoji + '</span>') +
         '</div>' +
         '<div class="cs-vn-char-name">' + c.name.split(/[\s(]/)[0] + '</div>' +
         (c.role ? '<div class="cs-vn-char-role">' + c.role + '</div>' : '') +

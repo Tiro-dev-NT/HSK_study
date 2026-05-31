@@ -36,6 +36,12 @@ function learnHubOpenDeck(deckId) {
   if (typeof openDeckDetail === 'function') openDeckDetail(deckId);
 }
 
+// ── Toggle accordion "Kho từ vựng theo cấp" ───────────
+function lhToggleVocabGroup() {
+  var g = document.getElementById('lhVocabGroup');
+  if (g) g.classList.toggle('open');
+}
+
 // ── Section 1: Continue strip ─────────────────────────
 function _lhRenderContinue() {
   var nameEl = document.getElementById('lhContName');
@@ -245,49 +251,59 @@ function _lhRenderTimeline() {
     var courseActive = (courseDone > 0 && courseDone < courseTotal);
     var courseComplete = (courseDone >= courseTotal);
 
-    var cls = 'lh-tl-node';
-    if (courseActive) cls += ' lh-tl-node--active';
-    else if (courseComplete) cls += ' lh-tl-node--done';
+    // Truyện Mai = XƯƠNG SỐNG lộ trình (giáo trình tuần tự). Chưa xong = bước hiện tại.
+    var courseCurrent = !courseComplete;
+    var cls = 'lh-tl-node lh-tl-node--spine';
+    if (courseCurrent) cls += ' lh-tl-node--active';
+    else cls += ' lh-tl-node--done';
 
     html += '<button class="' + cls + '" onclick="Router.navigateTo(\'course\')">';
     html += '<div class="lh-tl-icon">📖</div>';
     html += '<div class="lh-tl-body">';
-    html += '<div class="lh-tl-name">Truyện Mai</div>';
+    html += '<div class="lh-tl-name">Truyện Mai <span class="lh-spine-tag">Giáo trình chính</span></div>';
     html += '<div class="lh-tl-progress"><div class="lh-tl-bar" style="width:' + coursePct + '%"></div></div>';
-    html += '<div class="lh-tl-sub">' + courseDone + ' / ' + courseTotal + ' bài';
-    if (courseActive) html += ' &nbsp;<span class="lh-here-chip">Đang học</span>';
+    html += '<div class="lh-tl-sub">' + courseDone + ' / ' + courseTotal + ' bài · học tuần tự';
+    if (courseCurrent) html += ' &nbsp;<span class="lh-here-chip">Bạn ở đây</span>';
     html += '</div></div>';
-    if (courseActive) html += '<div class="lh-tl-arrow-active">▶</div>';
+    if (courseCurrent) html += '<div class="lh-tl-arrow-active">▶</div>';
     html += '</button><div class="lh-tl-connector"></div>';
   }
 
-  // HSK 1-N
+  // ── Kho từ vựng theo cấp — gom 1 khối off-path, mặc định thu gọn ──
+  // (Từ vựng = material tra cứu/ôn, KHÔNG phải bước tuần tự → tách khỏi spine)
+  var vTotal = 0, vLearned = 0;
+  for (var lc = 1; lc <= count; lc++) {
+    var wn = (hskData[lc] || []).length;
+    vTotal += wn;
+    vLearned += Math.min((progress[lc] || []).length, wn);
+  }
+  html += '<div class="lh-vocab-group" id="lhVocabGroup">';
+  html += '<button class="lh-vocab-head" onclick="lhToggleVocabGroup()">';
+  html += '<div class="lh-tl-icon">📚</div>';
+  html += '<div class="lh-tl-body">';
+  html += '<div class="lh-tl-name">Kho từ vựng theo cấp</div>';
+  html += '<div class="lh-tl-sub">' + count + ' cấp · ' + vLearned + ' / ' + vTotal + ' từ · tra cứu & ôn</div>';
+  html += '</div>';
+  html += '<div class="lh-vocab-chevron">▾</div>';
+  html += '</button>';
+  html += '<div class="lh-vocab-list">';
   for (var lv = 1; lv <= count; lv++) {
     var words   = hskData[lv] || [];
     var total   = words.length;
-    var learned = (progress[lv] || []).length;
-    var pct     = total > 0 ? Math.round(Math.min(learned, total) / total * 100) : 0;
+    var learned = Math.min((progress[lv] || []).length, total);
+    var pct     = total > 0 ? Math.round(learned / total * 100) : 0;
     var info    = levelInfo[lv] || { icon: '📕', label: 'HSK ' + lv };
-    var active  = (lv === curLevel);
-    var done    = (pct >= 100);
-
-    var cls = 'lh-tl-node';
-    if (active) cls += ' lh-tl-node--active';
-    else if (done) cls += ' lh-tl-node--done';
-
-    var id = 'sys_hsk' + lv;
-    html += '<button class="' + cls + '" onclick="learnHubOpenDeck(\'' + id + '\')">';
-    html += '<div class="lh-tl-icon">' + (info.icon || '📕') + '</div>';
-    html += '<div class="lh-tl-body">';
-    html += '<div class="lh-tl-name">' + (info.label || ('HSK ' + lv)) + '</div>';
-    html += '<div class="lh-tl-progress"><div class="lh-tl-bar" style="width:' + pct + '%"></div></div>';
-    html += '<div class="lh-tl-sub">' + Math.min(learned, total) + ' / ' + total + ' từ';
-    if (active) html += ' &nbsp;<span class="lh-here-chip">Bạn ở đây</span>';
-    html += '</div></div>';
-    if (active) html += '<div class="lh-tl-arrow-active">▶</div>';
+    var isCur   = (lv === curLevel);
+    var id      = 'sys_hsk' + lv;
+    html += '<button class="lh-vocab-row' + (isCur ? ' lh-vocab-row--cur' : '') + '" onclick="learnHubOpenDeck(\'' + id + '\')">';
+    html += '<span class="lh-vocab-ic">' + (info.icon || '📕') + '</span>';
+    html += '<span class="lh-vocab-nm">' + (info.label || ('HSK ' + lv)) + '</span>';
+    html += '<span class="lh-vocab-mini"><span class="lh-vocab-mini-bar" style="width:' + pct + '%"></span></span>';
+    html += '<span class="lh-vocab-cnt">' + learned + '/' + total + (isCur ? ' · đang ôn' : '') + '</span>';
     html += '</button>';
-    if (lv < count) html += '<div class="lh-tl-connector"></div>';
   }
+  html += '</div>'; // .lh-vocab-list
+  html += '</div>'; // .lh-vocab-group
 
   html += '<button class="lh-tl-map-link" onclick="Router.navigateTo(\'ban-do-hsk\')">';
   html += '🗺️ Xem dạng Bản đồ HSK →</button>';

@@ -484,6 +484,55 @@
 }
 .lh-tl-map-link:hover { background: var(--surface2); border-style: solid; }
 
+/* Spine (Truyện Mai = giáo trình chính) — nổi bật hơn node thường */
+.lh-tl-node--spine { border-width: 2px; }
+.lh-tl-node--spine.lh-tl-node--active {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 10%, var(--surface));
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--primary) 14%, transparent);
+}
+.lh-spine-tag {
+  display: inline-block; margin-left: 6px; vertical-align: middle;
+  font-size: 10px; font-weight: 700; letter-spacing: .02em;
+  color: var(--primary); background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+  padding: 1px 7px; border-radius: 20px;
+}
+
+/* Kho từ vựng theo cấp — accordion off-path, thu gọn mặc định */
+.lh-vocab-group {
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--surface); overflow: hidden;
+}
+.lh-vocab-head {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 12px 14px; background: none; border: none; cursor: pointer;
+  font: inherit; text-align: left; color: var(--text); transition: .15s;
+}
+.lh-vocab-head:hover { background: var(--surface2); }
+.lh-vocab-chevron { color: var(--text2); font-size: 14px; transition: transform .2s; }
+.lh-vocab-group.open .lh-vocab-chevron { transform: rotate(180deg); }
+.lh-vocab-list {
+  display: none; padding: 0 8px 8px;
+  border-top: 1px solid var(--border);
+}
+.lh-vocab-group.open .lh-vocab-list { display: block; }
+.lh-vocab-row {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 9px 8px; background: none; border: none; cursor: pointer;
+  font: inherit; text-align: left; color: var(--text);
+  border-radius: 8px; transition: .15s;
+}
+.lh-vocab-row:hover { background: var(--surface2); }
+.lh-vocab-row--cur { background: color-mix(in srgb, var(--primary) 7%, var(--surface)); }
+.lh-vocab-ic { font-size: 17px; min-width: 24px; text-align: center; }
+.lh-vocab-nm { font-size: 13px; font-weight: 600; min-width: 78px; }
+.lh-vocab-mini {
+  flex: 1; height: 4px; background: var(--surface2);
+  border-radius: 2px; overflow: hidden; min-width: 40px;
+}
+.lh-vocab-mini-bar { display: block; height: 100%; background: var(--primary); border-radius: 2px; }
+.lh-vocab-cnt { font-size: 11px; color: var(--text2); white-space: nowrap; }
+
 /* Resources section — 2-tier layout */
 .lh-resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
 .lh-resource-card {

@@ -4372,5 +4372,1049 @@ Object.assign(COURSE_DATA, {
         { type: 'translate', prompt: 'Thầy tốt biết bao!', answer: '老师多么好啊！' }
       ]
     }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 53: Tính từ miêu tả (2) — 20 từ
+  // 公平, 故意, 合适, 黑, 红, 湖, 黄, 急, 加, 假, 健康, 近, 经常, 开心, 科学, 可爱, 可怕, 克, 快乐, 拉
+  // ───────────────────────────────────────────────────────────────────────────
+  53: {
+    id: 53,
+    level: 2,
+    title: 'Tính từ miêu tả (2)',
+    context: 'Cuối tuần, cả nhóm đi dạo ở hồ gần trường. Họ ngắm cảnh, nói về sức khỏe và tâm trạng vui vẻ.',
+    vocabPreview: ['健康', '开心', '可爱', '合适', '快乐'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Bên hồ gần trường · Cuối tuần', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Cuối tuần, Mai và Tiểu Mỹ đi dạo bên hồ gần trường.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '周末去湖边走走吧，离这儿很近！',
+        pinyin: 'Zhōumò qù húbiān zǒuzou ba, lí zhèr hěn jìn!',
+        meaning: 'Cuối tuần ra bờ hồ đi dạo đi, cách đây rất gần!',
+        expression: 'happy', vocab: ['湖', '近']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '好啊！这样对健康好，我经常运动。',
+        pinyin: 'Hǎo a! Zhèyàng duì jiànkāng hǎo, wǒ jīngcháng yùndòng.',
+        meaning: 'Được! Như vậy tốt cho sức khỏe, tớ thường xuyên vận động.',
+        expression: 'happy', vocab: ['健康', '经常']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '你看那只猫，又黑又可爱！旁边还有红色和黄色的花。',
+        pinyin: 'Nǐ kàn nà zhī māo, yòu hēi yòu kě’ài! Pángbiān hái yǒu hóngsè hé huángsè de huā.',
+        meaning: 'Cậu xem con mèo kia, vừa đen vừa đáng yêu! Bên cạnh còn có hoa màu đỏ và màu vàng.',
+        expression: 'happy', vocab: ['黑', '可爱', '红', '黄']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Bên hồ',
+        expression: 'curious',
+        q: 'Tiểu Mỹ đi quá nhanh. Mai muốn nói "Đừng vội, từ từ thôi". Nên nói thế nào?',
+        options: [
+          { text: '别急，慢慢来。', pinyin: 'Bié jí, mànman lái.', meaning: 'Đừng vội, từ từ thôi.', correct: true,
+            feedback: 'Đúng! 急 = vội, gấp.' },
+          { text: '别加，慢慢来。', pinyin: 'Bié jiā, mànman lái.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '加 = thêm, cộng; không phải "vội".' },
+          { text: '别假，慢慢来。', pinyin: 'Bié jiǎ, mànman lái.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '假 = giả; không phải "vội".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '别急，慢慢来。今天我很开心，很快乐！',
+        pinyin: 'Bié jí, mànman lái. Jīntiān wǒ hěn kāixīn, hěn kuàilè!',
+        meaning: 'Đừng vội, từ từ thôi. Hôm nay tớ rất vui, rất hạnh phúc!',
+        expression: 'happy', vocab: ['急', '开心', '快乐']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"健康" có nghĩa là gì?',
+            options: ['sức khỏe, khỏe mạnh', 'vui vẻ', 'đáng yêu', 'gần'],
+            answer: 0
+          },
+          {
+            q: '"别急" có nghĩa là gì?',
+            options: ['đừng vội', 'đừng thêm', 'đừng giả', 'đừng kéo'],
+            answer: 0
+          },
+          {
+            q: '"可爱" có nghĩa là gì?',
+            options: ['đáng yêu', 'đáng sợ', 'khoa học', 'công bằng'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Bên hồ · Tiếp tục', bg: 'street',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý cũng ra hồ và trò chuyện cùng hai bạn.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这个安排很合适，也很公平，大家都满意。',
+        pinyin: 'Zhège ānpái hěn héshì, yě hěn gōngpíng, dàjiā dōu mǎnyì.',
+        meaning: 'Sắp xếp này rất hợp lý, cũng rất công bằng, mọi người đều hài lòng.',
+        expression: 'happy', vocab: ['合适', '公平']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师，他不是故意的，请别生气。',
+        pinyin: 'Lǎoshī, tā bú shì gùyì de, qǐng bié shēngqì.',
+        meaning: 'Thầy ơi, bạn ấy không cố ý đâu, xin đừng giận.',
+        expression: 'focused', vocab: ['故意']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'], bg: 'street',
+        scene: '📍 Bên hồ',
+        expression: 'curious',
+        q: 'Mai muốn nói "Bộ phim đó thật đáng sợ". Nên dùng từ nào?',
+        options: [
+          { text: '那个电影真可怕！', pinyin: 'Nàge diànyǐng zhēn kěpà!', meaning: 'Bộ phim đó thật đáng sợ!', correct: true,
+            feedback: 'Đúng! 可怕 = đáng sợ.' },
+          { text: '那个电影真可爱！', pinyin: 'Nàge diànyǐng zhēn kě’ài!', meaning: 'Bộ phim đó thật đáng yêu!', correct: false,
+            feedback: '可爱 = đáng yêu, không phải "đáng sợ".' },
+          { text: '那个电影真科学！', pinyin: 'Nàge diànyǐng zhēn kēxué!', meaning: '(Không hợp lý)', correct: false,
+            feedback: '科学 = khoa học, không phải "đáng sợ".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '那个电影真可怕！但这是科学知识，不是假的。你帮我拉一下门，再加一克糖。',
+        pinyin: 'Nàge diànyǐng zhēn kěpà! Dàn zhè shì kēxué zhīshi, bú shì jiǎ de. Nǐ bāng wǒ lā yíxià mén, zài jiā yí kè táng.',
+        meaning: 'Bộ phim đó thật đáng sợ! Nhưng đây là kiến thức khoa học, không phải giả. Cậu kéo giúp tớ cánh cửa, thêm một gram đường nữa.',
+        expression: 'curious', vocab: ['可怕', '科学', '假', '拉', '加', '克']
+      }
+    ],
+    vocab: [
+      { h: '公平', p: 'gōngpíng', v: 'công bằng' },
+      { h: '故意', p: 'gùyì', v: 'cố ý' },
+      { h: '合适', p: 'héshì', v: 'hợp, thích hợp' },
+      { h: '黑', p: 'hēi', v: 'đen' },
+      { h: '红', p: 'hóng', v: 'đỏ' },
+      { h: '湖', p: 'hú', v: 'hồ' },
+      { h: '黄', p: 'huáng', v: 'vàng' },
+      { h: '急', p: 'jí', v: 'vội, gấp' },
+      { h: '加', p: 'jiā', v: 'thêm, cộng' },
+      { h: '假', p: 'jiǎ', v: 'giả' },
+      { h: '健康', p: 'jiànkāng', v: 'sức khỏe, khỏe mạnh' },
+      { h: '近', p: 'jìn', v: 'gần' },
+      { h: '经常', p: 'jīngcháng', v: 'thường xuyên' },
+      { h: '开心', p: 'kāixīn', v: 'vui, vui vẻ' },
+      { h: '科学', p: 'kēxué', v: 'khoa học' },
+      { h: '可爱', p: 'kě’ài', v: 'đáng yêu' },
+      { h: '可怕', p: 'kěpà', v: 'đáng sợ' },
+      { h: '克', p: 'kè', v: 'gram' },
+      { h: '快乐', p: 'kuàilè', v: 'vui vẻ, hạnh phúc' },
+      { h: '拉', p: 'lā', v: 'kéo' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '离这儿很___！', options: ['近', '黑', '急'], answer: '近' },
+        { type: 'fill', sentence: '这样对___好。', options: ['健康', '科学', '公平'], answer: '健康' },
+        { type: 'fill', sentence: '那只猫又黑又___。', options: ['可爱', '可怕', '合适'], answer: '可爱' },
+        { type: 'fill', sentence: '今天我很___！', options: ['开心', '故意', '黄'], answer: '开心' },
+        { type: 'fill', sentence: '我___运动。', options: ['经常', '可怕', '假'], answer: '经常' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '别___，慢慢来。', options: ['急', '加', '拉'], answer: '急' },
+        { type: 'fill', sentence: '这个安排很___。', options: ['合适', '可怕', '开心'], answer: '合适' },
+        { type: 'fill', sentence: '也很___，大家都满意。', options: ['公平', '健康', '故意'], answer: '公平' },
+        { type: 'fill', sentence: '他不是___的。', options: ['故意', '科学', '快乐'], answer: '故意' },
+        { type: 'fill', sentence: '旁边有___色的花。', options: ['红', '近', '急'], answer: '红' },
+        { type: 'order', words: ['湖边', '去', '走走', '周末'], answer: '周末去湖边走走' },
+        { type: 'order', words: ['很', '我', '开心', '今天'], answer: '今天我很开心' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '那个电影真___！', options: ['可怕', '可爱', '健康'], answer: '可怕' },
+        { type: 'fill', sentence: '这是___知识，不是假的。', options: ['科学', '公平', '合适'], answer: '科学' },
+        { type: 'fill', sentence: '你帮我___一下门。', options: ['拉', '加', '急'], answer: '拉' },
+        { type: 'fill', sentence: '再___一克糖。', options: ['加', '拉', '近'], answer: '加' },
+        { type: 'translate', prompt: 'Đừng vội, từ từ thôi.', answer: '别急，慢慢来。' },
+        { type: 'translate', prompt: 'Như vậy tốt cho sức khỏe.', answer: '这样对健康好。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 54: Tính từ miêu tả (3) — 20 từ
+  // 蓝, 理想, 凉, 凉快, 亮, 流利, 绿, 满, 难过, 难看, 难受, 难听, 年轻, 努力, 漂亮, 平, 平等, 普通, 轻, 清楚
+  // ───────────────────────────────────────────────────────────────────────────
+  54: {
+    id: 54,
+    level: 2,
+    title: 'Tính từ miêu tả (3)',
+    context: 'Buổi chiều bên hồ, cả nhóm ngắm cảnh trời xanh nước biếc và trò chuyện về việc học, về tâm trạng.',
+    vocabPreview: ['漂亮', '流利', '清楚', '年轻', '努力'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Bên hồ · Buổi chiều', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Buổi chiều, mặt hồ phẳng lặng, trời trong xanh.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '天很蓝，水很绿，真漂亮！',
+        pinyin: 'Tiān hěn lán, shuǐ hěn lǜ, zhēn piàoliang!',
+        meaning: 'Trời rất xanh, nước rất biếc, thật đẹp!',
+        expression: 'happy', vocab: ['蓝', '绿', '漂亮']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '今天很凉快，风很凉。月亮很亮，湖面很平。',
+        pinyin: 'Jīntiān hěn liángkuai, fēng hěn liáng. Yuèliang hěn liàng, húmiàn hěn píng.',
+        meaning: 'Hôm nay rất mát mẻ, gió rất mát. Trăng rất sáng, mặt hồ rất phẳng.',
+        expression: 'happy', vocab: ['凉快', '凉', '亮', '平']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '你的中文越来越流利了！',
+        pinyin: 'Nǐ de zhōngwén yuèláiyuè liúlì le!',
+        meaning: 'Tiếng Trung của cậu càng ngày càng lưu loát!',
+        expression: 'happy', vocab: ['流利']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Bên hồ',
+        expression: 'curious',
+        q: 'Mai nghe không rõ. Cô ấy muốn nói "Tớ nghe không rõ". Nên nói thế nào?',
+        options: [
+          { text: '我听不清楚。', pinyin: 'Wǒ tīng bu qīngchu.', meaning: 'Tớ nghe không rõ.', correct: true,
+            feedback: 'Đúng! 清楚 = rõ, rõ ràng.' },
+          { text: '我听不难听。', pinyin: 'Wǒ tīng bu nántīng.', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '难听 = khó nghe (dở); không dùng được ở đây.' },
+          { text: '我听不漂亮。', pinyin: 'Wǒ tīng bu piàoliang.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '漂亮 = đẹp, không liên quan đến "nghe rõ".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我听不清楚，你声音轻一点我反而难受。',
+        pinyin: 'Wǒ tīng bu qīngchu, nǐ shēngyīn qīng yìdiǎn wǒ fǎn’ér nánshòu.',
+        meaning: 'Tớ nghe không rõ, cậu nói nhỏ một chút thì tớ lại khó chịu.',
+        expression: 'sad', vocab: ['清楚', '轻', '难受']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"漂亮" có nghĩa là gì?',
+            options: ['đẹp', 'mát mẻ', 'rõ ràng', 'phẳng'],
+            answer: 0
+          },
+          {
+            q: '"流利" thường dùng để tả điều gì?',
+            options: ['nói (ngôn ngữ) lưu loát', 'trời xanh', 'mặt hồ phẳng', 'gió mát'],
+            answer: 0
+          },
+          {
+            q: '"清楚" có nghĩa là gì?',
+            options: ['rõ, rõ ràng', 'khó nghe', 'khó chịu', 'nhẹ'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Bên hồ · Tiếp tục', bg: 'street',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý đến và động viên hai bạn học tập.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '你们都很年轻，要努力学习，这是理想。',
+        pinyin: 'Nǐmen dōu hěn niánqīng, yào nǔlì xuéxí, zhè shì lǐxiǎng.',
+        meaning: 'Các em đều còn trẻ, phải nỗ lực học tập, đó là lý tưởng.',
+        expression: 'happy', vocab: ['年轻', '努力', '理想']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师说得对。人人平等，这很普通也很重要。',
+        pinyin: 'Lǎoshī shuō de duì. Rénrén píngděng, zhè hěn pǔtōng yě hěn zhòngyào.',
+        meaning: 'Thầy nói đúng. Mọi người bình đẳng, điều này rất bình thường mà cũng rất quan trọng.',
+        expression: 'focused', vocab: ['平等', '普通']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'], bg: 'street',
+        scene: '📍 Bên hồ',
+        expression: 'curious',
+        q: 'Mai muốn chê "Bài hát này khó nghe (dở)". Nên dùng từ nào?',
+        options: [
+          { text: '这首歌太难听了！', pinyin: 'Zhè shǒu gē tài nántīng le!', meaning: 'Bài hát này dở quá!', correct: true,
+            feedback: 'Đúng! 难听 = khó nghe, dở (âm thanh).' },
+          { text: '这首歌太难看了！', pinyin: 'Zhè shǒu gē tài nánkàn le!', meaning: '(Sai — 难看 cho hình ảnh)', correct: false,
+            feedback: '难看 = khó coi, xấu (về hình ảnh), không dùng cho âm thanh.' },
+          { text: '这首歌太难过了！', pinyin: 'Zhè shǒu gē tài nánguò le!', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '难过 = buồn (cảm xúc), không tả bài hát dở.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '这首歌太难听了！但别难过，也别说它难看。我心里很满足。',
+        pinyin: 'Zhè shǒu gē tài nántīng le! Dàn bié nánguò, yě bié shuō tā nánkàn. Wǒ xīnlǐ hěn mǎnzú.',
+        meaning: 'Bài hát này dở quá! Nhưng đừng buồn, cũng đừng nói nó xấu. Trong lòng tớ rất thỏa mãn.',
+        expression: 'happy', vocab: ['难听', '难过', '难看', '满']
+      }
+    ],
+    vocab: [
+      { h: '蓝', p: 'lán', v: 'xanh (lam)' },
+      { h: '理想', p: 'lǐxiǎng', v: 'lý tưởng' },
+      { h: '凉', p: 'liáng', v: 'mát, lạnh' },
+      { h: '凉快', p: 'liángkuai', v: 'mát mẻ' },
+      { h: '亮', p: 'liàng', v: 'sáng' },
+      { h: '流利', p: 'liúlì', v: 'lưu loát, trôi chảy' },
+      { h: '绿', p: 'lǜ', v: 'xanh (lục)' },
+      { h: '满', p: 'mǎn', v: 'đầy, thỏa mãn' },
+      { h: '难过', p: 'nánguò', v: 'buồn' },
+      { h: '难看', p: 'nánkàn', v: 'khó coi, xấu' },
+      { h: '难受', p: 'nánshòu', v: 'khó chịu' },
+      { h: '难听', p: 'nántīng', v: 'khó nghe, dở' },
+      { h: '年轻', p: 'niánqīng', v: 'trẻ, trẻ tuổi' },
+      { h: '努力', p: 'nǔlì', v: 'nỗ lực, cố gắng' },
+      { h: '漂亮', p: 'piàoliang', v: 'đẹp, xinh' },
+      { h: '平', p: 'píng', v: 'phẳng, bằng' },
+      { h: '平等', p: 'píngděng', v: 'bình đẳng' },
+      { h: '普通', p: 'pǔtōng', v: 'phổ thông, bình thường' },
+      { h: '轻', p: 'qīng', v: 'nhẹ, khẽ' },
+      { h: '清楚', p: 'qīngchu', v: 'rõ, rõ ràng' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '天很蓝，水很___。', options: ['绿', '平', '轻'], answer: '绿' },
+        { type: 'fill', sentence: '真___！', options: ['漂亮', '难看', '难听'], answer: '漂亮' },
+        { type: 'fill', sentence: '今天很___。', options: ['凉快', '难过', '满'], answer: '凉快' },
+        { type: 'fill', sentence: '月亮很___。', options: ['亮', '平', '蓝'], answer: '亮' },
+        { type: 'fill', sentence: '你的中文越来越___了！', options: ['流利', '普通', '难听'], answer: '流利' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我听不___。', options: ['清楚', '漂亮', '平等'], answer: '清楚' },
+        { type: 'fill', sentence: '你声音___一点。', options: ['轻', '亮', '满'], answer: '轻' },
+        { type: 'fill', sentence: '你们都很___。', options: ['年轻', '普通', '难受'], answer: '年轻' },
+        { type: 'fill', sentence: '要___学习。', options: ['努力', '难过', '清楚'], answer: '努力' },
+        { type: 'fill', sentence: '人人___。', options: ['平等', '凉快', '漂亮'], answer: '平等' },
+        { type: 'order', words: ['很', '天', '蓝'], answer: '天很蓝' },
+        { type: 'order', words: ['努力', '要', '学习'], answer: '要努力学习' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这首歌太___了！', options: ['难听', '难看', '难过'], answer: '难听' },
+        { type: 'fill', sentence: '别___，这只是首歌。', options: ['难过', '难听', '难看'], answer: '难过' },
+        { type: 'fill', sentence: '这很___也很重要。', options: ['普通', '漂亮', '流利'], answer: '普通' },
+        { type: 'fill', sentence: '我心里很___足。', options: ['满', '轻', '平'], answer: '满' },
+        { type: 'translate', prompt: 'Trời rất xanh, nước rất biếc, thật đẹp!', answer: '天很蓝，水很绿，真漂亮！' },
+        { type: 'translate', prompt: 'Tớ nghe không rõ.', answer: '我听不清楚。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 55: Tính từ miêu tả (4) — 20 từ
+  // 全, 热情, 生, 实际, 实在, 舒服, 熟, 顺利, 随便, 所有, 特别, 疼, 通, 同样, 完全, 相同, 响, 小声, 小心, 一般
+  // ───────────────────────────────────────────────────────────────────────────
+  55: {
+    id: 55,
+    level: 2,
+    title: 'Tính từ miêu tả (4)',
+    context: 'Mai bị mệt, đau đầu. Tiểu Mỹ và thầy Lý quan tâm chăm sóc, rồi cùng nói về việc học từ vựng.',
+    vocabPreview: ['舒服', '热情', '特别', '小心', '完全'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Ký túc xá · Buổi tối', bg: 'dorm-room',
+        cast: ['mai', 'xiaomei'],
+        text: 'Buổi tối, Mai thấy đau đầu và mệt mỏi.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '你头疼吗？要小心身体。',
+        pinyin: 'Nǐ tóu téng ma? Yào xiǎoxīn shēntǐ.',
+        meaning: 'Cậu đau đầu à? Phải cẩn thận sức khỏe.',
+        expression: 'sad', vocab: ['疼', '小心']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '有一点，不太舒服，全身都累。',
+        pinyin: 'Yǒu yìdiǎn, bú tài shūfu, quánshēn dōu lèi.',
+        meaning: 'Có chút, không thoải mái lắm, cả người đều mệt.',
+        expression: 'sad', vocab: ['舒服', '全']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '别担心，所有人都很热情，会照顾你。你实在太累了，特别需要休息。',
+        pinyin: 'Bié dānxīn, suǒyǒu rén dōu hěn rèqíng, huì zhàogu nǐ. Nǐ shízài tài lèi le, tèbié xūyào xiūxi.',
+        meaning: 'Đừng lo, mọi người đều rất nhiệt tình, sẽ chăm sóc cậu. Cậu thực sự quá mệt, đặc biệt cần nghỉ ngơi.',
+        expression: 'happy', vocab: ['所有', '热情', '实在', '特别']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'dorm-room',
+        scene: '📍 Ký túc xá',
+        expression: 'focused',
+        q: 'Tiểu Mỹ muốn nói "Cậu nói nhỏ một chút". Nên dùng từ nào?',
+        options: [
+          { text: '你小声一点。', pinyin: 'Nǐ xiǎoshēng yìdiǎn.', meaning: 'Cậu nói nhỏ một chút.', correct: true,
+            feedback: 'Đúng! 小声 = nói nhỏ, khẽ giọng.' },
+          { text: '你响一点。', pinyin: 'Nǐ xiǎng yìdiǎn.', meaning: 'Cậu to một chút.', correct: false,
+            feedback: '响 = vang, to (âm thanh); ngược nghĩa "nói nhỏ".' },
+          { text: '你熟一点。', pinyin: 'Nǐ shú yìdiǎn.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '熟 = chín, quen thuộc; không phải "nói nhỏ".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '你小声一点，别太响，好好休息。',
+        pinyin: 'Nǐ xiǎoshēng yìdiǎn, bié tài xiǎng, hǎohāo xiūxi.',
+        meaning: 'Cậu nói nhỏ một chút, đừng to quá, nghỉ ngơi cho khỏe.',
+        expression: 'happy', vocab: ['小声', '响']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"舒服" có nghĩa là gì?',
+            options: ['thoải mái, dễ chịu', 'đau', 'nhiệt tình', 'cẩn thận'],
+            answer: 0
+          },
+          {
+            q: '"小声" và "响" — từ nào nghĩa là "nói nhỏ, khẽ"?',
+            options: ['小声', '响', '熟', '通'],
+            answer: 0
+          },
+          {
+            q: '"特别" có nghĩa là gì?',
+            options: ['đặc biệt', 'tất cả', 'bình thường', 'giống nhau'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Ký túc xá · Hôm sau', bg: 'dorm-room',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Hôm sau Mai đỡ hơn, thầy Lý giảng bài về từ vựng.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '实际上，这两个词意思完全相同，用法同样。',
+        pinyin: 'Shíjì shàng, zhè liǎng gè cí yìsi wánquán xiāngtóng, yòngfǎ tóngyàng.',
+        meaning: 'Thực tế, hai từ này nghĩa hoàn toàn giống nhau, cách dùng cũng như nhau.',
+        expression: 'focused', vocab: ['实际', '完全', '相同', '同样']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师讲得很通，我现在熟了。',
+        pinyin: 'Lǎoshī jiǎng de hěn tōng, wǒ xiànzài shú le.',
+        meaning: 'Thầy giảng rất thông suốt, giờ em đã thành thạo rồi.',
+        expression: 'happy', vocab: ['通', '熟']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'dorm-room',
+        scene: '📍 Ký túc xá',
+        expression: 'happy',
+        q: 'Tiểu Mỹ muốn nói "Chọn cái nào cũng được, tùy thôi". Nên dùng từ nào?',
+        options: [
+          { text: '随便选哪个都行。', pinyin: 'Suíbiàn xuǎn nǎge dōu xíng.', meaning: 'Chọn cái nào cũng được, tùy thôi.', correct: true,
+            feedback: 'Đúng! 随便 = tùy ý, tùy tiện.' },
+          { text: '一般选哪个都行。', pinyin: 'Yìbān xuǎn nǎge dōu xíng.', meaning: '(Không tự nhiên)', correct: false,
+            feedback: '一般 = bình thường, nói chung; không mang ý "tùy ý chọn".' },
+          { text: '顺利选哪个都行。', pinyin: 'Shùnlì xuǎn nǎge dōu xíng.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '顺利 = thuận lợi; không phải "tùy ý".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '随便选哪个都行，很一般。这些菜是生的还是熟的？事情很顺利。',
+        pinyin: 'Suíbiàn xuǎn nǎge dōu xíng, hěn yìbān. Zhèxiē cài shì shēng de háishì shú de? Shìqing hěn shùnlì.',
+        meaning: 'Chọn cái nào cũng được, bình thường thôi. Mấy món này là sống hay chín? Mọi việc rất thuận lợi.',
+        expression: 'happy', vocab: ['随便', '一般', '生', '顺利']
+      }
+    ],
+    vocab: [
+      { h: '全', p: 'quán', v: 'toàn bộ, cả' },
+      { h: '热情', p: 'rèqíng', v: 'nhiệt tình' },
+      { h: '生', p: 'shēng', v: 'sống (chưa chín)' },
+      { h: '实际', p: 'shíjì', v: 'thực tế' },
+      { h: '实在', p: 'shízài', v: 'thực sự, quả thực' },
+      { h: '舒服', p: 'shūfu', v: 'thoải mái, dễ chịu' },
+      { h: '熟', p: 'shú', v: 'chín; quen, thành thạo' },
+      { h: '顺利', p: 'shùnlì', v: 'thuận lợi' },
+      { h: '随便', p: 'suíbiàn', v: 'tùy ý, tùy tiện' },
+      { h: '所有', p: 'suǒyǒu', v: 'tất cả, mọi' },
+      { h: '特别', p: 'tèbié', v: 'đặc biệt' },
+      { h: '疼', p: 'téng', v: 'đau' },
+      { h: '通', p: 'tōng', v: 'thông, thông suốt' },
+      { h: '同样', p: 'tóngyàng', v: 'như nhau, giống nhau' },
+      { h: '完全', p: 'wánquán', v: 'hoàn toàn' },
+      { h: '相同', p: 'xiāngtóng', v: 'giống nhau' },
+      { h: '响', p: 'xiǎng', v: 'vang, to (âm thanh)' },
+      { h: '小声', p: 'xiǎoshēng', v: 'nói nhỏ, khẽ' },
+      { h: '小心', p: 'xiǎoxīn', v: 'cẩn thận' },
+      { h: '一般', p: 'yìbān', v: 'bình thường, nói chung' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '你头___吗？', options: ['疼', '通', '响'], answer: '疼' },
+        { type: 'fill', sentence: '要___身体。', options: ['小心', '随便', '一般'], answer: '小心' },
+        { type: 'fill', sentence: '不太___。', options: ['舒服', '热情', '相同'], answer: '舒服' },
+        { type: 'fill', sentence: '___人都很热情。', options: ['所有', '完全', '同样'], answer: '所有' },
+        { type: 'fill', sentence: '大家都很___。', options: ['热情', '生', '响'], answer: '热情' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '你___一点，别太响。', options: ['小声', '响', '熟'], answer: '小声' },
+        { type: 'fill', sentence: '你___太累了。', options: ['实在', '实际', '一般'], answer: '实在' },
+        { type: 'fill', sentence: '___需要休息。', options: ['特别', '完全', '随便'], answer: '特别' },
+        { type: 'fill', sentence: '___身都累。', options: ['全', '通', '生'], answer: '全' },
+        { type: 'fill', sentence: '事情很___。', options: ['顺利', '舒服', '小心'], answer: '顺利' },
+        { type: 'order', words: ['小心', '要', '身体'], answer: '要小心身体' },
+        { type: 'order', words: ['热情', '都', '所有人', '很'], answer: '所有人都很热情' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这两个词意思___相同。', options: ['完全', '一般', '随便'], answer: '完全' },
+        { type: 'fill', sentence: '用法___。', options: ['同样', '所有', '特别'], answer: '同样' },
+        { type: 'fill', sentence: '___选哪个都行。', options: ['随便', '顺利', '相同'], answer: '随便' },
+        { type: 'fill', sentence: '这些菜是___的还是熟的？', options: ['生', '通', '响'], answer: '生' },
+        { type: 'translate', prompt: 'Cậu đau đầu à? Phải cẩn thận sức khỏe.', answer: '你头疼吗？要小心身体。' },
+        { type: 'translate', prompt: 'Chọn cái nào cũng được, tùy thôi.', answer: '随便选哪个都行。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 56: Tính từ miêu tả (5) — 18 từ
+  // 一定, 阴, 永远, 友好, 原来, 越, 云, 脏, 长, 真正, 正常, 正确, 直接, 中级, 重复, 主要, 准确, 自由
+  // ───────────────────────────────────────────────────────────────────────────
+  56: {
+    id: 56,
+    level: 2,
+    title: 'Tính từ miêu tả (5)',
+    context: 'Trời âm u, cả nhóm trú trong lớp. Họ nói về tình bạn, về sự đúng đắn của bài học và ước mơ tự do.',
+    vocabPreview: ['正常', '正确', '永远', '友好', '自由'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Sân trường · Trời âm u', bg: 'campus',
+        cast: ['mai', 'xiaomei'],
+        text: 'Trời âm u, mây kéo đến, hai bạn vội vào lớp.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '今天天阴，云很多，要下雨。',
+        pinyin: 'Jīntiān tiān yīn, yún hěn duō, yào xiàyǔ.',
+        meaning: 'Hôm nay trời âm u, mây nhiều, sắp mưa.',
+        expression: 'curious', vocab: ['阴', '云']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这很正常。我们一定要带伞。',
+        pinyin: 'Zhè hěn zhèngcháng. Wǒmen yídìng yào dài sǎn.',
+        meaning: 'Điều này rất bình thường. Chúng ta nhất định phải mang ô.',
+        expression: 'focused', vocab: ['正常', '一定']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '原来你早就知道了！越来越冷了。你这件衣服有点脏，也太长。',
+        pinyin: 'Yuánlái nǐ zǎojiù zhīdào le! Yuèláiyuè lěng le. Nǐ zhè jiàn yīfu yǒudiǎn zāng, yě tài cháng.',
+        meaning: 'Thì ra cậu biết từ sớm rồi! Càng lúc càng lạnh. Cái áo này của cậu hơi bẩn, lại dài quá.',
+        expression: 'happy', vocab: ['原来', '越', '脏', '长']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'campus',
+        scene: '📍 Lớp học',
+        expression: 'curious',
+        q: 'Mai muốn nói "Đáp án này chính xác". Nên dùng từ nào?',
+        options: [
+          { text: '这个答案正确。', pinyin: 'Zhège dá’àn zhèngquè.', meaning: 'Đáp án này chính xác.', correct: true,
+            feedback: 'Đúng! 正确 = chính xác, đúng đắn (đáp án, quan điểm).' },
+          { text: '这个答案正常。', pinyin: 'Zhège dá’àn zhèngcháng.', meaning: 'Đáp án này bình thường.', correct: false,
+            feedback: '正常 = bình thường (trạng thái), không phải "đúng/chính xác".' },
+          { text: '这个答案自由。', pinyin: 'Zhège dá’àn zìyóu.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '自由 = tự do, không liên quan.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这个答案正确，数字也很准确。',
+        pinyin: 'Zhège dá’àn zhèngquè, shùzì yě hěn zhǔnquè.',
+        meaning: 'Đáp án này chính xác, con số cũng rất chuẩn xác.',
+        expression: 'happy', vocab: ['正确', '准确']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"正常" có nghĩa là gì?',
+            options: ['bình thường', 'chính xác', 'tự do', 'âm u'],
+            answer: 0
+          },
+          {
+            q: '"正确" và "正常" — từ nào nghĩa là "đúng, chính xác"?',
+            options: ['正确', '正常', '永远', '直接'],
+            answer: 0
+          },
+          {
+            q: '"原来" trong "原来你早就知道了" có nghĩa là gì?',
+            options: ['thì ra, hóa ra', 'nhất định', 'mãi mãi', 'trực tiếp'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Lớp học · Tiếp tục', bg: 'classroom',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý vào lớp và trò chuyện cùng cả nhóm.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '你们是真正的朋友，要永远友好。',
+        pinyin: 'Nǐmen shì zhēnzhèng de péngyou, yào yǒngyuǎn yǒuhǎo.',
+        meaning: 'Các em là bạn thật sự, hãy mãi mãi thân thiện với nhau.',
+        expression: 'happy', vocab: ['真正', '永远', '友好']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师，我直接说主要的问题。',
+        pinyin: 'Lǎoshī, wǒ zhíjiē shuō zhǔyào de wèntí.',
+        meaning: 'Thầy ơi, em nói thẳng vấn đề chính ạ.',
+        expression: 'focused', vocab: ['直接', '主要']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'classroom',
+        scene: '📍 Lớp học',
+        expression: 'happy',
+        q: 'Mai cứ nói đi nói lại. Tiểu Mỹ muốn nói "Đừng lặp lại nữa". Nên dùng từ nào?',
+        options: [
+          { text: '别重复了，我懂了。', pinyin: 'Bié chóngfù le, wǒ dǒng le.', meaning: 'Đừng lặp lại nữa, tớ hiểu rồi.', correct: true,
+            feedback: 'Đúng! 重复 (chóngfù) = lặp lại.' },
+          { text: '别自由了，我懂了。', pinyin: 'Bié zìyóu le, wǒ dǒng le.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '自由 = tự do, không phải "lặp lại".' },
+          { text: '别中级了，我懂了。', pinyin: 'Bié zhōngjí le, wǒ dǒng le.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '中级 = trung cấp (trình độ), không phải "lặp lại".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '别重复了，我懂了。我喜欢自由，也想考中级。',
+        pinyin: 'Bié chóngfù le, wǒ dǒng le. Wǒ xǐhuan zìyóu, yě xiǎng kǎo zhōngjí.',
+        meaning: 'Đừng lặp lại nữa, tớ hiểu rồi. Tớ thích tự do, cũng muốn thi trung cấp.',
+        expression: 'happy', vocab: ['重复', '自由', '中级']
+      }
+    ],
+    vocab: [
+      { h: '一定', p: 'yídìng', v: 'nhất định' },
+      { h: '阴', p: 'yīn', v: 'âm u, râm' },
+      { h: '永远', p: 'yǒngyuǎn', v: 'mãi mãi' },
+      { h: '友好', p: 'yǒuhǎo', v: 'thân thiện, hữu hảo' },
+      { h: '原来', p: 'yuánlái', v: 'thì ra, vốn dĩ' },
+      { h: '越', p: 'yuè', v: 'càng' },
+      { h: '云', p: 'yún', v: 'mây' },
+      { h: '脏', p: 'zāng', v: 'bẩn' },
+      { h: '长', p: 'cháng', v: 'dài' },
+      { h: '真正', p: 'zhēnzhèng', v: 'thật sự, đích thực' },
+      { h: '正常', p: 'zhèngcháng', v: 'bình thường' },
+      { h: '正确', p: 'zhèngquè', v: 'chính xác, đúng đắn' },
+      { h: '直接', p: 'zhíjiē', v: 'trực tiếp, thẳng' },
+      { h: '中级', p: 'zhōngjí', v: 'trung cấp' },
+      { h: '重复', p: 'chóngfù', v: 'lặp lại' },
+      { h: '主要', p: 'zhǔyào', v: 'chủ yếu, chính' },
+      { h: '准确', p: 'zhǔnquè', v: 'chuẩn xác' },
+      { h: '自由', p: 'zìyóu', v: 'tự do' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '今天天___，云很多。', options: ['阴', '脏', '长'], answer: '阴' },
+        { type: 'fill', sentence: '天上___很多。', options: ['云', '阴', '越'], answer: '云' },
+        { type: 'fill', sentence: '这很___。', options: ['正常', '正确', '自由'], answer: '正常' },
+        { type: 'fill', sentence: '我们___要带伞。', options: ['一定', '永远', '直接'], answer: '一定' },
+        { type: 'fill', sentence: '这件衣服有点___。', options: ['脏', '阴', '长'], answer: '脏' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '这个答案___。', options: ['正确', '正常', '友好'], answer: '正确' },
+        { type: 'fill', sentence: '数字也很___。', options: ['准确', '正常', '重复'], answer: '准确' },
+        { type: 'fill', sentence: '___你早就知道了！', options: ['原来', '一定', '直接'], answer: '原来' },
+        { type: 'fill', sentence: '你们是___的朋友。', options: ['真正', '正常', '主要'], answer: '真正' },
+        { type: 'fill', sentence: '要___友好。', options: ['永远', '直接', '一定'], answer: '永远' },
+        { type: 'order', words: ['带伞', '要', '一定', '我们'], answer: '我们一定要带伞' },
+        { type: 'order', words: ['正确', '答案', '这个'], answer: '这个答案正确' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我___说主要的问题。', options: ['直接', '正确', '永远'], answer: '直接' },
+        { type: 'fill', sentence: '别___了，我懂了。', options: ['重复', '自由', '中级'], answer: '重复' },
+        { type: 'fill', sentence: '我喜欢___。', options: ['自由', '正常', '重复'], answer: '自由' },
+        { type: 'fill', sentence: '也想考___。', options: ['中级', '正确', '主要'], answer: '中级' },
+        { type: 'translate', prompt: 'Điều này rất bình thường.', answer: '这很正常。' },
+        { type: 'translate', prompt: 'Đáp án này chính xác.', answer: '这个答案正确。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 57: Thời gian & lịch trình (1) — 20 từ
+  // 半夜, 不久, 春节, 春天, 当时, 冬天, 分钟, 刚才, 刚刚, 过去, 后来, 假期, 今后, 快要, 老年, 老是, 平常, 平时, 千, 前年
+  // ───────────────────────────────────────────────────────────────────────────
+  57: {
+    id: 57,
+    level: 2,
+    title: 'Thời gian & lịch trình (1)',
+    context: 'Sắp nghỉ lễ. Mai và Tiểu Mỹ bàn kế hoạch về quê ăn Tết, nhớ lại chuyện học hành ngày trước.',
+    vocabPreview: ['春节', '假期', '快要', '平时', '刚刚'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Phòng học · Cuối kỳ', bg: 'classroom',
+        cast: ['mai', 'xiaomei'],
+        text: 'Sắp đến kỳ nghỉ, hai bạn bàn kế hoạch về quê.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '快要放假了！春节你回家吗？',
+        pinyin: 'Kuàiyào fàngjià le! Chūnjié nǐ huí jiā ma?',
+        meaning: 'Sắp được nghỉ rồi! Tết cậu về nhà không?',
+        expression: 'happy', vocab: ['快要', '春节']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '回！前年冬天我也回了，今年春天才来这儿。',
+        pinyin: 'Huí! Qiánnián dōngtiān wǒ yě huí le, jīnnián chūntiān cái lái zhèr.',
+        meaning: 'Về chứ! Mùa đông năm kia tớ cũng về, mùa xuân năm nay mới đến đây.',
+        expression: 'happy', vocab: ['前年', '冬天', '春天']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '假期有多长？',
+        pinyin: 'Jiàqī yǒu duō cháng?',
+        meaning: 'Kỳ nghỉ dài bao lâu?',
+        expression: 'curious', vocab: ['假期']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '不久，几天而已。等我几分钟，刚才老师查过了。',
+        pinyin: 'Bùjiǔ, jǐ tiān éryǐ. Děng wǒ jǐ fēnzhōng, gāngcái lǎoshī chá guò le.',
+        meaning: 'Không lâu, chỉ vài ngày thôi. Đợi tớ vài phút, vừa nãy thầy đã tra rồi.',
+        expression: 'focused', vocab: ['不久', '分钟', '刚才']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'classroom',
+        scene: '📍 Phòng học',
+        expression: 'curious',
+        q: 'Mai muốn nói "Tớ vừa mới đến". Nên dùng từ nào?',
+        options: [
+          { text: '我刚刚到。', pinyin: 'Wǒ gānggang dào.', meaning: 'Tớ vừa mới đến.', correct: true,
+            feedback: 'Đúng! 刚刚 = vừa mới (ngay trước đó).' },
+          { text: '我今后到。', pinyin: 'Wǒ jīnhòu dào.', meaning: 'Sau này tớ đến.', correct: false,
+            feedback: '今后 = sau này, từ nay về sau; ngược với "vừa mới".' },
+          { text: '我前年到。', pinyin: 'Wǒ qiánnián dào.', meaning: 'Năm kia tớ đến.', correct: false,
+            feedback: '前年 = năm kia; không phải "vừa mới".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我刚刚到，过去的事就别提了，后来我们再聊。',
+        pinyin: 'Wǒ gānggang dào, guòqù de shì jiù bié tí le, hòulái wǒmen zài liáo.',
+        meaning: 'Tớ vừa mới đến, chuyện quá khứ đừng nhắc nữa, lát nữa mình nói tiếp.',
+        expression: 'happy', vocab: ['刚刚', '过去', '后来']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"快要...了" diễn đạt điều gì?',
+            options: ['sắp... rồi', 'đã... rồi', 'từng...', 'mãi mãi...'],
+            answer: 0
+          },
+          {
+            q: '"刚刚" và "今后" — từ nào nghĩa là "vừa mới"?',
+            options: ['刚刚', '今后', '前年', '不久'],
+            answer: 0
+          },
+          {
+            q: '"假期" có nghĩa là gì?',
+            options: ['kỳ nghỉ', 'mùa xuân', 'nửa đêm', 'phút'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Phòng học · Tiếp tục', bg: 'classroom',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý kể chuyện học hành thời trẻ.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '平时要多练习，平常的努力很重要。',
+        pinyin: 'Píngshí yào duō liànxí, píngcháng de nǔlì hěn zhòngyào.',
+        meaning: 'Ngày thường phải luyện tập nhiều, sự nỗ lực hằng ngày rất quan trọng.',
+        expression: 'focused', vocab: ['平时', '平常']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师，您当时怎么学的？',
+        pinyin: 'Lǎoshī, nín dāngshí zěnme xué de?',
+        meaning: 'Thầy ơi, hồi đó thầy học thế nào ạ?',
+        expression: 'curious', vocab: ['当时']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'classroom',
+        scene: '📍 Phòng học',
+        expression: 'happy',
+        q: 'Tiểu Mỹ muốn nói "Tớ hay thức học đến nửa đêm". Nên dùng từ nào cho "nửa đêm"?',
+        options: [
+          { text: '我老是半夜还在学。', pinyin: 'Wǒ lǎoshi bànyè hái zài xué.', meaning: 'Tớ hay thức học đến nửa đêm.', correct: true,
+            feedback: 'Đúng! 半夜 = nửa đêm; 老是 = cứ, hay (lặp đi lặp lại).' },
+          { text: '我老是冬天还在学。', pinyin: 'Wǒ lǎoshi dōngtiān hái zài xué.', meaning: '(Sai ngữ cảnh)', correct: false,
+            feedback: '冬天 = mùa đông, không phải "nửa đêm".' },
+          { text: '我老是假期还在学。', pinyin: 'Wǒ lǎoshi jiàqī hái zài xué.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '假期 = kỳ nghỉ, không phải "nửa đêm".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '我老是半夜还在学，今后想存一千块去旅行。老年人也能学！',
+        pinyin: 'Wǒ lǎoshi bànyè hái zài xué, jīnhòu xiǎng cún yìqiān kuài qù lǚxíng. Lǎonián rén yě néng xué!',
+        meaning: 'Tớ hay thức học đến nửa đêm, sau này muốn để dành một nghìn tệ đi du lịch. Người già cũng học được mà!',
+        expression: 'happy', vocab: ['老是', '半夜', '今后', '千', '老年']
+      }
+    ],
+    vocab: [
+      { h: '半夜', p: 'bànyè', v: 'nửa đêm' },
+      { h: '不久', p: 'bùjiǔ', v: 'không lâu, chẳng bao lâu' },
+      { h: '春节', p: 'chūnjié', v: 'Tết (Xuân tiết)' },
+      { h: '春天', p: 'chūntiān', v: 'mùa xuân' },
+      { h: '当时', p: 'dāngshí', v: 'lúc đó, hồi đó' },
+      { h: '冬天', p: 'dōngtiān', v: 'mùa đông' },
+      { h: '分钟', p: 'fēnzhōng', v: 'phút' },
+      { h: '刚才', p: 'gāngcái', v: 'vừa nãy' },
+      { h: '刚刚', p: 'gānggang', v: 'vừa mới' },
+      { h: '过去', p: 'guòqù', v: 'quá khứ; đi qua' },
+      { h: '后来', p: 'hòulái', v: 'về sau, sau đó' },
+      { h: '假期', p: 'jiàqī', v: 'kỳ nghỉ' },
+      { h: '今后', p: 'jīnhòu', v: 'từ nay về sau' },
+      { h: '快要', p: 'kuàiyào', v: 'sắp (sửa)' },
+      { h: '老年', p: 'lǎonián', v: 'tuổi già, người già' },
+      { h: '老是', p: 'lǎoshi', v: 'cứ, hay (lặp lại)' },
+      { h: '平常', p: 'píngcháng', v: 'thường ngày, bình thường' },
+      { h: '平时', p: 'píngshí', v: 'ngày thường' },
+      { h: '千', p: 'qiān', v: 'nghìn' },
+      { h: '前年', p: 'qiánnián', v: 'năm kia' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___放假了！', options: ['快要', '不久', '当时'], answer: '快要' },
+        { type: 'fill', sentence: '___你回家吗？', options: ['春节', '冬天', '半夜'], answer: '春节' },
+        { type: 'fill', sentence: '___有多长？', options: ['假期', '分钟', '千'], answer: '假期' },
+        { type: 'fill', sentence: '前年___我也回了。', options: ['冬天', '春节', '平时'], answer: '冬天' },
+        { type: 'fill', sentence: '等我几___。', options: ['分钟', '千', '前年'], answer: '分钟' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我___到。', options: ['刚刚', '今后', '前年'], answer: '刚刚' },
+        { type: 'fill', sentence: '___的事就别提了。', options: ['过去', '后来', '当时'], answer: '过去' },
+        { type: 'fill', sentence: '___我们再聊。', options: ['后来', '刚才', '不久'], answer: '后来' },
+        { type: 'fill', sentence: '___要多练习。', options: ['平时', '半夜', '春天'], answer: '平时' },
+        { type: 'fill', sentence: '您___怎么学的？', options: ['当时', '今后', '不久'], answer: '当时' },
+        { type: 'order', words: ['放假', '快要', '了'], answer: '快要放假了' },
+        { type: 'order', words: ['到', '我', '刚刚'], answer: '我刚刚到' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我老是___还在学。', options: ['半夜', '冬天', '假期'], answer: '半夜' },
+        { type: 'fill', sentence: '___想存一千块去旅行。', options: ['今后', '刚刚', '前年'], answer: '今后' },
+        { type: 'fill', sentence: '想存一___块。', options: ['千', '分钟', '不久'], answer: '千' },
+        { type: 'fill', sentence: '___人也能学！', options: ['老年', '平常', '当时'], answer: '老年' },
+        { type: 'translate', prompt: 'Sắp được nghỉ rồi!', answer: '快要放假了！' },
+        { type: 'translate', prompt: 'Tớ vừa mới đến.', answer: '我刚刚到。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 58: Thời gian & lịch trình (2) — 20 từ
+  // 秋天, 全年, 日子, 上周, 少年, 晚会, 万, 下周, 夏天, 小时候, 夜, 夜里, 一点点, 月份, 早晨, 这时候, 中年, 周, 周末, 最近
+  // ───────────────────────────────────────────────────────────────────────────
+  58: {
+    id: 58,
+    level: 2,
+    title: 'Thời gian & lịch trình (2)',
+    context: 'Một buổi sáng đầu thu, cả nhóm bàn về buổi dạ hội cuối tuần và nhớ lại những ngày thơ ấu.',
+    vocabPreview: ['最近', '周末', '早晨', '小时候', '月份'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Sân trường · Sáng sớm', bg: 'campus',
+        cast: ['mai', 'xiaomei'],
+        text: 'Một buổi sáng sớm đầu thu, hai bạn gặp nhau ở sân trường.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '最近怎么样？这个周末有晚会！',
+        pinyin: 'Zuìjìn zěnmeyàng? Zhège zhōumò yǒu wǎnhuì!',
+        meaning: 'Dạo này thế nào? Cuối tuần này có dạ hội đấy!',
+        expression: 'happy', vocab: ['最近', '周末', '晚会']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '太好了！上周我太忙，下周才有空。',
+        pinyin: 'Tài hǎo le! Shàngzhōu wǒ tài máng, xiàzhōu cái yǒu kòng.',
+        meaning: 'Tuyệt quá! Tuần trước tớ bận quá, tuần sau mới rảnh.',
+        expression: 'happy', vocab: ['上周', '下周']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '早晨的空气真好。夏天快过去，秋天到了。',
+        pinyin: 'Zǎochén de kōngqì zhēn hǎo. Xiàtiān kuài guòqù, qiūtiān dào le.',
+        meaning: 'Không khí buổi sáng thật trong lành. Mùa hè sắp qua, mùa thu đến rồi.',
+        expression: 'happy', vocab: ['早晨', '夏天', '秋天']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '是啊，全年我最喜欢这个月份。',
+        pinyin: 'Shì a, quánnián wǒ zuì xǐhuan zhège yuèfèn.',
+        meaning: 'Ừ, cả năm tớ thích nhất tháng này.',
+        expression: 'happy', vocab: ['全年', '月份']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'campus',
+        scene: '📍 Sân trường',
+        expression: 'curious',
+        q: 'Mai muốn nói "Hồi nhỏ tớ rất thích chơi". Nên dùng từ nào cho "hồi nhỏ"?',
+        options: [
+          { text: '我小时候很爱玩。', pinyin: 'Wǒ xiǎoshíhou hěn ài wán.', meaning: 'Hồi nhỏ tớ rất thích chơi.', correct: true,
+            feedback: 'Đúng! 小时候 = hồi nhỏ, thuở bé.' },
+          { text: '我这时候很爱玩。', pinyin: 'Wǒ zhèshíhou hěn ài wán.', meaning: 'Lúc này tớ rất thích chơi.', correct: false,
+            feedback: '这时候 = lúc này, lúc đó; không phải "hồi nhỏ".' },
+          { text: '我中年很爱玩。', pinyin: 'Wǒ zhōngnián hěn ài wán.', meaning: 'Thời trung niên tớ rất thích chơi.', correct: false,
+            feedback: '中年 = tuổi trung niên; không phải "hồi nhỏ".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我小时候是个快乐的少年，那时候日子很简单。',
+        pinyin: 'Wǒ xiǎoshíhou shì gè kuàilè de shàonián, nà shíhou rìzi hěn jiǎndān.',
+        meaning: 'Hồi nhỏ tớ là một thiếu niên vui vẻ, ngày tháng khi đó rất đơn giản.',
+        expression: 'happy', vocab: ['小时候', '少年', '日子']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"最近" có nghĩa là gì?',
+            options: ['dạo này, gần đây', 'cuối tuần', 'buổi sáng', 'mùa thu'],
+            answer: 0
+          },
+          {
+            q: '"上周" và "下周" lần lượt là?',
+            options: ['tuần trước / tuần sau', 'tuần sau / tuần trước', 'sáng / tối', 'hè / thu'],
+            answer: 0
+          },
+          {
+            q: '"小时候" có nghĩa là gì?',
+            options: ['hồi nhỏ, thuở bé', 'lúc này', 'tuổi trung niên', 'nửa đêm'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Sân trường · Tiếp tục', bg: 'campus',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý đến và góp chuyện về thời gian biểu.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '一周有七天，一年有很多周。这些日子过得真快。',
+        pinyin: 'Yì zhōu yǒu qī tiān, yì nián yǒu hěn duō zhōu. Zhèxiē rìzi guò de zhēn kuài.',
+        meaning: 'Một tuần có bảy ngày, một năm có rất nhiều tuần. Những ngày tháng này trôi thật nhanh.',
+        expression: 'happy', vocab: ['周']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '老师晚上几点睡？我夜里常常学到很晚。',
+        pinyin: 'Lǎoshī wǎnshang jǐ diǎn shuì? Wǒ yèlǐ chángcháng xué dào hěn wǎn.',
+        meaning: 'Buổi tối thầy ngủ lúc mấy giờ ạ? Em ban đêm thường học đến rất khuya.',
+        expression: 'curious', vocab: ['夜里']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'campus',
+        scene: '📍 Sân trường',
+        expression: 'happy',
+        q: 'Tiểu Mỹ muốn nói "Chỉ học một chút thôi". Nên dùng từ nào?',
+        options: [
+          { text: '只学一点点。', pinyin: 'Zhǐ xué yìdiǎndiǎn.', meaning: 'Chỉ học một chút xíu thôi.', correct: true,
+            feedback: 'Đúng! 一点点 = một chút xíu.' },
+          { text: '只学全年。', pinyin: 'Zhǐ xué quánnián.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '全年 = cả năm; không phải "một chút".' },
+          { text: '只学月份。', pinyin: 'Zhǐ xué yuèfèn.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '月份 = tháng; không phải "một chút".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '只学一点点，到深夜。这时候校园很安静。这位中年老师存了一万块。',
+        pinyin: 'Zhǐ xué yìdiǎndiǎn, dào shēnyè. Zhèshíhou xiàoyuán hěn ānjìng. Zhè wèi zhōngnián lǎoshī cún le yíwàn kuài.',
+        meaning: 'Chỉ học một chút xíu, đến tận đêm khuya. Lúc này khuôn viên rất yên tĩnh. Vị thầy trung niên này để dành được mười nghìn tệ.',
+        expression: 'happy', vocab: ['一点点', '夜', '这时候', '中年', '万']
+      }
+    ],
+    vocab: [
+      { h: '秋天', p: 'qiūtiān', v: 'mùa thu' },
+      { h: '全年', p: 'quánnián', v: 'cả năm, suốt năm' },
+      { h: '日子', p: 'rìzi', v: 'ngày tháng, đời sống' },
+      { h: '上周', p: 'shàngzhōu', v: 'tuần trước' },
+      { h: '少年', p: 'shàonián', v: 'thiếu niên' },
+      { h: '晚会', p: 'wǎnhuì', v: 'dạ hội, buổi liên hoan' },
+      { h: '万', p: 'wàn', v: 'vạn, mười nghìn' },
+      { h: '下周', p: 'xiàzhōu', v: 'tuần sau' },
+      { h: '夏天', p: 'xiàtiān', v: 'mùa hè' },
+      { h: '小时候', p: 'xiǎoshíhou', v: 'hồi nhỏ, thuở bé' },
+      { h: '夜', p: 'yè', v: 'đêm' },
+      { h: '夜里', p: 'yèlǐ', v: 'ban đêm, trong đêm' },
+      { h: '一点点', p: 'yìdiǎndiǎn', v: 'một chút xíu' },
+      { h: '月份', p: 'yuèfèn', v: 'tháng (trong năm)' },
+      { h: '早晨', p: 'zǎochén', v: 'buổi sáng sớm' },
+      { h: '这时候', p: 'zhèshíhou', v: 'lúc này, lúc đó' },
+      { h: '中年', p: 'zhōngnián', v: 'tuổi trung niên' },
+      { h: '周', p: 'zhōu', v: 'tuần' },
+      { h: '周末', p: 'zhōumò', v: 'cuối tuần' },
+      { h: '最近', p: 'zuìjìn', v: 'dạo này, gần đây' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___怎么样？', options: ['最近', '周末', '全年'], answer: '最近' },
+        { type: 'fill', sentence: '这个___有晚会！', options: ['周末', '月份', '夜里'], answer: '周末' },
+        { type: 'fill', sentence: '___的空气真好。', options: ['早晨', '夜', '中年'], answer: '早晨' },
+        { type: 'fill', sentence: '___快过去，秋天到了。', options: ['夏天', '春天', '上周'], answer: '夏天' },
+        { type: 'fill', sentence: '秋天___了。', options: ['到', '万', '周'], answer: '到' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___我太忙。', options: ['上周', '下周', '全年'], answer: '上周' },
+        { type: 'fill', sentence: '___才有空。', options: ['下周', '上周', '最近'], answer: '下周' },
+        { type: 'fill', sentence: '全年我最喜欢这个___。', options: ['月份', '周末', '日子'], answer: '月份' },
+        { type: 'fill', sentence: '这个___有晚会。', options: ['周末', '夜里', '少年'], answer: '周末' },
+        { type: 'fill', sentence: '我夜里常学到很晚，只睡___。', options: ['一点点', '全年', '月份'], answer: '一点点' },
+        { type: 'order', words: ['有', '这个周末', '晚会'], answer: '这个周末有晚会' },
+        { type: 'order', words: ['秋天', '夏天', '过去', '快', '到了'], answer: '夏天快过去秋天到了' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我___是个快乐的少年。', options: ['小时候', '这时候', '中年'], answer: '小时候' },
+        { type: 'fill', sentence: '那时候___很简单。', options: ['日子', '月份', '晚会'], answer: '日子' },
+        { type: 'fill', sentence: '我___常常学到很晚。', options: ['夜里', '早晨', '周末'], answer: '夜里' },
+        { type: 'fill', sentence: '这位___老师存了一万块。', options: ['中年', '少年', '老年'], answer: '中年' },
+        { type: 'translate', prompt: 'Dạo này thế nào?', answer: '最近怎么样？' },
+        { type: 'translate', prompt: 'Hồi nhỏ tớ rất thích chơi.', answer: '我小时候很爱玩。' }
+      ]
+    }
   }
 });

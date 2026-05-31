@@ -44,6 +44,27 @@ function _lhRenderContinue() {
   var btn    = document.getElementById('lhContBtn');
   if (!nameEl) return;
 
+  // Priority: course lesson (in progress or next uncompleted)
+  if (typeof COURSE_DATA !== 'undefined') {
+    var courseProgress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
+    var courseIds = Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; });
+    var nextCourseId = null;
+    var courseHasProgress = false;
+    for (var ci = 0; ci < courseIds.length; ci++) {
+      var cp = courseProgress[courseIds[ci]];
+      if (!cp || !cp.completed) { nextCourseId = courseIds[ci]; courseHasProgress = !!cp; break; }
+    }
+    if (nextCourseId !== null) {
+      var lesson = COURSE_DATA[nextCourseId];
+      var doneCnt = courseIds.filter(function(id) { return courseProgress[id] && courseProgress[id].completed; }).length;
+      nameEl.textContent = 'Bài ' + nextCourseId + ' — ' + (lesson ? lesson.title : '');
+      if (metaEl) metaEl.textContent = (courseHasProgress ? '▶ Học tiếp · ' : '📍 Bài tiếp theo · ') + doneCnt + '/' + courseIds.length + ' bài';
+      if (barEl)  barEl.style.width = Math.round(doneCnt / courseIds.length * 100) + '%';
+      if (btn) btn.onclick = function() { Router.navigateTo('course'); };
+      return;
+    }
+  }
+
   var lastId  = localStorage.getItem('hsk_last_deck_id') || 'sys_hsk1';
   var deck    = (typeof decks !== 'undefined') ? decks[lastId] : null;
 
@@ -214,12 +235,31 @@ function _lhRenderTimeline() {
   html += '</div>'; // .lh-tl-body
   html += '</div><div class="lh-tl-connector"></div>';
 
-  // Story Mai (coming soon)
-  html += '<div class="lh-tl-node lh-tl-node--soon">';
-  html += '<div class="lh-tl-icon">📖</div>';
-  html += '<div class="lh-tl-body"><div class="lh-tl-name">Truyện Mai</div>';
-  html += '<div class="lh-tl-sub lh-tl-badge-soon">Sắp ra mắt · Phase P</div></div>';
-  html += '</div><div class="lh-tl-connector"></div>';
+  // Truyện Mai (course lessons)
+  if (typeof COURSE_DATA !== 'undefined') {
+    var courseProgress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
+    var courseIds = Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; });
+    var courseDone = courseIds.filter(function(id) { return courseProgress[id] && courseProgress[id].completed; }).length;
+    var courseTotal = courseIds.length;
+    var coursePct = courseTotal > 0 ? Math.round(courseDone / courseTotal * 100) : 0;
+    var courseActive = (courseDone > 0 && courseDone < courseTotal);
+    var courseComplete = (courseDone >= courseTotal);
+
+    var cls = 'lh-tl-node';
+    if (courseActive) cls += ' lh-tl-node--active';
+    else if (courseComplete) cls += ' lh-tl-node--done';
+
+    html += '<button class="' + cls + '" onclick="Router.navigateTo(\'course\')">';
+    html += '<div class="lh-tl-icon">📖</div>';
+    html += '<div class="lh-tl-body">';
+    html += '<div class="lh-tl-name">Truyện Mai</div>';
+    html += '<div class="lh-tl-progress"><div class="lh-tl-bar" style="width:' + coursePct + '%"></div></div>';
+    html += '<div class="lh-tl-sub">' + courseDone + ' / ' + courseTotal + ' bài';
+    if (courseActive) html += ' &nbsp;<span class="lh-here-chip">Đang học</span>';
+    html += '</div></div>';
+    if (courseActive) html += '<div class="lh-tl-arrow-active">▶</div>';
+    html += '</button><div class="lh-tl-connector"></div>';
+  }
 
   // HSK 1-N
   for (var lv = 1; lv <= count; lv++) {

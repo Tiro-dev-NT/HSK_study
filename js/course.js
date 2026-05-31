@@ -14,6 +14,14 @@ var VN_CHARACTERS = {
   class:    { name: 'Cả lớp',    role: '',           emoji: '👥',  color: '#6B7280', img: '',                              pitch: 1,    rate: 1.0  }
 };
 
+// ── Chapter definitions for HSK 1 path ──────────────────
+var COURSE_CHAPTERS = [
+  { label: 'Câu chuyện chính',    from: 1,  to: 12 },
+  { label: 'Củng cố từ vựng',     from: 13, to: 21 },
+  { label: 'Đọc thêm',            from: 22, to: 30 },
+  { label: 'Hành động hằng ngày', from: 31, to: 46 }
+];
+
 var Course = {
 
   // ── State ──────────────────────────────────────────
@@ -47,45 +55,124 @@ var Course = {
     Course.loadLesson(id);
   },
 
-  // ── Lesson list view ─────────────────────────────────
+  // ── Lesson list view (Duolingo-style path) ────────────
   renderList: function() {
     var progress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
-    var cards = [];
     var ids = (typeof COURSE_DATA !== 'undefined')
       ? Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; })
       : [];
+    var totalLessons = ids.length;
+    var completedCount = 0;
+    var nextId = null;
+
+    // Find next lesson (first incomplete) and count completed
     for (var i = 0; i < ids.length; i++) {
       var id = ids[i];
-      var lesson = COURSE_DATA[id];
-      if (!lesson) continue;
-      var prog = progress[id];
-      var statusLabel = '';
-      var cardClass = 'cs-lesson-card';
-      if (prog && prog.completed) {
-        statusLabel = '✓ Hoàn thành';
-        cardClass += ' cs-li-completed';
-      } else if (prog) {
-        statusLabel = '▶ Đang học dở';
-        cardClass += ' cs-li-progress';
+      if (progress[id] && progress[id].completed) {
+        completedCount++;
+      } else if (nextId === null) {
+        nextId = id;
       }
-      cards.push(
-        '<button class="' + cardClass + '" onclick="Course.loadLesson(' + id + ')">' +
-          '<div class="cs-lc-num">Bài ' + id + '</div>' +
-          '<div class="cs-lc-title">' + lesson.title + '</div>' +
-          '<div class="cs-lc-context">' + lesson.context + '</div>' +
-          (statusLabel ? '<div class="cs-lc-status">' + statusLabel + '</div>' : '') +
-        '</button>'
-      );
     }
-    Course._getEl().innerHTML =
-      '<div class="cs-header">' +
-        '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
-        '<span class="cs-lesson-num">Truyện Mai — HSK 1</span>' +
-      '</div>' +
-      '<div class="cs-list">' +
-        '<h2 class="cs-list-title">Chọn bài học</h2>' +
-        '<div class="cs-lesson-grid">' + cards.join('') + '</div>' +
+
+    var html = '<div class="cs-header">' +
+      '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
+      '<span class="cs-lesson-num">Truyện Mai — HSK 1</span>' +
+      '<span class="cs-path-progress">' + completedCount + '/' + totalLessons + ' bài</span>' +
+    '</div>';
+
+    html += '<div class="cs-path">';
+
+    // Hero: "Bước tiếp theo" or completion
+    if (nextId !== null) {
+      var nextLesson = COURSE_DATA[nextId];
+      var isInProgress = progress[nextId] && !progress[nextId].completed;
+      html += '<div class="cs-path-hero">' +
+        '<div class="cs-hero-label">' + (isInProgress ? '▶ Đang học dở' : '📍 Bước tiếp theo') + '</div>' +
+        '<div class="cs-hero-title">Bài ' + nextId + ' — ' + escapeHtml(nextLesson.title) + '</div>' +
+        '<div class="cs-hero-context">' + escapeHtml(nextLesson.context) + '</div>' +
+        '<button class="cs-hero-btn" onclick="Course.loadLesson(' + nextId + ')">' +
+          (isInProgress ? '▶ Học tiếp' : '▶ Bắt đầu') +
+        '</button>' +
       '</div>';
+    } else {
+      html += '<div class="cs-path-hero cs-path-hero--done">' +
+        '<div class="cs-hero-label">🎉 Hoàn thành!</div>' +
+        '<div class="cs-hero-title">Bạn đã học xong HSK 1</div>' +
+        '<div class="cs-hero-context">Tuyệt vời! Tiếp tục ôn tập hoặc chờ HSK 2.</div>' +
+      '</div>';
+    }
+
+    // Chapters with nodes
+    for (var ci = 0; ci < COURSE_CHAPTERS.length; ci++) {
+      var chapter = COURSE_CHAPTERS[ci];
+      var chapterIds = [];
+      var chapterDone = 0;
+
+      // Collect lessons in this chapter
+      for (var j = 0; j < ids.length; j++) {
+        var lid = ids[j];
+        if (lid >= chapter.from && lid <= chapter.to) {
+          chapterIds.push(lid);
+          if (progress[lid] && progress[lid].completed) chapterDone++;
+        }
+      }
+
+      if (chapterIds.length === 0) continue;
+
+      var chapterTotal = chapterIds.length;
+      var chapterPct = Math.round(chapterDone / chapterTotal * 100);
+
+      html += '<div class="cs-chapter">' +
+        '<div class="cs-chapter-header">' +
+          '<span class="cs-chapter-label">Chương ' + (ci + 1) + '</span>' +
+          '<span class="cs-chapter-title">' + escapeHtml(chapter.label) + '</span>' +
+          '<span class="cs-chapter-count">' + chapterDone + '/' + chapterTotal + '</span>' +
+        '</div>' +
+        '<div class="cs-chapter-bar"><div class="cs-chapter-fill" style="width:' + chapterPct + '%"></div></div>' +
+        '<div class="cs-nodes">';
+
+      // Render nodes
+      for (var k = 0; k < chapterIds.length; k++) {
+        var nid = chapterIds[k];
+        var lesson = COURSE_DATA[nid];
+        var prog = progress[nid];
+        var isDone = prog && prog.completed;
+        var isCurrent = (nid === nextId);
+        var isLocked = !isDone && !isCurrent && nextId !== null && nid > nextId;
+
+        var nodeClass = 'cs-node';
+        var nodeIcon = nid;
+        if (isDone) {
+          nodeClass += ' cs-node--done';
+          nodeIcon = '✓';
+        } else if (isCurrent) {
+          nodeClass += ' cs-node--current';
+        } else if (isLocked) {
+          nodeClass += ' cs-node--locked';
+        }
+
+        html += '<button class="' + nodeClass + '" ' +
+          'onclick="Course._handleNodeClick(' + nid + ', ' + isLocked + ', ' + (nextId || 0) + ')" ' +
+          'title="Bài ' + nid + ': ' + escapeAttr(lesson.title) + '">' +
+          '<span class="cs-node-icon">' + nodeIcon + '</span>' +
+        '</button>';
+      }
+
+      html += '</div></div>'; // .cs-nodes, .cs-chapter
+    }
+
+    html += '</div>'; // .cs-path
+
+    Course._getEl().innerHTML = html;
+  },
+
+  _handleNodeClick: function(id, isLocked, nextId) {
+    if (isLocked && nextId) {
+      var ok = confirm('Bài này đang khóa. Nên học Bài ' + nextId + ' trước.\n\nVẫn muốn mở?');
+      if (!ok) return;
+    }
+    Course.loadLesson(id);
   },
 
   loadLesson: function(id) {

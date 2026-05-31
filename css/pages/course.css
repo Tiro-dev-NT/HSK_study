@@ -730,68 +730,174 @@
   color: var(--fg);
   margin: 0 0 16px;
 }
-.cs-lesson-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+
+/* ── Path view (Duolingo-style) ─────────────────────── */
+.cs-path {
+  padding: 16px 16px 80px;
 }
-.cs-lesson-card {
-  background: var(--surface-2, #F9F9F8);
-  border: 1.5px solid var(--border-2);
+.cs-path-progress {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--thuy-luc, #10B981);
+  background: rgba(16,185,129,0.1);
+  padding: 4px 10px;
   border-radius: 12px;
-  padding: 14px 12px;
-  text-align: left;
+  flex-shrink: 0;
+}
+
+/* Hero: Bước tiếp theo */
+.cs-path-hero {
+  background: linear-gradient(135deg, var(--hoang-kim, #F59E0B) 0%, #D97706 100%);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  color: #fff;
+  text-align: center;
+}
+.cs-path-hero--done {
+  background: linear-gradient(135deg, var(--thuy-luc, #10B981) 0%, #059669 100%);
+}
+.cs-hero-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+.cs-hero-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.cs-hero-context {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.cs-hero-btn {
+  background: rgba(255,255,255,0.95);
+  color: var(--hoang-kim, #F59E0B);
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  font: inherit;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cs-hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.cs-path-hero--done .cs-hero-btn { display: none; }
+
+/* Chapter */
+.cs-chapter {
+  margin-bottom: 24px;
+}
+.cs-chapter-header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
 }
-.cs-lesson-card:hover {
-  border-color: var(--primary);
-  box-shadow: 0 2px 8px rgba(220,38,38,0.12);
-}
-.cs-lc-num {
+.cs-chapter-label {
   font-size: 11px;
   font-weight: 700;
   color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-.cs-lc-title {
+.cs-chapter-title {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--fg);
-  line-height: 1.3;
+  flex: 1;
 }
-.cs-lc-context {
+.cs-chapter-count {
   font-size: 12px;
   color: var(--fg-3);
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+}
+.cs-chapter-bar {
+  height: 4px;
+  background: var(--border-2);
+  border-radius: 2px;
   overflow: hidden;
+  margin-bottom: 12px;
 }
-.cs-lc-status {
-  font-size: 11px;
-  font-weight: 600;
-  margin-top: 6px;
+.cs-chapter-fill {
+  height: 100%;
+  background: var(--thuy-luc, #10B981);
+  border-radius: 2px;
+  transition: width 0.4s ease;
 }
-.cs-li-completed {
-  border-color: var(--thuy-luc, #10B981);
-  background: rgba(16,185,129,0.05);
-}
-.cs-li-completed .cs-lc-status { color: var(--thuy-luc-2, #059669); }
-.cs-li-progress {
-  border-color: var(--hoang-kim, #F59E0B);
-  background: rgba(245,158,11,0.05);
-}
-.cs-li-progress .cs-lc-status { color: var(--hoang-kim, #F59E0B); }
 
-/* ── Dark mode ───────────────────────────────────────── */
-[data-theme="dark"] .cs-lesson-card { background: var(--card-bg, #1F2937); }
+/* Nodes */
+.cs-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cs-node {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2.5px solid var(--border-2);
+  background: var(--surface-2, #F9F9F8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  font: inherit;
+  padding: 0;
+}
+.cs-node:hover {
+  transform: scale(1.08);
+}
+.cs-node-icon {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fg-2);
+}
+
+/* Node states */
+.cs-node--done {
+  border-color: var(--thuy-luc, #10B981);
+  background: rgba(16,185,129,0.1);
+}
+.cs-node--done .cs-node-icon {
+  color: var(--thuy-luc, #10B981);
+  font-size: 16px;
+}
+
+.cs-node--current {
+  border-color: var(--hoang-kim, #F59E0B);
+  background: rgba(245,158,11,0.15);
+  box-shadow: 0 0 0 4px rgba(245,158,11,0.2);
+  animation: cs-pulse 2s ease-in-out infinite;
+}
+.cs-node--current .cs-node-icon {
+  color: var(--hoang-kim, #F59E0B);
+}
+@keyframes cs-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(245,158,11,0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(245,158,11,0.1); }
+}
+
+.cs-node--locked {
+  opacity: 0.45;
+  cursor: pointer;
+}
+.cs-node--locked .cs-node-icon {
+  color: var(--fg-3);
+}
+
+/* Dark mode */
+[data-theme="dark"] .cs-node { background: var(--card-bg, #1F2937); }
+[data-theme="dark"] .cs-path-progress { background: rgba(16,185,129,0.15); }
 
 [data-theme="dark"] .cs-dialogue-card,
 [data-theme="dark"] .cs-question,

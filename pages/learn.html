@@ -17,22 +17,15 @@
           </div>
         </div>
 
+        <!-- 2. Timeline -->
         <div class="lh-section">
-          <div class="lh-section-label">🔰 HSK 0 Nhập Môn</div>
-          <div class="lh-support-grid">
-            <button class="lh-support-item" onclick="Router.navigateTo('hsk0-pinyin-initials')">
-              <span class="lh-support-icon">📚</span><span>Học từ đầu</span>
-            </button>
-            <button class="lh-support-item" onclick="Router.navigateTo('hsk0-final')">
-              <span class="lh-support-icon">🎓</span><span>Thi cuối HSK 0</span>
-            </button>
-            <button class="lh-support-item" onclick="Router.navigateTo('hsk0-placement')">
-              <span class="lh-support-icon">⚡</span><span>Bỏ qua HSK 0</span>
-            </button>
+          <div class="lh-section-label">🗺️ Lộ trình của bạn</div>
+          <div class="lh-timeline" id="lhTimeline">
+            <div style="padding:20px;text-align:center;color:var(--text2);font-size:14px">Đang tải…</div>
           </div>
         </div>
 
-        <!-- 2. Hôm nay -->
+        <!-- 3. Hôm nay -->
         <div class="lh-section">
           <div class="lh-section-label">📅 Hôm nay</div>
           <div class="lh-today-grid lh-today-grid--3" id="lhTodayGrid">
@@ -58,14 +51,6 @@
               <div class="lh-today-desc" id="lhTodayGameDesc">Thư giãn & ôn từ</div>
               <div class="lh-today-check" id="lhTodayGameCheck"></div>
             </button>
-          </div>
-        </div>
-
-        <!-- 3. Timeline -->
-        <div class="lh-section">
-          <div class="lh-section-label">🗺️ Lộ trình của bạn</div>
-          <div class="lh-timeline" id="lhTimeline">
-            <div style="padding:20px;text-align:center;color:var(--text2);font-size:14px">Đang tải…</div>
           </div>
         </div>
 
@@ -110,22 +95,6 @@
             <button class="lh-util-chip" onclick="Router.navigateTo('references')">
               <span>📄</span><span>Tài liệu PDF</span>
             </button>
-          </div>
-        </div>
-
-        <!-- Story Mai entry -->
-        <div class="lh-section">
-          <div class="lh-section-label">📖 Học theo câu chuyện</div>
-          <button class="lh-story-card" onclick="Course._pendingId=1;Router.navigateTo('course')">
-            <div class="lh-story-thumb">🐉</div>
-            <div class="lh-story-info">
-              <div class="lh-story-title">Truyện Mai — HSK 1</div>
-              <div class="lh-story-meta">12 bài · Câu chuyện + ngữ pháp + bài tập</div>
-            </div>
-            <span class="lh-story-arrow">→</span>
-          </button>
-          <div class="lh-story-list-link">
-            <button class="lh-story-list-btn" onclick="Router.navigateTo('course')">Xem tất cả 12 bài →</button>
           </div>
         </div>
 

@@ -6574,5 +6574,803 @@ Object.assign(COURSE_DATA, {
         { type: 'translate', prompt: 'Buổi tối có thể thấy trăng và sao.', answer: '晚上能看到月亮和星星。' }
       ]
     }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 66: Đọc thêm — Ăn uống & trường học — 22 từ
+  // 菜单, 蛋, 饭馆, 方便面, 酒, 酒店, 米, 晚餐, 味道, 油, 面, 分数, 高中, 教师, 教室, 考生, 科, 课堂, 留学生, 年级, 生词, 中小学
+  // ───────────────────────────────────────────────────────────────────────────
+  66: {
+    id: 66,
+    level: 2,
+    title: 'Đọc thêm: Ăn uống & trường học',
+    context: 'Cả nhóm ăn tối ở một quán ăn, rồi trò chuyện về chuyện trường lớp, môn học và điểm số.',
+    vocabPreview: ['饭馆', '菜单', '教室', '年级', '留学生'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Quán ăn · Buổi tối', bg: 'cafeteria',
+        cast: ['mai', 'xiaomei'],
+        text: 'Buổi tối, hai bạn vào một quán ăn gần trường.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这家饭馆的菜单很长，味道也好。',
+        pinyin: 'Zhè jiā fànguǎn de càidān hěn cháng, wèidao yě hǎo.',
+        meaning: 'Thực đơn của quán này rất dài, mùi vị cũng ngon.',
+        expression: 'happy', vocab: ['饭馆', '菜单', '味道']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我要一碗面、一个蛋，少放油。',
+        pinyin: 'Wǒ yào yì wǎn miàn, yí gè dàn, shǎo fàng yóu.',
+        meaning: 'Tớ muốn một bát mì, một quả trứng, ít dầu thôi.',
+        expression: 'happy', vocab: ['面', '蛋', '油']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我点米饭和晚餐套餐。没时间就吃方便面。',
+        pinyin: 'Wǒ diǎn mǐfàn hé wǎncān tàocān. Méi shíjiān jiù chī fāngbiànmiàn.',
+        meaning: 'Tớ gọi cơm và suất ăn tối. Không có thời gian thì ăn mì gói.',
+        expression: 'happy', vocab: ['米', '晚餐', '方便面']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'cafeteria',
+        scene: '📍 Quán ăn',
+        expression: 'curious',
+        q: 'Mai muốn nói "Phòng học của chúng ta rất rộng". Nên dùng từ nào cho "phòng học"?',
+        options: [
+          { text: '我们的教室很大。', pinyin: 'Wǒmen de jiàoshì hěn dà.', meaning: 'Phòng học của chúng ta rất rộng.', correct: true,
+            feedback: 'Đúng! 教室 = phòng học.' },
+          { text: '我们的课堂很大。', pinyin: 'Wǒmen de kètáng hěn dà.', meaning: '(Lệch nghĩa)', correct: false,
+            feedback: '课堂 = lớp học (về buổi học/giờ học), không chỉ căn phòng vật lý.' },
+          { text: '我们的年级很大。', pinyin: 'Wǒmen de niánjí hěn dà.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '年级 = khối lớp, niên khóa; không phải "phòng học".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我们的教室很大，课堂上老师讲生词。',
+        pinyin: 'Wǒmen de jiàoshì hěn dà, kètáng shàng lǎoshī jiǎng shēngcí.',
+        meaning: 'Phòng học của chúng ta rất rộng, trên lớp thầy giảng từ mới.',
+        expression: 'happy', vocab: ['教室', '课堂', '生词']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"菜单" có nghĩa là gì?',
+            options: ['thực đơn', 'mùi vị', 'cơm', 'trứng'],
+            answer: 0
+          },
+          {
+            q: '"教室" có nghĩa là gì?',
+            options: ['phòng học', 'khối lớp', 'giáo viên', 'điểm số'],
+            answer: 0
+          },
+          {
+            q: '"方便面" có nghĩa là gì?',
+            options: ['mì ăn liền (mì gói)', 'cơm', 'trứng', 'rượu'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Lớp học · Hôm sau', bg: 'classroom',
+        cast: ['mai', 'xiaomei', 'laoli'],
+        text: 'Thầy Lý kể về công việc dạy học của mình.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '我是教师，教高中和中小学。这家酒店还卖酒。',
+        pinyin: 'Wǒ shì jiàoshī, jiāo gāozhōng hé zhōngxiǎoxué. Zhè jiā jiǔdiàn hái mài jiǔ.',
+        meaning: 'Tôi là giáo viên, dạy cấp ba và trường phổ thông. Khách sạn này còn bán rượu nữa.',
+        expression: 'happy', vocab: ['教师', '高中', '中小学', '酒店', '酒']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '我在三年级，理科是我的科目。',
+        pinyin: 'Wǒ zài sān niánjí, lǐkē shì wǒ de kēmù.',
+        meaning: 'Em học lớp ba, khoa học tự nhiên là môn của em.',
+        expression: 'happy', vocab: ['年级', '科']
+      },
+      {
+        type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'], bg: 'classroom',
+        scene: '📍 Lớp học',
+        expression: 'curious',
+        q: 'Tiểu Mỹ muốn nói "Mỗi thí sinh đều muốn điểm cao". Nên dùng từ nào cho "thí sinh"?',
+        options: [
+          { text: '每个考生都想要好分数。', pinyin: 'Měi gè kǎoshēng dōu xiǎng yào hǎo fēnshù.', meaning: 'Mỗi thí sinh đều muốn điểm cao.', correct: true,
+            feedback: 'Đúng! 考生 = thí sinh; 分数 = điểm số.' },
+          { text: '每个教师都想要好分数。', pinyin: 'Měi gè jiàoshī dōu xiǎng yào hǎo fēnshù.', meaning: '(Sai chủ thể)', correct: false,
+            feedback: '教师 = giáo viên, không phải "thí sinh".' },
+          { text: '每个留学生都想要好课堂。', pinyin: 'Měi gè liúxuéshēng dōu xiǎng yào hǎo kètáng.', meaning: '(Lệch ý)', correct: false,
+            feedback: '留学生 = du học sinh; câu này không nói về điểm số.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '每个考生都想要好分数。这里有很多留学生。',
+        pinyin: 'Měi gè kǎoshēng dōu xiǎng yào hǎo fēnshù. Zhèlǐ yǒu hěn duō liúxuéshēng.',
+        meaning: 'Mỗi thí sinh đều muốn điểm cao. Ở đây có rất nhiều du học sinh.',
+        expression: 'happy', vocab: ['考生', '分数', '留学生']
+      }
+    ],
+    vocab: [
+      { h: '菜单', p: 'càidān', v: 'thực đơn' },
+      { h: '蛋', p: 'dàn', v: 'trứng' },
+      { h: '饭馆', p: 'fànguǎn', v: 'quán ăn, nhà hàng' },
+      { h: '方便面', p: 'fāngbiànmiàn', v: 'mì ăn liền' },
+      { h: '酒', p: 'jiǔ', v: 'rượu' },
+      { h: '酒店', p: 'jiǔdiàn', v: 'khách sạn' },
+      { h: '米', p: 'mǐ', v: 'gạo; mét' },
+      { h: '晚餐', p: 'wǎncān', v: 'bữa tối' },
+      { h: '味道', p: 'wèidao', v: 'mùi vị' },
+      { h: '油', p: 'yóu', v: 'dầu, mỡ' },
+      { h: '面', p: 'miàn', v: 'mì; mặt' },
+      { h: '分数', p: 'fēnshù', v: 'điểm số' },
+      { h: '高中', p: 'gāozhōng', v: 'trung học phổ thông (cấp ba)' },
+      { h: '教师', p: 'jiàoshī', v: 'giáo viên' },
+      { h: '教室', p: 'jiàoshì', v: 'phòng học' },
+      { h: '考生', p: 'kǎoshēng', v: 'thí sinh' },
+      { h: '科', p: 'kē', v: 'môn, khoa' },
+      { h: '课堂', p: 'kètáng', v: 'lớp học (giờ học)' },
+      { h: '留学生', p: 'liúxuéshēng', v: 'du học sinh' },
+      { h: '年级', p: 'niánjí', v: 'khối lớp, niên khóa' },
+      { h: '生词', p: 'shēngcí', v: 'từ mới' },
+      { h: '中小学', p: 'zhōngxiǎoxué', v: 'trường phổ thông (tiểu học và trung học)' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '这家___的菜单很长。', options: ['饭馆', '酒店', '教室'], answer: '饭馆' },
+        { type: 'fill', sentence: '___很长，味道也好。', options: ['菜单', '生词', '分数'], answer: '菜单' },
+        { type: 'fill', sentence: '我要一碗面、一个___。', options: ['蛋', '米', '油'], answer: '蛋' },
+        { type: 'fill', sentence: '少放___。', options: ['油', '蛋', '酒'], answer: '油' },
+        { type: 'fill', sentence: '没时间就吃___。', options: ['方便面', '晚餐', '米'], answer: '方便面' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我们的___很大。', options: ['教室', '课堂', '年级'], answer: '教室' },
+        { type: 'fill', sentence: '___上老师讲生词。', options: ['课堂', '教室', '科'], answer: '课堂' },
+        { type: 'fill', sentence: '老师讲___。', options: ['生词', '分数', '味道'], answer: '生词' },
+        { type: 'fill', sentence: '我是___，教高中。', options: ['教师', '考生', '留学生'], answer: '教师' },
+        { type: 'fill', sentence: '我在三___。', options: ['年级', '科', '课堂'], answer: '年级' },
+        { type: 'order', words: ['菜单', '很长', '这家饭馆的'], answer: '这家饭馆的菜单很长' },
+        { type: 'order', words: ['一碗面', '我', '要'], answer: '我要一碗面' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '教高中和___。', options: ['中小学', '留学生', '考生'], answer: '中小学' },
+        { type: 'fill', sentence: '每个___都想要好分数。', options: ['考生', '教师', '年级'], answer: '考生' },
+        { type: 'fill', sentence: '每个考生都想要好___。', options: ['分数', '味道', '科'], answer: '分数' },
+        { type: 'fill', sentence: '这里有很多___。', options: ['留学生', '考生', '教师'], answer: '留学生' },
+        { type: 'translate', prompt: 'Phòng học của chúng ta rất rộng.', answer: '我们的教室很大。' },
+        { type: 'translate', prompt: 'Mỗi thí sinh đều muốn điểm cao.', answer: '每个考生都想要好分数。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 67: Đọc thêm — Ngôn ngữ & giao tiếp — 10 từ
+  // 词, 词语, 读音, 句子, 平安, 普通话, 英文, 英语, 语言, 方面
+  // ───────────────────────────────────────────────────────────────────────────
+  67: {
+    id: 67,
+    level: 2,
+    title: 'Đọc thêm: Ngôn ngữ & giao tiếp',
+    context: 'Mai và Tiểu Mỹ bàn về việc học ngoại ngữ: phát âm, từ ngữ và cách đặt câu.',
+    vocabPreview: ['语言', '普通话', '英语', '句子', '读音'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Lớp học · Buổi chiều', bg: 'classroom',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn ngồi lại ôn ngoại ngữ sau giờ học.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '学语言要多练，普通话和英语都重要。',
+        pinyin: 'Xué yǔyán yào duō liàn, pǔtōnghuà hé yīngyǔ dōu zhòngyào.',
+        meaning: 'Học ngôn ngữ phải luyện nhiều, tiếng phổ thông và tiếng Anh đều quan trọng.',
+        expression: 'focused', vocab: ['语言', '普通话', '英语']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这个词的读音我不会，这个词语也难。',
+        pinyin: 'Zhège cí de dúyīn wǒ bú huì, zhège cíyǔ yě nán.',
+        meaning: 'Cách đọc của từ này tớ không biết, từ ngữ này cũng khó.',
+        expression: 'sad', vocab: ['词', '读音', '词语']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'classroom',
+        scene: '📍 Lớp học',
+        expression: 'curious',
+        q: 'Cô giáo bảo Mai "viết một câu". Mai nên dùng từ nào cho "câu"?',
+        options: [
+          { text: '老师让我写一个句子。', pinyin: 'Lǎoshī ràng wǒ xiě yí gè jùzi.', meaning: 'Cô bảo tớ viết một câu.', correct: true,
+            feedback: 'Đúng! 句子 = câu (văn).' },
+          { text: '老师让我写一个读音。', pinyin: 'Lǎoshī ràng wǒ xiě yí gè dúyīn.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '读音 = cách đọc (âm), không phải "câu".' },
+          { text: '老师让我写一个语言。', pinyin: 'Lǎoshī ràng wǒ xiě yí gè yǔyán.', meaning: '(Sai cấu trúc)', correct: false,
+            feedback: '语言 = ngôn ngữ (khái niệm lớn), không "viết một ngôn ngữ".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '老师让我写一个句子，还要写英文。',
+        pinyin: 'Lǎoshī ràng wǒ xiě yí gè jùzi, hái yào xiě yīngwén.',
+        meaning: 'Cô bảo tớ viết một câu, còn phải viết tiếng Anh nữa.',
+        expression: 'focused', vocab: ['句子', '英文']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"普通话" có nghĩa là gì?',
+            options: ['tiếng phổ thông (tiếng Trung chuẩn)', 'tiếng Anh', 'từ ngữ', 'cách đọc'],
+            answer: 0
+          },
+          {
+            q: '"英语" và "英文" cùng chỉ điều gì?',
+            options: ['tiếng Anh', 'tiếng phổ thông', 'ngôn ngữ nói chung', 'câu'],
+            answer: 0
+          },
+          {
+            q: '"句子" có nghĩa là gì?',
+            options: ['câu (văn)', 'từ', 'cách đọc', 'phương diện'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '在发音方面要注意。下课了，祝你一路平安！',
+        pinyin: 'Zài fāyīn fāngmiàn yào zhùyì. Xiàkè le, zhù nǐ yílù píng’ān!',
+        meaning: 'Về mặt phát âm phải chú ý. Tan học rồi, chúc em thượng lộ bình an!',
+        expression: 'happy', vocab: ['方面', '平安']
+      }
+    ],
+    vocab: [
+      { h: '词', p: 'cí', v: 'từ' },
+      { h: '词语', p: 'cíyǔ', v: 'từ ngữ' },
+      { h: '读音', p: 'dúyīn', v: 'cách đọc, âm đọc' },
+      { h: '句子', p: 'jùzi', v: 'câu' },
+      { h: '平安', p: 'píng’ān', v: 'bình an' },
+      { h: '普通话', p: 'pǔtōnghuà', v: 'tiếng phổ thông' },
+      { h: '英文', p: 'yīngwén', v: 'tiếng Anh (chữ viết)' },
+      { h: '英语', p: 'yīngyǔ', v: 'tiếng Anh' },
+      { h: '语言', p: 'yǔyán', v: 'ngôn ngữ' },
+      { h: '方面', p: 'fāngmiàn', v: 'phương diện, mặt' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '学___要多练。', options: ['语言', '句子', '读音'], answer: '语言' },
+        { type: 'fill', sentence: '___和英语都重要。', options: ['普通话', '英文', '词语'], answer: '普通话' },
+        { type: 'fill', sentence: '这个___的读音我不会。', options: ['词', '句子', '方面'], answer: '词' },
+        { type: 'fill', sentence: '这个___也难。', options: ['词语', '平安', '英文'], answer: '词语' },
+        { type: 'fill', sentence: '这个词的___我不会。', options: ['读音', '词语', '句子'], answer: '读音' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '老师让我写一个___。', options: ['句子', '读音', '语言'], answer: '句子' },
+        { type: 'fill', sentence: '还要写___。', options: ['英文', '英语', '词'], answer: '英文' },
+        { type: 'fill', sentence: '普通话和___都重要。', options: ['英语', '英文', '方面'], answer: '英语' },
+        { type: 'fill', sentence: '在发音___要注意。', options: ['方面', '句子', '词'], answer: '方面' },
+        { type: 'order', words: ['多练', '学语言', '要'], answer: '学语言要多练' },
+        { type: 'order', words: ['一个句子', '写', '让我', '老师'], answer: '老师让我写一个句子' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '祝你一路___！', options: ['平安', '方面', '语言'], answer: '平安' },
+        { type: 'fill', sentence: '在发音___要注意。', options: ['方面', '读音', '词语'], answer: '方面' },
+        { type: 'fill', sentence: '___和英文都要学。', options: ['英语', '普通话', '句子'], answer: '英语' },
+        { type: 'translate', prompt: 'Học ngôn ngữ phải luyện nhiều.', answer: '学语言要多练。' },
+        { type: 'translate', prompt: 'Cô bảo tớ viết một câu.', answer: '老师让我写一个句子。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 68: Đọc thêm — Màu sắc & động vật — 14 từ
+  // 白色, 黑色, 红色, 黄色, 蓝色, 绿色, 颜色, 狗, 结果, 鸟, 气温, 然后, 温度, 鱼
+  // ───────────────────────────────────────────────────────────────────────────
+  68: {
+    id: 68,
+    level: 2,
+    title: 'Đọc thêm: Màu sắc & động vật',
+    context: 'Cả nhóm ra công viên, nói về màu sắc yêu thích, các con vật và thời tiết.',
+    vocabPreview: ['颜色', '红色', '气温', '然后', '结果'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Công viên · Buổi sáng', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Cả nhóm dạo chơi trong công viên.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '你喜欢什么颜色？我喜欢红色和蓝色。',
+        pinyin: 'Nǐ xǐhuan shénme yánsè? Wǒ xǐhuan hóngsè hé lánsè.',
+        meaning: 'Cậu thích màu gì? Tớ thích màu đỏ và màu xanh lam.',
+        expression: 'happy', vocab: ['颜色', '红色', '蓝色']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我喜欢白色、黑色，还有绿色和黄色。',
+        pinyin: 'Wǒ xǐhuan báisè, hēisè, hái yǒu lǜsè hé huángsè.',
+        meaning: 'Tớ thích màu trắng, màu đen, còn có màu xanh lục và màu vàng.',
+        expression: 'happy', vocab: ['白色', '黑色', '绿色', '黄色']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '公园里有狗、鸟和鱼。',
+        pinyin: 'Gōngyuán lǐ yǒu gǒu, niǎo hé yú.',
+        meaning: 'Trong công viên có chó, chim và cá.',
+        expression: 'happy', vocab: ['狗', '鸟', '鱼']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Công viên',
+        expression: 'curious',
+        q: 'Mai muốn nói "Nhiệt độ không khí hôm nay rất thấp". Nên dùng từ nào cho "nhiệt độ không khí"?',
+        options: [
+          { text: '今天气温很低。', pinyin: 'Jīntiān qìwēn hěn dī.', meaning: 'Nhiệt độ (không khí) hôm nay rất thấp.', correct: true,
+            feedback: 'Đúng! 气温 = nhiệt độ không khí (thời tiết).' },
+          { text: '今天颜色很低。', pinyin: 'Jīntiān yánsè hěn dī.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '颜色 = màu sắc, không liên quan nhiệt độ.' },
+          { text: '今天结果很低。', pinyin: 'Jīntiān jiéguǒ hěn dī.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '结果 = kết quả, không phải nhiệt độ.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '今天气温很低，温度只有五度。',
+        pinyin: 'Jīntiān qìwēn hěn dī, wēndù zhǐ yǒu wǔ dù.',
+        meaning: 'Nhiệt độ hôm nay rất thấp, chỉ có năm độ.',
+        expression: 'curious', vocab: ['气温', '温度']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"颜色" có nghĩa là gì?',
+            options: ['màu sắc', 'nhiệt độ', 'con chim', 'kết quả'],
+            answer: 0
+          },
+          {
+            q: '"气温" và "温度" liên quan đến điều gì?',
+            options: ['nhiệt độ', 'màu sắc', 'động vật', 'ngôn ngữ'],
+            answer: 0
+          },
+          {
+            q: '"狗"、"鸟"、"鱼" thuộc nhóm nào?',
+            options: ['động vật', 'màu sắc', 'thời tiết', 'thức ăn'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我们先看动物，然后看结果谁找得多。',
+        pinyin: 'Wǒmen xiān kàn dòngwù, ránhòu kàn jiéguǒ shéi zhǎo de duō.',
+        meaning: 'Mình xem động vật trước, sau đó xem kết quả ai tìm được nhiều.',
+        expression: 'happy', vocab: ['然后', '结果']
+      }
+    ],
+    vocab: [
+      { h: '白色', p: 'báisè', v: 'màu trắng' },
+      { h: '黑色', p: 'hēisè', v: 'màu đen' },
+      { h: '红色', p: 'hóngsè', v: 'màu đỏ' },
+      { h: '黄色', p: 'huángsè', v: 'màu vàng' },
+      { h: '蓝色', p: 'lánsè', v: 'màu xanh lam' },
+      { h: '绿色', p: 'lǜsè', v: 'màu xanh lục' },
+      { h: '颜色', p: 'yánsè', v: 'màu sắc' },
+      { h: '狗', p: 'gǒu', v: 'chó' },
+      { h: '结果', p: 'jiéguǒ', v: 'kết quả' },
+      { h: '鸟', p: 'niǎo', v: 'chim' },
+      { h: '气温', p: 'qìwēn', v: 'nhiệt độ không khí' },
+      { h: '然后', p: 'ránhòu', v: 'sau đó, rồi thì' },
+      { h: '温度', p: 'wēndù', v: 'nhiệt độ' },
+      { h: '鱼', p: 'yú', v: 'cá' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '你喜欢什么___？', options: ['颜色', '气温', '结果'], answer: '颜色' },
+        { type: 'fill', sentence: '我喜欢___和蓝色。', options: ['红色', '温度', '然后'], answer: '红色' },
+        { type: 'fill', sentence: '我喜欢___和黑色。', options: ['白色', '气温', '鸟'], answer: '白色' },
+        { type: 'fill', sentence: '公园里有___、鸟和鱼。', options: ['狗', '颜色', '结果'], answer: '狗' },
+        { type: 'fill', sentence: '有狗、鸟和___。', options: ['鱼', '温度', '红色'], answer: '鱼' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '今天___很低。', options: ['气温', '颜色', '结果'], answer: '气温' },
+        { type: 'fill', sentence: '___只有五度。', options: ['温度', '气温', '然后'], answer: '温度' },
+        { type: 'fill', sentence: '还有绿色和___。', options: ['黄色', '红色', '蓝色'], answer: '黄色' },
+        { type: 'fill', sentence: '我喜欢红色和___。', options: ['蓝色', '黑色', '白色'], answer: '蓝色' },
+        { type: 'order', words: ['什么', '喜欢', '你', '颜色'], answer: '你喜欢什么颜色' },
+        { type: 'order', words: ['狗', '有', '公园里', '和鱼', '鸟'], answer: '公园里有狗鸟和鱼' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我们先看动物，___看结果。', options: ['然后', '结果', '温度'], answer: '然后' },
+        { type: 'fill', sentence: '看___谁找得多。', options: ['结果', '然后', '颜色'], answer: '结果' },
+        { type: 'fill', sentence: '公园里有狗、___和鱼。', options: ['鸟', '气温', '温度'], answer: '鸟' },
+        { type: 'translate', prompt: 'Cậu thích màu gì?', answer: '你喜欢什么颜色？' },
+        { type: 'translate', prompt: 'Nhiệt độ hôm nay rất thấp.', answer: '今天气温很低。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 69: Đọc thêm — Giao thông & thể thao — 14 từ
+  // 车辆, 出租车, 船, 地铁站, 公共汽车, 公路, 自行车, 公交车, 护照, 篮球, 排球, 体育, 同事, 网球
+  // ───────────────────────────────────────────────────────────────────────────
+  69: {
+    id: 69,
+    level: 2,
+    title: 'Đọc thêm: Giao thông & thể thao',
+    context: 'Cả nhóm bàn cách đi đến nhà thi đấu và nói về các môn thể thao yêu thích.',
+    vocabPreview: ['公交车', '自行车', '地铁站', '护照', '体育'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trên phố · Buổi sáng', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn bàn cách đi đến nhà thi đấu thể thao.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '去体育馆可以坐公交车或公共汽车。',
+        pinyin: 'Qù tǐyùguǎn kěyǐ zuò gōngjiāochē huò gōnggòng qìchē.',
+        meaning: 'Đến nhà thi đấu có thể đi xe buýt hoặc xe khách công cộng.',
+        expression: 'happy', vocab: ['体育', '公交车', '公共汽车']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '也可以骑自行车，或者坐出租车。',
+        pinyin: 'Yě kěyǐ qí zìxíngchē, huòzhě zuò chūzūchē.',
+        meaning: 'Cũng có thể đạp xe đạp, hoặc đi taxi.',
+        expression: 'happy', vocab: ['自行车', '出租车']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '地铁站就在公路旁边，路上车辆很多。',
+        pinyin: 'Dìtiězhàn jiù zài gōnglù pángbiān, lù shàng chēliàng hěn duō.',
+        meaning: 'Ga tàu điện ngầm ngay cạnh đường lớn, trên đường xe cộ rất đông.',
+        expression: 'curious', vocab: ['地铁站', '公路', '车辆']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Trên phố',
+        expression: 'curious',
+        q: 'Mai nói về việc đi nước ngoài bằng tàu thủy. Cô ấy cần mang gì?',
+        options: [
+          { text: '出国坐船要带护照。', pinyin: 'Chūguó zuò chuán yào dài hùzhào.', meaning: 'Đi nước ngoài bằng tàu thủy phải mang hộ chiếu.', correct: true,
+            feedback: 'Đúng! 船 = tàu thủy; 护照 = hộ chiếu.' },
+          { text: '出国坐船要带篮球。', pinyin: 'Chūguó zuò chuán yào dài lánqiú.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '篮球 = bóng rổ, không cần khi xuất cảnh.' },
+          { text: '出国坐船要带公路。', pinyin: 'Chūguó zuò chuán yào dài gōnglù.', meaning: '(Sai nghĩa)', correct: false,
+            feedback: '公路 = đường lớn, không mang theo được.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '出国坐船要带护照。',
+        pinyin: 'Chūguó zuò chuán yào dài hùzhào.',
+        meaning: 'Đi nước ngoài bằng tàu thủy phải mang hộ chiếu.',
+        expression: 'focused', vocab: ['船', '护照']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"公交车" có nghĩa là gì?',
+            options: ['xe buýt', 'xe đạp', 'taxi', 'tàu thủy'],
+            answer: 0
+          },
+          {
+            q: '"自行车" và "出租车" lần lượt là?',
+            options: ['xe đạp / taxi', 'taxi / xe đạp', 'xe buýt / tàu', 'tàu / xe đạp'],
+            answer: 0
+          },
+          {
+            q: '"护照" dùng khi nào?',
+            options: ['khi đi nước ngoài (xuất nhập cảnh)', 'khi chơi bóng', 'khi đạp xe', 'khi học bài'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '我同事喜欢打篮球、排球和网球，都是体育运动。',
+        pinyin: 'Wǒ tóngshì xǐhuan dǎ lánqiú, páiqiú hé wǎngqiú, dōu shì tǐyù yùndòng.',
+        meaning: 'Đồng nghiệp của tôi thích chơi bóng rổ, bóng chuyền và tennis, đều là môn thể thao.',
+        expression: 'happy', vocab: ['同事', '篮球', '排球', '网球']
+      }
+    ],
+    vocab: [
+      { h: '车辆', p: 'chēliàng', v: 'xe cộ (nói chung)' },
+      { h: '出租车', p: 'chūzūchē', v: 'taxi' },
+      { h: '船', p: 'chuán', v: 'thuyền, tàu thủy' },
+      { h: '地铁站', p: 'dìtiězhàn', v: 'ga tàu điện ngầm' },
+      { h: '公共汽车', p: 'gōnggòng qìchē', v: 'xe khách công cộng' },
+      { h: '公路', p: 'gōnglù', v: 'đường lớn, quốc lộ' },
+      { h: '自行车', p: 'zìxíngchē', v: 'xe đạp' },
+      { h: '公交车', p: 'gōngjiāochē', v: 'xe buýt' },
+      { h: '护照', p: 'hùzhào', v: 'hộ chiếu' },
+      { h: '篮球', p: 'lánqiú', v: 'bóng rổ' },
+      { h: '排球', p: 'páiqiú', v: 'bóng chuyền' },
+      { h: '体育', p: 'tǐyù', v: 'thể dục, thể thao' },
+      { h: '同事', p: 'tóngshì', v: 'đồng nghiệp' },
+      { h: '网球', p: 'wǎngqiú', v: 'quần vợt (tennis)' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '可以坐___或公共汽车。', options: ['公交车', '护照', '体育'], answer: '公交车' },
+        { type: 'fill', sentence: '可以坐公交车或___。', options: ['公共汽车', '网球', '同事'], answer: '公共汽车' },
+        { type: 'fill', sentence: '也可以骑___。', options: ['自行车', '出租车', '船'], answer: '自行车' },
+        { type: 'fill', sentence: '或者坐___。', options: ['出租车', '自行车', '篮球'], answer: '出租车' },
+        { type: 'fill', sentence: '去___馆可以坐车。', options: ['体育', '公路', '护照'], answer: '体育' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___就在公路旁边。', options: ['地铁站', '出租车', '同事'], answer: '地铁站' },
+        { type: 'fill', sentence: '地铁站就在___旁边。', options: ['公路', '体育', '护照'], answer: '公路' },
+        { type: 'fill', sentence: '路上___很多。', options: ['车辆', '网球', '排球'], answer: '车辆' },
+        { type: 'fill', sentence: '出国坐船要带___。', options: ['护照', '篮球', '公路'], answer: '护照' },
+        { type: 'order', words: ['自行车', '骑', '可以', '也'], answer: '也可以骑自行车' },
+        { type: 'order', words: ['船', '坐', '出国', '要带护照'], answer: '出国坐船要带护照' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '出国坐___要带护照。', options: ['船', '车辆', '公路'], answer: '船' },
+        { type: 'fill', sentence: '我同事喜欢打___。', options: ['篮球', '护照', '公路'], answer: '篮球' },
+        { type: 'fill', sentence: '打篮球、___和网球。', options: ['排球', '体育', '同事'], answer: '排球' },
+        { type: 'fill', sentence: '我___喜欢打球。', options: ['同事', '车辆', '公路'], answer: '同事' },
+        { type: 'translate', prompt: 'Đi nước ngoài bằng tàu thủy phải mang hộ chiếu.', answer: '出国坐船要带护照。' },
+        { type: 'translate', prompt: 'Cũng có thể đạp xe đạp.', answer: '也可以骑自行车。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 70: Đọc thêm — Nghệ thuật, gia đình & thời tiết — 17 từ
+  // 小说, 音乐, 音乐会, 作家, 校长, 院, 院子, 重点, 爱人, 家庭, 全家, 多云, 雪, 阴天, 西医, 药店, 药片
+  // ───────────────────────────────────────────────────────────────────────────
+  70: {
+    id: 70,
+    level: 2,
+    title: 'Đọc thêm: Nghệ thuật, gia đình & thời tiết',
+    context: 'Một ngày nhiều mây, cả nhóm nói về tiểu thuyết, âm nhạc, gia đình và chuyện sức khỏe.',
+    vocabPreview: ['小说', '音乐', '家庭', '多云', '药店'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Ký túc xá · Buổi chiều', bg: 'dorm-room',
+        cast: ['mai', 'xiaomei'],
+        text: 'Một buổi chiều nhiều mây, hai bạn trò chuyện trong phòng.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我喜欢看小说，也喜欢音乐和音乐会。',
+        pinyin: 'Wǒ xǐhuan kàn xiǎoshuō, yě xǐhuan yīnyuè hé yīnyuèhuì.',
+        meaning: 'Tớ thích đọc tiểu thuyết, cũng thích âm nhạc và buổi hòa nhạc.',
+        expression: 'happy', vocab: ['小说', '音乐', '音乐会']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这位作家是我们校长的爱人。',
+        pinyin: 'Zhè wèi zuòjiā shì wǒmen xiàozhǎng de àirén.',
+        meaning: 'Nhà văn này là vợ/chồng của hiệu trưởng chúng ta.',
+        expression: 'curious', vocab: ['作家', '校长', '爱人']
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '他们家庭很幸福，全家都爱艺术。学校的院子里有棵树，那座院很安静。',
+        pinyin: 'Tāmen jiātíng hěn xìngfú, quánjiā dōu ài yìshù. Xuéxiào de yuànzi lǐ yǒu kē shù, nà zuò yuàn hěn ānjìng.',
+        meaning: 'Gia đình họ rất hạnh phúc, cả nhà đều yêu nghệ thuật. Trong sân trường có một cái cây, khu viện đó rất yên tĩnh.',
+        expression: 'happy', vocab: ['家庭', '全家', '院子', '院']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'dorm-room',
+        scene: '📍 Ký túc xá',
+        expression: 'curious',
+        q: 'Mai nhìn ra ngoài trời. Cô ấy muốn nói "Hôm nay trời nhiều mây". Nên dùng từ nào?',
+        options: [
+          { text: '今天多云。', pinyin: 'Jīntiān duōyún.', meaning: 'Hôm nay nhiều mây.', correct: true,
+            feedback: 'Đúng! 多云 = nhiều mây.' },
+          { text: '今天阴天。', pinyin: 'Jīntiān yīntiān.', meaning: 'Hôm nay trời âm u.', correct: false,
+            feedback: '阴天 = trời âm u (u ám hẳn); ý ở đây là "nhiều mây".' },
+          { text: '今天小说。', pinyin: 'Jīntiān xiǎoshuō.', meaning: '(Không hợp lý)', correct: false,
+            feedback: '小说 = tiểu thuyết, không tả thời tiết.' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '今天多云，明天阴天，可能下雪。',
+        pinyin: 'Jīntiān duōyún, míngtiān yīntiān, kěnéng xià xuě.',
+        meaning: 'Hôm nay nhiều mây, mai trời âm u, có thể có tuyết.',
+        expression: 'curious', vocab: ['多云', '阴天', '雪']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"小说" có nghĩa là gì?',
+            options: ['tiểu thuyết', 'âm nhạc', 'gia đình', 'tuyết'],
+            answer: 0
+          },
+          {
+            q: '"家庭" và "全家" liên quan đến điều gì?',
+            options: ['gia đình', 'thời tiết', 'nghệ thuật', 'thuốc'],
+            answer: 0
+          },
+          {
+            q: '"多云" và "阴天" mô tả điều gì?',
+            options: ['thời tiết', 'màu sắc', 'âm nhạc', 'gia đình'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'laoli', cast: ['mai', 'xiaomei', 'laoli'],
+        text: '重点是健康。西医让我去药店买药片。',
+        pinyin: 'Zhòngdiǎn shì jiànkāng. Xīyī ràng wǒ qù yàodiàn mǎi yàopiàn.',
+        meaning: 'Điều quan trọng là sức khỏe. Bác sĩ Tây y bảo tôi ra hiệu thuốc mua viên thuốc.',
+        expression: 'focused', vocab: ['重点', '西医', '药店', '药片']
+      }
+    ],
+    vocab: [
+      { h: '小说', p: 'xiǎoshuō', v: 'tiểu thuyết' },
+      { h: '音乐', p: 'yīnyuè', v: 'âm nhạc' },
+      { h: '音乐会', p: 'yīnyuèhuì', v: 'buổi hòa nhạc' },
+      { h: '作家', p: 'zuòjiā', v: 'nhà văn' },
+      { h: '校长', p: 'xiàozhǎng', v: 'hiệu trưởng' },
+      { h: '院', p: 'yuàn', v: 'viện, khu nhà' },
+      { h: '院子', p: 'yuànzi', v: 'sân (nhà)' },
+      { h: '重点', p: 'zhòngdiǎn', v: 'trọng điểm, điều quan trọng' },
+      { h: '爱人', p: 'àirén', v: 'vợ/chồng' },
+      { h: '家庭', p: 'jiātíng', v: 'gia đình' },
+      { h: '全家', p: 'quánjiā', v: 'cả nhà' },
+      { h: '多云', p: 'duōyún', v: 'nhiều mây' },
+      { h: '雪', p: 'xuě', v: 'tuyết' },
+      { h: '阴天', p: 'yīntiān', v: 'trời âm u' },
+      { h: '西医', p: 'xīyī', v: 'Tây y; bác sĩ Tây y' },
+      { h: '药店', p: 'yàodiàn', v: 'hiệu thuốc' },
+      { h: '药片', p: 'yàopiàn', v: 'viên thuốc' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我喜欢看___。', options: ['小说', '音乐', '雪'], answer: '小说' },
+        { type: 'fill', sentence: '也喜欢音乐和___。', options: ['音乐会', '小说', '院子'], answer: '音乐会' },
+        { type: 'fill', sentence: '我也喜欢___。', options: ['音乐', '阴天', '药店'], answer: '音乐' },
+        { type: 'fill', sentence: '这位___是校长的爱人。', options: ['作家', '院长', '同事'], answer: '作家' },
+        { type: 'fill', sentence: '是我们___的爱人。', options: ['校长', '作家', '全家'], answer: '校长' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '他们___很幸福。', options: ['家庭', '院子', '音乐'], answer: '家庭' },
+        { type: 'fill', sentence: '___都爱艺术。', options: ['全家', '家庭', '校长'], answer: '全家' },
+        { type: 'fill', sentence: '学校的___里有棵树。', options: ['院子', '院', '家庭'], answer: '院子' },
+        { type: 'fill', sentence: '今天___。', options: ['多云', '小说', '音乐'], answer: '多云' },
+        { type: 'fill', sentence: '明天阴天，可能下___。', options: ['雪', '云', '药'], answer: '雪' },
+        { type: 'order', words: ['看小说', '我', '喜欢'], answer: '我喜欢看小说' },
+        { type: 'order', words: ['很幸福', '他们', '家庭'], answer: '他们家庭很幸福' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '明天___，可能下雪。', options: ['阴天', '多云', '院子'], answer: '阴天' },
+        { type: 'fill', sentence: '___是健康。', options: ['重点', '院子', '音乐'], answer: '重点' },
+        { type: 'fill', sentence: '___让我去药店买药片。', options: ['西医', '作家', '校长'], answer: '西医' },
+        { type: 'fill', sentence: '去___买药片。', options: ['药店', '院子', '音乐会'], answer: '药店' },
+        { type: 'translate', prompt: 'Hôm nay nhiều mây.', answer: '今天多云。' },
+        { type: 'translate', prompt: 'Điều quan trọng là sức khỏe.', answer: '重点是健康。' }
+      ]
+    }
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+  // BÀI 71: Đọc thêm — Công việc & học thuật — 5 từ
+  // 道理, 意见, 公司, 经理, 中医
+  // ───────────────────────────────────────────────────────────────────────────
+  71: {
+    id: 71,
+    level: 2,
+    title: 'Đọc thêm: Công việc & học thuật',
+    context: 'Mai và Tiểu Mỹ nói về công việc ở công ty và một quan điểm về y học cổ truyền.',
+    vocabPreview: ['公司', '经理', '道理', '意见', '中医'],
+    steps: [
+      {
+        type: 'dialogue', speaker: 'narrator',
+        scene: '📍 Trên phố · Buổi chiều', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Hai bạn nói chuyện về công việc tương lai.',
+        pinyin: '', meaning: '', vocab: []
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我表哥在一家公司上班，他是经理。',
+        pinyin: 'Wǒ biǎogē zài yì jiā gōngsī shàngbān, tā shì jīnglǐ.',
+        meaning: 'Anh họ tớ làm việc ở một công ty, anh ấy là quản lý.',
+        expression: 'happy', vocab: ['公司', '经理']
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '你说得有道理。你有什么意见？',
+        pinyin: 'Nǐ shuō de yǒu dàoli. Nǐ yǒu shénme yìjiàn?',
+        meaning: 'Cậu nói có lý. Cậu có ý kiến gì không?',
+        expression: 'curious', vocab: ['道理', '意见']
+      },
+      {
+        type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Trên phố',
+        expression: 'curious',
+        q: 'Mai muốn nói "Tớ tin vào Đông y". Nên dùng từ nào cho "Đông y"?',
+        options: [
+          { text: '我相信中医。', pinyin: 'Wǒ xiāngxìn zhōngyī.', meaning: 'Tớ tin vào Đông y.', correct: true,
+            feedback: 'Đúng! 中医 = Đông y, y học cổ truyền Trung Hoa.' },
+          { text: '我相信经理。', pinyin: 'Wǒ xiāngxìn jīnglǐ.', meaning: 'Tớ tin vào quản lý.', correct: false,
+            feedback: '经理 = quản lý (chức vụ), không phải "Đông y".' },
+          { text: '我相信公司。', pinyin: 'Wǒ xiāngxìn gōngsī.', meaning: 'Tớ tin vào công ty.', correct: false,
+            feedback: '公司 = công ty, không phải "Đông y".' }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我相信中医，他的话很有道理。',
+        pinyin: 'Wǒ xiāngxìn zhōngyī, tā de huà hěn yǒu dàoli.',
+        meaning: 'Tớ tin vào Đông y, lời ông ấy rất có lý.',
+        expression: 'happy', vocab: ['中医', '道理']
+      },
+      {
+        type: 'checkpoint',
+        questions: [
+          {
+            q: '"公司" và "经理" liên quan đến điều gì?',
+            options: ['công việc, công ty', 'y học', 'thời tiết', 'thể thao'],
+            answer: 0
+          },
+          {
+            q: '"有道理" có nghĩa là gì?',
+            options: ['có lý, hợp lý', 'có ý kiến', 'có công ty', 'có thuốc'],
+            answer: 0
+          },
+          {
+            q: '"中医" có nghĩa là gì?',
+            options: ['Đông y (y học cổ truyền)', 'Tây y', 'quản lý', 'công ty'],
+            answer: 0
+          }
+        ]
+      },
+      {
+        type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我同意你的意见。这家公司也请了中医。',
+        pinyin: 'Wǒ tóngyì nǐ de yìjiàn. Zhè jiā gōngsī yě qǐng le zhōngyī.',
+        meaning: 'Tớ đồng ý với ý kiến của cậu. Công ty này cũng mời cả thầy Đông y.',
+        expression: 'happy', vocab: ['意见', '公司', '中医']
+      }
+    ],
+    vocab: [
+      { h: '道理', p: 'dàoli', v: 'lý lẽ, đạo lý' },
+      { h: '意见', p: 'yìjiàn', v: 'ý kiến' },
+      { h: '公司', p: 'gōngsī', v: 'công ty' },
+      { h: '经理', p: 'jīnglǐ', v: 'quản lý, giám đốc' },
+      { h: '中医', p: 'zhōngyī', v: 'Đông y, y học cổ truyền' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我表哥在一家___上班。', options: ['公司', '中医', '意见'], answer: '公司' },
+        { type: 'fill', sentence: '他是___。', options: ['经理', '道理', '意见'], answer: '经理' },
+        { type: 'fill', sentence: '你说得有___。', options: ['道理', '公司', '经理'], answer: '道理' },
+        { type: 'fill', sentence: '你有什么___？', options: ['意见', '道理', '中医'], answer: '意见' },
+        { type: 'fill', sentence: '我相信___。', options: ['中医', '公司', '经理'], answer: '中医' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '他是公司的___。', options: ['经理', '中医', '道理'], answer: '经理' },
+        { type: 'fill', sentence: '我同意你的___。', options: ['意见', '道理', '公司'], answer: '意见' },
+        { type: 'fill', sentence: '他的话很有___。', options: ['道理', '意见', '经理'], answer: '道理' },
+        { type: 'fill', sentence: '这家公司请了___。', options: ['中医', '经理', '意见'], answer: '中医' },
+        { type: 'order', words: ['公司', '一家', '上班', '在'], answer: '在一家公司上班' },
+        { type: 'order', words: ['道理', '有', '你说得'], answer: '你说得有道理' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我相信___，他的话有道理。', options: ['中医', '公司', '意见'], answer: '中医' },
+        { type: 'fill', sentence: '我同意你的意见，这家___请了中医。', options: ['公司', '经理', '道理'], answer: '公司' },
+        { type: 'fill', sentence: '你有什么___？', options: ['意见', '道理', '中医'], answer: '意见' },
+        { type: 'translate', prompt: 'Cậu nói có lý.', answer: '你说得有道理。' },
+        { type: 'translate', prompt: 'Tớ tin vào Đông y.', answer: '我相信中医。' }
+      ]
+    }
   }
 });

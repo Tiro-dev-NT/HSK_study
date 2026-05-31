@@ -112,6 +112,7 @@ admin-*.png
 radicals-*.png
 phase-p9-*.png
 learn-hub-*.png
+*-test.png
 
 # Demo / mockup folders (local prototyping only)
 demo/

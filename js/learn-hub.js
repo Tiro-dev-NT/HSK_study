@@ -16,6 +16,7 @@ function initLearnHub() {
   _lhRenderContinue();
   _lhRenderToday();
   _lhRenderTimeline();
+  _lhRenderResources();
 
   var btnAll = document.getElementById('lhBtnAllDecks');
   if (btnAll) {
@@ -251,6 +252,44 @@ function lhRefreshDueBadges() {
   if (descEl) descEl.textContent = n > 0
     ? 'Gom tất cả từ đến hạn của mọi cấp vào 1 phiên'
     : 'Bạn đã ôn hết — quay lại sau nhé';
+}
+
+// ── Section 4: Supporting resources progress ──────────
+// Hiển thị tiến độ thật cho 2 card Ngữ pháp + Đọc hiểu (HSK 1-6)
+function _lhRenderResources() {
+  // Grammar — đếm mẫu đã đánh dấu học / tổng mẫu mọi cấp
+  var gBar = document.getElementById('lhGramBar');
+  var gCnt = document.getElementById('lhGramCount');
+  if (gBar && typeof GRAMMAR_DATA !== 'undefined') {
+    var gTotal = 0;
+    Object.keys(GRAMMAR_DATA).forEach(function(lv) { gTotal += (GRAMMAR_DATA[lv] || []).length; });
+    var gProg = {};
+    try { gProg = JSON.parse(localStorage.getItem('grammar_progress_v1') || '{}'); } catch (e) {}
+    var gDone = 0;
+    Object.keys(gProg).forEach(function(lv) {
+      var lvObj = gProg[lv] || {};
+      Object.keys(lvObj).forEach(function(id) { if (lvObj[id]) gDone++; });
+    });
+    var gPct = gTotal > 0 ? Math.round(gDone / gTotal * 100) : 0;
+    gBar.style.width = gPct + '%';
+    if (gCnt) gCnt.textContent = gDone > 0 ? (gDone + '/' + gTotal + ' mẫu câu') : (gTotal + ' mẫu câu');
+  }
+
+  // Reading — đếm bài đã hoàn thành câu hỏi / tổng bài mọi cấp
+  var rBar = document.getElementById('lhReadBar');
+  var rCnt = document.getElementById('lhReadCount');
+  var rData = (typeof READINGS_DATA !== 'undefined') ? READINGS_DATA
+            : (typeof READING_DATA !== 'undefined') ? READING_DATA : null;
+  if (rBar && rData) {
+    var rTotal = 0;
+    Object.keys(rData).forEach(function(lv) { rTotal += (rData[lv] || []).length; });
+    var rProg = {};
+    try { rProg = JSON.parse(localStorage.getItem('reading_progress_v1') || '{}'); } catch (e) {}
+    var rDone = Object.keys(rProg).filter(function(id) { return rProg[id]; }).length;
+    var rPct = rTotal > 0 ? Math.round(rDone / rTotal * 100) : 0;
+    rBar.style.width = rPct + '%';
+    if (rCnt) rCnt.textContent = rDone > 0 ? (rDone + '/' + rTotal + ' bài đọc') : (rTotal + ' bài đọc');
+  }
 }
 
 // ── Section 3: Timeline ───────────────────────────────

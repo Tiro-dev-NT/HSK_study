@@ -307,6 +307,9 @@ var Grammar = (function() {
     _level = 1;
     _searchTerm = '';
     _quizState = {};
+    if (typeof Monetization !== 'undefined' && Monetization.isProSync && Monetization.isProSync()) {
+      document.body.classList.add('is-pro');
+    }
     _bindEvents();
     _render();
   }

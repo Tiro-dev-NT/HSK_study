@@ -3,11 +3,14 @@
 /* Level tab selector (shared with Reading) */
 .grammar-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
 .reading-controls { margin-bottom: 14px; }
-.grammar-levels, .reading-levels { display: inline-flex; gap: 0; background: var(--surface); border-radius: 10px; border: 1.5px solid var(--border); padding: 3px; }
-.gram-level-btn, .read-level-btn { padding: 6px 20px; border-radius: 8px; border: none; background: none; color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all .18s; }
+.grammar-levels, .reading-levels { display: inline-flex; flex-wrap: wrap; gap: 2px; background: var(--surface); border-radius: 10px; border: 1.5px solid var(--border); padding: 3px; }
+.gram-level-btn, .read-level-btn { display: inline-flex; align-items: center; gap: 4px; padding: 6px 16px; border-radius: 8px; border: none; background: none; color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all .18s; }
 .gram-level-btn.active { background: var(--primary); color: #fff; }
 .read-level-btn.active { background: var(--primary); color: #fff; }
 .gram-level-btn:not(.active):hover, .read-level-btn:not(.active):hover { color: var(--text); }
+.lvl-lock { font-size: 10px; opacity: .5; line-height: 1; }
+.gram-level-btn.active .lvl-lock, .read-level-btn.active .lvl-lock { opacity: .9; }
+.is-pro .lvl-lock { display: none; }
 
 /* Search input */
 .grammar-search { position: relative; }

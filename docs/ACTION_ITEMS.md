@@ -186,6 +186,45 @@
 
 ---
 
+## 📚 Tài nguyên bổ trợ — Mở rộng nội dung HSK 1-6 + Redesign card (2026-06-02)
+
+> **Trigger:** Card "Ngữ pháp HSK" quảng cáo "HSK 1-9 · 9 cấp độ" nhưng data chỉ có HSK 1-2; card "Luyện đọc & nghe" ghi "HSK 1-6" nhưng cũng chỉ HSK 1-2. Nút cấp độ chỉ 2 (HSK 1,2); code Pro-gate HSK 3-6 dẫn tới danh sách rỗng → lệch quảng cáo, "không rõ mục đích" (tiếp nối ghi chú 2026-05-28 dòng 153). Nội dung HSK 1-2 đã đúng → GIỮ NGUYÊN.
+
+### Part 1 — Mở rộng data (chính xác, biên soạn mới)
+
+- ☑ DONE 2026-06-02 — **Ngữ pháp HSK 3-6** (`js/data/grammar.js`): +42 mẫu câu (HSK3: 12, HSK4: 12, HSK5: 10, HSK6: 8). Tổng 72 mẫu (1-6). Mỗi mẫu: pattern + giải thích VI/EN + 2 ví dụ zh/py/vi/en.
+- ☑ DONE 2026-06-02 — **Đọc hiểu HSK 3-6** (`js/data/readings.js`): +18 bài (HSK3: 6, HSK4: 5, HSK5: 4, HSK6: 3, dài & trừu tượng dần). Tổng 38 bài (1-6). Mỗi bài: text + pinyin + 2 câu hỏi.
+- ☑ DONE 2026-06-02 — Thêm nút cấp độ HSK 3-6 (kèm 🔒) vào `pages/grammar.html` + `pages/reading.html`; CSS `.lvl-lock` + `flex-wrap` cho thanh chọn cấp (`css/pages/reading.css`).
+
+### Part 2 — Tác dụng + tiến độ + trung thực badge
+
+- ☑ DONE 2026-06-02 — **Redesign 2 card** (`pages/learn.html` + `css/pages/learn.css`): thêm dòng **tác dụng** ("Hiểu cấu trúc câu để tự đặt câu đúng…" / "Ghép từ đã học thành câu thật…"), **thanh tiến độ thật** + đếm (x/72 mẫu, x/38 bài), badge sửa về **"HSK 1-6"** (bỏ "9 cấp độ"/"HSK 1-9" sai).
+- ☑ DONE 2026-06-02 — `js/learn-hub.js` `_lhRenderResources()` tính tiến độ từ `grammar_progress_v1` + `reading_progress_v1`.
+- ☑ DONE 2026-06-02 — **Theo dõi tiến độ đọc** (`js/reading.js`): storage key mới `reading_progress_v1`, đánh dấu bài đã đọc khi trả lời hết câu hỏi.
+- ☑ DONE 2026-06-02 — Ẩn 🔒 cho user Pro (`body.is-pro`) trong `grammar.js`/`reading.js` setup.
+
+### Verify (browser preview)
+- Data parse OK: grammar {1:15,2:15,3:12,4:12,5:10,6:8}, readings {1:10,2:10,3:6,4:5,5:4,6:3}.
+- Card render "72 mẫu câu"/"38 bài đọc"; HSK3 grammar 12 cards + quiz OK; reading HSK3 6 bài mở được; tiến độ đọc cập nhật 1/38 (3%). Light + dark + mobile (390px wrap 2 hàng) đạt.
+
+### Files thay đổi
+| File | Thay đổi |
+|---|---|
+| `js/data/grammar.js` | +GRAMMAR_DATA[3..6] (42 mẫu) |
+| `js/data/readings.js` | +READINGS_DATA[3..6] (18 bài) |
+| `pages/grammar.html` · `pages/reading.html` | +4 nút cấp độ HSK 3-6 (🔒) |
+| `pages/learn.html` | Redesign 2 card: tác dụng + progress bar + badge "HSK 1-6" |
+| `css/pages/learn.css` | `.lh-rc-purpose/-progbar/-progfill/-foot/-count` + hover lift |
+| `css/pages/reading.css` | `.lvl-lock`, flex-wrap thanh chọn cấp |
+| `js/learn-hub.js` | `_lhRenderResources()` |
+| `js/reading.js` | `reading_progress_v1` + `_markRead()` + ẩn lock Pro |
+| `js/grammar.js` | ẩn lock Pro |
+| `index.html` | Bump `?v` cho 7 file CSS/JS |
+
+> **Storage key mới:** `reading_progress_v1` = `{ passageId: true }` (đánh dấu khi trả lời hết câu hỏi).
+
+---
+
 ## 📚 Phase P9 — HSK 1 Truyện Mai Curriculum (2026-05-29)
 
 - ☑ DONE 2026-05-29 — Complete Bài 4-12 in `js/data/course-lessons.js`, bringing Truyện Mai HSK 1 to 12 lessons.

@@ -541,16 +541,20 @@
   border: 1px solid var(--border); border-radius: var(--r-lg);
   cursor: pointer; transition: .18s; text-align: left; font: inherit;
 }
-.lh-resource-card:hover { border-color: var(--primary); background: var(--surface2); }
-.lh-rc-icon { font-size: 32px; flex-shrink: 0; line-height: 1; }
+.lh-resource-card:hover { border-color: var(--primary); background: var(--surface2); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+.lh-rc-icon { font-size: 30px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
 .lh-rc-body { flex: 1; min-width: 0; }
 .lh-rc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-.lh-rc-desc { font-size: 12px; color: var(--text2); line-height: 1.4; margin-bottom: 6px; }
+.lh-rc-purpose { font-size: 12px; color: var(--text2); line-height: 1.45; margin-bottom: 10px; }
+.lh-rc-progbar { height: 5px; background: var(--surface2); border-radius: 99px; overflow: hidden; margin-bottom: 8px; }
+.lh-rc-progfill { height: 100%; background: var(--primary); border-radius: 99px; transition: width .4s ease; }
+.lh-rc-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .lh-rc-badge {
   display: inline-block; padding: 2px 8px; background: var(--surface2);
   border: 1px solid var(--border); border-radius: 12px;
   font-size: 11px; font-weight: 600; color: var(--primary);
 }
+.lh-rc-count { font-size: 11px; font-weight: 600; color: var(--text2); }
 
 .lh-util-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .lh-util-chip {

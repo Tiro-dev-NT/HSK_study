@@ -27,6 +27,18 @@ var Reading = (function() {
     });
   }
 
+  var READ_PROGRESS_KEY = 'reading_progress_v1';
+  function _loadReadProgress() {
+    try { return JSON.parse(localStorage.getItem(READ_PROGRESS_KEY) || '{}'); } catch (e) { return {}; }
+  }
+  function _markRead(id) {
+    if (!id) return;
+    var p = _loadReadProgress();
+    if (p[id]) return;
+    p[id] = true;
+    localStorage.setItem(READ_PROGRESS_KEY, JSON.stringify(p));
+  }
+
   function setup() {
     _level = 1;
     _currentPassage = null;
@@ -36,6 +48,9 @@ var Reading = (function() {
     _lastTTSText = '';
     _activeRow = null;
     _mode = 'read';
+    if (typeof Monetization !== 'undefined' && Monetization.isProSync && Monetization.isProSync()) {
+      document.body.classList.add('is-pro');
+    }
     _bindEvents();
     _renderList();
   }
@@ -257,6 +272,10 @@ var Reading = (function() {
     view.querySelectorAll('.read-option:not([disabled])').forEach(function(btn) {
       btn.addEventListener('click', function() {
         _answers[parseInt(this.dataset.qi)] = parseInt(this.dataset.oi);
+        var totalQ = (_currentPassage.questions || []).length;
+        if (totalQ > 0 && Object.keys(_answers).length >= totalQ) {
+          _markRead(_currentPassage.id);
+        }
         _renderPassage();
       });
     });

@@ -14,12 +14,31 @@ var VN_CHARACTERS = {
   class:    { name: 'Cả lớp',    role: '',           emoji: '👥',  color: '#6B7280', img: '',                              pitch: 1,    rate: 1.0  }
 };
 
-// ── Chapter definitions for HSK 1 path ──────────────────
-var COURSE_CHAPTERS = [
-  { label: 'Câu chuyện chính',    from: 1,  to: 12 },
-  { label: 'Củng cố từ vựng',     from: 13, to: 21 },
-  { label: 'Đọc thêm',            from: 22, to: 30 },
-  { label: 'Hành động hằng ngày', from: 31, to: 46 }
+// ── Level + chapter definitions (Truyện Mai path) ───────
+// Mỗi cấp HSK = 1 tab. Bài thuộc cấp theo COURSE_DATA[id].level
+// (bài HSK 1 cũ KHÔNG có field level → mặc định coi là cấp 1).
+// `from`/`to` = khoảng ID bài trong cấp đó. Chỉ cosmetic (gom chương);
+// node hiển thị tên bài thật nên ranh giới chương không cần khớp tuyệt đối.
+var COURSE_LEVELS = [
+  {
+    level: 1, label: 'HSK 1',
+    chapters: [
+      { label: 'Câu chuyện chính', from: 1,  to: 12 },
+      { label: 'Củng cố từ vựng',  from: 13, to: 21 },
+      { label: 'Đọc thêm',         from: 22, to: 30 }
+    ]
+  },
+  {
+    level: 2, label: 'HSK 2',
+    chapters: [
+      { label: 'Hành động & đời sống', from: 31, to: 46 },
+      { label: 'Mở rộng từ vựng',      from: 47, to: 65 },
+      { label: 'Đọc thêm',             from: 66, to: 71 }
+    ]
+  },
+  {
+    level: 3, label: 'HSK 3', comingSoon: true, chapters: []
+  }
 ];
 
 var Course = {
@@ -35,6 +54,7 @@ var Course = {
   workbookScore:     0,
   _srsAdded:         false,
   _pendingId:        null,   // set before Router.navigateTo('course') for in-app nav
+  _selectedLevel:    null,   // tab cấp HSK đang xem ở renderList (null = auto)
   _showPinyin:       true,   // VN pinyin toggle (persists across steps)
   _showVi:           true,   // VN nghĩa-Việt toggle (persists across steps)
 
@@ -55,61 +75,116 @@ var Course = {
     Course.loadLesson(id);
   },
 
-  // ── Lesson list view (Duolingo-style path) ────────────
+  // Cấp HSK của 1 bài (bài HSK 1 cũ không có field level → mặc định 1)
+  _levelOf: function(id) {
+    var l = (typeof COURSE_DATA !== 'undefined') ? COURSE_DATA[id] : null;
+    return (l && l.level) ? l.level : 1;
+  },
+
+  // Đổi tab cấp HSK
+  _selectLevel: function(lv) {
+    Course._selectedLevel = lv;
+    Course.renderList();
+    var el = Course._getEl();
+    if (el && el.scrollIntoView) try { el.scrollIntoView({ block: 'start' }); } catch (e) {}
+  },
+
+  // ── Lesson list view (tab cấp HSK + Duolingo-style path) ───
   renderList: function() {
     var progress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
-    var ids = (typeof COURSE_DATA !== 'undefined')
+    var allIds = (typeof COURSE_DATA !== 'undefined')
       ? Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; })
       : [];
+
+    // Số bài có data theo từng cấp (để hiện trên tab + biết cấp nào "sắp ra mắt")
+    var levelCounts = {};
+    for (var a = 0; a < allIds.length; a++) {
+      var lv0 = Course._levelOf(allIds[a]);
+      levelCounts[lv0] = (levelCounts[lv0] || 0) + 1;
+    }
+
+    // Cấp được chọn (mặc định = cấp của bài dở đầu tiên, hoặc cấp 1)
+    if (Course._selectedLevel == null) {
+      var gNext = null;
+      for (var g = 0; g < allIds.length; g++) {
+        var gid = allIds[g];
+        if (!(progress[gid] && progress[gid].completed)) { gNext = gid; break; }
+      }
+      Course._selectedLevel = gNext ? Course._levelOf(gNext) : 1;
+    }
+    var sel = Course._selectedLevel;
+    var levelCfg = null;
+    for (var c = 0; c < COURSE_LEVELS.length; c++) {
+      if (COURSE_LEVELS[c].level === sel) { levelCfg = COURSE_LEVELS[c]; break; }
+    }
+    var levelLabel = levelCfg ? levelCfg.label : ('HSK ' + sel);
+
+    // Bài thuộc cấp đang chọn
+    var ids = allIds.filter(function(id) { return Course._levelOf(id) === sel; });
     var totalLessons = ids.length;
     var completedCount = 0;
-    var nextId = null;
-
-    // Find next lesson (first incomplete) and count completed
+    var levelNext = null;   // bài dở đầu tiên TRONG cấp này
     for (var i = 0; i < ids.length; i++) {
-      var id = ids[i];
-      if (progress[id] && progress[id].completed) {
-        completedCount++;
-      } else if (nextId === null) {
-        nextId = id;
-      }
+      if (progress[ids[i]] && progress[ids[i]].completed) completedCount++;
+      else if (levelNext === null) levelNext = ids[i];
     }
 
     var html = '<div class="cs-header">' +
       '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
-      '<span class="cs-lesson-num">Truyện Mai — HSK 1</span>' +
+      '<span class="cs-lesson-num">Truyện Mai — ' + escapeHtml(levelLabel) + '</span>' +
       '<span class="cs-path-progress">' + completedCount + '/' + totalLessons + ' bài</span>' +
     '</div>';
 
     html += '<div class="cs-path">';
 
-    // Hero: "Bước tiếp theo" or completion
-    if (nextId !== null) {
-      var nextLesson = COURSE_DATA[nextId];
-      var isInProgress = progress[nextId] && !progress[nextId].completed;
+    // ── Tabs cấp HSK ──────────────────────────────────────
+    html += '<div class="cs-tabs">';
+    for (var t = 0; t < COURSE_LEVELS.length; t++) {
+      var lc = COURSE_LEVELS[t];
+      var cnt = levelCounts[lc.level] || 0;
+      var locked = lc.comingSoon || cnt === 0;
+      var cls = 'cs-tab' + (lc.level === sel ? ' cs-tab--active' : '') + (locked ? ' cs-tab--locked' : '');
+      var sub = locked ? 'sắp ra mắt' : (cnt + ' bài');
+      html += '<button class="' + cls + '"' +
+        (locked ? ' disabled' : ' onclick="Course._selectLevel(' + lc.level + ')"') + '>' +
+        escapeHtml(lc.label) + ' <span class="cs-tab-count">' + sub + '</span>' +
+      '</button>';
+    }
+    html += '</div>';
+
+    // ── Hero: bước tiếp theo TRONG cấp đang chọn ──────────
+    if (totalLessons === 0) {
+      html += '<div class="cs-path-hero cs-path-hero--done">' +
+        '<div class="cs-hero-label">🚧 Sắp ra mắt</div>' +
+        '<div class="cs-hero-title">' + escapeHtml(levelLabel) + ' đang được biên soạn</div>' +
+        '<div class="cs-hero-context">Hãy hoàn thành các cấp hiện có trước nhé!</div>' +
+      '</div>';
+    } else if (levelNext !== null) {
+      var nextLesson = COURSE_DATA[levelNext];
+      var isInProgress = progress[levelNext] && !progress[levelNext].completed && (progress[levelNext].step || 0) > 0;
       html += '<div class="cs-path-hero">' +
         '<div class="cs-hero-label">' + (isInProgress ? '▶ Đang học dở' : '📍 Bước tiếp theo') + '</div>' +
-        '<div class="cs-hero-title">Bài ' + nextId + ' — ' + escapeHtml(nextLesson.title) + '</div>' +
-        '<div class="cs-hero-context">' + escapeHtml(nextLesson.context) + '</div>' +
-        '<button class="cs-hero-btn" onclick="Course.loadLesson(' + nextId + ')">' +
+        '<div class="cs-hero-title">Bài ' + levelNext + ' — ' + escapeHtml(nextLesson.title) + '</div>' +
+        '<div class="cs-hero-context">' + escapeHtml(nextLesson.context || '') + '</div>' +
+        '<button class="cs-hero-btn" onclick="Course.loadLesson(' + levelNext + ')">' +
           (isInProgress ? '▶ Học tiếp' : '▶ Bắt đầu') +
         '</button>' +
       '</div>';
     } else {
       html += '<div class="cs-path-hero cs-path-hero--done">' +
         '<div class="cs-hero-label">🎉 Hoàn thành!</div>' +
-        '<div class="cs-hero-title">Bạn đã học xong HSK 1</div>' +
-        '<div class="cs-hero-context">Tuyệt vời! Tiếp tục ôn tập hoặc chờ HSK 2.</div>' +
+        '<div class="cs-hero-title">Bạn đã học xong ' + escapeHtml(levelLabel) + '</div>' +
+        '<div class="cs-hero-context">Tuyệt vời! Chuyển sang cấp kế hoặc ôn tập lại nhé.</div>' +
       '</div>';
     }
 
-    // Chapters with nodes
-    for (var ci = 0; ci < COURSE_CHAPTERS.length; ci++) {
-      var chapter = COURSE_CHAPTERS[ci];
+    // ── Chương + node (node hiện kèm tên bài) ─────────────
+    var chapters = (levelCfg && levelCfg.chapters) ? levelCfg.chapters : [];
+    for (var ci = 0; ci < chapters.length; ci++) {
+      var chapter = chapters[ci];
       var chapterIds = [];
       var chapterDone = 0;
 
-      // Collect lessons in this chapter
       for (var j = 0; j < ids.length; j++) {
         var lid = ids[j];
         if (lid >= chapter.from && lid <= chapter.to) {
@@ -117,7 +192,6 @@ var Course = {
           if (progress[lid] && progress[lid].completed) chapterDone++;
         }
       }
-
       if (chapterIds.length === 0) continue;
 
       var chapterTotal = chapterIds.length;
@@ -130,32 +204,28 @@ var Course = {
           '<span class="cs-chapter-count">' + chapterDone + '/' + chapterTotal + '</span>' +
         '</div>' +
         '<div class="cs-chapter-bar"><div class="cs-chapter-fill" style="width:' + chapterPct + '%"></div></div>' +
-        '<div class="cs-nodes">';
+        '<div class="cs-nodes cs-nodes--list">';
 
-      // Render nodes
       for (var k = 0; k < chapterIds.length; k++) {
         var nid = chapterIds[k];
         var lesson = COURSE_DATA[nid];
         var prog = progress[nid];
         var isDone = prog && prog.completed;
-        var isCurrent = (nid === nextId);
-        var isLocked = !isDone && !isCurrent && nextId !== null && nid > nextId;
+        var isCurrent = (nid === levelNext);
+        var isLocked = !isDone && !isCurrent && levelNext !== null && nid > levelNext;
 
-        var nodeClass = 'cs-node';
+        var circleClass = 'cs-node';
+        var rowClass = 'cs-node-row';
         var nodeIcon = nid;
-        if (isDone) {
-          nodeClass += ' cs-node--done';
-          nodeIcon = '✓';
-        } else if (isCurrent) {
-          nodeClass += ' cs-node--current';
-        } else if (isLocked) {
-          nodeClass += ' cs-node--locked';
-        }
+        if (isDone)        { circleClass += ' cs-node--done';    rowClass += ' cs-node-row--done';   nodeIcon = '✓'; }
+        else if (isCurrent){ circleClass += ' cs-node--current'; }
+        else if (isLocked) { circleClass += ' cs-node--locked';  rowClass += ' cs-node-row--locked'; }
 
-        html += '<button class="' + nodeClass + '" ' +
-          'onclick="Course._handleNodeClick(' + nid + ', ' + isLocked + ', ' + (nextId || 0) + ')" ' +
+        html += '<button class="' + rowClass + '" ' +
+          'onclick="Course._handleNodeClick(' + nid + ', ' + isLocked + ', ' + (levelNext || 0) + ')" ' +
           'title="Bài ' + nid + ': ' + escapeAttr(lesson.title) + '">' +
-          '<span class="cs-node-icon">' + nodeIcon + '</span>' +
+          '<span class="' + circleClass + '"><span class="cs-node-icon">' + nodeIcon + '</span></span>' +
+          '<span class="cs-node-row-title">Bài ' + nid + ' — ' + escapeHtml(lesson.title) + '</span>' +
         '</button>';
       }
 

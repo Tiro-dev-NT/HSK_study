@@ -897,6 +897,77 @@
   color: var(--fg-3);
 }
 
+/* Level tabs (HSK 1 / 2 / 3) */
+.cs-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.cs-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 22px;
+  border: 2px solid var(--border-2);
+  background: var(--surface-2, #F9F9F8);
+  font: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.cs-tab:hover { border-color: var(--hoang-kim, #F59E0B); }
+.cs-tab--active {
+  background: var(--hoang-kim, #F59E0B);
+  border-color: var(--hoang-kim, #F59E0B);
+  color: #fff;
+}
+.cs-tab--locked { opacity: 0.5; cursor: not-allowed; }
+.cs-tab--locked:hover { border-color: var(--border-2); }
+.cs-tab-count { font-size: 11px; font-weight: 600; opacity: 0.8; }
+
+/* Node list mode (number + lesson title beside) */
+.cs-nodes--list {
+  flex-direction: column;
+  gap: 4px;
+}
+.cs-node-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 5px 4px;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.15s;
+}
+.cs-node-row:hover { background: var(--surface-2, #F9F9F8); }
+.cs-node-row:hover .cs-node { transform: scale(1.08); }
+.cs-node-row .cs-node { flex-shrink: 0; }
+.cs-node-row-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.3;
+}
+.cs-node-row--done .cs-node-row-title { color: var(--fg-3); }
+.cs-node-row--locked { opacity: 0.55; }
+[data-theme="dark"] .cs-node-row:hover { background: rgba(255,255,255,0.05); }
+[data-theme="dark"] .cs-tab { background: var(--card-bg, #1F2937); }
+/* Keep active tab amber in dark mode (must beat [data-theme] .cs-tab specificity) */
+[data-theme="dark"] .cs-tab--active {
+  background: var(--hoang-kim, #F59E0B);
+  border-color: var(--hoang-kim, #F59E0B);
+  color: #fff;
+}
+
 /* Dark mode */
 [data-theme="dark"] .cs-node { background: var(--card-bg, #1F2937); }
 [data-theme="dark"] .cs-path-progress { background: rgba(16,185,129,0.15); }

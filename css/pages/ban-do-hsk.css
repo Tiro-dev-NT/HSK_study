@@ -296,6 +296,22 @@
   margin-bottom: 2px;
 }
 .bdh-level-stat { font-size: 12px; color: var(--text3); }
+/* Mode tag (cách học chính của cấp) */
+.bdh-level-mode {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+.bdh-level-mode--story      { background: rgba(245,158,11,0.16); color: #B45309; }
+.bdh-level-mode--vocab      { background: rgba(16,185,129,0.14); color: #047857; }
+.bdh-level-mode--foundation { background: rgba(220,38,38,0.12);  color: #B91C1C; }
+[data-theme="dark"] .bdh-level-mode--story      { background: rgba(245,158,11,0.22); color: #FCD34D; }
+[data-theme="dark"] .bdh-level-mode--vocab      { background: rgba(16,185,129,0.22); color: #6EE7B7; }
+[data-theme="dark"] .bdh-level-mode--foundation { background: rgba(220,38,38,0.22);  color: #FCA5A5; }
 .bdh-level-pct  {
   font-size: 13px;
   font-weight: 700;

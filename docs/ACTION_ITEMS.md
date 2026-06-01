@@ -1,5 +1,19 @@
 # Action Items
 
+## ☁️ Audio Mai → Cloudflare R2 (DONE 2026-06-01)
+
+> Tách audio khỏi git để repo không phình (676 file ~17MB HSK1+2, sẽ lên 100MB+ khi HSK3-9). R2 egress free.
+
+- ☑ **Bucket R2** `hanzigenz-assets` + custom domain public `cdn.hanzigenz.com` (Active). ⚠️ Lúc setup lỡ gán nhầm apex `hanzigenz.com` vào bucket → đã gỡ, chỉ giữ `cdn.`.
+- ☑ **Upload** 676 file qua rclone (remote `r2`, token Object Read & Write) với `Cache-Control: public, max-age=31536000, immutable` → CDN cache, request lặp không tính Class B op.
+- ☑ **Code** `js/course.js` v2.5: `MAI_AUDIO_BASE = 'https://cdn.hanzigenz.com/'` (đầu file, 1 chỗ). Để `''` = fallback local dev. `index.html` bump `?v=2.5`.
+- ☑ **Script** `scripts/mai-tts-gen.py` header: ghi chú phải `rclone copy` lên R2 sau khi gen.
+- ☑ **Gỡ audio khỏi git DONE 2026-06-01** (commit `f9d8162` "untrack local mp3") — `assets/mai/audio/` đã untrack (`git ls-files` = 0) + có trong `.gitignore` (dòng 73). R2 verified production: `cdn.hanzigenz.com/mai/audio/L10_1faa9424.mp3` → HTTP 200 `audio/mpeg`. *(History cũ vẫn còn file; muốn xoá hẳn cần `git filter-repo` — repo PUBLIC nên cân nhắc, hiện CHƯA làm.)*
+- 📌 **Quy trình thêm audio sau này:** gen bằng `mai-tts-gen.py` (ghi ra `assets/mai/audio/` local) → **chạy lại** `rclone copy assets/mai/audio r2:hanzigenz-assets/mai/audio --header-upload "Cache-Control: public, max-age=31536000, immutable" --progress` (incremental, chỉ up file mới). KHÔNG commit MP3.
+- 📌 **Mobile (Capacitor) sau này:** lấy audio từ R2 URL + cache vào Filesystem theo bài (tải-theo-nhu-cầu), KHÔNG bundle toàn bộ vào app.
+
+---
+
 ## 🔒 Security — Escape user content TRƯỚC khi mở Phase V (Cộng đồng)
 
 > **Lý do:** App render nhiều bằng `innerHTML` + nối chuỗi. Với nội dung biên tập sẵn
@@ -12,6 +26,37 @@
 - 📌 Note: localStorage tự thân không "bị hack" cho Pro/tiền (đã enforce server-side:
   `user_subscriptions`, PayOS webhook, `game_sessions`, AI credit RPC). Rủi ro DUY NHẤT
   đáng kể là XSS → trộm session. → escape user content là việc bắt buộc trước Phase V.
+
+---
+
+## 🔮 Hạ tầng AI Credit — Model C (2-bucket) DONE 2026-06-01
+
+> Hạ tầng cho mọi feature AI hạng-2 (Phase R/S/Y). **Chưa build feature AI** — chỉ nền + 1 endpoint test (`ping`).
+
+- ☑ **SQL `sql/v15_ai_credit.sql`** (CHẠY THỦ CÔNG Supabase, idempotent) — 2-bucket: `allowance_balance` (recurring tặng kèm Pro, lazy-reset đầu tháng theo `month_anchor`, use-it-or-lose-it) + `purchased_balance` (pack VND + welcome gift, KHÔNG hết hạn); `balance` = tổng (code cũ đọc cột này). RPC: `consume_ai_credit` ATOMIC tier-aware cap (Free 50/Pro 200, trừ allowance trước), `grant_ai_credit` (→purchased), `get_ai_credit_balance` (lazy-reset + status), `annotate_ai_ledger` (ghi model+cost). Ledger thêm `model_used`/`cost_actual`. RLS 4 policy auth.uid().
+- ☑ **Edge Function `supabase/functions/ai-proxy/`** — JWT → consume atomic trước → route model whitelist hard-code 4-lane (Lane2 DeepSeek V4 xương sống → Qwen/GLM/Kimi; Lane3 Claude Sonnet CHỈ deepOnly + `deep=true`; fallback chỉ NGANG/XUỐNG, CẤM GPT). Model fail → hoàn credit. **API key chỉ ở đây (env)**.
+- ☑ **`js/ai-client.js`** caller mỏng (KHÔNG key, KHÔNG logic trừ credit) + `handleBlock` soft (hết credit/quá cap không khóa app). `index.html` đã add `?v=1.0`.
+- ☑ **UI**: badge `#topbarAICreditBadge` (đã có) + `AICredit` (`js/auth.js` v4.0) chuyển sang RPC `get_ai_credit_balance`, modal chi tiết (allowance vs purchased + lượt/ngày), cảnh báo 20%/5%/0%, click badge mở modal.
+- ☑ **Welcome gift wired** vào `payos-webhook` — mua Pro tặng aiCreditBonus (100/250/400/600/1000) vào purchased bucket.
+- ☑ **USER ops DONE 2026-06-01**: (1) đã chạy `sql/v15_ai_credit.sql` trên Supabase; (2) đã deploy `ai-proxy` + redeploy `payos-webhook`; (3) frontend đã push + deploy (Cloudflare).
+- ☐ **Còn lại (khi có)**: set secret model key cho ai-proxy (DEEPSEEK_API_KEY… cái nào có) → mới chạy được task AI thật. Chưa set thì chỉ `ping` chạy (đủ nghiệm thu pipeline credit). KHÔNG cần đổi code/redeploy khi set key.
+
+---
+
+## 🔥 CLB Chuỗi (Streak Club) — Bảng Phong Vân DONE 2026-06-01
+
+> "Vinh danh bằng học" tách khỏi Sảnh Vinh Danh donor. Tự lên theo mốc 7/30/100/365 ngày liên tiếp (anti-toxic, không xếp hạng gắt).
+
+- ☑ **SQL `sql/v16_streak_club.sql`** — RPC `get_streak_club()` tính chuỗi từ `user_leaderboard_activity` (gaps & islands), KHÔNG cần data mới, tái dùng opt-in của Bảng Phong Vân. **Đã chạy trên Supabase 2026-06-01.**
+- ☑ **Client** `js/leaderboard.js` (v1.1) + `pages/leaderboard.html` + `css/pages/leaderboard.css` — section 🔥 CLB Chuỗi dưới bảng: chuỗi của bạn + mốc kế + thành viên từng mốc. Soft-fail nếu chưa có RPC.
+- 📌 Sảnh Vinh Danh donor (Hộp Ân Cần) **giữ nguyên vai** — không trộn streak vào.
+
+---
+
+## 🗺️ Truyện Mai tabs cấp + Bản đồ HSK hành trình DONE 2026-06-01
+
+- ☑ **Truyện Mai** (`js/course.js` v2.3): tabs HSK 1/2/3, gom path theo `lesson.level`. **Fix bug ẩn bài 47-71** (chapter range cũ tới 46). Node hiện kèm tên bài. Fix dark-mode tab active.
+- ☑ **Bản đồ HSK** (`js/ban-do-hsk.js` v1.2): vẽ lại thành hành trình HSK 0 (Nền tảng) → 9 cấp. Cấp có Truyện Mai (1-2) = mode 📖 Truyện, % theo số bài; cấp khác = từ vựng. HSK 0 khuyến nghị nhưng không khóa HSK 1; khóa mềm theo tiến độ.
 
 ---
 
@@ -50,11 +95,11 @@
   - ☑ **B3-verify Bài 1 end-to-end DONE 2026-05-30**: preview test — intro/dialogue VN/choice (sai→feedback+retry, đúng→Tiếp)/checkpoint/complete (+50 XP, 24 từ→SRS) đều OK; audio content-hash **16/16 resolve 200**; "Hôm nay" trộn 3 render đúng; console 0 lỗi. **Fix bug**: narrator step text thuần Việt (đã skip ở TTS gen) vẫn bị `_vnTts` fetch → 404 mỗi lần; thêm guard CJK mirror `mai-tts-gen.py` (narrator không có chữ Hán → im lặng, không fetch). `course.js` v1.9 (`index.html` bump). Verify spy `Audio`: narrator=0 call, dialogue có Hán=1 call file đúng.
   - ☑ **B3-ship-readiness QA DONE 2026-05-30**: preview QA toàn bộ — (1) 8/8 scene WebP HEAD→200; laoli/xiaomei cast + 6 expression files đều load naturalWidth>0; stage bg render đúng; (2) bg key audit: 34 refs × 8 valid scene names → 0 lệch; (3) expression audit: 123 refs → 6 valid names → 0 lệch; (4) 30 bài load + render 0 lỗi JS, 0 console error; (5) VN mode (Bài 1,13-30) render `.cs-vn-stage` + cast đúng; legacy mode (Bài 2-12) render `.cs-scene` đúng — đây là thiết kế đúng (Bài 2-12 không có `cast` field). **SHIP-READY** — không có fix code nào cần thiết. Chờ B2-asset polish sprite laoli/xiaomei (T2 video loop idle) để nâng lên production polish.
   - ☐ B3-ship: chờ B2-asset polish (T2 video loop idle sprite laoli/xiaomei) rồi gom feedback user thật.
-- 🟡 **B4 — Scale HSK 2** (đang chạy) bằng đúng pipeline coverage-driven.
+- ☑ **B4 — Scale HSK 2 DONE 2026-05-31** — 41 bài (31–71), 754/754 từ, coverage-driven pipeline.
   - ☑ **B4-mapping DONE 2026-05-30**: `scripts/mai-hsk2-coverage.js` map **754 từ HSK 2** → **41 bài** (35 CORE + 6 ĐỌC THÊM, Bài 31–71). Output `content/curriculum/mai-hsk2-coverage-map.md`. Phân tầng theo topic tag + frequency.
-  - 🟡 **B4-text (16/41 bài)** — commit `5762058`: đã viết **Bài 31–46** (Bài 31–42 "Hành động hằng ngày" 232 từ + 43–46 "Từ chức năng & liên từ" 80 từ = **312/754 từ = 41%**). CÒN LẠI: Bài 47–51 từ chức năng (98), 52–56 tính từ (98), 57–58 thời gian (40), 59–61 số đếm/đại từ (51), 62–63 địa điểm/đồ vật (41), 64–65 cơ thể/thiên nhiên (32), 66–71 đọc thêm (82). **→ Từ Bài 47 áp DoD dọc (8 mục, xem nguyên tắc trên).**
+  - ☑ **B4-text (41/41 bài) DONE 2026-05-31** — Bài 31–71 hoàn thành. Coverage **754/754 = 100%** (verify script PASS). Mỗi bài đủ DoD: thoại + choice + checkpoint + vocab + workbook 3 levels. Bài 31–46 (312 từ) + 47–65 CORE (360 từ) + 66–71 đọc thêm (82 từ).
   - ☑ **B4-audio DONE 2026-05-31** — commit `8783fff`: `scripts/mai-tts-gen.py` gen 359 MP3 cho Bài 31–71 (edge-tts, skip-if-exists). `assets/mai/audio/` ~17MB (676 file HSK1+2 — chạm ngưỡng 15MB, cân nhắc R2 trước khi thêm HSK3).
-  - ☐ **B4-verify + ship**: coverage 754/754 PASS (sau khi xong Bài 47–71) + audio đủ + preview 0 lỗi.
+  - ☑ **B4-verify DONE 2026-05-31**: coverage 754/754 PASS + syntax OK + audio 676 files (L47-L71 có đủ) + sample lessons (47/65/71) render đúng DoD.
   - ☑ **Refactor tách file DONE 2026-05-31**: `course-lessons.js` (6126 dòng) → `js/data/course/course-data.js` (container `var COURSE_DATA = COURSE_DATA||{}`) + `course-hsk1.js` (Bài 1-30, Object.assign) + `course-hsk2.js` (Bài 31-46). Pattern khớp `hsk3_lvl{N}`. `index.html`: 1 thẻ → 3 (data trước). 2 loader (`mai-hsk1-coverage.js`, `mai-tts-gen.py`) đọc cả thư mục `js/data/course/*.js` (sort → container trước). Verify: node -c 3 file OK · coverage 510/510 PASS · TTS dry-run 504 bước (đọc đủ 46 bài) · preview 46 bài, console 0 lỗi. Cấp HSK mới sau này = thêm `course-hsk{N}.js` + 1 thẻ index.html.
 
 **P12 — Trang chép bài (Lesson Handout)** — ☑ **DONE 2026-05-31** commit `e9f02de`: hiện thực màn "đọc trên app → tự chép vào vở" (design `42-lesson-handout`, bàn từ 2026-05-22). `js/handout.js` + `css/pages/handout.css` + `pages/handout.html` + route `/handout?id=N` + entry nút "📔 Trang chép bài" ở màn complete (`course.js`). **Auto-derive từ COURSE_DATA → chạy ngay cho cả 46 bài** (header + mục tiêu + tình huống + bảng từ + hội thoại + "Mở vở ra hôm nay chép gì?" 4 việc + toolbar Copy/In-PDF/Đã-chép-xong +15XP lưu `hsk_handout_completed`). Field tùy chọn `lesson.handout` (story_brief/vocab_highlight/mascot_tips/copy_guide) override khi enrich CORE sau. Verify Bài 14 + Bài 1 cũ render OK, console 0 lỗi.
@@ -238,5 +283,22 @@ python agent.py --all                    # gen toàn bộ (~$1.2)
 - ☑ DONE 2026-05-29 — Verified: paste câu test → 20 từ HSK nhận ra / 36 ký tự / 89% coverage / HSK 3 max. Popup 我→wǒ/tôi/HSK1 ✅. Breakdown HSK1=17, HSK2=2, HSK3=1 ✅.
 
 **Phase O hoàn tất (O1 Radicals ✅ · O2 Topics ✅ · O3 Mock Exam ✅ · O4 Pinyin chart (skip) · O5 Text Analyzer ✅)**
+
+---
+
+## 🎯 Quest & Thành tựu — mở rộng theo bề mặt tính năng (NOTE 2026-05-31)
+
+> **Bối cảnh:** app ngày càng nhiều module/feature (AI Tutor, HSKK, chấm essay, Story gen tùy biến, Mock exam, Topics, Text Analyzer, Mai curriculum HSK1+2…). Hệ quest/thành tựu hiện chỉ phủ core cũ (học từ/quiz/streak/mock) → **chưa "đón" các feature mới** → user không được dẫn dắt khám phá, feature mới ít được dùng.
+
+**Việc cần làm (khi rảnh / trước khi marketing mạnh, KHÔNG gấp):**
+- ☐ Rà soát toàn bộ feature đang có → map mỗi feature ↔ ít nhất 1 quest *hoặc* 1 thành tựu dẫn user thử (vd "Hoàn thành bài Mai đầu tiên", "Phân tích 1 văn bản", "Học theo 1 chủ đề", "Pass Mock HSK X").
+- ☐ Thêm nhóm **thành tựu theo cột mốc feature** (không chỉ số lượng từ) — gắn badge + outfit Bé Rồng + token (cosmetic), tận dụng `js/gamification.js` + `js/quests.js` sẵn có.
+- ☐ Quest "khám phá" 1 lần cho feature mới (onboarding nhẹ), khác quest học lặp lại hằng ngày.
+
+**🚧 GUARDRAIL bắt buộc (đừng phá monetization/anti-toxic — xem `docs/PRODUCT_TIER_MATRIX.md` + memory `product_principles`):**
+- ❌ **TUYỆT ĐỐI KHÔNG thưởng AI Credit qua quest/thành tựu** — AI có cost API thật → tặng free = lỗ vĩnh viễn. Chỉ thưởng XP / token (cosmetic) / badge / outfit.
+- ❌ **KHÔNG tạo quest kiểu "dùng AI N lần"** cho feature hạng-2 (Tutor/essay/HSKK/story-gen) — sẽ đẩy user đốt credit/đốt API. Nếu muốn quest liên quan AI → chỉ "thử 1 lần để biết" (onboarding), không lặp.
+- ❌ KHÔNG quest time-grinding ("mở app N lần", "login streak chỉ login") — quest = HỌC thật.
+- ✅ Quest/thành tựu cho feature MIỄN PHÍ (Mai, Topics, Text Analyzer, Mock, quiz, radicals) thì thoải mái — không đụng cost.
 
 ---

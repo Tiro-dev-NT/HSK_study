@@ -117,6 +117,7 @@ var Leaderboard = (function() {
       _renderProfile(_profile);
       _renderMe(res.data.me, _profile);
       _renderList(res.data.top || [], res.data.me);
+      _loadStreakClub();
     } catch(e) {
       console.error('[Leaderboard] load failed', e);
       if (list) {
@@ -244,6 +245,76 @@ var Leaderboard = (function() {
       _busy = false;
       if (join) join.disabled = false;
     }
+  }
+
+  // ── Câu lạc bộ Chuỗi (Streak Club) ───────────────────
+  var _MILESTONE_LABEL = { 7: 'Tuần lửa', 30: 'Tháng bền', 100: 'Trăm ngày', 365: 'Một năm' };
+
+  async function _loadStreakClub() {
+    var box = _el('lbStreakClub');
+    if (!box) return;
+    if (!window.SB || typeof Auth === 'undefined' || !Auth.user) { box.innerHTML = ''; return; }
+    box.innerHTML = '<div class="lb-loading">Đang tải Câu lạc bộ Chuỗi...</div>';
+    try {
+      var res = await SB.rpc('get_streak_club', { p_limit: 20 });
+      if (res.error) throw res.error;
+      if (!res.data || res.data.ok === false) throw new Error((res.data && res.data.error) || 'streak_error');
+      _renderStreakClub(res.data);
+    } catch(e) {
+      console.warn('[Leaderboard] streak club skipped', e);
+      // Soft: không phá trang leaderboard nếu chưa chạy sql/v16
+      box.innerHTML = '<div class="lb-streak-note">🔥 Câu lạc bộ Chuỗi sẽ hiện khi đã chạy <code>sql/v16_streak_club.sql</code> trên Supabase.</div>';
+    }
+  }
+
+  function _renderStreakClub(data) {
+    var box = _el('lbStreakClub');
+    if (!box) return;
+    var me = data.me || { current_streak: 0, opted_in: false, next_milestone: 7, days_to_next: 7 };
+    var tiers = data.tiers || [];
+
+    var progressHtml;
+    if (me.next_milestone) {
+      progressHtml = 'Còn <strong>' + escapeHtml(me.days_to_next) + '</strong> ngày nữa tới mốc <strong>' +
+                     escapeHtml(me.next_milestone) + ' ngày</strong> 🔥';
+    } else {
+      progressHtml = 'Bạn đã chạm mốc cao nhất — huyền thoại kiên trì! 🏅';
+    }
+
+    // Chỉ hiện mốc có thành viên (365 → 7). Mốc cao trước cho trang trọng.
+    var tiersHtml = tiers
+      .filter(function(t) { return (t.count || 0) > 0; })
+      .map(function(t) {
+        var label = _MILESTONE_LABEL[t.milestone] || (t.milestone + ' ngày');
+        var chips = (t.members || []).map(function(m) {
+          return '<span class="lb-streak-chip">' + escapeHtml(m.display_name || 'Học viên') +
+                 ' · ' + escapeHtml(m.streak) + 'd</span>';
+        }).join('');
+        var more = (t.count > (t.members || []).length)
+          ? '<span class="lb-streak-chip lb-streak-chip--more">+' + (t.count - t.members.length) + '</span>' : '';
+        return '<div class="lb-streak-tier">' +
+          '<div class="lb-streak-tier-head">🔥 ' + escapeHtml(t.milestone) + ' ngày · ' + escapeHtml(label) +
+            ' <span class="lb-streak-count">' + escapeHtml(t.count) + ' thành viên</span></div>' +
+          '<div class="lb-streak-members">' + chips + more + '</div>' +
+        '</div>';
+      }).join('');
+
+    if (!tiersHtml) {
+      tiersHtml = '<div class="lb-streak-empty">Chưa có ai đạt mốc 7 ngày liên tiếp. Hãy là người đầu tiên! 🐉</div>';
+    }
+
+    var optNote = me.opted_in ? '' :
+      '<div class="lb-streak-note">Bật <strong>“Tham gia công khai”</strong> bên trái để tên bạn xuất hiện trong Câu lạc bộ khi đạt mốc.</div>';
+
+    box.innerHTML =
+      '<div class="lb-streak-head">' +
+        '<h2 class="lb-streak-title">🔥 Câu lạc bộ Chuỗi</h2>' +
+        '<span class="lb-streak-me">Chuỗi của bạn: <strong>' + escapeHtml(me.current_streak) + '</strong> ngày</span>' +
+      '</div>' +
+      '<div class="lb-streak-progress">' + progressHtml + '</div>' +
+      optNote +
+      '<div class="lb-streak-tiers">' + tiersHtml + '</div>' +
+      '<div class="lb-privacy-note">Chuỗi tính từ ngày học liên tiếp (server-side). Vinh danh bằng học — không liên quan tới thanh toán.</div>';
   }
 
   async function recordActivity(force) {

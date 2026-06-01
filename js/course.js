@@ -5,6 +5,14 @@
 //           Gamification.addXP, Router.navigateTo
 // ═══════════════════════════════════════════════════════
 
+// ── Audio host (Mai TTS) ────────────────────────────────
+// Để rỗng '' = phục vụ audio local từ assets/mai/audio/ (mặc định, không vỡ gì).
+// Để rỗng '' = phục vụ local từ assets/mai/audio/ (fallback dev offline).
+// Production: trỏ R2 CDN (egress free). File trên R2 giữ cấu trúc:
+//   <base>mai/audio/L<id>_<slug>.mp3
+// Upload audio mới: rclone copy assets/mai/audio → r2:hanzigenz-assets/mai/audio
+var MAI_AUDIO_BASE = 'https://cdn.hanzigenz.com/';
+
 // ── Visual-novel cast registry ──────────────────────────
 var VN_CHARACTERS = {
   narrator: { name: 'Người dẫn', role: '',           emoji: '📖', color: '#F59E0B', img: '',                              pitch: 1,    rate: 0.9  },
@@ -841,7 +849,8 @@ var Course = {
     // instead of firing a guaranteed-404 fetch + Web Speech fallback.
     if (isNarr && !/[一-鿿]/.test(s.text)) return;
     var slug     = Course._audioSlug(s.speaker, s.text);
-    var src      = 'assets/mai/audio/L' + Course.lessonId + '_' + slug + '.mp3';
+    var src      = (MAI_AUDIO_BASE ? MAI_AUDIO_BASE + 'mai/audio/' : 'assets/mai/audio/')
+                 + 'L' + Course.lessonId + '_' + slug + '.mp3';
     var activeEl = document.querySelector('.cs-vn-char.active');
     var btn      = document.getElementById('cs-vn-speak-btn');
 

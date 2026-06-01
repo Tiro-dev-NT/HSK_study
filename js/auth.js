@@ -532,22 +532,29 @@ var Auth = {
 var AICredit = {
   _CACHE_KEY: 'hsk_ai_credit_balance',
   _lastBalance: null,
+  _status: null,   // {tier, balance, allowance, purchased, recurring, daily_used, daily_cap}
 
-  // Fetch from Supabase, update UI + low warnings
+  // Fetch full status via RPC get_ai_credit_balance (lazy-reset allowance đầu
+  // tháng server-side). Cập nhật badge + cảnh báo. Hiển thị badge cho Pro hoặc
+  // ai từng có credit; ẩn với free chưa từng dùng.
   fetch: async function() {
     if (!window.SB || !window.Auth || !Auth.user) return;
-    var res = await SB.from('user_ai_credit_balance')
-      .select('balance')
-      .eq('user_id', Auth.user.id)
-      .maybeSingle();
+    var res = await SB.rpc('get_ai_credit_balance');
     if (res.error) { console.warn('[AICredit] fetch error:', res.error.message); return; }
-    if (!res.data) { AICredit.updateUI(null); return; } // no row → never had credits
+    var d = res.data;
+    if (!d || d.ok === false) { AICredit.updateUI(null); return; }
+
     var prev = AICredit._lastBalance;
-    var bal  = res.data.balance || 0;
+    var bal  = d.balance || 0;
+    AICredit._status     = d;
     AICredit._lastBalance = bal;
     try { localStorage.setItem(AICredit._CACHE_KEY, String(bal)); } catch(e) {}
-    AICredit.updateUI(bal);
-    if (prev !== null && bal < prev) AICredit._warnLow(bal, prev);
+
+    var isPro = d.tier && d.tier !== 'free';
+    // Free chưa từng mua + chưa dùng allowance → ẩn cho gọn. Pro luôn hiện.
+    var show = isPro || (d.purchased || 0) > 0 || (d.daily_used || 0) > 0;
+    AICredit.updateUI(show ? bal : null);
+    if (prev !== null && bal < prev) AICredit._warnLow(d);
   },
 
   // Update badge UI. Pass null to hide (logged out / no credits).
@@ -562,15 +569,73 @@ var AICredit = {
     if (balance === null) { badge.style.display = 'none'; return; }
     badge.style.display = '';
     badge.textContent   = '🔮 ' + balance.toLocaleString() + ' cr';
+    badge.style.cursor  = 'pointer';
+    if (!badge._aiBound) {
+      badge._aiBound = true;
+      badge.addEventListener('click', function() { AICredit.openModal(); });
+    }
   },
 
-  _warnLow: function(bal, prev) {
-    if (prev > 0 && bal === 0) {
-      showToast('🔮 Đã hết AI Credit! Vào Bảng giá để mua thêm Túi Linh Đan.');
-    } else if (prev > 100 && bal <= 100) {
-      showToast('🔮 AI Credit sắp hết — còn ' + bal + ' cr. Cân nhắc mua thêm!');
-    } else if (prev > 300 && bal <= 300) {
-      showToast('🔮 AI Credit còn ' + bal + ' cr (≤30%). Nên mua thêm sớm.');
+  // Cảnh báo theo NGƯỠNG % của allowance recurring (Model C). Chỉ bắn khi
+  // vừa tụt qua mốc (so prev → tránh spam mỗi lần dùng).
+  _warnLow: function(d) {
+    if (typeof showToast !== 'function') return;
+    var ref = d.recurring || 50;          // mốc tham chiếu = allowance/tháng
+    var bal = d.balance || 0;
+    var t20 = Math.round(ref * 0.20);
+    var t5  = Math.round(ref * 0.05);
+    if (bal <= 0) {
+      showToast('🔮 Hết AI Credit hạng-2. Tính năng tra cứu vẫn miễn phí — nạp Túi Linh Đan để dùng tiếp.');
+    } else if (bal <= t5) {
+      showToast('🔮 AI Credit còn ' + bal + ' cr (≤5%). Cân nhắc nạp thêm hoặc đợi reset đầu tháng.');
+    } else if (bal <= t20) {
+      showToast('🔮 Còn ' + bal + ' cr cho tháng này — dùng thoải mái nhé.');
     }
+  },
+
+  // Modal chi tiết (UIStates pattern) — allowance vs purchased + lượt/ngày.
+  openModal: function() {
+    if (!window.UIStates || !UIStates.openModal) return;
+    var d = AICredit._status || {};
+    var allowance = d.allowance || 0, purchased = d.purchased || 0;
+    var recurring = d.recurring || 50, balance = d.balance || 0;
+    var dailyUsed = d.daily_used || 0, dailyCap = d.daily_cap || 50;
+    var tierLabel = (d.tier && d.tier !== 'free') ? 'Pro' : 'Miễn phí';
+
+    function row(label, value, sub) {
+      return '<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--border,#eee)">' +
+             '<span style="color:var(--text-soft,#666)">' + label + '</span>' +
+             '<span style="font-weight:700">' + value +
+             (sub ? ' <span style="font-weight:400;color:var(--text-soft,#999);font-size:.85em">' + sub + '</span>' : '') +
+             '</span></div>';
+    }
+
+    var html =
+      '<div class="ui-modal ui-modal--sm" role="document">' +
+        '<button class="ui-modal__close" data-ui-close type="button" aria-label="Đóng">✕</button>' +
+        '<div style="padding:8px 4px">' +
+          '<h2 style="margin:0 0 4px;font-size:1.25rem">🔮 AI Credit của bạn</h2>' +
+          '<p style="margin:0 0 14px;color:var(--text-soft,#777);font-size:.9rem">' +
+            'Gói <b>' + tierLabel + '</b> · trần ' + dailyCap + ' lượt AI/ngày' +
+          '</p>' +
+          '<div style="font-size:2rem;font-weight:800;color:var(--mau-tim,#7c3aed);margin-bottom:10px">' +
+            balance.toLocaleString() + ' <span style="font-size:1rem;font-weight:600">cr</span></div>' +
+          row('🎁 Tặng kèm gói (tháng này)', allowance + ' cr', '/ ' + recurring + ' cr — reset đầu tháng') +
+          row('💎 Đã mua / quà chào mừng', purchased + ' cr', 'không hết hạn') +
+          row('📅 Đã dùng hôm nay', dailyUsed + ' lượt', '/ ' + dailyCap) +
+          '<p style="margin:14px 0 0;font-size:.82rem;color:var(--text-soft,#888);line-height:1.5">' +
+            'Tra cứu từ vựng, pinyin, dịch câu ngắn <b>luôn miễn phí</b>. Credit chỉ dùng cho ' +
+            'tính năng AI nâng cao (Tutor, chấm bài…).</p>' +
+          '<button class="ui-state__cta ui-state__cta--full" id="aiCreditTopupBtn" type="button" style="margin-top:16px">' +
+            '<span>Nạp thêm Túi Linh Đan</span></button>' +
+        '</div>' +
+      '</div>';
+
+    var handle = UIStates.openModal(html, {});
+    var btn = handle.root.querySelector('#aiCreditTopupBtn');
+    if (btn) btn.addEventListener('click', function() {
+      handle.close();
+      if (typeof Router !== 'undefined') Router.navigateTo('pricing');
+    });
   }
 };

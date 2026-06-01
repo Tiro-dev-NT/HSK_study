@@ -19,6 +19,10 @@ var VN_CHARACTERS = {
   laoli:    { name: '李老师',    role: 'Giáo viên',  emoji: '👨‍🏫', color: '#1F2937', img: 'assets/mai/cast/laoli.webp',    pitch: 0.7,  rate: 0.85 },
   mai:      { name: 'Mai',       role: 'Học sinh',   emoji: '👧',  color: '#DC2626', img: '',                              pitch: 1.25, rate: 0.95 },
   xiaomei:  { name: '小美',      role: 'Bạn học',    emoji: '👩',  color: '#10B981', img: 'assets/mai/cast/xiaomei.webp',  pitch: 1.4,  rate: 1.0  },
+  // HSK 3 cast bổ sung (Phase P) — img có emoji fallback nếu ảnh chưa gen
+  mama:     { name: '妈妈',      role: 'Mẹ Mai',     emoji: '👩‍🦰', color: '#B45309', img: 'assets/mai/cast/mama.webp',     pitch: 1.05, rate: 0.9  },
+  fuwuyuan: { name: '服务员',    role: 'Phục vụ',    emoji: '🧑‍💼', color: '#0EA5E9', img: 'assets/mai/cast/fuwuyuan.webp', pitch: 1.1,  rate: 1.0  },
+  yisheng:  { name: '医生',      role: 'Bác sĩ',     emoji: '🧑‍⚕️', color: '#0D9488', img: 'assets/mai/cast/yisheng.webp',  pitch: 0.85, rate: 0.9  },
   class:    { name: 'Cả lớp',    role: '',           emoji: '👥',  color: '#6B7280', img: '',                              pitch: 1,    rate: 1.0  }
 };
 
@@ -45,7 +49,12 @@ var COURSE_LEVELS = [
     ]
   },
   {
-    level: 3, label: 'HSK 3', comingSoon: true, chapters: []
+    level: 3, label: 'HSK 3', pro: true,
+    chapters: [
+      { label: 'Hành động & cuộc sống', from: 72, to: 89  },
+      { label: 'Từ chức năng & tính từ', from: 90, to: 110 },
+      { label: 'Chủ đề & đọc thêm',      from: 111, to: 121 }
+    ]
   }
 ];
 
@@ -62,6 +71,7 @@ var Course = {
   workbookScore:     0,
   _srsAdded:         false,
   _pendingId:        null,   // set before Router.navigateTo('course') for in-app nav
+  _proOK:            null,   // lessonId đã xác nhận Pro async (tránh gate loop)
   _selectedLevel:    null,   // tab cấp HSK đang xem ở renderList (null = auto)
   _showPinyin:       true,   // VN pinyin toggle (persists across steps)
   _showVi:           true,   // VN nghĩa-Việt toggle (persists across steps)
@@ -254,6 +264,22 @@ var Course = {
   },
 
   loadLesson: function(id) {
+    // ── Pro-gate HSK 3+ (lesson.level >= 3) ──────────────
+    // Server-side là nguồn sự thật: Monetization.isPro() resolve qua Supabase
+    // (RPC), không tin localStorage. isProSync() chỉ là cache đã warm để tránh
+    // nháy màn; nếu cache chưa chắc Pro → check async trước khi cho vào.
+    var ld = (typeof COURSE_DATA !== 'undefined') ? COURSE_DATA[id] : null;
+    if (ld && ld.level >= 3 && Course._proOK !== id && typeof Monetization !== 'undefined') {
+      if (!Monetization.isProSync()) {
+        Monetization.isPro().then(function(pro) {
+          if (pro) { Course._proOK = id; Course.loadLesson(id); }
+          else { Course._renderProGate(id); }
+        });
+        return;
+      }
+    }
+    Course._proOK = null;
+
     Course.lessonId   = id;
     Course.step       = 0;
     Course.phase      = 'intro';
@@ -1277,6 +1303,22 @@ var Course = {
         '<h3>Bài ' + id + ' đang được biên soạn</h3>' +
         '<p>Sắp ra mắt! Hiện tại bạn có thể học Bài 1 → 12.</p>' +
         '<button class="cs-btn-primary" onclick="Router.navigateTo(\'learn\')">← Về Học</button>' +
+      '</div>';
+  },
+
+  // Pro-gate HSK 3+ : màn mời nâng cấp khi user Free mở bài cấp ≥3
+  _renderProGate: function(id) {
+    var lv = Course._levelOf(id);
+    Course._getEl().innerHTML =
+      '<div class="cs-coming-soon">' +
+        '<div class="cs-coming-icon">🔒</div>' +
+        '<h3>Truyện Mai HSK ' + lv + ' — dành cho thành viên Pro</h3>' +
+        '<p>HSK 1 và HSK 2 luôn miễn phí. Nâng cấp Pro để mở khóa toàn bộ ' +
+        'truyện Mai HSK 3 (50 bài, 953 từ) cùng các tính năng nâng cao.</p>' +
+        '<div class="cs-debt-btns">' +
+          '<button class="cs-btn-primary" onclick="Router.navigateTo(\'pricing\')">Xem gói Pro</button>' +
+          '<button class="cs-btn-secondary" onclick="Router.navigateTo(\'learn\')">← Về Học</button>' +
+        '</div>' +
       '</div>';
   },
 

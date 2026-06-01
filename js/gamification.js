@@ -30,6 +30,7 @@ var Gamification = {
     xpData.weeklyXP = AppState.xpData.weeklyXP;
     xpData.weekStart = AppState.xpData.weekStart;
     AppState.saveXP();
+    if (typeof Leaderboard !== 'undefined' && Leaderboard.recordActivity) Leaderboard.recordActivity();
   },
 
   renderXPBar: function() {

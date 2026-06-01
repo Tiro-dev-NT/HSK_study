@@ -56,6 +56,7 @@ var Router = (function() {
     // Nav v2 — hub pages
     '/practice':        'practice',
     '/community':       'community',
+    '/leaderboard':     'leaderboard',
     // Nav v2 — off-path
     '/stories':         'stories',
     '/explore':         'explore',
@@ -181,6 +182,9 @@ var Router = (function() {
       if (typeof lhRefreshDueBadges === 'function') lhRefreshDueBadges();
     },
     'community':    function() {},
+    'leaderboard':  function() {
+      if (typeof Leaderboard !== 'undefined') Leaderboard.init();
+    },
     'stories':      function() {},
     'explore':      function() {},
     'speaking':     function() {},

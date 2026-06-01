@@ -7,7 +7,7 @@
   <header class="legal-hero">
     <h1>🔒 Chính sách Quyền riêng tư</h1>
     <p class="legal-sub">Hanzi Genz tôn trọng quyền riêng tư của bạn. Trang này nói rõ: thu thập dữ liệu gì, dùng làm gì, share với ai, bạn kiểm soát thế nào.</p>
-    <p class="legal-update">Cập nhật: 2026-05-23 · Hiệu lực: 1/6/2026</p>
+    <p class="legal-update">Cập nhật: 2026-06-01 · Hiệu lực: 1/6/2026</p>
   </header>
 
   <!-- TL;DR -->
@@ -18,6 +18,7 @@
       <li>✅ <strong>KHÔNG có quảng cáo</strong> trong app — không cần tracking cho ads.</li>
       <li>✅ Dữ liệu thu thập <strong>chỉ phục vụ học tập</strong> (progress, SRS, badge...) và thanh toán (PayOS).</li>
       <li>⚠️ Một số dịch vụ phải share dữ liệu giới hạn: <strong>Supabase</strong> (lưu trữ), <strong>PayOS</strong> (thanh toán), <strong>DeepSeek/Qwen</strong> (AI nếu bạn dùng).</li>
+      <li>✅ Tính năng cộng đồng như Bảng Phong Vân là <strong>opt-in</strong>: chỉ hiện display name bạn chọn, không hiện email.</li>
       <li>✅ Bạn có quyền <strong>xem, sửa, xoá</strong> dữ liệu của mình bất cứ lúc nào trong Settings.</li>
     </ul>
   </div>
@@ -63,7 +64,15 @@
       <li>Retention: chat 7 ngày (opt-in 90 ngày), essay 30 ngày — xem section 8</li>
     </ul>
 
-    <h3>1.6 🎤 Voice / Audio HSKK Speaking (Phase Y — chưa launch)</h3>
+    <h3>1.6 Dữ liệu cộng đồng opt-in</h3>
+    <ul>
+      <li>Bảng Phong Vân chỉ mở khi bạn bấm tham gia rõ ràng trong app.</li>
+      <li>Dữ liệu công khai: display name bạn chọn, khu vực tổng quát, số ngày học và điểm consistency trong kỳ xếp hạng.</li>
+      <li><strong>KHÔNG hiển thị email</strong>, tên Google OAuth, ảnh đại diện hoặc nội dung học cá nhân.</li>
+      <li>Bạn có thể rời bảng xếp hạng bất cứ lúc nào; khi rời, profile không còn hiển thị công khai.</li>
+    </ul>
+
+    <h3>1.7 🎤 Voice / Audio HSKK Speaking (Phase Y — chưa launch)</h3>
     <ul>
       <li><strong>Voice là sinh trắc học (biometric)</strong> theo PDPL NĐ 13/2023 — chúng tôi xử lý với mức bảo vệ cao nhất</li>
       <li>Audio bạn ghi khi luyện HSKK Speaking lưu trên Cloudflare R2 (encrypted)</li>
@@ -87,6 +96,7 @@
         <tr><td>Phòng chống gian lận, abuse</td><td>IP, device, session log</td><td>Lợi ích chính đáng + tuân thủ pháp luật</td></tr>
         <tr><td>Hỗ trợ kỹ thuật & khiếu nại</td><td>Email + lịch sử dùng</td><td>Lợi ích chính đáng</td></tr>
         <tr><td>Cải thiện UX (analytics tổng hợp, ẩn danh)</td><td>Usage pattern aggregate</td><td>Lợi ích chính đáng (opt-out được)</td></tr>
+        <tr><td>Bảng Phong Vân cộng đồng (opt-in)</td><td>Display name, khu vực tổng quát, ngày học/điểm trong kỳ</td><td>Đồng ý của bạn</td></tr>
         <tr><td>Email update sản phẩm (opt-in)</td><td>Email</td><td>Đồng ý của bạn</td></tr>
       </tbody>
     </table>
@@ -168,6 +178,7 @@
         <tr><td>Tài khoản inactive >2 năm</td><td>Email nhắc nhở. Không phản hồi 30 ngày → xoá</td><td>Privacy hygiene</td></tr>
         <tr><td>Lịch sử thanh toán + invoice</td><td>5 năm (anonymized sau khi user xoá tài khoản)</td><td>Yêu cầu Luật Thuế</td></tr>
         <tr><td>Progress học (cards/SRS/XP/streak)</td><td>Cho tới khi user xoá tài khoản</td><td>Progress tracking</td></tr>
+        <tr><td>Bảng Phong Vân opt-in (display name, ngày học/điểm kỳ)</td><td>Cho tới khi user rời bảng hoặc xoá tài khoản</td><td>Tính năng cộng đồng do user đồng ý tham gia</td></tr>
         <tr><td><strong>🎤 Voice / Audio HSKK Speaking</strong> (Phase Y)</td><td><strong>24 giờ</strong> sau ghi âm, tự động xoá</td><td>Voice = sinh trắc học theo PDPL NĐ 13/2023 → giữ tối thiểu</td></tr>
         <tr><td>Kết quả HSKK (score, pinyin transcription, feedback text)</td><td>Vĩnh viễn (text only, không nhạy cảm)</td><td>Progress tracking long-term</td></tr>
         <tr><td>AI Tutor chat text (default)</td><td><strong>7 ngày</strong> — opt-in 90 ngày trong Settings</td><td>Continue context tuần</td></tr>

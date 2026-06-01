@@ -1,0 +1,50 @@
+<section class="leaderboard-page">
+  <div class="lb-hero">
+    <button class="lb-back" onclick="Router.navigateTo('community')">← Cộng đồng</button>
+    <div class="lb-hero-main">
+      <div>
+        <div class="lb-kicker">Phase V1 · Bảng Phong Vân</div>
+        <h1>Bảng Phong Vân</h1>
+        <p>Thi đua nhẹ nhàng theo số ngày học trong tuần/tháng. Không dùng XP localStorage, không đua vô hạn.</p>
+      </div>
+      <div class="lb-hero-badge">
+        <span>🏆</span>
+        <strong id="lbPeriodLabel">Tuần này</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="lb-shell">
+    <aside class="lb-panel lb-optin-panel" id="lbOptInPanel">
+      <div class="lb-panel-title">Tham gia công khai</div>
+      <p class="lb-panel-desc">Bạn chỉ xuất hiện khi tự bật. Bảng chỉ hiển thị tên bạn chọn, không dùng email.</p>
+
+      <label class="lb-label" for="lbDisplayName">Tên hiển thị</label>
+      <input id="lbDisplayName" class="lb-input" maxlength="24" placeholder="Ví dụ: Mai HSK2" autocomplete="nickname">
+      <div class="lb-help">2–24 ký tự: chữ, số, khoảng trắng, dấu chấm, gạch ngang, gạch dưới.</div>
+
+      <label class="lb-label" for="lbRegion">Khu vực</label>
+      <select id="lbRegion" class="lb-input">
+        <option value="global">Toàn cầu</option>
+        <option value="vn">Việt Nam</option>
+      </select>
+
+      <button class="lb-primary" id="lbJoinBtn">Tham gia bảng xếp hạng</button>
+      <button class="lb-secondary" id="lbLeaveBtn" style="display:none">Rời bảng xếp hạng</button>
+      <div class="lb-form-error" id="lbFormError" role="alert"></div>
+    </aside>
+
+    <main class="lb-main">
+      <div class="lb-toolbar">
+        <div class="lb-tabs" role="tablist" aria-label="Khoảng thời gian">
+          <button class="lb-tab active" data-period="week" type="button">Tuần</button>
+          <button class="lb-tab" data-period="month" type="button">Tháng</button>
+        </div>
+        <button class="lb-refresh" id="lbRefreshBtn" type="button">Làm mới</button>
+      </div>
+
+      <div class="lb-me-card" id="lbMeCard"></div>
+      <div class="lb-list" id="lbList"></div>
+    </main>
+  </div>
+</section>

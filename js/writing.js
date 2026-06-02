@@ -118,6 +118,7 @@ var Writing = (function () {
       'ĐẶC BIỆT QUAN TRỌNG: kiểm tra kỹ LƯỢNG TỪ (量词) — ví dụ 个/部/本/张/位/条 — vì đây là lỗi người Việt hay mắc và dễ bị bỏ sót. Nếu lượng từ sai hoặc thiếu, BẮT BUỘC nêu trong phần lỗi.',
       'Cũng kiểm tra: trật tự từ, dùng từ sai ngữ cảnh, ngữ pháp (了/过/的/得/地, bổ ngữ), chính tả chữ Hán.',
       'Mọi giải thích viết bằng TIẾNG VIỆT. Phần "improved" (bản viết lại) viết bằng tiếng Trung, giữ đúng trình độ HSK ' + _level + ' (không dùng từ vượt cấp quá nhiều).',
+      'QUAN TRỌNG: bản "improved" PHẢI giữ nguyên Ý và nội dung gốc của học viên — số lượng, sự việc, người/vật được nhắc tới phải y như bài gốc. CHỈ sửa lỗi (ngữ pháp/lượng từ/từ vựng/trật tự/chính tả); TUYỆT ĐỐI không đổi nghĩa, không thay con số, không thêm/bớt chi tiết. Ví dụ: nếu học viên viết "买了三个手机" (ba cái) thì bản sửa vẫn phải là ba cái (买了三部手机), KHÔNG được đổi thành một cái.',
       'CHỈ trả về JSON hợp lệ theo đúng schema sau, KHÔNG kèm markdown, KHÔNG kèm văn bản ngoài JSON:',
       '{',
       '  "score": <số nguyên 0-100>,',

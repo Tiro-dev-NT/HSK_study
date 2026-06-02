@@ -60,7 +60,20 @@
   border-top: 1px dashed var(--border);
 }
 .wt-topic-label { font-size: 0.85rem; color: var(--text2); font-weight: 600; }
-.wt-topic-text { font-size: 0.98rem; color: var(--text); font-weight: 500; flex: 1; min-width: 180px; }
+.wt-topic-input {
+  flex: 1;
+  min-width: 180px;
+  font-size: 0.98rem;
+  color: var(--text);
+  font-weight: 500;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 11px;
+}
+.wt-topic-input::placeholder { color: var(--text2); font-weight: 400; }
+.wt-topic-input:focus { outline: none; border-color: var(--primary); }
+.wt-topic-hint { margin: 6px 0 0; font-size: 0.78rem; color: var(--text2); }
 .wt-topic-shuffle {
   border: 1px solid var(--border);
   background: var(--bg);

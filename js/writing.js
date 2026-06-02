@@ -17,6 +17,7 @@ var Writing = (function () {
   var HIST_KEY = 'writing_history_v1';
   var _level = 1;
   var _busy = false;
+  var _topicTouched = false; // true khi user tự gõ đề → không tự đè khi đổi cấp
 
   // Đề gợi ý theo cấp (đơn giản dần lên phức tạp)
   var TOPICS = {
@@ -56,7 +57,8 @@ var Writing = (function () {
           b.classList.add('wt-pill--on');
           _level = parseInt(b.getAttribute('data-level'), 10) || 1;
           _topicIdx = 0;
-          _renderTopic();
+          // Chỉ thay gợi ý theo cấp nếu user CHƯA tự ghi đề (tôn trọng đề custom)
+          if (!_topicTouched) _renderTopic();
         });
       });
     }
@@ -65,7 +67,13 @@ var Writing = (function () {
     if (shuffle) shuffle.addEventListener('click', function () {
       var list = TOPICS[_level] || TOPICS[1];
       _topicIdx = (_topicIdx + 1) % list.length;
+      _topicTouched = false; // bấm "Đổi đề" = chủ động lấy gợi ý → ghi đè
       _renderTopic();
+    });
+
+    var topicInput = document.getElementById('wtTopicInput');
+    if (topicInput) topicInput.addEventListener('input', function () {
+      _topicTouched = true; // user tự gõ → đánh dấu custom
     });
 
     var input = document.getElementById('wtInput');
@@ -90,8 +98,8 @@ var Writing = (function () {
 
   function _renderTopic() {
     var list = TOPICS[_level] || TOPICS[1];
-    var el = document.getElementById('wtTopicText');
-    if (el) el.textContent = list[_topicIdx % list.length];
+    var el = document.getElementById('wtTopicInput');
+    if (el) el.value = list[_topicIdx % list.length];
   }
 
   async function _grade() {
@@ -109,7 +117,9 @@ var Writing = (function () {
       return;
     }
 
-    var topic = (document.getElementById('wtTopicText') || {}).textContent || '';
+    var topicEl = document.getElementById('wtTopicInput');
+    var topic = (topicEl && topicEl.value || '').trim();
+    if (!topic) { topic = (TOPICS[_level] || TOPICS[1])[0]; if (topicEl) topicEl.value = topic; }
     _setBusy(true);
 
     var system = [

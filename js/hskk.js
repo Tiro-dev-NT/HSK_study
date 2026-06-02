@@ -363,7 +363,10 @@ var HSKK = (function () {
       $('hskkGradingText').textContent = 'Đang chấm câu ' + n + '/' + _exam.length + '…';
       if (!ans || !ans.blob || ans.blob.size < 200) continue; // bỏ câu không nói
       var cfg = QTYPE[ans.type];
-      var b64 = await _blobToB64(ans.blob);
+      // SpeechSuper nhận wav/mp3/opus/ogg/amr — KHÔNG nhận webm (Chrome ghi webm
+      // → lỗi 41002). Chuyển sang WAV 16kHz mono trước khi gửi.
+      var wav = await _toWav16k(ans.blob);
+      var b64 = await _blobToB64(wav || ans.blob);
       if (!b64) continue;
       var r = await _scoreAudio({
         task: 'hskk_score',
@@ -371,7 +374,7 @@ var HSKK = (function () {
         coreType: cfg.coreType,
         refText: cfg.useRef ? ans.q.zh : '',
         audio: b64,
-        audioType: _audioType()
+        audioType: wav ? 'wav' : _audioType()
       });
       if (r && r.ok && r.score) { ans.score = r.score; scored++; }
       else if (r && !r.ok) {
@@ -408,6 +411,46 @@ var HSKK = (function () {
         fr.readAsDataURL(blob);
       } catch (e) { resolve(''); }
     });
+  }
+
+  // Chuyển blob ghi âm (webm/opus…) → WAV PCM 16-bit, 16kHz, mono.
+  // SpeechSuper không nhận webm; wav 16k mono là định dạng chuẩn của họ.
+  async function _toWav16k(blob) {
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      var OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+      if (!AC || !OAC) return null;
+      var arr = await blob.arrayBuffer();
+      var tmp = new AC();
+      var decoded = await tmp.decodeAudioData(arr);
+      try { tmp.close(); } catch (e) {}
+      var frames = Math.max(1, Math.ceil(decoded.duration * 16000));
+      var off = new OAC(1, frames, 16000);
+      var src = off.createBufferSource();
+      src.buffer = decoded;
+      src.connect(off.destination);
+      src.start(0);
+      var rendered = await off.startRendering();
+      return _encodeWav(rendered.getChannelData(0), 16000);
+    } catch (e) { return null; }
+  }
+
+  function _encodeWav(samples, rate) {
+    var len = samples.length;
+    var buf = new ArrayBuffer(44 + len * 2);
+    var view = new DataView(buf);
+    function ws(o, s) { for (var i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); }
+    ws(0, 'RIFF'); view.setUint32(4, 36 + len * 2, true); ws(8, 'WAVE');
+    ws(12, 'fmt '); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+    view.setUint16(22, 1, true); view.setUint32(24, rate, true);
+    view.setUint32(28, rate * 2, true); view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+    ws(36, 'data'); view.setUint32(40, len * 2, true);
+    var o = 44;
+    for (var i = 0; i < len; i++) {
+      var s = Math.max(-1, Math.min(1, samples[i]));
+      view.setInt16(o, s < 0 ? s * 0x8000 : s * 0x7FFF, true); o += 2;
+    }
+    return new Blob([view], { type: 'audio/wav' });
   }
 
   // Caller mỏng tới speech-proxy (đính JWT, KHÔNG key)

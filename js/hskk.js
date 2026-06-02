@@ -23,10 +23,13 @@ var HSKK = (function () {
   var HIST_KEY  = 'hskk_history_v1';
 
   // Cấu hình từng loại câu: thời gian chuẩn bị / trả lời (giây), coreType chấm.
+  // coreType: SpeechSuper "Chinese spontaneous speech" = speak.eval.pro.cn
+  // (chấm nói tự do kiểu HSKK: phát âm/trôi chảy, KHÔNG cần refText). Dùng chung
+  // cho cả 3 phần. (Trước đây dùng cn.sent.score/cn.pred.score → endpoint 404.)
   var QTYPE = {
-    repeat:  { prep: 3,  ans: 10, coreType: 'cn.sent.score', useRef: true,  part: '第一部分', partVi: 'Nghe & lặp lại', desc: 'Nghe câu rồi lặp lại y nguyên.' },
-    respond: { prep: 4,  ans: 15, coreType: 'cn.pred.score', useRef: false, part: '第二部分', partVi: 'Nghe & trả lời', desc: 'Nghe câu hỏi rồi trả lời ngắn gọn.' },
-    open:    { prep: 12, ans: 60, coreType: 'cn.pred.score', useRef: false, part: '第三部分', partVi: 'Trả lời câu hỏi', desc: 'Đọc đề, chuẩn bị rồi nói một đoạn ngắn.' }
+    repeat:  { prep: 3,  ans: 10, coreType: 'speak.eval.pro.cn', useRef: false, part: '第一部分', partVi: 'Nghe & lặp lại', desc: 'Nghe câu rồi lặp lại y nguyên.' },
+    respond: { prep: 4,  ans: 15, coreType: 'speak.eval.pro.cn', useRef: false, part: '第二部分', partVi: 'Nghe & trả lời', desc: 'Nghe câu hỏi rồi trả lời ngắn gọn.' },
+    open:    { prep: 12, ans: 60, coreType: 'speak.eval.pro.cn', useRef: false, part: '第三部分', partVi: 'Trả lời câu hỏi', desc: 'Đọc đề, chuẩn bị rồi nói một đoạn ngắn.' }
   };
 
   var _exam = null;       // [{ q, type, cfg }]

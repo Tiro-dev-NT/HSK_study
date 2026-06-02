@@ -54,7 +54,7 @@
 
 ---
 
-## 🎤 Phase Y — HSKK Speaking Exam · Sơ cấp DONE & verified (mock) 2026-06-03
+## 🎤 Phase Y — HSKK Speaking Exam · Sơ cấp Phần 1 verified REAL trên production 2026-06-03
 
 > USP cao nhất cho thị trường VN. Mirror pattern Phase S: feature wired qua Edge Function server-only → user set key → chấm thật. Nguyên tắc "bài nào hoàn thiện bài đấy": chỉ làm trọn tier Sơ cấp, verify rồi mới scale Trung/Cao (2 card kia giữ "Sắp ra mắt").
 
@@ -64,10 +64,20 @@
 - ☑ **`js/hskk.js`** engine — flow nghe đề 1 lần → chuẩn bị → ghi âm MediaRecorder (webm/opus) → câu tiếp (không tua), waveform AnalyserNode, caller mỏng tới `speech-proxy` (KHÔNG key), lịch sử localStorage chỉ metadata (không lưu audio).
 - ☑ **`css/pages/hskk.css`** viết lại — bỏ hardcode hex → token `var(--*)`, dark-safe, style 3 màn. **`js/router.js`** `hskk`→`HSKK.init()`. **`index.html`** +2 script + bump `hskk.css?v=2.0`. **`pages/practice.html`** card HSKK "Sắp ra mắt" → card Pro·AI vào `/hskk`.
 - ☑ **Verify (Playwright, 0 lỗi console)** — render 3 tier/data 20-14-6/plan 15-10-2; chạy full bài rút gọn: ghi âm thật → `speech-proxy` đúng payload (repeat→`cn.sent.score`+refText; respond→`cn.pred.score` no ref) → kết quả (tổng 78, Phát âm 81/Trôi chảy 74, per-câu + nghe lại) → lịch sử chỉ metadata. Guard: chưa login→toast, login non-Pro→showGate. Bảo mật: escapeHtml mọi render, credit atomic server-side, key không client.
-- ☐ **USER ops để chấm THẬT:** (1) `supabase functions deploy speech-proxy` → chạy ngay ở **mock** (trừ 1cr/câu, điểm synthetic) để nghiệm thu flow trên production; (2) đăng ký SpeechSuper → set secret `SPEECHSUPER_APP_KEY` + `SPEECHSUPER_SECRET_KEY` (+ tùy chọn `SPEECHSUPER_HOST`) → tự chuyển chấm thật, KHÔNG cần sửa code.
-- ⚠️ **Cần xác nhận khi có tài khoản SpeechSuper** (code theo scheme HTTP API chuẩn sha1+multipart, không bịa số): (a) tên `coreType` đúng từng phần (mặc định `cn.sent.score`/`cn.pred.score`); (b) định dạng audio — app ghi webm/opus, SpeechSuper có thể cần wav/mp3 → nếu vậy transcode (đã ghi chú trong `speech-proxy/index.ts`).
+- ☑ **USER ops DONE 2026-06-03:** deploy `speech-proxy` + set `SPEECHSUPER_APP_KEY`/`SPEECHSUPER_SECRET_KEY` trên Supabase → **Phần 1 chấm THẬT chạy được trên production**.
+- ☑ **Chuỗi fix go-live trên production (2026-06-03)** — toàn hạ tầng/wiring, không phải logic feature:
+  1. **Nút "Bắt đầu thi" câm** → `router.js` sửa thêm `HSKK.init()` nhưng giữ `?v=4.4` → trình duyệt dùng router cache cũ. Fix: bump `router.js?v=4.5`.
+  2. **`Permissions policy violation: microphone`** → `_headers` đặt `microphone=()` (chặn mọi origin). Fix: `microphone=(self)`.
+  3. **POST 405** → `hskk.js` tính `SPEECH_FN` lúc module-load (trước `supabase.js`) → `SB_URL` undefined → URL tương đối về hanzigenz.com. Fix: `_speechFn()` resolve lúc gọi (`?v=1.1`).
+  4. **503 `http_404`** → coreType `cn.sent.score`/`cn.pred.score` KHÔNG tồn tại. (+ phải redeploy speech-proxy whitelist.)
+  5. **`ss_err_41002`** (audio format) → SpeechSuper nhận wav/mp3/opus/ogg/amr, **KHÔNG webm**. Fix: `_toWav16k()` decode→WAV PCM 16-bit/16kHz/mono client-side, gửi `audioType=wav` (`?v=1.3`).
+  6. **`ss_err_51001` "core process start failed"** → coreType chưa khớp account. Lấy danh sách từ dashboard.
+- ☑ **coreType ĐÚNG account (đã xác nhận từ dashboard 2026-06-03):** read-aloud TQ — `sent.eval.cn` (câu) · `para.eval.cn` (đoạn) · `word.eval.promax.cn` (từ). Host `api.speechsuper.com` + path `/{coreType}` + sig sha1 + multipart (text/audio) đã đúng theo mẫu chính thức. Phần 1 (听后重复) = đọc lại câu → `sent.eval.cn` + refText → **chấm thật OK**. (`hskk.js?v=1.4`)
+- ⚠️ **Phần 2 & 3 CHƯA chấm được** — account chỉ có read-aloud (cần refText), trong khi Phần 2/3 là **trả lời mở** (không có refText). Cần xin SpeechSuper bật product **"Spontaneous Speech"** (`speak.eval.pro.cn`) → mới chấm đúng nghĩa nói tự do. Tạm thời 2 phần trỏ `para.eval.cn` (sẽ yếu/lỗi). **TODO:** hoặc bật spontaneous, hoặc chuyển Phần 2/3 sang luyện-tập-không-chấm để không báo lỗi.
+- 🧪 **TEST helper còn trong `speech-proxy`:** secret `SPEECHSUPER_CORETYPE` (override coreType để thử nhanh) — **nhớ xóa** khi không test. `console.error` log full SpeechSuper response khi lỗi (giữ lại, hữu ích).
 - 🚧 **Guardrail:** HSKK Pro-gate · KHÔNG thưởng AI credit qua quest · KHÔNG quest lặp cho feature AI hạng-2.
-- 📌 **Storage key mới:** `hskk_history_v1` (metadata lịch sử thi, không audio). **Next:** Trung cấp → Cao cấp → Phase R.
+- 📌 **Storage key:** `hskk_history_v1` (metadata, không audio).
+- **Next:** (1) xử Phần 2/3 (spontaneous hoặc no-grade) → (2) verify full bài Sơ cấp → (3) scale Trung/Cao → (4) Phase R (Speaking).
 
 ---
 

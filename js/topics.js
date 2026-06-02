@@ -126,6 +126,9 @@ var Topics = {
   },
 
   startSession: function(mode) {
+    // Track quest progress (topic exploration)
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('topics_tried', 1);
+
     const srsData = AppState.srsData || {};
     let words;
 

@@ -17,6 +17,11 @@ var Profile = (function() {
     { id:'hsk1done', emoji:'📕', name:'Hoàn thành HSK 1',   cond:'HSK 1 >= 80%',  check: function(s) { return (s.levelPct[1] || 0) >= 80; } },
     { id:'hsk3done', emoji:'📒', name:'Hoàn thành HSK 3',   cond:'HSK 3 >= 80%',  check: function(s) { return (s.levelPct[3] || 0) >= 80; } },
     { id:'pro',      emoji:'💎', name:'Thành viên Pro',      cond:'isPro',         check: function(s) { return s.isPro; } },
+    { id:'mai10',    emoji:'📖', name:'10 bài Truyện Mai',   cond:'mai >= 10',     check: function(s) { return s.maiLessons >= 10; } },
+    { id:'mai30',    emoji:'📚', name:'30 bài Truyện Mai',   cond:'mai >= 30',     check: function(s) { return s.maiLessons >= 30; } },
+    { id:'mockpass', emoji:'📝', name:'Thi thử đầu tiên',   cond:'mock >= 1',     check: function(s) { return s.mockPassed >= 1; } },
+    { id:'explorer', emoji:'🎯', name:'Khám phá chủ đề',    cond:'topics >= 1',   check: function(s) { return s.topicsTried >= 1; } },
+    { id:'analyzer', emoji:'🔍', name:'Phân tích văn bản',  cond:'text >= 1',     check: function(s) { return s.textAnalyzed >= 1; } },
   ];
 
   // ── Outfit data ───────────────────────────────────────
@@ -67,6 +72,19 @@ var Profile = (function() {
     var version  = (typeof AppState !== 'undefined') ? AppState.version : 2;
     var isPro    = (typeof Monetization !== 'undefined') ? Monetization.isProSync() : false;
 
+    // Feature completion metrics from localStorage
+    var maiProgress = JSON.parse(localStorage.getItem('hsk_progress_course') || '{}');
+    var maiLessons = Object.keys(maiProgress).filter(function(k) { return maiProgress[k] === true; }).length;
+
+    var mockPassed = 0, topicsTried = 0, textAnalyzed = 0;
+    try {
+      var qd = AppState.questData || {};
+      var allMetrics = qd.metrics || {};
+      mockPassed = allMetrics.mock_passed || 0;
+      topicsTried = allMetrics.topics_tried || 0;
+      textAnalyzed = allMetrics.text_analyzed || 0;
+    } catch(e) {}
+
     var levelInfo = (typeof activeLevelInfo === 'function') ? activeLevelInfo() : {};
     var levelPct = {};
     var bands = (version === 3) ? BANDS_V3 : BANDS_V2;
@@ -80,8 +98,11 @@ var Profile = (function() {
       });
     });
 
-    return { streak:streak, learned:learned, weeklyXP:weeklyXP, totalXP:totalXP,
-             version:version, isPro:isPro, levelPct:levelPct };
+    return {
+      streak:streak, learned:learned, weeklyXP:weeklyXP, totalXP:totalXP,
+      version:version, isPro:isPro, levelPct:levelPct,
+      maiLessons:maiLessons, mockPassed:mockPassed, topicsTried:topicsTried, textAnalyzed:textAnalyzed
+    };
   }
 
   // ── Render profile header ─────────────────────────────

@@ -240,6 +240,10 @@ var TextAnalyzer = (function() {
     btn.addEventListener('click', function() {
       var text = (input.value || '').trim();
       if (!text) return;
+
+      // Track quest progress (first analysis of the day)
+      if (typeof Quests !== 'undefined') Quests.incrementMetric('text_analyzed', 1);
+
       var tokens = _segment(text);
       result.style.display = 'block';
       _renderHighlight(tokens);

@@ -15,6 +15,9 @@ var DAILY_TIER_EASY = [
   { id: 'play_any',     icon: '🎮', title: 'Khởi động',          desc: 'Vào chơi 1 game bất kỳ',          metric: 'games_played',   target: 1,  rewards: { token: 8,  xp: 10 } },
   { id: 'tts_5',        icon: '🔊', title: 'Lắng nghe',          desc: 'Nghe phát âm 5 từ (click TTS)',   metric: 'tts_clicked',    target: 5,  rewards: { token: 5,  xp: 5  } },
   { id: 'login_bonus',  icon: '☀️', title: 'Chào ngày mới',      desc: 'Đăng nhập và vào app hôm nay',    metric: 'app_opened',     target: 1,  rewards: { token: 3,  xp: 0  } },
+  { id: 'mai_first',    icon: '📖', title: 'Bài học đầu tiên',  desc: 'Hoàn thành 1 bài Truyện Mai',      metric: 'mai_lessons',    target: 1,  rewards: { token: 8,  xp: 15 } },
+  { id: 'topic_try',    icon: '🎯', title: 'Thử học chủ đề',     desc: 'Học theo 1 chủ đề bất kỳ',         metric: 'topics_tried',   target: 1,  rewards: { token: 8,  xp: 10 } },
+  { id: 'analyze_text', icon: '🔍', title: 'Phân tích văn bản',  desc: 'Dùng Text Analyzer 1 lần',        metric: 'text_analyzed',  target: 1,  rewards: { token: 5,  xp: 10 } },
 ];
 
 var DAILY_TIER_NORMAL = [
@@ -28,6 +31,8 @@ var DAILY_TIER_NORMAL = [
   { id: 'study_diff',   icon: '🏔️', title: 'Thử thách từ khó',   desc: 'Học 5 từ HSK4+ hôm nay',         metric: 'hard_studied',   target: 5,  rewards: { token: 12, xp: 25 } },
   { id: 'review_new',   icon: '🆕', title: 'Từ mới mỗi ngày',    desc: 'Học ít nhất 3 từ chưa từng học', metric: 'new_cards',      target: 3,  rewards: { token: 10, xp: 20 } },
   { id: 'deck_session', icon: '📋', title: 'Tập trung',           desc: 'Hoàn thành 1 session bất kỳ',    metric: 'sessions_done',  target: 1,  rewards: { token: 10, xp: 15 } },
+  { id: 'mai_3',        icon: '📚', title: 'Tiến bộ từng ngày',  desc: 'Hoàn thành 3 bài Truyện Mai',    metric: 'mai_lessons',    target: 3,  rewards: { token: 15, xp: 30 } },
+  { id: 'mock_try',     icon: '📝', title: 'Thử sức thi thử',    desc: 'Hoàn thành 1 bài thi thử HSK',   metric: 'mock_passed',    target: 1,  rewards: { token: 12, xp: 25 } },
 ];
 
 var DAILY_TIER_HARD = [
@@ -41,6 +46,7 @@ var DAILY_TIER_HARD = [
   { id: 'deck_master',  icon: '📖', title: 'Chinh phục deck',     desc: 'Hoàn thành toàn bộ thẻ 1 deck', metric: 'deck_completed', target: 1,  rewards: { token: 25, xp: 50 } },
   { id: 'win_boss',     icon: '⚔️', title: 'Thảo phạt yêu quái', desc: 'Thắng Boss Battle 1 lần',        metric: 'boss_won',       target: 1,  rewards: { token: 20, xp: 30 } },
   { id: 'study_hsk5',   icon: '🎓', title: 'HSK nâng cao',        desc: 'Học 10 từ HSK5/6 hôm nay',      metric: 'hard_studied',   target: 10, rewards: { token: 20, xp: 35 } },
+  { id: 'mai_5',        icon: '🎓', title: 'Học viên tích cực',  desc: 'Hoàn thành 5 bài Truyện Mai',   metric: 'mai_lessons',    target: 5,  rewards: { token: 25, xp: 50 } },
 ];
 
 var DAILY_TIER_SKULL = [
@@ -72,6 +78,8 @@ var WEEKLY_QUESTS = [
   { id: 'w_3_boss',     icon: '⚔️', title: 'Chinh phục boss',     desc: 'Thắng boss 3 lần trong tuần',   metric: 'weekly_boss',    target: 3,  rewards: { token: 70,  xp: 120 } },
   { id: 'w_5_srs_days', icon: '🔄', title: 'Ôn tập kiên trì',    desc: 'Ôn SRS ít nhất 5 ngày trong tuần',metric:'weekly_srs_days',target: 5, rewards: { token: 45,  xp: 80  } },
   { id: 'w_200xp_day',  icon: '⚡', title: 'Ngày bùng nổ',       desc: 'Kiếm 200 XP trong 1 ngày duy nhất',metric:'weekly_big_day',target: 1, rewards: { token: 65,  xp: 0   } },
+  { id: 'w_mai_10',     icon: '📖', title: 'Chinh phục giáo trình',desc:'Hoàn thành 10 bài Truyện Mai trong tuần',metric:'weekly_mai',target: 10, rewards: { token: 60,  xp: 100 } },
+  { id: 'w_3_mock',     icon: '📝', title: 'Thi thử kiên trì',   desc: 'Pass 3 bài thi thử trong tuần', metric:'weekly_mock',   target: 3,  rewards: { token: 55,  xp: 90  } },
 ];
 
 var QUEST_CHAINS = {
@@ -142,7 +150,8 @@ var Quests = {
         hard_studied: 0, typing_answers: 0, perfect_mcq: 0,
         deck_completed: 0, app_opened: 1, perfect_day: 0,
         racing_done: 0, sentence_done: 0, listen_used: 0,
-        grammar_done: 0, reading_done: 0
+        grammar_done: 0, reading_done: 0,
+        mai_lessons: 0, topics_tried: 0, text_analyzed: 0, mock_passed: 0, hsk0_modules: 0
       };
     } else if (!qd.metrics || qd.metrics.date !== today) {
       qd.metrics = {
@@ -153,7 +162,8 @@ var Quests = {
         hard_studied: 0, typing_answers: 0, perfect_mcq: 0,
         deck_completed: 0, app_opened: 1, perfect_day: 0,
         racing_done: 0, sentence_done: 0, listen_used: 0,
-        grammar_done: 0, reading_done: 0
+        grammar_done: 0, reading_done: 0,
+        mai_lessons: 0, topics_tried: 0, text_analyzed: 0, mock_passed: 0
       };
     } else {
       // Mark app opened for login_bonus quest

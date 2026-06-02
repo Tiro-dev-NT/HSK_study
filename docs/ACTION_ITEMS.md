@@ -325,19 +325,22 @@ python agent.py --all                    # gen toàn bộ (~$1.2)
 
 ---
 
-## 🎯 Quest & Thành tựu — mở rộng theo bề mặt tính năng (NOTE 2026-05-31)
+## 🎯 Quest & Thành tựu — mở rộng theo bề mặt tính năng (DONE 2026-06-02)
 
 > **Bối cảnh:** app ngày càng nhiều module/feature (AI Tutor, HSKK, chấm essay, Story gen tùy biến, Mock exam, Topics, Text Analyzer, Mai curriculum HSK1+2…). Hệ quest/thành tựu hiện chỉ phủ core cũ (học từ/quiz/streak/mock) → **chưa "đón" các feature mới** → user không được dẫn dắt khám phá, feature mới ít được dùng.
 
-**Việc cần làm (khi rảnh / trước khi marketing mạnh, KHÔNG gấp):**
-- ☐ Rà soát toàn bộ feature đang có → map mỗi feature ↔ ít nhất 1 quest *hoặc* 1 thành tựu dẫn user thử (vd "Hoàn thành bài Mai đầu tiên", "Phân tích 1 văn bản", "Học theo 1 chủ đề", "Pass Mock HSK X").
-- ☐ Thêm nhóm **thành tựu theo cột mốc feature** (không chỉ số lượng từ) — gắn badge + outfit Bé Rồng + token (cosmetic), tận dụng `js/gamification.js` + `js/quests.js` sẵn có.
-- ☐ Quest "khám phá" 1 lần cho feature mới (onboarding nhẹ), khác quest học lặp lại hằng ngày.
+**✅ DONE 2026-06-02** — Mở rộng quest & badge system phủ features mới:
+- ☑ **Quest mới** — Daily: `mai_first` (1 bài), `topic_try` (1 chủ đề), `analyze_text` (1 lần), `mai_3` (3 bài), `mock_try` (pass 1 thi thử); Hard: `mai_5` (5 bài); Weekly: `w_mai_10` (10 bài/tuần), `w_3_mock` (3 thi thử/tuần). Total 8 quests mới.
+- ☑ **Metrics tracking** — `mai_lessons`, `topics_tried`, `text_analyzed`, `mock_passed` (4 metrics mới thêm vào quest engine).
+- ☑ **Wiring** — `course.js` track khi complete bài Mai; `mock-exam.js` track khi pass (≥60%); `topics.js` track khi startSession; `text-analyzer.js` track khi analyze.
+- ☑ **Badges mới** — `mai10` (10 bài), `mai30` (30 bài), `mockpass` (thi thử đầu), `explorer` (chủ đề đầu), `analyzer` (text analyzer đầu). Profile snapshot đọc từ `hsk_progress_course` + quest metrics.
+- ☑ **Version bump** — `index.html` bump 6 file: `quests.js?v=1.4`, `topics.js?v=1.5`, `course.js?v=2.7`, `mock-exam.js?v=1.1`, `text-analyzer.js?v=1.1`, `profile.js?v=1.1`.
 
-**🚧 GUARDRAIL bắt buộc (đừng phá monetization/anti-toxic — xem `docs/PRODUCT_TIER_MATRIX.md` + memory `product_principles`):**
-- ❌ **TUYỆT ĐỐI KHÔNG thưởng AI Credit qua quest/thành tựu** — AI có cost API thật → tặng free = lỗ vĩnh viễn. Chỉ thưởng XP / token (cosmetic) / badge / outfit.
-- ❌ **KHÔNG tạo quest kiểu "dùng AI N lần"** cho feature hạng-2 (Tutor/essay/HSKK/story-gen) — sẽ đẩy user đốt credit/đốt API. Nếu muốn quest liên quan AI → chỉ "thử 1 lần để biết" (onboarding), không lặp.
-- ❌ KHÔNG quest time-grinding ("mở app N lần", "login streak chỉ login") — quest = HỌC thật.
-- ✅ Quest/thành tựu cho feature MIỄN PHÍ (Mai, Topics, Text Analyzer, Mock, quiz, radicals) thì thoải mái — không đụng cost.
+**🚧 GUARDRAIL tuân thủ:**
+- ✅ KHÔNG thưởng AI Credit qua quest (chỉ token cosmetic + XP + badge).
+- ✅ Quest feature miễn phí (Mai/Topics/Text/Mock) → thoải mái; AI hạng-2 (Writing/HSKK) → KHÔNG quest lặp.
+- ✅ Quest = HỌC thật (không time-grinding "mở app N lần").
+
+**Kết quả:** Mỗi feature mới giờ có ≥1 quest onboarding (khám phá) + badge cột mốc → dẫn user thử → tăng engagement.
 
 ---

@@ -1188,6 +1188,9 @@ var Course = {
     Course._addVocabToSRS();
     if (typeof Gamification !== 'undefined') Gamification.addXP(xpGain);
 
+    // Track quest progress
+    if (typeof Quests !== 'undefined') Quests.incrementMetric('mai_lessons', 1);
+
     var nextId = l.id + 1;
     var hasNext = typeof COURSE_DATA !== 'undefined' && !!COURSE_DATA[nextId];
 

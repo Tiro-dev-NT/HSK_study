@@ -308,6 +308,9 @@ var MockExam = (function() {
     var passed       = pct >= 60;
     var wrongList    = _state.answers.filter(function(a) { return a && !a.correct; });
 
+    // Track quest progress (only if passed)
+    if (passed && typeof Quests !== 'undefined') Quests.incrementMetric('mock_passed', 1);
+
     ['meExam','meSectionBreak'].forEach(function(id) {
       var el = document.getElementById(id); if (el) el.style.display = 'none';
     });

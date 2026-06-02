@@ -191,7 +191,9 @@ var Router = (function() {
     'writing':      function() {
       if (typeof Writing !== 'undefined') Writing.init();
     },
-    'hskk':         function() {},
+    'hskk':         function() {
+      if (typeof HSKK !== 'undefined') HSKK.init();
+    },
     'radicals':     function() {
       if (typeof Radicals214 !== 'undefined') Radicals214.init();
     },

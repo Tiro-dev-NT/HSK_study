@@ -15,7 +15,7 @@ var Writing = (function () {
   'use strict';
 
   var HIST_KEY = 'writing_history_v1';
-  var _level = 1;
+  var _level = '1';
   var _busy = false;
   var _topicTouched = false; // true khi user tự gõ đề → không tự đè khi đổi cấp
 
@@ -26,7 +26,8 @@ var Writing = (function () {
     3: ['Kể về một chuyến đi đáng nhớ.', 'Vì sao bạn học tiếng Trung?', 'Mô tả nơi bạn đang sống.', 'Kế hoạch cuối tuần của bạn là gì?'],
     4: ['Trình bày quan điểm về việc học ngoại ngữ.', 'Mô tả công việc mơ ước của bạn.', 'Một thói quen tốt bạn muốn xây dựng.', 'So sánh cuộc sống ở thành phố và nông thôn.'],
     5: ['Bàn về ảnh hưởng của mạng xã hội tới giới trẻ.', 'Theo bạn, thành công là gì?', 'Vai trò của môi trường trong cuộc sống.', 'Một vấn đề xã hội bạn quan tâm.'],
-    6: ['Phân tích tác động của trí tuệ nhân tạo tới việc làm.', 'Bàn luận: tiền bạc có mua được hạnh phúc không?', 'Toàn cầu hóa — cơ hội hay thách thức?', 'Quan điểm của bạn về cân bằng giữa truyền thống và hiện đại.']
+    6: ['Phân tích tác động của trí tuệ nhân tạo tới việc làm.', 'Bàn luận: tiền bạc có mua được hạnh phúc không?', 'Toàn cầu hóa — cơ hội hay thách thức?', 'Quan điểm của bạn về cân bằng giữa truyền thống và hiện đại.'],
+    random: ['Viết tự do về một chủ đề bạn thích.', 'Kể một trải nghiệm đáng nhớ.', 'Trình bày quan điểm của bạn về một vấn đề bất kỳ.', 'Viết một đoạn văn để AI tự đánh giá không theo chuẩn HSK.']
   };
   var _topicIdx = 0;
 
@@ -42,6 +43,14 @@ var Writing = (function () {
     return m ? m.length : 0;
   }
 
+  function _isRandomLevel() {
+    return _level === 'random';
+  }
+
+  function _levelLabel() {
+    return _isRandomLevel() ? 'Ngẫu nhiên' : ('HSK ' + _level);
+  }
+
   function init() {
     _bind();
     _renderTopic();
@@ -55,7 +64,7 @@ var Writing = (function () {
         b.addEventListener('click', function () {
           pills.querySelectorAll('.wt-pill').forEach(function (x) { x.classList.remove('wt-pill--on'); });
           b.classList.add('wt-pill--on');
-          _level = parseInt(b.getAttribute('data-level'), 10) || 1;
+          _level = b.getAttribute('data-level') || '1';
           _topicIdx = 0;
           // Chỉ thay gợi ý theo cấp nếu user CHƯA tự ghi đề (tôn trọng đề custom)
           if (!_topicTouched) _renderTopic();
@@ -122,22 +131,29 @@ var Writing = (function () {
     if (!topic) { topic = (TOPICS[_level] || TOPICS[1])[0]; if (topicEl) topicEl.value = topic; }
     _setBusy(true);
 
+    var levelInstruction = _isRandomLevel()
+      ? 'Người học chọn chế độ Ngẫu nhiên. KHÔNG chấm theo chuẩn HSK 1-6, KHÔNG ép bài vào một cấp HSK đã chọn. Hãy tự đánh giá theo độ chính xác, tự nhiên, mạch lạc, phù hợp đề và ước lượng trình độ thật nếu có thể.'
+      : 'Người học đang ở trình độ HSK ' + _level + '. Hãy chấm bài viết tiếng Trung của họ một cách công tâm, khích lệ nhưng chính xác.';
+    var improvedInstruction = _isRandomLevel()
+      ? 'Mọi giải thích viết bằng TIẾNG VIỆT. Phần "improved" (bản viết lại) viết bằng tiếng Trung tự nhiên, chính xác và giữ nguyên ý gốc; không cần giới hạn theo HSK hay tránh từ vượt cấp.'
+      : 'Mọi giải thích viết bằng TIẾNG VIỆT. Phần "improved" (bản viết lại) viết bằng tiếng Trung, giữ đúng trình độ HSK ' + _level + ' (không dùng từ vượt cấp quá nhiều).';
+
     var system = [
-      'Bạn là giáo viên tiếng Trung giàu kinh nghiệm, chấm bài viết cho người Việt học HSK.',
-      'Người học đang ở trình độ HSK ' + _level + '. Hãy chấm bài viết tiếng Trung của họ một cách công tâm, khích lệ nhưng chính xác.',
+      'Bạn là giáo viên tiếng Trung giàu kinh nghiệm, chấm bài viết cho người Việt học tiếng Trung.',
+      levelInstruction,
       'ĐẶC BIỆT QUAN TRỌNG: kiểm tra kỹ LƯỢNG TỪ (量词) — ví dụ 个/部/本/张/位/条 — vì đây là lỗi người Việt hay mắc và dễ bị bỏ sót. Nếu lượng từ sai hoặc thiếu, BẮT BUỘC nêu trong phần lỗi.',
       'Cũng kiểm tra: trật tự từ, dùng từ sai ngữ cảnh, ngữ pháp (了/过/的/得/地, bổ ngữ), chính tả chữ Hán.',
       'KỶ LUẬT CHẤM (rất quan trọng — đừng làm nản người học):',
       '1. "errors" CHỈ chứa LỖI SAI THẬT SỰ (sai ngữ pháp, sai/thiếu lượng từ BẮT BUỘC, dùng từ sai, sai trật tự, sai chính tả). TUYỆT ĐỐI KHÔNG đưa câu vốn đã ĐÚNG vào "errors". KHÔNG tạo mục lỗi mà original trùng correction. Nếu một câu không sai → bỏ qua, không nhắc trong "errors".',
-      '2. PHÂN BIỆT lỗi với "cách diễn đạt hay hơn". Ở trình độ HSK thấp, câu đơn giản đúng ngữ pháp như 我吃饭 / 我打篮球 / 我看书 là ĐÚNG HOÀN TOÀN — KHÔNG được coi là lỗi chỉ vì có thể thêm lượng từ/bổ ngữ cho "tự nhiên hơn". Việc thêm 一顿/一场/了… chỉ là nâng cao, KHÔNG phải lỗi, đừng đưa vào "errors".',
+      '2. PHÂN BIỆT lỗi với "cách diễn đạt hay hơn". Ở trình độ thấp, câu đơn giản đúng ngữ pháp như 我吃饭 / 我打篮球 / 我看书 là ĐÚNG HOÀN TOÀN — KHÔNG được coi là lỗi chỉ vì có thể thêm lượng từ/bổ ngữ cho "tự nhiên hơn". Việc thêm 一顿/一场/了… chỉ là nâng cao, KHÔNG phải lỗi, đừng đưa vào "errors".',
       '3. GIỮ NGUYÊN CON SỐ ở MỌI nơi — cả trong errors.correction LẪN improved. Nếu lượng từ học viên dùng đã đúng mà chỉ khác số (vd "三部手机" = ba cái), thì câu ĐÚNG, KHÔNG sửa, KHÔNG đổi 三 thành 一. Chỉ sửa khi lượng từ thực sự sai (vd 三个手机 → 三部手机), và vẫn giữ số 三.',
       '4. NHẤT QUÁN: đoạn "improved" PHẢI áp dụng đúng TẤT CẢ sửa lỗi đã liệt kê trong "errors" (không được nêu lỗi 两台电脑 rồi rewrite vẫn để 两个电脑).',
-      'Mọi giải thích viết bằng TIẾNG VIỆT. Phần "improved" (bản viết lại) viết bằng tiếng Trung, giữ đúng trình độ HSK ' + _level + ' (không dùng từ vượt cấp quá nhiều).',
+      improvedInstruction,
       'QUAN TRỌNG: bản "improved" PHẢI giữ nguyên Ý và nội dung gốc của học viên — số lượng, sự việc, người/vật được nhắc tới phải y như bài gốc. CHỈ sửa lỗi (ngữ pháp/lượng từ/từ vựng/trật tự/chính tả); TUYỆT ĐỐI không đổi nghĩa, không thay con số, không thêm/bớt chi tiết. Ví dụ: nếu học viên viết "买了三个手机" (ba cái) thì bản sửa vẫn phải là ba cái (买了三部手机), KHÔNG được đổi thành một cái.',
       'CHỈ trả về JSON hợp lệ theo đúng schema sau, KHÔNG kèm markdown, KHÔNG kèm văn bản ngoài JSON:',
       '{',
       '  "score": <số nguyên 0-100>,',
-      '  "level_estimate": "<ước lượng trình độ, vd: HSK 2>",',
+      '  "level_estimate": "<ước lượng trình độ thật, vd: HSK 2 hoặc Tự do — trung cấp>",',
       '  "summary": "<nhận xét tổng quan bằng tiếng Việt, 1-2 câu>",',
       '  "strengths": ["<điểm tốt 1>", "<điểm tốt 2>"],',
       '  "errors": [ { "original": "<câu/cụm sai>", "correction": "<sửa lại>", "type": "<lượng từ|ngữ pháp|từ vựng|cấu trúc|chính tả>", "explain": "<giải thích tiếng Việt>" } ],',
@@ -219,7 +235,7 @@ var Writing = (function () {
       circle.style.setProperty('--wt-pct', (score / 100).toFixed(3));
     }
     var lvlEl = document.getElementById('wtScoreLevel');
-    if (lvlEl) lvlEl.textContent = o.level_estimate || ('HSK ' + _level);
+    if (lvlEl) lvlEl.textContent = o.level_estimate || _levelLabel();
     var sumEl = document.getElementById('wtScoreSummary');
     if (sumEl) sumEl.textContent = o.summary || '';
 
@@ -308,7 +324,7 @@ var Writing = (function () {
       return '<div class="wt-h-item">' +
         '<span class="wt-h-score' + scCls + '">' + sc + '</span>' +
         '<div class="wt-h-body"><span class="wt-h-topic">' + _esc(h.topic || '—') + '</span>' +
-        '<span class="wt-h-meta">HSK ' + (h.level || '?') + ' · ' + dd + '</span></div>' +
+        '<span class="wt-h-meta">' + (h.level === 'random' ? 'Ngẫu nhiên' : ('HSK ' + (h.level || '?'))) + ' · ' + dd + '</span></div>' +
         '</div>';
     }).join('');
   }

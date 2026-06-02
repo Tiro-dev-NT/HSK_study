@@ -1,169 +1,304 @@
-/* =============================================
-   HSKK Page — Phase Y Speaking Exam
-   ============================================= */
+/* ═══════════════════════════════════════════════════════════
+   HSKK — Phase Y Speaking Exam · tier Sơ cấp
+   Calm Study UI · token-based (light/dark safe) · KHÔNG hardcode hex
+   ═══════════════════════════════════════════════════════════ */
 
 .hskk-page {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--s-5, 20px) var(--s-4, 16px);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--s-5, 20px);
 }
 
-/* Header */
-.hskk-header {
-  text-align: center;
-}
-
+/* ── Header ── */
+.hskk-header { text-align: center; }
 .hskk-badge {
   display: inline-block;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: var(--color-chau-hong);
-  background: #FEF2F2;
-  border: 1px solid #FECACA;
+  color: var(--primary);
+  background: var(--primary-soft, rgba(220,38,38,.1));
+  border: 1px solid var(--primary-soft, rgba(220,38,38,.1));
   border-radius: 99px;
   padding: 3px 12px;
   margin-bottom: 10px;
 }
-
 .hskk-title {
-  font-size: 24px;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--color-on-surface, #121c2a);
+  color: var(--text);
   margin: 0 0 8px;
 }
-
 .hskk-desc {
-  font-size: 14px;
-  color: var(--color-on-surface-variant, #5c403c);
+  font-size: 0.95rem;
+  color: var(--text2);
   line-height: 1.6;
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 auto;
 }
 
-/* Grid */
-.hskk-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
+/* ── Grid 3 tier ── */
+.hskk-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 640px) { .hskk-grid { grid-template-columns: repeat(3, 1fr); } }
 
-@media (min-width: 600px) {
-  .hskk-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Card */
 .hskk-card {
-  background: #fff;
-  border: 1px solid var(--color-border-light, #E2E8F0);
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 20px 16px;
+  padding: 18px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
+.hskk-card--active { border-color: var(--primary); box-shadow: 0 4px 18px var(--primary-soft, rgba(220,38,38,.12)); }
+.hskk-card--active:hover { transform: translateY(-2px); }
 
-.hskk-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-}
-
-.hskk-card-icon img {
-  display: block;
-  width: 96px;
-  height: 96px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
-}
-
+.hskk-card-icon img { display: block; width: 80px; height: 80px; object-fit: contain; }
 .hskk-level-badge {
   display: inline-block;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  padding: 2px 10px;
-  border-radius: 99px;
-}
-
-.hskk-card-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.hskk-card-title {
-  font-size: 16px;
   font-weight: 700;
-  color: var(--color-on-surface, #121c2a);
-  margin: 0;
+  letter-spacing: .4px;
+  padding: 2px 12px;
+  border-radius: 99px;
 }
+.hskk-level-badge--so    { color: var(--success); background: var(--success-bg, #ECFDF5); }
+.hskk-level-badge--trung { color: var(--warning); background: var(--warning-bg, #FFFBEB); }
+.hskk-level-badge--cao   { color: var(--primary); background: var(--primary-soft, rgba(220,38,38,.1)); }
 
-.hskk-card-desc {
-  font-size: 13px;
-  color: var(--color-on-surface-variant, #5c403c);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.hskk-card-meta {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 4px;
-}
-
+.hskk-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0; }
+.hskk-card-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.5; margin: 0; }
+.hskk-card-meta { display: flex; gap: 8px; justify-content: center; margin-top: 2px; }
 .hskk-meta-item {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-on-surface-variant, #5c403c);
-  background: var(--color-surface-container, #e6eeff);
-  border-radius: 99px;
-  padding: 2px 10px;
+  font-size: 0.72rem; font-weight: 600; color: var(--text2);
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 99px; padding: 2px 9px;
 }
+.hskk-card-cta { margin-top: auto; padding-top: 6px; }
 
-/* CTA button */
+/* ── Buttons ── */
 .hskk-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 99px;
-  padding: 7px 18px;
-  border: none;
-  cursor: not-allowed;
-  transition: opacity 0.2s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 0.9rem; font-weight: 700;
+  border-radius: 99px; padding: 9px 20px; border: none; cursor: pointer;
+  transition: filter .15s ease, opacity .15s ease;
+}
+.hskk-btn--start { background: var(--primary); color: #fff; }
+.hskk-btn--start:hover { filter: brightness(1.07); }
+.hskk-btn--locked { background: var(--bg); color: var(--text2); border: 1px solid var(--border); cursor: not-allowed; opacity: .8; }
+
+/* ── Trước khi thi ── */
+.hskk-prep {
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.hskk-prep-title { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+.hskk-prep-list { margin: 0; padding-left: 4px; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.hskk-prep-list li { color: var(--text); font-size: 0.9rem; line-height: 1.5; }
+.hskk-mic-check { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.hskk-mic-btn {
+  border: 1px solid var(--border); background: var(--bg); color: var(--text);
+  border-radius: 10px; padding: 8px 16px; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+}
+.hskk-mic-btn:hover { border-color: var(--primary); }
+.hskk-mic-status { font-size: 0.85rem; color: var(--text2); }
+.hskk-mic-ok  { color: var(--success); font-weight: 600; }
+.hskk-mic-err { color: var(--danger); font-weight: 600; }
+.hskk-cost-note {
+  margin-top: 14px; font-size: 0.82rem; color: var(--text2);
+  background: var(--warning-bg, rgba(245,158,11,.1)); border-radius: 8px; padding: 8px 12px;
 }
 
-.hskk-btn--locked {
-  background: var(--color-surface-container-high, #dee9fc);
-  color: var(--color-on-surface-variant, #5c403c);
-  opacity: 0.75;
-}
-
-/* ETA note */
+/* ── ETA / Back ── */
 .hskk-eta {
+  text-align: center; font-size: 0.85rem; color: var(--text2);
+  background: var(--bg); border-radius: 10px; padding: 10px 16px;
+}
+.hskk-back { display: flex; justify-content: center; }
+
+/* ═══════════ MÀN THI ═══════════ */
+.hskk-exam-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hskk-exam-progress { display: flex; flex-direction: column; gap: 2px; }
+.hskk-part-label { font-size: 0.95rem; font-weight: 700; color: var(--primary); }
+.hskk-qnum { font-size: 0.8rem; color: var(--text2); }
+.hskk-timer {
+  font-size: 1.3rem; font-weight: 800; color: var(--text);
+  font-variant-numeric: tabular-nums; letter-spacing: 1px;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 4px 12px;
+}
+.hskk-timer--low { color: var(--danger); border-color: var(--danger); }
+
+.hskk-progress-bar { height: 6px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+.hskk-progress-fill { height: 100%; background: var(--primary); width: 0; transition: width .3s ease; border-radius: 99px; }
+
+.hskk-q-card {
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 18px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
   text-align: center;
-  font-size: 13px;
-  color: var(--color-on-surface-variant, #5c403c);
-  background: var(--color-surface-container-low, #eff4ff);
-  border-radius: 10px;
-  padding: 10px 16px;
+  min-height: 260px;
+}
+.hskk-q-part-desc { font-size: 0.82rem; color: var(--text2); }
+.hskk-q-body { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
+.hskk-play-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--primary-soft, rgba(220,38,38,.1)); color: var(--primary);
+  border: 1px solid var(--primary); border-radius: 99px; padding: 9px 20px;
+  font-size: 0.95rem; font-weight: 700; cursor: pointer;
+}
+.hskk-play-btn:hover:not(:disabled) { filter: brightness(1.05); }
+.hskk-play-btn:disabled { opacity: .45; cursor: not-allowed; }
+.hskk-play-ico { font-size: 1.1rem; }
+.hskk-q-text { font-size: 1.8rem; font-weight: 700; color: var(--text); line-height: 1.5; }
+.hskk-q-py { font-size: 1rem; color: var(--text2); }
+.hskk-q-vi { font-size: 0.9rem; color: var(--text2); font-style: italic; }
+.hskk-q-hint {
+  font-size: 0.85rem; color: var(--text2);
+  background: var(--bg); border-radius: 8px; padding: 7px 12px;
 }
 
-/* Back */
-.hskk-back {
-  display: flex;
-  justify-content: center;
+/* Pha chuẩn bị / ghi âm */
+.hskk-phase { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.hskk-phase-label { font-size: 0.9rem; font-weight: 600; color: var(--text2); }
+.hskk-phase-timer { font-size: 2rem; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* Waveform */
+.hskk-wave { display: flex; align-items: center; gap: 4px; height: 40px; }
+.hskk-wave span {
+  display: block; width: 5px; height: 8px; border-radius: 3px;
+  background: var(--primary); transition: height .08s linear;
+}
+
+/* Controls */
+.hskk-controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.hskk-rec-btn, .hskk-stop-btn, .hskk-replay-btn, .hskk-next-btn {
+  border-radius: 99px; padding: 10px 22px; font-size: 0.92rem; font-weight: 700; cursor: pointer; border: none;
+}
+.hskk-rec-btn  { background: var(--danger); color: #fff; }
+.hskk-stop-btn { background: var(--danger); color: #fff; }
+.hskk-replay-btn { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.hskk-next-btn { background: var(--primary); color: #fff; }
+.hskk-next-btn:hover, .hskk-rec-btn:hover, .hskk-stop-btn:hover { filter: brightness(1.07); }
+
+.hskk-exam-foot { display: flex; justify-content: center; }
+.hskk-quit-btn { background: none; border: none; color: var(--text2); font-size: 0.82rem; cursor: pointer; text-decoration: underline; }
+
+/* ═══════════ MÀN CHẤM ═══════════ */
+.hskk-grading { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 50px 20px; color: var(--text2); }
+.hskk-spinner {
+  width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--primary);
+  border-radius: 50%; animation: hskk-spin .8s linear infinite;
+}
+@keyframes hskk-spin { to { transform: rotate(360deg); } }
+
+/* ═══════════ MÀN KẾT QUẢ ═══════════ */
+.hskk-result-head {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--surface, var(--card-bg)); border: 1px solid var(--border);
+  border-radius: 16px; padding: 20px;
+}
+.hskk-score-circle {
+  --hskk-ring: var(--primary); --hskk-pct: 0;
+  flex: 0 0 auto; width: 96px; height: 96px; border-radius: 50%;
+  display: flex; align-items: baseline; justify-content: center;
+  background:
+    radial-gradient(closest-side, var(--surface, var(--card-bg)) 78%, transparent 79%),
+    conic-gradient(var(--hskk-ring) calc(var(--hskk-pct) * 360deg), var(--border) 0);
+  border: 4px solid var(--hskk-ring);
+}
+.hskk-score-num { font-size: 2.1rem; font-weight: 800; color: var(--text); }
+.hskk-score-max { font-size: 0.9rem; color: var(--text2); }
+.hskk-score-meta { flex: 1; }
+.hskk-score-verdict { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.hskk-score-sub { margin: 0; font-size: 0.88rem; color: var(--text2); line-height: 1.5; }
+
+.hskk-breakdown {
+  background: var(--surface, var(--card-bg)); border: 1px solid var(--border);
+  border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px;
+}
+.hskk-bd-row { display: flex; align-items: center; gap: 12px; }
+.hskk-bd-k { flex: 0 0 80px; font-size: 0.88rem; color: var(--text2); font-weight: 600; }
+.hskk-bd-bar { flex: 1; height: 8px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+.hskk-bd-fill { display: block; height: 100%; background: var(--primary); border-radius: 99px; }
+.hskk-bd-v { flex: 0 0 auto; font-weight: 800; color: var(--text); font-size: 0.95rem; width: 32px; text-align: right; }
+
+.hskk-part-scores {
+  background: var(--surface, var(--card-bg)); border: 1px solid var(--border);
+  border-radius: 14px; padding: 8px 18px;
+}
+.hskk-part-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text);
+}
+.hskk-part-row:last-child { border-bottom: none; }
+.hskk-part-row b { font-size: 1.05rem; color: var(--text); }
+
+.hskk-detail-title { font-size: 1rem; font-weight: 700; color: var(--text); margin: 8px 0 0; }
+.hskk-detail-list { display: flex; flex-direction: column; gap: 10px; }
+.hskk-d-item {
+  background: var(--surface, var(--card-bg)); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 14px;
+}
+.hskk-d-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.hskk-d-num {
+  flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--bg); color: var(--text2); font-size: 0.78rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.hskk-d-type { flex: 1; font-size: 0.8rem; color: var(--text2); }
+.hskk-d-score {
+  flex: 0 0 auto; min-width: 36px; text-align: center; font-weight: 800; font-size: 0.95rem;
+  color: var(--text2); background: var(--bg); border-radius: 8px; padding: 2px 8px;
+}
+.hskk-d-good { color: #fff; background: var(--success); }
+.hskk-d-mid  { color: #fff; background: var(--warning); }
+.hskk-d-low  { color: #fff; background: var(--danger); }
+.hskk-d-zh { font-size: 1.15rem; font-weight: 600; color: var(--text); }
+.hskk-d-py { font-size: 0.82rem; color: var(--text2); margin-top: 2px; }
+.hskk-d-tip { font-size: 0.82rem; color: var(--text2); margin-top: 6px; line-height: 1.5; }
+.hskk-d-replay {
+  margin-top: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text);
+  border-radius: 8px; padding: 5px 12px; font-size: 0.8rem; cursor: pointer;
+}
+.hskk-d-replay:hover { border-color: var(--primary); }
+
+.hskk-result-actions { display: flex; align-items: center; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+
+/* ── Lịch sử ── */
+.hskk-history-title { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 12px; }
+.hskk-history-list { display: flex; flex-direction: column; gap: 8px; }
+.hskk-h-item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface, var(--card-bg)); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 14px;
+}
+.hskk-h-score {
+  flex: 0 0 auto; width: 40px; height: 40px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; color: var(--text2); background: var(--bg);
+}
+.hskk-h-good { color: #fff; background: var(--success); }
+.hskk-h-mid  { color: #fff; background: var(--warning); }
+.hskk-h-low  { color: #fff; background: var(--danger); }
+.hskk-h-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hskk-h-lv { color: var(--text); font-weight: 600; font-size: 0.9rem; }
+.hskk-h-meta { color: var(--text2); font-size: 0.78rem; }
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .hskk-result-head { flex-direction: column; text-align: center; gap: 14px; }
+  .hskk-q-text { font-size: 1.5rem; }
+  .hskk-controls { flex-direction: column; }
+  .hskk-controls button { width: 100%; }
 }

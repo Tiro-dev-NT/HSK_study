@@ -39,7 +39,35 @@
 - ☑ **UI**: badge `#topbarAICreditBadge` (đã có) + `AICredit` (`js/auth.js` v4.0) chuyển sang RPC `get_ai_credit_balance`, modal chi tiết (allowance vs purchased + lượt/ngày), cảnh báo 20%/5%/0%, click badge mở modal.
 - ☑ **Welcome gift wired** vào `payos-webhook` — mua Pro tặng aiCreditBonus (100/250/400/600/1000) vào purchased bucket.
 - ☑ **USER ops DONE 2026-06-01**: (1) đã chạy `sql/v15_ai_credit.sql` trên Supabase; (2) đã deploy `ai-proxy` + redeploy `payos-webhook`; (3) frontend đã push + deploy (Cloudflare).
-- ☐ **Còn lại (khi có)**: set secret model key cho ai-proxy (DEEPSEEK_API_KEY… cái nào có) → mới chạy được task AI thật. Chưa set thì chỉ `ping` chạy (đủ nghiệm thu pipeline credit). KHÔNG cần đổi code/redeploy khi set key.
+- ☑ **DEEPSEEK_API_KEY đã set DONE 2026-06-02** — verify qua Phase S Writing Tutor: chấm bài thật trả JSON đúng, pipeline AIClient→ai-proxy→DeepSeek→annotate_ai_ledger chạy đầu-cuối. Các model key khác (Qwen/GLM/Kimi/Claude) set sau khi cần lane tương ứng.
+
+---
+
+## ✍️ Phase S — Writing Tutor DONE & verified 2026-06-02
+
+> Feature AI hạng-2 ĐẦU TIÊN chạy thật trên hạ tầng AI Credit. `/writing` — viết đoạn văn tiếng Trung → DeepSeek V4 chấm.
+
+- ☑ **Build** `/writing` (`pages/writing.html` + `js/writing.js` + `css/pages/writing.css`), route + `Writing.init()`. Task `essay_grade` 8cr Lane 2 DeepSeek qua `AIClient.call`. Lịch sử `writing_history_v1` (chỉ metadata).
+- ☑ **Prompt kỷ luật chấm** — nhấn kiểm tra 量词 (bù điểm yếu DeepSeek) + chống over-correct (không bịa lỗi, giữ nguyên con số, improved nhất quán với errors). Mode HSK 1-6 + Ngẫu nhiên.
+- ☑ **Verify bài thật (HSK 3)** DONE 2026-06-02 — bài test 2 lỗi 量词 trên nền câu đúng: AI bắt đúng `三个手机→三部手机` + `两个电脑→两台电脑`, **giữ nguyên số 三/两**, KHÔNG đụng `四个人` (个 cho người đúng) & câu đơn đúng, bản improved nhất quán. Score 82/100 hợp lý. JSON parse + render (score ring/errors/improved/tips) OK.
+- 📌 Cụm AI Priority 1 còn lại: **Y (HSKK)** → **R (Speaking)**.
+
+---
+
+## 🎤 Phase Y — HSKK Speaking Exam · Sơ cấp DONE & verified (mock) 2026-06-03
+
+> USP cao nhất cho thị trường VN. Mirror pattern Phase S: feature wired qua Edge Function server-only → user set key → chấm thật. Nguyên tắc "bài nào hoàn thiện bài đấy": chỉ làm trọn tier Sơ cấp, verify rồi mới scale Trung/Cao (2 card kia giữ "Sắp ra mắt").
+
+- ☑ **Data** `js/data/hskk/so-cap.js` (var) — pool 20 听后重复 + 14 听后说 + 6 回答问题 (HSK 1-2, có pinyin+nghĩa), đề rút ngẫu nhiên đúng format thật **15/10/2**.
+- ☑ **Edge `supabase/functions/speech-proxy/`** — JWT → `consume_ai_credit` ATOMIC TRƯỚC → SpeechSuper → refund (`grant_ai_credit`) nếu fail → `annotate_ai_ledger`. **API key CHỈ ở Deno env.** Chế độ **mock khi chưa set key** (vẫn trừ credit thật để nghiệm thu pipeline, model=`mock-no-key`). Task `hskk_score` = **1 credit/câu**.
+- ☑ **`pages/hskk.html`** 3 màn: Giới thiệu (3 tier + mic check + cost note + lịch sử) · Thi (timer tổng + timer pha + waveform + nút) · Kết quả (tổng + breakdown 3 phần + per-câu nghe lại + gợi ý).
+- ☑ **`js/hskk.js`** engine — flow nghe đề 1 lần → chuẩn bị → ghi âm MediaRecorder (webm/opus) → câu tiếp (không tua), waveform AnalyserNode, caller mỏng tới `speech-proxy` (KHÔNG key), lịch sử localStorage chỉ metadata (không lưu audio).
+- ☑ **`css/pages/hskk.css`** viết lại — bỏ hardcode hex → token `var(--*)`, dark-safe, style 3 màn. **`js/router.js`** `hskk`→`HSKK.init()`. **`index.html`** +2 script + bump `hskk.css?v=2.0`. **`pages/practice.html`** card HSKK "Sắp ra mắt" → card Pro·AI vào `/hskk`.
+- ☑ **Verify (Playwright, 0 lỗi console)** — render 3 tier/data 20-14-6/plan 15-10-2; chạy full bài rút gọn: ghi âm thật → `speech-proxy` đúng payload (repeat→`cn.sent.score`+refText; respond→`cn.pred.score` no ref) → kết quả (tổng 78, Phát âm 81/Trôi chảy 74, per-câu + nghe lại) → lịch sử chỉ metadata. Guard: chưa login→toast, login non-Pro→showGate. Bảo mật: escapeHtml mọi render, credit atomic server-side, key không client.
+- ☐ **USER ops để chấm THẬT:** (1) `supabase functions deploy speech-proxy` → chạy ngay ở **mock** (trừ 1cr/câu, điểm synthetic) để nghiệm thu flow trên production; (2) đăng ký SpeechSuper → set secret `SPEECHSUPER_APP_KEY` + `SPEECHSUPER_SECRET_KEY` (+ tùy chọn `SPEECHSUPER_HOST`) → tự chuyển chấm thật, KHÔNG cần sửa code.
+- ⚠️ **Cần xác nhận khi có tài khoản SpeechSuper** (code theo scheme HTTP API chuẩn sha1+multipart, không bịa số): (a) tên `coreType` đúng từng phần (mặc định `cn.sent.score`/`cn.pred.score`); (b) định dạng audio — app ghi webm/opus, SpeechSuper có thể cần wav/mp3 → nếu vậy transcode (đã ghi chú trong `speech-proxy/index.ts`).
+- 🚧 **Guardrail:** HSKK Pro-gate · KHÔNG thưởng AI credit qua quest · KHÔNG quest lặp cho feature AI hạng-2.
+- 📌 **Storage key mới:** `hskk_history_v1` (metadata lịch sử thi, không audio). **Next:** Trung cấp → Cao cấp → Phase R.
 
 ---
 

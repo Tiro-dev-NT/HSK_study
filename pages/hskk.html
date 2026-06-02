@@ -1,95 +1,190 @@
 <section class="page active">
   <div class="hskk-page">
 
-    <!-- Header -->
-    <div class="hskk-header">
-      <div class="hskk-header-text">
-        <span class="hskk-badge">Phase Y · Pro · Sắp ra mắt</span>
-        <h1 class="hskk-title">HSKK Thi thử Nói</h1>
-        <p class="hskk-desc">Thi thử HSKK 3 cấp theo đúng format kỳ thi. AI chấm điểm, phân tích phát âm và gợi ý cải thiện từng câu.</p>
+    <!-- ═══════════ MÀN GIỚI THIỆU / CHỌN CẤP ═══════════ -->
+    <div id="hskkIntro" class="hskk-intro">
+
+      <div class="hskk-header">
+        <span class="hskk-badge">Phase Y · Pro · AI</span>
+        <h1 class="hskk-title">🎤 HSKK Thi thử Nói</h1>
+        <p class="hskk-desc">Thi thử HSKK theo đúng format kỳ thi. AI chấm phát âm · độ trôi chảy · độ hoàn chỉnh và gợi ý cải thiện từng câu.</p>
+      </div>
+
+      <div class="hskk-grid">
+
+        <!-- Sơ cấp — ACTIVE -->
+        <div class="hskk-card hskk-card--active">
+          <div class="hskk-card-icon">
+            <img src="/assets/hskk/so-cap.webp" alt="HSKK Sơ cấp" width="80" height="80"
+                 onerror="this.style.display='none'">
+          </div>
+          <div class="hskk-card-body">
+            <div class="hskk-level-badge hskk-level-badge--so">Sơ cấp</div>
+            <h2 class="hskk-card-title">HSKK Sơ cấp</h2>
+            <p class="hskk-card-desc">~200 từ HSK 1–2. Nghe & lặp lại, nghe & trả lời, nói theo đề.</p>
+            <div class="hskk-card-meta">
+              <span class="hskk-meta-item">⏱ 17 phút</span>
+              <span class="hskk-meta-item">3 phần</span>
+            </div>
+          </div>
+          <div class="hskk-card-cta">
+            <button class="hskk-btn hskk-btn--start" id="hskkStartBtn">Bắt đầu thi →</button>
+          </div>
+        </div>
+
+        <!-- Trung cấp -->
+        <div class="hskk-card">
+          <div class="hskk-card-icon">
+            <img src="/assets/hskk/trung-cap.webp" alt="HSKK Trung cấp" width="80" height="80" onerror="this.style.display='none'">
+          </div>
+          <div class="hskk-card-body">
+            <div class="hskk-level-badge hskk-level-badge--trung">Trung cấp</div>
+            <h2 class="hskk-card-title">HSKK Trung cấp</h2>
+            <p class="hskk-card-desc">~900 từ HSK 1–4. Đọc hội thoại, trả lời câu hỏi mở, nói theo chủ đề.</p>
+            <div class="hskk-card-meta">
+              <span class="hskk-meta-item">⏱ 21 phút</span>
+              <span class="hskk-meta-item">3 phần</span>
+            </div>
+          </div>
+          <div class="hskk-card-cta">
+            <button class="hskk-btn hskk-btn--locked" disabled>Sắp ra mắt</button>
+          </div>
+        </div>
+
+        <!-- Cao cấp -->
+        <div class="hskk-card">
+          <div class="hskk-card-icon">
+            <img src="/assets/hskk/cao-cap.webp" alt="HSKK Cao cấp" width="80" height="80" onerror="this.style.display='none'">
+          </div>
+          <div class="hskk-card-body">
+            <div class="hskk-level-badge hskk-level-badge--cao">Cao cấp</div>
+            <h2 class="hskk-card-title">HSKK Cao cấp</h2>
+            <p class="hskk-card-desc">~3000+ từ HSK 1–6. Tóm tắt bài nghe dài, phát biểu ý kiến.</p>
+            <div class="hskk-card-meta">
+              <span class="hskk-meta-item">⏱ 24 phút</span>
+              <span class="hskk-meta-item">3 phần</span>
+            </div>
+          </div>
+          <div class="hskk-card-cta">
+            <button class="hskk-btn hskk-btn--locked" disabled>Sắp ra mắt</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hướng dẫn + kiểm tra mic -->
+      <div class="hskk-prep">
+        <h3 class="hskk-prep-title">Trước khi thi</h3>
+        <ul class="hskk-prep-list">
+          <li>🎧 Đeo tai nghe, chọn nơi yên tĩnh.</li>
+          <li>🎙 Cho phép trình duyệt dùng <b>micro</b> khi được hỏi.</li>
+          <li>▶️ Đề chỉ phát <b>một lần</b> (giống thi thật) — không tua lại.</li>
+          <li>⏺ Mỗi câu có thời gian chuẩn bị + thời gian trả lời giới hạn.</li>
+        </ul>
+        <div class="hskk-mic-check">
+          <button class="hskk-mic-btn" id="hskkMicCheck">🎙 Kiểm tra micro</button>
+          <span class="hskk-mic-status" id="hskkMicStatus"></span>
+        </div>
+        <div class="hskk-cost-note">
+          🔮 AI chấm tốn <b>1 AI Credit / câu</b> (bài đầy đủ ~27 câu). Tính năng dành cho gói <b>Pro</b>.
+        </div>
+      </div>
+
+      <!-- Lịch sử -->
+      <div class="hskk-history" id="hskkHistoryWrap" style="display:none">
+        <h3 class="hskk-history-title">📈 Lần thi gần đây</h3>
+        <div id="hskkHistoryList" class="hskk-history-list"></div>
+      </div>
+
+      <div class="hskk-back">
+        <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Quay về Luyện tập</button>
       </div>
     </div>
 
-    <!-- 3 Tier Cards -->
-    <div class="hskk-grid">
+    <!-- ═══════════ MÀN THI ═══════════ -->
+    <div id="hskkExam" class="hskk-exam" style="display:none">
 
-      <!-- Sơ cấp -->
-      <div class="hskk-card hskk-card--so-cap">
-        <div class="hskk-card-icon">
-          <img src="/assets/hskk/so-cap.webp" alt="HSKK Sơ cấp" width="96" height="96">
+      <div class="hskk-exam-top">
+        <div class="hskk-exam-progress">
+          <span id="hskkPartLabel" class="hskk-part-label">第一部分</span>
+          <span id="hskkQNum" class="hskk-qnum">Câu 1/27</span>
         </div>
-        <div class="hskk-card-body">
-          <div class="hskk-level-badge" style="background:#ECFCCB;color:#3F6212;">Sơ cấp</div>
-          <h2 class="hskk-card-title">HSKK Sơ cấp</h2>
-          <p class="hskk-card-desc">~200 từ HSK 1–2. Nghe và lặp lại, đọc to đoạn văn ngắn, trả lời câu hỏi đơn giản.</p>
-          <div class="hskk-card-meta">
-            <span class="hskk-meta-item">⏱ 17 phút</span>
-            <span class="hskk-meta-item">3 phần</span>
-          </div>
-        </div>
-        <div class="hskk-card-cta">
-          <button class="hskk-btn hskk-btn--locked" disabled>
-            <span class="material-symbols-outlined" style="font-size:18px;">lock</span>
-            Sắp ra mắt
+        <div class="hskk-timer" id="hskkTotalTimer" aria-label="Thời gian còn lại">17:00</div>
+      </div>
+      <div class="hskk-progress-bar"><div class="hskk-progress-fill" id="hskkProgressFill"></div></div>
+
+      <div class="hskk-q-card">
+        <div class="hskk-q-part-desc" id="hskkPartDesc"></div>
+
+        <!-- Vùng câu hỏi -->
+        <div class="hskk-q-body" id="hskkQBody">
+          <button class="hskk-play-btn" id="hskkPlayBtn" title="Nghe đề">
+            <span class="hskk-play-ico">🔊</span> Nghe đề
           </button>
+          <!-- Phần 3: hiện chữ + pinyin để đọc; phần 1/2 ẩn chữ tới khi đáp xong -->
+          <div class="hskk-q-text" id="hskkQText"></div>
+          <div class="hskk-q-py" id="hskkQPy"></div>
+          <div class="hskk-q-vi" id="hskkQVi"></div>
+          <div class="hskk-q-hint" id="hskkQHint"></div>
+        </div>
+
+        <!-- Trạng thái chuẩn bị / ghi âm -->
+        <div class="hskk-phase" id="hskkPhase">
+          <div class="hskk-phase-label" id="hskkPhaseLabel">Chuẩn bị…</div>
+          <div class="hskk-phase-timer" id="hskkPhaseTimer">0s</div>
+        </div>
+
+        <!-- Waveform khi ghi âm -->
+        <div class="hskk-wave" id="hskkWave" style="display:none">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- Nút điều khiển -->
+        <div class="hskk-controls" id="hskkControls">
+          <button class="hskk-rec-btn" id="hskkRecBtn" style="display:none">🎙 Bắt đầu nói</button>
+          <button class="hskk-stop-btn" id="hskkStopBtn" style="display:none">⏹ Dừng</button>
+          <button class="hskk-replay-btn" id="hskkReplayBtn" style="display:none">▶ Nghe lại</button>
+          <button class="hskk-next-btn" id="hskkNextBtn" style="display:none">Câu tiếp →</button>
         </div>
       </div>
 
-      <!-- Trung cấp -->
-      <div class="hskk-card hskk-card--trung-cap">
-        <div class="hskk-card-icon">
-          <img src="/assets/hskk/trung-cap.webp" alt="HSKK Trung cấp" width="96" height="96">
-        </div>
-        <div class="hskk-card-body">
-          <div class="hskk-level-badge" style="background:#FFEDD5;color:#9A3412;">Trung cấp</div>
-          <h2 class="hskk-card-title">HSKK Trung cấp</h2>
-          <p class="hskk-card-desc">~900 từ HSK 1–4. Đọc đoạn hội thoại, trả lời câu hỏi mở, nói theo chủ đề cho trước.</p>
-          <div class="hskk-card-meta">
-            <span class="hskk-meta-item">⏱ 21 phút</span>
-            <span class="hskk-meta-item">3 phần</span>
-          </div>
-        </div>
-        <div class="hskk-card-cta">
-          <button class="hskk-btn hskk-btn--locked" disabled>
-            <span class="material-symbols-outlined" style="font-size:18px;">lock</span>
-            Sắp ra mắt
-          </button>
-        </div>
+      <div class="hskk-exam-foot">
+        <button class="hskk-quit-btn" id="hskkQuitBtn">Thoát</button>
       </div>
-
-      <!-- Cao cấp -->
-      <div class="hskk-card hskk-card--cao-cap">
-        <div class="hskk-card-icon">
-          <img src="/assets/hskk/cao-cap.webp" alt="HSKK Cao cấp" width="96" height="96">
-        </div>
-        <div class="hskk-card-body">
-          <div class="hskk-level-badge" style="background:#FCE7F3;color:#831843;">Cao cấp</div>
-          <h2 class="hskk-card-title">HSKK Cao cấp</h2>
-          <p class="hskk-card-desc">~3000+ từ HSK 1–6. Tóm tắt bài nghe dài, phát biểu ý kiến, hội thoại chuyên đề.</p>
-          <div class="hskk-card-meta">
-            <span class="hskk-meta-item">⏱ 24 phút</span>
-            <span class="hskk-meta-item">3 phần</span>
-          </div>
-        </div>
-        <div class="hskk-card-cta">
-          <button class="hskk-btn hskk-btn--locked" disabled>
-            <span class="material-symbols-outlined" style="font-size:18px;">lock</span>
-            Sắp ra mắt
-          </button>
-        </div>
-      </div>
-
     </div>
 
-    <!-- Coming soon note -->
-    <div class="hskk-eta">
-      <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;">schedule</span>
-      Dự kiến Phase Y (sau Phase R – Speaking). Cần micro để thi.
+    <!-- ═══════════ MÀN CHẤM ═══════════ -->
+    <div id="hskkGrading" class="hskk-grading" style="display:none">
+      <div class="hskk-spinner"></div>
+      <p id="hskkGradingText">Đang chấm bài… AI đang phân tích phát âm của bạn.</p>
     </div>
 
-    <!-- Back button -->
-    <div class="hskk-back">
-      <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Quay về Luyện tập</button>
+    <!-- ═══════════ MÀN KẾT QUẢ ═══════════ -->
+    <div id="hskkResult" class="hskk-result" style="display:none">
+
+      <div class="hskk-result-head">
+        <div class="hskk-score-circle" id="hskkScoreCircle">
+          <span id="hskkScoreNum" class="hskk-score-num">0</span>
+          <span class="hskk-score-max">/100</span>
+        </div>
+        <div class="hskk-score-meta">
+          <div class="hskk-score-verdict" id="hskkScoreVerdict">—</div>
+          <p class="hskk-score-sub" id="hskkScoreSub"></p>
+        </div>
+      </div>
+
+      <div class="hskk-breakdown" id="hskkBreakdown"></div>
+
+      <div class="hskk-part-scores" id="hskkPartScores"></div>
+
+      <h3 class="hskk-detail-title">Chi tiết từng câu</h3>
+      <div class="hskk-detail-list" id="hskkDetailList"></div>
+
+      <div class="hskk-result-actions">
+        <button class="hskk-btn hskk-btn--start" id="hskkRetryBtn">Thi lại</button>
+        <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Luyện tập</button>
+      </div>
     </div>
 
   </div>

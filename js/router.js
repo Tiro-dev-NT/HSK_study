@@ -188,7 +188,9 @@ var Router = (function() {
     'stories':      function() {},
     'explore':      function() {},
     'speaking':     function() {},
-    'writing':      function() {},
+    'writing':      function() {
+      if (typeof Writing !== 'undefined') Writing.init();
+    },
     'hskk':         function() {},
     'radicals':     function() {
       if (typeof Radicals214 !== 'undefined') Radicals214.init();

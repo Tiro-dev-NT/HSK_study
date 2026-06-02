@@ -415,6 +415,7 @@
   font-weight: 700;
 }
 .cs-start-btn { width: 100%; max-width: 280px; padding: 14px; font-size: 17px; }
+.cs-handout-btn { display: block; width: 100%; max-width: 280px; margin: 10px auto 0; padding: 12px; font-size: 15px; }
 
 /* ── Checkpoint ──────────────────────────────────────── */
 .cs-checkpoint {

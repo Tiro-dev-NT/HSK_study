@@ -141,6 +141,19 @@
 
 /* Print A4 */
 @media print {
+  /* Ẩn khung app (sidebar/header/bottom-nav/right-sidebar) — chỉ khi đang ở Trang chép bài */
+  body:has(.handout-page) .sidebar,
+  body:has(.handout-page) #sidebar,
+  body:has(.handout-page) .right-sidebar,
+  body:has(.handout-page) #rightSidebar,
+  body:has(.handout-page) .mobile-header,
+  body:has(.handout-page) header,
+  body:has(.handout-page) .bottom-nav { display: none !important; }
+  body:has(.handout-page) #content,
+  body:has(.handout-page) .main-content,
+  body:has(.handout-page) main { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
+  body:has(.handout-page) { background: #fff !important; }
+
   .handout-page { background: #fff; }
   .handout-page .ho-toolbar, .handout-page .ho-toast, .handout-page .ho-breadcrumb { display: none !important; }
   .handout-page .ho-doc { box-shadow: none; max-width: 100%; padding: 0; }

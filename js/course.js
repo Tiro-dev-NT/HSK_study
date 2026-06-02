@@ -404,6 +404,7 @@ var Course = {
           '<div class="cs-vocab-chips">' + chips + '</div>' +
         '</div>' +
         '<button class="cs-btn-primary cs-start-btn" onclick="Course.next()">▶ Bắt đầu học</button>' +
+        '<button class="cs-btn-secondary cs-handout-btn" onclick="Handout.open(' + l.id + ')">📔 Trang chép bài</button>' +
       '</div>';
   },
 

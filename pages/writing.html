@@ -1,12 +1,99 @@
 <section class="page active">
-  <div class="cs-page">
-    <div class="cs-mascot">✍️</div>
-    <div class="cs-badge">Phase S · Sắp ra mắt</div>
-    <h1 class="cs-title">Writing Tutor</h1>
-    <p class="cs-desc">Viết đoạn văn tiếng Trung và nhận phản hồi từ AI — ngữ pháp, từ vựng, cấu trúc câu. Theo dõi điểm cải thiện qua từng bài nộp.</p>
-    <div class="cs-eta">⏳ Dự kiến Phase S (sau Phase R)</div>
-    <div class="cs-actions">
-      <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Quay về Luyện tập</button>
+  <div class="wt-container">
+
+    <div class="wt-header">
+      <h1 class="wt-title">✍️ Luyện viết — Writing Tutor</h1>
+      <p class="wt-subtitle">Viết một đoạn văn tiếng Trung, AI chấm điểm và chỉ ra lỗi ngữ pháp · từ vựng · lượng từ · cấu trúc — kèm bản viết lại mẫu.</p>
     </div>
+
+    <!-- ── Đề bài gợi ý ── -->
+    <div class="wt-prompt-box">
+      <div class="wt-prompt-row">
+        <label class="wt-label">Chọn cấp độ</label>
+        <div class="wt-level-pills" id="wtLevelPills">
+          <button class="wt-pill wt-pill--on" data-level="1">HSK 1</button>
+          <button class="wt-pill" data-level="2">HSK 2</button>
+          <button class="wt-pill" data-level="3">HSK 3</button>
+          <button class="wt-pill" data-level="4">HSK 4</button>
+          <button class="wt-pill" data-level="5">HSK 5</button>
+          <button class="wt-pill" data-level="6">HSK 6</button>
+        </div>
+      </div>
+      <div class="wt-topic-row">
+        <span class="wt-topic-label">💡 Gợi ý đề:</span>
+        <span class="wt-topic-text" id="wtTopicText">Hãy giới thiệu về bản thân bạn.</span>
+        <button class="wt-topic-shuffle" id="wtTopicShuffle" title="Đổi đề khác">🔄 Đổi đề</button>
+      </div>
+    </div>
+
+    <!-- ── Vùng viết ── -->
+    <div class="wt-input-area">
+      <textarea id="wtInput" class="wt-textarea" rows="7"
+        placeholder="Viết đoạn văn tiếng Trung của bạn vào đây...
+
+例：我叫小明。我今年二十岁。我是大学生，我喜欢学习汉语。"></textarea>
+      <div class="wt-input-foot">
+        <span class="wt-count"><span id="wtCharCount">0</span> ký tự Hán</span>
+        <button id="wtGradeBtn" class="wt-grade-btn">Chấm bài</button>
+      </div>
+      <div class="wt-cost-note">
+        🔮 Mỗi lần chấm tốn <b>8 AI Credit</b> · dùng DeepSeek. Tính năng dành cho gói <b>Pro</b> / credit đã có.
+      </div>
+    </div>
+
+    <!-- ── Loading ── -->
+    <div id="wtLoading" class="wt-loading" style="display:none">
+      <div class="wt-spinner"></div>
+      <p>AI đang đọc và chấm bài của bạn… (khoảng 10–20 giây)</p>
+    </div>
+
+    <!-- ── Kết quả ── -->
+    <div id="wtResult" class="wt-result" style="display:none">
+
+      <div class="wt-score-row">
+        <div class="wt-score-circle">
+          <span id="wtScoreNum" class="wt-score-num">0</span>
+          <span class="wt-score-max">/100</span>
+        </div>
+        <div class="wt-score-meta">
+          <div class="wt-score-level" id="wtScoreLevel">—</div>
+          <p class="wt-score-summary" id="wtScoreSummary"></p>
+        </div>
+      </div>
+
+      <div class="wt-block wt-block--good" id="wtStrengthsBlock">
+        <h3 class="wt-block-title">✅ Điểm tốt</h3>
+        <ul class="wt-list" id="wtStrengths"></ul>
+      </div>
+
+      <div class="wt-block wt-block--err" id="wtErrorsBlock">
+        <h3 class="wt-block-title">🔧 Lỗi cần sửa</h3>
+        <div class="wt-errors" id="wtErrors"></div>
+      </div>
+
+      <div class="wt-block wt-block--improved" id="wtImprovedBlock">
+        <h3 class="wt-block-title">📝 Bản viết lại mẫu</h3>
+        <div class="wt-improved" id="wtImproved"></div>
+        <button class="wt-copy-btn" id="wtCopyImproved">📋 Sao chép</button>
+      </div>
+
+      <div class="wt-block wt-block--tips" id="wtTipsBlock">
+        <h3 class="wt-block-title">🎯 Gợi ý học tiếp</h3>
+        <ul class="wt-list" id="wtTips"></ul>
+      </div>
+
+      <!-- Fallback nếu AI không trả JSON chuẩn -->
+      <div class="wt-block wt-raw" id="wtRawBlock" style="display:none">
+        <h3 class="wt-block-title">Phản hồi từ AI</h3>
+        <div class="wt-raw-text" id="wtRawText"></div>
+      </div>
+    </div>
+
+    <!-- ── Lịch sử bài nộp ── -->
+    <div class="wt-history" id="wtHistoryWrap" style="display:none">
+      <h3 class="wt-history-title">📈 Bài đã chấm gần đây</h3>
+      <div id="wtHistoryList" class="wt-history-list"></div>
+    </div>
+
   </div>
 </section>

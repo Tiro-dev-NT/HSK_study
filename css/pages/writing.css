@@ -1,0 +1,283 @@
+/* ═══════════════════════════════════════════════════════════
+   WRITING.CSS — Writing Tutor (Phase S)
+   Calm Study UI · token-based (light/dark safe) · 1 primary CTA
+   ═══════════════════════════════════════════════════════════ */
+
+.wt-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--s-4, 16px);
+}
+
+.wt-header { margin-bottom: var(--s-5, 20px); }
+.wt-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+.wt-subtitle {
+  color: var(--text2);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Đề bài ── */
+.wt-prompt-box {
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: var(--s-4, 16px);
+  margin-bottom: var(--s-4, 16px);
+}
+.wt-prompt-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.wt-label { font-size: 0.85rem; font-weight: 600; color: var(--text2); }
+.wt-level-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.wt-pill {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text2);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.wt-pill:hover { border-color: var(--primary); color: var(--text); }
+.wt-pill--on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.wt-topic-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+.wt-topic-label { font-size: 0.85rem; color: var(--text2); font-weight: 600; }
+.wt-topic-text { font-size: 0.98rem; color: var(--text); font-weight: 500; flex: 1; min-width: 180px; }
+.wt-topic-shuffle {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text2);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.wt-topic-shuffle:hover { border-color: var(--primary); color: var(--text); }
+
+/* ── Vùng viết ── */
+.wt-input-area { margin-bottom: var(--s-5, 20px); }
+.wt-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  padding: 14px 16px;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color .15s ease;
+}
+.wt-textarea:focus { outline: none; border-color: var(--primary); }
+.wt-input-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 12px;
+}
+.wt-count { font-size: 0.85rem; color: var(--text2); }
+.wt-count b, #wtCharCount { color: var(--text); font-weight: 700; }
+.wt-grade-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter .15s ease, opacity .15s ease;
+}
+.wt-grade-btn:hover { filter: brightness(1.07); }
+.wt-grade-btn:disabled { opacity: .6; cursor: not-allowed; }
+.wt-cost-note {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--text2);
+  background: var(--warning-bg, rgba(245,158,11,.1));
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* ── Loading ── */
+.wt-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 40px 20px;
+  color: var(--text2);
+}
+.wt-spinner {
+  width: 38px; height: 38px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: wt-spin .8s linear infinite;
+}
+@keyframes wt-spin { to { transform: rotate(360deg); } }
+
+/* ── Kết quả ── */
+.wt-result { margin-top: var(--s-4, 16px); }
+.wt-score-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: var(--s-4, 16px);
+}
+.wt-score-circle {
+  --wt-ring: var(--primary);
+  flex: 0 0 auto;
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  background:
+    radial-gradient(closest-side, var(--surface, var(--card-bg)) 78%, transparent 79%),
+    conic-gradient(var(--wt-ring) calc(var(--wt-pct, 1) * 360deg), var(--border) 0);
+  border: 4px solid var(--wt-ring);
+}
+.wt-score-num { font-size: 2rem; font-weight: 800; color: var(--text); }
+.wt-score-max { font-size: 0.9rem; color: var(--text2); }
+.wt-score-meta { flex: 1; }
+.wt-score-level {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-bg, rgba(220,38,38,.1));
+  border-radius: 999px;
+  padding: 3px 12px;
+  margin-bottom: 8px;
+}
+.wt-score-summary { margin: 0; color: var(--text); line-height: 1.55; font-size: 0.96rem; }
+
+.wt-block {
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: var(--s-3, 12px);
+}
+.wt-block-title { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+.wt-list { margin: 0; padding-left: 20px; }
+.wt-list li { color: var(--text); line-height: 1.6; margin-bottom: 5px; }
+
+.wt-noerr { color: var(--success, #10B981); margin: 0; font-weight: 600; }
+
+/* Lỗi */
+.wt-err-item {
+  border-left: 3px solid var(--border);
+  padding: 8px 0 8px 12px;
+  margin-bottom: 12px;
+}
+.wt-err-item:last-child { margin-bottom: 0; }
+.wt-etype {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text2);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-bottom: 6px;
+}
+.wt-etype--liang { color: #fff; background: var(--danger, #DC2626); border-color: var(--danger, #DC2626); }
+.wt-err-fix { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 1.05rem; }
+.wt-err-orig { color: var(--danger, #DC2626); text-decoration: line-through; text-decoration-thickness: 1px; }
+.wt-err-arrow { color: var(--text2); }
+.wt-err-corr { color: var(--success, #10B981); font-weight: 600; }
+.wt-err-explain { margin: 6px 0 0; color: var(--text2); font-size: 0.9rem; line-height: 1.5; }
+
+/* Bản viết lại */
+.wt-improved {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+.wt-copy-btn {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text2);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.wt-copy-btn:hover { border-color: var(--primary); color: var(--text); }
+
+.wt-raw-text { white-space: pre-wrap; color: var(--text); line-height: 1.6; font-size: 0.95rem; }
+
+/* ── Lịch sử ── */
+.wt-history { margin-top: var(--s-5, 20px); }
+.wt-history-title { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 12px; }
+.wt-history-list { display: flex; flex-direction: column; gap: 8px; }
+.wt-h-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.wt-h-score {
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text2);
+  background: var(--bg);
+}
+.wt-h-good { color: #fff; background: var(--success, #10B981); }
+.wt-h-mid  { color: #fff; background: var(--warning, #F59E0B); }
+.wt-h-low  { color: #fff; background: var(--danger, #DC2626); }
+.wt-h-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.wt-h-topic {
+  color: var(--text); font-weight: 500; font-size: 0.92rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.wt-h-meta { color: var(--text2); font-size: 0.8rem; }
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .wt-score-row { flex-direction: column; text-align: center; gap: 14px; }
+  .wt-input-foot { flex-direction: column; align-items: stretch; }
+  .wt-grade-btn { width: 100%; }
+}

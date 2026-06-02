@@ -14,7 +14,12 @@
 var HSKK = (function () {
   'use strict';
 
-  var SPEECH_FN = (typeof SB_URL !== 'undefined' ? SB_URL : '') + '/functions/v1/speech-proxy';
+  // Tính URL lúc GỌI (không phải lúc load) — hskk.js có thể load trước supabase.js
+  // (nơi khai báo SB_URL). Tính ở module-load sẽ ra URL tương đối → POST nhầm về
+  // hanzigenz.com → 405. Lazy resolve đảm bảo SB_URL đã sẵn sàng khi user thi.
+  function _speechFn() {
+    return (typeof SB_URL !== 'undefined' && SB_URL ? SB_URL : '') + '/functions/v1/speech-proxy';
+  }
   var HIST_KEY  = 'hskk_history_v1';
 
   // Cấu hình từng loại câu: thời gian chuẩn bị / trả lời (giây), coreType chấm.
@@ -409,7 +414,7 @@ var HSKK = (function () {
     var ctrl = new AbortController();
     var timer = setTimeout(function () { ctrl.abort(); }, 45000);
     try {
-      var res = await fetch(SPEECH_FN, {
+      var res = await fetch(_speechFn(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
         body: JSON.stringify(payload),

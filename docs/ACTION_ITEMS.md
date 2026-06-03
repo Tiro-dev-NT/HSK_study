@@ -42,6 +42,39 @@
 
 ---
 
+## 🎤 Shadowing (R.1) cải tiến + 🆚 So sánh SuperChinese (review 2026-06-03)
+
+> Khơi từ video TikTok competitor (app shadowing). **App ĐÃ CÓ lõi**: Speaking Shadowing (Phase R.1, `/speaking`, chấm `sent.eval.cn` per-syllable THẬT qua SpeechSuper) — mạnh hơn lời quảng cáo chung của video. Video lộ ra vài cải tiến + dịp đối chiếu SuperChinese.
+
+### Cải tiến Shadowing (`js/speaking.js`) — chưa làm
+- ☐ **Toggle bật/tắt pinyin** *(rẻ nhất, ưu tiên)* — luyện nhớ chữ Hán; hiện shadowing LUÔN hiện pinyin, không toggle (grep `pinyin`/`togglePinyin` = 0). Chỉ sửa `speaking.js` + CSS.
+- ☐ **Chạm từ → tra nghĩa (cả mobile/tablet)** — "từ mới tra dc liền luôn". `lookup-panel.js` hiện **desktop-only ≥1024px** + CHƯA gắn vào `/speaking` (`data-lookup`=0). Tách chữ Hán trong câu thành tappable → popup pinyin+nghĩa+TTS+SRS chạy cả cảm ứng.
+- ☐ **(Tuỳ chọn) Nhân vật Mai biểu cảm** mỗi câu — ấm/immersive (sprite sẵn `assets/mai/expressions`).
+- ☐ **(Sau) "AI phân tích từ"** — phân tích sâu 1 từ qua `ai-proxy` (tốn credit, để sau).
+
+### 🆚 Hanzi Genz vs SuperChinese
+> Nguồn SuperChinese: superchinese.com + review (apps.apple, alllanguageresources, talkpal) 2025. Giá tham chiếu: $12.99/th · $69.99/năm · $149.99 lifetime.
+
+| Tiêu chí | SuperChinese | Hanzi Genz |
+|---|---|---|
+| Chấm phát âm | ✅ AI feedback | ✅ SpeechSuper per-syllable + **HSKK exam format** (sâu hơn) |
+| SRS giãn cách | ✅ | ✅ SM-2 |
+| Story / video | ✅ animated video | ⚠️ visual-novel Mai + TTS per-voice (KHÔNG video) |
+| Hanzi stroke order | ✅ trong bài | ✅ module riêng (handwriting + HanziWriter) |
+| **AI Teacher chat** | ✅ hỏi-đáp hội thoại | ❌ **CHƯA** (ai-proxy có, R.2 chưa build) |
+| Chấm viết luận | ❌ không nhấn | ✅ **Writing Tutor** (USP) |
+| Phủ HSK | HSK + test | ✅ HSK 3.0 full L1-9 + mock exam |
+| Tiếng Việt bản ngữ | ❌ English-first | ✅ **USP — Việt-first + HSKK cho thị trường VN** |
+| Gamification | ✅ | ✅ + games |
+
+**Khoảng trống nên học từ SuperChinese (ứng viên roadmap):**
+- ☐ **AI Teacher chat (Phase R.2)** — hỏi-đáp ngữ pháp/giải thích bằng AI hội thoại. Hạ tầng `ai-proxy` đã có → thêm task `tutor_chat` (Lane 2 DeepSeek). Đây là thứ SuperChinese có mà app CHƯA.
+- ☐ Nội dung động/animated — chi phí cao, visual-novel Mai hiện đủ tốt → **không gấp**.
+
+**App ĐANG VƯỢT** (giữ + dùng để marketing): Việt-first · HSKK exam · Writing Tutor · SpeechSuper thật · HSK 3.0 full · giá indie.
+
+---
+
 ## 📚 Đối chiếu GIÁO TRÌNH CHUẨN + nâng cấp Bài tập & HSKK (review 2026-06-03)
 
 > Nguồn đối chiếu: 《新HSK教程1》(FLTRP, 1/2026) + 《HSK1 学练手册》(demo PDF user gửi).

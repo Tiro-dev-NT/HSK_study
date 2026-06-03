@@ -396,6 +396,37 @@ var Course = {
       return '<span class="cs-vocab-chip">' + w + '</span>';
     }).join('');
 
+    // Phase 1 (A5) — Card ôn pinyin, CHỈ ở bài đầu khoá HSK 1
+    var pinyinCard = '';
+    if (l.id === 1 && Course._levelOf(l.id) === 1) {
+      pinyinCard =
+        '<div class="cs-pinyin-link-card">' +
+          '<div class="cs-plc-head">🔤 Chưa chắc pinyin? Ôn nhanh 5 phút</div>' +
+          '<div class="cs-plc-btns">' +
+            '<button class="cs-plc-btn" onclick="Router.navigateTo(\'hsk0-pinyin-initials\')">Thanh mẫu</button>' +
+            '<button class="cs-plc-btn" onclick="Router.navigateTo(\'hsk0-pinyin-finals\')">Vận mẫu</button>' +
+            '<button class="cs-plc-btn" onclick="Router.navigateTo(\'hsk0-strokes\')">Nét cơ bản</button>' +
+          '</div>' +
+        '</div>';
+    }
+
+    // Phase 2 (A1) — Mục tiêu bài học
+    var objHTML = '';
+    if (l.objectives && l.objectives.length) {
+      objHTML =
+        '<div class="cs-objectives">' +
+          '<div class="cs-objectives-label">🎯 Mục tiêu bài này</div>' +
+          '<ul class="cs-objectives-list">' +
+            l.objectives.map(function(o) { return '<li>' + o + '</li>'; }).join('') +
+          '</ul>' +
+        '</div>';
+    }
+
+    // Phase 2 (A3) — Nút mở khối ngữ pháp
+    var grammarBtn = (l.grammarNotes && l.grammarNotes.length)
+      ? '<button class="cs-btn-secondary cs-grammar-btn" onclick="Course._showGrammar()">📘 Ngữ pháp bài</button>'
+      : '';
+
     Course._getEl().innerHTML =
       '<div class="cs-header">' +
         '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
@@ -407,13 +438,61 @@ var Course = {
         '</div>' +
         '<h2 class="cs-intro-title">' + l.title + '</h2>' +
         '<p class="cs-intro-context">' + l.context + '</p>' +
+        pinyinCard +
+        objHTML +
         '<div class="cs-intro-vocab">' +
           '<div class="cs-intro-vocab-label">Từ vựng sẽ gặp</div>' +
           '<div class="cs-vocab-chips">' + chips + '</div>' +
         '</div>' +
         '<button class="cs-btn-primary cs-start-btn" onclick="Course.next()">▶ Bắt đầu học</button>' +
+        grammarBtn +
         '<button class="cs-btn-secondary cs-handout-btn" onclick="Handout.open(' + l.id + ')">📔 Trang chép bài</button>' +
       '</div>';
+  },
+
+  // ── Grammar notes (A3) — block HTML dùng chung modal + complete ──
+  _grammarNotesHTML: function() {
+    var l = Course.lesson;
+    if (!l || !l.grammarNotes || !l.grammarNotes.length) return '';
+    var items = l.grammarNotes.map(function(g) {
+      var ex = (g.examples || []).map(function(e) {
+        return '<div class="cs-gn-ex">' +
+          '<span class="cs-gn-ex-zh">' + (e.zh || '') + '</span>' +
+          (e.py ? '<span class="cs-gn-ex-py">' + e.py + '</span>' : '') +
+          (e.vi ? '<span class="cs-gn-ex-vi">' + e.vi + '</span>' : '') +
+        '</div>';
+      }).join('');
+      return '<div class="cs-grammar-note">' +
+        '<div class="cs-gn-point">' + g.point + '</div>' +
+        '<div class="cs-gn-explain">' + g.explain + '</div>' +
+        (ex ? '<div class="cs-gn-examples">' + ex + '</div>' : '') +
+      '</div>';
+    }).join('');
+    return '<div class="cs-grammar-block">' +
+      '<div class="cs-grammar-title">📘 Ngữ pháp bài này</div>' +
+      items +
+    '</div>';
+  },
+
+  _showGrammar: function() {
+    var inner = Course._grammarNotesHTML();
+    if (!inner) return;
+    Course._closeGrammar();
+    var ov = document.createElement('div');
+    ov.className = 'cs-grammar-modal';
+    ov.id = 'cs-grammar-modal';
+    ov.onclick = function(e) { if (e.target === ov) Course._closeGrammar(); };
+    ov.innerHTML =
+      '<div class="cs-grammar-modal-box">' +
+        '<button class="cs-grammar-modal-close" onclick="Course._closeGrammar()" aria-label="Đóng">✕</button>' +
+        inner +
+      '</div>';
+    document.body.appendChild(ov);
+  },
+
+  _closeGrammar: function() {
+    var ov = document.getElementById('cs-grammar-modal');
+    if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
   },
 
   // ── PHASE: dialogue ──────────────────────────────────
@@ -1264,6 +1343,7 @@ var Course = {
         '<div class="cs-xp-badge">+' + xpGain + ' XP</div>' +
         '<p class="cs-complete-msg">Bạn đã học được ' + (l.vocab || []).length + ' từ mới. Từ đã được thêm vào SRS để ôn luyện.</p>' +
         '<p class="cs-complete-msg" style="margin-top:-4px">📔 Mở <b>Trang chép bài</b> để xem tóm tắt &amp; gợi ý chép vào vở.</p>' +
+        Course._grammarNotesHTML() +
         '<div class="cs-complete-btns">' +
           (hasNext ? '<button class="cs-btn-primary" onclick="Course.loadLesson(' + nextId + ')">Bài tiếp theo →</button>' : '') +
           '<button class="cs-btn-secondary" onclick="Handout.open(' + l.id + ')">📔 Trang chép bài</button>' +

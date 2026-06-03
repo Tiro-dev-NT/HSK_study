@@ -12,6 +12,31 @@ Object.assign(COURSE_DATA, {
     title: 'Chào cô, em là Mai',
     context: 'Buổi học tiếng Trung đầu tiên. Mai bước vào lớp, hồi hộp làm quen với thầy Lý và cô bạn ngồi cạnh tên Tiểu Mỹ.',
     vocabPreview: ['你好','老师','叫','是','学生'],
+    objectives: [
+      'Chào hỏi thầy cô và bạn bè (你好 · 老师好)',
+      'Giới thiệu tên bản thân bằng 我叫…',
+      'Nói quốc tịch / thân phận bằng 是 (我是学生 · 我是越南人)',
+      'Đặt câu hỏi có–không bằng 吗'
+    ],
+    grammarNotes: [
+      { point: '是 — câu khẳng định thân phận / đặc điểm',
+        explain: 'Chủ ngữ + 是 + danh từ để nói “A là B”. Phủ định thêm 不 trước 是 → 不是.',
+        examples: [
+          { zh: '我是学生。', py: 'Wǒ shì xuésheng.', vi: 'Em là học sinh.' },
+          { zh: '他是中国人。', py: 'Tā shì Zhōngguó rén.', vi: 'Thầy ấy là người Trung Quốc.' }
+        ] },
+      { point: '吗 — biến câu trần thuật thành câu hỏi',
+        explain: 'Thêm 吗 vào cuối câu khẳng định để hỏi “có…không?”, trật tự câu giữ nguyên.',
+        examples: [
+          { zh: '你是学生吗？', py: 'Nǐ shì xuésheng ma?', vi: 'Em là học sinh phải không?' }
+        ] },
+      { point: '叫 + tên — giới thiệu và hỏi tên',
+        explain: 'Dùng 叫 trước tên. Hỏi tên: 你叫什么名字？',
+        examples: [
+          { zh: '我叫 Mai。', py: 'Wǒ jiào Mai.', vi: 'Em tên Mai.' },
+          { zh: '你叫什么名字？', py: 'Nǐ jiào shénme míngzi?', vi: 'Em tên là gì?' }
+        ] }
+    ],
     steps: [
       // ── Cảnh 1: Thầy Lý gặp Mai ─────────────────────────
       {
@@ -222,6 +247,30 @@ Object.assign(COURSE_DATA, {
     title: 'Gia đình của Mai',
     context: 'Sau buổi học, Mai và Tiểu Mỹ ra quán cà phê. Tiểu Mỹ tò mò về gia đình Mai, thế là hai đứa xem ảnh cả nhà.',
     vocabPreview: ['家','爸爸','妈妈','有','的'],
+    objectives: [
+      'Giới thiệu các thành viên gia đình (爸爸 · 妈妈 · 哥哥…)',
+      'Nói “có / không có” bằng 有 và 没有',
+      'Diễn đạt sở hữu bằng 的 (我的照片)',
+      'Hỏi số lượng người bằng 几 + 个'
+    ],
+    grammarNotes: [
+      { point: '有 / 没有 — có / không có',
+        explain: 'Phủ định của 有 luôn là 没有 (không nói 不有).',
+        examples: [
+          { zh: '我有一个妹妹。', py: 'Wǒ yǒu yí ge mèimei.', vi: 'Tớ có một em gái.' },
+          { zh: '我没有弟弟。', py: 'Wǒ méiyǒu dìdi.', vi: 'Tớ không có em trai.' }
+        ] },
+      { point: '的 — trợ từ sở hữu “của”',
+        explain: 'Người / vật sở hữu + 的 + vật. Phần sở hữu đứng trước 的.',
+        examples: [
+          { zh: '这是我的照片。', py: 'Zhè shì wǒ de zhàopiàn.', vi: 'Đây là ảnh của tớ.' }
+        ] },
+      { point: '几 + 个 — hỏi số lượng nhỏ',
+        explain: '几 hỏi số lượng (thường dưới 10) và luôn đi kèm lượng từ; người dùng lượng từ 个.',
+        examples: [
+          { zh: '你家有几个孩子？', py: 'Nǐ jiā yǒu jǐ ge háizi?', vi: 'Nhà cậu có mấy người con?' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue',
@@ -439,6 +488,30 @@ Object.assign(COURSE_DATA, {
     title: 'Lớp học tiếng Trung',
     context: 'Tiết học thứ hai. Thầy Lý dạy đếm số, rồi hỏi lớp. Mai gọi nhầm "ba quyển sách" thành "ba cái sách" và bị Tiểu Mỹ trêu.',
     vocabPreview: ['一','书','本','多少','大学生'],
+    objectives: [
+      'Đếm số từ 1 đến 10',
+      'Dùng đúng lượng từ: 个 cho người, 本 cho sách / vở',
+      'Hỏi số lượng lớn bằng 多少',
+      'Nói số thứ tự bằng 第 (第三教学楼)'
+    ],
+    grammarNotes: [
+      { point: 'Lượng từ: 个 vs 本',
+        explain: 'Số + lượng từ + danh từ. 个 cho người và nhiều vật chung; 本 cho sách, vở.',
+        examples: [
+          { zh: '十个学生', py: 'shí ge xuésheng', vi: 'mười sinh viên' },
+          { zh: '三本书', py: 'sān běn shū', vi: 'ba quyển sách' }
+        ] },
+      { point: '多少 vs 几 — hỏi số lượng',
+        explain: '多少 hỏi số lượng lớn (thường trên 10), có thể bỏ lượng từ; 几 hỏi số nhỏ và cần lượng từ.',
+        examples: [
+          { zh: '你们班有多少个学生？', py: 'Nǐmen bān yǒu duōshao ge xuésheng?', vi: 'Lớp các bạn có bao nhiêu sinh viên?' }
+        ] },
+      { point: '第 — số thứ tự',
+        explain: '第 + số = thứ mấy. 第三 = thứ ba.',
+        examples: [
+          { zh: '我们的教室在第三教学楼。', py: 'Wǒmen de jiàoshì zài dì sān jiàoxuélóu.', vi: 'Phòng học của chúng ta ở tòa nhà học thứ ba.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue',
@@ -647,6 +720,31 @@ Object.assign(COURSE_DATA, {
     title: 'Mấy giờ học bài?',
     context: 'Mai bắt đầu quen lớp mới, nhưng vẫn hay nhầm thứ tự thời gian trong câu. Thầy Lý dùng lịch học để giúp cả lớp nói về hôm nay, ngày mai và giờ học.',
     vocabPreview: ['今天','明天','星期','点','现在'],
+    objectives: [
+      'Nói thứ trong tuần bằng 星期 + số',
+      'Hỏi và nói giờ bằng 几点 / …点',
+      'Đặt từ chỉ thời gian đúng vị trí (trước động từ)',
+      'Phân biệt 今天 · 明天 · 昨天'
+    ],
+    grammarNotes: [
+      { point: 'Vị trí trạng ngữ thời gian',
+        explain: 'Từ chỉ thời gian đứng TRƯỚC động từ (sau hoặc trước chủ ngữ), không đặt cuối câu.',
+        examples: [
+          { zh: '我们上午上课。', py: 'Wǒmen shàngwǔ shàngkè.', vi: 'Buổi sáng chúng ta học.' },
+          { zh: '下午三点我们读课文。', py: 'Xiàwǔ sān diǎn wǒmen dú kèwén.', vi: 'Ba giờ chiều chúng ta đọc bài khóa.' }
+        ] },
+      { point: 'Hỏi và nói giờ: 几点 / 点',
+        explain: '几点 = mấy giờ. Số + 点 = …giờ; 分 = phút.',
+        examples: [
+          { zh: '现在几点？', py: 'Xiànzài jǐ diǎn?', vi: 'Bây giờ mấy giờ?' },
+          { zh: '现在八点。', py: 'Xiànzài bā diǎn.', vi: 'Bây giờ tám giờ.' }
+        ] },
+      { point: '星期 + số — thứ trong tuần',
+        explain: '星期一 đến 星期六 theo số; Chủ nhật là 星期日 (hoặc 星期天).',
+        examples: [
+          { zh: '今天是星期一。', py: 'Jīntiān shì xīngqī yī.', vi: 'Hôm nay là thứ Hai.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'laoli', text: '今天是星期一。', pinyin: 'Jīntiān shì xīngqī yī.', meaning: 'Hôm nay là thứ Hai.', expression: null, vocab: ['今天','星期','一'] },
       { type: 'dialogue', speaker: 'mai', text: '老师，明天是星期二吗？', pinyin: 'Lǎoshī, míngtiān shì xīngqī èr ma?', meaning: 'Thầy ơi, ngày mai là thứ Ba ạ?', expression: 'curious', vocab: ['明天','二'] },
@@ -723,6 +821,30 @@ Object.assign(COURSE_DATA, {
     title: 'Căn-tin buổi trưa',
     context: 'Sau tiết học, Mai đói bụng. Tiểu Mỹ dẫn Mai xuống căn-tin, nơi Mai học cách gọi món và nói mình đói, khát, thích ăn gì.',
     vocabPreview: ['吃','喝','水','米饭','好吃'],
+    objectives: [
+      'Nói mình đói / khát (饿 · 渴) và gọi món',
+      'Dùng đúng 吃 với đồ ăn, 喝 với đồ uống',
+      'Diễn đạt mong muốn bằng 想 + động từ',
+      'Nối hai danh từ bằng 和, thêm ý bằng 也'
+    ],
+    grammarNotes: [
+      { point: '吃 / 喝 — kết hợp đúng với đồ ăn / uống',
+        explain: '吃 đi với đồ ăn (米饭, 菜); 喝 đi với đồ uống (水, 茶). Không nói “ăn nước”.',
+        examples: [
+          { zh: '我想喝水。', py: 'Wǒ xiǎng hē shuǐ.', vi: 'Tớ muốn uống nước.' },
+          { zh: '我吃米饭和菜。', py: 'Wǒ chī mǐfàn hé cài.', vi: 'Tớ ăn cơm và món ăn.' }
+        ] },
+      { point: '想 + động từ — muốn làm gì',
+        explain: '想 đặt trước động từ để diễn đạt ý muốn.',
+        examples: [
+          { zh: '我想喝水。', py: 'Wǒ xiǎng hē shuǐ.', vi: 'Tớ muốn uống nước.' }
+        ] },
+      { point: '也 — cũng',
+        explain: '也 đứng trước động từ / tính từ, không đặt cuối câu.',
+        examples: [
+          { zh: '我很饿，也很渴。', py: 'Wǒ hěn è, yě hěn kě.', vi: 'Tớ rất đói, cũng rất khát.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'xiaomei', text: 'Mai，你饿吗？', pinyin: 'Mai, nǐ è ma?', meaning: 'Mai, cậu đói không?', expression: null, vocab: ['饿'] },
       { type: 'dialogue', speaker: 'mai', text: '我很饿，也很渴。', pinyin: 'Wǒ hěn è, yě hěn kě.', meaning: 'Tớ rất đói, cũng rất khát.', expression: 'sad', vocab: ['渴','也'] },
@@ -800,6 +922,30 @@ Object.assign(COURSE_DATA, {
     title: 'Đi đâu vậy?',
     context: 'Cuối tuần, Mai muốn đi chơi nhưng không biết đường. Tiểu Mỹ chỉ Mai cách hỏi đường và nói về phương tiện đi lại.',
     vocabPreview: ['去','来','在','哪儿','怎么'],
+    objectives: [
+      'Hỏi và nói đi đâu bằng 去 + nơi chốn / 哪儿',
+      'Hỏi vị trí bằng 在哪儿',
+      'Hỏi cách thức bằng 怎么 (怎么去)',
+      'Nói phương tiện đi lại bằng 坐 + xe'
+    ],
+    grammarNotes: [
+      { point: '哪儿 — hỏi nơi chốn',
+        explain: '哪儿 = đâu. 去哪儿 = đi đâu; 在哪儿 = ở đâu.',
+        examples: [
+          { zh: '你去哪儿？', py: 'Nǐ qù nǎr?', vi: 'Cậu đi đâu?' },
+          { zh: '商店在哪儿？', py: 'Shāngdiàn zài nǎr?', vi: 'Cửa hàng ở đâu?' }
+        ] },
+      { point: '在 — chỉ vị trí “ở”',
+        explain: '在 + nơi chốn để nói người / vật ở đâu.',
+        examples: [
+          { zh: '商店在学校前边。', py: 'Shāngdiàn zài xuéxiào qiánbian.', vi: 'Cửa hàng ở phía trước trường.' }
+        ] },
+      { point: '坐 + phương tiện — đi bằng xe',
+        explain: 'Đi bằng phương tiện công cộng dùng 坐 (坐车 / 坐公共汽车); đi bộ là 走路.',
+        examples: [
+          { zh: '我想坐公共汽车。', py: 'Wǒ xiǎng zuò gōnggòng qìchē.', vi: 'Tớ muốn đi xe buýt.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'mai', text: '小美，你去哪儿？', pinyin: 'Xiǎoměi, nǐ qù nǎr?', meaning: 'Tiểu Mỹ, cậu đi đâu vậy?', expression: 'curious', vocab: ['去','哪儿'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '我去商店买东西。', pinyin: 'Wǒ qù shāngdiàn mǎi dōngxi.', meaning: 'Tớ đi cửa hàng mua đồ.', expression: null, vocab: ['商店','买','东西'] },
@@ -876,6 +1022,29 @@ Object.assign(COURSE_DATA, {
     title: 'Thời tiết hôm nay',
     context: 'Sáng thứ Hai, trời đổ mưa. Mai không mang ô, Tiểu Mỹ cho mượn. Hai đứa nói về thời tiết và quần áo.',
     vocabPreview: ['天气','冷','热','下雨','穿'],
+    objectives: [
+      'Hỏi và nói thời tiết bằng 怎么样',
+      'Miêu tả thời tiết: 冷 · 热 · 下雨 · 暖和',
+      'Cho ai cái gì bằng 给 + người + vật',
+      'Dự đoán tương lai bằng 会 (明天会很暖和)'
+    ],
+    grammarNotes: [
+      { point: '怎么样 — hỏi “thế nào”',
+        explain: '怎么样 hỏi ý kiến / tình trạng, thường đứng cuối câu.',
+        examples: [
+          { zh: '今天天气怎么样？', py: 'Jīntiān tiānqì zěnmeyàng?', vi: 'Hôm nay thời tiết thế nào?' }
+        ] },
+      { point: '给 + người + vật — cho ai cái gì',
+        explain: '给 mang hai tân ngữ: người nhận trước, vật sau.',
+        examples: [
+          { zh: '给你一把。', py: 'Gěi nǐ yì bǎ.', vi: 'Cho cậu một cái (ô).' }
+        ] },
+      { point: '会 — sẽ / dự đoán',
+        explain: '会 đặt trước động từ / tính từ, diễn đạt khả năng sẽ xảy ra.',
+        examples: [
+          { zh: '明天会很暖和。', py: 'Míngtiān huì hěn nuǎnhuo.', vi: 'Ngày mai sẽ rất ấm áp.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'mai', text: '今天天气怎么样？', pinyin: 'Jīntiān tiānqì zěnmeyàng?', meaning: 'Hôm nay thời tiết thế nào?', expression: 'curious', vocab: ['天气','怎么样'] },
       { type: 'dialogue', speaker: 'xiaomei', text: '今天下雨，很冷。', pinyin: 'Jīntiān xiàyǔ, hěn lěng.', meaning: 'Hôm nay mưa, rất lạnh.', expression: null, vocab: ['下雨','冷'] },
@@ -950,6 +1119,29 @@ Object.assign(COURSE_DATA, {
     title: 'Trong thư viện',
     context: 'Mai và Tiểu Mỹ vào thư viện để chuẩn bị bài. Mai học cách nói vị trí đồ vật và mượn sách đúng chỗ.',
     vocabPreview: ['图书馆','里','上','下','旁边'],
+    objectives: [
+      'Nói vị trí đồ vật bằng 在 + … + 上 / 里 / 下 / 旁边',
+      'Phân biệt 上边 · 下边 · 旁边',
+      'Diễn đạt kết quả “tìm thấy” bằng 找到'
+    ],
+    grammarNotes: [
+      { point: '在 + danh từ + từ định vị',
+        explain: 'Cấu trúc “A 在 B 上 / 里 / 下 / 旁边” nói A nằm ở đâu so với B. Từ định vị đặt SAU danh từ.',
+        examples: [
+          { zh: '书包在桌子上。', py: 'Shūbāo zài zhuōzi shàng.', vi: 'Cặp ở trên bàn.' },
+          { zh: '本子在书包里。', py: 'Běnzi zài shūbāo lǐ.', vi: 'Vở ở trong cặp.' }
+        ] },
+      { point: '旁边 — bên cạnh',
+        explain: '旁边 đứng sau danh từ để chỉ vị trí kế bên.',
+        examples: [
+          { zh: '书店在图书馆旁边。', py: 'Shūdiàn zài túshūguǎn pángbiān.', vi: 'Hiệu sách ở bên cạnh thư viện.' }
+        ] },
+      { point: '找到 — bổ ngữ kết quả “tìm thấy”',
+        explain: 'Động từ + 到 chỉ đạt được kết quả. 找到 = tìm và thấy.',
+        examples: [
+          { zh: '我找到了！', py: 'Wǒ zhǎodào le!', vi: 'Tớ tìm thấy rồi!' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'xiaomei', text: '我们去图书馆学习吧。', pinyin: 'Wǒmen qù túshūguǎn xuéxí ba.', meaning: 'Chúng ta đến thư viện học nhé.', expression: null, vocab: ['图书馆','学习'] },
       { type: 'dialogue', speaker: 'mai', text: '好。我的书包在哪儿？', pinyin: 'Hǎo. Wǒ de shūbāo zài nǎr?', meaning: 'Được. Cặp sách của tớ ở đâu?', expression: 'confused', vocab: ['书包'] },
@@ -1024,6 +1216,30 @@ Object.assign(COURSE_DATA, {
     title: 'Một ngày của Mai',
     context: 'Thầy Lý yêu cầu mỗi người kể lịch sinh hoạt. Mai kể từ lúc thức dậy đến khi ngủ, rồi nhận ra mình thường quên ôn bài buổi tối.',
     vocabPreview: ['起床','睡觉','常常','有时候','忘记'],
+    objectives: [
+      'Kể lịch sinh hoạt hằng ngày (起床 · 上学 · 睡觉)',
+      'Diễn đạt tần suất bằng 常常 và 有时候',
+      'Khuyên ai đừng làm gì bằng 别 + động từ',
+      'Nói “trước khi…” bằng …前'
+    ],
+    grammarNotes: [
+      { point: '常常 / 有时候 — tần suất',
+        explain: '常常 (thường xuyên) và 有时候 (đôi khi) đứng trước động từ.',
+        examples: [
+          { zh: '我常常读书。', py: 'Wǒ chángcháng dúshū.', vi: 'Tớ thường đọc sách.' },
+          { zh: '有时候我上网看电影。', py: 'Yǒu shíhou wǒ shàngwǎng kàn diànyǐng.', vi: 'Đôi khi tớ lên mạng xem phim.' }
+        ] },
+      { point: '别 + động từ — đừng làm gì',
+        explain: '别 đặt trước động từ để khuyên / can ngăn nhẹ nhàng.',
+        examples: [
+          { zh: '你别忘记复习！', py: 'Nǐ bié wàngjì fùxí!', vi: 'Cậu đừng quên ôn tập!' }
+        ] },
+      { point: '…前 — trước khi',
+        explain: 'Hành động + 前 = trước khi làm việc đó. 睡觉前 = trước khi ngủ.',
+        examples: [
+          { zh: '睡觉前复习。', py: 'Shuìjiào qián fùxí.', vi: 'Trước khi ngủ thì ôn bài.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'laoli', text: 'Mai，你早上几点起床？', pinyin: 'Mai, nǐ zǎoshang jǐ diǎn qǐchuáng?', meaning: 'Mai, buổi sáng em mấy giờ dậy?', expression: null, vocab: ['早上','起床'] },
       { type: 'choice', speaker: 'mai',
@@ -1098,6 +1314,29 @@ Object.assign(COURSE_DATA, {
     title: 'Mai bị ốm',
     context: 'Một ngày mưa lạnh, Mai thấy mệt và phải đến bệnh viện. Bài này giúp học cách nói về sức khỏe, cảm giác và hỏi thăm.',
     vocabPreview: ['身体','生病','医生','医院','觉得'],
+    objectives: [
+      'Nói cảm giác / sức khỏe bằng 觉得 (我觉得很累)',
+      'Diễn đạt khả năng / phỏng đoán bằng 可能',
+      'Diễn đạt thay đổi tình trạng bằng 了 (生病了)',
+      'Nói “nhất” bằng 最'
+    ],
+    grammarNotes: [
+      { point: '觉得 — cảm thấy / cho rằng',
+        explain: '觉得 + nhận xét / cảm giác, dùng nêu cảm nhận hay ý kiến chủ quan.',
+        examples: [
+          { zh: '我觉得很累。', py: 'Wǒ juéde hěn lèi.', vi: 'Tớ cảm thấy rất mệt.' }
+        ] },
+      { point: '了 — báo tình trạng mới xuất hiện',
+        explain: '了 cuối câu cho biết một tình trạng vừa thay đổi. 生病了 = (giờ) đã bị ốm.',
+        examples: [
+          { zh: '我可能生病了。', py: 'Wǒ kěnéng shēngbìng le.', vi: 'Có lẽ tớ bị ốm rồi.' }
+        ] },
+      { point: '最 — nhất',
+        explain: '最 đứng trước tính từ chỉ mức cao nhất.',
+        examples: [
+          { zh: '身体最重要。', py: 'Shēntǐ zuì zhòngyào.', vi: 'Sức khỏe là quan trọng nhất.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'xiaomei', text: 'Mai，你今天不高兴吗？', pinyin: 'Mai, nǐ jīntiān bù gāoxìng ma?', meaning: 'Mai, hôm nay cậu không vui à?', expression: null, vocab: ['不高兴'] },
       { type: 'choice', speaker: 'mai',
@@ -1172,6 +1411,30 @@ Object.assign(COURSE_DATA, {
     title: 'Sinh nhật của Tiểu Mỹ',
     context: 'Tiểu Mỹ mời cả lớp dự sinh nhật. Mai mua quà, hát bài chúc mừng và học cách nói sở thích.',
     vocabPreview: ['生日','喜欢','爱好','唱歌','送'],
+    objectives: [
+      'Chúc mừng sinh nhật (生日快乐)',
+      'Tặng quà bằng 送 + người + vật',
+      'Nói sở thích bằng 喜欢 + động từ / danh từ',
+      'Nhấn mạnh mức độ bằng 真'
+    ],
+    grammarNotes: [
+      { point: '送 + người + vật — tặng ai cái gì',
+        explain: '送 mang hai tân ngữ: người nhận trước, vật sau.',
+        examples: [
+          { zh: '我送你一本书。', py: 'Wǒ sòng nǐ yì běn shū.', vi: 'Tớ tặng cậu một quyển sách.' }
+        ] },
+      { point: '喜欢 + động từ / danh từ — thích',
+        explain: '喜欢 theo sau bởi danh từ hoặc động từ.',
+        examples: [
+          { zh: '我很喜欢看书。', py: 'Wǒ hěn xǐhuan kànshū.', vi: 'Tớ rất thích đọc sách.' },
+          { zh: '我喜欢唱歌。', py: 'Wǒ xǐhuan chànggē.', vi: 'Tớ thích hát.' }
+        ] },
+      { point: '祝 — lời chúc',
+        explain: '祝 + (người) + nội dung chúc, đặt ở đầu câu chúc.',
+        examples: [
+          { zh: '祝你生日快乐！', py: 'Zhù nǐ shēngrì kuàilè!', vi: 'Chúc cậu sinh nhật vui vẻ!' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'xiaomei', text: '今天是我的生日。', pinyin: 'Jīntiān shì wǒ de shēngrì.', meaning: 'Hôm nay là sinh nhật của tớ.', expression: null, vocab: ['生日'] },
       { type: 'choice', speaker: 'mai',
@@ -1246,6 +1509,29 @@ Object.assign(COURSE_DATA, {
     title: 'Bài kiểm tra đầu tiên',
     context: 'Sau nhiều tuần học, lớp của Mai có bài kiểm tra HSK 1 đầu tiên. Mai hồi hộp nhưng dùng toàn bộ những gì đã học để hoàn thành bài.',
     vocabPreview: ['考试','准备','知道','回答','最后'],
+    objectives: [
+      'Nói về thi cử và chuẩn bị (考试 · 准备)',
+      'Diễn đạt mức độ nhẹ bằng (有)一点儿 (有一点儿紧张)',
+      'Đếm câu / thứ tự bằng 第一 · 第二 · 最后',
+      'Trả lời các câu hỏi cá nhân cơ bản'
+    ],
+    grammarNotes: [
+      { point: '(有)一点儿 + tính từ — hơi…',
+        explain: '有一点儿 + tính từ chỉ mức độ nhẹ, thường mang ý không như mong muốn.',
+        examples: [
+          { zh: '我有一点儿紧张。', py: 'Wǒ yǒu yìdiǎnr jǐnzhāng.', vi: 'Em hơi căng thẳng.' }
+        ] },
+      { point: '第 — thứ tự câu / lần',
+        explain: '第 + số = thứ mấy. 第一题 = câu một; 最后 = cuối cùng.',
+        examples: [
+          { zh: '第一题：你叫什么名字？', py: 'Dì yī tí: nǐ jiào shénme míngzi?', vi: 'Câu một: Em tên là gì?' }
+        ] },
+      { point: '要 + động từ — sẽ / muốn / phải',
+        explain: '要 đặt trước động từ diễn đạt ý định hoặc sự cần thiết.',
+        examples: [
+          { zh: '我要认真做题。', py: 'Wǒ yào rènzhēn zuò tí.', vi: 'Em sẽ làm bài nghiêm túc.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'laoli', text: '明天有考试，你们准备好了吗？', pinyin: 'Míngtiān yǒu kǎoshì, nǐmen zhǔnbèi hǎo le ma?', meaning: 'Ngày mai có bài kiểm tra, các em chuẩn bị xong chưa?', expression: null, vocab: ['考试','准备'] },
       { type: 'dialogue', speaker: 'mai', text: '老师，我有一点儿紧张。', pinyin: 'Lǎoshī, wǒ yǒu yìdiǎnr jǐnzhāng.', meaning: 'Thầy ơi, em hơi căng thẳng.', expression: 'confused', vocab: ['一点儿','紧张'] },
@@ -1322,6 +1608,30 @@ Object.assign(COURSE_DATA, {
     title: 'Mai làm gì mỗi ngày (1)',
     context: 'Sáng thứ Bảy, Tiểu Mỹ gọi điện rủ Mai ra ngoài. Trên đường tới lớp, Mai giúp bạn xách sách, rồi cùng cả lớp khởi động và đọc bài. Một loạt động từ hành động xuất hiện trong ngày của Mai.',
     vocabPreview: ['打电话','出去','帮忙','动作','告诉'],
+    objectives: [
+      'Dùng động từ hành động: 打电话 · 出去 · 帮忙 · 告诉',
+      'Gọi điện cho ai bằng 给 + người + 打电话',
+      'Phân biệt 出来 (ra phía người nói) và 出去 (ra ngoài)',
+      'Nhờ / đề nghị giúp đỡ (能…吗 · 帮忙)'
+    ],
+    grammarNotes: [
+      { point: '给 + người + 打电话 — gọi điện cho ai',
+        explain: '给 dẫn ra người nhận, đặt trước động từ: 给 + người + 打电话.',
+        examples: [
+          { zh: '我给你打电话。', py: 'Wǒ gěi nǐ dǎ diànhuà.', vi: 'Tớ gọi điện cho cậu.' }
+        ] },
+      { point: '出来 / 出去 — bổ ngữ xu hướng',
+        explain: '动词 + 来 / 去 cho biết hướng so với người nói: 来 hướng về phía người nói, 去 ra xa. 出来 = đi ra (lại gần), 出去 = đi ra ngoài (ra xa).',
+        examples: [
+          { zh: '快出来吧！', py: 'Kuài chūlái ba!', vi: 'Mau ra đây nào!' },
+          { zh: '我马上出去。', py: 'Wǒ mǎshàng chūqù.', vi: 'Tớ ra ngoài ngay.' }
+        ] },
+      { point: '能 + động từ — có thể (nhờ vả)',
+        explain: '能 đặt trước động từ hỏi khả năng / sự cho phép; 能…吗？dùng nhờ vả lịch sự.',
+        examples: [
+          { zh: '你能帮我吗？', py: 'Nǐ néng bāng wǒ ma?', vi: 'Cậu giúp tớ được không?' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Ký túc xá · Sáng thứ Bảy', bg: 'dorm-room',
@@ -1425,6 +1735,30 @@ Object.assign(COURSE_DATA, {
     title: 'Mai làm gì mỗi ngày (2)',
     context: 'Một buổi sáng ở lớp, thầy Lý dạy bài mới. Mai trông thấy bạn bè, thầy đóng cửa vào học, rồi cả lớp ghi nhớ chữ Hán. Tan học, Mai về phòng và rủ Tiểu Mỹ vào thư viện.',
     vocabPreview: ['来到','看见','关上','记住','进去'],
+    objectives: [
+      'Dùng động từ + bổ ngữ kết quả: 看见 · 看到 · 关上 · 记住',
+      'Phân biệt 进来 (vào phía người nói) và 进去 (vào, rời người nói)',
+      'Diễn đạt hành động đang diễn ra bằng 正在'
+    ],
+    grammarNotes: [
+      { point: 'Bổ ngữ kết quả: 看见 · 看到 · 关上 · 记住',
+        explain: '动词 + (见 / 到 / 上 / 住) cho biết hành động đã đạt kết quả. 看见 / 看到 = nhìn thấy, 关上 = đóng lại, 记住 = nhớ được.',
+        examples: [
+          { zh: '我看见小美也来了。', py: 'Wǒ kànjiàn Xiǎoměi yě lái le.', vi: 'Em trông thấy Tiểu Mỹ cũng đến rồi.' },
+          { zh: '现在关上门。', py: 'Xiànzài guānshàng mén.', vi: 'Giờ đóng cửa lại.' }
+        ] },
+      { point: '进来 / 进去 — bổ ngữ xu hướng',
+        explain: '进 + 来 / 去 theo hướng so với người nói: 进来 = đi vào (về phía người nói), 进去 = đi vào (rời chỗ người nói).',
+        examples: [
+          { zh: '快进来，请进！', py: 'Kuài jìnlái, qǐng jìn!', vi: 'Mau vào đi, mời vào!' },
+          { zh: '我们一起进去！', py: 'Wǒmen yìqǐ jìnqù!', vi: 'Chúng mình cùng vào!' }
+        ] },
+      { point: '正在 + động từ — đang làm',
+        explain: '正在 đặt trước động từ chỉ hành động đang diễn ra.',
+        examples: [
+          { zh: '李老师正在教大家汉语。', py: 'Lǐ lǎoshī zhèngzài jiāo dàjiā Hànyǔ.', vi: 'Thầy Lý đang dạy mọi người tiếng Trung.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Lớp học · Buổi sáng', bg: 'classroom',
@@ -1519,6 +1853,30 @@ Object.assign(COURSE_DATA, {
     title: 'Động từ Mai cần thuộc (3)',
     context: 'Buổi sáng của Mai: thức dậy, rửa mặt, cầm cặp tới trường, mua sữa. Trong lớp cô làm quen bạn mới, nghe chuông vào học, thử đọc bài và hỏi thầy khi quên cách dùng chữ.',
     vocabPreview: ['起来','洗','认识','听见','坐下'],
+    objectives: [
+      'Dùng động từ sinh hoạt: 起来 · 洗 · 认识 · 坐下',
+      'Nói “làm thử / làm một chút” bằng V 一 V (洗一洗)',
+      'Nghe thấy bằng bổ ngữ kết quả 听见 / 听到',
+      'Nói nơi ở bằng 住(在) + nơi chốn'
+    ],
+    grammarNotes: [
+      { point: 'V 一 V — làm (thử) một chút',
+        explain: 'Lặp động từ với 一 ở giữa (hoặc dùng 一下) làm dịu hành động, nghĩa “làm một chút”.',
+        examples: [
+          { zh: '先洗一洗。', py: 'Xiān xǐ yi xǐ.', vi: 'Rửa (mặt) một chút đã.' }
+        ] },
+      { point: '听见 / 听到 — nghe thấy (bổ ngữ kết quả)',
+        explain: '听 + 见 / 到 cho biết đã nghe được kết quả.',
+        examples: [
+          { zh: '你听见上课铃了吗？', py: 'Nǐ tīngjiàn shàngkè líng le ma?', vi: 'Cậu nghe thấy chuông vào lớp chưa?' }
+        ] },
+      { point: '住(在) + nơi chốn — ở tại',
+        explain: '住 chỉ nơi cư trú; có thể thêm 在 + địa điểm.',
+        examples: [
+          { zh: '你住在哪儿？', py: 'Nǐ zhù zài nǎr?', vi: 'Cậu ở đâu?' },
+          { zh: '我住学校的宿舍。', py: 'Wǒ zhù xuéxiào de sùshè.', vi: 'Tớ ở ký túc xá của trường.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Ký túc xá · Bảy giờ sáng', bg: 'dorm-room',
@@ -1617,6 +1975,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (1)',
     context: 'Sau giờ học, Mai và Tiểu Mỹ đi ăn rồi bàn kế hoạch buổi chiều. Qua câu chuyện chọn món, so sánh quán ăn và rủ nhau đi nhà sách, một loạt từ nối và từ chức năng xuất hiện.',
     vocabPreview: ['还是','比','非常','跟','从'],
+    objectives: [
+      'Hỏi lựa chọn bằng 还是 (A 还是 B)',
+      'So sánh hơn bằng 比 (A 比 B + tính từ)',
+      'Diễn đạt “đã từng” bằng động từ + 过',
+      'Dùng giới từ 跟 (với) và 从 (từ)'
+    ],
+    grammarNotes: [
+      { point: '还是 — “hay là” trong câu hỏi lựa chọn',
+        explain: '还是 nối hai lựa chọn trong câu hỏi; người trả lời chọn một.',
+        examples: [
+          { zh: '你想吃米饭还是面条？', py: 'Nǐ xiǎng chī mǐfàn háishi miàntiáo?', vi: 'Cậu muốn ăn cơm hay là mì?' }
+        ] },
+      { point: '比 — so sánh hơn',
+        explain: 'A 比 B + tính từ = “A hơn B”. Không thêm 很 trước tính từ.',
+        examples: [
+          { zh: '这家的菜比那家好吃。', py: 'Zhè jiā de cài bǐ nà jiā hǎochī.', vi: 'Món quán này ngon hơn quán kia.' }
+        ] },
+      { point: '动词 + 过 — đã từng (kinh nghiệm)',
+        explain: '过 đặt sau động từ chỉ kinh nghiệm “đã từng làm”.',
+        examples: [
+          { zh: '面条我吃过很多次了。', py: 'Miàntiáo wǒ chī guo hěn duō cì le.', vi: 'Mì thì tớ ăn nhiều lần rồi.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Căn-tin · Sau giờ học', bg: 'cafeteria',
@@ -1711,6 +2092,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (2)',
     context: 'Mai đặt vé xem phim trên mạng rồi cùng Tiểu Mỹ đến rạp. Câu chuyện mua vé, hỏi giá, tìm chỗ và hỏi thăm bạn giúp Mai làm quen thêm nhiều từ chức năng.',
     vocabPreview: ['网上','票','马上','是不是','外边'],
+    objectives: [
+      'Hỏi xác nhận bằng 是不是',
+      'Diễn đạt mức độ quá cao bằng 太…了',
+      'Dùng lượng từ 张 cho vé; nói giá bằng 块',
+      'Dùng từ chỉ vị trí 里边 · 外边 · 前边'
+    ],
+    grammarNotes: [
+      { point: '是不是 — câu hỏi xác nhận',
+        explain: '是不是 hỏi “có phải…không”, có thể đứng trước phần cần xác nhận và không cần thêm 吗.',
+        examples: [
+          { zh: '这部电影是不是很有名？', py: 'Zhè bù diànyǐng shìbushì hěn yǒumíng?', vi: 'Bộ phim này có phải nổi tiếng lắm không?' }
+        ] },
+      { point: '太…了 — quá…',
+        explain: '太 + tính từ + 了 nhấn mạnh mức độ cao, thường mang sắc thái cảm thán.',
+        examples: [
+          { zh: '太好了！', py: 'Tài hǎo le!', vi: 'Tốt quá!' }
+        ] },
+      { point: 'Lượng từ 张 — cho vật phẳng',
+        explain: '张 dùng cho vật mỏng phẳng như vé, giấy, bàn: 两张票.',
+        examples: [
+          { zh: '我马上买两张。', py: 'Wǒ mǎshàng mǎi liǎng zhāng.', vi: 'Tớ mua hai vé ngay.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Ký túc xá · Buổi tối', bg: 'home',
@@ -1805,6 +2209,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (3)',
     context: 'Trong lớp, thầy Lý chỉ chữ trên bảng trái–phải–giữa. Sau giờ học, Mai và Tiểu Mỹ vào thư viện tìm sách và chọn chỗ ngồi. Bài học đầy từ chỉ phương hướng và mức độ.',
     vocabPreview: ['中间','左边','右边','一块儿','最'],
+    objectives: [
+      'Dùng từ chỉ phương hướng: 中间 · 左边 · 右边',
+      'Diễn đạt khả năng bằng bổ ngữ 看得到 / 看不到',
+      'Nói “vừa…vừa…” bằng 一边…一边',
+      'Diễn đạt trạng thái duy trì bằng 着'
+    ],
+    grammarNotes: [
+      { point: 'Bổ ngữ khả năng: 看得到 / 看不到',
+        explain: '动词 + 得 + bổ ngữ = có thể; + 不 + bổ ngữ = không thể. 看得到 = nhìn thấy được.',
+        examples: [
+          { zh: '看得到了！', py: 'Kàn de dào le!', vi: 'Nhìn thấy rồi!' }
+        ] },
+      { point: '一边…一边… — vừa…vừa…',
+        explain: 'Hai 一边 đặt trước hai động từ chỉ hai hành động xảy ra đồng thời.',
+        examples: [
+          { zh: '我一边找书，一边记书名。', py: 'Wǒ yìbiān zhǎo shū, yìbiān jì shūmíng.', vi: 'Tớ vừa tìm sách vừa ghi tên sách.' }
+        ] },
+      { point: '着 — trạng thái đang tiếp diễn',
+        explain: '动词 + 着 chỉ trạng thái / động tác đang được duy trì.',
+        examples: [
+          { zh: '同学们坐着听老师讲。', py: 'Tóngxuémen zuò zhe tīng lǎoshī jiǎng.', vi: 'Các bạn ngồi nghe thầy giảng.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Lớp học', bg: 'classroom',
@@ -1899,6 +2326,28 @@ Object.assign(COURSE_DATA, {
     title: 'Thời gian trong ngày của Mai',
     context: 'Mai và Tiểu Mỹ trò chuyện về tuổi, năm mới, lịch sinh hoạt và kế hoạch cuối tuần. Bài học gom đủ các từ chỉ thời gian: hôm qua–hôm nay, năm ngoái–năm nay, sáng–tối, sớm–muộn.',
     vocabPreview: ['今年','岁','早上','后天','一会儿'],
+    objectives: [
+      'Nói tuổi bằng số + 岁',
+      'Nói ngày tháng theo trật tự tháng (月) trước, ngày (号) sau',
+      'Dùng các mốc thời gian: 去年 / 今年, 前天 / 后天, 早上 / 晚上'
+    ],
+    grammarNotes: [
+      { point: 'số + 岁 — nói tuổi',
+        explain: 'Dùng 岁 cho tuổi. Hỏi tuổi: 你今年多大？hoặc 多大岁数？',
+        examples: [
+          { zh: '我十九岁。', py: 'Wǒ shíjiǔ suì.', vi: 'Tớ mười chín tuổi.' }
+        ] },
+      { point: 'Ngày tháng: 月 trước, 号 sau',
+        explain: 'Tiếng Trung nói tháng rồi đến ngày: số + 月 + số + 号.',
+        examples: [
+          { zh: '一月一号。', py: 'Yī yuè yī hào.', vi: 'Mùng một tháng Giêng.' }
+        ] },
+      { point: 'Các mốc thời gian theo cặp',
+        explain: '前天 / 昨天 / 今天 / 明天 / 后天; 去年 / 今年 / 明年 — đứng trước động từ hoặc đầu câu.',
+        examples: [
+          { zh: '去年我还在越南，今年来了中国。', py: 'Qùnián wǒ hái zài Yuènán, jīnnián lái le Zhōngguó.', vi: 'Năm ngoái tớ còn ở Việt Nam, năm nay đã sang Trung Quốc.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Ký túc xá · Buổi sáng', bg: 'dorm-room',
@@ -2005,6 +2454,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đại từ & số đếm nâng cao',
     context: 'Chủ nhật, Mai và Tiểu Mỹ đi mua vở. Qua việc hỏi giá, so sánh hàng bên này bên kia và đếm tiền, Mai luyện các đại từ chỉ định và những con số lớn.',
     vocabPreview: ['您','这些','那边','两','一半'],
+    objectives: [
+      'Dùng đại từ chỉ định số nhiều: 这些 / 那些',
+      'Phân biệt 两 (trước lượng từ) và 二',
+      'Hỏi giá bằng 多少钱; chào lịch sự bằng 您',
+      'Hỏi nơi / loại bằng 哪里 / 哪些'
+    ],
+    grammarNotes: [
+      { point: '这些 / 那些 — những…này / kia',
+        explain: '些 chỉ số nhiều không xác định. 这些 = những cái này, 那些 = những cái kia (không thêm lượng từ sau 些).',
+        examples: [
+          { zh: '这些本子多少钱？', py: 'Zhèxiē běnzi duōshao qián?', vi: 'Mấy quyển vở này bao nhiêu tiền?' }
+        ] },
+      { point: '两 vs 二 — đều là “hai”',
+        explain: 'Trước lượng từ dùng 两 (两本); khi đếm / đọc số dùng 二 (二, 十二).',
+        examples: [
+          { zh: '我买两本。', py: 'Wǒ mǎi liǎng běn.', vi: 'Tớ mua hai quyển.' }
+        ] },
+      { point: '多少钱 — hỏi giá',
+        explain: '…多少钱？= …bao nhiêu tiền? 您 là cách xưng hô lịch sự của 你.',
+        examples: [
+          { zh: '您好！这些本子多少钱？', py: 'Nín hǎo! Zhèxiē běnzi duōshao qián?', vi: 'Chào ạ! Mấy quyển vở này bao nhiêu tiền?' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Cửa hàng · Chủ nhật', bg: 'street',
@@ -2108,6 +2580,29 @@ Object.assign(COURSE_DATA, {
     title: 'Người thân, món ăn & lời chào',
     context: 'Sáng chủ nhật, Tiểu Mỹ mời Mai về nhà ăn sáng và giới thiệu cả gia đình. Bài học gom đủ cách gọi người thân, các món ăn trên bàn và những lời chào lịch sự.',
     vocabPreview: ['请进','家人','爷爷','水果','不客气'],
+    objectives: [
+      'Mời lịch sự bằng 请 (请进 / 请坐)',
+      'Đáp lời cảm ơn đúng vai: 谢谢 ↔ 不客气',
+      'Gọi tên người thân và các món ăn trên bàn'
+    ],
+    grammarNotes: [
+      { point: '请 + động từ — mời (lịch sự)',
+        explain: '请 đặt trước động từ để mời ai làm gì.',
+        examples: [
+          { zh: '请进！请坐！', py: 'Qǐng jìn! Qǐng zuò!', vi: 'Mời vào! Mời ngồi!' }
+        ] },
+      { point: '谢谢 ↔ 不客气 — cặp cảm ơn / đáp lễ',
+        explain: 'Người nhận / khách nói 谢谢; người được cảm ơn / chủ đáp 不客气.',
+        examples: [
+          { zh: '谢谢你们！', py: 'Xièxie nǐmen!', vi: 'Cảm ơn mọi người!' },
+          { zh: '不客气！', py: 'Búkèqi!', vi: 'Không có gì!' }
+        ] },
+      { point: '像…一样 — giống như',
+        explain: '像 + danh từ + 一样 nghĩa “giống như…”.',
+        examples: [
+          { zh: '你就像家人一样。', py: 'Nǐ jiù xiàng jiārén yíyàng.', vi: 'Cậu cứ như người nhà vậy.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Nhà Tiểu Mỹ · Sáng chủ nhật', bg: 'home',
@@ -2202,6 +2697,28 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Địa điểm & phương hướng (1)',
     context: 'Mai kể về thành phố Bắc Kinh nơi cô học và căn phòng nhỏ của mình. Một bài đọc nhẹ nhàng giúp ôn các từ chỉ nơi chốn và phương hướng.',
     vocabPreview: ['北京','地方','房间','国家','机场'],
+    objectives: [
+      'Giới thiệu nơi chốn bằng 是一个…的地方',
+      'Nói phương hướng có 边: 北边 / 东边',
+      'Miêu tả nơi ở bằng tính từ (房子不大，很干净)'
+    ],
+    grammarNotes: [
+      { point: '是一个 + tính từ + 的 + danh từ',
+        explain: 'Định ngữ: tính từ + 的 + danh từ để miêu tả. 一个很大的地方 = một nơi rất lớn.',
+        examples: [
+          { zh: '北京是一个很大的地方。', py: 'Běijīng shì yí ge hěn dà de dìfang.', vi: 'Bắc Kinh là một nơi rất lớn.' }
+        ] },
+      { point: 'Phương hướng + 边',
+        explain: '东 / 南 / 西 / 北 / 前 / 后… + 边 chỉ phía. 学校北边 = phía bắc trường.',
+        examples: [
+          { zh: '学校北边有电影院。', py: 'Xuéxiào běibian yǒu diànyǐngyuàn.', vi: 'Phía bắc trường có rạp phim.' }
+        ] },
+      { point: '在 + nơi + 里 — ở trong',
+        explain: '里 đặt sau danh từ để chỉ bên trong.',
+        examples: [
+          { zh: '我的房间在学校里。', py: 'Wǒ de fángjiān zài xuéxiào lǐ.', vi: 'Phòng tớ ở trong trường.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Khuôn viên trường · Bắc Kinh', bg: 'campus',
@@ -2269,6 +2786,28 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Địa điểm & phương hướng (2)',
     context: 'Cuối tuần, Mai hẹn Tiểu Mỹ đi trung tâm thương mại. Câu chuyện chỉ đường nam–bắc–đông–tây, tầng trên tầng dưới giúp ôn thêm từ vựng nơi chốn.',
     vocabPreview: ['商场','马路','南边','楼上','洗手间'],
+    objectives: [
+      'Chỉ đường bằng 往 + hướng + 走',
+      'Phân biệt 楼上 / 楼下, 南边 / 西边',
+      'Hỏi vị trí: 洗手间在哪儿？'
+    ],
+    grammarNotes: [
+      { point: '往 + phương hướng + 走 — đi về phía',
+        explain: '往 chỉ hướng di chuyển, theo sau là động từ (thường là 走).',
+        examples: [
+          { zh: '从路口往西走。', py: 'Cóng lùkǒu wǎng xī zǒu.', vi: 'Từ ngã tư đi về phía tây.' }
+        ] },
+      { point: '楼上 / 楼下 — tầng trên / dưới',
+        explain: '楼上 = tầng trên, 楼下 = tầng dưới, dùng như từ chỉ nơi chốn.',
+        examples: [
+          { zh: '楼上卖衣服，楼下有吃的。', py: 'Lóushàng mài yīfu, lóuxià yǒu chī de.', vi: 'Tầng trên bán quần áo, tầng dưới có đồ ăn.' }
+        ] },
+      { point: '…在哪儿？— hỏi vị trí',
+        explain: '…在哪儿？hỏi ở đâu; trả lời bằng 在 + nơi chốn.',
+        examples: [
+          { zh: '洗手间在哪儿？', py: 'Xǐshǒujiān zài nǎr?', vi: 'Nhà vệ sinh ở đâu?' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Trên phố · Thứ Bảy', bg: 'street',
@@ -2338,6 +2877,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Mai miêu tả mọi thứ',
     context: 'Mai kể về một tuần học bận rộn, dùng đủ loại tính từ để miêu tả chữ viết, bài hát, sách vở và mọi thứ quanh mình.',
     vocabPreview: ['忙','难','干净','快','最好'],
+    objectives: [
+      'Miêu tả bằng tính từ với 很 / 有点 (有点难)',
+      'Diễn đạt “vừa…vừa…” bằng 又…又…',
+      'Nhận xét hành động bằng bổ ngữ trình độ 动词 + 得 + tính từ'
+    ],
+    grammarNotes: [
+      { point: '有点(儿) + tính từ — hơi…',
+        explain: '有点儿 + tính từ chỉ mức độ nhẹ, thường mang nghĩa không như ý (khác với 一点 dùng khi so sánh).',
+        examples: [
+          { zh: '汉语有点难。', py: 'Hànyǔ yǒudiǎn nán.', vi: 'Tiếng Trung hơi khó.' }
+        ] },
+      { point: '又…又… — vừa…vừa…',
+        explain: '又 + tính từ / động từ + 又 + tính từ / động từ, chỉ hai đặc điểm cùng tồn tại.',
+        examples: [
+          { zh: '里边的书又高又多。', py: 'Lǐbian de shū yòu gāo yòu duō.', vi: 'Sách bên trong vừa cao vừa nhiều.' }
+        ] },
+      { point: '动词 + 得 + tính từ — bổ ngữ trình độ',
+        explain: '得 nối động từ với nhận xét về mức độ / kết quả thực hiện.',
+        examples: [
+          { zh: '他教得很好。', py: 'Tā jiāo de hěn hǎo.', vi: 'Thầy dạy rất tốt.' },
+          { zh: '这个星期过得很好。', py: 'Zhège xīngqī guò de hěn hǎo.', vi: 'Tuần này trải qua rất tốt.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Ký túc xá', bg: 'dorm-room',
@@ -2418,6 +2980,31 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Đồ vật xung quanh',
     context: 'Buổi tối, Mai dọn phòng và kiểm đồ đạc. Câu chuyện về cốc nước, túi sách, máy tính và ví tiền giúp ôn tên các vật dụng quen thuộc.',
     vocabPreview: ['正在','东西','电脑','钱包','地图'],
+    objectives: [
+      'Diễn đạt đang làm bằng 正在 + động từ (… 呢)',
+      'Gọi tên đồ vật quen thuộc (电脑 · 钱包 · 地图)',
+      'Dùng lượng từ 杯 (cốc) và 张 (tờ / tấm)'
+    ],
+    grammarNotes: [
+      { point: '正在 + động từ (+ 呢) — đang làm',
+        explain: '正在 đặt trước động từ chỉ hành động đang diễn ra; cuối câu có thể thêm 呢.',
+        examples: [
+          { zh: 'Mai 正在房间里收东西。', py: 'Mai zhèngzài fángjiān lǐ shōu dōngxi.', vi: 'Mai đang dọn đồ trong phòng.' },
+          { zh: '你在干什么呢？', py: 'Nǐ zài gàn shénme ne?', vi: 'Cậu đang làm gì thế?' }
+        ] },
+      { point: '能 + động từ — có thể',
+        explain: '能 hỏi / nói khả năng làm việc gì; trả lời khẳng định dùng 能.',
+        examples: [
+          { zh: '能开门吗？', py: 'Néng kāi mén ma?', vi: 'Mở cửa được không?' },
+          { zh: '能！', py: 'Néng!', vi: 'Được!' }
+        ] },
+      { point: 'Lượng từ 杯 / 张',
+        explain: '杯 cho đồ uống đựng cốc (一杯水); 张 cho vật phẳng (一张地图).',
+        examples: [
+          { zh: '给我一杯吧。', py: 'Gěi wǒ yì bēi ba.', vi: 'Cho tớ một cốc nhé.' },
+          { zh: '你看这张地图。', py: 'Nǐ kàn zhè zhāng dìtú.', vi: 'Cậu xem tấm bản đồ này.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Ký túc xá · Buổi tối', bg: 'dorm-room',
@@ -2491,6 +3078,28 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Chuyện trường lớp',
     context: 'Một ngày học bình thường ở lớp thầy Lý: chính tả, đọc bài khóa, rồi chuyện thi cử và nghỉ lễ. Bài đọc ôn các từ về trường học và việc học.',
     vocabPreview: ['上课','课本','学习','请假','放假'],
+    objectives: [
+      'Dùng từ vựng trường lớp: 上课 · 下课 · 课本 · 课文',
+      'Diễn đạt “đều” bằng 都',
+      'Diễn đạt “làm xong” bằng 动词 + 完 (考完)'
+    ],
+    grammarNotes: [
+      { point: '都 — đều',
+        explain: '都 đứng trước động từ, nghĩa “tất cả đều”; chủ ngữ số nhiều đứng trước 都.',
+        examples: [
+          { zh: '男生女生都要读。', py: 'Nánshēng nǚshēng dōu yào dú.', vi: 'Nam sinh nữ sinh đều phải đọc.' }
+        ] },
+      { point: '动词 + 完 — làm xong (bổ ngữ kết quả)',
+        explain: '完 đặt sau động từ chỉ hành động đã hoàn tất.',
+        examples: [
+          { zh: '考完就放假。', py: 'Kǎo wán jiù fàngjià.', vi: 'Thi xong là nghỉ.' }
+        ] },
+      { point: '给 + người + động từ — cho / vì ai làm',
+        explain: '给 dẫn ra đối tượng hưởng hành động, đặt trước động từ.',
+        examples: [
+          { zh: '李老师给大家听写汉字。', py: 'Lǐ lǎoshī gěi dàjiā tīngxiě Hànzì.', vi: 'Thầy Lý cho mọi người viết chính tả chữ Hán.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Lớp học', bg: 'classroom',
@@ -2560,6 +3169,28 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Giao tiếp xã hội',
     context: 'Tiểu Mỹ giới thiệu cho Mai nhiều người bạn mới ở khuôn viên trường. Bài đọc ôn cách gọi người: bạn bè, đàn ông phụ nữ, người già trẻ nhỏ và các kiểu xưng hô.',
     vocabPreview: ['介绍','朋友','先生','见面','开玩笑'],
+    objectives: [
+      'Giới thiệu người bằng 给 + người + 介绍',
+      'Gọi người lịch sự (先生 / 小姐) và dùng lượng từ 位',
+      'Nói “lần đầu” bằng 第一次'
+    ],
+    grammarNotes: [
+      { point: '给 + người + 介绍 — giới thiệu cho ai',
+        explain: '给 dẫn ra người nhận, 介绍 là động từ: 给我介绍 = giới thiệu cho tôi.',
+        examples: [
+          { zh: '小美要给 Mai 介绍几个朋友。', py: 'Xiǎoměi yào gěi Mai jièshào jǐ ge péngyou.', vi: 'Tiểu Mỹ muốn giới thiệu cho Mai mấy người bạn.' }
+        ] },
+      { point: 'Lượng từ 位 — đếm người (lịch sự)',
+        explain: '位 dùng đếm người một cách trân trọng: 那位先生.',
+        examples: [
+          { zh: '那位是王先生。', py: 'Nà wèi shì Wáng xiānsheng.', vi: 'Vị kia là ông Vương.' }
+        ] },
+      { point: '第一次 + động từ — lần đầu làm gì',
+        explain: '第 + số + 次 chỉ lần thứ mấy; 第一次 = lần đầu.',
+        examples: [
+          { zh: '我们第一次见面。', py: 'Wǒmen dì yī cì jiànmiàn.', vi: 'Chúng ta lần đầu gặp mặt.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Khuôn viên trường', bg: 'campus',
@@ -2629,6 +3260,28 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Đi lại, sức khỏe & thiên nhiên',
     context: 'Nghỉ lễ, Mai bắt tàu về nhà. Trên đường cô gặp một bệnh nhân và về tới ngôi nhà có núi, có cây. Bài đọc ôn từ về phương tiện, sức khỏe và thiên nhiên.',
     vocabPreview: ['火车','车票','开车','飞机','汽车'],
+    objectives: [
+      'Nói phương tiện: 坐火车 / 坐飞机, 开车 / 打车',
+      'So sánh giá vé bằng 比',
+      'Lên / xuống xe (上车 / 下车); “trước khi” bằng …前'
+    ],
+    grammarNotes: [
+      { point: '坐 + phương tiện — đi bằng',
+        explain: '坐 dùng với phương tiện có chỗ ngồi (火车 / 飞机 / 汽车); tự lái là 开车, bắt xe là 打车.',
+        examples: [
+          { zh: 'Mai 要坐火车回家。', py: 'Mai yào zuò huǒchē huí jiā.', vi: 'Mai định đi tàu về nhà.' }
+        ] },
+      { point: 'A 比 B + tính từ — so sánh (ôn lại)',
+        explain: 'Vế A hơn vế B về tính chất nêu sau 比.',
+        examples: [
+          { zh: '机票比火车票贵。', py: 'Jīpiào bǐ huǒchēpiào guì.', vi: 'Vé máy bay đắt hơn vé tàu.' }
+        ] },
+      { point: '动作 + 前 — trước khi',
+        explain: 'Hành động + 前 chỉ thời điểm trước khi làm việc đó.',
+        examples: [
+          { zh: '上车前我买点东西。', py: 'Shàng chē qián wǒ mǎi diǎn dōngxi.', vi: 'Trước khi lên xe tớ mua chút đồ.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Ga tàu', bg: 'street',
@@ -2706,6 +3359,28 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Ngôn ngữ, học thuật & cảm xúc',
     context: 'Mai học tiếng Trung như một ngoại ngữ. Một giờ học vui với chút hiểu lầm nho nhỏ giúp ôn các từ về ngôn ngữ, kiến thức và cảm xúc.',
     vocabPreview: ['中文','外语','说话','明白','知识'],
+    objectives: [
+      'Nói về việc học ngôn ngữ (中文 · 外语 · 说话)',
+      'Diễn đạt “hiểu rồi” bằng 明白了',
+      'Khuyên đừng làm bằng 别; hỏi lại ngắn bằng 呢'
+    ],
+    grammarNotes: [
+      { point: '…了 — biểu thị nhận thức / biến đổi mới',
+        explain: '明白了 = (giờ) đã hiểu; 了 báo trạng thái mới xuất hiện.',
+        examples: [
+          { zh: '我明白了！', py: 'Wǒ míngbai le!', vi: 'Em hiểu rồi!' }
+        ] },
+      { point: '别 + động từ — đừng',
+        explain: '别 + động từ để khuyên / can ngăn nhẹ nhàng.',
+        examples: [
+          { zh: '别生气，这很好玩儿。', py: 'Bié shēngqì, zhè hěn hǎowánr.', vi: 'Đừng giận, vui lắm mà.' }
+        ] },
+      { point: '呢 — hỏi lại ngắn gọn',
+        explain: 'Danh từ / đại từ + 呢 dùng hỏi lại “còn…thì sao?”.',
+        examples: [
+          { zh: '学外语真好玩儿，你呢？', py: 'Xué wàiyǔ zhēn hǎowánr, nǐ ne?', vi: 'Học ngoại ngữ thật thú vị, còn cậu?' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Lớp học', bg: 'classroom',
@@ -2771,6 +3446,28 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Công việc, giải trí, nghệ thuật & màu sắc',
     context: 'Mai kể về công việc của bố mẹ rồi một buổi tối mưa gió ở nhà xem tivi. Bài đọc cuối của HSK 1 ôn từ về nghề nghiệp, giải trí và thiên nhiên.',
     vocabPreview: ['工人','工作','上班','电视','下雨'],
+    objectives: [
+      'Nói về nghề nghiệp và công việc (工人 · 工作 · 上班 · 下班)',
+      'Diễn đạt thói quen bằng 每天',
+      'Dùng 才 nhấn mạnh muộn (很晚才下班); 要 / 不要 = cần / không cần'
+    ],
+    grammarNotes: [
+      { point: '每天 + động từ — mỗi ngày',
+        explain: '每天 đứng trước động từ chỉ việc lặp lại hằng ngày.',
+        examples: [
+          { zh: '他每天上班。', py: 'Tā měi tiān shàngbān.', vi: 'Ông ấy ngày nào cũng đi làm.' }
+        ] },
+      { point: '才 — mới (muộn hơn mong đợi)',
+        explain: '才 đặt trước động từ nhấn mạnh việc xảy ra muộn / khó khăn.',
+        examples: [
+          { zh: '很晚才下班。', py: 'Hěn wǎn cái xiàbān.', vi: 'Rất muộn mới tan làm.' }
+        ] },
+      { point: '要 / 不要 — cần / không cần',
+        explain: '要 + danh từ nghĩa “cần”; 不要 phủ định “không cần”.',
+        examples: [
+          { zh: '看电影要门票，看电视不要。', py: 'Kàn diànyǐng yào ménpiào, kàn diànshì búyào.', vi: 'Xem phim cần vé, xem tivi thì không.' }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator',
         scene: '📍 Nhà của Mai', bg: 'home',

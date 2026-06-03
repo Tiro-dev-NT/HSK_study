@@ -59,7 +59,7 @@
 | **中级 Trung cấp** (CHƯA có) | 听后重复 10 câu/3′ | **看图说话 (nhìn tranh nói) 2 câu/4′** | 回答问题 2 câu/4′ |
 | **高级 Cao cấp** (CHƯA có) | 听后复述 | 朗读 (đọc đoạn văn) | 回答问题 |
 
-- ☐ **HSKK Sơ cấp — thêm chế độ "Luyện từng phần"**: hiện `hskk.js` CHỈ có 1 flow thi nguyên đề 17′ (`_onStart`→`_buildExam`). Thêm màn chọn → luyện riêng P1/P2/P3 hết pool, không đồng hồ tổng, nghe lại + làm lại. Rẻ (tái dùng engine ghi âm/TTS).
+- ☑ **HSKK Sơ cấp — chế độ "Luyện từng phần" DONE 2026-06-03** (merge `7ad285c`; `hskk.js` v1.6 · `hskk.css` v2.2): card Sơ cấp thêm 3 nút P1/P2/P3 + màn chọn số câu (5/10/Tất cả) `#hskkPracticeSetup`; `_startPractice`/`_doPractice` + state `_practiceMode` (Pro-gate + mic giống `_onStart`, `_exam`=toàn bộ pool, KHÔNG `_totalTimer`); header "Luyện · Câu i/N", nút "↺ Làm lại câu này" `#hskkRedoBtn`; P1 hiện credit-note + confirm trước khi vào; kết quả KHÔNG ghi lịch sử thi thật. Flow thi nguyên đề cũ giữ nguyên.
 - ☐ **HSKK Trung cấp (中级)** — build mới. Điểm nhấn: **Phần 2 看图说话** = task nhìn tranh kể chuyện → **cần ảnh (xem mục D)**. Schema đề: `{ id, img|imgs[], topic, keywords[], outline, sampleAnswer }`. Chấm tự do cần SpeechSuper `speak.eval.pro.cn` (account hiện CHƯA có → để practice-no-grade như Phần 2/3 Sơ cấp).
   - ☑ **PREP DONE 2026-06-03** (chưa build UI/wire): (1) `docs/plans/hskk-zhongji-kantu.md` — bối cảnh chuẩn 中级 Phần 2 (2 câu × 2 tranh, ~2′/câu, vocab HSK1–4) + style string cố định + prompt template tham số hoá + 2 ví dụ điền + **25 chủ đề** trung tính + schema JS đầy đủ + 3 item ví dụ + quy trình 5 bước; (2) `content/assets/PROMPTS.md` append mục 看图说话 + bảng 5 đề MVP. ⚠️ Cả 2 file + script convert đều bị `.gitignore` (`docs/`,`scripts/`,`content/`) → **chỉ local, chưa share repo** (chờ user quyết force-add).
 

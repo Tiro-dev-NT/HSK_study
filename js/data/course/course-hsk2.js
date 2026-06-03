@@ -3930,10 +3930,10 @@ Object.assign(COURSE_DATA, {
       },
       {
         type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
-        text: '虽然体育馆小一点，所以更热闹，条件也不错。',
-        pinyin: 'Suīrán tǐyùguǎn xiǎo yìdiǎn, suǒyǐ gèng rènào, tiáojiàn yě búcuò.',
-        meaning: 'Tuy nhà thi đấu nhỏ hơn một chút, nên lại náo nhiệt hơn, điều kiện cũng khá tốt.',
-        expression: 'happy', vocab: ['虽然', '所以', '条件']
+        text: '虽然体育馆小一点，但是更热闹，条件也不错。',
+        pinyin: 'Suīrán tǐyùguǎn xiǎo yìdiǎn, dànshì gèng rènào, tiáojiàn yě búcuò.',
+        meaning: 'Tuy nhà thi đấu nhỏ hơn một chút, nhưng lại náo nhiệt hơn, điều kiện cũng khá tốt.',
+        expression: 'happy', vocab: ['虽然', '条件']
       },
       {
         type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
@@ -3974,8 +3974,8 @@ Object.assign(COURSE_DATA, {
         type: 'checkpoint',
         questions: [
           {
-            q: '"虽然...所以..." dùng để nối hai vế thể hiện quan hệ gì?',
-            options: ['tuy... nên...', 'nếu... thì...', 'càng... càng...', 'vừa... vừa...'],
+            q: '"虽然...但是..." dùng để nối hai vế thể hiện quan hệ gì?',
+            options: ['tuy... nhưng...', 'nếu... thì...', 'càng... càng...', 'vừa... vừa...'],
             answer: 0
           },
           {
@@ -4064,7 +4064,7 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '你___那位是谁？', options: ['身边', '天上', '面前'], answer: '身边' }
       ],
       normal: [
-        { type: 'fill', sentence: '___体育馆小一点，___更热闹。', options: ['虽然…所以', '因为…所以', '虽然…但是'], answer: '虽然…所以' },
+        { type: 'fill', sentence: '___体育馆小一点，___更热闹。', options: ['虽然…所以', '因为…所以', '虽然…但是'], answer: '虽然…但是' },
         { type: 'fill', sentence: '你们___可以找我。', options: ['随时', '十分', '所以'], answer: '随时' },
         { type: 'fill', sentence: '他的___很好，水平也高。', options: ['态度', '特点', '条件'], answer: '态度' },
         { type: 'fill', sentence: '这是件大___！', options: ['事情', '数字', '声音'], answer: '事情' },

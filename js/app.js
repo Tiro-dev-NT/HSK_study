@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['initHSKVersion',  function() { if (typeof HSKVersion !== 'undefined') HSKVersion.init(); }],
     ['setupCmdPalette', function() { if (typeof CmdPalette !== 'undefined') CmdPalette.setup(); }],
     ['setupLookupPanel', function() { if (typeof LookupPanel !== 'undefined') LookupPanel.init(); }],
+    ['firstRunGuide',   function() { if (typeof AppGuide !== 'undefined') AppGuide.maybeShowFirstRun(); }],
   ];
 
   initSteps.forEach(function(step) {

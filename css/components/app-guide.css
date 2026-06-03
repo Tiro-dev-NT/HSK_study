@@ -1,0 +1,156 @@
+/* ═══════════════════════════════════════════════════════
+   APP-GUIDE.CSS — "Cách dùng app" guide / onboarding modal
+   Uses design tokens for surfaces/text; brand hex only for accents.
+   ═══════════════════════════════════════════════════════ */
+
+.ag-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .26s ease;
+  padding: var(--s-4, 16px);
+}
+.ag-overlay.visible { opacity: 1; }
+
+.ag-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(2px);
+}
+
+.ag-modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface, #fff);
+  color: var(--text, #1F2937);
+  border: 1px solid var(--border, rgba(0,0,0,.1));
+  border-radius: 20px;
+  padding: 28px 26px 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+  text-align: center;
+  transform: translateY(12px) scale(.98);
+  transition: transform .26s cubic-bezier(.2,.8,.2,1);
+}
+.ag-overlay.visible .ag-modal { transform: translateY(0) scale(1); }
+
+.ag-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: var(--surface2, rgba(0,0,0,.05));
+  color: var(--text2, #6B7280);
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background .15s;
+}
+.ag-close:hover { background: var(--border, rgba(0,0,0,.12)); }
+
+.ag-icon {
+  width: 64px;
+  height: 64px;
+  margin: 4px auto 16px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.ag-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: var(--text, #1F2937);
+}
+
+.ag-body {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text2, #4B5563);
+  margin: 0 0 16px;
+}
+.ag-body strong { color: var(--text, #1F2937); font-weight: 700; }
+
+.ag-cta-link {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 9px 16px;
+  border: 1px solid var(--border, rgba(0,0,0,.12));
+  background: var(--surface2, rgba(0,0,0,.04));
+  color: var(--text, #1F2937);
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.ag-cta-link:hover { background: var(--border, rgba(0,0,0,.08)); }
+
+.ag-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: 4px 0 18px;
+}
+.ag-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border, rgba(0,0,0,.18));
+  transition: width .2s, background .2s;
+}
+.ag-dot.active {
+  width: 20px;
+  border-radius: 4px;
+  background: #F59E0B;
+}
+
+.ag-actions {
+  display: flex;
+  gap: 10px;
+}
+.ag-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: transform .12s, filter .15s, background .15s;
+}
+.ag-btn:active { transform: scale(.97); }
+.ag-btn--ghost {
+  background: var(--surface2, rgba(0,0,0,.05));
+  color: var(--text2, #4B5563);
+}
+.ag-btn--ghost:hover { background: var(--border, rgba(0,0,0,.1)); }
+.ag-btn--primary {
+  background: #DC2626;
+  color: #fff;
+}
+.ag-btn--primary:hover { filter: brightness(1.06); }
+
+.ag-progress-text {
+  margin-top: 12px;
+  font-size: 11.5px;
+  color: var(--text2, #9CA3AF);
+  letter-spacing: .04em;
+}
+
+@media (max-width: 480px) {
+  .ag-modal { padding: 24px 18px 16px; border-radius: 18px; }
+  .ag-title { font-size: 18px; }
+  .ag-body { font-size: 14px; }
+}

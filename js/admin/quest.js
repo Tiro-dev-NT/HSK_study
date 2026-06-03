@@ -10,6 +10,7 @@ var AdminQuest = (function() {
     _loadStats();
     _loadTopEarners();
     _bindAdjustForm();
+    _bindGrantCreditForm();
     _loadChartJS(function() { _loadTokenChart(); });
   }
 
@@ -116,6 +117,34 @@ var AdminQuest = (function() {
 
     _loadStats();
     _loadTopEarners();
+  }
+
+  function _bindGrantCreditForm() {
+    var btn = document.getElementById('aiCredSubmit');
+    if (btn) btn.addEventListener('click', _grantCredit);
+  }
+
+  async function _grantCredit() {
+    var userId = (document.getElementById('aiCredUserId').value || '').trim();
+    var amount = parseInt(document.getElementById('aiCredAmount').value, 10);
+    var reason = (document.getElementById('aiCredReason').value || '').trim();
+    var resEl  = document.getElementById('aiCredResult');
+
+    if (!userId) { _setResult(resEl, '⚠ Nhập User ID', false); return; }
+    if (isNaN(amount) || amount <= 0) { _setResult(resEl, '⚠ Số credit phải > 0', false); return; }
+    if (!reason) { _setResult(resEl, '⚠ Nhập lý do', false); return; }
+
+    _setResult(resEl, 'Đang xử lý...', null);
+    var res = await SB.rpc('admin_grant_ai_credit', {
+      p_user_id: userId,
+      p_amount:  amount,
+      p_reason:  reason
+    });
+
+    if (res.error) { _setResult(resEl, '❌ ' + res.error.message, false); return; }
+    var d = res.data || {};
+    if (d.ok === false) { _setResult(resEl, '❌ ' + (d.error || 'thất bại'), false); return; }
+    _setResult(resEl, '✅ Đã cấp +' + amount + ' AI Credit · số dư mới: ' + (d.balance != null ? d.balance : '?'), true);
   }
 
   function _set(id, val) {

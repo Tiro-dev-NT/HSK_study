@@ -187,6 +187,26 @@ function _lhRenderToday() {
     var gameBtn = document.getElementById('lhTodayGame');
     if (gameBtn) gameBtn.classList.add('lh-today-card--done');
   }
+
+  // ── Banner ôn lỗi (Sổ tay lỗi) — chỉ hiện khi có lỗi treo ──
+  _lhRenderMistakeBanner();
+}
+
+function _lhRenderMistakeBanner() {
+  var grid = document.getElementById('lhTodayGrid');
+  if (!grid) return;
+  var old = document.getElementById('lhMistakeBanner');
+  if (old) old.remove();
+  var n = (window.MistakeBook) ? MistakeBook.count() : 0;
+  if (n <= 0) return;
+  var b = document.createElement('button');
+  b.id = 'lhMistakeBanner';
+  b.className = 'lh-mistake-banner';
+  b.onclick = function () { MistakeBook.review(); };
+  b.innerHTML = '<span class="lh-mb-icon">📓</span>' +
+    '<span class="lh-mb-text">Bạn có <b>' + n + '</b> lỗi cần ôn lại</span>' +
+    '<span class="lh-mb-cta">Ôn ngay →</span>';
+  grid.insertAdjacentElement('afterend', b);
 }
 
 function lhTodayGameClick() {
@@ -289,6 +309,15 @@ function _lhRenderResources() {
     var rPct = rTotal > 0 ? Math.round(rDone / rTotal * 100) : 0;
     rBar.style.width = rPct + '%';
     if (rCnt) rCnt.textContent = rDone > 0 ? (rDone + '/' + rTotal + ' bài đọc') : (rTotal + ' bài đọc');
+  }
+
+  // Sổ tay lỗi (Lát 5) — chỉ hiện card khi có lỗi treo
+  var mCard = document.getElementById('lhMistakeCard');
+  if (mCard) {
+    var mN = (window.MistakeBook) ? MistakeBook.count() : 0;
+    mCard.style.display = mN > 0 ? '' : 'none';
+    var mCnt = document.getElementById('lhMistakeCount');
+    if (mCnt) mCnt.textContent = mN + ' lỗi';
   }
 }
 

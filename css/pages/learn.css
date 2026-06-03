@@ -555,6 +555,20 @@
   font-size: 11px; font-weight: 600; color: var(--primary);
 }
 .lh-rc-count { font-size: 11px; font-weight: 600; color: var(--text2); }
+.lh-rc-badge--warn { color: var(--warning); border-color: var(--warning); }
+
+/* Sổ tay lỗi — banner nhắc ôn ở "Hôm nay" (Lát 5) */
+.lh-mistake-banner {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  margin-top: 12px; padding: 12px 16px;
+  background: color-mix(in srgb, var(--warning) 10%, var(--surface));
+  border: 1px solid var(--warning); border-radius: var(--r-lg);
+  cursor: pointer; transition: .18s; text-align: left;
+}
+.lh-mistake-banner:hover { background: color-mix(in srgb, var(--warning) 18%, var(--surface)); }
+.lh-mb-icon { font-size: 20px; }
+.lh-mb-text { flex: 1; font-size: 14px; color: var(--text); }
+.lh-mb-cta { font-size: 13px; font-weight: 700; color: var(--warning); white-space: nowrap; }
 
 .lh-util-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .lh-util-chip {

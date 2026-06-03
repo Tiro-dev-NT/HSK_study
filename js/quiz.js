@@ -455,6 +455,7 @@ var Quiz = {
       });
       if (typeof updateSRSCard !== 'undefined') updateSRSCard(w.h, 0);
       Quiz._wrongHistory.push(w);
+      if (window.MistakeBook) MistakeBook.add(w, 'quiz');
     }
 
     // Survival mode: wrong = game over

@@ -1265,6 +1265,7 @@ var Course = {
         if (w && w.h && !seen[w.h] && ans.indexOf(w.h) !== -1) {
           seen[w.h] = true;
           updateSRSCard(w.h, 0, { source: 'course', source_lesson: lessonId });
+          if (window.MistakeBook) MistakeBook.add(w, 'mai');
         }
       });
     } catch (e) { /* SRS push best-effort, never block workbook */ }

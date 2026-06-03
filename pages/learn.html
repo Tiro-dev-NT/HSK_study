@@ -84,6 +84,18 @@
                 </div>
               </div>
             </button>
+            <!-- Sổ tay lỗi (Lát 5) — ẩn khi chưa có lỗi -->
+            <button class="lh-resource-card" id="lhMistakeCard" style="display:none" onclick="MistakeBook.review()">
+              <div class="lh-rc-icon">📓</div>
+              <div class="lh-rc-body">
+                <div class="lh-rc-title">Sổ tay lỗi</div>
+                <div class="lh-rc-purpose">Ôn lại đúng những từ bạn từng trả lời sai — luyện vào chỗ yếu.</div>
+                <div class="lh-rc-foot">
+                  <span class="lh-rc-badge lh-rc-badge--warn">Cần ôn</span>
+                  <span class="lh-rc-count" id="lhMistakeCount">0 lỗi</span>
+                </div>
+              </div>
+            </button>
           </div>
 
           <!-- Tier 2: Utility chips -->

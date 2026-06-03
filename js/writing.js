@@ -92,7 +92,10 @@ var Writing = (function () {
     });
 
     var btn = document.getElementById('wtGradeBtn');
-    if (btn) btn.addEventListener('click', _grade);
+    if (btn) btn.addEventListener('click', function () { _grade(false); });
+
+    var deepBtn = document.getElementById('wtGradeDeepBtn');
+    if (deepBtn) deepBtn.addEventListener('click', function () { _grade(true); });
 
     var copy = document.getElementById('wtCopyImproved');
     if (copy) copy.addEventListener('click', function () {
@@ -111,8 +114,9 @@ var Writing = (function () {
     if (el) el.value = list[_topicIdx % list.length];
   }
 
-  async function _grade() {
+  async function _grade(deep) {
     if (_busy) return;
+    deep = deep === true;
     var input = document.getElementById('wtInput');
     var essay = (input && input.value || '').trim();
     var hz = _countHanzi(essay);
@@ -129,6 +133,11 @@ var Writing = (function () {
     var topicEl = document.getElementById('wtTopicInput');
     var topic = (topicEl && topicEl.value || '').trim();
     if (!topic) { topic = (TOPICS[_level] || TOPICS[1])[0]; if (topicEl) topicEl.value = topic; }
+
+    if (deep && typeof confirm === 'function' &&
+        !confirm('Chấm sâu bằng AI cao cấp (Claude) tốn 38 AI Credit (so với 8 của chấm thường). Tiếp tục?')) {
+      return;
+    }
     _setBusy(true);
 
     var levelInstruction = _isRandomLevel()
@@ -165,7 +174,8 @@ var Writing = (function () {
 
     var prompt = 'Đề bài: ' + topic + '\n\nBài viết của học viên:\n"""\n' + essay + '\n"""';
 
-    var r = await AIClient.call('essay_grade', { system: system, prompt: prompt, timeoutMs: 60000 });
+    var r = await AIClient.call(deep ? 'essay_grade_deep' : 'essay_grade',
+      { system: system, prompt: prompt, deep: deep, timeoutMs: deep ? 90000 : 60000 });
     _setBusy(false);
 
     if (!r || !r.ok) {
@@ -294,8 +304,10 @@ var Writing = (function () {
   function _setBusy(b) {
     _busy = b;
     var btn = document.getElementById('wtGradeBtn');
+    var deepBtn = document.getElementById('wtGradeDeepBtn');
     var load = document.getElementById('wtLoading');
     if (btn) { btn.disabled = b; btn.textContent = b ? 'Đang chấm…' : 'Chấm bài'; }
+    if (deepBtn) deepBtn.disabled = b;
     if (load) load.style.display = b ? 'flex' : 'none';
     if (b) { var r = document.getElementById('wtResult'); if (r) r.style.display = 'none'; }
   }

@@ -26,7 +26,23 @@ var MockExam = (function() {
       timer:      null,
       timeLeft:   0,
       playCount:  0,    // TTS plays for current question (max 2)
+      quick:      null, // { key, isBoss, title, cfg } khi là ải/trùm từ lộ trình
     };
+  }
+
+  // Config đang dùng — quick (ải/trùm) override count, ngược lại dùng chuẩn
+  function _cfg(level) {
+    if (_state && _state.quick) return _state.quick.cfg;
+    return EXAM_CONFIG[level];
+  }
+
+  // Lưu pass ải/trùm để node trong lộ trình hiện ✓
+  function _saveCheckpoint(key) {
+    try {
+      var d = JSON.parse(localStorage.getItem('hsk_course_checkpoints') || '{}');
+      d[key] = { passed: true, ts: Date.now() };
+      localStorage.setItem('hsk_course_checkpoints', JSON.stringify(d));
+    } catch (e) {}
   }
 
   // ── Shuffle utility ───────────────────────────────────
@@ -72,7 +88,7 @@ var MockExam = (function() {
 
   // ── Build all questions ───────────────────────────────
   function _buildQuestions(level) {
-    var cfg  = EXAM_CONFIG[level];
+    var cfg  = _cfg(level);
     var pool = _getPool(level);
     if (pool.length < 4) return [];
 
@@ -140,7 +156,7 @@ var MockExam = (function() {
     if (!_state) return;
     var q   = _state.questions[_state.qIndex];
     if (!q) return;
-    var cfg = EXAM_CONFIG[_state.level];
+    var cfg = _cfg(_state.level);
     var isListen = q.type === 'listen';
 
     // Section badge
@@ -252,7 +268,7 @@ var MockExam = (function() {
   function _showSectionBreak() {
     if (!_state) return;
     _stopTimer(); // pause timer during break
-    var cfg     = EXAM_CONFIG[_state.level];
+    var cfg     = _cfg(_state.level);
     var examEl  = document.getElementById('meExam');
     var breakEl = document.getElementById('meSectionBreak');
     if (examEl) examEl.style.display = 'none';
@@ -294,7 +310,7 @@ var MockExam = (function() {
   // ── Result screen ─────────────────────────────────────
   function _renderResult(timeUp) {
     if (!_state) return;
-    var cfg = EXAM_CONFIG[_state.level];
+    var cfg = _cfg(_state.level);
 
     var listenCorrect = 0, readCorrect = 0;
     _state.answers.forEach(function(a) {
@@ -310,6 +326,9 @@ var MockExam = (function() {
 
     // Track quest progress (only if passed)
     if (passed && typeof Quests !== 'undefined') Quests.incrementMetric('mock_passed', 1);
+
+    // Lát 2: lưu pass ải/trùm để node lộ trình hiện ✓
+    if (_state.quick && passed) _saveCheckpoint(_state.quick.key);
 
     ['meExam','meSectionBreak'].forEach(function(id) {
       var el = document.getElementById(id); if (el) el.style.display = 'none';
@@ -362,7 +381,7 @@ var MockExam = (function() {
         wrongHTML +
         '<div class="me-result-actions">' +
           '<button class="btn-primary" id="meRetryBtn">🔄 Thi lại</button>' +
-          '<button class="btn-outline" id="meBackBtn">← Luyện tập</button>' +
+          '<button class="btn-outline" id="meBackBtn">' + (_state.quick ? '← Về lộ trình' : '← Luyện tập') + '</button>' +
         '</div>' +
       '</div>';
 
@@ -371,6 +390,12 @@ var MockExam = (function() {
     var retryBtn = document.getElementById('meRetryBtn');
     if (retryBtn) retryBtn.addEventListener('click', function() {
       resultEl.style.display = 'none';
+      if (_state && _state.quick) {
+        var q = _state.quick, lv = _state.level;
+        _state = _mkState(lv); _state.quick = q;
+        _startExam();
+        return;
+      }
       var savedLevel = _state.level;
       _state = _mkState(savedLevel);
       var setupEl = document.getElementById('meSetup');
@@ -384,7 +409,8 @@ var MockExam = (function() {
 
     var backBtn = document.getElementById('meBackBtn');
     if (backBtn) backBtn.addEventListener('click', function() {
-      if (typeof Router !== 'undefined') Router.navigateTo('practice');
+      var dest = (_state && _state.quick) ? 'course' : 'practice';
+      if (typeof Router !== 'undefined') Router.navigateTo(dest);
     });
   }
 
@@ -406,7 +432,7 @@ var MockExam = (function() {
   // ── Start exam from setup ─────────────────────────────
   function _startExam() {
     if (!_state) return;
-    var cfg = EXAM_CONFIG[_state.level];
+    var cfg = _cfg(_state.level);
     if (!cfg) return;
 
     var questions = _buildQuestions(_state.level);
@@ -436,7 +462,8 @@ var MockExam = (function() {
       if (confirm('Bỏ bài thi? Kết quả sẽ không được lưu.')) {
         _stopTimer();
         if (window.speechSynthesis) window.speechSynthesis.cancel();
-        if (typeof Router !== 'undefined') Router.navigateTo('practice');
+        var dest = (_state && _state.quick) ? 'course' : 'practice';
+        if (typeof Router !== 'undefined') Router.navigateTo(dest);
       }
     });
 
@@ -464,6 +491,23 @@ var MockExam = (function() {
     // Clean up any running timer from a previous visit
     if (_state) _stopTimer();
     if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+    // Handoff từ lộ trình: ải chương / trùm cấp → chạy mini-mock ngay
+    try {
+      var raw = sessionStorage.getItem('hsk_course_checkpoint');
+      if (raw) {
+        sessionStorage.removeItem('hsk_course_checkpoint');
+        var cp  = JSON.parse(raw);
+        var per = Math.max(3, Math.round((cp.count || 10) / 2));
+        _state = _mkState(cp.level);
+        _state.quick = {
+          key: cp.key, isBoss: !!cp.isBoss, title: cp.title || ('HSK ' + cp.level),
+          cfg: { listen: per, read: per, totalMin: Math.max(5, per), label: cp.title || ('HSK ' + cp.level) }
+        };
+        _startExam();
+        return;
+      }
+    } catch (e) {}
 
     _state = _mkState(1);
 

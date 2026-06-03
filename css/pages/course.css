@@ -1121,6 +1121,18 @@
 .cs-node-row--done .cs-node-row-title { color: var(--fg-3); }
 .cs-node-row--locked { opacity: 0.55; }
 [data-theme="dark"] .cs-node-row:hover { background: rgba(255,255,255,0.05); }
+
+/* Output checkpoint: ải chương + trùm cấp (Lát 2) */
+.cs-checkpoint-wrap {
+  margin: 4px 0 4px 14px;
+  padding-left: 14px;
+  border-left: 2px dashed var(--border-2);
+}
+.cs-node-row--checkpoint .cs-node-row-title { font-weight: 700; }
+.cs-node-row--checkpoint:not(.cs-node-row--locked):not(.cs-node-row--done) .cs-node-row-title { color: var(--warning); }
+.cs-node-row--checkpoint[disabled] { cursor: default; }
+.cs-chapter--boss { border: 1px solid var(--warning); border-radius: 14px; padding: 10px 12px; }
+.cs-node-row--boss .cs-node-row-title { color: var(--warning); }
 [data-theme="dark"] .cs-tab { background: var(--card-bg, #1F2937); }
 /* Keep active tab amber in dark mode (must beat [data-theme] .cs-tab specificity) */
 [data-theme="dark"] .cs-tab--active {

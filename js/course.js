@@ -206,6 +206,7 @@ var Course = {
 
     // ── Chương + node (node hiện kèm tên bài) ─────────────
     var chapters = (levelCfg && levelCfg.chapters) ? levelCfg.chapters : [];
+    var checkpoints = Course._checkpoints();
     for (var ci = 0; ci < chapters.length; ci++) {
       var chapter = chapters[ci];
       var chapterIds = [];
@@ -256,6 +257,12 @@ var Course = {
       }
 
       html += '</div></div>'; // .cs-nodes, .cs-chapter
+      html += Course._aiNodeHTML(sel, ci, chapterDone, chapterTotal, checkpoints);
+    }
+
+    // Trùm cuối cấp — chỉ hiện khi đã xong hết bài của cấp
+    if (totalLessons > 0 && completedCount === totalLessons) {
+      html += Course._bossNodeHTML(sel, checkpoints);
     }
 
     html += '</div>'; // .cs-path
@@ -269,6 +276,75 @@ var Course = {
       if (!ok) return;
     }
     Course.loadLesson(id);
+  },
+
+  // ── Output checkpoint: ải chương + trùm cấp (Lát 2) ──────
+  _checkpoints: function() {
+    try { return JSON.parse(localStorage.getItem('hsk_course_checkpoints') || '{}'); }
+    catch (e) { return {}; }
+  },
+
+  // Mở mini-mock (ải) / mock đầy đủ (trùm) qua handoff sessionStorage
+  openCheckpoint: function(level, idx, isBoss) {
+    var key = 'hsk' + level + (isBoss ? '_boss' : '_ch' + idx);
+    var payload = {
+      level: level,
+      count: isBoss ? 16 : 10,
+      key: key,
+      isBoss: !!isBoss,
+      title: isBoss ? ('Trùm cấp HSK ' + level) : ('Ải Chương ' + (idx + 1))
+    };
+    try { sessionStorage.setItem('hsk_course_checkpoint', JSON.stringify(payload)); } catch (e) {}
+    if (typeof Router !== 'undefined') Router.navigateTo('mock-exam');
+  },
+
+  _aiNodeHTML: function(level, ci, done, total, cps) {
+    var key    = 'hsk' + level + '_ch' + ci;
+    var passed = !!(cps[key] && cps[key].passed);
+    var ready  = total > 0 && done >= total;
+    var cls = 'cs-node-row cs-node-row--checkpoint';
+    var icon, sub, circle = '', click = '';
+    if (passed) {
+      cls += ' cs-node-row--done'; icon = '✓'; circle = ' cs-node--done';
+      sub = 'Ải Chương ' + (ci + 1) + ' — đã đạt ✓';
+      click = 'Course.openCheckpoint(' + level + ',' + ci + ',false)';
+    } else if (ready) {
+      icon = '📝'; circle = ' cs-node--current';
+      sub = 'Ải Chương ' + (ci + 1) + ' — Thi thử Nghe + Đọc';
+      click = 'Course.openCheckpoint(' + level + ',' + ci + ',false)';
+    } else {
+      cls += ' cs-node-row--locked'; icon = '🔒'; circle = ' cs-node--locked';
+      sub = 'Ải Chương ' + (ci + 1) + ' — hoàn thành chương để mở';
+    }
+    return '<div class="cs-checkpoint-wrap"><button class="' + cls + '"' +
+      (click ? ' onclick="' + click + '"' : ' disabled') + '>' +
+      '<span class="cs-node' + circle + '"><span class="cs-node-icon">' + icon + '</span></span>' +
+      '<span class="cs-node-row-title">' + sub + '</span>' +
+    '</button></div>';
+  },
+
+  _bossNodeHTML: function(level, cps) {
+    var key    = 'hsk' + level + '_boss';
+    var passed = !!(cps[key] && cps[key].passed);
+    var icon   = passed ? '✓' : '🏆';
+    var circle = passed ? ' cs-node--done' : ' cs-node--current';
+    var sub    = passed
+      ? ('Trùm cấp HSK ' + level + ' — đã chinh phục ✓')
+      : ('Trùm cấp HSK ' + level + ' — Mock đầy đủ');
+    var band = level <= 2 ? 'Sơ cấp' : level <= 4 ? 'Trung cấp' : 'Cao cấp';
+    return '<div class="cs-chapter cs-chapter--boss">' +
+      '<div class="cs-chapter-header"><span class="cs-chapter-label">🏁 Trạm cuối cấp</span></div>' +
+      '<div class="cs-nodes cs-nodes--list">' +
+        '<button class="cs-node-row cs-node-row--checkpoint cs-node-row--boss' + (passed ? ' cs-node-row--done' : '') + '"' +
+          ' onclick="Course.openCheckpoint(' + level + ',0,true)">' +
+          '<span class="cs-node' + circle + '"><span class="cs-node-icon">' + icon + '</span></span>' +
+          '<span class="cs-node-row-title">' + sub + '</span>' +
+        '</button>' +
+        '<button class="cs-node-row cs-node-row--checkpoint" onclick="Router.navigateTo(\'hskk\')">' +
+          '<span class="cs-node"><span class="cs-node-icon">🎙️</span></span>' +
+          '<span class="cs-node-row-title">Luyện thi nói HSKK ' + band + '</span>' +
+        '</button>' +
+      '</div></div>';
   },
 
   loadLesson: function(id) {

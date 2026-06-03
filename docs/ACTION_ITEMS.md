@@ -24,6 +24,21 @@
 
 ---
 
+## ✅ Đợt "đạt chuẩn giáo trình HSK 1" — DONE + DEPLOYED 2026-06-03
+
+> Push `5aef5b7..1b22057` → origin/main → Cloudflare. Đã verify gộp + `node --check`.
+> Gồm: bài tập chấm thật + SRS + explain · vocab EN · objectives + grammarNotes (QA pass) · cross-link pinyin · HSKK luyện từng phần · prep ảnh+đề HSKK 中级.
+
+### 🔜 Việc tiếp theo (xếp ROI) — chưa làm
+1. **Rải A1+A2+A3 qua HSK 2/3/4** (`course-hsk2/3/4.js`): objectives + grammarNotes + vocab EN → toàn khóa đạt chuẩn (không chỉ HSK 1). Cao · cần QA grammar mỗi cấp. **← prompt Việc 1 đã soạn 2026-06-03.**
+2. **B-P2 Bài tập NGHE** (`listen` + `dictation`) — khoảng trống bài tập còn lại (giáo trình ~60% nghe). TB · dùng TTS sẵn.
+3. **HSKK 中级 build** — gen 50 ảnh 看图说话 (cài cwebp → gen → QA → `assets/hskk/zhongji/`) + wire `js/data/hskk/zhong-ji.js` vào `hskk.js`. Cao. Prep xong (`docs/plans/hskk-zhongji-kantu.md`).
+4. **A4 roleplay/shadow + sửa UX `order`** (click-to-append). TB.
+5. **A2 follow-up**: POS (CC-CEDICT/tay) + 6 cụm chưa có EN (中国人…). Thấp–TB.
+- **Quyết định treo:** xoá nhánh/worktree `compassionate-elgamal-c3ffe2` (474 từ HSK 2.0, KHÔNG merge; origin PUBLIC → chờ user OK).
+
+---
+
 ## 📚 Đối chiếu GIÁO TRÌNH CHUẨN + nâng cấp Bài tập & HSKK (review 2026-06-03)
 
 > Nguồn đối chiếu: 《新HSK教程1》(FLTRP, 1/2026) + 《HSK1 学练手册》(demo PDF user gửi).
@@ -35,7 +50,7 @@
 
 - ☑ **A1 · Mục tiêu bài (Objectives) DONE 2026-06-03** (merge `763bc3a`) — field `objectives:[]` (2–4 mục) cho cả 30/30 bài HSK 1; render khối "🎯 Mục tiêu bài này" trong `_renderIntro`.
 - ☑ **A2 · Vocab nghĩa tiếng Anh DONE 2026-06-03** — auto-fill field `e` cho vocab `course-hsk1.js` từ `HSK3_DATA` (script `scripts/fill_course_en.py`, map h→e từ 9 file hsk3_lvl*). 532/538 khớp; 6 cụm để trống (KHÔNG bịa): 中国人/越南人/雨伞/看书/做题/第一. Render dòng `.cs-vc-en` khi có `.e`. **CÒN LẠI (chưa làm):** (1) **POS/từ loại** — `HSK3_DATA` KHÔNG có (field `t` = chủ đề), cần nguồn riêng (CC-CEDICT/nhập tay); (2) 6 từ trống bổ sung tay nếu muốn 100%; (3) chạy script tương tự cho `course-hsk2/3/4.js` khi cần.
-- ☑ **A3 · Ngữ pháp tường minh trong bài (小语讲堂) DONE 2026-06-03** (merge `763bc3a`) — field `grammarNotes:[{point,explain,examples:[{zh,py,vi}]}]` (1–3 điểm/bài, ví dụ lấy/biến từ chính bài) cho cả 30/30 bài; `_grammarNotesHTML`/`_showGrammar`/`_closeGrammar` → nút "📘 Ngữ pháp bài" mở modal ở intro + khối ở `_renderComplete`. ⚠️ **CÒN: user QA độ chính xác** danh sách điểm ngữ pháp 30 bài (xem bảng trong báo cáo session) — đặc biệt lượng từ + bổ ngữ.
+- ☑ **A3 · Ngữ pháp tường minh trong bài (小语讲堂) DONE 2026-06-03** (merge `763bc3a`) — field `grammarNotes:[{point,explain,examples:[{zh,py,vi}]}]` (1–3 điểm/bài, ví dụ lấy/biến từ chính bài) cho cả 30/30 bài; `_grammarNotesHTML`/`_showGrammar`/`_closeGrammar` → nút "📘 Ngữ pháp bài" mở modal ở intro + khối ở `_renderComplete`. ☑ **QA DONE 2026-06-03** (commit `1b22057`, independent Opus review): data tự sinh chuẩn — chỉ 2 sửa nghĩa tiếng Việt (Bài 1 他=anh ấy; Bài 18 "nhìn thấy **được** rồi"), lượng từ/bổ ngữ/比/了/着 đều đúng → grammarNotes an toàn để dạy. `course-hsk1.js?v=1.1`.
 - ☐ **A4 · Task sản sinh — đóng vai (角色扮演) + đọc to (跟读)** — giáo trình có roleplay + shadow cuối bài; app thay bằng MCQ `choice` (chỉ nhận biết). → thêm step `roleplay`/`shadow`, tận dụng TTS + ghi âm Speaking (`speech-proxy`) đã có.
 - ☑ **A5 · Cross-link ngữ âm pinyin DONE 2026-06-03** (merge `763bc3a`) — card "🔤 Chưa chắc pinyin? Ôn nhanh" ở `_renderIntro` CHỈ Bài 1 → 3 nút link HSK 0 (`hsk0-pinyin-initials`/`finals`/`strokes`). Không build lại data.
 

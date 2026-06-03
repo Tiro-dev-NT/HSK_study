@@ -75,7 +75,7 @@
 > Khơi từ video TikTok competitor (app shadowing). **App ĐÃ CÓ lõi**: Speaking Shadowing (Phase R.1, `/speaking`, chấm `sent.eval.cn` per-syllable THẬT qua SpeechSuper) — mạnh hơn lời quảng cáo chung của video. Video lộ ra vài cải tiến + dịp đối chiếu SuperChinese.
 
 ### Cải tiến Shadowing (`js/speaking.js`) — chưa làm
-- ☐ **Toggle bật/tắt pinyin** *(rẻ nhất, ưu tiên)* — luyện nhớ chữ Hán; hiện shadowing LUÔN hiện pinyin, không toggle (grep `pinyin`/`togglePinyin` = 0). Chỉ sửa `speaking.js` + CSS.
+- ☑ **Toggle bật/tắt pinyin DONE 2026-06-03** (merge `b1c06e0`, `speaking.js?v=1.1` · `speaking.css?v=1.1`): nút `#spPinyinToggle` ở `.sp-line-card`, state `_showPinyin` lưu localStorage `speaking_show_pinyin` (mặc định ON), ẩn `#spLinePinyin` khi off (chữ Hán + nghĩa vẫn còn). Verify: on/off + nhớ qua reload, 0 lỗi console.
 - ☐ **Chạm từ → tra nghĩa (cả mobile/tablet)** — "từ mới tra dc liền luôn". `lookup-panel.js` hiện **desktop-only ≥1024px** + CHƯA gắn vào `/speaking` (`data-lookup`=0). Tách chữ Hán trong câu thành tappable → popup pinyin+nghĩa+TTS+SRS chạy cả cảm ứng.
 - ☐ **(Tuỳ chọn) Nhân vật Mai biểu cảm** mỗi câu — ấm/immersive (sprite sẵn `assets/mai/expressions`).
 - ☐ **(Sau) "AI phân tích từ"** — phân tích sâu 1 từ qua `ai-proxy` (tốn credit, để sau).

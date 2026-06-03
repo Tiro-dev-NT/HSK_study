@@ -41,6 +41,8 @@ var HSKK = (function () {
   var _totalTimer = null, _phaseTimer = null;
   var _totalLeft = 0;
   var _running = false;
+  var _practiceMode = false;
+  var _practicePartType = '';
 
   // ── Helpers ────────────────────────────────────────────────────────────
   function $(id) { return document.getElementById(id); }
@@ -91,6 +93,18 @@ var HSKK = (function () {
     };
     // Warm Pro cache để biết hiện nút đúng (không chặn render)
     if (window.Monetization && Monetization.isPro) Monetization.isPro();
+    // Practice buttons
+    var p1Btn = $('hskkPracticeP1');
+    var p2Btn = $('hskkPracticeP2');
+    var p3Btn = $('hskkPracticeP3');
+    if (p1Btn) p1Btn.onclick = function () { _startPractice('repeat'); };
+    if (p2Btn) p2Btn.onclick = function () { _startPractice('respond'); };
+    if (p3Btn) p3Btn.onclick = function () { _startPractice('open'); };
+    var pSetupBack = $('hskkPSetupBack');
+    if (pSetupBack) pSetupBack.onclick = function () {
+      _show($('hskkPracticeSetup'), false);
+      _show($('hskkIntro'), true);
+    };
   }
 
   // ── Kiểm tra micro ───────────────────────────────────────────────────
@@ -104,6 +118,104 @@ var HSKK = (function () {
     } catch (e) {
       if (st) { st.textContent = '✕ Không truy cập được micro — kiểm tra quyền trình duyệt.'; st.className = 'hskk-mic-status hskk-mic-err'; }
     }
+  }
+
+  // ═══════════ LUYỆN TỪNG PHẦN ═══════════
+  function _startPractice(partType) {
+    var cfg = QTYPE[partType];
+    var pool = partType === 'repeat' ? HSKK_SOCAP.part1
+             : partType === 'respond' ? HSKK_SOCAP.part2
+             : HSKK_SOCAP.part3;
+    var totalPool = (pool || []).length;
+
+    _show($('hskkIntro'), false);
+    _show($('hskkPracticeSetup'), true);
+
+    var titleEl = $('hskkPSetupTitle');
+    if (titleEl) titleEl.textContent = 'Luyện ' + cfg.part + ' · ' + cfg.partVi;
+
+    var creditEl = $('hskkPSetupCredit');
+    if (creditEl) {
+      if (partType === 'repeat') {
+        creditEl.style.display = '';
+        creditEl.innerHTML = '⚠️ Phần 1 dùng AI chấm — tốn <b>1 AI Credit / câu</b>. Chọn số câu để xem tổng.';
+      } else {
+        creditEl.style.display = 'none';
+      }
+    }
+
+    var btns = document.querySelectorAll('#hskkCountBtns [data-count]');
+    btns.forEach(function (btn) {
+      var c = btn.getAttribute('data-count');
+      var n = c === 'all' ? totalPool : Math.min(parseInt(c, 10), totalPool);
+      var tooMany = (c !== 'all' && parseInt(c, 10) > totalPool);
+
+      btn.disabled = tooMany;
+      btn.style.opacity = tooMany ? '0.4' : '';
+      btn.textContent = c === 'all'
+        ? 'Tất cả (' + totalPool + ' câu)'
+        : (tooMany ? parseInt(c, 10) + ' câu' : n + ' câu');
+
+      if (tooMany) { btn.onclick = null; return; }
+
+      btn.onclick = function () {
+        if (partType === 'repeat') {
+          if (!confirm('Phần 1 sẽ tốn tối đa ' + n + ' AI Credit (1 credit/câu). Tiếp tục?')) return;
+        }
+        _doPractice(partType, n);
+      };
+
+      if (partType === 'repeat' && creditEl) {
+        btn.onmouseenter = function () {
+          creditEl.innerHTML = '⚠️ Chọn <b>' + n + ' câu</b> = tốn tối đa <b>' + n + ' AI Credit</b>';
+        };
+        btn.onmouseleave = function () {
+          creditEl.innerHTML = '⚠️ Phần 1 dùng AI chấm — tốn <b>1 AI Credit / câu</b>. Chọn số câu để xem tổng.';
+        };
+      }
+    });
+
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+
+  async function _doPractice(partType, count) {
+    // 1. Đăng nhập
+    var token = await _token();
+    if (!token) { _toast('Đăng nhập để dùng HSKK Luyện nói nhé.'); return; }
+
+    // 2. Pro-gate (tái dùng y _onStart)
+    if (window.Monetization && Monetization.isPro) {
+      var pro = await Monetization.isPro();
+      if (!pro) { Monetization.showGate('HSKK Luyện nói'); return; }
+    }
+
+    // 3. Mic
+    try {
+      _stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (e) {
+      _toast('Cần quyền micro để luyện. Hãy bật micro rồi thử lại.');
+      return;
+    }
+    _pickMime();
+    _setupAnalyser();
+
+    // 4. Dựng bài luyện — toàn bộ pool phần đó, không random cắt
+    var pool = partType === 'repeat' ? HSKK_SOCAP.part1
+             : partType === 'respond' ? HSKK_SOCAP.part2
+             : HSKK_SOCAP.part3;
+    _exam = (pool || []).slice(0, count).map(function (q) { return { q: q, type: partType }; });
+    _idx = 0;
+    _answers = [];
+    _running = true;
+    _practiceMode = true;
+    _practicePartType = partType;
+
+    _show($('hskkPracticeSetup'), false);
+    _show($('hskkResult'), false);
+    _show($('hskkExam'), true);
+    // KHÔNG chạy _totalTimer trong chế độ luyện
+
+    _enterQuestion(0);
   }
 
   // ═══════════ BẮT ĐẦU THI ═══════════
@@ -199,10 +311,14 @@ var HSKK = (function () {
 
     // Header
     $('hskkPartLabel').textContent = cfg.part;
-    $('hskkQNum').textContent = 'Câu ' + (i + 1) + '/' + _exam.length;
+    $('hskkQNum').textContent = _practiceMode
+      ? ('Luyện · Câu ' + (i + 1) + '/' + _exam.length)
+      : ('Câu ' + (i + 1) + '/' + _exam.length);
     $('hskkPartDesc').textContent = cfg.partVi + ' · ' + cfg.desc;
     var pct = (i / _exam.length) * 100;
     $('hskkProgressFill').style.width = pct + '%';
+    // Ẩn đồng hồ tổng trong chế độ luyện (không có giới hạn thời gian)
+    _show($('hskkTotalTimer'), !_practiceMode);
 
     // Reset vùng câu hỏi
     var showText = (item.type === 'open'); // phần 3 in đề; phần 1/2 chỉ nghe
@@ -219,6 +335,7 @@ var HSKK = (function () {
     _show($('hskkRecBtn'), false);
     _show($('hskkStopBtn'), false);
     _show($('hskkReplayBtn'), false);
+    _show($('hskkRedoBtn'), false);
     _show($('hskkNextBtn'), false);
     _show($('hskkWave'), false);
 
@@ -296,9 +413,19 @@ var HSKK = (function () {
     _show(replay, !!url);
     replay.onclick = function () { try { new Audio(url).play(); } catch (e) {} };
 
+    // Luyện tập: nút làm lại câu hiện tại
+    var redo = $('hskkRedoBtn');
+    if (_practiceMode && redo) {
+      _show(redo, true);
+      redo.onclick = function () {
+        _show(redo, false);
+        _enterQuestion(_idx);
+      };
+    }
+
     var next = $('hskkNextBtn');
     var last = (_idx >= _exam.length - 1);
-    next.textContent = last ? 'Nộp bài →' : 'Câu tiếp →';
+    next.textContent = last ? (_practiceMode ? 'Xem kết quả →' : 'Nộp bài →') : 'Câu tiếp →';
     _show(next, true);
     next.onclick = function () {
       if (last) _finish();
@@ -512,12 +639,17 @@ var HSKK = (function () {
       circle.style.setProperty('--hskk-pct', overall == null ? 0 : (overall / 100).toFixed(3));
     }
     var verdict = $('hskkScoreVerdict'), sub = $('hskkScoreSub');
+    var modeLabel = _practiceMode
+      ? ('Luyện ' + (QTYPE[_practicePartType] ? QTYPE[_practicePartType].part + ' · ' + QTYPE[_practicePartType].partVi : '') + ' · ')
+      : '';
     if (overall == null) {
       if (verdict) verdict.textContent = practiceCount ? 'Đã ghi âm phần luyện tập' : 'Chưa chấm được câu nào';
-      if (sub) sub.textContent = practiceCount ? 'Phần trả lời mở sẽ có chấm AI khi mở tính năng nói tự do.' : 'Có thể bạn chưa nói, hoặc hết AI Credit. Thử lại nhé.';
+      if (sub) sub.textContent = modeLabel + (practiceCount
+        ? 'Phần trả lời mở sẽ có chấm AI khi mở tính năng nói tự do.'
+        : 'Có thể bạn chưa nói, hoặc hết AI Credit. Thử lại nhé.');
     } else {
       if (verdict) verdict.textContent = overall >= 80 ? 'Rất tốt! 🎉' : overall >= 60 ? 'Đạt — tiếp tục luyện 👍' : 'Cần luyện thêm 💪';
-      if (sub) sub.textContent = 'Đã chấm ' + scored + '/' + gradableTotal + ' câu có chấm AI · điểm đạt HSKK thường ~60/100.';
+      if (sub) sub.textContent = modeLabel + 'Đã chấm ' + scored + '/' + gradableTotal + ' câu có chấm AI · điểm đạt HSKK thường ~60/100.';
     }
 
     // Breakdown phát âm / trôi chảy
@@ -583,8 +715,8 @@ var HSKK = (function () {
       });
     }
 
-    // Lưu lịch sử (chỉ metadata)
-    if (overall != null) {
+    // Lưu lịch sử (chỉ thi thật, không lưu phiên luyện từng phần)
+    if (!_practiceMode && overall != null) {
       _saveHistory({
         ts: Date.now(), level: 'so-cap', overall: overall,
         pron: _avg(pron), flu: _avg(flu), scored: scored, total: _exam.length
@@ -619,9 +751,12 @@ var HSKK = (function () {
 
   function _resetToIntro() {
     _revokeUrls();
+    _practiceMode = false;
+    _practicePartType = '';
     _show($('hskkExam'), false);
     _show($('hskkGrading'), false);
     _show($('hskkResult'), false);
+    _show($('hskkPracticeSetup'), false);
     _show($('hskkIntro'), true);
     _renderHistory();
     try { window.scrollTo(0, 0); } catch (e) {}

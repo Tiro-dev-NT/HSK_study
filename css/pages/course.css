@@ -1133,6 +1133,8 @@
 .cs-node-row--checkpoint[disabled] { cursor: default; }
 .cs-chapter--boss { border: 1px solid var(--warning); border-radius: 14px; padding: 10px 12px; }
 .cs-node-row--boss .cs-node-row-title { color: var(--warning); }
+/* Ôn tổng hợp xen kẽ (Lát 4) — accent primary để phân biệt với ải/trùm (warning) */
+.cs-node-row--checkpoint.cs-node-row--review:not(.cs-node-row--locked):not(.cs-node-row--done) .cs-node-row-title { color: var(--primary); }
 [data-theme="dark"] .cs-tab { background: var(--card-bg, #1F2937); }
 /* Keep active tab amber in dark mode (must beat [data-theme] .cs-tab specificity) */
 [data-theme="dark"] .cs-tab--active {

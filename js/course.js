@@ -207,6 +207,8 @@ var Course = {
     // ── Chương + node (node hiện kèm tên bài) ─────────────
     var chapters = (levelCfg && levelCfg.chapters) ? levelCfg.chapters : [];
     var checkpoints = Course._checkpoints();
+    var lessonSeq = 0;   // đếm bài xuyên chương → chèn "Ôn tổng hợp" mỗi ~5 bài (Lát 4)
+    var lastOverallId = ids.length ? ids[ids.length - 1] : null;
     for (var ci = 0; ci < chapters.length; ci++) {
       var chapter = chapters[ci];
       var chapterIds = [];
@@ -254,6 +256,13 @@ var Course = {
           '<span class="' + circleClass + '"><span class="cs-node-icon">' + nodeIcon + '</span></span>' +
           '<span class="cs-node-row-title">Bài ' + nid + ' — ' + escapeHtml(lesson.title) + '</span>' +
         '</button>';
+
+        // ── Ôn tổng hợp xen kẽ (Lát 4): mỗi ~5 bài kéo từ bài CŨ về ──
+        lessonSeq++;
+        var isLastInChapter = (k === chapterIds.length - 1);
+        if (lessonSeq % 5 === 0 && !isLastInChapter && nid !== lastOverallId) {
+          html += Course._reviewNodeHTML(sel, nid, lessonSeq / 5, progress);
+        }
       }
 
       html += '</div></div>'; // .cs-nodes, .cs-chapter
@@ -345,6 +354,61 @@ var Course = {
           '<span class="cs-node-row-title">Luyện thi nói HSKK ' + band + '</span>' +
         '</button>' +
       '</div></div>';
+  },
+
+  // ── Ôn tổng hợp xen kẽ (Lát 4) ───────────────────────────
+  // Khác "ải chương" (kiểm bài hiện tại): node này gom vocab các BÀI ĐÃ HỌC
+  // trước điểm chèn → trộn lại (interleaving + spaced retrieval), kéo bài cũ về.
+  _reviewWords: function(level, uptoId) {
+    var out = [], seen = {};
+    if (typeof COURSE_DATA === 'undefined') return out;
+    var progress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
+    var ids = Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; });
+    for (var i = 0; i < ids.length; i++) {
+      var id = ids[i];
+      if (id > uptoId || Course._levelOf(id) !== level) continue;
+      if (!(progress[id] && progress[id].completed)) continue;
+      var voc = (COURSE_DATA[id] && COURSE_DATA[id].vocab) || [];
+      for (var j = 0; j < voc.length; j++) {
+        var w = voc[j];
+        if (w && w.h && !seen[w.h]) {
+          seen[w.h] = 1;
+          out.push({ h: w.h, p: w.p || '', v: w.v || w.e || '' });
+        }
+      }
+    }
+    return out;
+  },
+
+  // Mở quiz ôn trộn — tái dùng override Phase Q (như MistakeBook.review)
+  openReview: function(level, uptoId) {
+    var words = Course._reviewWords(level, uptoId);
+    if (!words.length) return;
+    if (typeof shuffle === 'function') words = shuffle(words);
+    if (words.length > 20) words = words.slice(0, 20);   // giữ phiên ngắn, trộn ngẫu nhiên
+    try { sessionStorage.setItem('hsk_quiz_override_words', JSON.stringify(words)); } catch (e) {}
+    if (typeof Router !== 'undefined') Router.navigateTo('quiz');
+  },
+
+  _reviewNodeHTML: function(level, uptoId, seq, progress) {
+    var ready = !!(progress[uptoId] && progress[uptoId].completed);
+    var cls = 'cs-node-row cs-node-row--checkpoint cs-node-row--review';
+    var icon, sub, circle, click = '';
+    if (ready) {
+      var n = Course._reviewWords(level, uptoId).length;
+      if (n < 4) return '';   // chưa đủ từ để ôn có ý nghĩa — bỏ qua node
+      icon = '🔄'; circle = ' cs-node--current';
+      sub = 'Ôn tổng hợp #' + seq + ' — trộn ' + Math.min(n, 20) + ' từ các bài đã học';
+      click = 'Course.openReview(' + level + ',' + uptoId + ')';
+    } else {
+      cls += ' cs-node-row--locked'; icon = '🔒'; circle = ' cs-node--locked';
+      sub = 'Ôn tổng hợp #' + seq + ' — học các bài trước để mở';
+    }
+    return '<div class="cs-checkpoint-wrap"><button class="' + cls + '"' +
+      (click ? ' onclick="' + click + '"' : ' disabled') + '>' +
+      '<span class="cs-node' + circle + '"><span class="cs-node-icon">' + icon + '</span></span>' +
+      '<span class="cs-node-row-title">' + sub + '</span>' +
+    '</button></div>';
   },
 
   loadLesson: function(id) {

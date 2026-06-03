@@ -2176,3 +2176,592 @@ Object.assign(COURSE_DATA, {
   }
 
 });
+
+// ───────────────────────────────────────────────────────
+// BATCH 5 — Bài 139-143 (Đồ dùng · Cơ thể · Ẩm thực) — sau kỳ thực tập
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 139: Đồ dùng & thiết bị (1) — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  139: {
+    id: 139,
+    level: 4,
+    title: 'Đồ dùng & thiết bị (1)',
+    context: 'Kỳ thực tập kết thúc, Mai đặt vé máy bay về nhà. Tiểu Mỹ giúp em soạn hành lý, hai người trò chuyện về quãng thời gian đã qua.',
+    vocabPreview: ['航班', '轻松', '聊天', '好友', '没错'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng trọ · Tối', bg: 'dorm-room',
+        cast: ['mai', 'xiaomei'],
+        text: 'Kỳ thực tập kết thúc, Mai chuẩn bị về nhà.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '实习结束了，我订了回家的航班，心情很轻松。',
+        pinyin: 'Shíxí jiéshù le, wǒ dìng le huí jiā de hángbān, xīnqíng hěn qīngsōng.',
+        meaning: 'Thực tập xong rồi, tớ đặt vé chuyến bay về nhà, tâm trạng rất thoải mái.',
+        expression: 'happy', vocab: ['航班', '轻松'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我帮你收拾，毛衣、袜子放进袋子里。',
+        pinyin: 'Wǒ bāng nǐ shōushi, máoyī, wàzi fàng jìn dàizi lǐ.',
+        meaning: 'Tớ giúp cậu thu xếp, áo len với tất bỏ vào túi.',
+        expression: 'happy', vocab: ['毛衣', '袜子', '袋'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '谢谢！毛巾、镜子放盒子里，别用太多塑料袋。',
+        pinyin: 'Xièxie! Máojīn, jìngzi fàng hézi lǐ, bié yòng tài duō sùliàodài.',
+        meaning: 'Cảm ơn! Khăn mặt, gương để vào hộp, đừng dùng nhiều túi ni lông.',
+        expression: 'happy', vocab: ['毛巾', '镜子', '盒子', '塑料袋'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '无论多忙，我都想和好友聊天。',
+        pinyin: 'Wúlùn duō máng, wǒ dōu xiǎng hé hǎoyǒu liáotiān.',
+        meaning: 'Dù bận đến đâu, tớ cũng muốn trò chuyện với bạn thân.',
+        expression: 'happy', vocab: ['无论', '好友', '聊天'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我们这伙人感情真好，你付出了很多。',
+        pinyin: 'Wǒmen zhè huǒ rén gǎnqíng zhēn hǎo, nǐ fùchū le hěn duō.',
+        meaning: 'Nhóm bọn mình tình cảm thật tốt, cậu đã bỏ ra rất nhiều.',
+        expression: 'happy', vocab: ['伙', '付出'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '天冷我穿上毛衣，戴上帽子。走前我拉开窗帘，关了电灯。',
+        pinyin: 'Tiān lěng wǒ chuānshang máoyī, dài shàng màozi. Zǒu qián wǒ lākāi chuānglián, guān le diàndēng.',
+        meaning: 'Trời lạnh tôi mặc áo len, đội mũ. Trước khi đi tôi kéo rèm, tắt đèn điện.',
+        expression: 'focused', vocab: ['穿上', '戴', '拉开', '电灯'] },
+      { type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'dorm-room',
+        scene: '📍 Phòng trọ',
+        expression: 'happy',
+        q: 'Tiểu Mỹ khen kế hoạch của Mai. Mai đồng tình "Đúng vậy, không sai chút nào". Câu nào đúng?',
+        options: [
+          { text: '没错，就是这样。', pinyin: 'Méi cuò, jiùshì zhèyàng.', meaning: 'Đúng rồi, chính là như vậy.', correct: true,
+            feedback: 'Đúng! 没错 = đúng rồi / không sai.' },
+          { text: '反映，就是这样。', pinyin: 'Fǎnyìng, jiùshì zhèyàng.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '反映 = phản ánh (tình hình), không phải "đúng vậy".' },
+          { text: '无论，就是这样。', pinyin: 'Wúlùn, jiùshì zhèyàng.', meaning: '(không thông)', correct: false,
+            feedback: '无论 = bất kể, không dùng đứng một mình thế này.' }
+        ], vocab: ['没错', '反映', '无论'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '对了，老师让我写报告，反映实习的情况。',
+        pinyin: 'Duìle, lǎoshī ràng wǒ xiě bàogào, fǎnyìng shíxí de qíngkuàng.',
+        meaning: 'À đúng rồi, thầy bảo tớ viết báo cáo, phản ánh tình hình thực tập.',
+        expression: null, vocab: ['反映'] },
+      { type: 'checkpoint', questions: [
+        { q: '“航班” nghĩa là?', options: ['Chuyến bay', 'Túi nhựa', 'Áo len', 'Gương'], answer: 0 },
+        { q: '“没错” biểu thị?', options: ['Đúng rồi', 'Sai rồi', 'Có lẽ', 'Không biết'], answer: 0 },
+        { q: '“无论多忙” — “无论” nghĩa là?', options: ['Bất kể, dù', 'Bởi vì', 'Tuy nhiên', 'Nếu'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '戴', p: 'dài', v: 'đeo, đội' },
+      { h: '反映', p: 'fǎn yìng', v: 'phản ánh' },
+      { h: '航班', p: 'háng bān', v: 'chuyến bay' },
+      { h: '盒子', p: 'hé zi', v: 'hộp' },
+      { h: '镜子', p: 'jìng zi', v: 'gương' },
+      { h: '聊天', p: 'liáo tiān', v: 'trò chuyện, tán gẫu' },
+      { h: '毛巾', p: 'máo jīn', v: 'khăn mặt' },
+      { h: '轻松', p: 'qīng sōng', v: 'thoải mái, nhẹ nhàng' },
+      { h: '塑料袋', p: 'sù liào dài', v: 'túi ni lông' },
+      { h: '袜子', p: 'wà zi', v: 'tất, bít tất' },
+      { h: '无论', p: 'wú lùn', v: 'dù thế nào, bất kể' },
+      { h: '穿上', p: 'chuān shang', v: 'mặc vào, đi vào' },
+      { h: '袋', p: 'dài', v: 'túi, bao' },
+      { h: '电灯', p: 'diàn dēng', v: 'đèn điện' },
+      { h: '付出', p: 'fù chū', v: 'bỏ ra, cống hiến' },
+      { h: '好友', p: 'hǎo yǒu', v: 'bạn tốt, bạn thân' },
+      { h: '伙', p: 'huǒ', v: 'nhóm, bọn' },
+      { h: '拉开', p: 'lā kāi', v: 'kéo ra, mở ra' },
+      { h: '毛衣', p: 'máo yī', v: 'áo len' },
+      { h: '没错', p: 'méi cuò', v: 'đúng rồi, không sai' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我订了回家的___。', options: ['航班', '镜子', '毛巾'], answer: '航班' },
+        { type: 'fill', sentence: '天冷要穿___。', options: ['毛衣', '盒子', '电灯'], answer: '毛衣' },
+        { type: 'fill', sentence: '别用太多___，污染环境。', options: ['塑料袋', '好友', '航班'], answer: '塑料袋' },
+        { type: 'fill', sentence: '我想和___聊天。', options: ['好友', '袜子', '镜子'], answer: '好友' },
+        { type: 'fill', sentence: '走前关了___。', options: ['电灯', '毛衣', '盒子'], answer: '电灯' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '实习结束，心情很___。', options: ['轻松', '无论', '付出'], answer: '轻松' },
+        { type: 'fill', sentence: '毛巾、镜子放___里。', options: ['盒子', '航班', '伙'], answer: '盒子' },
+        { type: 'fill', sentence: '你为大家___了很多。', options: ['付出', '聊天', '拉开'], answer: '付出' },
+        { type: 'fill', sentence: '我___窗帘，让阳光进来。', options: ['拉开', '穿上', '反映'], answer: '拉开' },
+        { type: 'order', words: ['无论', '多', '忙', '我', '都', '想', '聊天'], answer: '无论多忙我都想聊天' },
+        { type: 'order', words: ['我', '穿上', '毛衣', '戴上', '帽子'], answer: '我穿上毛衣戴上帽子' },
+        { type: 'fill', sentence: '袜子放进___里。', options: ['袋', '镜子', '电灯'], answer: '袋' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '你说得对，___。', options: ['没错', '反映', '无论'], answer: '没错' },
+        { type: 'fill', sentence: '写报告___实习的情况。', options: ['反映', '付出', '穿上'], answer: '反映' },
+        { type: 'translate', prompt: 'Thực tập xong rồi, tâm trạng rất thoải mái.', answer: '实习结束了，心情很轻松。' },
+        { type: 'translate', prompt: 'Dù bận đến đâu, tôi cũng muốn trò chuyện với bạn thân.', answer: '无论多忙，我都想和好友聊天。' },
+        { type: 'translate', prompt: 'Trời lạnh tôi mặc áo len, đội mũ.', answer: '天冷我穿上毛衣，戴上帽子。' },
+        { type: 'fill', sentence: '我们这___人感情真好。', options: ['伙', '袋', '盒子'], answer: '伙' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 140: Đồ dùng & thiết bị (2) — 19 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  140: {
+    id: 140,
+    level: 4,
+    title: 'Đồ dùng & thiết bị (2)',
+    context: 'Buổi sáng trước chuyến bay, trời mưa. Mai dậy theo đồng hồ báo thức, chuẩn bị ô và áo khoác, nhắn tin cho bạn bè và nghe lời dặn của thầy Lý.',
+    vocabPreview: ['闹钟', '伞', '在于', '微信', '稳'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng trọ · Sáng sớm', bg: 'dorm-room',
+        cast: ['mai'],
+        text: 'Buổi sáng trước chuyến bay, trời mưa.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '闹钟响了，我醒来，外面下雨，得带伞。',
+        pinyin: 'Nàozhōng xiǎng le, wǒ xǐnglái, wàimiàn xià yǔ, děi dài sǎn.',
+        meaning: 'Đồng hồ báo thức kêu, tôi tỉnh dậy, ngoài trời mưa, phải mang ô.',
+        expression: 'focused', vocab: ['闹钟', '伞'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我用微信告诉你，路上很湿，小心。',
+        pinyin: 'Wǒ yòng wēixìn gàosu nǐ, lùshang hěn shī, xiǎoxīn.',
+        meaning: 'Tớ nhắn WeChat cho cậu, đường rất ướt, cẩn thận nhé.',
+        expression: 'curious', vocab: ['微信', '湿'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '谢谢。我穿上外套，戴好眼镜。',
+        pinyin: 'Xièxie. Wǒ chuānshang wàitào, dài hǎo yǎnjìng.',
+        meaning: 'Cảm ơn. Tôi mặc áo khoác, đeo kính cho ngay ngắn.',
+        expression: null, vocab: ['外套', '眼镜'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这家小型咖啡店的盘子很细，门口挂着牌子，用纸吸管。',
+        pinyin: 'Zhè jiā xiǎoxíng kāfēidiàn de pánzi hěn xì, ménkǒu guàzhe páizi, yòng zhǐ xīguǎn.',
+        meaning: 'Quán cà phê nhỏ này có những cái đĩa mỏng, ngoài cửa treo bảng, dùng ống hút giấy.',
+        expression: 'curious', vocab: ['小型', '盘子', '细', '牌', '吸管'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '成功在于坚持，别轻易放弃。',
+        pinyin: 'Chénggōng zàiyú jiānchí, bié qīngyì fàngqì.',
+        meaning: 'Thành công nằm ở sự kiên trì, đừng dễ dàng bỏ cuộc.',
+        expression: 'happy', vocab: ['在于', '轻易'] },
+      { type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'dorm-room',
+        scene: '📍 Phòng trọ',
+        expression: 'focused',
+        q: 'Tiểu Mỹ dặn Mai giữ lời hứa và đứng vững. Diễn đạt "Cậu phải giữ chữ tín, đứng cho vững" sao cho đúng?',
+        options: [
+          { text: '你要守信用，站稳一点。', pinyin: 'Nǐ yào shǒu xìnyòng, zhàn wěn yìdiǎn.', meaning: 'Cậu phải giữ chữ tín, đứng cho vững.', correct: true,
+            feedback: 'Đúng! 守 = giữ; 稳 = vững.' },
+          { text: '你要松信用，站稳一点。', pinyin: 'Nǐ yào sōng xìnyòng, zhàn wěn yìdiǎn.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '松 = lỏng/thư giãn, không hợp với "giữ chữ tín".' },
+          { text: '你要守信用，站松一点。', pinyin: 'Nǐ yào shǒu xìnyòng, zhàn sōng yìdiǎn.', meaning: '(không tự nhiên)', correct: false,
+            feedback: '"站松" không tự nhiên; nên dùng 站稳.' }
+        ], vocab: ['守', '稳', '松'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '行李有点重，我没法儿一个人提，不过无所谓，慢慢来。鞋上有泥，用刷子刷干净。',
+        pinyin: 'Xíngli yǒudiǎn zhòng, wǒ méifǎr yí ge rén tí, búguò wúsuǒwèi, mànman lái. Xié shàng yǒu ní, yòng shuāzi shuā gānjìng.',
+        meaning: 'Hành lý hơi nặng, tôi không thể một mình xách, nhưng không sao, từ từ. Giày dính bùn, dùng bàn chải chải sạch.',
+        expression: 'focused', vocab: ['没法儿', '无所谓', '刷子'] },
+      { type: 'checkpoint', questions: [
+        { q: '“闹钟” là gì?', options: ['Đồng hồ báo thức', 'Cái ô', 'Áo khoác', 'Cái đĩa'], answer: 0 },
+        { q: '“成功在于坚持” — “在于” nghĩa là?', options: ['Ở chỗ, nằm ở', 'Không thể', 'Dễ dàng', 'Cỡ nhỏ'], answer: 0 },
+        { q: '“站稳一点” — “稳” nghĩa là?', options: ['Vững', 'Lỏng lẻo', 'Ẩm ướt', 'Nhỏ'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '没法儿', p: 'méi fǎr', v: 'không có cách, đành chịu' },
+      { h: '闹钟', p: 'nào zhōng', v: 'đồng hồ báo thức' },
+      { h: '牌', p: 'pái', v: 'bảng, thẻ, bài' },
+      { h: '盘子', p: 'pán zi', v: 'đĩa' },
+      { h: '轻易', p: 'qīng yì', v: 'dễ dàng, khinh suất' },
+      { h: '伞', p: 'sǎn', v: 'ô, dù' },
+      { h: '湿', p: 'shī', v: 'ẩm ướt, bị ướt' },
+      { h: '守', p: 'shǒu', v: 'canh gác, giữ' },
+      { h: '刷子', p: 'shuā zi', v: 'bàn chải' },
+      { h: '松', p: 'sōng', v: 'thư giãn, lỏng' },
+      { h: '外套', p: 'wài tào', v: 'áo khoác ngoài' },
+      { h: '微信', p: 'wēi xìn', v: 'WeChat (ứng dụng nhắn tin)' },
+      { h: '稳', p: 'wěn', v: 'vững chắc, ổn định' },
+      { h: '无所谓', p: 'wú suǒ wèi', v: 'không quan tâm, không sao' },
+      { h: '吸管', p: 'xī guǎn', v: 'ống hút' },
+      { h: '细', p: 'xì', v: 'mỏng, nhỏ, chi tiết' },
+      { h: '小型', p: 'xiǎo xíng', v: 'cỡ nhỏ, loại nhỏ' },
+      { h: '眼镜', p: 'yǎn jìng', v: 'kính mắt' },
+      { h: '在于', p: 'zài yú', v: 'ở chỗ, nằm ở' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___响了，我该起床了。', options: ['闹钟', '盘子', '外套'], answer: '闹钟' },
+        { type: 'fill', sentence: '下雨了，记得带___。', options: ['伞', '牌', '刷子'], answer: '伞' },
+        { type: 'fill', sentence: '天冷穿上___。', options: ['外套', '吸管', '盘子'], answer: '外套' },
+        { type: 'fill', sentence: '我用___给你发消息。', options: ['微信', '伞', '闹钟'], answer: '微信' },
+        { type: 'fill', sentence: '我近视，要戴___。', options: ['眼镜', '盘子', '伞'], answer: '眼镜' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '成功___坚持。', options: ['在于', '小型', '无所谓'], answer: '在于' },
+        { type: 'fill', sentence: '别___放弃，再坚持一下。', options: ['轻易', '湿', '细'], answer: '轻易' },
+        { type: 'fill', sentence: '雨后路面很___。', options: ['湿', '稳', '松'], answer: '湿' },
+        { type: 'fill', sentence: '这是一家___咖啡店。', options: ['小型', '无所谓', '轻易'], answer: '小型' },
+        { type: 'order', words: ['你', '要', '守', '信用', '站稳', '一点'], answer: '你要守信用站稳一点' },
+        { type: 'order', words: ['成功', '在于', '坚持'], answer: '成功在于坚持' },
+        { type: 'fill', sentence: '鞋脏了，用___刷干净。', options: ['刷子', '盘子', '吸管'], answer: '刷子' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '行李太重，我___一个人提。', options: ['没法儿', '无所谓', '轻易'], answer: '没法儿' },
+        { type: 'fill', sentence: '怎样都行，我___。', options: ['无所谓', '没法儿', '在于'], answer: '无所谓' },
+        { type: 'translate', prompt: 'Đồng hồ báo thức kêu, tôi tỉnh dậy, ngoài trời mưa.', answer: '闹钟响了，我醒来，外面下雨。' },
+        { type: 'translate', prompt: 'Thành công nằm ở sự kiên trì, đừng dễ dàng bỏ cuộc.', answer: '成功在于坚持，别轻易放弃。' },
+        { type: 'translate', prompt: 'Cậu phải giữ chữ tín, đứng cho vững.', answer: '你要守信用，站稳一点。' },
+        { type: 'fill', sentence: '用纸做的___比塑料环保。', options: ['吸管', '闹钟', '外套'], answer: '吸管' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 141: Cơ thể & cảm giác (1) — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  141: {
+    id: 141,
+    level: 4,
+    title: 'Cơ thể & cảm giác (1)',
+    context: 'Trước khi về, Mai đi mua sắm ở trung tâm bách hóa và lo vài việc vặt. Em chăm sóc bản thân, dạo phố cùng Tiểu Mỹ và giữ vững quyết định của mình.',
+    vocabPreview: ['百货', '促销', '皮肤', '步行', '动摇'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Trung tâm bách hóa · Chiều', bg: 'shop',
+        cast: ['mai', 'xiaomei'],
+        text: 'Trước khi về, Mai đi trung tâm bách hóa mua sắm và lo việc.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '回家前我去百货商店办事，正好有促销。',
+        pinyin: 'Huí jiā qián wǒ qù bǎihuò shāngdiàn bànshì, zhènghǎo yǒu cùxiāo.',
+        meaning: 'Trước khi về nhà tôi đến trung tâm bách hóa lo việc, vừa hay có khuyến mãi.',
+        expression: 'happy', vocab: ['百货', '办事', '促销'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这家店在地下一层，我们步行过去。',
+        pinyin: 'Zhè jiā diàn zài dìxià yì céng, wǒmen bùxíng guòqù.',
+        meaning: 'Cửa hàng này ở tầng hầm, mình đi bộ qua.',
+        expression: null, vocab: ['地下', '步行'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我买了牙膏，皮肤干，也买了护肤品。',
+        pinyin: 'Wǒ mǎi le yágāo, pífū gān, yě mǎi le hùfūpǐn.',
+        meaning: 'Tôi mua kem đánh răng, da khô nên mua cả mỹ phẩm dưỡng da.',
+        expression: 'curious', vocab: ['牙膏', '皮肤'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '那个店员真帅，戴着耳机。货架后头有二手书，价格便宜。',
+        pinyin: 'Nàge diànyuán zhēn shuài, dàizhe ěrjī. Huòjià hòutou yǒu èrshǒu shū, jiàgé piányi.',
+        meaning: 'Nhân viên kia đẹp trai ghê, đeo tai nghe. Sau kệ hàng có sách cũ, giá rẻ.',
+        expression: 'happy', vocab: ['帅', '耳机', '货', '后头', '二手'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '停车场在地面，一辆车在倒车。公交上扶手摆动，门口有位保安像个兵，站得很直。',
+        pinyin: 'Tíngchēchǎng zài dìmiàn, yí liàng chē zài dàochē. Gōngjiāo shàng fúshǒu bǎidòng, ménkǒu yǒu wèi bǎo\'ān xiàng ge bīng, zhàn de hěn zhí.',
+        meaning: 'Bãi xe ở mặt đất, một chiếc xe đang lùi. Trên xe buýt tay vịn đung đưa; ở cửa có anh bảo vệ như người lính, đứng rất thẳng.',
+        expression: 'curious', vocab: ['地面', '倒车', '摆动', '兵'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'shop',
+        scene: '📍 Trung tâm bách hóa',
+        expression: 'focused',
+        q: 'Món đồ đắt khiến Mai lưỡng lự nhưng cô vẫn quyết. Diễn đạt "Tuy giá đắt, nhưng tôi không dao động" sao cho đúng?',
+        options: [
+          { text: '价格虽贵，我却没有动摇。', pinyin: 'Jiàgé suī guì, wǒ què méiyǒu dòngyáo.', meaning: 'Tuy giá đắt, nhưng tôi không dao động.', correct: true,
+            feedback: 'Đúng! 却 = nhưng (chuyển ý); 动摇 = dao động.' },
+          { text: '价格虽贵，我含没有动摇。', pinyin: 'Jiàgé suī guì, wǒ hán méiyǒu dòngyáo.', meaning: '(sai từ loại)', correct: false,
+            feedback: '含 = chứa/ngậm, không phải liên từ.' },
+          { text: '价格虽贵，我底没有动摇。', pinyin: 'Jiàgé suī guì, wǒ dǐ méiyǒu dòngyáo.', meaning: '(không thông)', correct: false,
+            feedback: '底 = đáy, không hợp ở đây.' }
+        ], vocab: ['却', '动摇', '含', '底'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这瓶饮料含糖，我放回货架底层。',
+        pinyin: 'Zhè píng yǐnliào hán táng, wǒ fàng huí huòjià dǐcéng.',
+        meaning: 'Chai nước này có đường, tôi để lại tầng đáy của kệ.',
+        expression: null, vocab: ['含', '底'] },
+      { type: 'checkpoint', questions: [
+        { q: '“步行” nghĩa là?', options: ['Đi bộ', 'Lái xe', 'Chạy', 'Bơi'], answer: 0 },
+        { q: '“皮肤” chỉ điều gì?', options: ['Da (người)', 'Răng', 'Ngực', 'Tóc'], answer: 0 },
+        { q: '“我却没有动摇” — “却” nghĩa là?', options: ['Nhưng (chuyển ý)', 'Vì vậy', 'Nếu', 'Bất kể'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '底', p: 'dǐ', v: 'đáy, phía dưới' },
+      { h: '皮肤', p: 'pí fū', v: 'da (người)' },
+      { h: '却', p: 'què', v: 'nhưng, song' },
+      { h: '帅', p: 'shuài', v: 'đẹp trai, soái' },
+      { h: '牙膏', p: 'yá gāo', v: 'kem đánh răng' },
+      { h: '百货', p: 'bǎi huò', v: 'bách hóa' },
+      { h: '摆动', p: 'bǎi dòng', v: 'lắc lư, đung đưa' },
+      { h: '办事', p: 'bàn shì', v: 'xử lý công việc, lo việc' },
+      { h: '兵', p: 'bīng', v: 'lính, binh sĩ' },
+      { h: '步行', p: 'bù xíng', v: 'đi bộ' },
+      { h: '促销', p: 'cù xiāo', v: 'khuyến mãi' },
+      { h: '倒车', p: 'dào chē', v: 'lùi xe' },
+      { h: '地面', p: 'dì miàn', v: 'mặt đất, sàn' },
+      { h: '地下', p: 'dì xià', v: 'dưới đất, tầng hầm' },
+      { h: '动摇', p: 'dòng yáo', v: 'lung lay, dao động' },
+      { h: '耳机', p: 'ěr jī', v: 'tai nghe' },
+      { h: '二手', p: 'èr shǒu', v: 'đồ cũ, secondhand' },
+      { h: '含', p: 'hán', v: 'chứa, ngậm' },
+      { h: '后头', p: 'hòu tou', v: 'phía sau' },
+      { h: '货', p: 'huò', v: 'hàng hóa' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我去___商店买东西。', options: ['百货', '耳机', '皮肤'], answer: '百货' },
+        { type: 'fill', sentence: '今天有___，很多东西打折。', options: ['促销', '倒车', '摆动'], answer: '促销' },
+        { type: 'fill', sentence: '不远，我们___过去吧。', options: ['步行', '倒车', '办事'], answer: '步行' },
+        { type: 'fill', sentence: '天干，我的___很干。', options: ['皮肤', '货', '兵'], answer: '皮肤' },
+        { type: 'fill', sentence: '他戴着___听音乐。', options: ['耳机', '皮肤', '百货'], answer: '耳机' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我去商店___，顺便买东西。', options: ['办事', '摆动', '动摇'], answer: '办事' },
+        { type: 'fill', sentence: '货架___有二手书。', options: ['后头', '地下', '地面'], answer: '后头' },
+        { type: 'fill', sentence: '司机正在___，请小心。', options: ['倒车', '步行', '办事'], answer: '倒车' },
+        { type: 'fill', sentence: '这本书是___的，很便宜。', options: ['二手', '促销', '皮肤'], answer: '二手' },
+        { type: 'order', words: ['这', '家', '店', '在', '地下', '一层'], answer: '这家店在地下一层' },
+        { type: 'order', words: ['价格', '虽', '贵', '我', '却', '没有', '动摇'], answer: '价格虽贵我却没有动摇' },
+        { type: 'fill', sentence: '车上的扶手在___。', options: ['摆动', '办事', '促销'], answer: '摆动' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '价格虽贵，我___没有动摇。', options: ['却', '含', '底'], answer: '却' },
+        { type: 'fill', sentence: '这瓶饮料___糖，我不买。', options: ['含', '却', '帅'], answer: '含' },
+        { type: 'translate', prompt: 'Trước khi về nhà tôi đến trung tâm bách hóa lo việc.', answer: '回家前我去百货商店办事。' },
+        { type: 'translate', prompt: 'Nhân viên kia đẹp trai, đeo tai nghe.', answer: '那个店员真帅，戴着耳机。' },
+        { type: 'translate', prompt: 'Chai nước này có đường, tôi để lại tầng đáy của kệ.', answer: '这瓶饮料含糖，我放回货架底层。' },
+        { type: 'fill', sentence: '门口的保安像个___，站得很直。', options: ['兵', '货', '底'], answer: '兵' }
+      ]
+    }
+  }
+
+});
+
+// ───────────────────────────────────────────────────────
+// BATCH 5 (tiếp) — Bài 142-143 (Cơ thể 2 · Ẩm thực)
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 142: Cơ thể & cảm giác (2) — 18 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  142: {
+    id: 142,
+    level: 4,
+    title: 'Cơ thể & cảm giác (2)',
+    context: 'Mai nhận một bưu kiện, giúp một cụ già ngồi xe lăn, và chú ý chăm sóc cơ thể mỗi ngày. Em cũng học cách rút lại lời nói khi lỡ làm bạn buồn.',
+    vocabPreview: ['快递', '轮椅', '刷牙', '收回', '种类'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Trước cửa nhà · Sáng', bg: 'home',
+        cast: ['mai', 'xiaomei'],
+        text: 'Mai nhận một bưu kiện và gặp một cụ già cần giúp đỡ.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我收到一个快递，手里拿着箱子。',
+        pinyin: 'Wǒ shōudào yí ge kuàidì, shǒu lǐ názhe xiāngzi.',
+        meaning: 'Tôi nhận một bưu kiện, trên tay cầm cái thùng.',
+        expression: 'happy', vocab: ['快递', '手里', '箱子'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '前头有位坐轮椅的老人，我们帮他吧。',
+        pinyin: 'Qiántou yǒu wèi zuò lúnyǐ de lǎorén, wǒmen bāng tā ba.',
+        meaning: 'Phía trước có một cụ già ngồi xe lăn, mình giúp cụ nhé.',
+        expression: 'curious', vocab: ['前头', '轮椅'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '好。帮完之后，我们继续逛。',
+        pinyin: 'Hǎo. Bāng wán zhīhòu, wǒmen jìxù guàng.',
+        meaning: 'Được. Giúp xong rồi, mình tiếp tục đi dạo.',
+        expression: 'happy', vocab: ['之后'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '早上我刷牙，用新牙刷，张开嘴巴。我牙有点不舒服，得看牙医。',
+        pinyin: 'Zǎoshang wǒ shuā yá, yòng xīn yáshuā, zhāngkāi zuǐba. Wǒ yá yǒudiǎn bù shūfu, děi kàn yáyī.',
+        meaning: 'Sáng tôi đánh răng, dùng bàn chải mới, há miệng ra. Răng tôi hơi khó chịu, phải đi khám nha.',
+        expression: 'focused', vocab: ['刷牙', '牙刷', '嘴巴', '牙'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我戴上帽子，挑了件衣服。运动让我的胸部和背更有力。',
+        pinyin: 'Wǒ dài shàng màozi, tiāo le jiàn yīfu. Yùndòng ràng wǒ de xiōngbù hé bèi gèng yǒulì.',
+        meaning: 'Tôi đội mũ, chọn một bộ đồ. Vận động khiến ngực và lưng tôi khỏe hơn.',
+        expression: 'happy', vocab: ['帽子', '挑', '胸部'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '那位美女和帅哥在拍照，真好看。',
+        pinyin: 'Nà wèi měinǚ hé shuàigē zài pāizhào, zhēn hǎokàn.',
+        meaning: 'Cô gái đẹp và anh chàng đẹp trai kia đang chụp ảnh, đẹp ghê.',
+        expression: 'happy', vocab: ['美女', '帅哥'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Trên phố',
+        expression: 'sad',
+        q: 'Mai lỡ nói lời làm bạn buồn rồi hối hận. Diễn đạt "Tôi muốn thu lại lời vừa nói" sao cho đúng?',
+        options: [
+          { text: '我想收回刚才说的话。', pinyin: 'Wǒ xiǎng shōuhuí gāngcái shuō de huà.', meaning: 'Tôi muốn thu lại lời vừa nói.', correct: true,
+            feedback: 'Đúng! 收回 = thu lại, rút lại.' },
+          { text: '我想转身刚才说的话。', pinyin: 'Wǒ xiǎng zhuǎnshēn gāngcái shuō de huà.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '转身 = quay người, không hợp với "lời nói".' },
+          { text: '我想种类刚才说的话。', pinyin: 'Wǒ xiǎng zhǒnglèi gāngcái shuō de huà.', meaning: '(sai từ loại)', correct: false,
+            feedback: '种类 = chủng loại (danh từ), không hợp.' }
+        ], vocab: ['收回', '转身', '种类'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '商店里衣服种类很多，我转身又看了看。',
+        pinyin: 'Shāngdiàn lǐ yīfu zhǒnglèi hěn duō, wǒ zhuǎnshēn yòu kàn le kàn.',
+        meaning: 'Trong cửa hàng quần áo đủ loại, tôi quay người ngắm thêm.',
+        expression: 'curious', vocab: ['种类', '转身'] },
+      { type: 'checkpoint', questions: [
+        { q: '“快递” nghĩa là?', options: ['Chuyển phát nhanh', 'Xe lăn', 'Cái mũ', 'Cái răng'], answer: 0 },
+        { q: '“刷牙” dùng cái gì?', options: ['牙刷 (bàn chải)', '帽子', '箱子', '耳机'], answer: 0 },
+        { q: '“收回刚才的话” — “收回” nghĩa là?', options: ['Thu lại, rút lại', 'Quay người', 'Chủng loại', 'Phía trước'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '快递', p: 'kuài dì', v: 'chuyển phát nhanh' },
+      { h: '轮椅', p: 'lún yǐ', v: 'xe lăn' },
+      { h: '帽子', p: 'mào zi', v: 'mũ, nón' },
+      { h: '美女', p: 'měi nǚ', v: 'người đẹp, cô gái xinh' },
+      { h: '前头', p: 'qián tou', v: 'phía trước' },
+      { h: '收回', p: 'shōu huí', v: 'thu lại, lấy lại' },
+      { h: '手里', p: 'shǒu li', v: 'trên tay, trong tay' },
+      { h: '刷牙', p: 'shuā yá', v: 'đánh răng' },
+      { h: '帅哥', p: 'shuài gē', v: 'anh chàng đẹp trai' },
+      { h: '挑', p: 'tiāo', v: 'chọn, gánh' },
+      { h: '箱子', p: 'xiāng zi', v: 'hộp lớn, thùng, vali' },
+      { h: '胸部', p: 'xiōng bù', v: 'ngực, vùng ngực' },
+      { h: '牙', p: 'yá', v: 'răng' },
+      { h: '牙刷', p: 'yá shuā', v: 'bàn chải đánh răng' },
+      { h: '之后', p: 'zhī hòu', v: 'sau đó, sau khi' },
+      { h: '种类', p: 'zhǒng lèi', v: 'chủng loại' },
+      { h: '转身', p: 'zhuǎn shēn', v: 'quay người, xoay người' },
+      { h: '嘴巴', p: 'zuǐ ba', v: 'miệng, mồm' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我收到一个___。', options: ['快递', '轮椅', '帽子'], answer: '快递' },
+        { type: 'fill', sentence: '老人坐着___，我们帮他。', options: ['轮椅', '快递', '牙刷'], answer: '轮椅' },
+        { type: 'fill', sentence: '早上要___，保持口腔干净。', options: ['刷牙', '挑', '转身'], answer: '刷牙' },
+        { type: 'fill', sentence: '天冷出门戴___。', options: ['帽子', '箱子', '轮椅'], answer: '帽子' },
+        { type: 'fill', sentence: '刷牙要用___。', options: ['牙刷', '帽子', '快递'], answer: '牙刷' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___有位老人，我们去帮忙。', options: ['前头', '之后', '手里'], answer: '前头' },
+        { type: 'fill', sentence: '帮完___，我们继续逛。', options: ['之后', '前头', '手里'], answer: '之后' },
+        { type: 'fill', sentence: '商店里衣服___很多。', options: ['种类', '快递', '帽子'], answer: '种类' },
+        { type: 'fill', sentence: '我___了一件喜欢的衣服。', options: ['挑', '收回', '刷牙'], answer: '挑' },
+        { type: 'order', words: ['我', '手里', '拿着', '箱子'], answer: '我手里拿着箱子' },
+        { type: 'order', words: ['我', '想', '收回', '刚才', '说', '的', '话'], answer: '我想收回刚才说的话' },
+        { type: 'fill', sentence: '我___又看了看货架。', options: ['转身', '收回', '刷牙'], answer: '转身' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '运动让我的___更有力。', options: ['胸部', '帽子', '快递'], answer: '胸部' },
+        { type: 'fill', sentence: '我牙疼，张开___让医生看。', options: ['嘴巴', '种类', '前头'], answer: '嘴巴' },
+        { type: 'translate', prompt: 'Tôi nhận một bưu kiện, trên tay cầm cái thùng.', answer: '我收到一个快递，手里拿着箱子。' },
+        { type: 'translate', prompt: 'Sáng tôi đánh răng, dùng bàn chải mới.', answer: '早上我刷牙，用新牙刷。' },
+        { type: 'translate', prompt: 'Tôi muốn thu lại lời vừa nói.', answer: '我想收回刚才说的话。' },
+        { type: 'fill', sentence: '那位___和帅哥在拍照。', options: ['美女', '轮椅', '箱子'], answer: '美女' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 143: Ẩm thực & mời khách — 23 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  143: {
+    id: 143,
+    level: 4,
+    title: 'Ẩm thực & mời khách',
+    context: 'Về đến nhà, họ hàng của Mai tụ họp ăn cơm. Mọi người nếm các món với đủ vị, trò chuyện về sở thích nấu ăn, và Mai khoe những món quà mang về.',
+    vocabPreview: ['尝', '套餐', '兴趣', '叔叔', '特价'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi tối', bg: 'home',
+        cast: ['mai', 'mama'],
+        text: 'Về đến nhà, họ hàng của Mai đến đông đủ.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '叔叔、大哥、大妈、大爷都来了，还有小宝宝。',
+        pinyin: 'Shūshu, dàgē, dàmā, dàye dōu lái le, hái yǒu xiǎo bǎobao.',
+        meaning: 'Chú, anh cả, bác gái, bác trai đều đến, còn có em bé nữa.',
+        expression: 'happy', vocab: ['叔叔', '大哥', '大妈', '大爷', '宝宝'] },
+      { type: 'dialogue', speaker: 'mama', cast: ['mai', 'mama'],
+        text: '妈妈烧了一桌菜，你尝尝。',
+        pinyin: 'Māma shāo le yì zhuō cài, nǐ chángchang.',
+        meaning: 'Mẹ nấu cả mâm cơm, con nếm thử đi.',
+        expression: 'happy', vocab: ['烧', '尝'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '这道菜有点辣，那道有点咸，可能加多了盐。',
+        pinyin: 'Zhè dào cài yǒudiǎn là, nà dào yǒudiǎn xián, kěnéng jiā duō le yán.',
+        meaning: 'Món này hơi cay, món kia hơi mặn, chắc cho nhiều muối quá.',
+        expression: 'curious', vocab: ['辣', '咸', '盐'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这个汤有点苦，那个有点酸，味道很丰富。叔叔说他在海边游泳，海水很咸。',
+        pinyin: 'Zhège tāng yǒudiǎn kǔ, nàge yǒudiǎn suān, wèidào hěn fēngfù. Shūshu shuō tā zài hǎibiān yóuyǒng, hǎishuǐ hěn xián.',
+        meaning: 'Canh này hơi đắng, món kia hơi chua, vị rất phong phú. Chú nói chú bơi ở biển, nước biển rất mặn.',
+        expression: 'happy', vocab: ['苦', '酸', '海水'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '我对做菜很有兴趣，还想学编中国结。',
+        pinyin: 'Wǒ duì zuò cài hěn yǒu xìngqù, hái xiǎng xué biān Zhōngguó jié.',
+        meaning: 'Con rất thích nấu ăn, còn muốn học thắt nút Trung Hoa.',
+        expression: 'happy', vocab: ['兴趣', '编'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '路上堵车，我晚点到，给你带了茶叶和饼干。',
+        pinyin: 'Lùshang dǔchē, wǒ wǎndiǎn dào, gěi nǐ dài le cháyè hé bǐnggān.',
+        meaning: 'Đường kẹt xe, tớ đến trễ, mang cho cậu lá trà và bánh quy.',
+        expression: 'happy', vocab: ['堵车', '茶叶', '饼干'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'shop',
+        scene: '📍 Chợ',
+        expression: 'curious',
+        q: 'Ở chợ, Mai thấy món đồ đang giảm. Diễn đạt "Món này đang giảm giá, là giá ưu đãi" sao cho đúng?',
+        options: [
+          { text: '这个在降价，是特价。', pinyin: 'Zhège zài jiàngjià, shì tèjià.', meaning: 'Món này đang giảm giá, là giá ưu đãi.', correct: true,
+            feedback: 'Đúng! 降价 = giảm giá; 特价 = giá ưu đãi.' },
+          { text: '这个在高价，是特价。', pinyin: 'Zhège zài gāojià, shì tèjià.', meaning: '(mâu thuẫn)', correct: false,
+            feedback: '高价 = giá cao, mâu thuẫn với "ưu đãi".' },
+          { text: '这个在降价，是高价。', pinyin: 'Zhège zài jiàngjià, shì gāojià.', meaning: '(mâu thuẫn)', correct: false,
+            feedback: '高价 = giá cao, không phải "ưu đãi".' }
+        ], vocab: ['降价', '特价', '高价'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我们点了一个套餐，很划算。最近我胖了，要注意体重。',
+        pinyin: 'Wǒmen diǎn le yí ge tàocān, hěn huásuàn. Zuìjìn wǒ pàng le, yào zhùyì tǐzhòng.',
+        meaning: 'Bọn tớ gọi một suất combo, rất hời. Dạo này tớ mập lên, phải để ý cân nặng.',
+        expression: 'happy', vocab: ['套餐', '体重'] },
+      { type: 'checkpoint', questions: [
+        { q: '“尝一尝” nghĩa là?', options: ['Nếm thử', 'Nấu', 'Giảm giá', 'Tắc đường'], answer: 0 },
+        { q: 'Cho nhiều muối, món ăn sẽ thành?', options: ['咸 (mặn)', '甜 (ngọt)', '苦 (đắng)', '酸 (chua)'], answer: 0 },
+        { q: '“特价” chỉ điều gì?', options: ['Giá ưu đãi', 'Giá cao', 'Cân nặng', 'Sở thích'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '饼干', p: 'bǐng gān', v: 'bánh quy' },
+      { h: '尝', p: 'cháng', v: 'nếm, thử' },
+      { h: '堵车', p: 'dǔ chē', v: 'tắc đường, kẹt xe' },
+      { h: '苦', p: 'kǔ', v: 'đắng; khổ' },
+      { h: '辣', p: 'là', v: 'cay' },
+      { h: '酸', p: 'suān', v: 'chua' },
+      { h: '咸', p: 'xián', v: 'mặn' },
+      { h: '盐', p: 'yán', v: 'muối' },
+      { h: '宝宝', p: 'bǎo bao', v: 'em bé, cục cưng' },
+      { h: '编', p: 'biān', v: 'biên soạn, đan, thắt' },
+      { h: '茶叶', p: 'chá yè', v: 'lá trà, trà' },
+      { h: '大哥', p: 'dà gē', v: 'anh cả' },
+      { h: '大妈', p: 'dà mā', v: 'bác gái' },
+      { h: '大爷', p: 'dà ye', v: 'bác trai, ông' },
+      { h: '高价', p: 'gāo jià', v: 'giá cao' },
+      { h: '海水', p: 'hǎi shuǐ', v: 'nước biển' },
+      { h: '降价', p: 'jiàng jià', v: 'giảm giá' },
+      { h: '烧', p: 'shāo', v: 'đốt, nướng, nấu' },
+      { h: '叔叔', p: 'shū shu', v: 'chú' },
+      { h: '套餐', p: 'tào cān', v: 'suất ăn, combo' },
+      { h: '特价', p: 'tè jià', v: 'giá ưu đãi' },
+      { h: '体重', p: 'tǐ zhòng', v: 'cân nặng' },
+      { h: '兴趣', p: 'xìng qù', v: 'hứng thú, sở thích' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '妈妈做好了菜，你___一下。', options: ['尝', '烧', '编'], answer: '尝' },
+        { type: 'fill', sentence: '加多了___，菜太咸了。', options: ['盐', '茶叶', '饼干'], answer: '盐' },
+        { type: 'fill', sentence: '这道菜太___了，我受不了。', options: ['辣', '尝', '编'], answer: '辣' },
+        { type: 'fill', sentence: '我对做菜很有___。', options: ['兴趣', '体重', '套餐'], answer: '兴趣' },
+        { type: 'fill', sentence: '路上___，我迟到了。', options: ['堵车', '降价', '尝'], answer: '堵车' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '妈妈___了一桌菜。', options: ['烧', '尝', '编'], answer: '烧' },
+        { type: 'fill', sentence: '柠檬味道很___。', options: ['酸', '咸', '苦'], answer: '酸' },
+        { type: 'fill', sentence: '我们点了一个___，很划算。', options: ['套餐', '茶叶', '体重'], answer: '套餐' },
+        { type: 'fill', sentence: '最近我胖了，要注意___。', options: ['体重', '兴趣', '套餐'], answer: '体重' },
+        { type: 'order', words: ['妈妈', '烧', '了', '一', '桌', '菜'], answer: '妈妈烧了一桌菜' },
+        { type: 'order', words: ['这个', '在', '降价', '是', '特价'], answer: '这个在降价是特价' },
+        { type: 'fill', sentence: '她给我带了___和饼干。', options: ['茶叶', '盐', '海水'], answer: '茶叶' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这个在___，比平时便宜。', options: ['降价', '高价', '体重'], answer: '降价' },
+        { type: 'fill', sentence: '海边游泳，___很咸。', options: ['海水', '茶叶', '套餐'], answer: '海水' },
+        { type: 'translate', prompt: 'Mẹ nấu cả mâm cơm, con nếm thử đi.', answer: '妈妈烧了一桌菜，你尝尝。' },
+        { type: 'translate', prompt: 'Món này hơi cay, món kia hơi mặn.', answer: '这道菜有点辣，那道有点咸。' },
+        { type: 'translate', prompt: 'Tôi rất thích nấu ăn.', answer: '我对做菜很有兴趣。' },
+        { type: 'fill', sentence: '叔叔、___、大妈都来了。', options: ['大哥', '海水', '套餐'], answer: '大哥' }
+      ]
+    }
+  }
+
+});

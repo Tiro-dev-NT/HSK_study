@@ -187,7 +187,9 @@ var Router = (function() {
     },
     'stories':      function() {},
     'explore':      function() {},
-    'speaking':     function() {},
+    'speaking':     function() {
+      if (typeof Speaking !== 'undefined') Speaking.init();
+    },
     'writing':      function() {
       if (typeof Writing !== 'undefined') Writing.init();
     },

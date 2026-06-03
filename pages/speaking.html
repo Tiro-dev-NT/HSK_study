@@ -1,12 +1,95 @@
 <section class="page active">
-  <div class="cs-page">
-    <div class="cs-mascot">🎙️</div>
-    <div class="cs-badge">Phase R · Sắp ra mắt</div>
-    <h1 class="cs-title">Luyện nói & Phát âm</h1>
-    <p class="cs-desc">AI nhận diện giọng nói, phân tích thanh điệu và cho điểm phát âm theo từng từ. Kết hợp shadowing với native speaker audio.</p>
-    <div class="cs-eta">⏳ Dự kiến Phase R (sau Phase P)</div>
-    <div class="cs-actions">
-      <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Quay về Luyện tập</button>
+  <div class="speaking-page">
+
+    <div id="spIntro" class="sp-intro">
+      <div class="sp-hero">
+        <div class="sp-hero-copy">
+          <span class="sp-badge">Phase R · Pro · AI</span>
+          <h1 class="sp-title">Luyện phát âm Shadowing</h1>
+          <p class="sp-desc">Nghe câu mẫu, đọc theo, ghi âm và để SpeechSuper chấm phát âm từng câu. Tập trung vào thanh điệu, âm dễ nhầm và nhịp nói tự nhiên của tiếng Trung.</p>
+          <div class="sp-hero-actions">
+            <button class="sp-btn sp-btn--primary" id="spFirstSetBtn">Bắt đầu bộ đầu tiên →</button>
+            <button class="sp-btn sp-btn--ghost" id="spMicCheckBtn">🎙 Kiểm tra micro</button>
+          </div>
+          <div class="sp-mic-status" id="spMicStatus"></div>
+        </div>
+        <div class="sp-hero-card" aria-hidden="true">
+          <div class="sp-orbit">
+            <span class="sp-orbit-core">声</span>
+            <span class="sp-orbit-dot sp-orbit-dot--a">1</span>
+            <span class="sp-orbit-dot sp-orbit-dot--b">2</span>
+            <span class="sp-orbit-dot sp-orbit-dot--c">3</span>
+            <span class="sp-orbit-dot sp-orbit-dot--d">4</span>
+          </div>
+          <div class="sp-hero-note">Đọc chậm · rõ thanh · đều hơi</div>
+        </div>
+      </div>
+
+      <div class="sp-steps">
+        <div class="sp-step"><b>1</b><span>Nghe mẫu TTS</span></div>
+        <div class="sp-step"><b>2</b><span>Ghi âm câu đọc</span></div>
+        <div class="sp-step"><b>3</b><span>Chấm AI 1 credit/câu</span></div>
+      </div>
+
+      <div class="sp-section-head">
+        <div>
+          <h2>Bộ luyện hôm nay</h2>
+          <p>10 bộ · 90 câu · HSK 1–6</p>
+        </div>
+      </div>
+      <div class="sp-set-grid" id="spSetGrid"></div>
+
+      <div class="sp-history" id="spHistoryWrap" style="display:none">
+        <h3>Lần chấm gần đây</h3>
+        <div id="spHistoryList" class="sp-history-list"></div>
+      </div>
+
+      <div class="sp-back">
+        <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Quay về Luyện tập</button>
+      </div>
     </div>
+
+    <div id="spPractice" class="sp-practice" style="display:none">
+      <div class="sp-practice-top">
+        <button class="sp-link-btn" id="spBackToSets">← Chọn bộ khác</button>
+        <span class="sp-practice-meta" id="spPracticeMeta"></span>
+      </div>
+      <div class="sp-progress"><div class="sp-progress-fill" id="spProgressFill"></div></div>
+
+      <div class="sp-line-card">
+        <div class="sp-line-label" id="spLineLabel"></div>
+        <div class="sp-line-hanzi" id="spLineHanzi"></div>
+        <div class="sp-line-pinyin" id="spLinePinyin"></div>
+        <div class="sp-line-vi" id="spLineVi"></div>
+        <div class="sp-line-tip" id="spLineTip"></div>
+
+        <div class="sp-wave" id="spWave" style="display:none">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="sp-controls">
+          <button class="sp-btn sp-btn--ghost" id="spPlaySample">🔊 Nghe mẫu</button>
+          <button class="sp-btn sp-btn--primary" id="spRecordBtn">🎙 Ghi âm</button>
+          <button class="sp-btn sp-btn--danger" id="spStopBtn" style="display:none">⏹ Dừng</button>
+          <button class="sp-btn sp-btn--ghost" id="spReplayBtn" style="display:none">▶ Nghe lại</button>
+          <button class="sp-btn sp-btn--primary" id="spScoreBtn" style="display:none">🔮 Chấm AI</button>
+        </div>
+        <div class="sp-cost-note">Chỉ khi bấm “Chấm AI” mới tốn <b>1 AI Credit</b>. Ghi âm/nghe lại để tự luyện là miễn phí.</div>
+      </div>
+
+      <div id="spGrading" class="sp-grading" style="display:none">
+        <div class="sp-spinner"></div>
+        <span>Đang phân tích phát âm…</span>
+      </div>
+
+      <div id="spResult" class="sp-result" style="display:none"></div>
+
+      <div class="sp-line-nav">
+        <button class="sp-btn sp-btn--ghost" id="spPrevBtn">← Câu trước</button>
+        <button class="sp-btn sp-btn--primary" id="spNextBtn">Câu tiếp →</button>
+      </div>
+    </div>
+
   </div>
 </section>

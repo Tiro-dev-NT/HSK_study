@@ -101,7 +101,22 @@
 - 🧪 **TEST helper còn trong `speech-proxy`:** secret `SPEECHSUPER_CORETYPE` (override coreType để thử nhanh) — **nhớ xóa** khi không test. `console.error` log full SpeechSuper response khi lỗi (giữ lại, hữu ích).
 - 🚧 **Guardrail:** HSKK Pro-gate · KHÔNG thưởng AI credit qua quest · KHÔNG quest lặp cho feature AI hạng-2.
 - 📌 **Storage key:** `hskk_history_v1` (metadata, không audio).
-- **Next:** (1) verify production sau Cloudflare deploy bản practice-no-grade → (2) scale Trung/Cao → (3) Phase R (Speaking); nếu SpeechSuper bật `speak.eval.pro.cn` thì bật lại chấm AI cho Phần 2/3 trước khi scale.
+- **Next:** (1) verify production sau Cloudflare deploy bản practice-no-grade → (2) scale Trung/Cao; nếu SpeechSuper bật `speak.eval.pro.cn` thì bật lại chấm AI cho Phần 2/3 trước khi scale.
+
+---
+
+## 🎙️ Phase R — Speaking & Pronunciation · R.1 Shadowing DONE 2026-06-03
+
+> Nguyên tắc "bài nào hoàn thiện bài đấy": đã ship trọn R.1 Shadowing trước, chưa đụng R.2 AI Chat.
+
+- ☑ **Data** `js/data/speaking/shadowing.js` (var `SHADOW_DATA`) — 10 bộ / 90 câu HSK 1-6, phủ thanh điệu, zh/ch/sh vs z/c/s, j/q/x + ü, n/l/-n/-ng, biến điệu 一/不, nhịp câu ngắn/dài, đời sống, đi lại, lập luận.
+- ☑ **UI** `/speaking` (`pages/speaking.html` + `css/pages/speaking.css`) — 2 màn: chọn bộ + luyện từng câu; Calm Study UI token-based, dark/light/mobile-safe, không cần asset ảnh.
+- ☑ **Engine** `js/speaking.js` — TTS mẫu, MediaRecorder, waveform, nghe lại free, WAV 16kHz mono trước khi gửi SpeechSuper, caller mỏng tới `speech-proxy` (KHÔNG key client), Pro-gate khi chấm, lịch sử `speaking_history_v1` metadata-only (không lưu audio).
+- ☑ **Wiring** — `router.js` `/speaking` → `Speaking.init()`; `index.html` thêm `speaking.css?v=1.0`, `shadowing.js?v=1.0`, `speaking.js?v=1.0`; `pages/practice.html` card Speaking chuyển sang "Mới · Pro · AI".
+- ☑ **Verify local browser** — `/speaking` render 10 set; mở set → câu đầu + controls đúng; stub auth/pro/mic/fetch xác nhận payload `task:'hskk_score'`, `coreType:'sent.eval.cn'`, `refText:'妈妈骑马。'`, `audioType:'wav'`; render score 82 + per-syllable + replay; light/dark/mobile 390px OK; 0 console errors.
+- 🚧 **Guardrail:** Speaking Pro-gate khi chấm AI · KHÔNG thưởng AI credit qua quest · KHÔNG quest lặp cho feature AI hạng-2 · luyện không chấm miễn phí.
+- 📌 **USER ops còn treo:** xóa secret test `SPEECHSUPER_CORETYPE` trong `speech-proxy` khi không cần test override nữa.
+- 📌 **R.2 còn treo:** AI Chat cần thêm task chat trong `ai-proxy` (vd `tutor_chat`, Lane 2 DeepSeek) + redeploy; chấm nói tự do vẫn chờ SpeechSuper bật `speak.eval.pro.cn`.
 
 ---
 

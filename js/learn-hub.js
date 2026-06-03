@@ -14,6 +14,7 @@ function initLearnHub() {
   hub.style.display = '';
 
   _lhRenderContinue();
+  _lhRenderMilestone();
   _lhRenderToday();
   _lhRenderTimeline();
   _lhRenderResources();
@@ -100,6 +101,38 @@ function _lhRenderContinue() {
   if (btn) {
     btn.onclick = function() { learnHubOpenDeck(lastId); };
   }
+}
+
+// ── Nudge: mốc output đã mở (ải chương / trùm cấp) ────
+// Đẩy luyện tập theo mốc lên mặt tiền "Hôm nay" để người học không
+// phải cuộn hết path /course mới thấy. Tắt khi đã đạt (done-state).
+function _lhRenderMilestone() {
+  var wrap = document.getElementById('lhMilestone');
+  if (!wrap) return;
+  var m = (typeof Course !== 'undefined' && Course.pendingMilestones)
+    ? Course.pendingMilestones() : null;
+  if (!m) { wrap.innerHTML = ''; return; }
+
+  var icon = m.isBoss ? '🏆' : '📝';
+  wrap.innerHTML =
+    '<button class="lh-milestone" onclick="lhMilestoneClick()">' +
+      '<span class="lh-ms-icon">' + icon + '</span>' +
+      '<span class="lh-ms-body">' +
+        '<span class="lh-ms-title">' + m.label + ' đã mở khóa</span>' +
+        '<span class="lh-ms-desc">' + m.desc + '</span>' +
+      '</span>' +
+      '<span class="lh-ms-cta">Làm ngay →</span>' +
+    '</button>';
+  window._lhMilestone = m;
+}
+
+function lhMilestoneClick() {
+  var m = window._lhMilestone;
+  if (!m || typeof Course === 'undefined' || !Course.openCheckpoint) {
+    if (typeof Router !== 'undefined') Router.navigateTo('course');
+    return;
+  }
+  Course.openCheckpoint(m.level, m.idx, m.isBoss);
 }
 
 // ── Section 2: Hôm nay (3 hoạt động trộn) ────────────

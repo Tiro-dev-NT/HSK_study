@@ -293,6 +293,55 @@ var Course = {
     catch (e) { return {}; }
   },
 
+  // Mốc output đã MỞ nhưng CHƯA đạt, ở cấp người học đang theo.
+  // Dùng cho nudge "Hôm nay" (learn-hub) → đẩy luyện tập theo mốc lên mặt tiền.
+  // Chỉ trả ải/trùm (có done-state, đạt là tắt) — KHÔNG trả node ôn (nag mãi).
+  pendingMilestones: function() {
+    if (typeof COURSE_DATA === 'undefined' || typeof COURSE_LEVELS === 'undefined') return null;
+    var progress = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}');
+    var cps = Course._checkpoints();
+    var allIds = Object.keys(COURSE_DATA).map(Number).sort(function(a, b) { return a - b; });
+    if (!allIds.length) return null;
+
+    // Cấp đang theo = cấp của bài dở đầu tiên (xuyên cấp), else cấp cuối có data
+    var level = null;
+    for (var i = 0; i < allIds.length; i++) {
+      if (!(progress[allIds[i]] && progress[allIds[i]].completed)) { level = Course._levelOf(allIds[i]); break; }
+    }
+    if (level == null) level = Course._levelOf(allIds[allIds.length - 1]);
+    if (level == null) return null;
+
+    var cfg = null;
+    for (var c = 0; c < COURSE_LEVELS.length; c++) {
+      if (COURSE_LEVELS[c].level === level) { cfg = COURSE_LEVELS[c]; break; }
+    }
+    var chapters = (cfg && cfg.chapters) ? cfg.chapters : [];
+    var ids = allIds.filter(function(id) { return Course._levelOf(id) === level; });
+
+    // Ải chương: chương đã xong hết & chưa đạt → ưu tiên ải sớm nhất
+    for (var ci = 0; ci < chapters.length; ci++) {
+      var ch = chapters[ci];
+      var chIds = ids.filter(function(id) { return id >= ch.from && id <= ch.to; });
+      if (!chIds.length) continue;
+      var chDone = chIds.every(function(id) { return progress[id] && progress[id].completed; });
+      var key = 'hsk' + level + '_ch' + ci;
+      var passed = !!(cps[key] && cps[key].passed);
+      if (chDone && !passed) {
+        return { isBoss: false, level: level, idx: ci,
+          label: 'Ải Chương ' + (ci + 1), desc: 'Thi thử Nghe + Đọc ~5 phút — vừa mở khóa' };
+      }
+    }
+
+    // Trùm cấp: xong hết cấp & chưa đạt
+    var levelDone = ids.length > 0 && ids.every(function(id) { return progress[id] && progress[id].completed; });
+    if (levelDone && !(cps['hsk' + level + '_boss'] && cps['hsk' + level + '_boss'].passed)) {
+      return { isBoss: true, level: level, idx: 0,
+        label: 'Trùm cấp HSK ' + level, desc: 'Mock đầy đủ — chinh phục để hoàn tất cấp' };
+    }
+
+    return null;
+  },
+
   // Mở mini-mock (ải) / mock đầy đủ (trùm) qua handoff sessionStorage
   openCheckpoint: function(level, idx, isBoss) {
     var key = 'hsk' + level + (isBoss ? '_boss' : '_ch' + idx);

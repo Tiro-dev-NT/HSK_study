@@ -28,6 +28,8 @@
         <!-- 3. Hôm nay -->
         <div class="lh-section">
           <div class="lh-section-label">📅 Hôm nay</div>
+          <!-- Nudge mốc output đã mở (ải chương / trùm cấp) — render bởi learn-hub.js -->
+          <div id="lhMilestone"></div>
           <div class="lh-today-grid lh-today-grid--3" id="lhTodayGrid">
             <!-- Card 1: Bài mới -->
             <button class="lh-today-card lh-today-card--lesson" id="lhTodayLesson" onclick="Course._pendingId=null;Router.navigateTo('course')">

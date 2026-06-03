@@ -30,7 +30,10 @@
 > Gồm: bài tập chấm thật + SRS + explain · vocab EN · objectives + grammarNotes (QA pass) · cross-link pinyin · HSKK luyện từng phần · prep ảnh+đề HSKK 中级.
 
 ### 🔜 Việc tiếp theo (xếp ROI) — chưa làm
-1. **Rải A1+A2+A3 qua HSK 2/3/4** (`course-hsk2/3/4.js`): objectives + grammarNotes + vocab EN → toàn khóa đạt chuẩn (không chỉ HSK 1). Cao · cần QA grammar mỗi cấp. **← prompt Việc 1 đã soạn 2026-06-03.**
+1. **Rải A1+A2+A3 qua HSK 2/3/4** (`course-hsk2/3/4.js`): objectives + grammarNotes + vocab EN → toàn khóa đạt chuẩn.
+   - ☑ **HSK 2 DONE 2026-06-03** (merge `89f5187`, `course-hsk2.js?v=1.2`): 754/754 vocab EN, 41/41 bài objectives + grammarNotes (137 ví dụ). QA fix Bài 48 `虽然…所以`→`虽然…但是` ở thoại+checkpoint+workbook (commit `e92aaf2`). node load 41 ✅.
+   - ☐ **HSK 3** (50 bài, `course-hsk3.js`) — lặp prompt Việc 1 đổi file. ☐ **HSK 4** (33 bài, `course-hsk4.js`).
+   - 📌 Bài học QA: lesson tự sinh có thể chứa lỗi cặp liên từ (虽然…但是, 因为…所以, 不但…而且) lẫn lộn ở **thoại/checkpoint/workbook** chứ không chỉ grammarNotes → QA HSK 3/4 phải soi cả 3 nơi, không chỉ grammarNotes.
 2. **B-P2 Bài tập NGHE** (`listen` + `dictation`) — khoảng trống bài tập còn lại (giáo trình ~60% nghe). TB · dùng TTS sẵn.
 3. **HSKK 中级 build** — gen 50 ảnh 看图说话 (cài cwebp → gen → QA → `assets/hskk/zhongji/`) + wire `js/data/hskk/zhong-ji.js` vào `hskk.js`. Cao. Prep xong (`docs/plans/hskk-zhongji-kantu.md`).
 4. **A4 roleplay/shadow + sửa UX `order`** (click-to-append). TB.

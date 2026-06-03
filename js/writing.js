@@ -174,7 +174,14 @@ var Writing = (function () {
 
     var prompt = 'Đề bài: ' + topic + '\n\nBài viết của học viên:\n"""\n' + essay + '\n"""';
 
-    var r = await AIClient.call(deep ? 'essay_grade_deep' : 'essay_grade',
+    // Chọn task theo cấp:
+    //   Chấm sâu → essay_grade_deep (Claude, 38cr)
+    //   HSK 1-3  → essay_grade (V4 Flash, 8cr)
+    //   HSK 4-6 + Ngẫu nhiên → essay_grade_pro (V4 Pro, 10cr)
+    var task = deep ? 'essay_grade_deep'
+      : (!_isRandomLevel() && _level <= 3) ? 'essay_grade'
+      : 'essay_grade_pro';
+    var r = await AIClient.call(task,
       { system: system, prompt: prompt, deep: deep, timeoutMs: deep ? 90000 : 60000 });
     _setBusy(false);
 

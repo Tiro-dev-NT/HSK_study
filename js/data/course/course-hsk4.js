@@ -2765,3 +2765,558 @@ Object.assign(COURSE_DATA, {
   }
 
 });
+
+// ───────────────────────────────────────────────────────
+// BATCH 6 — Bài 144-148 (Thời gian · Cảm xúc · Học thuật · Gia đình · Công việc)
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 144: Thời gian & lịch trình — 21 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  144: {
+    id: 144,
+    level: 4,
+    title: 'Thời gian & lịch trình',
+    context: 'Kỳ nghỉ hè đến, Mai lên kế hoạch cho thời gian sắp tới: tích lũy kinh nghiệm, học thêm và cân nhắc nghề phiên dịch trong tương lai.',
+    vocabPreview: ['暑假', '积累', '季节', '翻译', '暂时'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Sáng', bg: 'home',
+        cast: ['mai', 'mama'],
+        text: 'Kỳ nghỉ hè đến, Mai lên kế hoạch cho thời gian sắp tới.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '放暑假了！我想趁暑假积累经验。',
+        pinyin: 'Fàng shǔjià le! Wǒ xiǎng chèn shǔjià jīlěi jīngyàn.',
+        meaning: 'Nghỉ hè rồi! Con muốn nhân kỳ nghỉ hè tích lũy kinh nghiệm.',
+        expression: 'happy', vocab: ['放暑假', '暑假', '积累'] },
+      { type: 'dialogue', speaker: 'mama', cast: ['mai', 'mama'],
+        text: '寒假和暑假都别忘了回家。你下个月走还是上个月就定了？',
+        pinyin: 'Hánjià hé shǔjià dōu bié wàng le huí jiā. Nǐ xià ge yuè zǒu háishì shàng ge yuè jiù dìng le?',
+        meaning: 'Nghỉ đông và nghỉ hè đều đừng quên về nhà. Con đi tháng sau hay tháng trước đã định rồi?',
+        expression: 'curious', vocab: ['寒假', '下个月', '上个月'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '上个月我刚结束实习，这个月底再决定，别迟到误了报名。',
+        pinyin: 'Shàng ge yuè wǒ gāng jiéshù shíxí, zhège yuèdǐ zài juédìng, bié chídào wù le bàomíng.',
+        meaning: 'Tháng trước con vừa xong thực tập, cuối tháng này quyết định, đừng trễ lỡ mất đăng ký.',
+        expression: 'focused', vocab: ['月底', '迟到'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '一年四个季节，我最喜欢春季和秋季。夏季太热，冬季太冷。',
+        pinyin: 'Yì nián sì ge jìjié, wǒ zuì xǐhuan chūnjì hé qiūjì. Xiàjì tài rè, dōngjì tài lěng.',
+        meaning: 'Một năm bốn mùa, tớ thích nhất mùa xuân và mùa thu. Mùa hè quá nóng, mùa đông quá lạnh.',
+        expression: 'happy', vocab: ['季节', '季', '春季', '秋季', '夏季', '冬季'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我学了多年中文，想做翻译，每周加几个学时。',
+        pinyin: 'Wǒ xué le duō nián Zhōngwén, xiǎng zuò fānyì, měi zhōu jiā jǐ ge xuéshí.',
+        meaning: 'Tớ học tiếng Trung nhiều năm rồi, muốn làm phiên dịch, mỗi tuần thêm vài tiết học.',
+        expression: 'focused', vocab: ['多年', '翻译', '学时'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'home',
+        scene: '📍 Nhà Mai',
+        expression: 'curious',
+        q: 'Bạn hỏi Mai đã quyết chưa. Diễn đạt "Tôi tạm thời chưa quyết định" sao cho đúng?',
+        options: [
+          { text: '我暂时还没决定。', pinyin: 'Wǒ zànshí hái méi juédìng.', meaning: 'Tôi tạm thời chưa quyết định.', correct: true,
+            feedback: 'Đúng! 暂时 = tạm thời.' },
+          { text: '我年龄还没决定。', pinyin: 'Wǒ niánlíng hái méi juédìng.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '年龄 = tuổi tác, không hợp.' },
+          { text: '我呀还没决定。', pinyin: 'Wǒ ya hái méi juédìng.', meaning: '(thiếu nghĩa)', correct: false,
+            feedback: '呀 = tiểu từ ngữ khí, không mang nghĩa "tạm thời".' }
+        ], vocab: ['暂时', '年龄', '呀'] },
+      { type: 'dialogue', speaker: 'mama', cast: ['mai', 'mama'],
+        text: '不管你多大年龄，都是我的孩子。来，妈妈给你买了巧克力。哎呀，时间过得真快！',
+        pinyin: 'Bùguǎn nǐ duō dà niánlíng, dōu shì wǒ de háizi. Lái, māma gěi nǐ mǎi le qiǎokèlì. Āiyā, shíjiān guò de zhēn kuài!',
+        meaning: 'Bất kể con bao nhiêu tuổi, vẫn là con của mẹ. Lại đây, mẹ mua sô-cô-la cho con. Ôi chao, thời gian trôi nhanh thật!',
+        expression: 'happy', vocab: ['年龄', '巧克力', '呀'] },
+      { type: 'checkpoint', questions: [
+        { q: '“暑假” nghĩa là?', options: ['Nghỉ hè', 'Nghỉ đông', 'Mùa xuân', 'Cuối tháng'], answer: 0 },
+        { q: '“迟到” chỉ điều gì?', options: ['Đến muộn', 'Về sớm', 'Đúng giờ', 'Nghỉ học'], answer: 0 },
+        { q: '“我暂时还没决定” — “暂时” nghĩa là?', options: ['Tạm thời', 'Vĩnh viễn', 'Lập tức', 'Nhiều năm'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '翻译', p: 'fān yì', v: 'phiên dịch, dịch thuật' },
+      { h: '放暑假', p: 'fàng shǔ jià', v: 'nghỉ hè' },
+      { h: '寒假', p: 'hán jià', v: 'kỳ nghỉ đông' },
+      { h: '积累', p: 'jī lěi', v: 'tích lũy' },
+      { h: '年龄', p: 'nián líng', v: 'tuổi, độ tuổi' },
+      { h: '巧克力', p: 'qiǎo kè lì', v: 'sô-cô-la' },
+      { h: '呀', p: 'ya', v: 'à, ôi (tiểu từ ngữ khí)' },
+      { h: '暂时', p: 'zàn shí', v: 'tạm thời' },
+      { h: '迟到', p: 'chí dào', v: 'đến muộn, trễ giờ' },
+      { h: '春季', p: 'chūn jì', v: 'mùa xuân' },
+      { h: '冬季', p: 'dōng jì', v: 'mùa đông' },
+      { h: '多年', p: 'duō nián', v: 'nhiều năm' },
+      { h: '季', p: 'jì', v: 'mùa, quý' },
+      { h: '季节', p: 'jì jié', v: 'mùa, mùa vụ' },
+      { h: '秋季', p: 'qiū jì', v: 'mùa thu' },
+      { h: '上个月', p: 'shàng ge yuè', v: 'tháng trước' },
+      { h: '暑假', p: 'shǔ jià', v: 'kỳ nghỉ hè' },
+      { h: '下个月', p: 'xià ge yuè', v: 'tháng sau' },
+      { h: '夏季', p: 'xià jì', v: 'mùa hè' },
+      { h: '学时', p: 'xué shí', v: 'tiết học, giờ học' },
+      { h: '月底', p: 'yuè dǐ', v: 'cuối tháng' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '___了，我们不用上课。', options: ['放暑假', '迟到', '翻译'], answer: '放暑假' },
+        { type: 'fill', sentence: '我想趁假期___经验。', options: ['积累', '迟到', '翻译'], answer: '积累' },
+        { type: 'fill', sentence: '我最喜欢的___是春天。', options: ['季节', '年龄', '学时'], answer: '季节' },
+        { type: 'fill', sentence: '上课别___。', options: ['迟到', '积累', '翻译'], answer: '迟到' },
+        { type: 'fill', sentence: '妈妈给我买了___。', options: ['巧克力', '暑假', '年龄'], answer: '巧克力' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我想做___，把中文翻成越南语。', options: ['翻译', '积累', '迟到'], answer: '翻译' },
+        { type: 'fill', sentence: '夏季太热，___太冷。', options: ['冬季', '春季', '秋季'], answer: '冬季' },
+        { type: 'fill', sentence: '___我刚结束实习。', options: ['上个月', '下个月', '月底'], answer: '上个月' },
+        { type: 'fill', sentence: '我学了___中文了。', options: ['多年', '暂时', '季节'], answer: '多年' },
+        { type: 'order', words: ['我', '想', '趁', '暑假', '积累', '经验'], answer: '我想趁暑假积累经验' },
+        { type: 'order', words: ['一', '年', '有', '四', '个', '季节'], answer: '一年有四个季节' },
+        { type: 'fill', sentence: '这个___我再做决定。', options: ['月底', '学时', '巧克力'], answer: '月底' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我___还没决定。', options: ['暂时', '年龄', '多年'], answer: '暂时' },
+        { type: 'fill', sentence: '不管你多大___，都是我的孩子。', options: ['年龄', '季节', '学时'], answer: '年龄' },
+        { type: 'translate', prompt: 'Nghỉ hè rồi, tôi muốn tích lũy kinh nghiệm.', answer: '放暑假了，我想积累经验。' },
+        { type: 'translate', prompt: 'Tôi học tiếng Trung nhiều năm, muốn làm phiên dịch.', answer: '我学了多年中文，想做翻译。' },
+        { type: 'translate', prompt: 'Một năm bốn mùa, tôi thích nhất mùa xuân và mùa thu.', answer: '一年四个季节，我最喜欢春季和秋季。' },
+        { type: 'fill', sentence: '每周我加几个___学中文。', options: ['学时', '月底', '巧克力'], answer: '学时' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 145: Cảm xúc & suy nghĩ — 16 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  145: {
+    id: 145,
+    level: 4,
+    title: 'Cảm xúc & suy nghĩ',
+    context: 'Mai chia sẻ cảm xúc ngổn ngang sau kỳ thực tập, và làm hòa với Tiểu Mỹ sau một hiểu lầm nhỏ. Mẹ khuyên em bình tĩnh suy nghĩ trước khi quyết định.',
+    vocabPreview: ['兴奋', '冷静', '误会', '考虑', '担心'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Tối', bg: 'home',
+        cast: ['mai', 'mama'],
+        text: 'Sau kỳ thực tập, Mai có nhiều cảm xúc ngổn ngang.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '实习结束我很兴奋，但也有点烦恼，不知道下一步怎么走。',
+        pinyin: 'Shíxí jiéshù wǒ hěn xīngfèn, dàn yě yǒudiǎn fánnǎo, bù zhīdào xià yí bù zěnme zǒu.',
+        meaning: 'Xong thực tập con rất phấn khích, nhưng cũng hơi phiền lòng, không biết bước tiếp theo thế nào.',
+        expression: 'curious', vocab: ['兴奋', '烦恼'] },
+      { type: 'dialogue', speaker: 'mama', cast: ['mai', 'mama'],
+        text: '别着急，也别担心，冷静考虑一下。',
+        pinyin: 'Bié zháojí, yě bié dānxīn, lěngjìng kǎolǜ yíxià.',
+        meaning: 'Đừng sốt ruột, cũng đừng lo, bình tĩnh suy nghĩ một chút.',
+        expression: 'happy', vocab: ['着急', '担心', '冷静', '考虑'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '我有点害羞，怕做不好。之前和小美有个误会，我很后悔。',
+        pinyin: 'Wǒ yǒudiǎn hàixiū, pà zuò bù hǎo. Zhīqián hé Xiǎoměi yǒu ge wùhuì, wǒ hěn hòuhuǐ.',
+        meaning: 'Con hơi ngại, sợ làm không tốt. Trước đó với Tiểu Mỹ có hiểu lầm, con rất hối hận.',
+        expression: 'sad', vocab: ['害羞', '误会', '后悔'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '别怀疑自己，我没生气，是我误会你了。',
+        pinyin: 'Bié huáiyí zìjǐ, wǒ méi shēngqì, shì wǒ wùhuì nǐ le.',
+        meaning: 'Đừng nghi ngờ bản thân, tớ không giận, là tớ hiểu lầm cậu.',
+        expression: 'happy', vocab: ['怀疑'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '太好了，我心里安了。假期没事做有点无聊，我喜爱看书和画画。',
+        pinyin: 'Tài hǎo le, wǒ xīnlǐ ān le. Jiàqī méishì zuò yǒudiǎn wúliáo, wǒ xǐ\'ài kàn shū hé huà huà.',
+        meaning: 'Tốt quá, lòng tớ an rồi. Kỳ nghỉ rảnh rỗi hơi chán, tớ thích đọc sách và vẽ.',
+        expression: 'happy', vocab: ['安', '无聊', '喜爱'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai'], bg: 'home',
+        scene: '📍 Nhà Mai',
+        expression: 'happy',
+        q: 'Mai vừa đỗ một kỳ thi và rất tự hào. Diễn đạt "Tôi vừa đỗ kỳ thi, hơi đắc ý" sao cho đúng?',
+        options: [
+          { text: '我刚通过考试，有点得意。', pinyin: 'Wǒ gāng tōngguò kǎoshì, yǒudiǎn déyì.', meaning: 'Tôi vừa đỗ kỳ thi, hơi đắc ý.', correct: true,
+            feedback: 'Đúng! 得意 = đắc ý, tự mãn (vui vì thành công).' },
+          { text: '我刚通过考试，有点爱国。', pinyin: 'Wǒ gāng tōngguò kǎoshì, yǒudiǎn àiguó.', meaning: '(không hợp ngữ cảnh)', correct: false,
+            feedback: '爱国 = yêu nước, không hợp ở đây.' },
+          { text: '我刚通过考试，有点定。', pinyin: 'Wǒ gāng tōngguò kǎoshì, yǒudiǎn dìng.', meaning: '(không phải cảm xúc)', correct: false,
+            feedback: '定 = quyết định/cố định, không phải cảm xúc.' }
+        ], vocab: ['得意', '爱国', '定'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '昨天看了爱国电影，我很感动。我决定了，定下计划就去做。',
+        pinyin: 'Zuótiān kàn le àiguó diànyǐng, wǒ hěn gǎndòng. Wǒ juédìng le, dìng xià jìhuà jiù qù zuò.',
+        meaning: 'Hôm qua xem phim yêu nước, tôi rất xúc động. Tôi quyết rồi, lập kế hoạch xong là làm.',
+        expression: 'focused', vocab: ['爱国', '定'] },
+      { type: 'checkpoint', questions: [
+        { q: '“着急” nghĩa là?', options: ['Sốt ruột, lo lắng', 'Bình tĩnh', 'Vui vẻ', 'Xấu hổ'], answer: 0 },
+        { q: '“误会” chỉ điều gì?', options: ['Hiểu lầm', 'Tha thứ', 'Nghi ngờ', 'Hối hận'], answer: 0 },
+        { q: '“冷静考虑一下” — “冷静” nghĩa là?', options: ['Bình tĩnh', 'Phấn khích', 'Chán nản', 'Đắc ý'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '得意', p: 'dé yì', v: 'đắc ý, tự hào' },
+      { h: '烦恼', p: 'fán nǎo', v: 'phiền não, lo lắng' },
+      { h: '害羞', p: 'hài xiū', v: 'xấu hổ, ngại ngùng' },
+      { h: '后悔', p: 'hòu huǐ', v: 'hối hận' },
+      { h: '冷静', p: 'lěng jìng', v: 'bình tĩnh' },
+      { h: '无聊', p: 'wú liáo', v: 'buồn chán, vô vị' },
+      { h: '兴奋', p: 'xīng fèn', v: 'hứng khởi, phấn khích' },
+      { h: '爱国', p: 'ài guó', v: 'yêu nước' },
+      { h: '安', p: 'ān', v: 'an, yên, bình an' },
+      { h: '担心', p: 'dān xīn', v: 'lo lắng' },
+      { h: '喜爱', p: 'xǐ ài', v: 'yêu thích, ưa thích' },
+      { h: '着急', p: 'zháo jí', v: 'sốt ruột, lo lắng' },
+      { h: '怀疑', p: 'huái yí', v: 'nghi ngờ' },
+      { h: '考虑', p: 'kǎo lǜ', v: 'suy nghĩ, cân nhắc' },
+      { h: '误会', p: 'wù huì', v: 'hiểu lầm' },
+      { h: '定', p: 'dìng', v: 'quyết định, đặt, cố định' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '比赛要开始了，我很___。', options: ['兴奋', '无聊', '后悔'], answer: '兴奋' },
+        { type: 'fill', sentence: '别___，慢慢来。', options: ['着急', '喜爱', '考虑'], answer: '着急' },
+        { type: 'fill', sentence: '妈妈很___我的健康。', options: ['担心', '得意', '害羞'], answer: '担心' },
+        { type: 'fill', sentence: '假期没事，有点___。', options: ['无聊', '冷静', '兴奋'], answer: '无聊' },
+        { type: 'fill', sentence: '我___看书和画画。', options: ['喜爱', '担心', '怀疑'], answer: '喜爱' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '遇事要___，别冲动。', options: ['冷静', '兴奋', '害羞'], answer: '冷静' },
+        { type: 'fill', sentence: '做决定前要好好___。', options: ['考虑', '担心', '后悔'], answer: '考虑' },
+        { type: 'fill', sentence: '我们之间有个___，现在解开了。', options: ['误会', '兴奋', '喜爱'], answer: '误会' },
+        { type: 'fill', sentence: '说错话了，我很___。', options: ['后悔', '得意', '安'], answer: '后悔' },
+        { type: 'order', words: ['别', '着急', '冷静', '考虑', '一下'], answer: '别着急冷静考虑一下' },
+        { type: 'order', words: ['是', '我', '误会', '你', '了'], answer: '是我误会你了' },
+        { type: 'fill', sentence: '在台上说话，我有点___。', options: ['害羞', '兴奋', '冷静'], answer: '害羞' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我刚通过考试，有点___。', options: ['得意', '爱国', '定'], answer: '得意' },
+        { type: 'fill', sentence: '别___自己的能力。', options: ['怀疑', '喜爱', '安'], answer: '怀疑' },
+        { type: 'translate', prompt: 'Đừng sốt ruột, cũng đừng lo, bình tĩnh suy nghĩ một chút.', answer: '别着急，也别担心，冷静考虑一下。' },
+        { type: 'translate', prompt: 'Trước đó với Tiểu Mỹ có hiểu lầm, tôi rất hối hận.', answer: '之前和小美有个误会，我很后悔。' },
+        { type: 'translate', prompt: 'Tôi quyết rồi, lập kế hoạch xong là làm.', answer: '我决定了，定下计划就去做。' },
+        { type: 'fill', sentence: '问题解决了，我心里___了。', options: ['安', '烦恼', '着急'], answer: '安' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 146: Học thuật & ngôn ngữ — 16 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  146: {
+    id: 146,
+    level: 4,
+    title: 'Học thuật & ngôn ngữ',
+    context: 'Mai cân nhắc học lên cao học. Thầy Lý khen tiếng Trung của em tiến bộ, và khuyên em chăm nghiên cứu, tích lũy tín chỉ cho năm học mới.',
+    vocabPreview: ['研究生', '硕士', '语法', '研究', '渐渐'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Thư viện · Chiều', bg: 'library',
+        cast: ['mai', 'laoli'],
+        text: 'Mai cân nhắc việc học lên cao học.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '一位教授说你适合读研究生，将来可以考硕士。',
+        pinyin: 'Yí wèi jiàoshòu shuō nǐ shìhé dú yánjiūshēng, jiānglái kěyǐ kǎo shuòshì.',
+        meaning: 'Một giáo sư nói em hợp học cao học, sau này có thể thi thạc sĩ.',
+        expression: 'happy', vocab: ['教授', '研究生', '硕士'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '作为毕业生，你的语法和口语都进步了。',
+        pinyin: 'Zuòwéi bìyèshēng, nǐ de yǔfǎ hé kǒuyǔ dōu jìnbù le.',
+        meaning: 'Là một sinh viên tốt nghiệp, ngữ pháp và khẩu ngữ của em đều tiến bộ.',
+        expression: 'happy', vocab: ['毕业生', '语法', '口语'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '谢谢老师。我每天练语音，水平渐渐提高。',
+        pinyin: 'Xièxie lǎoshī. Wǒ měitiān liàn yǔyīn, shuǐpíng jiànjiàn tígāo.',
+        meaning: 'Cảm ơn thầy. Em luyện phát âm mỗi ngày, trình độ dần dần nâng lên.',
+        expression: 'happy', vocab: ['语音', '渐渐'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '研究是个好方法，多读书，修满学分。这个学年你想多修几门课吗？',
+        pinyin: 'Yánjiū shì ge hǎo fāngfǎ, duō dú shū, xiū mǎn xuéfēn. Zhège xuénián nǐ xiǎng duō xiū jǐ mén kè ma?',
+        meaning: 'Nghiên cứu là một cách hay, đọc nhiều sách, tích đủ tín chỉ. Năm học này em muốn học thêm vài môn không?',
+        expression: 'focused', vocab: ['研究', '法', '学分', '学年'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai'], bg: 'library',
+        scene: '📍 Thư viện',
+        expression: 'happy',
+        q: 'Mai muốn nói "Bài viết của tôi được đăng lên báo". Câu nào đúng?',
+        options: [
+          { text: '我的文章登在报纸上了。', pinyin: 'Wǒ de wénzhāng dēng zài bàozhǐ shàng le.', meaning: 'Bài viết của tôi được đăng lên báo.', correct: true,
+            feedback: 'Đúng! 登 = đăng (báo).' },
+          { text: '我的文章刷在报纸上了。', pinyin: 'Wǒ de wénzhāng shuā zài bàozhǐ shàng le.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '刷 = chải/quét, không dùng cho "đăng báo".' },
+          { text: '我的文章大众在报纸上了。', pinyin: 'Wǒ de wénzhāng dàzhòng zài bàozhǐ shàng le.', meaning: '(sai từ loại)', correct: false,
+            feedback: '大众 = đại chúng (danh từ), không phải động từ.' }
+        ], vocab: ['登', '刷', '大众'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我刷了一遍课文。比赛的比分出来了，我们赢了，这是大众都关心的事。',
+        pinyin: 'Wǒ shuā le yí biàn kèwén. Bǐsài de bǐfēn chūlái le, wǒmen yíng le, zhè shì dàzhòng dōu guānxīn de shì.',
+        meaning: 'Tôi lướt lại bài khóa một lượt. Tỉ số trận đấu có rồi, chúng tôi thắng, đây là chuyện mà đại chúng đều quan tâm.',
+        expression: 'happy', vocab: ['刷', '比分', '大众'] },
+      { type: 'checkpoint', questions: [
+        { q: '“研究生” chỉ ai?', options: ['Học viên sau đại học', 'Giáo sư', 'Sinh viên năm nhất', 'Học sinh cấp 3'], answer: 0 },
+        { q: '“语法” nghĩa là?', options: ['Ngữ pháp', 'Phát âm', 'Từ vựng', 'Khẩu ngữ'], answer: 0 },
+        { q: '“水平渐渐提高” — “渐渐” nghĩa là?', options: ['Dần dần', 'Đột ngột', 'Lập tức', 'Mãi mãi'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '教授', p: 'jiào shòu', v: 'giáo sư' },
+      { h: '硕士', p: 'shuò shì', v: 'thạc sĩ' },
+      { h: '研究生', p: 'yán jiū shēng', v: 'học viên cao học' },
+      { h: '比分', p: 'bǐ fēn', v: 'tỉ số (thể thao)' },
+      { h: '毕业生', p: 'bì yè shēng', v: 'sinh viên tốt nghiệp' },
+      { h: '大众', p: 'dà zhòng', v: 'đại chúng, quần chúng' },
+      { h: '法', p: 'fǎ', v: 'luật pháp, phương pháp' },
+      { h: '渐渐', p: 'jiàn jiàn', v: 'dần dần, từ từ' },
+      { h: '刷', p: 'shuā', v: 'chải, quét, lướt' },
+      { h: '学分', p: 'xué fēn', v: 'tín chỉ' },
+      { h: '学年', p: 'xué nián', v: 'năm học' },
+      { h: '研究', p: 'yán jiū', v: 'nghiên cứu' },
+      { h: '登', p: 'dēng', v: 'leo lên, đăng (báo)' },
+      { h: '语法', p: 'yǔ fǎ', v: 'ngữ pháp' },
+      { h: '口语', p: 'kǒu yǔ', v: 'khẩu ngữ, ngôn ngữ nói' },
+      { h: '语音', p: 'yǔ yīn', v: 'ngữ âm, phát âm' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '毕业后我想读___。', options: ['研究生', '比分', '语音'], answer: '研究生' },
+        { type: 'fill', sentence: '一位___在课上讲课。', options: ['教授', '学分', '比分'], answer: '教授' },
+        { type: 'fill', sentence: '我每天练___，改善发音。', options: ['语音', '学年', '比分'], answer: '语音' },
+        { type: 'fill', sentence: '学好___才能写对句子。', options: ['语法', '比分', '大众'], answer: '语法' },
+        { type: 'fill', sentence: '水平___提高了。', options: ['渐渐', '大众', '研究'], answer: '渐渐' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '考上___要努力学习。', options: ['硕士', '比分', '语音'], answer: '硕士' },
+        { type: 'fill', sentence: '___是个好方法，要多读书。', options: ['研究', '比分', '大众'], answer: '研究' },
+        { type: 'fill', sentence: '这个学期要修满___。', options: ['学分', '语音', '大众'], answer: '学分' },
+        { type: 'fill', sentence: '你的___比以前流利了。', options: ['口语', '学分', '比分'], answer: '口语' },
+        { type: 'order', words: ['你', '的', '语法', '和', '口语', '都', '进步', '了'], answer: '你的语法和口语都进步了' },
+        { type: 'order', words: ['水平', '渐渐', '提高', '了'], answer: '水平渐渐提高了' },
+        { type: 'fill', sentence: '这个___我想多修几门课。', options: ['学年', '比分', '语音'], answer: '学年' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我的文章___在报纸上了。', options: ['登', '刷', '大众'], answer: '登' },
+        { type: 'fill', sentence: '比赛的___出来了，我们赢了。', options: ['比分', '学分', '语音'], answer: '比分' },
+        { type: 'translate', prompt: 'Em hợp học cao học, sau này có thể thi thạc sĩ.', answer: '你适合读研究生，将来可以考硕士。' },
+        { type: 'translate', prompt: 'Em luyện phát âm mỗi ngày, trình độ dần dần nâng lên.', answer: '我每天练语音，水平渐渐提高。' },
+        { type: 'translate', prompt: 'Nghiên cứu là một cách hay, đọc nhiều sách.', answer: '研究是个好方法，多读书。' },
+        { type: 'fill', sentence: '这是___都关心的事。', options: ['大众', '学分', '语法'], answer: '大众' }
+      ]
+    }
+  }
+
+});
+
+// ───────────────────────────────────────────────────────
+// BATCH 6 (tiếp) — Bài 147-148 (Gia đình · Công việc)
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 147: Gia đình & người thân — 12 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  147: {
+    id: 147,
+    level: 4,
+    title: 'Gia đình & người thân',
+    context: 'Họ hàng nhà Mai đến thăm. Mọi người quây quần, Mai gọi đúng cách xưng hô của từng người thân, và cảm nhận hơi ấm gia đình.',
+    vocabPreview: ['亲戚', '阿姨', '夫妻', '丈夫', '上门'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi chiều', bg: 'home',
+        cast: ['mai', 'mama'],
+        text: 'Họ hàng nhà Mai đến thăm, nhà cửa rộn ràng.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mama', cast: ['mai', 'mama'],
+        text: '今天亲戚们上门，阿姨、大姐都来了。',
+        pinyin: 'Jīntiān qīnqi men shàngmén, āyí, dàjiě dōu lái le.',
+        meaning: 'Hôm nay họ hàng đến nhà, dì và chị cả đều đến.',
+        expression: 'happy', vocab: ['亲戚', '上门', '阿姨', '大姐'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '隔壁那对夫妻也来了吗？',
+        pinyin: 'Gébì nà duì fūqī yě lái le ma?',
+        meaning: 'Cặp vợ chồng nhà bên cũng đến à?',
+        expression: 'curious', vocab: ['夫妻'] },
+      { type: 'dialogue', speaker: 'mama', cast: ['mai', 'mama'],
+        text: '来了。那位是张奶奶的孙女，和我们像姐妹一样。',
+        pinyin: 'Lái le. Nà wèi shì Zhāng nǎinai de sūnnǚ, hé wǒmen xiàng jiěmèi yíyàng.',
+        meaning: 'Đến rồi. Người kia là cháu gái của bà Trương, với nhà mình thân như chị em.',
+        expression: 'happy', vocab: ['孙女', '姐妹'] },
+      { type: 'dialogue', speaker: 'mama', cast: ['mai', 'mama'],
+        text: '你叔叔的妻子，也就是他老婆，做菜很好吃。',
+        pinyin: 'Nǐ shūshu de qīzi, yě jiùshì tā lǎopo, zuò cài hěn hǎochī.',
+        meaning: 'Vợ của chú con, cũng là bà xã của chú ấy, nấu ăn rất ngon.',
+        expression: 'happy', vocab: ['妻子', '老婆'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '那阿姨的丈夫，她老公呢？',
+        pinyin: 'Nà āyí de zhàngfu, tā lǎogōng ne?',
+        meaning: 'Thế chồng của dì, ông xã dì ấy đâu ạ?',
+        expression: 'curious', vocab: ['丈夫', '老公'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'mama'], bg: 'home',
+        scene: '📍 Nhà Mai',
+        expression: 'focused',
+        q: 'Mai điền tờ khai thông tin gia đình. Diễn đạt "Viết tên người thân vào trong ngoặc" sao cho đúng?',
+        options: [
+          { text: '请把亲戚的名字写在括号里。', pinyin: 'Qǐng bǎ qīnqi de míngzi xiě zài kuòhào lǐ.', meaning: 'Hãy viết tên người thân vào trong ngoặc.', correct: true,
+            feedback: 'Đúng! 括号 = dấu ngoặc.' },
+          { text: '请把亲戚的名字写在姐妹里。', pinyin: 'Qǐng bǎ qīnqi de míngzi xiě zài jiěmèi lǐ.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '姐妹 = chị em, không phải "dấu ngoặc".' },
+          { text: '请把亲戚的名字写在孙女里。', pinyin: 'Qǐng bǎ qīnqi de míngzi xiě zài sūnnǚ lǐ.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '孙女 = cháu gái, không hợp.' }
+        ], vocab: ['括号', '姐妹', '孙女'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '一家人在一起最幸福，亲戚之间要多来往。',
+        pinyin: 'Yì jiā rén zài yìqǐ zuì xìngfú, qīnqi zhī jiān yào duō láiwǎng.',
+        meaning: 'Cả nhà bên nhau là hạnh phúc nhất, họ hàng nên qua lại nhiều.',
+        expression: 'happy', vocab: ['亲戚'] },
+      { type: 'checkpoint', questions: [
+        { q: '“亲戚” chỉ ai?', options: ['Họ hàng', 'Hàng xóm', 'Đồng nghiệp', 'Bạn học'], answer: 0 },
+        { q: '“夫妻” nghĩa là?', options: ['Vợ chồng', 'Chị em', 'Cha con', 'Ông cháu'], answer: 0 },
+        { q: '“亲戚上门” — “上门” nghĩa là?', options: ['Đến nhà thăm', 'Ra ngoài', 'Đóng cửa', 'Dọn nhà'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '亲戚', p: 'qīn qi', v: 'họ hàng' },
+      { h: '阿姨', p: 'ā yí', v: 'dì, cô' },
+      { h: '大姐', p: 'dà jiě', v: 'chị cả' },
+      { h: '夫妻', p: 'fū qī', v: 'vợ chồng' },
+      { h: '姐妹', p: 'jiě mèi', v: 'chị em gái' },
+      { h: '括号', p: 'kuò hào', v: 'dấu ngoặc' },
+      { h: '老公', p: 'lǎo gōng', v: 'chồng (thông tục)' },
+      { h: '老婆', p: 'lǎo po', v: 'bà xã, vợ' },
+      { h: '妻子', p: 'qī zi', v: 'vợ' },
+      { h: '上门', p: 'shàng mén', v: 'đến nhà, thăm nhà' },
+      { h: '孙女', p: 'sūn nǚ', v: 'cháu gái (con của con trai)' },
+      { h: '丈夫', p: 'zhàng fu', v: 'chồng' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '今天___们来我家做客。', options: ['亲戚', '括号', '夫妻'], answer: '亲戚' },
+        { type: 'fill', sentence: '妈妈的妹妹是我的___。', options: ['阿姨', '老公', '丈夫'], answer: '阿姨' },
+        { type: 'fill', sentence: '他们是一对___。', options: ['夫妻', '括号', '上门'], answer: '夫妻' },
+        { type: 'fill', sentence: '她的___在外面工作。', options: ['丈夫', '括号', '孙女'], answer: '丈夫' },
+        { type: 'fill', sentence: '今天亲戚们___做客。', options: ['上门', '括号', '姐妹'], answer: '上门' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我们像___一样亲。', options: ['姐妹', '括号', '上门'], answer: '姐妹' },
+        { type: 'fill', sentence: '叔叔的___做菜很好吃。', options: ['妻子', '括号', '上门'], answer: '妻子' },
+        { type: 'fill', sentence: '口语里常把丈夫叫___。', options: ['老公', '阿姨', '孙女'], answer: '老公' },
+        { type: 'fill', sentence: '那是张奶奶的___。', options: ['孙女', '括号', '夫妻'], answer: '孙女' },
+        { type: 'order', words: ['今天', '亲戚', '们', '上门', '做客'], answer: '今天亲戚们上门做客' },
+        { type: 'order', words: ['我们', '像', '姐妹', '一样'], answer: '我们像姐妹一样' },
+        { type: 'fill', sentence: '妻子又叫___。', options: ['老婆', '丈夫', '括号'], answer: '老婆' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '请把名字写在___里。', options: ['括号', '姐妹', '孙女'], answer: '括号' },
+        { type: 'fill', sentence: '___之间要多来往。', options: ['亲戚', '括号', '老婆'], answer: '亲戚' },
+        { type: 'translate', prompt: 'Hôm nay họ hàng đến nhà, dì và chị cả đều đến.', answer: '今天亲戚们上门，阿姨、大姐都来了。' },
+        { type: 'translate', prompt: 'Cặp vợ chồng nhà bên cũng đến à?', answer: '隔壁那对夫妻也来了吗？' },
+        { type: 'translate', prompt: 'Cả nhà bên nhau là hạnh phúc nhất.', answer: '一家人在一起最幸福。' },
+        { type: 'fill', sentence: '她的___，也就是她老公。', options: ['丈夫', '孙女', '括号'], answer: '丈夫' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 148: Công việc & nơi chốn — 21 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  148: {
+    id: 148,
+    level: 4,
+    title: 'Công việc & nơi chốn',
+    context: 'Mai tìm hiểu các lựa chọn nghề nghiệp tương lai và dạo quanh thành phố. Em xem tin tuyển dụng, cân nhắc công việc thương mại, rồi cùng Tiểu Mỹ đi mua sắm và tập gym.',
+    vocabPreview: ['招聘', '加班', '市区', '街道', '解释'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Sáng', bg: 'office',
+        cast: ['mai', 'laoli'],
+        text: 'Mai tìm hiểu các lựa chọn nghề nghiệp tương lai.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '公司在招聘，我想申请，能赚点钱。',
+        pinyin: 'Gōngsī zài zhāopìn, wǒ xiǎng shēnqǐng, néng zhuàn diǎn qián.',
+        meaning: 'Công ty đang tuyển dụng, em muốn ứng tuyển, kiếm chút tiền.',
+        expression: 'happy', vocab: ['招聘', '赚'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '商务工作常常加班，但能赢得经验。',
+        pinyin: 'Shāngwù gōngzuò chángcháng jiābān, dàn néng yíngdé jīngyàn.',
+        meaning: 'Công việc thương mại thường phải tăng ca, nhưng giành được kinh nghiệm.',
+        expression: 'focused', vocab: ['商务', '加班', '赢得'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我明白。周末我陪朋友去购物、健身。',
+        pinyin: 'Wǒ míngbai. Zhōumò wǒ péi péngyǒu qù gòuwù, jiànshēn.',
+        meaning: 'Em hiểu. Cuối tuần tôi đi cùng bạn mua sắm, tập gym.',
+        expression: 'happy', vocab: ['陪', '购物', '健身'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '市区那栋大楼晚上灯光很美，街道也热闹，居民很多。',
+        pinyin: 'Shìqū nà dòng dàlóu wǎnshang dēngguāng hěn měi, jiēdào yě rènao, jūmín hěn duō.',
+        meaning: 'Tòa cao ốc ở khu trung tâm buổi tối ánh đèn rất đẹp, đường phố cũng nhộn nhịp, cư dân đông.',
+        expression: 'happy', vocab: ['市区', '大楼', '灯光', '街道', '居民'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这里各种类型的店都有。我量了量到加油站的距离，不算远。',
+        pinyin: 'Zhèlǐ gè zhǒng lèixíng de diàn dōu yǒu. Wǒ liáng le liáng dào jiāyóuzhàn de jùlí, bú suàn yuǎn.',
+        meaning: 'Ở đây có đủ loại cửa hàng. Tôi ước lượng khoảng cách đến trạm xăng, không xa lắm.',
+        expression: 'curious', vocab: ['类型', '量', '加油站'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai'], bg: 'classroom',
+        scene: '📍 Lớp học',
+        expression: 'focused',
+        q: 'Cô giáo hướng dẫn bài. Diễn đạt "Cô giải thích cách làm bài điền vào chỗ trống" sao cho đúng?',
+        options: [
+          { text: '老师解释了填空题怎么做。', pinyin: 'Lǎoshī jiěshì le tiánkòng tí zěnme zuò.', meaning: 'Cô giải thích cách làm bài điền vào chỗ trống.', correct: true,
+            feedback: 'Đúng! 解释 = giải thích; 填空 = điền vào chỗ trống.' },
+          { text: '老师购买了填空题怎么做。', pinyin: 'Lǎoshī gòumǎi le tiánkòng tí zěnme zuò.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '购买 = mua, không hợp.' },
+          { text: '老师共了填空题怎么做。', pinyin: 'Lǎoshī gòng le tiánkòng tí zěnme zuò.', meaning: '(không thông)', correct: false,
+            feedback: '共 = tổng cộng/cùng, không dùng làm động từ ở đây.' }
+        ], vocab: ['解释', '填空', '购买', '共'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我们一共购买了三本书。路过加油站，看到花园里开花了，真美。',
+        pinyin: 'Wǒmen yígòng gòumǎi le sān běn shū. Lùguò jiāyóuzhàn, kàndào huāyuán lǐ kāihuā le, zhēn měi.',
+        meaning: 'Bọn tớ mua tổng cộng ba cuốn sách. Đi ngang trạm xăng, thấy trong vườn hoa nở, đẹp thật.',
+        expression: 'happy', vocab: ['共', '购买', '开花'] },
+      { type: 'checkpoint', questions: [
+        { q: '“招聘” nghĩa là?', options: ['Tuyển dụng', 'Sa thải', 'Nghỉ việc', 'Làm thêm'], answer: 0 },
+        { q: '“加班” chỉ điều gì?', options: ['Làm thêm giờ', 'Nghỉ phép', 'Đi du lịch', 'Tan làm'], answer: 0 },
+        { q: '“市区” chỉ nơi nào?', options: ['Khu trung tâm thành phố', 'Vùng quê', 'Ngoại ô', 'Trên núi'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '加班', p: 'jiā bān', v: 'làm thêm giờ, tăng ca' },
+      { h: '陪', p: 'péi', v: 'đi cùng, bầu bạn' },
+      { h: '填空', p: 'tián kòng', v: 'điền vào chỗ trống' },
+      { h: '招聘', p: 'zhāo pìn', v: 'tuyển dụng' },
+      { h: '赚', p: 'zhuàn', v: 'kiếm (tiền)' },
+      { h: '共', p: 'gòng', v: 'cộng, tổng cộng, cùng' },
+      { h: '购买', p: 'gòu mǎi', v: 'mua, mua sắm' },
+      { h: '健身', p: 'jiàn shēn', v: 'tập thể dục, rèn luyện' },
+      { h: '开花', p: 'kāi huā', v: 'nở hoa' },
+      { h: '商务', p: 'shāng wù', v: 'thương mại, công vụ' },
+      { h: '赢得', p: 'yíng dé', v: 'giành được, thắng được' },
+      { h: '购物', p: 'gòu wù', v: 'mua sắm' },
+      { h: '加油站', p: 'jiā yóu zhàn', v: 'trạm xăng' },
+      { h: '解释', p: 'jiě shì', v: 'giải thích' },
+      { h: '大楼', p: 'dà lóu', v: 'tòa nhà lớn, cao ốc' },
+      { h: '灯光', p: 'dēng guāng', v: 'ánh đèn, ánh sáng' },
+      { h: '街道', p: 'jiē dào', v: 'đường phố' },
+      { h: '居民', p: 'jū mín', v: 'cư dân' },
+      { h: '类型', p: 'lèi xíng', v: 'loại hình, kiểu loại' },
+      { h: '量', p: 'liáng', v: 'đo lường, ước lượng' },
+      { h: '市区', p: 'shì qū', v: 'khu trung tâm, nội thành' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '公司在___，我想申请。', options: ['招聘', '加班', '开花'], answer: '招聘' },
+        { type: 'fill', sentence: '努力工作能___钱。', options: ['赚', '陪', '量'], answer: '赚' },
+        { type: 'fill', sentence: '周末我去___，买衣服。', options: ['购物', '加班', '招聘'], answer: '购物' },
+        { type: 'fill', sentence: '为了健康，我每天___。', options: ['健身', '招聘', '赚'], answer: '健身' },
+        { type: 'fill', sentence: '春天，花园里___了。', options: ['开花', '加班', '购物'], answer: '开花' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '___工作常常加班。', options: ['商务', '居民', '街道'], answer: '商务' },
+        { type: 'fill', sentence: '加班虽累，但能___经验。', options: ['赢得', '购买', '开花'], answer: '赢得' },
+        { type: 'fill', sentence: '___那栋大楼很高。', options: ['市区', '加班', '健身'], answer: '市区' },
+        { type: 'fill', sentence: '这里的___很多，很热闹。', options: ['居民', '商务', '类型'], answer: '居民' },
+        { type: 'order', words: ['周末', '我', '陪', '朋友', '去', '购物'], answer: '周末我陪朋友去购物' },
+        { type: 'order', words: ['这里', '各种', '类型', '的', '店', '都', '有'], answer: '这里各种类型的店都有' },
+        { type: 'fill', sentence: '晚上大楼的___很美。', options: ['灯光', '街道', '招聘'], answer: '灯光' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '老师___了填空题怎么做。', options: ['解释', '购买', '共'], answer: '解释' },
+        { type: 'fill', sentence: '我们一___买了三本书。', options: ['共', '陪', '量'], answer: '共' },
+        { type: 'translate', prompt: 'Công ty đang tuyển dụng, tôi muốn ứng tuyển.', answer: '公司在招聘，我想申请。' },
+        { type: 'translate', prompt: 'Công việc thương mại thường phải tăng ca, nhưng giành được kinh nghiệm.', answer: '商务工作常常加班，但能赢得经验。' },
+        { type: 'translate', prompt: 'Tòa cao ốc ở khu trung tâm buổi tối ánh đèn rất đẹp.', answer: '市区那栋大楼晚上灯光很美。' },
+        { type: 'fill', sentence: '我___了到加油站的距离。', options: ['量', '赚', '陪'], answer: '量' }
+      ]
+    }
+  }
+
+});

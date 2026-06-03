@@ -232,6 +232,16 @@
 .topbar-chip--gold   { border-color: rgba(245,158,11,.4);  color: var(--accent);  }
 .topbar-chip--fire   { border-color: rgba(220,38,38,.35);  color: var(--primary); }
 .topbar-chip--purple { border-color: rgba(139,92,246,.4);  color: #7C3AED;        }
+/* Icon WebP thay emoji cho 3 chip (assets/icons) — ::before sống sót khi JS set textContent */
+#topbarTokenBadge::before,
+#topbarStreakBadge::before,
+#topbarAICreditBadge::before {
+  content: ""; width: 16px; height: 16px; flex: 0 0 16px;
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+}
+#topbarTokenBadge::before    { background-image: url("../../assets/icons/badge-xp.webp"); }
+#topbarStreakBadge::before   { background-image: url("../../assets/icons/badge-streak.webp"); }
+#topbarAICreditBadge::before { background-image: url("../../assets/icons/ai-credit-potion.webp"); }
 .topbar-user-btn {
   width: 36px; height: 36px; border-radius: 50%;
   background: var(--primary); color: #fff;

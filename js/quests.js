@@ -434,7 +434,7 @@ var Quests = {
     var topbar = document.getElementById('topbarTokenBadge');
     if (badge)  badge.textContent  = bal;
     if (rs)     rs.textContent     = bal;
-    if (topbar) topbar.textContent = '⭐ ' + bal;
+    if (topbar) topbar.textContent = String(bal);
   },
 
   // ── UI: re-render quest list wherever visible ─────────

@@ -568,7 +568,7 @@ var AICredit = {
     if (!badge) return;
     if (balance === null) { badge.style.display = 'none'; return; }
     badge.style.display = '';
-    badge.textContent   = '🔮 ' + balance.toLocaleString() + ' cr';
+    badge.textContent   = balance.toLocaleString() + ' cr';
     badge.style.cursor  = 'pointer';
     if (!badge._aiBound) {
       badge._aiBound = true;

@@ -180,7 +180,7 @@ var Gamification = {
     if (lEl) lEl.textContent = AppState.totalLearned();
     if (sEl) sEl.textContent = Gamification.getStreak();
     var tbStreak = document.getElementById('topbarStreakBadge');
-    if (tbStreak) tbStreak.textContent = '🔥 ' + Gamification.getStreak();
+    if (tbStreak) tbStreak.textContent = String(Gamification.getStreak());
     if (dEl) {
       const today = new Date().toISOString().split('T')[0];
       const due   = Object.values(AppState.srsData).filter(function(s) {

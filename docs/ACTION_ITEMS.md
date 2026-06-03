@@ -129,6 +129,12 @@
 - ☐ **P3:** thêm `shadow` (đọc to → nối Speaking `speech-proxy`) + **sửa UX `order`** — `_confirmOrder` ([course.js:1117](../js/course.js)) gom từ theo thứ tự DOM, không theo thứ tự bấm → đổi sang click-to-append.
 - ☐ **P4:** `image-choice` (nhìn ảnh chọn câu — giống 看图选对话). **Cần ảnh → xem mục D.**
 
+> **Re-review 2026-06-03 vs 题型 ĐỀ THI HSK 3.0 thật** (không chỉ giáo trình 《新HSK教程1》): app mạnh đọc/viết/dịch/từ vựng/ngữ pháp, **phủ cả 5 kỹ năng 听说读写译** (译 = `translate`, đúng hướng 3.0) + 4 chiều nền 音节·汉字·词汇·语法. Nhưng 4 dạng 题型 dưới CHƯA có trong app/plan — bổ sung để "ngang chuẩn". Mật độ workbook HSK1 hiện: 439 `fill` · 145 `order` · 60 `translate` · 30 `checkpoint` · 24 `choice` (đếm thật `course-hsk1.js`).
+
+- ☐ **P5 (gap lớn nhất về điểm thi): 听对话/短文 + câu hỏi MC (NGHE-HIỂU)** — khác P2 (P2 = 听写 dictation thanh/vận/điệu, mức âm tiết). Đây là nghe-hiểu **hội thoại/đoạn văn rồi chọn đáp án** (听对话选答案 · 听短文判断对错) — dạng chiếm phần lớn 听力 đề thật. Hiện mock "Nghe" chỉ nghe-1-từ→chọn-nghĩa (nhận diện từ vựng), KHÔNG phải comprehension. Tận dụng: audio hội thoại Truyện Mai sẵn (R2) + TTS. Dạng mới `listen-dialogue` / `listen-passage` trong `_renderExercise` + tích hợp vào mock-exam section 听力.
+- ☐ **P6: 看图判断对错 + 看图选词** — bổ sung cho P4 (P4 mới có 看图选对话). 2 dạng tranh cốt lõi HSK 1–3: nhìn tranh phán đúng/sai 1 câu (`image-judge`) + nhìn tranh chọn từ/câu đúng (`image-word`). **Cần ảnh → mục D** (đời thường, trung tính). Gap nội-dung-type lớn nhất cho người mới.
+- ☐ **P7: 完成对话 / 完成句子 + 看拼音写汉字** — (a) `complete-dialogue` điền lượt thoại còn trống trong 1 đoạn hội thoại (khác `fill` 1 câu rời); (b) `complete-sentence` hoàn thành câu theo ngữ cảnh; (c) `pinyin-to-hanzi` nhìn pinyin gõ/chọn chữ Hán — đan 汉字 vào cuối bài (hiện viết tay/笔顺 tách module riêng, chuẩn có 看拼音写汉字). Tái dùng chấm `_normalizeZh()` của P1.
+
 ### C. HSKK — cấu trúc CHUẨN (đã tra chính thức) + việc cần làm
 > Nguồn: chinesetest.cn, đề thật H81312, SPbU testing center (xác nhận 2026-06-03).
 

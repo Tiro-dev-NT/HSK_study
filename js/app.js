@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ['setupCmdPalette', function() { if (typeof CmdPalette !== 'undefined') CmdPalette.setup(); }],
     ['setupLookupPanel', function() { if (typeof LookupPanel !== 'undefined') LookupPanel.init(); }],
     ['firstRunGuide',   function() { if (typeof AppGuide !== 'undefined') AppGuide.maybeShowFirstRun(); }],
+    ['initPresence',    function() { if (typeof Presence !== 'undefined') Presence.init(); }],
   ];
 
   initSteps.forEach(function(step) {

@@ -10,9 +10,20 @@ var AdminOverview = (function() {
     _loadRecentTx();
     _loadPendingFeedback();
     _checkHealth();
+    _watchOnline();
     _loadChartJS(function() {
       loadRevChart();
       _loadUserChart();
+    });
+  }
+
+  // ── Online realtime (Supabase Presence) — gồm cả khách chưa đăng nhập ──
+  function _watchOnline() {
+    if (typeof Presence === 'undefined' || !Presence.watch) return;
+    Presence.watch(function(c) {
+      _set('kpiOnline', Admin.fmt(c.total));
+      var d = document.getElementById('kpiOnlineDetail');
+      if (d) d.textContent = c.authed + ' đăng nhập · ' + c.anon + ' khách';
     });
   }
 

@@ -54,7 +54,7 @@
 
 ---
 
-## 🎤 Phase Y — HSKK Speaking Exam · Sơ cấp Phần 1 verified REAL trên production 2026-06-03
+## 🎤 Phase Y — HSKK Speaking Exam · Sơ cấp practice-no-grade DONE 2026-06-03
 
 > USP cao nhất cho thị trường VN. Mirror pattern Phase S: feature wired qua Edge Function server-only → user set key → chấm thật. Nguyên tắc "bài nào hoàn thiện bài đấy": chỉ làm trọn tier Sơ cấp, verify rồi mới scale Trung/Cao (2 card kia giữ "Sắp ra mắt").
 
@@ -73,11 +73,11 @@
   5. **`ss_err_41002`** (audio format) → SpeechSuper nhận wav/mp3/opus/ogg/amr, **KHÔNG webm**. Fix: `_toWav16k()` decode→WAV PCM 16-bit/16kHz/mono client-side, gửi `audioType=wav` (`?v=1.3`).
   6. **`ss_err_51001` "core process start failed"** → coreType chưa khớp account. Lấy danh sách từ dashboard.
 - ☑ **coreType ĐÚNG account (đã xác nhận từ dashboard 2026-06-03):** read-aloud TQ — `sent.eval.cn` (câu) · `para.eval.cn` (đoạn) · `word.eval.promax.cn` (từ). Host `api.speechsuper.com` + path `/{coreType}` + sig sha1 + multipart (text/audio) đã đúng theo mẫu chính thức. Phần 1 (听后重复) = đọc lại câu → `sent.eval.cn` + refText → **chấm thật OK**. (`hskk.js?v=1.4`)
-- ⚠️ **Phần 2 & 3 CHƯA chấm được** — account chỉ có read-aloud (cần refText), trong khi Phần 2/3 là **trả lời mở** (không có refText). Cần xin SpeechSuper bật product **"Spontaneous Speech"** (`speak.eval.pro.cn`) → mới chấm đúng nghĩa nói tự do. Tạm thời 2 phần trỏ `para.eval.cn` (sẽ yếu/lỗi). **TODO:** hoặc bật spontaneous, hoặc chuyển Phần 2/3 sang luyện-tập-không-chấm để không báo lỗi.
+- ☑ **Phần 2 & 3 practice-no-grade DONE 2026-06-03** — account hiện chỉ có read-aloud (cần refText), trong khi Phần 2/3 là **trả lời mở** (không có refText). Client `js/hskk.js?v=1.5` thêm `QTYPE.grade`: `repeat=true`, `respond/open=false` → Phần 2/3 **không gọi `speech-proxy`, không trừ AI Credit**, vẫn lưu blob/url trong phiên để nghe lại và kết quả hiển thị "Đã ghi âm · luyện tập (chưa chấm tự động)". **Bật lại sau:** khi SpeechSuper mở **Spontaneous Speech** (`speak.eval.pro.cn`), đổi `respond/open` sang `grade:true` + giữ `coreType:'speak.eval.pro.cn'`, verify full bài rồi mới tính credit cho 2 phần này.
 - 🧪 **TEST helper còn trong `speech-proxy`:** secret `SPEECHSUPER_CORETYPE` (override coreType để thử nhanh) — **nhớ xóa** khi không test. `console.error` log full SpeechSuper response khi lỗi (giữ lại, hữu ích).
 - 🚧 **Guardrail:** HSKK Pro-gate · KHÔNG thưởng AI credit qua quest · KHÔNG quest lặp cho feature AI hạng-2.
 - 📌 **Storage key:** `hskk_history_v1` (metadata, không audio).
-- **Next:** (1) xử Phần 2/3 (spontaneous hoặc no-grade) → (2) verify full bài Sơ cấp → (3) scale Trung/Cao → (4) Phase R (Speaking).
+- **Next:** (1) verify production sau Cloudflare deploy bản practice-no-grade → (2) scale Trung/Cao → (3) Phase R (Speaking); nếu SpeechSuper bật `speak.eval.pro.cn` thì bật lại chấm AI cho Phần 2/3 trước khi scale.
 
 ---
 

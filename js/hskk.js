@@ -6,7 +6,7 @@
 //   (SpeechSuper Chinese HSKK API; mock khi chưa có key) → màn kết quả.
 //
 // ⚠️ KHÔNG chứa API key — gọi speech-proxy qua caller mỏng (đính JWT).
-//    Mỗi câu = 1 AI Credit (consume ATOMIC server-side trong speech-proxy).
+//    Chỉ câu có chấm AI mới tốn credit (consume ATOMIC server-side trong speech-proxy).
 // Pro-gate: HSKK là tính năng Pro (Monetization.gate).
 // KHÔNG thưởng credit / KHÔNG quest lặp cho feature AI (guardrail).
 // ═══════════════════════════════════════════════════════════════════════
@@ -23,16 +23,11 @@ var HSKK = (function () {
   var HIST_KEY  = 'hskk_history_v1';
 
   // Cấu hình từng loại câu: thời gian chuẩn bị / trả lời (giây), coreType chấm.
-  // coreType theo coreType được bật cho tài khoản (read-aloud, cần refText):
-  //   sent.eval.cn (câu) · para.eval.cn (đoạn) · word.eval.promax.cn (từ).
-  //   Phần 1 (听后重复) = đọc lại câu cho sẵn → sent.eval.cn + refText (chấm chuẩn).
-  //   Phần 2/3 (trả lời mở) KHÔNG có refText → read-aloud không chấm đúng được;
-  //   cần product "Spontaneous Speech" (chưa bật). Tạm để para.eval.cn (sẽ chấm
-  //   yếu/lỗi tới khi bật spontaneous). Verify trước ở Phần 1.
+  // Phần 2/3 là trả lời mở; bật grade lại khi account có Spontaneous Speech.
   var QTYPE = {
-    repeat:  { prep: 3,  ans: 10, coreType: 'sent.eval.cn', useRef: true,  part: '第一部分', partVi: 'Nghe & lặp lại', desc: 'Nghe câu rồi lặp lại y nguyên.' },
-    respond: { prep: 4,  ans: 15, coreType: 'sent.eval.cn', useRef: false, part: '第二部分', partVi: 'Nghe & trả lời', desc: 'Nghe câu hỏi rồi trả lời ngắn gọn.' },
-    open:    { prep: 12, ans: 60, coreType: 'para.eval.cn', useRef: false, part: '第三部分', partVi: 'Trả lời câu hỏi', desc: 'Đọc đề, chuẩn bị rồi nói một đoạn ngắn.' }
+    repeat:  { prep: 3,  ans: 10, coreType: 'sent.eval.cn', useRef: true,  grade: true,  part: '第一部分', partVi: 'Nghe & lặp lại', desc: 'Nghe câu rồi lặp lại y nguyên.' },
+    respond: { prep: 4,  ans: 15, coreType: 'speak.eval.pro.cn', useRef: false, grade: false, part: '第二部分', partVi: 'Nghe & trả lời', desc: 'Nghe câu hỏi rồi trả lời ngắn gọn.' },
+    open:    { prep: 12, ans: 60, coreType: 'speak.eval.pro.cn', useRef: false, grade: false, part: '第三部分', partVi: 'Trả lời câu hỏi', desc: 'Đọc đề, chuẩn bị rồi nói một đoạn ngắn.' }
   };
 
   var _exam = null;       // [{ q, type, cfg }]
@@ -363,9 +358,13 @@ var HSKK = (function () {
     for (var i = 0; i < _exam.length; i++) {
       var ans = _answers[i];
       n++;
-      $('hskkGradingText').textContent = 'Đang chấm câu ' + n + '/' + _exam.length + '…';
+      $('hskkGradingText').textContent = 'Đang xử lý câu ' + n + '/' + _exam.length + '…';
       if (!ans || !ans.blob || ans.blob.size < 200) continue; // bỏ câu không nói
       var cfg = QTYPE[ans.type];
+      if (!cfg.grade) {
+        ans.practice = true;
+        continue;
+      }
       // SpeechSuper nhận wav/mp3/opus/ogg/amr — KHÔNG nhận webm (Chrome ghi webm
       // → lỗi 41002). Chuyển sang WAV 16kHz mono trước khi gửi.
       var wav = await _toWav16k(ans.blob);
@@ -494,9 +493,13 @@ var HSKK = (function () {
   function _renderResult(scored) {
     _show($('hskkResult'), true);
 
-    var overalls = _answers.map(function (a) { return a && a.score ? a.score.overall : null; });
-    var pron = _answers.map(function (a) { return a && a.score ? a.score.pronunciation : null; });
-    var flu  = _answers.map(function (a) { return a && a.score ? a.score.fluency : null; });
+    var answered = _answers.filter(function (a) { return !!a; });
+    var gradable = answered.filter(function (a) { var cfg = QTYPE[a.type]; return cfg && cfg.grade; });
+    var practiceCount = answered.filter(function (a) { return a.practice; }).length;
+    var gradableTotal = gradable.length;
+    var overalls = gradable.map(function (a) { return a && a.score ? a.score.overall : null; });
+    var pron = gradable.map(function (a) { return a && a.score ? a.score.pronunciation : null; });
+    var flu  = gradable.map(function (a) { return a && a.score ? a.score.fluency : null; });
     var overall = _avg(overalls);
 
     // Vòng điểm
@@ -510,11 +513,11 @@ var HSKK = (function () {
     }
     var verdict = $('hskkScoreVerdict'), sub = $('hskkScoreSub');
     if (overall == null) {
-      if (verdict) verdict.textContent = 'Chưa chấm được câu nào';
-      if (sub) sub.textContent = scored === 0 ? 'Có thể bạn chưa nói, hoặc hết AI Credit. Thử lại nhé.' : '';
+      if (verdict) verdict.textContent = practiceCount ? 'Đã ghi âm phần luyện tập' : 'Chưa chấm được câu nào';
+      if (sub) sub.textContent = practiceCount ? 'Phần trả lời mở sẽ có chấm AI khi mở tính năng nói tự do.' : 'Có thể bạn chưa nói, hoặc hết AI Credit. Thử lại nhé.';
     } else {
       if (verdict) verdict.textContent = overall >= 80 ? 'Rất tốt! 🎉' : overall >= 60 ? 'Đạt — tiếp tục luyện 👍' : 'Cần luyện thêm 💪';
-      if (sub) sub.textContent = 'Đã chấm ' + scored + '/' + _exam.length + ' câu · điểm đạt HSKK thường ~60/100.';
+      if (sub) sub.textContent = 'Đã chấm ' + scored + '/' + gradableTotal + ' câu có chấm AI · điểm đạt HSKK thường ~60/100.';
     }
 
     // Breakdown phát âm / trôi chảy
@@ -542,10 +545,12 @@ var HSKK = (function () {
     var ps = $('hskkPartScores');
     if (ps) {
       ps.innerHTML = parts.map(function (p) {
-        var sc = _avg(_answers.filter(function (a) { return a && a.type === p.type; })
-          .map(function (a) { return a.score ? a.score.overall : null; }));
-        return '<div class="hskk-part-row"><span>' + _esc(p.label) + '</span><b>' + (sc == null ? '—' : sc) + '</b></div>';
-      }).join('');
+        var cfg = QTYPE[p.type];
+        var answers = _answers.filter(function (a) { return a && a.type === p.type; });
+        var sc = _avg(answers.map(function (a) { return a.score ? a.score.overall : null; }));
+        var value = cfg.grade ? (sc == null ? '—' : sc) : (answers.length ? 'Luyện tập' : '—');
+        return '<div class="hskk-part-row"><span>' + _esc(p.label) + '</span><b>' + _esc(value) + '</b></div>';
+      }).join('') + (practiceCount ? '<div class="hskk-practice-note">' + _esc('Phần trả lời mở sẽ có chấm AI khi mở tính năng nói tự do.') + '</div>' : '');
     }
 
     // Chi tiết từng câu
@@ -556,13 +561,17 @@ var HSKK = (function () {
         var cfg = QTYPE[a.type];
         var sc = a.score;
         var ov = sc ? sc.overall : null;
-        var cls = ov == null ? '' : ov >= 80 ? ' hskk-d-good' : ov >= 60 ? ' hskk-d-mid' : ' hskk-d-low';
+        var practice = a.practice || (cfg && !cfg.grade);
+        var cls = practice ? ' hskk-d-practice' : ov == null ? '' : ov >= 80 ? ' hskk-d-good' : ov >= 60 ? ' hskk-d-mid' : ' hskk-d-low';
+        var scoreText = practice ? 'Luyện tập' : (ov == null ? '—' : ov);
+        var status = practice ? '<div class="hskk-d-status">' + _esc('Đã ghi âm · luyện tập (chưa chấm tự động)') + '</div>' : '';
         var tip = _tip(a);
         var audio = a.url ? '<button class="hskk-d-replay" data-url="' + _esc(a.url) + '">▶ Nghe lại</button>' : '';
         return '<div class="hskk-d-item">' +
           '<div class="hskk-d-head"><span class="hskk-d-num">' + (i + 1) + '</span>' +
           '<span class="hskk-d-type">' + _esc(cfg.partVi) + '</span>' +
-          '<span class="hskk-d-score' + cls + '">' + (ov == null ? '—' : ov) + '</span></div>' +
+          '<span class="hskk-d-score' + cls + '">' + _esc(scoreText) + '</span></div>' +
+          status +
           '<div class="hskk-d-zh">' + _esc(a.q.zh) + '</div>' +
           '<div class="hskk-d-py">' + _esc(a.q.py || '') + '</div>' +
           (tip ? '<div class="hskk-d-tip">' + _esc(tip) + '</div>' : '') +
@@ -587,6 +596,7 @@ var HSKK = (function () {
   }
 
   function _tip(a) {
+    if (a && a.practice) return 'Phần luyện nói tự do — chưa chấm tự động.';
     var sc = a.score;
     if (!sc) return 'Chưa chấm được câu này.';
     if (sc._mock) return 'Điểm thử nghiệm (chưa kết nối SpeechSuper).';

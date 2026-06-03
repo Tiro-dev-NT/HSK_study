@@ -61,12 +61,14 @@
 
 - ☐ **HSKK Sơ cấp — thêm chế độ "Luyện từng phần"**: hiện `hskk.js` CHỈ có 1 flow thi nguyên đề 17′ (`_onStart`→`_buildExam`). Thêm màn chọn → luyện riêng P1/P2/P3 hết pool, không đồng hồ tổng, nghe lại + làm lại. Rẻ (tái dùng engine ghi âm/TTS).
 - ☐ **HSKK Trung cấp (中级)** — build mới. Điểm nhấn: **Phần 2 看图说话** = task nhìn tranh kể chuyện → **cần ảnh (xem mục D)**. Schema đề: `{ id, img|imgs[], topic, keywords[], outline, sampleAnswer }`. Chấm tự do cần SpeechSuper `speak.eval.pro.cn` (account hiện CHƯA có → để practice-no-grade như Phần 2/3 Sơ cấp).
+  - ☑ **PREP DONE 2026-06-03** (chưa build UI/wire): (1) `docs/plans/hskk-zhongji-kantu.md` — bối cảnh chuẩn 中级 Phần 2 (2 câu × 2 tranh, ~2′/câu, vocab HSK1–4) + style string cố định + prompt template tham số hoá + 2 ví dụ điền + **25 chủ đề** trung tính + schema JS đầy đủ + 3 item ví dụ + quy trình 5 bước; (2) `content/assets/PROMPTS.md` append mục 看图说话 + bảng 5 đề MVP. ⚠️ Cả 2 file + script convert đều bị `.gitignore` (`docs/`,`scripts/`,`content/`) → **chỉ local, chưa share repo** (chờ user quyết force-add).
 
 ### D. ⭐ NGUYÊN TẮC: mọi phần cần ẢNH đều LÀM ĐƯỢC — chỉ cần viết PROMPT gen
 > Chốt với user 2026-06-03. App đã có **asset pipeline** hoàn chỉnh (`content/assets/output/{wave}/` gen → process WebP → `assets/{category}/` → code đọc path `assets/`). Vì vậy bất kỳ feature cần hình (HSKK 看图说话, `image-choice` bài tập, visual vocab, story scene…) **không bị chặn bởi việc thiếu ảnh** — chỉ cần soạn prompt gen rồi chạy qua pipeline.
 - ☐ Khi build feature cần ảnh: **viết prompt gen trước** (style nhất quán, đề tài đời thường, **trung tính — HARD RULE app KHÔNG chính trị**), gen → QA → cwebp → `assets/`, kèm metadata mỗi ảnh (không để ảnh trần).
 - 📌 Ứng viên gần nhất cần kho ảnh: **HSKK 中级 看图说话** (cảnh sinh hoạt: họp lớp, gia đình, mua sắm, khám bệnh, du lịch…) + **`image-choice`** trong bài tập course.
-- 📌 Tham chiếu: `content/assets/PROMPTS.md` + memory `[[asset-pipeline]]`.
+- ☑ **Script convert DONE 2026-06-03** — `scripts/process-images.ps1` (PS 5.1 compatible): check `cwebp` trong PATH → thiếu thì in `winget install Google.WebP` + link manual; no-args in usage; loop PNG → `cwebp -q Q -resize W 0` → WebP, in KB trước/sau + % tiết kiệm. ⚠️ bị `.gitignore` (`scripts/`) → local-only tới khi force-add.
+- 📌 Tham chiếu: `content/assets/PROMPTS.md` + `docs/plans/hskk-zhongji-kantu.md` + memory `[[asset-pipeline]]`.
 
 ---
 

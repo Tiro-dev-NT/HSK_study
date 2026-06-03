@@ -55,6 +55,14 @@ var COURSE_LEVELS = [
       { label: 'Từ chức năng & tính từ', from: 90, to: 110 },
       { label: 'Chủ đề & đọc thêm',      from: 111, to: 121 }
     ]
+  },
+  {
+    level: 4, label: 'HSK 4', pro: true,
+    chapters: [
+      { label: 'Kỳ thực tập',           from: 122, to: 133 },
+      { label: 'Dự án & trưởng thành',  from: 134, to: 149 },
+      { label: 'Chủ đề & đọc thêm',     from: 150, to: 154 }
+    ]
   }
 ];
 

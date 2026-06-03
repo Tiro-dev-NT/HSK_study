@@ -290,8 +290,10 @@ var Quests = {
 
   _isPremium: function() {
     try {
-      if (typeof Monetization !== 'undefined' && typeof Monetization.isPro === 'function') {
-        return Monetization.isPro() === true;
+      // isPro() là async (trả Promise) → so sánh === true luôn sai.
+      // Dùng isProSync() (cache đã warm ở app init) cho hot path render quest.
+      if (typeof Monetization !== 'undefined' && typeof Monetization.isProSync === 'function') {
+        return Monetization.isProSync() === true;
       }
     } catch(e) {}
     return false;

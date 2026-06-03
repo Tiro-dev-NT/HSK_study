@@ -55,22 +55,32 @@ var Reading = (function() {
     _renderList();
   }
 
+  function _selectReadLevel(lvl, btn) {
+    document.querySelectorAll('.read-level-btn').forEach(function(b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    _level = lvl;
+    _currentPassage = null;
+    document.getElementById('readingView').style.display = 'none';
+    document.getElementById('readingList').style.display = '';
+    _renderList();
+  }
+
   function _bindEvents() {
     document.querySelectorAll('.read-level-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var lvl = parseInt(btn.dataset.level);
         // Reading HSK 3-6 = Pro (matrix 2026-05-21). HSK 1-2 free.
-        if (lvl >= 3 && typeof Monetization !== 'undefined' && !Monetization.isProSync()) {
-          Monetization.showGate('Đọc hiểu HSK ' + lvl);
-          return;
+        // Async isPro() khi cache chưa chắc → không khóa nhầm Pro (như course.js).
+        if (lvl >= 3 && typeof Monetization !== 'undefined') {
+          if (!Monetization.isProSync()) {
+            Monetization.isPro().then(function(pro) {
+              if (pro) _selectReadLevel(lvl, btn);
+              else Monetization.showGate('Đọc hiểu HSK ' + lvl);
+            });
+            return;
+          }
         }
-        document.querySelectorAll('.read-level-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        _level = lvl;
-        _currentPassage = null;
-        document.getElementById('readingView').style.display = 'none';
-        document.getElementById('readingList').style.display = '';
-        _renderList();
+        _selectReadLevel(lvl, btn);
       });
     });
 
@@ -281,30 +291,37 @@ var Reading = (function() {
     });
 
     // Mode tabs — DOM-only, no re-render
+    function _applyMode(newMode) {
+      _mode = newMode;
+      view.querySelectorAll('.read-mode-tab').forEach(function(t) {
+        t.classList.toggle('active', t.dataset.mode === newMode);
+      });
+      var passage = view.querySelector('.read-passage');
+      if (newMode === 'listen') {
+        passage.classList.add('read-hidden');
+        var fullText = sentences.map(function(s) { return s.zh; }).join('');
+        _playTTS(fullText);
+      } else {
+        passage.classList.remove('read-hidden');
+        _stopTTS();
+      }
+    }
     view.querySelectorAll('.read-mode-tab').forEach(function(tab) {
       tab.addEventListener('click', function() {
         var newMode = this.dataset.mode;
         if (newMode === _mode) return;
-        if (newMode === 'listen') {
-          // Listening HSK 2-6 = Pro; HSK 1 free (matrix 2026-05-21)
-          if (_level >= 2 && typeof Monetization !== 'undefined' && !Monetization.isProSync()) {
-            Monetization.showGate('Nghe hiểu HSK ' + _level);
+        // Listening HSK 2-6 = Pro; HSK 1 free (matrix 2026-05-21).
+        // Async isPro() khi cache chưa chắc → không khóa nhầm Pro.
+        if (newMode === 'listen' && _level >= 2 && typeof Monetization !== 'undefined') {
+          if (!Monetization.isProSync()) {
+            Monetization.isPro().then(function(pro) {
+              if (pro) _applyMode('listen');
+              else Monetization.showGate('Nghe hiểu HSK ' + _level);
+            });
             return;
           }
         }
-        _mode = newMode;
-        view.querySelectorAll('.read-mode-tab').forEach(function(t) {
-          t.classList.toggle('active', t.dataset.mode === newMode);
-        });
-        var passage = view.querySelector('.read-passage');
-        if (newMode === 'listen') {
-          passage.classList.add('read-hidden');
-          var fullText = sentences.map(function(s) { return s.zh; }).join('');
-          _playTTS(fullText);
-        } else {
-          passage.classList.remove('read-hidden');
-          _stopTTS();
-        }
+        _applyMode(newMode);
       });
     });
 

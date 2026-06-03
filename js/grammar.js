@@ -209,19 +209,31 @@ var Grammar = (function() {
 
   // ── Events ────────────────────────────────────────────
 
+  function _selectLevel(lvl, btn) {
+    document.querySelectorAll('.gram-level-btn').forEach(function(b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    _level = lvl;
+    _render();
+  }
+
   function _bindEvents() {
     document.querySelectorAll('.gram-level-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var lvl = parseInt(btn.dataset.level);
         // Grammar HSK 3-6 = Pro (matrix 2026-05-21). HSK 1-2 free.
-        if (lvl >= 3 && typeof Monetization !== 'undefined' && !Monetization.isProSync()) {
-          Monetization.showGate('Ngữ pháp HSK ' + lvl);
-          return;
+        // Server-side là nguồn sự thật: isProSync() chỉ là cache; nếu chưa
+        // chắc Pro thì check async isPro() (như course.js) để KHÔNG khóa nhầm
+        // Pro user lúc cache chưa warm.
+        if (lvl >= 3 && typeof Monetization !== 'undefined') {
+          if (!Monetization.isProSync()) {
+            Monetization.isPro().then(function(pro) {
+              if (pro) _selectLevel(lvl, btn);
+              else Monetization.showGate('Ngữ pháp HSK ' + lvl);
+            });
+            return;
+          }
         }
-        document.querySelectorAll('.gram-level-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        _level = lvl;
-        _render();
+        _selectLevel(lvl, btn);
       });
     });
 

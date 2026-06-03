@@ -29,6 +29,21 @@
           </div>
           <div class="hskk-card-cta">
             <button class="hskk-btn hskk-btn--start" id="hskkStartBtn">Bắt đầu thi →</button>
+            <div class="hskk-practice-divider">hoặc luyện từng phần</div>
+            <div class="hskk-practice-row">
+              <button class="hskk-btn hskk-btn--practice" id="hskkPracticeP1">
+                <span class="hskk-prac-main">Phần 1 · Nghe &amp; lặp lại</span>
+                <span class="hskk-prac-sub">có AI chấm · 1 credit/câu</span>
+              </button>
+              <button class="hskk-btn hskk-btn--practice" id="hskkPracticeP2">
+                <span class="hskk-prac-main">Phần 2 · Nghe &amp; trả lời</span>
+                <span class="hskk-prac-sub">luyện ghi âm, miễn phí</span>
+              </button>
+              <button class="hskk-btn hskk-btn--practice" id="hskkPracticeP3">
+                <span class="hskk-prac-main">Phần 3 · Nói theo đề</span>
+                <span class="hskk-prac-sub">luyện ghi âm, miễn phí</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -101,6 +116,23 @@
       </div>
     </div>
 
+    <!-- ═══════════ MÀN CHỌN SỐ CÂU (LUYỆN) ═══════════ -->
+    <div id="hskkPracticeSetup" class="hskk-practice-setup" style="display:none">
+      <div class="hskk-psetup-inner">
+        <h2 class="hskk-psetup-title" id="hskkPSetupTitle">Luyện Phần 1</h2>
+        <p class="hskk-psetup-desc">Chọn số câu muốn luyện:</p>
+        <div class="hskk-psetup-credit" id="hskkPSetupCredit" style="display:none"></div>
+        <div class="hskk-count-btns" id="hskkCountBtns">
+          <button class="hskk-count-btn" data-count="5">5 câu</button>
+          <button class="hskk-count-btn" data-count="10">10 câu</button>
+          <button class="hskk-count-btn" data-count="all">Tất cả</button>
+        </div>
+        <div class="hskk-psetup-back">
+          <button class="cs-btn-back" id="hskkPSetupBack">← Quay lại</button>
+        </div>
+      </div>
+    </div>
+
     <!-- ═══════════ MÀN THI ═══════════ -->
     <div id="hskkExam" class="hskk-exam" style="display:none">
 
@@ -145,6 +177,7 @@
           <button class="hskk-rec-btn" id="hskkRecBtn" style="display:none">🎙 Bắt đầu nói</button>
           <button class="hskk-stop-btn" id="hskkStopBtn" style="display:none">⏹ Dừng</button>
           <button class="hskk-replay-btn" id="hskkReplayBtn" style="display:none">▶ Nghe lại</button>
+          <button class="hskk-redo-btn" id="hskkRedoBtn" style="display:none">↺ Làm lại câu này</button>
           <button class="hskk-next-btn" id="hskkNextBtn" style="display:none">Câu tiếp →</button>
         </div>
       </div>

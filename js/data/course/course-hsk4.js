@@ -3320,3 +3320,669 @@ Object.assign(COURSE_DATA, {
   }
 
 });
+
+// ───────────────────────────────────────────────────────
+// BATCH 7 — Bài 149-154 (Sức khỏe + ĐỌC THÊM: thiên nhiên · động vật · xã hội)
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 149: Sức khỏe & đi lại — 18 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  149: {
+    id: 149,
+    level: 4,
+    title: 'Sức khỏe & đi lại',
+    context: 'Mai bị ho nhẹ nên đến phòng khám gần nhà. Bác sĩ dặn em kiên nhẫn dưỡng bệnh. Trên đường về, em nói chuyện về phương tiện đi lại và tin vui nhận được học bổng.',
+    vocabPreview: ['打针', '护士', '耐心', '乘坐', '奖学金'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng khám · Sáng', bg: 'clinic',
+        cast: ['mai', 'yisheng'],
+        text: 'Mai bị ho nhẹ nên đến phòng khám gần nhà.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'yisheng'],
+        text: '我有点咳嗽，来附近的医院看看。',
+        pinyin: 'Wǒ yǒudiǎn késou, lái fùjìn de yīyuàn kànkan.',
+        meaning: 'Tôi hơi ho, đến bệnh viện gần đây khám một chút.',
+        expression: 'sad', vocab: ['咳嗽', '附近'] },
+      { type: 'dialogue', speaker: 'yisheng', cast: ['mai', 'yisheng'],
+        text: '护士先给你打针，用一根针就好。别担心，这个病好治，要有耐心。',
+        pinyin: 'Hùshi xiān gěi nǐ dǎzhēn, yòng yì gēn zhēn jiù hǎo. Bié dānxīn, zhège bìng hǎo zhì, yào yǒu nàixīn.',
+        meaning: 'Y tá tiêm cho cháu trước, dùng một mũi kim là được. Đừng lo, bệnh này dễ chữa, phải kiên nhẫn.',
+        expression: 'focused', vocab: ['护士', '打针', '针', '治', '耐心'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'yisheng'],
+        text: '谢谢医生。听说医学博士很难考，医疗工作也很辛苦。',
+        pinyin: 'Xièxie yīshēng. Tīngshuō yīxué bóshì hěn nán kǎo, yīliáo gōngzuò yě hěn xīnkǔ.',
+        meaning: 'Cảm ơn bác sĩ. Nghe nói tiến sĩ y học rất khó thi, công việc y tế cũng vất vả.',
+        expression: 'curious', vocab: ['医学', '博士', '医疗'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我乘坐巴士回家，平时也常骑电动车。',
+        pinyin: 'Wǒ chéngzuò bāshì huí jiā, píngshí yě cháng qí diàndòngchē.',
+        meaning: 'Tôi đi xe buýt về nhà, bình thường cũng hay đi xe điện.',
+        expression: null, vocab: ['乘坐', '巴士', '电动车'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我们的友谊像车轮子，一直向前转。',
+        pinyin: 'Wǒmen de yǒuyì xiàng chē lúnzi, yìzhí xiàng qián zhuǎn.',
+        meaning: 'Tình bạn của mình như bánh xe, cứ lăn về phía trước.',
+        expression: 'happy', vocab: ['友谊', '轮子'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Trên đường',
+        expression: 'happy',
+        q: 'Mai vừa đỗ học bổng. Diễn đạt "Tôi giành được học bổng, có thể học tiếp" sao cho đúng?',
+        options: [
+          { text: '我拿到了奖学金，可以继续读书。', pinyin: 'Wǒ ná dào le jiǎngxuéjīn, kěyǐ jìxù dú shū.', meaning: 'Tôi giành được học bổng, có thể học tiếp.', correct: true,
+            feedback: 'Đúng! 奖学金 = học bổng.' },
+          { text: '我拿到了工程，可以继续读书。', pinyin: 'Wǒ ná dào le gōngchéng, kěyǐ jìxù dú shū.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '工程 = công trình, không hợp.' },
+          { text: '我拿到了燃料，可以继续读书。', pinyin: 'Wǒ ná dào le ránliào, kěyǐ jìxù dú shū.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '燃料 = nhiên liệu, không hợp.' }
+        ], vocab: ['奖学金', '工程', '燃料'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这座大桥是个大工程，汽车要加燃料才能跑。',
+        pinyin: 'Zhè zuò dàqiáo shì ge dà gōngchéng, qìchē yào jiā ránliào cáinéng pǎo.',
+        meaning: 'Cây cầu lớn này là một công trình lớn, ô tô phải đổ nhiên liệu mới chạy được.',
+        expression: 'curious', vocab: ['工程', '燃料'] },
+      { type: 'checkpoint', questions: [
+        { q: '“打针” nghĩa là?', options: ['Tiêm (mũi tiêm)', 'Uống thuốc', 'Khám mắt', 'Đo huyết áp'], answer: 0 },
+        { q: '“护士” là ai?', options: ['Y tá', 'Bác sĩ', 'Tiến sĩ', 'Bệnh nhân'], answer: 0 },
+        { q: '“乘坐巴士” — “乘坐” nghĩa là?', options: ['Đi (phương tiện)', 'Lái', 'Sửa', 'Mua'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '博士', p: 'bó shì', v: 'tiến sĩ' },
+      { h: '打针', p: 'dǎ zhēn', v: 'tiêm (mũi tiêm)' },
+      { h: '咳嗽', p: 'ké sou', v: 'ho' },
+      { h: '护士', p: 'hù shi', v: 'y tá' },
+      { h: '耐心', p: 'nài xīn', v: 'nhẫn nại, kiên nhẫn' },
+      { h: '医疗', p: 'yī liáo', v: 'y tế, chữa bệnh' },
+      { h: '医学', p: 'yī xué', v: 'y học, y khoa' },
+      { h: '针', p: 'zhēn', v: 'kim, mũi kim' },
+      { h: '治', p: 'zhì', v: 'trị, chữa' },
+      { h: '乘坐', p: 'chéng zuò', v: 'đi (phương tiện)' },
+      { h: '友谊', p: 'yǒu yì', v: 'tình bạn' },
+      { h: '巴士', p: 'bā shì', v: 'xe buýt' },
+      { h: '电动车', p: 'diàn dòng chē', v: 'xe điện' },
+      { h: '附近', p: 'fù jìn', v: 'gần đây, lân cận' },
+      { h: '工程', p: 'gōng chéng', v: 'công trình, dự án' },
+      { h: '奖学金', p: 'jiǎng xué jīn', v: 'học bổng' },
+      { h: '轮子', p: 'lún zi', v: 'bánh xe' },
+      { h: '燃料', p: 'rán liào', v: 'nhiên liệu' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我有点___，去看医生。', options: ['咳嗽', '医疗', '治'], answer: '咳嗽' },
+        { type: 'fill', sentence: '___给病人打针。', options: ['护士', '燃料', '轮子'], answer: '护士' },
+        { type: 'fill', sentence: '医院就在___，很方便。', options: ['附近', '工程', '友谊'], answer: '附近' },
+        { type: 'fill', sentence: '我___巴士去学校。', options: ['乘坐', '治', '打针'], answer: '乘坐' },
+        { type: 'fill', sentence: '我拿到了___，可以读书。', options: ['奖学金', '燃料', '工程'], answer: '奖学金' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '这个病好___，别担心。', options: ['治', '乘坐', '打针'], answer: '治' },
+        { type: 'fill', sentence: '看病要有___，慢慢会好。', options: ['耐心', '友谊', '工程'], answer: '耐心' },
+        { type: 'fill', sentence: '考___要学很多年。', options: ['博士', '巴士', '轮子'], answer: '博士' },
+        { type: 'fill', sentence: '我常骑___上班。', options: ['电动车', '燃料', '针'], answer: '电动车' },
+        { type: 'order', words: ['护士', '给', '你', '打针'], answer: '护士给你打针' },
+        { type: 'order', words: ['我', '乘坐', '巴士', '回家'], answer: '我乘坐巴士回家' },
+        { type: 'fill', sentence: '我们的___很深，是好朋友。', options: ['友谊', '工程', '燃料'], answer: '友谊' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这座大桥是个大___。', options: ['工程', '友谊', '耐心'], answer: '工程' },
+        { type: 'fill', sentence: '汽车要加___才能跑。', options: ['燃料', '轮子', '针'], answer: '燃料' },
+        { type: 'translate', prompt: 'Tôi hơi ho, đến bệnh viện gần đây khám.', answer: '我有点咳嗽，来附近的医院看看。' },
+        { type: 'translate', prompt: 'Đừng lo, bệnh này dễ chữa, phải kiên nhẫn.', answer: '别担心，这个病好治，要有耐心。' },
+        { type: 'translate', prompt: 'Tôi giành được học bổng, có thể học tiếp.', answer: '我拿到了奖学金，可以继续读书。' },
+        { type: 'fill', sentence: '车___一直向前转。', options: ['轮子', '燃料', '工程'], answer: '轮子' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 150: Đọc thêm: Thiên nhiên (1) — 17 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  150: {
+    id: 150,
+    level: 4,
+    title: 'Đọc thêm: Thiên nhiên (1)',
+    context: 'Kỳ nghỉ, Mai đi công viên sinh thái và đọc về thiên nhiên: rừng cây, dòng sông, đại dương và muôn loài.',
+    vocabPreview: ['森林', '植物', '海洋', '长江', '森林'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Công viên sinh thái · Sáng', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Kỳ nghỉ, Mai cùng Tiểu Mỹ đi công viên sinh thái.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '公园里有一片森林，很多植物。',
+        pinyin: 'Gōngyuán lǐ yǒu yí piàn sēnlín, hěn duō zhíwù.',
+        meaning: 'Trong công viên có một khu rừng, rất nhiều cây cối.',
+        expression: 'happy', vocab: ['森林', '植物'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '一棵大树的树叶很美，红叶子一朵朵像花。',
+        pinyin: 'Yì kē dàshù de shùyè hěn měi, hóng yèzi yì duǒ duǒ xiàng huā.',
+        meaning: 'Lá của một cây lớn rất đẹp, lá đỏ từng chùm như hoa.',
+        expression: 'happy', vocab: ['棵', '树叶', '叶子', '朵'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '长江是中国最长的江，最后流入海洋。',
+        pinyin: 'Chángjiāng shì Zhōngguó zuì cháng de jiāng, zuìhòu liú rù hǎiyáng.',
+        meaning: 'Trường Giang là con sông dài nhất Trung Quốc, cuối cùng đổ ra đại dương.',
+        expression: 'curious', vocab: ['长江', '江', '海洋'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我吃惊地发现石头里有像宝石的东西。',
+        pinyin: 'Wǒ chījīng de fāxiàn shítou lǐ yǒu xiàng bǎoshí de dōngxi.',
+        meaning: 'Tôi ngạc nhiên phát hiện trong đá có thứ giống đá quý.',
+        expression: 'surprise', vocab: ['吃惊', '宝石'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '张爷爷的孙子在树林里玩，远处动物园里有狮子，他累得睡着了。',
+        pinyin: 'Zhāng yéye de sūnzi zài shùlín lǐ wán, yuǎnchù dòngwùyuán lǐ yǒu shīzi, tā lèi de shuìzháo le.',
+        meaning: 'Cháu trai của ông Trương chơi trong rừng nhỏ, đằng xa sở thú có sư tử, cậu bé mệt đến ngủ thiếp đi.',
+        expression: 'happy', vocab: ['孙子', '树林', '狮子', '睡着'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Công viên',
+        expression: 'curious',
+        q: 'Trời sắp mưa. Diễn đạt "Chúng ta tránh mưa dưới gốc cây đi" sao cho đúng?',
+        options: [
+          { text: '我们在树下避雨吧。', pinyin: 'Wǒmen zài shù xià bì yǔ ba.', meaning: 'Chúng ta tránh mưa dưới gốc cây đi.', correct: true,
+            feedback: 'Đúng! 避 = tránh, né.' },
+          { text: '我们在树下汇雨吧。', pinyin: 'Wǒmen zài shù xià huì yǔ ba.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '汇 = quy tụ/chuyển tiền, không phải "tránh".' },
+          { text: '我们在树下朵雨吧。', pinyin: 'Wǒmen zài shù xià duǒ yǔ ba.', meaning: '(sai từ loại)', correct: false,
+            feedback: '朵 = lượng từ (bông hoa), không hợp.' }
+        ], vocab: ['避', '汇', '朵'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '小河汇入大江，景色真美。',
+        pinyin: 'Xiǎo hé huì rù dà jiāng, jǐngsè zhēn měi.',
+        meaning: 'Con suối nhỏ đổ vào sông lớn, cảnh sắc thật đẹp.',
+        expression: 'happy', vocab: ['汇'] },
+      { type: 'checkpoint', questions: [
+        { q: '“森林” nghĩa là?', options: ['Rừng', 'Biển', 'Sông', 'Núi'], answer: 0 },
+        { q: '“一棵大树” — “棵” là?', options: ['Lượng từ đếm cây', 'Đóa hoa', 'Chiếc lá', 'Con vật'], answer: 0 },
+        { q: '“在树下避雨” — “避” nghĩa là?', options: ['Tránh, né', 'Quy tụ', 'Ngủ', 'Ngạc nhiên'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '吃惊', p: 'chī jīng', v: 'giật mình, ngạc nhiên' },
+      { h: '朵', p: 'duǒ', v: 'bông, đóa (lượng từ hoa)' },
+      { h: '海洋', p: 'hǎi yáng', v: 'đại dương' },
+      { h: '棵', p: 'kē', v: 'cây (lượng từ)' },
+      { h: '森林', p: 'sēn lín', v: 'rừng' },
+      { h: '狮子', p: 'shī zi', v: 'sư tử' },
+      { h: '孙子', p: 'sūn zi', v: 'cháu trai (nội)' },
+      { h: '叶子', p: 'yè zi', v: 'chiếc lá' },
+      { h: '长江', p: 'cháng jiāng', v: 'sông Trường Giang' },
+      { h: '植物', p: 'zhí wù', v: 'thực vật' },
+      { h: '宝石', p: 'bǎo shí', v: 'đá quý' },
+      { h: '避', p: 'bì', v: 'tránh, né tránh' },
+      { h: '汇', p: 'huì', v: 'quy tụ, hối (tiền)' },
+      { h: '江', p: 'jiāng', v: 'sông lớn' },
+      { h: '树林', p: 'shù lín', v: 'rừng nhỏ, bụi cây' },
+      { h: '树叶', p: 'shù yè', v: 'lá cây' },
+      { h: '睡着', p: 'shuì zháo', v: 'ngủ thiếp đi' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '公园里有一片___。', options: ['森林', '海洋', '宝石'], answer: '森林' },
+        { type: 'fill', sentence: '秋天，___变黄了。', options: ['叶子', '海洋', '宝石'], answer: '叶子' },
+        { type: 'fill', sentence: '一___大树长得很高。', options: ['棵', '朵', '只'], answer: '棵' },
+        { type: 'fill', sentence: '大海又叫___。', options: ['海洋', '森林', '树林'], answer: '海洋' },
+        { type: 'fill', sentence: '动物园里有___。', options: ['狮子', '宝石', '叶子'], answer: '狮子' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '森林里有各种___。', options: ['植物', '海洋', '宝石'], answer: '植物' },
+        { type: 'fill', sentence: '一___花开得很美。', options: ['朵', '棵', '条'], answer: '朵' },
+        { type: 'fill', sentence: '___是中国最长的江。', options: ['长江', '森林', '海洋'], answer: '长江' },
+        { type: 'fill', sentence: '孩子太累，___了。', options: ['睡着', '吃惊', '汇'], answer: '睡着' },
+        { type: 'order', words: ['长江', '最后', '流入', '海洋'], answer: '长江最后流入海洋' },
+        { type: 'order', words: ['我们', '在', '树下', '避雨', '吧'], answer: '我们在树下避雨吧' },
+        { type: 'fill', sentence: '我___地发现石头里有宝石。', options: ['吃惊', '睡着', '避'], answer: '吃惊' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '快下雨了，我们去___雨。', options: ['避', '汇', '朵'], answer: '避' },
+        { type: 'fill', sentence: '小河___入大江。', options: ['汇', '避', '棵'], answer: '汇' },
+        { type: 'translate', prompt: 'Trong công viên có một khu rừng, rất nhiều cây cối.', answer: '公园里有一片森林，很多植物。' },
+        { type: 'translate', prompt: 'Trường Giang là con sông dài nhất Trung Quốc.', answer: '长江是中国最长的江。' },
+        { type: 'translate', prompt: 'Tôi ngạc nhiên phát hiện trong đá có thứ giống đá quý.', answer: '我吃惊地发现石头里有像宝石的东西。' },
+        { type: 'fill', sentence: '石头里有像___的东西。', options: ['宝石', '海洋', '森林'], answer: '宝石' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 151: Đọc thêm: Thiên nhiên & thời tiết — 16 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  151: {
+    id: 151,
+    level: 4,
+    title: 'Đọc thêm: Thiên nhiên & thời tiết',
+    context: 'Mai trồng hoa bên cửa sổ, ngắm cảnh mùa đông và đi tàu đến một lớp đào tạo. Thời tiết và lịch tàu khiến chuyến đi có chút bất ngờ.',
+    vocabPreview: ['鲜花', '种植', '干燥', '列车', '晚点'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Sáng', bg: 'home',
+        cast: ['mai'],
+        text: 'Mai trồng hoa bên cửa sổ và ngắm cảnh.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '窗台上摆着鲜花，我在窗子边种植小植物。',
+        pinyin: 'Chuāngtái shàng bǎizhe xiānhuā, wǒ zài chuāngzi biān zhòngzhí xiǎo zhíwù.',
+        meaning: 'Trên bệ cửa sổ bày hoa tươi, tôi trồng cây nhỏ bên cửa sổ.',
+        expression: 'happy', vocab: ['窗台', '鲜花', '窗子', '种植'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '窗户外面那棵松树落了雪。',
+        pinyin: 'Chuānghu wàimiàn nà kē sōngshù luò le xuě.',
+        meaning: 'Cây thông ngoài cửa sổ đã phủ tuyết.',
+        expression: 'curious', vocab: ['窗户', '松树'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '冬天又冷又干燥，到处是冰和冰雪。',
+        pinyin: 'Dōngtiān yòu lěng yòu gānzào, dàochù shì bīng hé bīngxuě.',
+        meaning: 'Mùa đông vừa lạnh vừa khô, khắp nơi là băng và băng tuyết.',
+        expression: null, vocab: ['干燥', '冰', '冰雪'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '突然打雷，天上闪电一闪一闪。',
+        pinyin: 'Tūrán dǎléi, tiānshàng shǎndiàn yì shǎn yì shǎn.',
+        meaning: 'Bỗng nhiên sấm vang, trên trời chớp lóe lên từng đợt.',
+        expression: 'surprise', vocab: ['打雷', '闪'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我坐列车去参加培训班，车晚点了半小时。',
+        pinyin: 'Wǒ zuò lièchē qù cānjiā péixùnbān, chē wǎndiǎn le bàn xiǎoshí.',
+        meaning: 'Tôi đi tàu đến tham gia lớp đào tạo, tàu trễ nửa tiếng.',
+        expression: 'sad', vocab: ['列车', '培训班', '晚点'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai'], bg: 'street',
+        scene: '📍 Nhà ga',
+        expression: 'sad',
+        q: 'Tàu trễ giờ, hành khách bực mình. Diễn đạt "Có người gọi điện khiếu nại vì tàu trễ" sao cho đúng?',
+        options: [
+          { text: '有人打电话投诉列车晚点。', pinyin: 'Yǒu rén dǎ diànhuà tóusù lièchē wǎndiǎn.', meaning: 'Có người gọi điện khiếu nại vì tàu trễ.', correct: true,
+            feedback: 'Đúng! 投诉 = khiếu nại, phàn nàn.' },
+          { text: '有人打电话减列车晚点。', pinyin: 'Yǒu rén dǎ diànhuà jiǎn lièchē wǎndiǎn.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '减 = giảm/trừ, không phải "khiếu nại".' },
+          { text: '有人打电话闪列车晚点。', pinyin: 'Yǒu rén dǎ diànhuà shǎn lièchē wǎndiǎn.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '闪 = chớp/né, không hợp.' }
+        ], vocab: ['投诉', '减', '闪'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这期培训班的人数减了一半，但大家很认真。',
+        pinyin: 'Zhè qī péixùnbān de rénshù jiǎn le yíbàn, dàn dàjiā hěn rènzhēn.',
+        meaning: 'Khóa đào tạo lần này số người giảm một nửa, nhưng ai cũng nghiêm túc.',
+        expression: 'focused', vocab: ['减'] },
+      { type: 'checkpoint', questions: [
+        { q: '“鲜花” nghĩa là?', options: ['Hoa tươi', 'Cỏ khô', 'Lá cây', 'Băng tuyết'], answer: 0 },
+        { q: '“列车晚点” — “晚点” nghĩa là?', options: ['Trễ giờ', 'Đúng giờ', 'Dừng lại', 'Khởi hành'], answer: 0 },
+        { q: '“打电话投诉” — “投诉” nghĩa là?', options: ['Khiếu nại', 'Khen ngợi', 'Cảm ơn', 'Đặt vé'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '松树', p: 'sōng shù', v: 'cây thông' },
+      { h: '投诉', p: 'tóu sù', v: 'khiếu nại, phàn nàn' },
+      { h: '鲜花', p: 'xiān huā', v: 'hoa tươi' },
+      { h: '种植', p: 'zhòng zhí', v: 'trồng trọt' },
+      { h: '窗户', p: 'chuāng hu', v: 'cửa sổ' },
+      { h: '干燥', p: 'gān zào', v: 'khô ráo' },
+      { h: '冰', p: 'bīng', v: 'băng, nước đá' },
+      { h: '冰雪', p: 'bīng xuě', v: 'băng tuyết' },
+      { h: '窗台', p: 'chuāng tái', v: 'bệ cửa sổ' },
+      { h: '窗子', p: 'chuāng zi', v: 'cửa sổ' },
+      { h: '打雷', p: 'dǎ léi', v: 'sấm, sét' },
+      { h: '减', p: 'jiǎn', v: 'giảm, trừ' },
+      { h: '列车', p: 'liè chē', v: 'tàu hỏa' },
+      { h: '培训班', p: 'péi xùn bān', v: 'lớp đào tạo' },
+      { h: '闪', p: 'shǎn', v: 'chớp sáng, né' },
+      { h: '晚点', p: 'wǎn diǎn', v: 'trễ giờ (tàu xe)' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '窗台上摆着___。', options: ['鲜花', '冰雪', '列车'], answer: '鲜花' },
+        { type: 'fill', sentence: '我在窗边___小植物。', options: ['种植', '投诉', '晚点'], answer: '种植' },
+        { type: 'fill', sentence: '冬天空气很___。', options: ['干燥', '鲜花', '列车'], answer: '干燥' },
+        { type: 'fill', sentence: '我坐___去外地。', options: ['列车', '鲜花', '窗台'], answer: '列车' },
+        { type: 'fill', sentence: '车___了半小时。', options: ['晚点', '种植', '打雷'], answer: '晚点' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '窗外那棵___落了雪。', options: ['松树', '列车', '鲜花'], answer: '松树' },
+        { type: 'fill', sentence: '到处是冰和___。', options: ['冰雪', '鲜花', '列车'], answer: '冰雪' },
+        { type: 'fill', sentence: '天上___，要下雨了。', options: ['打雷', '种植', '投诉'], answer: '打雷' },
+        { type: 'fill', sentence: '我去参加一个___学技术。', options: ['培训班', '松树', '冰雪'], answer: '培训班' },
+        { type: 'order', words: ['列车', '晚点', '了', '半', '小时'], answer: '列车晚点了半小时' },
+        { type: 'order', words: ['窗台', '上', '摆着', '鲜花'], answer: '窗台上摆着鲜花' },
+        { type: 'fill', sentence: '闪电一___一闪。', options: ['闪', '减', '种植'], answer: '闪' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '有人打电话___列车晚点。', options: ['投诉', '减', '闪'], answer: '投诉' },
+        { type: 'fill', sentence: '这期班的人数___了一半。', options: ['减', '投诉', '种植'], answer: '减' },
+        { type: 'translate', prompt: 'Trên bệ cửa sổ bày hoa tươi.', answer: '窗台上摆着鲜花。' },
+        { type: 'translate', prompt: 'Mùa đông vừa lạnh vừa khô.', answer: '冬天又冷又干燥。' },
+        { type: 'translate', prompt: 'Tôi đi tàu đến tham gia lớp đào tạo.', answer: '我坐列车去参加培训班。' },
+        { type: 'fill', sentence: '关上___，外面冷。', options: ['窗子', '列车', '鲜花'], answer: '窗子' }
+      ]
+    }
+  }
+
+});
+
+// ───────────────────────────────────────────────────────
+// BATCH 7 (tiếp) — Bài 152-154 (Động vật · Xã hội & sở thích) — kết HSK 4
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 152: Đọc thêm: Thế giới động vật (1) — 13 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  152: {
+    id: 152,
+    level: 4,
+    title: 'Đọc thêm: Thế giới động vật (1)',
+    context: 'Mai đưa các em nhỏ đi sở thú, rồi về nhà chăm sóc em bị ốm. Một ngày vừa vui vừa đáng nhớ với muôn loài và những bài học chăm sóc sức khỏe.',
+    vocabPreview: ['猴子', '老虎', '锻炼', '发烧', '祝贺'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Sở thú · Sáng', bg: 'street',
+        cast: ['mai', 'xiaomei'],
+        text: 'Mai đưa các em nhỏ đi sở thú chơi.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '动物园里有猴子和老虎，孩子们打扮得很可爱。',
+        pinyin: 'Dòngwùyuán lǐ yǒu hóuzi hé lǎohǔ, háizimen dǎban de hěn kě\'ài.',
+        meaning: 'Sở thú có khỉ và hổ, bọn trẻ ăn mặc rất đáng yêu.',
+        expression: 'happy', vocab: ['猴子', '老虎', '打扮'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '老虎吼得太大声，我受不了。',
+        pinyin: 'Lǎohǔ hǒu de tài dàshēng, wǒ shòu bù liǎo.',
+        meaning: 'Hổ gầm to quá, tớ chịu không nổi.',
+        expression: 'surprise', vocab: ['受不了'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '隔着玻璃看更安全，玻璃把我们和老虎隔开。',
+        pinyin: 'Gézhe bōli kàn gèng ānquán, bōli bǎ wǒmen hé lǎohǔ gékāi.',
+        meaning: 'Nhìn qua kính an toàn hơn, kính ngăn cách chúng ta với hổ.',
+        expression: 'focused', vocab: ['隔'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '回家把水果放冰箱，发现一只虫子，箱子有点沉。',
+        pinyin: 'Huí jiā bǎ shuǐguǒ fàng bīngxiāng, fāxiàn yì zhī chóngzi, xiāngzi yǒudiǎn chén.',
+        meaning: 'Về nhà cho trái cây vào tủ lạnh, phát hiện một con sâu, cái thùng hơi nặng.',
+        expression: 'curious', vocab: ['冰箱', '虫子', '沉'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '弟弟发烧了，不是感冒，而是吃坏了肚子。表姐是法官，平时坚持锻炼。',
+        pinyin: 'Dìdi fāshāo le, bú shì gǎnmào, érshì chī huài le dùzi. Biǎojiě shì fǎguān, píngshí jiānchí duànliàn.',
+        meaning: 'Em trai bị sốt, không phải cảm, mà là ăn hỏng bụng. Chị họ là thẩm phán, bình thường luôn duy trì tập luyện.',
+        expression: 'sad', vocab: ['发烧', '而是', '法官', '锻炼'] },
+      { type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'home',
+        scene: '📍 Nhà Mai',
+        expression: 'happy',
+        q: 'Bạn vừa đoạt giải. Diễn đạt "Chúc mừng cậu đoạt giải" sao cho đúng?',
+        options: [
+          { text: '祝贺你得奖了！', pinyin: 'Zhùhè nǐ dé jiǎng le!', meaning: 'Chúc mừng cậu đoạt giải!', correct: true,
+            feedback: 'Đúng! 祝贺 = chúc mừng.' },
+          { text: '受不了你得奖了！', pinyin: 'Shòu bù liǎo nǐ dé jiǎng le!', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '受不了 = không chịu nổi, không hợp.' },
+          { text: '沉你得奖了！', pinyin: 'Chén nǐ dé jiǎng le!', meaning: '(không thông)', correct: false,
+            feedback: '沉 = chìm/nặng, không hợp.' }
+        ], vocab: ['祝贺', '受不了', '沉'] },
+      { type: 'checkpoint', questions: [
+        { q: '“老虎” là con gì?', options: ['Con hổ', 'Con khỉ', 'Con sâu', 'Con cá'], answer: 0 },
+        { q: '“祝贺你” nghĩa là?', options: ['Chúc mừng bạn', 'Xin lỗi bạn', 'Cảm ơn bạn', 'Tạm biệt bạn'], answer: 0 },
+        { q: '“不是感冒，而是吃坏肚子” — “而是” nghĩa là?', options: ['Mà là', 'Bởi vì', 'Nếu', 'Tuy nhiên'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '打扮', p: 'dǎ ban', v: 'trang điểm, ăn mặc' },
+      { h: '猴子', p: 'hóu zi', v: 'con khỉ' },
+      { h: '老虎', p: 'lǎo hǔ', v: 'hổ, cọp' },
+      { h: '受不了', p: 'shòu bù liǎo', v: 'không chịu được' },
+      { h: '祝贺', p: 'zhù hè', v: 'chúc mừng' },
+      { h: '冰箱', p: 'bīng xiāng', v: 'tủ lạnh' },
+      { h: '沉', p: 'chén', v: 'chìm, nặng' },
+      { h: '虫子', p: 'chóng zi', v: 'sâu bọ, côn trùng' },
+      { h: '锻炼', p: 'duàn liàn', v: 'luyện tập, rèn luyện' },
+      { h: '而是', p: 'ér shì', v: 'mà là' },
+      { h: '发烧', p: 'fā shāo', v: 'sốt (bệnh)' },
+      { h: '法官', p: 'fǎ guān', v: 'thẩm phán, quan tòa' },
+      { h: '隔', p: 'gé', v: 'ngăn cách, cách nhau' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '动物园里有___和老虎。', options: ['猴子', '冰箱', '法官'], answer: '猴子' },
+        { type: 'fill', sentence: '把水果放进___。', options: ['冰箱', '老虎', '虫子'], answer: '冰箱' },
+        { type: 'fill', sentence: '弟弟___了，要看医生。', options: ['发烧', '打扮', '祝贺'], answer: '发烧' },
+        { type: 'fill', sentence: '每天___身体才健康。', options: ['锻炼', '发烧', '隔'], answer: '锻炼' },
+        { type: 'fill', sentence: '___你得奖了！', options: ['祝贺', '受不了', '沉'], answer: '祝贺' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '老虎吼得太大声，我___。', options: ['受不了', '祝贺', '打扮'], answer: '受不了' },
+        { type: 'fill', sentence: '孩子们___得很可爱。', options: ['打扮', '发烧', '锻炼'], answer: '打扮' },
+        { type: 'fill', sentence: '箱子里有东西，有点___。', options: ['沉', '隔', '打扮'], answer: '沉' },
+        { type: 'fill', sentence: '我发现一只___。', options: ['虫子', '冰箱', '法官'], answer: '虫子' },
+        { type: 'order', words: ['玻璃', '把', '我们', '和', '老虎', '隔开'], answer: '玻璃把我们和老虎隔开' },
+        { type: 'order', words: ['每天', '坚持', '锻炼', '身体'], answer: '每天坚持锻炼身体' },
+        { type: 'fill', sentence: '表姐是一位___。', options: ['法官', '虫子', '冰箱'], answer: '法官' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '不是感冒，___吃坏了肚子。', options: ['而是', '受不了', '沉'], answer: '而是' },
+        { type: 'fill', sentence: '玻璃把我们和老虎___开。', options: ['隔', '沉', '打扮'], answer: '隔' },
+        { type: 'translate', prompt: 'Sở thú có khỉ và hổ.', answer: '动物园里有猴子和老虎。' },
+        { type: 'translate', prompt: 'Em trai bị sốt, không phải cảm, mà là ăn hỏng bụng.', answer: '弟弟发烧了，不是感冒，而是吃坏了肚子。' },
+        { type: 'translate', prompt: 'Chúc mừng cậu đoạt giải!', answer: '祝贺你得奖了！' },
+        { type: 'fill', sentence: '老虎吼声太大，我真___。', options: ['受不了', '祝贺', '隔'], answer: '受不了' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 153: Đọc thêm: Thế giới động vật (2) — 13 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  153: {
+    id: 153,
+    level: 4,
+    title: 'Đọc thêm: Thế giới động vật (2)',
+    context: 'Trời trở lạnh, bà của Mai về quê dưỡng bệnh. Mai tìm hiểu phong tục các nơi, tập thể dục buổi sáng và hít thở không khí trong lành.',
+    vocabPreview: ['降温', '疗养', '了解', '新鲜', '药物'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Sáng', bg: 'home',
+        cast: ['mai', 'mama'],
+        text: 'Trời trở lạnh, bà của Mai về quê dưỡng bệnh.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '天气降温了，奶奶去乡下疗养。',
+        pinyin: 'Tiānqì jiàngwēn le, nǎinai qù xiāngxià liáoyǎng.',
+        meaning: 'Thời tiết hạ nhiệt, bà về quê dưỡng bệnh.',
+        expression: 'curious', vocab: ['降温', '疗养'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我了解到各个地方的风俗都不同，很有意思。',
+        pinyin: 'Wǒ liǎojiě dào gègè dìfang de fēngsú dōu bù tóng, hěn yǒuyìsi.',
+        meaning: 'Tôi tìm hiểu được phong tục từng nơi đều khác nhau, rất thú vị.',
+        expression: 'happy', vocab: ['了解', '各个'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '房间在装修，把两个区域隔开了。',
+        pinyin: 'Fángjiān zài zhuāngxiū, bǎ liǎng ge qūyù gékāi le.',
+        meaning: 'Căn phòng đang sửa nội thất, ngăn cách hai khu vực ra.',
+        expression: null, vocab: ['装修', '隔开'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '医生说这种药物既安全又有效。',
+        pinyin: 'Yīshēng shuō zhè zhǒng yàowù jì ānquán yòu yǒuxiào.',
+        meaning: 'Bác sĩ nói loại thuốc này vừa an toàn vừa hiệu quả.',
+        expression: 'focused', vocab: ['药物', '既'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '早上做体操，呼吸新鲜空气，阳光透过窗户照进来。',
+        pinyin: 'Zǎoshang zuò tǐcāo, hūxī xīnxiān kōngqì, yángguāng tòuguò chuānghu zhào jìnlái.',
+        meaning: 'Buổi sáng tập thể dục, hít thở không khí trong lành, ánh nắng xuyên qua cửa sổ rọi vào.',
+        expression: 'happy', vocab: ['体操', '新鲜', '透'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'xiaomei'], bg: 'street',
+        scene: '📍 Bên hồ',
+        expression: 'happy',
+        q: 'Cuối tuần đi chèo thuyền. Diễn đạt "Chúng tôi chèo thuyền trên hồ" sao cho đúng?',
+        options: [
+          { text: '我们在湖上划船。', pinyin: 'Wǒmen zài hú shàng huá chuán.', meaning: 'Chúng tôi chèo thuyền trên hồ.', correct: true,
+            feedback: 'Đúng! 划 = chèo (thuyền).' },
+          { text: '我们在湖上名人船。', pinyin: 'Wǒmen zài hú shàng míngrén chuán.', meaning: '(sai từ loại)', correct: false,
+            feedback: '名人 = người nổi tiếng (danh từ), không hợp.' },
+          { text: '我们在湖上透船。', pinyin: 'Wǒmen zài hú shàng tòu chuán.', meaning: '(không thông)', correct: false,
+            feedback: '透 = xuyên qua, không hợp.' }
+        ], vocab: ['划', '名人', '透'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'mama'],
+        text: '听说一位名人也来这里疗养，他很喜欢这里的安静。',
+        pinyin: 'Tīngshuō yí wèi míngrén yě lái zhèlǐ liáoyǎng, tā hěn xǐhuan zhèlǐ de ānjìng.',
+        meaning: 'Nghe nói một người nổi tiếng cũng đến đây dưỡng bệnh, ông ấy thích sự yên tĩnh ở đây.',
+        expression: 'curious', vocab: ['名人'] },
+      { type: 'checkpoint', questions: [
+        { q: '“降温” nghĩa là?', options: ['Nhiệt độ giảm', 'Nhiệt độ tăng', 'Trời mưa', 'Trời nắng'], answer: 0 },
+        { q: '“了解风俗” — “了解” nghĩa là?', options: ['Hiểu rõ', 'Quên', 'Nghi ngờ', 'Tránh'], answer: 0 },
+        { q: '“在湖上划船” — “划” nghĩa là?', options: ['Chèo (thuyền)', 'Bơi', 'Lái xe', 'Leo'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '隔开', p: 'gé kāi', v: 'tách biệt, ngăn cách' },
+      { h: '各个', p: 'gè gè', v: 'từng cái, các' },
+      { h: '划', p: 'huá', v: 'chèo (thuyền), vạch' },
+      { h: '既', p: 'jì', v: 'đã... lại, vừa... vừa' },
+      { h: '降温', p: 'jiàng wēn', v: 'hạ nhiệt độ' },
+      { h: '疗养', p: 'liáo yǎng', v: 'dưỡng bệnh, điều dưỡng' },
+      { h: '了解', p: 'liǎo jiě', v: 'hiểu rõ, thấu hiểu' },
+      { h: '名人', p: 'míng rén', v: 'người nổi tiếng, danh nhân' },
+      { h: '体操', p: 'tǐ cāo', v: 'thể dục (môn)' },
+      { h: '透', p: 'tòu', v: 'xuyên qua, thấu suốt' },
+      { h: '新鲜', p: 'xīn xiān', v: 'tươi mới' },
+      { h: '药物', p: 'yào wù', v: 'thuốc, dược phẩm' },
+      { h: '装修', p: 'zhuāng xiū', v: 'sửa nội thất' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '天气___了，要多穿衣服。', options: ['降温', '了解', '划'], answer: '降温' },
+        { type: 'fill', sentence: '奶奶去乡下___身体。', options: ['疗养', '装修', '划'], answer: '疗养' },
+        { type: 'fill', sentence: '我想___各地的风俗。', options: ['了解', '降温', '透'], answer: '了解' },
+        { type: 'fill', sentence: '早上呼吸___空气。', options: ['新鲜', '名人', '既'], answer: '新鲜' },
+        { type: 'fill', sentence: '这种___既安全又有效。', options: ['药物', '名人', '体操'], answer: '药物' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '房间在___，变得更漂亮。', options: ['装修', '降温', '划'], answer: '装修' },
+        { type: 'fill', sentence: '墙把两个房间___了。', options: ['隔开', '了解', '透'], answer: '隔开' },
+        { type: 'fill', sentence: '早上做___，身体更好。', options: ['体操', '名人', '药物'], answer: '体操' },
+        { type: 'fill', sentence: '阳光___过窗户照进来。', options: ['透', '划', '既'], answer: '透' },
+        { type: 'order', words: ['这', '种', '药物', '既', '安全', '又', '有效'], answer: '这种药物既安全又有效' },
+        { type: 'order', words: ['我们', '在', '湖', '上', '划船'], answer: '我们在湖上划船' },
+        { type: 'fill', sentence: '___地方的风俗都不同。', options: ['各个', '名人', '新鲜'], answer: '各个' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我们在湖上___船。', options: ['划', '名人', '透'], answer: '划' },
+        { type: 'fill', sentence: '一位___也来这里疗养。', options: ['名人', '药物', '体操'], answer: '名人' },
+        { type: 'translate', prompt: 'Thời tiết hạ nhiệt, bà về quê dưỡng bệnh.', answer: '天气降温了，奶奶去乡下疗养。' },
+        { type: 'translate', prompt: 'Tôi tìm hiểu được phong tục từng nơi đều khác nhau.', answer: '我了解到各个地方的风俗都不同。' },
+        { type: 'translate', prompt: 'Buổi sáng tập thể dục, hít thở không khí trong lành.', answer: '早上做体操，呼吸新鲜空气。' },
+        { type: 'fill', sentence: '这种药___安全又有效。', options: ['既', '透', '划'], answer: '既' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 154: Đọc thêm: Con số, xã hội & sở thích — 23 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  154: {
+    id: 154,
+    level: 4,
+    title: 'Đọc thêm: Con số, xã hội & sở thích',
+    context: 'Khép lại HSK 4, Mai tham gia hội thao của trường, gặp gỡ nhiều người thú vị và chia sẻ ước mơ trở thành nhà ngoại giao — sẵn sàng cho chặng đường HSK 5.',
+    vocabPreview: ['运动会', '运动员', '外交官', '幽默', '预测'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân vận động · Sáng', bg: 'campus',
+        cast: ['mai', 'xiaomei'],
+        text: 'Trường tổ chức hội thao, khép lại một mùa hè đáng nhớ.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '学校开运动会，运动员们打乒乓球、登山。',
+        pinyin: 'Xuéxiào kāi yùndònghuì, yùndòngyuán men dǎ pīngpāngqiú, dēngshān.',
+        meaning: 'Trường tổ chức hội thao, các vận động viên chơi bóng bàn, leo núi.',
+        expression: 'happy', vocab: ['运动会', '运动员', '乒乓球', '登山'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '观众分为两组，人数是去年的两倍。',
+        pinyin: 'Guānzhòng fēnwéi liǎng zǔ, rénshù shì qùnián de liǎng bèi.',
+        meaning: 'Khán giả chia làm hai nhóm, số người gấp đôi năm ngoái.',
+        expression: 'curious', vocab: ['分为', '倍'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '三分之一的人坐大巴来，场面五颜六色。',
+        pinyin: 'Sān fēn zhī yī de rén zuò dàbā lái, chǎngmiàn wǔyán-liùsè.',
+        meaning: 'Một phần ba số người đi xe khách đến, khung cảnh muôn màu muôn sắc.',
+        expression: 'happy', vocab: ['分之', '大巴', '五颜六色'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这位诗人很幽默，对人也很有礼貌。',
+        pinyin: 'Zhè wèi shīrén hěn yōumò, duì rén yě hěn yǒu lǐmào.',
+        meaning: 'Nhà thơ này rất hài hước, đối với mọi người cũng rất lịch sự.',
+        expression: 'happy', vocab: ['诗人', '幽默', '礼貌'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '我下周要出差，去参加一个大会。',
+        pinyin: 'Wǒ xià zhōu yào chūchāi, qù cānjiā yí ge dàhuì.',
+        meaning: 'Tuần sau thầy phải đi công tác, dự một hội nghị lớn.',
+        expression: null, vocab: ['出差', '大会'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '我梦想当外交官，懂法律，也了解各国文化。',
+        pinyin: 'Wǒ mèngxiǎng dāng wàijiāoguān, dǒng fǎlǜ, yě liǎojiě gè guó wénhuà.',
+        meaning: 'Em mơ ước làm nhà ngoại giao, hiểu pháp luật, cũng am hiểu văn hóa các nước.',
+        expression: 'focused', vocab: ['外交官', '法律'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'laoli'], bg: 'campus',
+        scene: '📍 Sân vận động',
+        expression: 'focused',
+        q: 'Nói về tương lai. Diễn đạt "Họ dự đoán công nghệ kiểu mới sẽ thay đổi cuộc sống" sao cho đúng?',
+        options: [
+          { text: '他们预测新型技术会改变生活。', pinyin: 'Tāmen yùcè xīnxíng jìshù huì gǎibiàn shēnghuó.', meaning: 'Họ dự đoán công nghệ kiểu mới sẽ thay đổi cuộc sống.', correct: true,
+            feedback: 'Đúng! 预测 = dự đoán; 新型 = kiểu mới.' },
+          { text: '他们移新型技术会改变生活。', pinyin: 'Tāmen yí xīnxíng jìshù huì gǎibiàn shēnghuó.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '移 = di chuyển, không hợp.' },
+          { text: '他们反新型技术会改变生活。', pinyin: 'Tāmen fǎn xīnxíng jìshù huì gǎibiàn shēnghuó.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '反 = chống lại/ngược, không hợp.' }
+        ], vocab: ['预测', '新型', '移', '反'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这台机器构造复杂，把零件移一移就好。红色是我最爱的颜色之一，我反对浪费。HSK 4 结束了，下一站，HSK 5！',
+        pinyin: 'Zhè tái jīqì gòuzào fùzá, bǎ língjiàn yí yi yí jiù hǎo. Hóngsè shì wǒ zuì ài de yánsè zhī yī, wǒ fǎnduì làngfèi. HSK 4 jiéshù le, xià yí zhàn, HSK 5!',
+        meaning: 'Máy này cấu tạo phức tạp, dịch linh kiện một chút là được. Màu đỏ là một trong những màu tôi thích nhất, tôi phản đối lãng phí. HSK 4 kết thúc rồi, chặng tiếp theo, HSK 5!',
+        expression: 'happy', vocab: ['构造', '移', '色', '之一', '反'] },
+      { type: 'checkpoint', questions: [
+        { q: '“运动员” là ai?', options: ['Vận động viên', 'Khán giả', 'Nhà thơ', 'Nhà ngoại giao'], answer: 0 },
+        { q: '“五颜六色” nghĩa là?', options: ['Muôn màu muôn sắc', 'Đen trắng', 'Một màu', 'Nhạt nhòa'], answer: 0 },
+        { q: '“他们预测未来” — “预测” nghĩa là?', options: ['Dự đoán', 'Phản đối', 'Di chuyển', 'Lịch sự'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '倍', p: 'bèi', v: 'lần, gấp' },
+      { h: '分之', p: 'fēn zhī', v: '(phân số) phần' },
+      { h: '分为', p: 'fēn wéi', v: 'chia thành, phân thành' },
+      { h: '构造', p: 'gòu zào', v: 'cấu tạo, kết cấu' },
+      { h: '移', p: 'yí', v: 'di chuyển, dịch' },
+      { h: '预测', p: 'yù cè', v: 'dự đoán, dự báo' },
+      { h: '之一', p: 'zhī yī', v: 'một trong số' },
+      { h: '出差', p: 'chū chāi', v: 'đi công tác' },
+      { h: '法律', p: 'fǎ lǜ', v: 'pháp luật' },
+      { h: '礼貌', p: 'lǐ mào', v: 'lịch sự' },
+      { h: '大会', p: 'dà huì', v: 'đại hội, hội nghị lớn' },
+      { h: '反', p: 'fǎn', v: 'chống lại, ngược lại' },
+      { h: '外交官', p: 'wài jiāo guān', v: 'nhà ngoại giao' },
+      { h: '乒乓球', p: 'pīng pāng qiú', v: 'bóng bàn' },
+      { h: '大巴', p: 'dà bā', v: 'xe khách lớn' },
+      { h: '登山', p: 'dēng shān', v: 'leo núi' },
+      { h: '运动会', p: 'yùn dòng huì', v: 'hội thao, đại hội thể thao' },
+      { h: '运动员', p: 'yùn dòng yuán', v: 'vận động viên' },
+      { h: '色', p: 'sè', v: 'màu sắc' },
+      { h: '五颜六色', p: 'wǔ yán liù sè', v: 'muôn màu muôn sắc' },
+      { h: '诗人', p: 'shī rén', v: 'nhà thơ, thi sĩ' },
+      { h: '新型', p: 'xīn xíng', v: 'loại mới, kiểu mới' },
+      { h: '幽默', p: 'yōu mò', v: 'hài hước' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '学校开___，大家很兴奋。', options: ['运动会', '外交官', '诗人'], answer: '运动会' },
+        { type: 'fill', sentence: '___们在比赛。', options: ['运动员', '法律', '大会'], answer: '运动员' },
+        { type: 'fill', sentence: '我们一起打___。', options: ['乒乓球', '法律', '构造'], answer: '乒乓球' },
+        { type: 'fill', sentence: '周末我们去___。', options: ['登山', '出差', '预测'], answer: '登山' },
+        { type: 'fill', sentence: '他很___，常逗大家笑。', options: ['幽默', '法律', '构造'], answer: '幽默' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '人数是去年的两___。', options: ['倍', '色', '反'], answer: '倍' },
+        { type: 'fill', sentence: '观众___两组。', options: ['分为', '预测', '出差'], answer: '分为' },
+        { type: 'fill', sentence: '对人要有___。', options: ['礼貌', '构造', '法律'], answer: '礼貌' },
+        { type: 'fill', sentence: '老师下周要___，参加大会。', options: ['出差', '登山', '移'], answer: '出差' },
+        { type: 'order', words: ['场面', '五颜六色', '非常', '热闹'], answer: '场面五颜六色非常热闹' },
+        { type: 'order', words: ['我', '梦想', '当', '外交官'], answer: '我梦想当外交官' },
+        { type: 'fill', sentence: '懂___才能保护自己。', options: ['法律', '色', '倍'], answer: '法律' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '他们___新型技术会改变生活。', options: ['预测', '移', '反'], answer: '预测' },
+        { type: 'fill', sentence: '红色是我最爱的颜色___。', options: ['之一', '分之', '倍'], answer: '之一' },
+        { type: 'translate', prompt: 'Trường tổ chức hội thao, các vận động viên chơi bóng bàn.', answer: '学校开运动会，运动员们打乒乓球。' },
+        { type: 'translate', prompt: 'Em mơ ước làm nhà ngoại giao, hiểu pháp luật.', answer: '我梦想当外交官，懂法律。' },
+        { type: 'translate', prompt: 'Khán giả chia làm hai nhóm, số người gấp đôi năm ngoái.', answer: '观众分为两组，人数是去年的两倍。' },
+        { type: 'fill', sentence: '这台机器___复杂。', options: ['构造', '礼貌', '法律'], answer: '构造' }
+      ]
+    }
+  }
+
+});

@@ -33,11 +33,11 @@
 ### A. Khoảng trống so với giáo trình chuẩn (Phase P — Truyện Mai) — map 1-1 bảng đối chiếu
 > 5 mục dưới đúng theo 5 dòng "Thiếu / Đạt-nhưng-tách-rời" của bảng so sánh app vs 《新HSK教程1》.
 
-- ☐ **A1 · Mục tiêu bài (Objectives)** — giáo trình mở mỗi bài bằng 目标 (liệt kê việc học xong làm được gì). App chỉ có `context` (dẫn truyện). → thêm field `objectives: []` mỗi bài + render khối "Mục tiêu bài này" ở đầu màn bài (`course.js`).
+- ☑ **A1 · Mục tiêu bài (Objectives) DONE 2026-06-03** (merge `763bc3a`) — field `objectives:[]` (2–4 mục) cho cả 30/30 bài HSK 1; render khối "🎯 Mục tiêu bài này" trong `_renderIntro`.
 - ☑ **A2 · Vocab nghĩa tiếng Anh DONE 2026-06-03** — auto-fill field `e` cho vocab `course-hsk1.js` từ `HSK3_DATA` (script `scripts/fill_course_en.py`, map h→e từ 9 file hsk3_lvl*). 532/538 khớp; 6 cụm để trống (KHÔNG bịa): 中国人/越南人/雨伞/看书/做题/第一. Render dòng `.cs-vc-en` khi có `.e`. **CÒN LẠI (chưa làm):** (1) **POS/từ loại** — `HSK3_DATA` KHÔNG có (field `t` = chủ đề), cần nguồn riêng (CC-CEDICT/nhập tay); (2) 6 từ trống bổ sung tay nếu muốn 100%; (3) chạy script tương tự cho `course-hsk2/3/4.js` khi cần.
-- ☐ **A3 · Ngữ pháp tường minh trong bài (小语讲堂)** — giáo trình có khối ngữ pháp đánh số + ví dụ ngay trong bài. App dạy ngầm qua `feedback` của `choice`; ngữ pháp hệ thống nằm ở module riêng `js/data/grammar.js`. → thêm field `grammarNotes: []` mỗi bài + render khối "Ngữ pháp bài này" trong `course.js`.
+- ☑ **A3 · Ngữ pháp tường minh trong bài (小语讲堂) DONE 2026-06-03** (merge `763bc3a`) — field `grammarNotes:[{point,explain,examples:[{zh,py,vi}]}]` (1–3 điểm/bài, ví dụ lấy/biến từ chính bài) cho cả 30/30 bài; `_grammarNotesHTML`/`_showGrammar`/`_closeGrammar` → nút "📘 Ngữ pháp bài" mở modal ở intro + khối ở `_renderComplete`. ⚠️ **CÒN: user QA độ chính xác** danh sách điểm ngữ pháp 30 bài (xem bảng trong báo cáo session) — đặc biệt lượng từ + bổ ngữ.
 - ☐ **A4 · Task sản sinh — đóng vai (角色扮演) + đọc to (跟读)** — giáo trình có roleplay + shadow cuối bài; app thay bằng MCQ `choice` (chỉ nhận biết). → thêm step `roleplay`/`shadow`, tận dụng TTS + ghi âm Speaking (`speech-proxy`) đã có.
-- ☐ **A5 · Ngữ âm pinyin "đạt nhưng tách rời"** — app DẠY ĐỦ thanh mẫu/vận mẫu/thanh điệu/笔画 nhưng ở **module HSK 0 riêng** (`hsk0/pinyin-initials`, `finals`, `strokes`), KHÔNG nối vào lộ trình Truyện Mai. Giáo trình lồng ngữ âm ngay trong các bài đầu. → thêm **entry/cross-link** từ bài đầu HSK 1 sang module HSK 0 (gợi ý "ôn pinyin" + nút mở), KHÔNG cần build lại data.
+- ☑ **A5 · Cross-link ngữ âm pinyin DONE 2026-06-03** (merge `763bc3a`) — card "🔤 Chưa chắc pinyin? Ôn nhanh" ở `_renderIntro` CHỈ Bài 1 → 3 nút link HSK 0 (`hsk0-pinyin-initials`/`finals`/`strokes`). Không build lại data.
 
 ### B. Nâng cấp BÀI TẬP course (`js/course.js` `_renderExercise`) — ưu tiên theo ROI
 - ☑ **P1 (rẻ, ROI cao nhất) DONE 2026-06-03** (`course.js` v2.9 · `course.css` v2.0):

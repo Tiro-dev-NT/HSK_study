@@ -24,6 +24,52 @@
 
 ---
 
+## 📚 Đối chiếu GIÁO TRÌNH CHUẨN + nâng cấp Bài tập & HSKK (review 2026-06-03)
+
+> Nguồn đối chiếu: 《新HSK教程1》(FLTRP, 1/2026) + 《HSK1 学练手册》(demo PDF user gửi).
+> Kết luận tổng: **app đạt & vượt giáo trình ở độ phủ + audio + story + luyện tập đa cấp**;
+> thiếu vài thành phần "chuẩn giáo trình" và phần luyện kỹ năng nghe/nói trong bài tập.
+
+### A. Khoảng trống so với giáo trình chuẩn (Phase P — Truyện Mai) — map 1-1 bảng đối chiếu
+> 5 mục dưới đúng theo 5 dòng "Thiếu / Đạt-nhưng-tách-rời" của bảng so sánh app vs 《新HSK教程1》.
+
+- ☐ **A1 · Mục tiêu bài (Objectives)** — giáo trình mở mỗi bài bằng 目标 (liệt kê việc học xong làm được gì). App chỉ có `context` (dẫn truyện). → thêm field `objectives: []` mỗi bài + render khối "Mục tiêu bài này" ở đầu màn bài (`course.js`).
+- ☑ **A2 · Vocab nghĩa tiếng Anh DONE 2026-06-03** — auto-fill field `e` cho vocab `course-hsk1.js` từ `HSK3_DATA` (script `scripts/fill_course_en.py`, map h→e từ 9 file hsk3_lvl*). 532/538 khớp; 6 cụm để trống (KHÔNG bịa): 中国人/越南人/雨伞/看书/做题/第一. Render dòng `.cs-vc-en` khi có `.e`. **CÒN LẠI (chưa làm):** (1) **POS/từ loại** — `HSK3_DATA` KHÔNG có (field `t` = chủ đề), cần nguồn riêng (CC-CEDICT/nhập tay); (2) 6 từ trống bổ sung tay nếu muốn 100%; (3) chạy script tương tự cho `course-hsk2/3/4.js` khi cần.
+- ☐ **A3 · Ngữ pháp tường minh trong bài (小语讲堂)** — giáo trình có khối ngữ pháp đánh số + ví dụ ngay trong bài. App dạy ngầm qua `feedback` của `choice`; ngữ pháp hệ thống nằm ở module riêng `js/data/grammar.js`. → thêm field `grammarNotes: []` mỗi bài + render khối "Ngữ pháp bài này" trong `course.js`.
+- ☐ **A4 · Task sản sinh — đóng vai (角色扮演) + đọc to (跟读)** — giáo trình có roleplay + shadow cuối bài; app thay bằng MCQ `choice` (chỉ nhận biết). → thêm step `roleplay`/`shadow`, tận dụng TTS + ghi âm Speaking (`speech-proxy`) đã có.
+- ☐ **A5 · Ngữ âm pinyin "đạt nhưng tách rời"** — app DẠY ĐỦ thanh mẫu/vận mẫu/thanh điệu/笔画 nhưng ở **module HSK 0 riêng** (`hsk0/pinyin-initials`, `finals`, `strokes`), KHÔNG nối vào lộ trình Truyện Mai. Giáo trình lồng ngữ âm ngay trong các bài đầu. → thêm **entry/cross-link** từ bài đầu HSK 1 sang module HSK 0 (gợi ý "ôn pinyin" + nút mở), KHÔNG cần build lại data.
+
+### B. Nâng cấp BÀI TẬP course (`js/course.js` `_renderExercise`) — ưu tiên theo ROI
+- ☑ **P1 (rẻ, ROI cao nhất) DONE 2026-06-03** (`course.js` v2.9 · `course.css` v2.0):
+  - ☑ **Từ làm SAI → SRS** (`hsk_srs_v3`) — `_pushWrongToSRS(ex)` ở 3 commit point (`_answerWorkbook`/`_confirmOrder`/`_submitTranslate`): lấy token Hán trong `ex.answer` có trong `lesson.vocab` → `updateSRSCard(h, 0, {source:'course', source_lesson: id})`.
+  - ☑ **`translate` chấm thật** — `_normalizeZh()` (bỏ dấu câu + space) + `_isExCorrect()` dùng chung. Đúng→xanh "✓ Chính xác"; sai→đỏ + đáp án. **Bonus:** sửa luôn 2 bug — `order` có `？` luôn báo sai + `_submitWorkbook` translate auto-pass.
+  - ☑ **Field `explain`** optional → dòng `.cs-ex-explain` (💡 viền vàng) khi đã trả lời, áp cho fill/order/translate.
+  - Verify Playwright `/course?id=1` HSK1 hard: sai→báo+đáp án+explain+SRS có 是/老师; đúng (kể cả thiếu ！+ space)→không đẩy SRS; light/dark/mobile, 0 lỗi console.
+  - 📌 **Lưu ý kỹ thuật:** so-bằng-chuỗi (sau normalize) → nếu sau cần chấp nhận *nhiều biến thể đáp án* phải thêm `answers: []`. Chưa cần hiện tại.
+- ☐ **P2:** thêm dạng `listen` (nghe TTS → chọn) + `dictation` (nghe → gõ Hán/pinyin) — dùng TTS sẵn có. Đây là dạng "chuẩn giáo trình" đang thiếu (听写 thanh/vận/điệu chiếm ~60% sách bài tập).
+- ☐ **P3:** thêm `shadow` (đọc to → nối Speaking `speech-proxy`) + **sửa UX `order`** — `_confirmOrder` ([course.js:1117](../js/course.js)) gom từ theo thứ tự DOM, không theo thứ tự bấm → đổi sang click-to-append.
+- ☐ **P4:** `image-choice` (nhìn ảnh chọn câu — giống 看图选对话). **Cần ảnh → xem mục D.**
+
+### C. HSKK — cấu trúc CHUẨN (đã tra chính thức) + việc cần làm
+> Nguồn: chinesetest.cn, đề thật H81312, SPbU testing center (xác nhận 2026-06-03).
+
+| Cấp | Phần 1 | Phần 2 | Phần 3 |
+|---|---|---|---|
+| **初级 Sơ cấp** (app ĐANG CÓ ✅, đúng chuẩn) | 听后重复 15 câu/6′ | 听后回答 10 câu/4′ | 回答问题 2 câu/3′ |
+| **中级 Trung cấp** (CHƯA có) | 听后重复 10 câu/3′ | **看图说话 (nhìn tranh nói) 2 câu/4′** | 回答问题 2 câu/4′ |
+| **高级 Cao cấp** (CHƯA có) | 听后复述 | 朗读 (đọc đoạn văn) | 回答问题 |
+
+- ☐ **HSKK Sơ cấp — thêm chế độ "Luyện từng phần"**: hiện `hskk.js` CHỈ có 1 flow thi nguyên đề 17′ (`_onStart`→`_buildExam`). Thêm màn chọn → luyện riêng P1/P2/P3 hết pool, không đồng hồ tổng, nghe lại + làm lại. Rẻ (tái dùng engine ghi âm/TTS).
+- ☐ **HSKK Trung cấp (中级)** — build mới. Điểm nhấn: **Phần 2 看图说话** = task nhìn tranh kể chuyện → **cần ảnh (xem mục D)**. Schema đề: `{ id, img|imgs[], topic, keywords[], outline, sampleAnswer }`. Chấm tự do cần SpeechSuper `speak.eval.pro.cn` (account hiện CHƯA có → để practice-no-grade như Phần 2/3 Sơ cấp).
+
+### D. ⭐ NGUYÊN TẮC: mọi phần cần ẢNH đều LÀM ĐƯỢC — chỉ cần viết PROMPT gen
+> Chốt với user 2026-06-03. App đã có **asset pipeline** hoàn chỉnh (`content/assets/output/{wave}/` gen → process WebP → `assets/{category}/` → code đọc path `assets/`). Vì vậy bất kỳ feature cần hình (HSKK 看图说话, `image-choice` bài tập, visual vocab, story scene…) **không bị chặn bởi việc thiếu ảnh** — chỉ cần soạn prompt gen rồi chạy qua pipeline.
+- ☐ Khi build feature cần ảnh: **viết prompt gen trước** (style nhất quán, đề tài đời thường, **trung tính — HARD RULE app KHÔNG chính trị**), gen → QA → cwebp → `assets/`, kèm metadata mỗi ảnh (không để ảnh trần).
+- 📌 Ứng viên gần nhất cần kho ảnh: **HSKK 中级 看图说话** (cảnh sinh hoạt: họp lớp, gia đình, mua sắm, khám bệnh, du lịch…) + **`image-choice`** trong bài tập course.
+- 📌 Tham chiếu: `content/assets/PROMPTS.md` + memory `[[asset-pipeline]]`.
+
+---
+
 ## ☁️ Audio Mai → Cloudflare R2 (DONE 2026-06-01)
 
 > Tách audio khỏi git để repo không phình (676 file ~17MB HSK1+2, sẽ lên 100MB+ khi HSK3-9). R2 egress free.

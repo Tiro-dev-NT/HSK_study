@@ -156,30 +156,30 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '你好', p: 'nǐ hǎo', v: 'xin chào' },
-      { h: '请问', p: 'qǐng wèn', v: 'xin hỏi' },
-      { h: '谢谢', p: 'xièxie', v: 'cảm ơn' },
-      { h: '再见', p: 'zàijiàn', v: 'tạm biệt' },
-      { h: '对不起', p: 'duìbuqǐ', v: 'xin lỗi' },
-      { h: '没关系', p: 'méi guānxi', v: 'không sao' },
-      { h: '我', p: 'wǒ', v: 'tôi/em' },
-      { h: '你', p: 'nǐ', v: 'bạn/em' },
-      { h: '他', p: 'tā', v: 'anh ấy' },
-      { h: '她', p: 'tā', v: 'cô ấy' },
-      { h: '谁', p: 'shéi', v: 'ai' },
-      { h: '什么', p: 'shénme', v: 'cái gì' },
-      { h: '名字', p: 'míngzi', v: 'tên' },
-      { h: '叫', p: 'jiào', v: 'gọi (tên là)' },
-      { h: '是', p: 'shì', v: 'là' },
-      { h: '不', p: 'bù', v: 'không' },
-      { h: '老师', p: 'lǎoshī', v: 'giáo viên' },
-      { h: '同学', p: 'tóngxué', v: 'bạn học' },
-      { h: '学生', p: 'xuésheng', v: 'học sinh/sinh viên' },
-      { h: '中国', p: 'Zhōngguó', v: 'Trung Quốc' },
+      { h: '你好', p: 'nǐ hǎo', v: 'xin chào', e: 'hello' },
+      { h: '请问', p: 'qǐng wèn', v: 'xin hỏi', e: 'Excuse me, may I ask...?' },
+      { h: '谢谢', p: 'xièxie', v: 'cảm ơn', e: 'to thank' },
+      { h: '再见', p: 'zàijiàn', v: 'tạm biệt', e: 'goodbye' },
+      { h: '对不起', p: 'duìbuqǐ', v: 'xin lỗi', e: 'I\\\'m sorry' },
+      { h: '没关系', p: 'méi guānxi', v: 'không sao', e: 'it doesn\\\'t matter' },
+      { h: '我', p: 'wǒ', v: 'tôi/em', e: 'I' },
+      { h: '你', p: 'nǐ', v: 'bạn/em', e: 'you (informal, as opposed to courteous 您)' },
+      { h: '他', p: 'tā', v: 'anh ấy', e: 'he' },
+      { h: '她', p: 'tā', v: 'cô ấy', e: 'she' },
+      { h: '谁', p: 'shéi', v: 'ai', e: 'who' },
+      { h: '什么', p: 'shénme', v: 'cái gì', e: 'what?' },
+      { h: '名字', p: 'míngzi', v: 'tên', e: 'name (of a person or thing)' },
+      { h: '叫', p: 'jiào', v: 'gọi (tên là)', e: 'to shout' },
+      { h: '是', p: 'shì', v: 'là', e: 'to be (followed by substantives only)' },
+      { h: '不', p: 'bù', v: 'không', e: 'no' },
+      { h: '老师', p: 'lǎoshī', v: 'giáo viên', e: 'teacher' },
+      { h: '同学', p: 'tóngxué', v: 'bạn học', e: 'to study at the same school' },
+      { h: '学生', p: 'xuésheng', v: 'học sinh/sinh viên', e: 'student' },
+      { h: '中国', p: 'Zhōngguó', v: 'Trung Quốc', e: 'China' },
       { h: '中国人', p: 'Zhōngguó rén', v: 'người Trung Quốc' },
       { h: '越南人', p: 'Yuènán rén', v: 'người Việt Nam' },
-      { h: '很', p: 'hěn', v: 'rất' },
-      { h: '高兴', p: 'gāoxìng', v: 'vui' }
+      { h: '很', p: 'hěn', v: 'rất', e: '(adverb of degree)' },
+      { h: '高兴', p: 'gāoxìng', v: 'vui', e: 'happy' }
     ],
     workbook: {
       easy: [
@@ -374,29 +374,29 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '爸爸', p: 'bàba', v: 'bố' },
-      { h: '妈妈', p: 'māma', v: 'mẹ' },
-      { h: '哥哥', p: 'gēge', v: 'anh trai' },
-      { h: '姐姐', p: 'jiějie', v: 'chị gái' },
-      { h: '弟弟', p: 'dìdi', v: 'em trai' },
-      { h: '妹妹', p: 'mèimei', v: 'em gái' },
-      { h: '儿子', p: 'érzi', v: 'con trai' },
-      { h: '孩子', p: 'háizi', v: 'con/đứa trẻ' },
-      { h: '家', p: 'jiā', v: 'nhà/gia đình' },
-      { h: '我们', p: 'wǒmen', v: 'chúng tôi' },
-      { h: '这', p: 'zhè', v: 'này' },
-      { h: '那', p: 'nà', v: 'đó/kia' },
-      { h: '个', p: 'gè', v: '(lượng từ) cái/người' },
-      { h: '有', p: 'yǒu', v: 'có' },
-      { h: '没', p: 'méi', v: 'không (phủ định 有)' },
-      { h: '没有', p: 'méiyǒu', v: 'không có' },
-      { h: '照片', p: 'zhàopiàn', v: 'ảnh' },
-      { h: '多', p: 'duō', v: 'nhiều' },
-      { h: '都', p: 'dōu', v: 'đều' },
-      { h: '小', p: 'xiǎo', v: 'nhỏ' },
-      { h: '大', p: 'dà', v: 'lớn' },
-      { h: '漂亮', p: 'piàoliang', v: 'đẹp/xinh' },
-      { h: '的', p: 'de', v: '(trợ từ sở hữu)' }
+      { h: '爸爸', p: 'bàba', v: 'bố', e: 'father' },
+      { h: '妈妈', p: 'māma', v: 'mẹ', e: 'mama' },
+      { h: '哥哥', p: 'gēge', v: 'anh trai', e: 'older brother' },
+      { h: '姐姐', p: 'jiějie', v: 'chị gái', e: 'older sister' },
+      { h: '弟弟', p: 'dìdi', v: 'em trai', e: 'younger brother' },
+      { h: '妹妹', p: 'mèimei', v: 'em gái', e: 'younger sister' },
+      { h: '儿子', p: 'érzi', v: 'con trai', e: 'son' },
+      { h: '孩子', p: 'háizi', v: 'con/đứa trẻ', e: 'child' },
+      { h: '家', p: 'jiā', v: 'nhà/gia đình', e: 'used in 家伙 and 家俱' },
+      { h: '我们', p: 'wǒmen', v: 'chúng tôi', e: 'we' },
+      { h: '这', p: 'zhè', v: 'này', e: 'this' },
+      { h: '那', p: 'nà', v: 'đó/kia', e: 'that, those' },
+      { h: '个', p: 'gè', v: '(lượng từ) cái/người', e: 'used in 自个儿' },
+      { h: '有', p: 'yǒu', v: 'có', e: 'to have' },
+      { h: '没', p: 'méi', v: 'không (phủ định 有)', e: 'have not' },
+      { h: '没有', p: 'méiyǒu', v: 'không có', e: 'haven\\\'t' },
+      { h: '照片', p: 'zhàopiàn', v: 'ảnh', e: 'photograph' },
+      { h: '多', p: 'duō', v: 'nhiều', e: 'many' },
+      { h: '都', p: 'dōu', v: 'đều', e: 'all, both, already' },
+      { h: '小', p: 'xiǎo', v: 'nhỏ', e: 'small' },
+      { h: '大', p: 'dà', v: 'lớn', e: 'big' },
+      { h: '漂亮', p: 'piàoliang', v: 'đẹp/xinh', e: 'pretty' },
+      { h: '的', p: 'de', v: '(trợ từ sở hữu)', e: 'of, (possessive/attributive particle)' }
     ],
     workbook: {
       easy: [
@@ -582,29 +582,29 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '大学', p: 'dàxué', v: 'đại học' },
-      { h: '大学生', p: 'dàxuéshēng', v: 'sinh viên đại học' },
-      { h: '班', p: 'bān', v: 'lớp' },
-      { h: '书', p: 'shū', v: 'sách' },
-      { h: '本子', p: 'běnzi', v: 'quyển vở' },
-      { h: '本', p: 'běn', v: '(lượng từ) quyển' },
-      { h: '一', p: 'yī', v: 'một' },
-      { h: '二', p: 'èr', v: 'hai' },
-      { h: '三', p: 'sān', v: 'ba' },
-      { h: '四', p: 'sì', v: 'bốn' },
-      { h: '五', p: 'wǔ', v: 'năm' },
-      { h: '六', p: 'liù', v: 'sáu' },
-      { h: '七', p: 'qī', v: 'bảy' },
-      { h: '八', p: 'bā', v: 'tám' },
-      { h: '九', p: 'jiǔ', v: 'chín' },
-      { h: '十', p: 'shí', v: 'mười' },
-      { h: '第', p: 'dì', v: 'thứ (số thứ tự)' },
-      { h: '多少', p: 'duōshao', v: 'bao nhiêu' },
-      { h: '哪', p: 'nǎ', v: 'nào/đâu' },
-      { h: '你们', p: 'nǐmen', v: 'các bạn' },
-      { h: '他们', p: 'tāmen', v: 'họ' },
-      { h: '教室', p: 'jiàoshì', v: 'phòng học' },
-      { h: '教学楼', p: 'jiàoxuélóu', v: 'tòa nhà học' }
+      { h: '大学', p: 'dàxué', v: 'đại học', e: 'the Great Learning, one of the Four Books 四书 in Confucianism' },
+      { h: '大学生', p: 'dàxuéshēng', v: 'sinh viên đại học', e: 'university student' },
+      { h: '班', p: 'bān', v: 'lớp', e: 'class, shift, team' },
+      { h: '书', p: 'shū', v: 'sách', e: 'abbr. for 书经' },
+      { h: '本子', p: 'běnzi', v: 'quyển vở', e: 'book' },
+      { h: '本', p: 'běn', v: '(lượng từ) quyển', e: 'root' },
+      { h: '一', p: 'yī', v: 'một', e: 'one' },
+      { h: '二', p: 'èr', v: 'hai', e: 'two' },
+      { h: '三', p: 'sān', v: 'ba', e: 'three' },
+      { h: '四', p: 'sì', v: 'bốn', e: 'four' },
+      { h: '五', p: 'wǔ', v: 'năm', e: 'five' },
+      { h: '六', p: 'liù', v: 'sáu', e: 'six' },
+      { h: '七', p: 'qī', v: 'bảy', e: 'seven' },
+      { h: '八', p: 'bā', v: 'tám', e: 'eight' },
+      { h: '九', p: 'jiǔ', v: 'chín', e: 'nine' },
+      { h: '十', p: 'shí', v: 'mười', e: 'ten' },
+      { h: '第', p: 'dì', v: 'thứ (số thứ tự)', e: '(ordinal number prefix, e.g. 第一 = first)' },
+      { h: '多少', p: 'duōshao', v: 'bao nhiêu', e: 'number' },
+      { h: '哪', p: 'nǎ', v: 'nào/đâu', e: 'which, where (question word)' },
+      { h: '你们', p: 'nǐmen', v: 'các bạn', e: 'you (plural)' },
+      { h: '他们', p: 'tāmen', v: 'họ', e: 'they' },
+      { h: '教室', p: 'jiàoshì', v: 'phòng học', e: 'classroom' },
+      { h: '教学楼', p: 'jiàoxuélóu', v: 'tòa nhà học', e: 'teaching block' }
     ],
     workbook: {
       easy: [
@@ -675,12 +675,12 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'laoli', text: '很好！明年你们也要认真学习。', pinyin: 'Hěn hǎo! Míngnián nǐmen yě yào rènzhēn xuéxí.', meaning: 'Tốt lắm! Năm sau các em cũng phải học nghiêm túc.', expression: null, vocab: ['明年','要','认真','学习'] }
     ],
     vocab: [
-      { h: '今天', p: 'jīntiān', v: 'hôm nay' }, { h: '明天', p: 'míngtiān', v: 'ngày mai' }, { h: '昨天', p: 'zuótiān', v: 'hôm qua' },
-      { h: '年', p: 'nián', v: 'năm' }, { h: '明年', p: 'míngnián', v: 'năm sau' }, { h: '月', p: 'yuè', v: 'tháng' },
-      { h: '日', p: 'rì', v: 'ngày' }, { h: '星期', p: 'xīngqī', v: 'tuần/thứ' }, { h: '星期日', p: 'xīngqīrì', v: 'Chủ nhật' },
-      { h: '现在', p: 'xiànzài', v: 'bây giờ' }, { h: '点', p: 'diǎn', v: 'giờ/điểm' }, { h: '分', p: 'fēn', v: 'phút' },
-      { h: '上午', p: 'shàngwǔ', v: 'buổi sáng' }, { h: '中午', p: 'zhōngwǔ', v: 'buổi trưa' }, { h: '下午', p: 'xiàwǔ', v: 'buổi chiều' },
-      { h: '晚上', p: 'wǎnshang', v: 'buổi tối' }, { h: '时候', p: 'shíhou', v: 'lúc/khi' }, { h: '时间', p: 'shíjiān', v: 'thời gian' }
+      { h: '今天', p: 'jīntiān', v: 'hôm nay', e: 'today' }, { h: '明天', p: 'míngtiān', v: 'ngày mai', e: 'tomorrow' }, { h: '昨天', p: 'zuótiān', v: 'hôm qua', e: 'yesterday' },
+      { h: '年', p: 'nián', v: 'năm', e: 'year' }, { h: '明年', p: 'míngnián', v: 'năm sau', e: 'next year' }, { h: '月', p: 'yuè', v: 'tháng', e: 'moon' },
+      { h: '日', p: 'rì', v: 'ngày', e: 'abbr. for 本, Japan' }, { h: '星期', p: 'xīngqī', v: 'tuần/thứ', e: 'week' }, { h: '星期日', p: 'xīngqīrì', v: 'Chủ nhật', e: 'Sunday' },
+      { h: '现在', p: 'xiànzài', v: 'bây giờ', e: 'now' }, { h: '点', p: 'diǎn', v: 'giờ/điểm', e: 'point' }, { h: '分', p: 'fēn', v: 'phút', e: 'to divide' },
+      { h: '上午', p: 'shàngwǔ', v: 'buổi sáng', e: 'morning' }, { h: '中午', p: 'zhōngwǔ', v: 'buổi trưa', e: 'noon' }, { h: '下午', p: 'xiàwǔ', v: 'buổi chiều', e: 'afternoon' },
+      { h: '晚上', p: 'wǎnshang', v: 'buổi tối', e: 'evening' }, { h: '时候', p: 'shíhou', v: 'lúc/khi', e: 'time' }, { h: '时间', p: 'shíjiān', v: 'thời gian', e: 'time' }
     ],
     workbook: {
       easy: [
@@ -752,12 +752,12 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'laoli', text: '我晚上吃晚饭，现在喝茶。', pinyin: 'Wǒ wǎnshang chī wǎnfàn, xiànzài hē chá.', meaning: 'Buổi tối thầy ăn bữa tối, bây giờ uống trà.', expression: null, vocab: ['晚饭'] }
     ],
     vocab: [
-      { h: '吃', p: 'chī', v: 'ăn' }, { h: '吃饭', p: 'chīfàn', v: 'ăn cơm/ăn bữa' }, { h: '喝', p: 'hē', v: 'uống' },
-      { h: '水', p: 'shuǐ', v: 'nước' }, { h: '茶', p: 'chá', v: 'trà' }, { h: '牛奶', p: 'niúnǎi', v: 'sữa bò' },
-      { h: '米饭', p: 'mǐfàn', v: 'cơm trắng' }, { h: '面条', p: 'miàntiáo', v: 'mì sợi' }, { h: '包子', p: 'bāozi', v: 'bánh bao' },
-      { h: '菜', p: 'cài', v: 'món ăn/rau' }, { h: '鸡蛋', p: 'jīdàn', v: 'trứng gà' }, { h: '饭店', p: 'fàndiàn', v: 'nhà ăn/nhà hàng' },
-      { h: '午饭', p: 'wǔfàn', v: 'bữa trưa' }, { h: '晚饭', p: 'wǎnfàn', v: 'bữa tối' }, { h: '饿', p: 'è', v: 'đói' },
-      { h: '渴', p: 'kě', v: 'khát' }, { h: '好吃', p: 'hǎochī', v: 'ngon' }, { h: '想', p: 'xiǎng', v: 'muốn/nghĩ' }
+      { h: '吃', p: 'chī', v: 'ăn', e: 'to eat' }, { h: '吃饭', p: 'chīfàn', v: 'ăn cơm/ăn bữa', e: 'to have a meal' }, { h: '喝', p: 'hē', v: 'uống', e: 'to drink' },
+      { h: '水', p: 'shuǐ', v: 'nước', e: 'water, liquid' }, { h: '茶', p: 'chá', v: 'trà', e: 'tea' }, { h: '牛奶', p: 'niúnǎi', v: 'sữa bò', e: 'cow\\\'s milk' },
+      { h: '米饭', p: 'mǐfàn', v: 'cơm trắng', e: 'rice' }, { h: '面条', p: 'miàntiáo', v: 'mì sợi', e: 'noodles' }, { h: '包子', p: 'bāozi', v: 'bánh bao', e: 'bao (steamed stuffed bun)' },
+      { h: '菜', p: 'cài', v: 'món ăn/rau', e: 'dish (type of food)' }, { h: '鸡蛋', p: 'jīdàn', v: 'trứng gà', e: 'egg' }, { h: '饭店', p: 'fàndiàn', v: 'nhà ăn/nhà hàng', e: 'restaurant' },
+      { h: '午饭', p: 'wǔfàn', v: 'bữa trưa', e: 'lunch' }, { h: '晚饭', p: 'wǎnfàn', v: 'bữa tối', e: 'evening meal' }, { h: '饿', p: 'è', v: 'đói', e: 'to be hungry' },
+      { h: '渴', p: 'kě', v: 'khát', e: 'thirsty' }, { h: '好吃', p: 'hǎochī', v: 'ngon', e: 'tasty' }, { h: '想', p: 'xiǎng', v: 'muốn/nghĩ', e: 'to think (about)' }
     ],
     workbook: {
       easy: [
@@ -828,12 +828,12 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'xiaomei', text: '好！你家远不远？', pinyin: 'Hǎo! Nǐ jiā yuǎn bù yuǎn?', meaning: 'Được! Nhà cậu xa không?', expression: null, vocab: ['远'] }
     ],
     vocab: [
-      { h: '去', p: 'qù', v: 'đi' }, { h: '来', p: 'lái', v: 'đến' }, { h: '在', p: 'zài', v: 'ở/đang' },
-      { h: '哪儿', p: 'nǎr', v: 'ở đâu' }, { h: '这儿', p: 'zhèr', v: 'ở đây' }, { h: '那儿', p: 'nàr', v: 'ở đó' },
-      { h: '怎么', p: 'zěnme', v: 'thế nào/sao' }, { h: '走', p: 'zǒu', v: 'đi/đi bộ' }, { h: '走路', p: 'zǒulù', v: 'đi bộ' },
-      { h: '坐', p: 'zuò', v: 'ngồi/đi (xe)' }, { h: '车', p: 'chē', v: 'xe' }, { h: '公共汽车', p: 'gōnggòng qìchē', v: 'xe buýt' },
-      { h: '车站', p: 'chēzhàn', v: 'bến xe/ga' }, { h: '商店', p: 'shāngdiàn', v: 'cửa hàng' }, { h: '学校', p: 'xuéxiào', v: 'trường học' },
-      { h: '近', p: 'jìn', v: 'gần' }, { h: '远', p: 'yuǎn', v: 'xa' }, { h: '一起', p: 'yìqǐ', v: 'cùng nhau' }
+      { h: '去', p: 'qù', v: 'đi', e: 'to go' }, { h: '来', p: 'lái', v: 'đến', e: 'to come' }, { h: '在', p: 'zài', v: 'ở/đang', e: 'to exist' },
+      { h: '哪儿', p: 'nǎr', v: 'ở đâu', e: 'where?' }, { h: '这儿', p: 'zhèr', v: 'ở đây', e: 'here' }, { h: '那儿', p: 'nàr', v: 'ở đó', e: 'there' },
+      { h: '怎么', p: 'zěnme', v: 'thế nào/sao', e: 'how?' }, { h: '走', p: 'zǒu', v: 'đi/đi bộ', e: 'to walk' }, { h: '走路', p: 'zǒulù', v: 'đi bộ', e: 'to walk' },
+      { h: '坐', p: 'zuò', v: 'ngồi/đi (xe)', e: 'to sit, to travel by' }, { h: '车', p: 'chē', v: 'xe', e: 'vehicle, car, carriage' }, { h: '公共汽车', p: 'gōnggòng qìchē', v: 'xe buýt', e: 'bus' },
+      { h: '车站', p: 'chēzhàn', v: 'bến xe/ga', e: 'rail station' }, { h: '商店', p: 'shāngdiàn', v: 'cửa hàng', e: 'store' }, { h: '学校', p: 'xuéxiào', v: 'trường học', e: 'school' },
+      { h: '近', p: 'jìn', v: 'gần', e: 'near' }, { h: '远', p: 'yuǎn', v: 'xa', e: 'far' }, { h: '一起', p: 'yìqǐ', v: 'cùng nhau', e: 'in the same place' }
     ],
     workbook: {
       easy: [
@@ -903,11 +903,11 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'mai', text: '太好了！我可以穿新衣服。', pinyin: 'Tài hǎo le! Wǒ kěyǐ chuān xīn yīfu.', meaning: 'Tuyệt quá! Tớ có thể mặc quần áo mới.', expression: 'happy', vocab: ['新'] }
     ],
     vocab: [
-      { h: '天气', p: 'tiānqì', v: 'thời tiết' }, { h: '怎么样', p: 'zěnmeyàng', v: 'thế nào' }, { h: '下雨', p: 'xiàyǔ', v: 'mưa' },
-      { h: '冷', p: 'lěng', v: 'lạnh' }, { h: '热', p: 'rè', v: 'nóng' }, { h: '暖和', p: 'nuǎnhuo', v: 'ấm áp' },
-      { h: '雨伞', p: 'yǔsǎn', v: 'ô/dù' }, { h: '把', p: 'bǎ', v: '(lượng từ) cái/chiếc' }, { h: '给', p: 'gěi', v: 'cho/tặng' },
-      { h: '穿', p: 'chuān', v: 'mặc' }, { h: '衣服', p: 'yīfu', v: 'quần áo' }, { h: '裙子', p: 'qúnzi', v: 'váy' },
-      { h: '好看', p: 'hǎokàn', v: 'đẹp/hay nhìn' }, { h: '新', p: 'xīn', v: 'mới' }, { h: '会', p: 'huì', v: 'sẽ/biết' }
+      { h: '天气', p: 'tiānqì', v: 'thời tiết', e: 'weather' }, { h: '怎么样', p: 'zěnmeyàng', v: 'thế nào', e: 'how?' }, { h: '下雨', p: 'xiàyǔ', v: 'mưa', e: 'to rain' },
+      { h: '冷', p: 'lěng', v: 'lạnh', e: 'cold, cool, frigid' }, { h: '热', p: 'rè', v: 'nóng', e: 'to warm up' }, { h: '暖和', p: 'nuǎnhuo', v: 'ấm áp', e: 'warm' },
+      { h: '雨伞', p: 'yǔsǎn', v: 'ô/dù' }, { h: '把', p: 'bǎ', v: '(lượng từ) cái/chiếc', e: 'to hold' }, { h: '给', p: 'gěi', v: 'cho/tặng', e: 'to' },
+      { h: '穿', p: 'chuān', v: 'mặc', e: 'to wear' }, { h: '衣服', p: 'yīfu', v: 'quần áo', e: 'clothes' }, { h: '裙子', p: 'qúnzi', v: 'váy', e: 'skirt' },
+      { h: '好看', p: 'hǎokàn', v: 'đẹp/hay nhìn', e: 'good-looking' }, { h: '新', p: 'xīn', v: 'mới', e: 'abbr. for Xinjiang 疆 or Singapore 坡' }, { h: '会', p: 'huì', v: 'sẽ/biết', e: 'can' }
     ],
     workbook: {
       easy: [
@@ -977,11 +977,11 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'laoli', text: '很好。学习的时候，东西要放好。', pinyin: 'Hěn hǎo. Xuéxí de shíhou, dōngxi yào fàng hǎo.', meaning: 'Tốt. Khi học, đồ đạc phải để gọn.', expression: null, vocab: ['放'] }
     ],
     vocab: [
-      { h: '图书馆', p: 'túshūguǎn', v: 'thư viện' }, { h: '书店', p: 'shūdiàn', v: 'hiệu sách' }, { h: '书包', p: 'shūbāo', v: 'cặp sách' },
-      { h: '桌子', p: 'zhuōzi', v: 'bàn' }, { h: '椅子', p: 'yǐzi', v: 'ghế' }, { h: '手机', p: 'shǒujī', v: 'điện thoại' },
-      { h: '里', p: 'lǐ', v: 'trong' }, { h: '上', p: 'shàng', v: 'trên/lên' }, { h: '下', p: 'xià', v: 'dưới/xuống' },
-      { h: '上边', p: 'shàngbian', v: 'phía trên' }, { h: '下边', p: 'xiàbian', v: 'phía dưới' }, { h: '旁边', p: 'pángbiān', v: 'bên cạnh' },
-      { h: '找', p: 'zhǎo', v: 'tìm' }, { h: '找到', p: 'zhǎodào', v: 'tìm thấy' }, { h: '放', p: 'fàng', v: 'đặt/để' }
+      { h: '图书馆', p: 'túshūguǎn', v: 'thư viện', e: 'library' }, { h: '书店', p: 'shūdiàn', v: 'hiệu sách', e: 'bookstore' }, { h: '书包', p: 'shūbāo', v: 'cặp sách', e: 'schoolbag' },
+      { h: '桌子', p: 'zhuōzi', v: 'bàn', e: 'table' }, { h: '椅子', p: 'yǐzi', v: 'ghế', e: 'chair' }, { h: '手机', p: 'shǒujī', v: 'điện thoại', e: 'cell phone' },
+      { h: '里', p: 'lǐ', v: 'trong', e: 'inside, within, li (unit of distance)' }, { h: '上', p: 'shàng', v: 'trên/lên', e: 'used in 上声' }, { h: '下', p: 'xià', v: 'dưới/xuống', e: 'down' },
+      { h: '上边', p: 'shàngbian', v: 'phía trên', e: 'the top' }, { h: '下边', p: 'xiàbian', v: 'phía dưới', e: 'under' }, { h: '旁边', p: 'pángbiān', v: 'bên cạnh', e: 'side' },
+      { h: '找', p: 'zhǎo', v: 'tìm', e: 'to try to find' }, { h: '找到', p: 'zhǎodào', v: 'tìm thấy', e: 'to find' }, { h: '放', p: 'fàng', v: 'đặt/để', e: 'to put' }
     ],
     workbook: {
       easy: [
@@ -1051,11 +1051,11 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'mai', text: '对，我晚上十点睡觉。睡觉前复习。', pinyin: 'Duì, wǒ wǎnshang shí diǎn shuìjiào. Shuìjiào qián fùxí.', meaning: 'Đúng rồi, tớ mười giờ tối ngủ. Trước khi ngủ ôn bài.', expression: 'happy', vocab: ['睡觉','前'] }
     ],
     vocab: [
-      { h: '起床', p: 'qǐchuáng', v: 'thức dậy' }, { h: '睡觉', p: 'shuìjiào', v: 'ngủ' }, { h: '上学', p: 'shàngxué', v: 'đi học' },
-      { h: '放学', p: 'fàngxué', v: 'tan học' }, { h: '做', p: 'zuò', v: 'làm' }, { h: '读书', p: 'dúshū', v: 'đọc sách/học' },
-      { h: '写', p: 'xiě', v: 'viết' }, { h: '汉字', p: 'Hànzì', v: 'chữ Hán' }, { h: '上网', p: 'shàngwǎng', v: 'lên mạng' },
-      { h: '电影', p: 'diànyǐng', v: 'phim' }, { h: '常常', p: 'chángcháng', v: 'thường xuyên' }, { h: '有时候', p: 'yǒu shíhou', v: 'đôi khi' },
-      { h: '别', p: 'bié', v: 'đừng' }, { h: '忘记', p: 'wàngjì', v: 'quên' }, { h: '复习', p: 'fùxí', v: 'ôn tập' }, { h: '前', p: 'qián', v: 'trước' }
+      { h: '起床', p: 'qǐchuáng', v: 'thức dậy', e: 'to get out of bed' }, { h: '睡觉', p: 'shuìjiào', v: 'ngủ', e: 'to go to bed' }, { h: '上学', p: 'shàngxué', v: 'đi học', e: 'to go to school' },
+      { h: '放学', p: 'fàngxué', v: 'tan học', e: 'to dismiss students at the end of the school day' }, { h: '做', p: 'zuò', v: 'làm', e: 'to make' }, { h: '读书', p: 'dúshū', v: 'đọc sách/học', e: 'to read a book' },
+      { h: '写', p: 'xiě', v: 'viết', e: 'to write' }, { h: '汉字', p: 'Hànzì', v: 'chữ Hán', e: 'Chinese character' }, { h: '上网', p: 'shàngwǎng', v: 'lên mạng', e: 'to go online' },
+      { h: '电影', p: 'diànyǐng', v: 'phim', e: 'movie' }, { h: '常常', p: 'chángcháng', v: 'thường xuyên', e: 'frequently' }, { h: '有时候', p: 'yǒu shíhou', v: 'đôi khi', e: 'sometimes' },
+      { h: '别', p: 'bié', v: 'đừng', e: 'don\\\'t, other, different' }, { h: '忘记', p: 'wàngjì', v: 'quên', e: 'to forget' }, { h: '复习', p: 'fùxí', v: 'ôn tập', e: 'to review' }, { h: '前', p: 'qián', v: 'trước', e: 'front' }
     ],
     workbook: {
       easy: [
@@ -1125,11 +1125,11 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'laoli', text: '身体最重要。你好好休息。', pinyin: 'Shēntǐ zuì zhòngyào. Nǐ hǎohāo xiūxi.', meaning: 'Sức khỏe là quan trọng nhất. Em nghỉ ngơi cho tốt.', expression: null, vocab: ['最','重要'] }
     ],
     vocab: [
-      { h: '身体', p: 'shēntǐ', v: 'cơ thể/sức khỏe' }, { h: '舒服', p: 'shūfu', v: 'dễ chịu/khỏe' }, { h: '生病', p: 'shēngbìng', v: 'bị ốm' },
-      { h: '医生', p: 'yīshēng', v: 'bác sĩ' }, { h: '医院', p: 'yīyuàn', v: 'bệnh viện' }, { h: '看病', p: 'kànbìng', v: 'khám bệnh' },
-      { h: '觉得', p: 'juéde', v: 'cảm thấy/cho rằng' }, { h: '累', p: 'lèi', v: 'mệt' }, { h: '可能', p: 'kěnéng', v: 'có thể/có lẽ' },
-      { h: '需要', p: 'xūyào', v: 'cần' }, { h: '休息', p: 'xiūxi', v: 'nghỉ ngơi' }, { h: '先', p: 'xiān', v: 'trước tiên' },
-      { h: '回家', p: 'huíjiā', v: 'về nhà' }, { h: '回来', p: 'huílái', v: 'quay lại' }, { h: '重要', p: 'zhòngyào', v: 'quan trọng' }
+      { h: '身体', p: 'shēntǐ', v: 'cơ thể/sức khỏe', e: 'the body' }, { h: '舒服', p: 'shūfu', v: 'dễ chịu/khỏe', e: 'comfortable' }, { h: '生病', p: 'shēngbìng', v: 'bị ốm', e: 'to fall ill' },
+      { h: '医生', p: 'yīshēng', v: 'bác sĩ', e: 'doctor' }, { h: '医院', p: 'yīyuàn', v: 'bệnh viện', e: 'hospital' }, { h: '看病', p: 'kànbìng', v: 'khám bệnh', e: 'to visit a doctor' },
+      { h: '觉得', p: 'juéde', v: 'cảm thấy/cho rằng', e: 'to think that ...' }, { h: '累', p: 'lèi', v: 'mệt', e: 'to accumulate' }, { h: '可能', p: 'kěnéng', v: 'có thể/có lẽ', e: 'might (happen)' },
+      { h: '需要', p: 'xūyào', v: 'cần', e: 'to need' }, { h: '休息', p: 'xiūxi', v: 'nghỉ ngơi', e: 'rest' }, { h: '先', p: 'xiān', v: 'trước tiên', e: 'early' },
+      { h: '回家', p: 'huíjiā', v: 'về nhà', e: 'to return home' }, { h: '回来', p: 'huílái', v: 'quay lại', e: 'to return' }, { h: '重要', p: 'zhòngyào', v: 'quan trọng', e: 'important' }
     ],
     workbook: {
       easy: [
@@ -1199,11 +1199,11 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'xiaomei', text: '今天我真的很高兴。', pinyin: 'Jīntiān wǒ zhēn de hěn gāoxìng.', meaning: 'Hôm nay tớ thật sự rất vui.', expression: null, vocab: ['真的'] }
     ],
     vocab: [
-      { h: '生日', p: 'shēngrì', v: 'sinh nhật' }, { h: '快乐', p: 'kuàilè', v: 'vui vẻ' }, { h: '送', p: 'sòng', v: 'tặng/gửi' },
-      { h: '喜欢', p: 'xǐhuan', v: 'thích' }, { h: '爱好', p: 'àihào', v: 'sở thích' }, { h: '看书', p: 'kànshū', v: 'đọc sách' },
-      { h: '唱歌', p: 'chànggē', v: 'hát' }, { h: '打球', p: 'dǎqiú', v: 'chơi bóng' }, { h: '歌', p: 'gē', v: 'bài hát' },
-      { h: '祝', p: 'zhù', v: 'chúc' }, { h: '蛋糕', p: 'dàngāo', v: 'bánh kem' }, { h: '真', p: 'zhēn', v: 'thật' },
-      { h: '真的', p: 'zhēn de', v: 'thật sự' }, { h: '球', p: 'qiú', v: 'quả bóng' }, { h: '玩儿', p: 'wánr', v: 'chơi' }
+      { h: '生日', p: 'shēngrì', v: 'sinh nhật', e: 'birthday' }, { h: '快乐', p: 'kuàilè', v: 'vui vẻ', e: 'happy' }, { h: '送', p: 'sòng', v: 'tặng/gửi', e: 'to send' },
+      { h: '喜欢', p: 'xǐhuan', v: 'thích', e: 'to like' }, { h: '爱好', p: 'àihào', v: 'sở thích', e: 'to like' }, { h: '看书', p: 'kànshū', v: 'đọc sách' },
+      { h: '唱歌', p: 'chànggē', v: 'hát', e: 'to sing a song' }, { h: '打球', p: 'dǎqiú', v: 'chơi bóng', e: 'to play ball' }, { h: '歌', p: 'gē', v: 'bài hát', e: 'song' },
+      { h: '祝', p: 'zhù', v: 'chúc', e: 'to wish, to congratulate, to bless' }, { h: '蛋糕', p: 'dàngāo', v: 'bánh kem', e: 'cake, CL:塊|块[kuai4],個|个[ge4]' }, { h: '真', p: 'zhēn', v: 'thật', e: 'really' },
+      { h: '真的', p: 'zhēn de', v: 'thật sự', e: 'really, truly, indeed' }, { h: '球', p: 'qiú', v: 'quả bóng', e: 'ball' }, { h: '玩儿', p: 'wánr', v: 'chơi', e: 'to play' }
     ],
     workbook: {
       easy: [
@@ -1275,11 +1275,11 @@ Object.assign(COURSE_DATA, {
       { type: 'dialogue', speaker: 'mai', text: '喜欢！我想继续学习。', pinyin: 'Xǐhuan! Wǒ xiǎng jìxù xuéxí.', meaning: 'Thích ạ! Em muốn tiếp tục học.', expression: 'happy', vocab: ['继续'] }
     ],
     vocab: [
-      { h: '考试', p: 'kǎoshì', v: 'bài kiểm tra/thi' }, { h: '准备', p: 'zhǔnbèi', v: 'chuẩn bị' }, { h: '紧张', p: 'jǐnzhāng', v: 'căng thẳng' },
-      { h: '一点儿', p: 'yìdiǎnr', v: 'một chút' }, { h: '知道', p: 'zhīdào', v: 'biết' }, { h: '词', p: 'cí', v: 'từ' },
-      { h: '回答', p: 'huídá', v: 'trả lời' }, { h: '问题', p: 'wèntí', v: 'vấn đề/câu hỏi' }, { h: '做题', p: 'zuò tí', v: 'làm bài' },
-      { h: '第一', p: 'dì yī', v: 'thứ nhất/câu 1' }, { h: '第二', p: 'dì èr', v: 'thứ hai/câu 2' }, { h: '最后', p: 'zuìhòu', v: 'cuối cùng' },
-      { h: '汉语', p: 'Hànyǔ', v: 'tiếng Hán/tiếng Trung' }, { h: '继续', p: 'jìxù', v: 'tiếp tục' }, { h: '题', p: 'tí', v: 'câu hỏi/bài' }
+      { h: '考试', p: 'kǎoshì', v: 'bài kiểm tra/thi', e: 'to take an exam' }, { h: '准备', p: 'zhǔnbèi', v: 'chuẩn bị', e: 'preparation' }, { h: '紧张', p: 'jǐnzhāng', v: 'căng thẳng', e: 'nervous' },
+      { h: '一点儿', p: 'yìdiǎnr', v: 'một chút', e: 'erhua variant of 一点' }, { h: '知道', p: 'zhīdào', v: 'biết', e: 'to know' }, { h: '词', p: 'cí', v: 'từ', e: 'word, phrase, part of speech' },
+      { h: '回答', p: 'huídá', v: 'trả lời', e: 'to reply' }, { h: '问题', p: 'wèntí', v: 'vấn đề/câu hỏi', e: 'question' }, { h: '做题', p: 'zuò tí', v: 'làm bài' },
+      { h: '第一', p: 'dì yī', v: 'thứ nhất/câu 1' }, { h: '第二', p: 'dì èr', v: 'thứ hai/câu 2', e: 'second' }, { h: '最后', p: 'zuìhòu', v: 'cuối cùng', e: 'final' },
+      { h: '汉语', p: 'Hànyǔ', v: 'tiếng Hán/tiếng Trung', e: 'Chinese language' }, { h: '继续', p: 'jìxù', v: 'tiếp tục', e: 'to continue' }, { h: '题', p: 'tí', v: 'câu hỏi/bài', e: 'topic, problem, question, title' }
     ],
     workbook: {
       easy: [
@@ -1377,12 +1377,12 @@ Object.assign(COURSE_DATA, {
         text: '我爱学汉语，我要在家好好读书！', pinyin: 'Wǒ ài xué Hànyǔ, wǒ yào zài jiā hǎohǎo dú shū!', meaning: 'Tớ thích học tiếng Trung, tớ sẽ ở nhà chăm chỉ đọc sách!', expression: 'happy', vocab: ['爱'] }
     ],
     vocab: [
-      { h: '爱', p: 'ài', v: 'yêu/thích' }, { h: '帮', p: 'bāng', v: 'giúp' }, { h: '帮忙', p: 'bāngmáng', v: 'giúp đỡ' },
-      { h: '出', p: 'chū', v: 'ra' }, { h: '出来', p: 'chūlái', v: 'đi ra (về phía người nói)' }, { h: '出去', p: 'chūqù', v: 'đi ra ngoài' },
-      { h: '打', p: 'dǎ', v: 'đánh/gọi' }, { h: '打电话', p: 'dǎ diànhuà', v: 'gọi điện thoại' }, { h: '打开', p: 'dǎkāi', v: 'mở ra' },
-      { h: '到', p: 'dào', v: 'đến/tới' }, { h: '得到', p: 'dédào', v: 'nhận được/đạt được' }, { h: '等', p: 'děng', v: 'đợi' },
-      { h: '动', p: 'dòng', v: 'động/cử động' }, { h: '动作', p: 'dòngzuò', v: 'động tác' }, { h: '读', p: 'dú', v: 'đọc' },
-      { h: '飞', p: 'fēi', v: 'bay' }, { h: '干', p: 'gàn', v: 'làm' }, { h: '告诉', p: 'gàosu', v: 'nói cho biết' }
+      { h: '爱', p: 'ài', v: 'yêu/thích', e: 'to love' }, { h: '帮', p: 'bāng', v: 'giúp', e: 'to help, to assist' }, { h: '帮忙', p: 'bāngmáng', v: 'giúp đỡ', e: 'to help' },
+      { h: '出', p: 'chū', v: 'ra', e: 'to go out' }, { h: '出来', p: 'chūlái', v: 'đi ra (về phía người nói)', e: 'to come out' }, { h: '出去', p: 'chūqù', v: 'đi ra ngoài', e: 'to go out' },
+      { h: '打', p: 'dǎ', v: 'đánh/gọi', e: 'dozen (loanword)' }, { h: '打电话', p: 'dǎ diànhuà', v: 'gọi điện thoại', e: 'to make a telephone call' }, { h: '打开', p: 'dǎkāi', v: 'mở ra', e: 'to open' },
+      { h: '到', p: 'dào', v: 'đến/tới', e: 'to reach' }, { h: '得到', p: 'dédào', v: 'nhận được/đạt được', e: 'to get' }, { h: '等', p: 'děng', v: 'đợi', e: 'class' },
+      { h: '动', p: 'dòng', v: 'động/cử động', e: 'to move' }, { h: '动作', p: 'dòngzuò', v: 'động tác', e: 'movement' }, { h: '读', p: 'dú', v: 'đọc', e: 'comma' },
+      { h: '飞', p: 'fēi', v: 'bay', e: 'to fly' }, { h: '干', p: 'gàn', v: 'làm', e: 'to do, to work, dry' }, { h: '告诉', p: 'gàosu', v: 'nói cho biết', e: 'to press charges' }
     ],
     workbook: {
       easy: [
@@ -1471,12 +1471,12 @@ Object.assign(COURSE_DATA, {
         text: '好，我们一起进去！明天见！', pinyin: 'Hǎo, wǒmen yìqǐ jìnqù! Míngtiān jiàn!', meaning: 'Được, chúng mình cùng vào! Hẹn mai gặp!', expression: 'happy', vocab: ['见'] }
     ],
     vocab: [
-      { h: '关', p: 'guān', v: 'đóng' }, { h: '关上', p: 'guānshàng', v: 'đóng lại' }, { h: '回', p: 'huí', v: 'về' },
-      { h: '回到', p: 'huídào', v: 'trở về đến' }, { h: '回去', p: 'huíqù', v: 'đi về' }, { h: '记', p: 'jì', v: 'ghi/nhớ' },
-      { h: '记得', p: 'jìde', v: 'nhớ' }, { h: '记住', p: 'jìzhù', v: 'nhớ kỹ' }, { h: '见', p: 'jiàn', v: 'gặp/thấy' },
-      { h: '教', p: 'jiāo', v: 'dạy' }, { h: '进', p: 'jìn', v: 'vào' }, { h: '进来', p: 'jìnlái', v: 'đi vào (lại đây)' },
-      { h: '进去', p: 'jìnqù', v: 'đi vào (rời người nói)' }, { h: '开', p: 'kāi', v: 'mở' }, { h: '看', p: 'kàn', v: 'nhìn/xem' },
-      { h: '看到', p: 'kàndào', v: 'nhìn thấy' }, { h: '看见', p: 'kànjiàn', v: 'trông thấy' }, { h: '来到', p: 'láidào', v: 'đến (nơi)' }
+      { h: '关', p: 'guān', v: 'đóng', e: 'to close, to turn off, mountain pass' }, { h: '关上', p: 'guānshàng', v: 'đóng lại', e: 'to close (a door)' }, { h: '回', p: 'huí', v: 'về', e: 'to circle' },
+      { h: '回到', p: 'huídào', v: 'trở về đến', e: 'to return to' }, { h: '回去', p: 'huíqù', v: 'đi về', e: 'to return' }, { h: '记', p: 'jì', v: 'ghi/nhớ', e: 'to record' },
+      { h: '记得', p: 'jìde', v: 'nhớ', e: 'to remember' }, { h: '记住', p: 'jìzhù', v: 'nhớ kỹ', e: 'to remember' }, { h: '见', p: 'jiàn', v: 'gặp/thấy', e: 'to see' },
+      { h: '教', p: 'jiāo', v: 'dạy', e: 'to teach, to instruct' }, { h: '进', p: 'jìn', v: 'vào', e: 'to go forward' }, { h: '进来', p: 'jìnlái', v: 'đi vào (lại đây)', e: 'to come in' },
+      { h: '进去', p: 'jìnqù', v: 'đi vào (rời người nói)', e: 'to go in' }, { h: '开', p: 'kāi', v: 'mở', e: 'to open (transitive or intransitive)' }, { h: '看', p: 'kàn', v: 'nhìn/xem', e: 'to look after' },
+      { h: '看到', p: 'kàndào', v: 'nhìn thấy', e: 'to see' }, { h: '看见', p: 'kànjiàn', v: 'trông thấy', e: 'to see' }, { h: '来到', p: 'láidào', v: 'đến (nơi)', e: 'to arrive' }
     ],
     workbook: {
       easy: [
@@ -1569,12 +1569,12 @@ Object.assign(COURSE_DATA, {
         text: '我住学校的宿舍。我会认真学，也会用心记。', pinyin: 'Wǒ zhù xuéxiào de sùshè. Wǒ huì rènzhēn xué, yě huì yòngxīn jì.', meaning: 'Mình ở ký túc xá của trường. Mình sẽ học nghiêm túc, cũng sẽ dùng tâm ghi nhớ.', expression: 'happy', vocab: ['住','学','用'] }
     ],
     vocab: [
-      { h: '买', p: 'mǎi', v: 'mua' }, { h: '拿', p: 'ná', v: 'cầm/lấy' }, { h: '起', p: 'qǐ', v: 'dậy/nâng lên' },
-      { h: '起来', p: 'qǐlái', v: 'đứng dậy/thức dậy' }, { h: '认识', p: 'rènshi', v: 'quen biết' }, { h: '试', p: 'shì', v: 'thử' },
-      { h: '睡', p: 'shuì', v: 'ngủ' }, { h: '说', p: 'shuō', v: 'nói' }, { h: '听', p: 'tīng', v: 'nghe' },
-      { h: '听到', p: 'tīngdào', v: 'nghe thấy' }, { h: '听见', p: 'tīngjiàn', v: 'nghe được' }, { h: '忘', p: 'wàng', v: 'quên' },
-      { h: '问', p: 'wèn', v: 'hỏi' }, { h: '洗', p: 'xǐ', v: 'rửa/giặt' }, { h: '学', p: 'xué', v: 'học' },
-      { h: '用', p: 'yòng', v: 'dùng' }, { h: '住', p: 'zhù', v: 'ở/sống' }, { h: '坐下', p: 'zuòxià', v: 'ngồi xuống' }
+      { h: '买', p: 'mǎi', v: 'mua', e: 'to buy' }, { h: '拿', p: 'ná', v: 'cầm/lấy', e: 'to take, to hold, to carry' }, { h: '起', p: 'qǐ', v: 'dậy/nâng lên', e: 'to rise' },
+      { h: '起来', p: 'qǐlái', v: 'đứng dậy/thức dậy', e: 'to stand up' }, { h: '认识', p: 'rènshi', v: 'quen biết', e: 'to know' }, { h: '试', p: 'shì', v: 'thử', e: 'to test' },
+      { h: '睡', p: 'shuì', v: 'ngủ', e: 'to sleep' }, { h: '说', p: 'shuō', v: 'nói', e: 'to persuade' }, { h: '听', p: 'tīng', v: 'nghe', e: 'smile (archaic)' },
+      { h: '听到', p: 'tīngdào', v: 'nghe thấy', e: 'to hear' }, { h: '听见', p: 'tīngjiàn', v: 'nghe được', e: 'to hear' }, { h: '忘', p: 'wàng', v: 'quên', e: 'to forget' },
+      { h: '问', p: 'wèn', v: 'hỏi', e: 'to ask' }, { h: '洗', p: 'xǐ', v: 'rửa/giặt', e: 'to wash' }, { h: '学', p: 'xué', v: 'học', e: 'to learn' },
+      { h: '用', p: 'yòng', v: 'dùng', e: 'to use' }, { h: '住', p: 'zhù', v: 'ở/sống', e: 'to live' }, { h: '坐下', p: 'zuòxià', v: 'ngồi xuống', e: 'to sit down' }
     ],
     workbook: {
       easy: [
@@ -1663,12 +1663,12 @@ Object.assign(COURSE_DATA, {
         text: '谢谢你！跟你在一起，我还想学更多。', pinyin: 'Xièxie nǐ! Gēn nǐ zài yìqǐ, wǒ hái xiǎng xué gèng duō.', meaning: 'Cảm ơn cậu! Ở cùng cậu, tớ còn muốn học nhiều hơn.', expression: 'happy', vocab: ['还','跟'] }
     ],
     vocab: [
-      { h: '吧', p: 'ba', v: '(trợ từ đề nghị)' }, { h: '比', p: 'bǐ', v: 'so với' }, { h: '别的', p: 'biéde', v: 'cái khác' },
-      { h: '不大', p: 'bùdà', v: 'không lớn lắm' }, { h: '不对', p: 'búduì', v: 'không đúng' }, { h: '不用', p: 'búyòng', v: 'không cần' },
-      { h: '次', p: 'cì', v: 'lần' }, { h: '从', p: 'cóng', v: 'từ' }, { h: '地', p: 'de', v: '(trợ từ trạng ngữ)' },
-      { h: '非常', p: 'fēicháng', v: 'vô cùng' }, { h: '跟', p: 'gēn', v: 'với/cùng' }, { h: '过', p: 'guo', v: '(trợ từ đã từng)' },
-      { h: '还', p: 'hái', v: 'còn/vẫn' }, { h: '还是', p: 'háishi', v: 'hay là' }, { h: '还有', p: 'háiyǒu', v: 'còn có' },
-      { h: '和', p: 'hé', v: 'và' }, { h: '后', p: 'hòu', v: 'sau' }
+      { h: '吧', p: 'ba', v: '(trợ từ đề nghị)', e: 'bar (loanword) (serving drinks, or providing Internet access etc)' }, { h: '比', p: 'bǐ', v: 'so với', e: 'Belgium' }, { h: '别的', p: 'biéde', v: 'cái khác', e: 'else' },
+      { h: '不大', p: 'bùdà', v: 'không lớn lắm', e: 'not very' }, { h: '不对', p: 'búduì', v: 'không đúng', e: 'incorrect' }, { h: '不用', p: 'búyòng', v: 'không cần', e: 'need not' },
+      { h: '次', p: 'cì', v: 'lần', e: 'next in sequence' }, { h: '从', p: 'cóng', v: 'từ', e: 'from, since, to follow' }, { h: '地', p: 'de', v: '(trợ từ trạng ngữ)', e: '(adverbial suffix -ly)' },
+      { h: '非常', p: 'fēicháng', v: 'vô cùng', e: 'very' }, { h: '跟', p: 'gēn', v: 'với/cùng', e: 'heel' }, { h: '过', p: 'guo', v: '(trợ từ đã từng)', e: 'to pass, (past-action particle)' },
+      { h: '还', p: 'hái', v: 'còn/vẫn', e: 'still, also, in addition' }, { h: '还是', p: 'háishi', v: 'hay là', e: 'still (as before)' }, { h: '还有', p: 'háiyǒu', v: 'còn có', e: 'furthermore' },
+      { h: '和', p: 'hé', v: 'và', e: 'and, with, harmonious' }, { h: '后', p: 'hòu', v: 'sau', e: 'after, behind, rear' }
     ],
     workbook: {
       easy: [
@@ -1757,12 +1757,12 @@ Object.assign(COURSE_DATA, {
         text: '前边最好，我们坐这儿吧。', pinyin: 'Qiánbian zuì hǎo, wǒmen zuò zhèr ba.', meaning: 'Phía trước là tốt nhất, mình ngồi đây nhé.', expression: 'happy', vocab: ['前边'] }
     ],
     vocab: [
-      { h: '块', p: 'kuài', v: 'đồng (tiền)/cục' }, { h: '了', p: 'le', v: '(trợ từ hoàn thành)' }, { h: '里边', p: 'lǐbian', v: 'bên trong' },
-      { h: '马上', p: 'mǎshàng', v: 'ngay lập tức' }, { h: '没什么', p: 'méishénme', v: 'không có gì' }, { h: '没事儿', p: 'méishìr', v: 'không sao' },
-      { h: '男', p: 'nán', v: 'nam' }, { h: '女', p: 'nǚ', v: 'nữ' }, { h: '票', p: 'piào', v: 'vé' },
-      { h: '前边', p: 'qiánbian', v: 'phía trước' }, { h: '事', p: 'shì', v: 'việc' }, { h: '是不是', p: 'shìbushì', v: 'có phải...không' },
-      { h: '太', p: 'tài', v: 'quá' }, { h: '外', p: 'wài', v: 'ngoài' }, { h: '外边', p: 'wàibian', v: 'bên ngoài' },
-      { h: '网上', p: 'wǎngshàng', v: 'trên mạng' }, { h: '要', p: 'yào', v: 'cần/muốn' }
+      { h: '块', p: 'kuài', v: 'đồng (tiền)/cục', e: 'lump' }, { h: '了', p: 'le', v: '(trợ từ hoàn thành)', e: '(completed action particle)' }, { h: '里边', p: 'lǐbian', v: 'bên trong', e: 'inside' },
+      { h: '马上', p: 'mǎshàng', v: 'ngay lập tức', e: 'at once' }, { h: '没什么', p: 'méishénme', v: 'không có gì', e: 'nothing' }, { h: '没事儿', p: 'méishìr', v: 'không sao', e: 'to have spare time' },
+      { h: '男', p: 'nán', v: 'nam', e: 'male' }, { h: '女', p: 'nǚ', v: 'nữ', e: 'female' }, { h: '票', p: 'piào', v: 'vé', e: 'ticket' },
+      { h: '前边', p: 'qiánbian', v: 'phía trước', e: 'front' }, { h: '事', p: 'shì', v: 'việc', e: 'matter' }, { h: '是不是', p: 'shìbushì', v: 'có phải...không', e: 'is or isn\\\'t' },
+      { h: '太', p: 'tài', v: 'quá', e: 'highest' }, { h: '外', p: 'wài', v: 'ngoài', e: 'outside' }, { h: '外边', p: 'wàibian', v: 'bên ngoài', e: 'outside' },
+      { h: '网上', p: 'wǎngshàng', v: 'trên mạng', e: 'online' }, { h: '要', p: 'yào', v: 'cần/muốn', e: 'to demand' }
     ],
     workbook: {
       easy: [
@@ -1851,12 +1851,12 @@ Object.assign(COURSE_DATA, {
         text: '这是我最喜欢的地方，我也想常常来。', pinyin: 'Zhè shì wǒ zuì xǐhuan de dìfang, wǒ yě xiǎng chángcháng lái.', meaning: 'Đây là nơi tớ thích nhất, tớ cũng muốn thường xuyên đến.', expression: 'happy', vocab: ['最','也'] }
     ],
     vocab: [
-      { h: '也', p: 'yě', v: 'cũng' }, { h: '一边', p: 'yìbiān', v: 'một bên/vừa...vừa' }, { h: '一块儿', p: 'yíkuàir', v: 'cùng nhau' },
-      { h: '一下儿', p: 'yíxiàr', v: 'một chút' }, { h: '一些', p: 'yìxiē', v: 'một vài' }, { h: '有的', p: 'yǒude', v: 'có cái' },
-      { h: '有些', p: 'yǒuxiē', v: 'một số' }, { h: '右', p: 'yòu', v: 'phải' }, { h: '右边', p: 'yòubian', v: 'bên phải' },
-      { h: '再', p: 'zài', v: 'lại/nữa' }, { h: '着', p: 'zhe', v: '(trợ từ đang)' }, { h: '中', p: 'zhōng', v: 'giữa/trong' },
-      { h: '中间', p: 'zhōngjiān', v: 'ở giữa' }, { h: '最', p: 'zuì', v: 'nhất' }, { h: '左', p: 'zuǒ', v: 'trái' },
-      { h: '左边', p: 'zuǒbian', v: 'bên trái' }
+      { h: '也', p: 'yě', v: 'cũng', e: 'also, too, as well' }, { h: '一边', p: 'yìbiān', v: 'một bên/vừa...vừa', e: 'one side' }, { h: '一块儿', p: 'yíkuàir', v: 'cùng nhau', e: 'erhua variant of 一块' },
+      { h: '一下儿', p: 'yíxiàr', v: 'một chút', e: 'erhua variant of 一下' }, { h: '一些', p: 'yìxiē', v: 'một vài', e: 'some' }, { h: '有的', p: 'yǒude', v: 'có cái', e: 'some (who are...)' },
+      { h: '有些', p: 'yǒuxiē', v: 'một số', e: 'some' }, { h: '右', p: 'yòu', v: 'phải', e: 'right' }, { h: '右边', p: 'yòubian', v: 'bên phải', e: 'right side' },
+      { h: '再', p: 'zài', v: 'lại/nữa', e: 'again' }, { h: '着', p: 'zhe', v: '(trợ từ đang)', e: 'move' }, { h: '中', p: 'zhōng', v: 'giữa/trong', e: 'China' },
+      { h: '中间', p: 'zhōngjiān', v: 'ở giữa', e: 'the middle' }, { h: '最', p: 'zuì', v: 'nhất', e: 'most, -est (superlative)' }, { h: '左', p: 'zuǒ', v: 'trái', e: 'left, left side' },
+      { h: '左边', p: 'zuǒbian', v: 'bên trái', e: 'left' }
     ],
     workbook: {
       easy: [
@@ -1955,14 +1955,14 @@ Object.assign(COURSE_DATA, {
         text: '谢谢！今天是个好天，我们一会儿出去走走。', pinyin: 'Xièxie! Jīntiān shì ge hǎo tiān, wǒmen yíhuìr chūqù zǒuzou.', meaning: 'Cảm ơn! Hôm nay trời đẹp, lát nữa mình ra ngoài đi dạo.', expression: null, vocab: ['天','一会儿'] }
     ],
     vocab: [
-      { h: '白天', p: 'báitiān', v: 'ban ngày' }, { h: '半年', p: 'bànnián', v: 'nửa năm' }, { h: '半天', p: 'bàntiān', v: 'nửa ngày/lâu' },
-      { h: '常', p: 'cháng', v: 'thường' }, { h: '号', p: 'hào', v: 'ngày/số' }, { h: '后天', p: 'hòutiān', v: 'ngày kia' },
-      { h: '今年', p: 'jīnnián', v: 'năm nay' }, { h: '前天', p: 'qiántiān', v: 'hôm kia' }, { h: '去年', p: 'qùnián', v: 'năm ngoái' },
-      { h: '日期', p: 'rìqī', v: 'ngày tháng' }, { h: '上次', p: 'shàng cì', v: 'lần trước' }, { h: '岁', p: 'suì', v: 'tuổi' },
-      { h: '天', p: 'tiān', v: 'ngày/trời' }, { h: '晚', p: 'wǎn', v: 'muộn/tối' }, { h: '下次', p: 'xià cì', v: 'lần sau' },
-      { h: '小时', p: 'xiǎoshí', v: 'giờ (tiếng)' }, { h: '新年', p: 'xīnnián', v: 'năm mới' }, { h: '星期天', p: 'xīngqītiān', v: 'chủ nhật' },
-      { h: '一会儿', p: 'yíhuìr', v: 'một lát' }, { h: '有时', p: 'yǒushí', v: 'có lúc' }, { h: '早', p: 'zǎo', v: 'sớm' },
-      { h: '早上', p: 'zǎoshang', v: 'buổi sáng' }, { h: '正', p: 'zhèng', v: 'đang/đúng' }
+      { h: '白天', p: 'báitiān', v: 'ban ngày', e: 'daytime' }, { h: '半年', p: 'bànnián', v: 'nửa năm', e: 'half a year' }, { h: '半天', p: 'bàntiān', v: 'nửa ngày/lâu', e: 'half of the day' },
+      { h: '常', p: 'cháng', v: 'thường', e: 'often, frequently, ordinary' }, { h: '号', p: 'hào', v: 'ngày/số', e: 'roar' }, { h: '后天', p: 'hòutiān', v: 'ngày kia', e: 'the day after tomorrow' },
+      { h: '今年', p: 'jīnnián', v: 'năm nay', e: 'this year' }, { h: '前天', p: 'qiántiān', v: 'hôm kia', e: 'the day before yesterday' }, { h: '去年', p: 'qùnián', v: 'năm ngoái', e: 'last year' },
+      { h: '日期', p: 'rìqī', v: 'ngày tháng', e: 'date' }, { h: '上次', p: 'shàng cì', v: 'lần trước', e: 'last time' }, { h: '岁', p: 'suì', v: 'tuổi', e: 'years old, age' },
+      { h: '天', p: 'tiān', v: 'ngày/trời', e: 'day' }, { h: '晚', p: 'wǎn', v: 'muộn/tối', e: 'evening' }, { h: '下次', p: 'xià cì', v: 'lần sau', e: 'next time' },
+      { h: '小时', p: 'xiǎoshí', v: 'giờ (tiếng)', e: 'hour' }, { h: '新年', p: 'xīnnián', v: 'năm mới', e: 'New Year' }, { h: '星期天', p: 'xīngqītiān', v: 'chủ nhật', e: 'Sunday' },
+      { h: '一会儿', p: 'yíhuìr', v: 'một lát', e: 'a moment' }, { h: '有时', p: 'yǒushí', v: 'có lúc', e: 'sometimes' }, { h: '早', p: 'zǎo', v: 'sớm', e: 'early' },
+      { h: '早上', p: 'zǎoshang', v: 'buổi sáng', e: 'early morning' }, { h: '正', p: 'zhèng', v: 'đang/đúng', e: 'first month of the lunar year' }
     ],
     workbook: {
       easy: [
@@ -2059,13 +2059,13 @@ Object.assign(COURSE_DATA, {
         text: '对，〇就是零。买半本不行，买一本吧。', pinyin: 'Duì, líng jiùshì líng. Mǎi bàn běn bù xíng, mǎi yì běn ba.', meaning: 'Đúng, "〇" chính là số không. Mua nửa quyển không được, mua một quyển đi.', expression: null, vocab: ['〇','半','零'] }
     ],
     vocab: [
-      { h: '别人', p: 'biéren', v: 'người khác' }, { h: '们', p: 'men', v: '(số nhiều)' }, { h: '哪里', p: 'nǎlǐ', v: 'ở đâu' },
-      { h: '哪些', p: 'nǎxiē', v: 'những...nào' }, { h: '那边', p: 'nàbian', v: 'bên kia' }, { h: '那里', p: 'nàli', v: 'ở đó' },
-      { h: '那些', p: 'nàxiē', v: 'những...kia' }, { h: '您', p: 'nín', v: 'ngài/anh (lịch sự)' }, { h: '她们', p: 'tāmen', v: 'họ (nữ)' },
-      { h: '这边', p: 'zhèbian', v: 'bên này' }, { h: '这里', p: 'zhèlǐ', v: 'ở đây' }, { h: '这些', p: 'zhèxiē', v: 'những...này' },
-      { h: '百', p: 'bǎi', v: 'trăm' }, { h: '半', p: 'bàn', v: 'nửa' }, { h: '几', p: 'jǐ', v: 'mấy' },
-      { h: '两', p: 'liǎng', v: 'hai' }, { h: '零', p: 'líng', v: 'không/lẻ' }, { h: '一半', p: 'yíbàn', v: 'một nửa' },
-      { h: '〇', p: 'líng', v: 'số không' }
+      { h: '别人', p: 'biéren', v: 'người khác', e: 'other people' }, { h: '们', p: 'men', v: '(số nhiều)', e: 'plural marker for pronouns, and nouns referring to individuals' }, { h: '哪里', p: 'nǎlǐ', v: 'ở đâu', e: 'where?' },
+      { h: '哪些', p: 'nǎxiē', v: 'những...nào', e: 'which ones?' }, { h: '那边', p: 'nàbian', v: 'bên kia', e: 'over there' }, { h: '那里', p: 'nàli', v: 'ở đó', e: 'there' },
+      { h: '那些', p: 'nàxiē', v: 'những...kia', e: 'those' }, { h: '您', p: 'nín', v: 'ngài/anh (lịch sự)', e: 'you (courteous, as opposed to informal 你)' }, { h: '她们', p: 'tāmen', v: 'họ (nữ)', e: 'they' },
+      { h: '这边', p: 'zhèbian', v: 'bên này', e: 'this side' }, { h: '这里', p: 'zhèlǐ', v: 'ở đây', e: 'here, this place' }, { h: '这些', p: 'zhèxiē', v: 'những...này', e: 'these' },
+      { h: '百', p: 'bǎi', v: 'trăm', e: 'hundred' }, { h: '半', p: 'bàn', v: 'nửa', e: 'half' }, { h: '几', p: 'jǐ', v: 'mấy', e: 'small table' },
+      { h: '两', p: 'liǎng', v: 'hai', e: 'two' }, { h: '零', p: 'líng', v: 'không/lẻ', e: 'zero' }, { h: '一半', p: 'yíbàn', v: 'một nửa', e: 'half' },
+      { h: '〇', p: 'líng', v: 'số không', e: 'zero (circle symbol)' }
     ],
     workbook: {
       easy: [
@@ -2152,14 +2152,14 @@ Object.assign(COURSE_DATA, {
         text: '不客气！你是我的好朋友，就像家人一样。', pinyin: 'Búkèqi! Nǐ shì wǒ de hǎo péngyou, jiù xiàng jiārén yíyàng.', meaning: 'Không có gì! Cậu là bạn tốt của tớ, như người nhà vậy.', expression: null, vocab: ['不客气','家人'] }
     ],
     vocab: [
-      { h: '爸', p: 'bà', v: 'bố' }, { h: '弟', p: 'dì', v: 'em trai' }, { h: '哥', p: 'gē', v: 'anh trai' },
-      { h: '家人', p: 'jiārén', v: 'người nhà' }, { h: '姐', p: 'jiě', v: 'chị' }, { h: '妈', p: 'mā', v: 'mẹ' },
-      { h: '妹', p: 'mèi', v: 'em gái' }, { h: '奶奶', p: 'nǎinai', v: 'bà nội' }, { h: '女儿', p: 'nǚ’ér', v: 'con gái' },
-      { h: '爷爷', p: 'yéye', v: 'ông nội' }, { h: '子', p: 'zǐ', v: '(con/hậu tố)' }, { h: '饭', p: 'fàn', v: 'cơm' },
-      { h: '面包', p: 'miànbāo', v: 'bánh mì' }, { h: '面条儿', p: 'miàntiáor', v: 'mì sợi' }, { h: '奶', p: 'nǎi', v: 'sữa' },
-      { h: '肉', p: 'ròu', v: 'thịt' }, { h: '水果', p: 'shuǐguǒ', v: 'hoa quả' }, { h: '早饭', p: 'zǎofàn', v: 'bữa sáng' },
-      { h: '不客气', p: 'búkèqi', v: 'không có gì' }, { h: '请', p: 'qǐng', v: 'mời' }, { h: '请进', p: 'qǐngjìn', v: 'mời vào' },
-      { h: '请坐', p: 'qǐngzuò', v: 'mời ngồi' }
+      { h: '爸', p: 'bà', v: 'bố', e: 'father' }, { h: '弟', p: 'dì', v: 'em trai', e: 'younger brother' }, { h: '哥', p: 'gē', v: 'anh trai', e: 'elder brother' },
+      { h: '家人', p: 'jiārén', v: 'người nhà', e: 'family member' }, { h: '姐', p: 'jiě', v: 'chị', e: 'older sister' }, { h: '妈', p: 'mā', v: 'mẹ', e: 'ma' },
+      { h: '妹', p: 'mèi', v: 'em gái', e: 'younger sister' }, { h: '奶奶', p: 'nǎinai', v: 'bà nội', e: 'grandma (paternal grandmother)' }, { h: '女儿', p: 'nǚ’ér', v: 'con gái', e: 'daughter' },
+      { h: '爷爷', p: 'yéye', v: 'ông nội', e: 'father\\\'s father' }, { h: '子', p: 'zǐ', v: '(con/hậu tố)', e: 'son' }, { h: '饭', p: 'fàn', v: 'cơm', e: 'cooked rice' },
+      { h: '面包', p: 'miànbāo', v: 'bánh mì', e: 'bread' }, { h: '面条儿', p: 'miàntiáor', v: 'mì sợi', e: 'erhua variant of 面条' }, { h: '奶', p: 'nǎi', v: 'sữa', e: 'breast' },
+      { h: '肉', p: 'ròu', v: 'thịt', e: 'meat' }, { h: '水果', p: 'shuǐguǒ', v: 'hoa quả', e: 'fruit' }, { h: '早饭', p: 'zǎofàn', v: 'bữa sáng', e: 'breakfast' },
+      { h: '不客气', p: 'búkèqi', v: 'không có gì', e: 'you\\\'re welcome' }, { h: '请', p: 'qǐng', v: 'mời', e: 'to ask' }, { h: '请进', p: 'qǐngjìn', v: 'mời vào', e: '"please come in"' },
+      { h: '请坐', p: 'qǐngzuò', v: 'mời ngồi', e: 'please, have a seat' }
     ],
     workbook: {
       easy: [
@@ -2228,12 +2228,12 @@ Object.assign(COURSE_DATA, {
         text: '中国是 Mai 现在学习的国家，她爱这个国家。', pinyin: 'Zhōngguó shì Mai xiànzài xuéxí de guójiā, tā ài zhège guójiā.', meaning: 'Trung Quốc là quốc gia Mai đang học, cô yêu đất nước này.', expression: null, vocab: ['国家','国'] }
     ],
     vocab: [
-      { h: '北', p: 'běi', v: 'bắc' }, { h: '北边', p: 'běibian', v: 'phía bắc' }, { h: '北京', p: 'Běijīng', v: 'Bắc Kinh' },
-      { h: '地点', p: 'dìdiǎn', v: 'địa điểm' }, { h: '地方', p: 'dìfang', v: 'nơi/chỗ' }, { h: '地上', p: 'dìshang', v: 'trên mặt đất' },
-      { h: '电影院', p: 'diànyǐngyuàn', v: 'rạp chiếu phim' }, { h: '东', p: 'dōng', v: 'đông' }, { h: '东边', p: 'dōngbian', v: 'phía đông' },
-      { h: '房间', p: 'fángjiān', v: 'phòng' }, { h: '房子', p: 'fángzi', v: 'căn nhà' }, { h: '国', p: 'guó', v: 'nước' },
-      { h: '国家', p: 'guójiā', v: 'quốc gia' }, { h: '国外', p: 'guówài', v: 'nước ngoài' }, { h: '机场', p: 'jīchǎng', v: 'sân bay' },
-      { h: '家里', p: 'jiālǐ', v: 'trong nhà' }, { h: '间', p: 'jiān', v: 'gian/phòng' }
+      { h: '北', p: 'běi', v: 'bắc', e: 'north' }, { h: '北边', p: 'běibian', v: 'phía bắc', e: 'north' }, { h: '北京', p: 'Běijīng', v: 'Bắc Kinh', e: 'Beijing, capital of the People\\\'s Republic of China' },
+      { h: '地点', p: 'dìdiǎn', v: 'địa điểm', e: 'place' }, { h: '地方', p: 'dìfang', v: 'nơi/chỗ', e: 'region' }, { h: '地上', p: 'dìshang', v: 'trên mặt đất', e: 'on the ground' },
+      { h: '电影院', p: 'diànyǐngyuàn', v: 'rạp chiếu phim', e: 'cinema' }, { h: '东', p: 'dōng', v: 'đông', e: 'east' }, { h: '东边', p: 'dōngbian', v: 'phía đông', e: 'east' },
+      { h: '房间', p: 'fángjiān', v: 'phòng', e: 'room' }, { h: '房子', p: 'fángzi', v: 'căn nhà', e: 'house' }, { h: '国', p: 'guó', v: 'nước', e: 'country, nation, national' },
+      { h: '国家', p: 'guójiā', v: 'quốc gia', e: 'country' }, { h: '国外', p: 'guówài', v: 'nước ngoài', e: 'abroad' }, { h: '机场', p: 'jīchǎng', v: 'sân bay', e: 'airport' },
+      { h: '家里', p: 'jiālǐ', v: 'trong nhà', e: 'home' }, { h: '间', p: 'jiān', v: 'gian/phòng', e: 'between' }
     ],
     workbook: {
       easy: [
@@ -2297,12 +2297,12 @@ Object.assign(COURSE_DATA, {
         text: '我从外国来，看到这些很开心。我们走路过马路吧。', pinyin: 'Wǒ cóng wàiguó lái, kàndào zhèxiē hěn kāixīn. Wǒmen zǒu lù guò mǎlù ba.', meaning: 'Tớ từ nước ngoài đến, thấy mấy thứ này rất vui. Mình đi bộ qua đường nhé.', expression: 'happy', vocab: ['外国','马路'] }
     ],
     vocab: [
-      { h: '楼', p: 'lóu', v: 'tòa nhà/tầng' }, { h: '楼上', p: 'lóushàng', v: 'tầng trên' }, { h: '楼下', p: 'lóuxià', v: 'tầng dưới' },
-      { h: '路', p: 'lù', v: 'đường' }, { h: '路口', p: 'lùkǒu', v: 'ngã tư/đầu đường' }, { h: '路上', p: 'lùshang', v: 'trên đường' },
-      { h: '马路', p: 'mǎlù', v: 'đường lớn' }, { h: '门口', p: 'ménkǒu', v: 'cửa ra vào' }, { h: '南', p: 'nán', v: 'nam' },
-      { h: '南边', p: 'nánbian', v: 'phía nam' }, { h: '商场', p: 'shāngchǎng', v: 'trung tâm thương mại' }, { h: '外国', p: 'wàiguó', v: 'nước ngoài' },
-      { h: '洗手间', p: 'xǐshǒujiān', v: 'nhà vệ sinh' }, { h: '西', p: 'xī', v: 'tây' }, { h: '西边', p: 'xībian', v: 'phía tây' },
-      { h: '在家', p: 'zàijiā', v: 'ở nhà' }, { h: '站', p: 'zhàn', v: 'đứng/ga' }
+      { h: '楼', p: 'lóu', v: 'tòa nhà/tầng', e: 'building, floor, storey' }, { h: '楼上', p: 'lóushàng', v: 'tầng trên', e: 'upstairs' }, { h: '楼下', p: 'lóuxià', v: 'tầng dưới', e: 'downstairs' },
+      { h: '路', p: 'lù', v: 'đường', e: 'road, route, path' }, { h: '路口', p: 'lùkǒu', v: 'ngã tư/đầu đường', e: 'crossing' }, { h: '路上', p: 'lùshang', v: 'trên đường', e: 'on the road' },
+      { h: '马路', p: 'mǎlù', v: 'đường lớn', e: 'street' }, { h: '门口', p: 'ménkǒu', v: 'cửa ra vào', e: 'doorway' }, { h: '南', p: 'nán', v: 'nam', e: 'south' },
+      { h: '南边', p: 'nánbian', v: 'phía nam', e: 'south' }, { h: '商场', p: 'shāngchǎng', v: 'trung tâm thương mại', e: 'shopping mall' }, { h: '外国', p: 'wàiguó', v: 'nước ngoài', e: 'foreign (country)' },
+      { h: '洗手间', p: 'xǐshǒujiān', v: 'nhà vệ sinh', e: 'toilet' }, { h: '西', p: 'xī', v: 'tây', e: 'the West' }, { h: '西边', p: 'xībian', v: 'phía tây', e: 'west' },
+      { h: '在家', p: 'zàijiā', v: 'ở nhà', e: 'to be at home' }, { h: '站', p: 'zhàn', v: 'đứng/ga', e: 'station' }
     ],
     workbook: {
       easy: [
@@ -2370,14 +2370,14 @@ Object.assign(COURSE_DATA, {
         text: '我们想的一样！这样行不行？老书也有用，我爱老东西。', pinyin: 'Wǒmen xiǎng de yíyàng! Zhèyàng xíng bu xíng? Lǎo shū yě yǒuyòng, wǒ ài lǎo dōngxi.', meaning: 'Suy nghĩ của bọn mình giống nhau! Thế này được không? Sách cũ cũng hữu ích, tớ thích đồ cũ.', expression: 'happy', vocab: ['一样','行','老'] }
     ],
     vocab: [
-      { h: '差', p: 'chà', v: 'kém' }, { h: '错', p: 'cuò', v: 'sai' }, { h: '对', p: 'duì', v: 'đúng' },
-      { h: '干净', p: 'gānjìng', v: 'sạch sẽ' }, { h: '高', p: 'gāo', v: 'cao' }, { h: '贵', p: 'guì', v: 'đắt' },
-      { h: '好', p: 'hǎo', v: 'tốt' }, { h: '好听', p: 'hǎotīng', v: 'dễ nghe/hay' }, { h: '好玩儿', p: 'hǎowánr', v: 'thú vị/vui' },
-      { h: '坏', p: 'huài', v: 'hỏng/xấu' }, { h: '快', p: 'kuài', v: 'nhanh' }, { h: '老', p: 'lǎo', v: 'già/cũ' },
-      { h: '慢', p: 'màn', v: 'chậm' }, { h: '忙', p: 'máng', v: 'bận' }, { h: '难', p: 'nán', v: 'khó' },
-      { h: '认真', p: 'rènzhēn', v: 'nghiêm túc' }, { h: '少', p: 'shǎo', v: 'ít' }, { h: '行', p: 'xíng', v: 'được' },
-      { h: '一样', p: 'yíyàng', v: 'giống nhau' }, { h: '有名', p: 'yǒumíng', v: 'nổi tiếng' }, { h: '有用', p: 'yǒuyòng', v: 'hữu ích' },
-      { h: '重', p: 'zhòng', v: 'nặng' }, { h: '最好', p: 'zuìhǎo', v: 'tốt nhất' }
+      { h: '差', p: 'chà', v: 'kém', e: 'difference' }, { h: '错', p: 'cuò', v: 'sai', e: 'wrong, mistake, error' }, { h: '对', p: 'duì', v: 'đúng', e: 'right' },
+      { h: '干净', p: 'gānjìng', v: 'sạch sẽ', e: 'clean' }, { h: '高', p: 'gāo', v: 'cao', e: 'tall, high, lofty' }, { h: '贵', p: 'guì', v: 'đắt', e: 'expensive' },
+      { h: '好', p: 'hǎo', v: 'tốt', e: 'good' }, { h: '好听', p: 'hǎotīng', v: 'dễ nghe/hay', e: 'pleasant to hear' }, { h: '好玩儿', p: 'hǎowánr', v: 'thú vị/vui', e: 'erhua variant of 好玩' },
+      { h: '坏', p: 'huài', v: 'hỏng/xấu', e: 'bad' }, { h: '快', p: 'kuài', v: 'nhanh', e: 'rapid' }, { h: '老', p: 'lǎo', v: 'già/cũ', e: 'old, elderly, (familiar prefix)' },
+      { h: '慢', p: 'màn', v: 'chậm', e: 'slow' }, { h: '忙', p: 'máng', v: 'bận', e: 'busy' }, { h: '难', p: 'nán', v: 'khó', e: 'difficult (to...)' },
+      { h: '认真', p: 'rènzhēn', v: 'nghiêm túc', e: 'conscientious' }, { h: '少', p: 'shǎo', v: 'ít', e: 'few' }, { h: '行', p: 'xíng', v: 'được', e: 'okay, will do, capable' },
+      { h: '一样', p: 'yíyàng', v: 'giống nhau', e: 'same' }, { h: '有名', p: 'yǒumíng', v: 'nổi tiếng', e: 'famous' }, { h: '有用', p: 'yǒuyòng', v: 'hữu ích', e: 'useful' },
+      { h: '重', p: 'zhòng', v: 'nặng', e: 'to repeat' }, { h: '最好', p: 'zuìhǎo', v: 'tốt nhất', e: 'best' }
     ],
     workbook: {
       easy: [
@@ -2446,13 +2446,13 @@ Object.assign(COURSE_DATA, {
         text: '不用打电话问了，网上写着三千元。电不多了，手机快没电了。', pinyin: 'Búyòng dǎ diànhuà wèn le, wǎngshàng xiě zhe sān qiān yuán. Diàn bù duō le, shǒujī kuài méi diàn le.', meaning: 'Không cần gọi điện hỏi đâu, trên mạng ghi ba nghìn đồng. Hết điện rồi, điện thoại sắp hết pin.', expression: null, vocab: ['电话','元','电'] }
     ],
     vocab: [
-      { h: '包', p: 'bāo', v: 'túi/gói' }, { h: '杯', p: 'bēi', v: 'cốc (lượng từ)' }, { h: '杯子', p: 'bēizi', v: 'cái cốc' },
-      { h: '床', p: 'chuáng', v: 'giường' }, { h: '地图', p: 'dìtú', v: 'bản đồ' }, { h: '电', p: 'diàn', v: 'điện' },
-      { h: '电话', p: 'diànhuà', v: 'điện thoại' }, { h: '电脑', p: 'diànnǎo', v: 'máy tính' }, { h: '东西', p: 'dōngxi', v: 'đồ vật' },
-      { h: '干什么', p: 'gàn shénme', v: 'làm gì' }, { h: '就', p: 'jiù', v: 'liền/chính' }, { h: '吗', p: 'ma', v: '(trợ từ hỏi)' },
-      { h: '门', p: 'mén', v: 'cửa' }, { h: '能', p: 'néng', v: 'có thể' }, { h: '钱', p: 'qián', v: 'tiền' },
-      { h: '钱包', p: 'qiánbāo', v: 'ví tiền' }, { h: '页', p: 'yè', v: 'trang' }, { h: '有一些', p: 'yǒuyìxiē', v: 'có một ít' },
-      { h: '元', p: 'yuán', v: 'đồng (tiền)' }, { h: '正在', p: 'zhèngzài', v: 'đang' }
+      { h: '包', p: 'bāo', v: 'túi/gói', e: 'bag, bundle, to wrap' }, { h: '杯', p: 'bēi', v: 'cốc (lượng từ)', e: 'cup' }, { h: '杯子', p: 'bēizi', v: 'cái cốc', e: 'cup' },
+      { h: '床', p: 'chuáng', v: 'giường', e: 'bed' }, { h: '地图', p: 'dìtú', v: 'bản đồ', e: 'map' }, { h: '电', p: 'diàn', v: 'điện', e: 'lightning' },
+      { h: '电话', p: 'diànhuà', v: 'điện thoại', e: 'telephone' }, { h: '电脑', p: 'diànnǎo', v: 'máy tính', e: 'computer' }, { h: '东西', p: 'dōngxi', v: 'đồ vật', e: 'east and west' },
+      { h: '干什么', p: 'gàn shénme', v: 'làm gì', e: 'what are you doing?' }, { h: '就', p: 'jiù', v: 'liền/chính', e: 'in that case' }, { h: '吗', p: 'ma', v: '(trợ từ hỏi)', e: 'what?' },
+      { h: '门', p: 'mén', v: 'cửa', e: 'door, gate' }, { h: '能', p: 'néng', v: 'có thể', e: 'can, to be able to' }, { h: '钱', p: 'qián', v: 'tiền', e: 'money, currency' },
+      { h: '钱包', p: 'qiánbāo', v: 'ví tiền', e: 'purse' }, { h: '页', p: 'yè', v: 'trang', e: 'head' }, { h: '有一些', p: 'yǒuyìxiē', v: 'có một ít', e: 'somewhat' },
+      { h: '元', p: 'yuán', v: 'đồng (tiền)', e: 'yuan (currency unit)' }, { h: '正在', p: 'zhèngzài', v: 'đang', e: 'just at (that time)' }
     ],
     workbook: {
       easy: [
@@ -2517,12 +2517,12 @@ Object.assign(COURSE_DATA, {
         text: '对！快考试了，考完就放假。我们一起准备考试吧。', pinyin: 'Duì! Kuài kǎoshì le, kǎo wán jiù fàngjià. Wǒmen yìqǐ zhǔnbèi kǎoshì ba.', meaning: 'Đúng! Sắp thi rồi, thi xong là nghỉ. Mình cùng ôn thi nhé.', expression: 'happy', vocab: ['考','放假'] }
     ],
     vocab: [
-      { h: '放假', p: 'fàngjià', v: 'nghỉ (lễ/hè)' }, { h: '考', p: 'kǎo', v: 'thi' }, { h: '课', p: 'kè', v: 'tiết học/bài' },
-      { h: '课本', p: 'kèběn', v: 'sách giáo khoa' }, { h: '课文', p: 'kèwén', v: 'bài khóa' }, { h: '男生', p: 'nánshēng', v: 'nam sinh' },
-      { h: '女生', p: 'nǚshēng', v: 'nữ sinh' }, { h: '请假', p: 'qǐngjià', v: 'xin nghỉ' }, { h: '上课', p: 'shàngkè', v: 'vào học' },
-      { h: '听写', p: 'tīngxiě', v: 'chính tả' }, { h: '下课', p: 'xiàkè', v: 'tan học' }, { h: '小学', p: 'xiǎoxué', v: 'tiểu học' },
-      { h: '小学生', p: 'xiǎoxuéshēng', v: 'học sinh tiểu học' }, { h: '学习', p: 'xuéxí', v: 'học tập' }, { h: '学院', p: 'xuéyuàn', v: 'học viện' },
-      { h: '中学', p: 'zhōngxué', v: 'trung học' }, { h: '中学生', p: 'zhōngxuéshēng', v: 'học sinh trung học' }
+      { h: '放假', p: 'fàngjià', v: 'nghỉ (lễ/hè)', e: 'to have a holiday or vacation' }, { h: '考', p: 'kǎo', v: 'thi', e: 'to beat' }, { h: '课', p: 'kè', v: 'tiết học/bài', e: 'subject' },
+      { h: '课本', p: 'kèběn', v: 'sách giáo khoa', e: 'textbook' }, { h: '课文', p: 'kèwén', v: 'bài khóa', e: 'text' }, { h: '男生', p: 'nánshēng', v: 'nam sinh', e: 'schoolboy' },
+      { h: '女生', p: 'nǚshēng', v: 'nữ sinh', e: 'schoolgirl' }, { h: '请假', p: 'qǐngjià', v: 'xin nghỉ', e: 'to request leave of absence' }, { h: '上课', p: 'shàngkè', v: 'vào học', e: 'to go to class' },
+      { h: '听写', p: 'tīngxiě', v: 'chính tả', e: 'to write down (in a dictation exercise)' }, { h: '下课', p: 'xiàkè', v: 'tan học', e: 'to finish class' }, { h: '小学', p: 'xiǎoxué', v: 'tiểu học', e: 'elementary school' },
+      { h: '小学生', p: 'xiǎoxuéshēng', v: 'học sinh tiểu học', e: 'primary school student' }, { h: '学习', p: 'xuéxí', v: 'học tập', e: 'to learn' }, { h: '学院', p: 'xuéyuàn', v: 'học viện', e: 'college' },
+      { h: '中学', p: 'zhōngxué', v: 'trung học', e: 'middle school' }, { h: '中学生', p: 'zhōngxuéshēng', v: 'học sinh trung học', e: 'middle-school student' }
     ],
     workbook: {
       easy: [
@@ -2586,12 +2586,12 @@ Object.assign(COURSE_DATA, {
         text: 'Mai 认识了很多新朋友，大家都是好人。', pinyin: 'Mai rènshi le hěn duō xīn péngyou, dàjiā dōu shì hǎo rén.', meaning: 'Mai quen được nhiều bạn mới, mọi người đều là người tốt.', expression: null, vocab: ['朋友','人'] }
     ],
     vocab: [
-      { h: '见面', p: 'jiànmiàn', v: 'gặp mặt' }, { h: '介绍', p: 'jièshào', v: 'giới thiệu' }, { h: '开玩笑', p: 'kāiwánxiào', v: 'đùa' },
-      { h: '老人', p: 'lǎorén', v: 'người già' }, { h: '男孩儿', p: 'nánháir', v: 'bé trai' }, { h: '男朋友', p: 'nánpéngyou', v: 'bạn trai' },
-      { h: '男人', p: 'nánrén', v: 'đàn ông' }, { h: '女孩儿', p: 'nǚháir', v: 'bé gái' }, { h: '女朋友', p: 'nǚpéngyou', v: 'bạn gái' },
-      { h: '女人', p: 'nǚrén', v: 'phụ nữ' }, { h: '朋友', p: 'péngyou', v: 'bạn' }, { h: '人', p: 'rén', v: 'người' },
-      { h: '网友', p: 'wǎngyǒu', v: 'bạn trên mạng' }, { h: '先生', p: 'xiānsheng', v: 'ngài/ông' }, { h: '小孩儿', p: 'xiǎoháir', v: 'trẻ con' },
-      { h: '小姐', p: 'xiǎojie', v: 'cô' }, { h: '小朋友', p: 'xiǎopéngyou', v: 'bạn nhỏ' }
+      { h: '见面', p: 'jiànmiàn', v: 'gặp mặt', e: 'to meet' }, { h: '介绍', p: 'jièshào', v: 'giới thiệu', e: 'to introduce (sb to sb)' }, { h: '开玩笑', p: 'kāiwánxiào', v: 'đùa', e: 'to play a joke' },
+      { h: '老人', p: 'lǎorén', v: 'người già', e: 'old man or woman' }, { h: '男孩儿', p: 'nánháir', v: 'bé trai', e: 'erhua variant of 男孩' }, { h: '男朋友', p: 'nánpéngyou', v: 'bạn trai', e: 'boyfriend' },
+      { h: '男人', p: 'nánrén', v: 'đàn ông', e: 'a man' }, { h: '女孩儿', p: 'nǚháir', v: 'bé gái', e: 'erhua variant of 女孩' }, { h: '女朋友', p: 'nǚpéngyou', v: 'bạn gái', e: 'girlfriend' },
+      { h: '女人', p: 'nǚrén', v: 'phụ nữ', e: 'woman' }, { h: '朋友', p: 'péngyou', v: 'bạn', e: 'friend' }, { h: '人', p: 'rén', v: 'người', e: 'person' },
+      { h: '网友', p: 'wǎngyǒu', v: 'bạn trên mạng', e: 'online friend' }, { h: '先生', p: 'xiānsheng', v: 'ngài/ông', e: 'teacher' }, { h: '小孩儿', p: 'xiǎoháir', v: 'trẻ con', e: 'erhua variant of 小孩' },
+      { h: '小姐', p: 'xiǎojie', v: 'cô', e: 'young lady' }, { h: '小朋友', p: 'xiǎopéngyou', v: 'bạn nhỏ', e: 'child' }
     ],
     workbook: {
       easy: [
@@ -2661,13 +2661,13 @@ Object.assign(COURSE_DATA, {
         text: '回到家，门口有山有树，还有几毛钱掉在地上。', pinyin: 'Huídào jiā, ménkǒu yǒu shān yǒu shù, háiyǒu jǐ máo qián diào zài dìshang.', meaning: 'Về đến nhà, trước cửa có núi có cây, còn có mấy hào rơi trên đất.', expression: null, vocab: ['口','山','树','毛'] }
     ],
     vocab: [
-      { h: '车票', p: 'chēpiào', v: 'vé xe' }, { h: '车上', p: 'chēshàng', v: 'trên xe' }, { h: '打车', p: 'dǎchē', v: 'bắt xe' },
-      { h: '飞机', p: 'fēijī', v: 'máy bay' }, { h: '火车', p: 'huǒchē', v: 'tàu hỏa' }, { h: '火车站', p: 'huǒchēzhàn', v: 'ga tàu' },
-      { h: '机票', p: 'jīpiào', v: 'vé máy bay' }, { h: '开车', p: 'kāichē', v: 'lái xe' }, { h: '汽车', p: 'qìchē', v: 'ô tô' },
-      { h: '上车', p: 'shàngchē', v: 'lên xe' }, { h: '下车', p: 'xiàchē', v: 'xuống xe' }, { h: '病', p: 'bìng', v: 'bệnh' },
-      { h: '病人', p: 'bìngrén', v: 'bệnh nhân' }, { h: '后边', p: 'hòubian', v: 'phía sau' }, { h: '口', p: 'kǒu', v: 'miệng/cửa' },
-      { h: '毛', p: 'máo', v: 'hào (tiền)/lông' }, { h: '身上', p: 'shēnshang', v: 'trên người' }, { h: '手', p: 'shǒu', v: 'tay' },
-      { h: '花', p: 'huā', v: 'hoa' }, { h: '山', p: 'shān', v: 'núi' }, { h: '树', p: 'shù', v: 'cây' }
+      { h: '车票', p: 'chēpiào', v: 'vé xe', e: 'ticket (for a bus or train)' }, { h: '车上', p: 'chēshàng', v: 'trên xe', e: 'Car' }, { h: '打车', p: 'dǎchē', v: 'bắt xe', e: 'to take a taxi (in town)' },
+      { h: '飞机', p: 'fēijī', v: 'máy bay', e: 'airplane' }, { h: '火车', p: 'huǒchē', v: 'tàu hỏa', e: 'train' }, { h: '火车站', p: 'huǒchēzhàn', v: 'ga tàu', e: 'train station' },
+      { h: '机票', p: 'jīpiào', v: 'vé máy bay', e: 'air ticket' }, { h: '开车', p: 'kāichē', v: 'lái xe', e: 'to drive a car' }, { h: '汽车', p: 'qìchē', v: 'ô tô', e: 'car' },
+      { h: '上车', p: 'shàngchē', v: 'lên xe', e: 'to get on or into (a bus, train, car etc)' }, { h: '下车', p: 'xiàchē', v: 'xuống xe', e: 'to get off or out of (a bus, train, car etc)' }, { h: '病', p: 'bìng', v: 'bệnh', e: 'illness' },
+      { h: '病人', p: 'bìngrén', v: 'bệnh nhân', e: 'sick person' }, { h: '后边', p: 'hòubian', v: 'phía sau', e: 'the back' }, { h: '口', p: 'kǒu', v: 'miệng/cửa', e: 'mouth' },
+      { h: '毛', p: 'máo', v: 'hào (tiền)/lông', e: 'hair, fur, mao (0.1 yuan)' }, { h: '身上', p: 'shēnshang', v: 'trên người', e: 'on the body' }, { h: '手', p: 'shǒu', v: 'tay', e: 'hand' },
+      { h: '花', p: 'huā', v: 'hoa', e: 'flower, to spend (money)' }, { h: '山', p: 'shān', v: 'núi', e: 'mountain, hill' }, { h: '树', p: 'shù', v: 'cây', e: 'tree' }
     ],
     workbook: {
       easy: [
@@ -2732,10 +2732,10 @@ Object.assign(COURSE_DATA, {
         text: '学外语真好玩儿，你呢？', pinyin: 'Xué wàiyǔ zhēn hǎowánr, nǐ ne?', meaning: 'Học ngoại ngữ thật thú vị, còn cậu?', expression: null, vocab: ['外语','呢'] }
     ],
     vocab: [
-      { h: '话', p: 'huà', v: 'lời nói' }, { h: '呢', p: 'ne', v: '(trợ từ nghi vấn)' }, { h: '说话', p: 'shuōhuà', v: 'nói chuyện' },
-      { h: '外语', p: 'wàiyǔ', v: 'ngoại ngữ' }, { h: '中文', p: 'Zhōngwén', v: 'tiếng Trung' }, { h: '字', p: 'zì', v: 'chữ' },
-      { h: '知识', p: 'zhīshi', v: 'kiến thức' }, { h: '明白', p: 'míngbai', v: 'hiểu' }, { h: '生气', p: 'shēngqì', v: 'tức giận' },
-      { h: '笑', p: 'xiào', v: 'cười' }
+      { h: '话', p: 'huà', v: 'lời nói', e: 'dialect' }, { h: '呢', p: 'ne', v: '(trợ từ nghi vấn)', e: 'particle indicating that a previously asked question is to be applied to the preceding word ("What about ...?", "And ...?")' }, { h: '说话', p: 'shuōhuà', v: 'nói chuyện', e: 'to speak' },
+      { h: '外语', p: 'wàiyǔ', v: 'ngoại ngữ', e: 'foreign language' }, { h: '中文', p: 'Zhōngwén', v: 'tiếng Trung', e: 'Chinese language' }, { h: '字', p: 'zì', v: 'chữ', e: 'letter' },
+      { h: '知识', p: 'zhīshi', v: 'kiến thức', e: 'knowledge' }, { h: '明白', p: 'míngbai', v: 'hiểu', e: 'clear' }, { h: '生气', p: 'shēngqì', v: 'tức giận', e: 'to get angry' },
+      { h: '笑', p: 'xiào', v: 'cười', e: 'to laugh, to smile' }
     ],
     workbook: {
       easy: [
@@ -2799,11 +2799,11 @@ Object.assign(COURSE_DATA, {
         text: '哈哈，我爱在家看电视，不用买门票！', pinyin: 'Hāhā, wǒ ài zài jiā kàn diànshì, búyòng mǎi ménpiào!', meaning: 'Haha, tớ thích ở nhà xem tivi, không cần mua vé!', expression: 'happy', vocab: ['电视','门票'] }
     ],
     vocab: [
-      { h: '工人', p: 'gōngrén', v: 'công nhân' }, { h: '工作', p: 'gōngzuò', v: 'công việc/làm việc' }, { h: '开会', p: 'kāihuì', v: 'họp' },
-      { h: '上班', p: 'shàngbān', v: 'đi làm' }, { h: '下班', p: 'xiàbān', v: 'tan làm' }, { h: '唱', p: 'chàng', v: 'hát' },
-      { h: '门票', p: 'ménpiào', v: 'vé vào cửa' }, { h: '电视', p: 'diànshì', v: 'tivi' }, { h: '电视机', p: 'diànshìjī', v: 'máy tivi' },
-      { h: '跑', p: 'pǎo', v: 'chạy' }, { h: '风', p: 'fēng', v: 'gió' }, { h: '雨', p: 'yǔ', v: 'mưa' },
-      { h: '白', p: 'bái', v: 'trắng' }
+      { h: '工人', p: 'gōngrén', v: 'công nhân', e: 'worker' }, { h: '工作', p: 'gōngzuò', v: 'công việc/làm việc', e: 'to work' }, { h: '开会', p: 'kāihuì', v: 'họp', e: 'to hold a meeting' },
+      { h: '上班', p: 'shàngbān', v: 'đi làm', e: 'to go to work' }, { h: '下班', p: 'xiàbān', v: 'tan làm', e: 'to finish work' }, { h: '唱', p: 'chàng', v: 'hát', e: 'to sing' },
+      { h: '门票', p: 'ménpiào', v: 'vé vào cửa', e: 'ticket (for theater, cinema etc)' }, { h: '电视', p: 'diànshì', v: 'tivi', e: 'television' }, { h: '电视机', p: 'diànshìjī', v: 'máy tivi', e: 'television set' },
+      { h: '跑', p: 'pǎo', v: 'chạy', e: 'to paw (the ground)' }, { h: '风', p: 'fēng', v: 'gió', e: 'wind' }, { h: '雨', p: 'yǔ', v: 'mưa', e: 'rain' },
+      { h: '白', p: 'bái', v: 'trắng', e: 'white' }
     ],
     workbook: {
       easy: [

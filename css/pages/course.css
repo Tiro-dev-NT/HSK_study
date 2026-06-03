@@ -488,6 +488,7 @@
 .cs-vc-hanzi  { font-size: 24px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
 .cs-vc-pinyin { font-size: 13px; color: var(--hoang-kim, #F59E0B); font-weight: 500; margin-bottom: 4px; }
 .cs-vc-meaning { font-size: 12px; color: var(--fg-3); }
+.cs-vc-en { font-size: 11px; color: var(--fg-4, var(--fg-3)); opacity: 0.7; font-style: italic; margin-top: 2px; }
 .cs-vocab-next { width: 100%; padding: 13px; font-size: 16px; }
 
 /* ── Workbook ────────────────────────────────────────── */
@@ -600,6 +601,18 @@
 }
 .cs-translate-input:focus { border-color: var(--primary); }
 .cs-translate-ans { font-size: 13px; color: var(--thuy-luc-2, #059669); margin-top: 4px; }
+.cs-translate-ans.cs-wrong { color: var(--primary); }
+.cs-translate-ans.cs-correct { color: var(--thuy-luc-2, #059669); }
+.cs-ex-explain {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg-2, var(--fg-3));
+  background: var(--bg-2, rgba(245,158,11,0.08));
+  border-left: 3px solid var(--hoang-kim, #F59E0B);
+  border-radius: 6px;
+}
 .cs-wb-submit { width: 100%; padding: 13px; font-size: 16px; margin-top: 16px; }
 
 /* ── Complete screen ─────────────────────────────────── */

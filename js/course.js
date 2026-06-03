@@ -994,6 +994,7 @@ var Course = {
         '<div class="cs-vc-hanzi">' + w.h + '</div>' +
         '<div class="cs-vc-pinyin">' + w.p + '</div>' +
         '<div class="cs-vc-meaning">' + w.v + '</div>' +
+        (w.e ? '<div class="cs-vc-en">' + w.e + '</div>' : '') +
       '</div>';
     }).join('');
 
@@ -1043,6 +1044,8 @@ var Course = {
 
   _renderExercise: function(ex, ei) {
     var answered = Course.workbookAnswers[ei];
+    var explainHTML = (answered !== undefined && ex.explain)
+      ? '<div class="cs-ex-explain">💡 ' + ex.explain + '</div>' : '';
 
     if (ex.type === 'fill') {
       var opts = ex.options.map(function(opt) {
@@ -1063,6 +1066,7 @@ var Course = {
         '<div class="cs-ex-num">' + (ei + 1) + '</div>' +
         '<div class="cs-ex-sentence">' + sentence + '</div>' +
         '<div class="cs-opts">' + opts + '</div>' +
+        explainHTML +
       '</div>';
     }
 
@@ -1071,24 +1075,37 @@ var Course = {
       var wordBtns = shuffled.map(function(w) {
         return '<button class="cs-word-btn" onclick="Course._selectOrderWord(this, ' + ei + ')" data-word="' + w + '">' + w + '</button>';
       }).join('');
-      var resultClass = answered !== undefined ? (answered === ex.answer ? ' cs-correct' : ' cs-wrong') : '';
+      var orderOk = answered !== undefined && Course._isExCorrect(ex, answered);
+      var resultClass = answered !== undefined ? (orderOk ? ' cs-correct' : ' cs-wrong') : '';
+      var orderAns = answered !== undefined
+        ? (answered || '') + (orderOk ? '' : ' — Đáp án: ' + ex.answer)
+        : '';
       return '<div class="cs-exercise cs-order" id="csOrder' + ei + '">' +
         '<div class="cs-ex-num">' + (ei + 1) + '</div>' +
         '<div class="cs-ex-label">Sắp xếp thành câu đúng:</div>' +
         '<div class="cs-word-btns">' + wordBtns + '</div>' +
-        '<div class="cs-order-result' + resultClass + '" id="csOrderResult' + ei + '">' + (answered || '') + '</div>' +
+        '<div class="cs-order-result' + resultClass + '" id="csOrderResult' + ei + '">' + orderAns + '</div>' +
         (answered === undefined ? '<button class="cs-btn-sm" onclick="Course._confirmOrder(' + ei + ')">Xác nhận</button>' : '') +
+        explainHTML +
       '</div>';
     }
 
     if (ex.type === 'translate') {
       var checked = answered !== undefined;
+      var transOk = checked && Course._isExCorrect(ex, answered);
+      var resultLine = '';
+      if (checked) {
+        resultLine = transOk
+          ? '<div class="cs-translate-ans cs-correct">✓ Chính xác</div>'
+          : '<div class="cs-translate-ans cs-wrong">✗ Chưa đúng. Đáp án: <strong>' + ex.answer + '</strong></div>';
+      }
       return '<div class="cs-exercise cs-translate">' +
         '<div class="cs-ex-num">' + (ei + 1) + '</div>' +
         '<div class="cs-ex-label">Dịch sang tiếng Trung:</div>' +
         '<div class="cs-ex-prompt">' + ex.prompt + '</div>' +
         '<input class="cs-translate-input" id="csTransInput' + ei + '" placeholder="Nhập câu tiếng Trung..." ' + (checked ? 'disabled value="' + (answered || '').replace(/"/g, '&quot;') + '"' : '') + '>' +
-        (checked ? '<div class="cs-translate-ans">Gợi ý đáp án: <strong>' + ex.answer + '</strong></div>' : '<button class="cs-btn-sm" onclick="Course._submitTranslate(' + ei + ')">Kiểm tra</button>') +
+        (checked ? resultLine : '<button class="cs-btn-sm" onclick="Course._submitTranslate(' + ei + ')">Kiểm tra</button>') +
+        explainHTML +
       '</div>';
     }
 
@@ -1107,6 +1124,8 @@ var Course = {
   _answerWorkbook: function(ei, val) {
     if (Course.workbookAnswers[ei] !== undefined) return;
     Course.workbookAnswers[ei] = val;
+    var wb = Course.lesson.workbook[Course.difficulty] || [];
+    if (wb[ei] && !Course._isExCorrect(wb[ei], val)) Course._pushWrongToSRS(wb[ei]);
     Course._rerenderWorkbook();
   },
 
@@ -1122,15 +1141,54 @@ var Course = {
     if (!selected.length) {
       selected = Array.from(container.querySelectorAll('.cs-word-btn')).map(function(b) { return b.dataset.word; });
     }
-    Course.workbookAnswers[ei] = selected.join('');
+    var joined = selected.join('');
+    Course.workbookAnswers[ei] = joined;
+    var wbO = Course.lesson.workbook[Course.difficulty] || [];
+    if (wbO[ei] && !Course._isExCorrect(wbO[ei], joined)) Course._pushWrongToSRS(wbO[ei]);
     Course._rerenderWorkbook();
   },
 
   _submitTranslate: function(ei) {
     var input = document.getElementById('csTransInput' + ei);
     var val   = input ? input.value.trim() : '';
-    Course.workbookAnswers[ei] = val || '(bỏ trống)';
+    var stored = val || '(bỏ trống)';
+    Course.workbookAnswers[ei] = stored;
+    var wbT = Course.lesson.workbook[Course.difficulty] || [];
+    if (wbT[ei] && !Course._isExCorrect(wbT[ei], stored)) Course._pushWrongToSRS(wbT[ei]);
     Course._rerenderWorkbook();
+  },
+
+  // Normalize Chinese answer: strip whitespace + punctuation for comparison
+  _normalizeZh: function(s) {
+    return String(s == null ? '' : s).replace(/[\s。，？！、,.?!；：;:]/g, '');
+  },
+
+  // Unified correctness check used by render, submit, and SRS push
+  _isExCorrect: function(ex, ans) {
+    if (ans === undefined || ans === null || ans === '(bỏ trống)') return false;
+    if (ex.type === 'fill') return ans === ex.answer;
+    // order + translate: tolerant compare (ignore spaces/punctuation)
+    return Course._normalizeZh(ans) === Course._normalizeZh(ex.answer);
+  },
+
+  // On a WRONG workbook answer, push the lesson-vocab words contained in the
+  // correct answer back into SRS as "Again" (quality 0) so they get re-reviewed.
+  _pushWrongToSRS: function(ex) {
+    try {
+      if (typeof updateSRSCard !== 'function') return;
+      if (typeof loadSRS === 'function') loadSRS();
+      var vocab = (Course.lesson && Course.lesson.vocab) || [];
+      var ans   = ex && ex.answer ? String(ex.answer) : '';
+      if (!ans) return;
+      var lessonId = Course.lesson ? Course.lesson.id : null;
+      var seen = {};
+      vocab.forEach(function(w) {
+        if (w && w.h && !seen[w.h] && ans.indexOf(w.h) !== -1) {
+          seen[w.h] = true;
+          updateSRSCard(w.h, 0, { source: 'course', source_lesson: lessonId });
+        }
+      });
+    } catch (e) { /* SRS push best-effort, never block workbook */ }
   },
 
   _rerenderWorkbook: function() {
@@ -1158,11 +1216,7 @@ var Course = {
     var correct = 0;
     wb.forEach(function(ex, ei) {
       var ans = Course.workbookAnswers[ei];
-      if (ex.type === 'fill' || ex.type === 'order') {
-        if (ans === ex.answer) correct++;
-      } else if (ex.type === 'translate') {
-        correct++;  // translate auto-pass (self-check)
-      }
+      if (Course._isExCorrect(ex, ans)) correct++;
     });
     Course.workbookScore = wb.length > 0 ? Math.round((correct / wb.length) * 100) : 0;
 

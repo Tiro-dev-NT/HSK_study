@@ -1582,3 +1582,597 @@ Object.assign(COURSE_DATA, {
   }
 
 });
+
+// ───────────────────────────────────────────────────────
+// BATCH 4 — Bài 134-138 (Phản hồi · Cân bằng · Quyết định · Trưởng thành · Nhìn lại)
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 134: Phản hồi và sửa sai — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  134: {
+    id: 134,
+    level: 4,
+    title: 'Phản hồi và sửa sai',
+    context: 'Kỳ giữa kỳ qua đi, kỳ cuối kỳ đến gần. Công ty có một cơ hội phỏng vấn nội bộ. Mai chuẩn bị, phỏng vấn, rồi cùng đồng nghiệp ăn mừng.',
+    vocabPreview: ['面试', '期末', '内部', '描述', '没想到'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Sáng', bg: 'office',
+        cast: ['mai', 'laoli'],
+        text: 'Kỳ giữa kỳ qua đi, kỳ cuối kỳ đến gần.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '期中过了，期末快到了。公司内部有个面试机会。',
+        pinyin: 'Qīzhōng guò le, qīmò kuài dào le. Gōngsī nèibù yǒu ge miànshì jīhuì.',
+        meaning: 'Giữa kỳ qua rồi, cuối kỳ sắp tới. Trong nội bộ công ty có một cơ hội phỏng vấn.',
+        expression: 'focused', vocab: ['期中', '期末', '内部', '面试'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '没想到这么快！我要好好描述自己的经历。',
+        pinyin: 'Méi xiǎngdào zhème kuài! Wǒ yào hǎohǎo miáoshù zìjǐ de jīnglì.',
+        meaning: 'Không ngờ nhanh vậy! Em phải mô tả thật tốt kinh nghiệm của mình.',
+        expression: 'surprise', vocab: ['没想到', '描述'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '面试时男女都一样，重点是能力，不必穿名牌儿。',
+        pinyin: 'Miànshì shí nánnǚ dōu yíyàng, zhòngdiǎn shì nénglì, búbì chuān míngpáir.',
+        meaning: 'Khi phỏng vấn nam nữ đều như nhau, quan trọng là năng lực, không cần mặc hàng hiệu.',
+        expression: null, vocab: ['男女', '名牌儿'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '我明白。我不想像模特儿那样打扮，只要平稳发挥。',
+        pinyin: 'Wǒ míngbai. Wǒ bù xiǎng xiàng mótèr nàyàng dǎban, zhǐyào píngwěn fāhuī.',
+        meaning: 'Em hiểu. Em không muốn ăn diện như người mẫu, chỉ cần phát huy ổn định.',
+        expression: 'focused', vocab: ['模特儿', '平稳'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '面试在一个宁静的房间，开着暖气，一位男士问我问题。',
+        pinyin: 'Miànshì zài yí ge níngjìng de fángjiān, kāizhe nuǎnqì, yí wèi nánshì wèn wǒ wèntí.',
+        meaning: 'Buổi phỏng vấn ở một căn phòng yên tĩnh, bật lò sưởi, một quý ông hỏi tôi các câu hỏi.',
+        expression: 'curious', vocab: ['宁静', '暖气', '男士'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '月末公司发美金奖金，我梦见自己拿到了。这段时间日程很密，但很充实。',
+        pinyin: 'Yuèmò gōngsī fā měijīn jiǎngjīn, wǒ mèngjiàn zìjǐ ná dào le. Zhè duàn shíjiān rìchéng hěn mì, dàn hěn chōngshí.',
+        meaning: 'Cuối tháng công ty phát thưởng bằng đô la Mỹ, tôi mơ thấy mình nhận được. Dạo này lịch khá dày, nhưng rất sung túc.',
+        expression: 'happy', vocab: ['末', '美金', '梦见', '密'] },
+      { type: 'choice', speaker: 'xiaomei', cast: ['mai', 'xiaomei'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'happy',
+        q: 'Sau buổi phỏng vấn, mọi người ăn mừng ồn ào. Diễn đạt "Đừng làm ồn nữa, chúng ta chụp ảnh chung đi" sao cho đúng?',
+        options: [
+          { text: '别闹了，我们一起拍照吧。', pinyin: 'Bié nào le, wǒmen yìqǐ pāizhào ba.', meaning: 'Đừng làm ồn nữa, chúng ta chụp ảnh chung đi.', correct: true,
+            feedback: 'Đúng! 闹 = làm ồn; 拍照 = chụp ảnh.' },
+          { text: '别胖子了，我们一起拍照吧。', pinyin: 'Bié pàngzi le, wǒmen yìqǐ pāizhào ba.', meaning: '(sai từ loại)', correct: false,
+            feedback: '胖子 = người béo (danh từ), không phải động từ "làm ồn".' },
+          { text: '别闹了，我们一起描述吧。', pinyin: 'Bié nào le, wǒmen yìqǐ miáoshù ba.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '描述 = miêu tả, không phải "chụp ảnh".' }
+        ], vocab: ['闹', '拍照', '胖子', '描述'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '同事开玩笑叫我"小胖子"，其实我不胖，哈哈。',
+        pinyin: 'Tóngshì kāiwánxiào jiào wǒ "xiǎo pàngzi", qíshí wǒ bú pàng, hāhā.',
+        meaning: 'Đồng nghiệp đùa gọi tôi là "bé mập", thật ra tôi đâu có mập, haha.',
+        expression: 'happy', vocab: ['胖子'] },
+      { type: 'checkpoint', questions: [
+        { q: '“面试” nghĩa là?', options: ['Phỏng vấn (tuyển dụng)', 'Thi cuối kỳ', 'Chụp ảnh', 'Người mẫu'], answer: 0 },
+        { q: '“期末” chỉ điều gì?', options: ['Cuối kỳ', 'Giữa kỳ', 'Đầu kỳ', 'Nghỉ hè'], answer: 0 },
+        { q: '“别闹了” — “闹” nghĩa là?', options: ['Làm ồn, nghịch', 'Yên tĩnh', 'Chụp ảnh', 'Miêu tả'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '没想到', p: 'méi xiǎng dào', v: 'không ngờ, bất ngờ là' },
+      { h: '美金', p: 'měi jīn', v: 'đô la Mỹ (USD)' },
+      { h: '梦见', p: 'mèng jiàn', v: 'mơ thấy' },
+      { h: '密', p: 'mì', v: 'dày, thân mật, bí mật' },
+      { h: '面试', p: 'miàn shì', v: 'phỏng vấn (tuyển dụng)' },
+      { h: '描述', p: 'miáo shù', v: 'miêu tả, mô tả' },
+      { h: '名牌儿', p: 'míng páir', v: 'hàng hiệu, thương hiệu nổi tiếng' },
+      { h: '模特儿', p: 'mó tèr', v: 'người mẫu' },
+      { h: '末', p: 'mò', v: 'cuối, đầu ngọn' },
+      { h: '男女', p: 'nán nǚ', v: 'nam nữ' },
+      { h: '男士', p: 'nán shì', v: 'quý ông, nam giới' },
+      { h: '闹', p: 'nào', v: 'ồn ào, làm náo loạn' },
+      { h: '内部', p: 'nèi bù', v: 'nội bộ, bên trong' },
+      { h: '宁静', p: 'níng jìng', v: 'yên tĩnh, thanh bình' },
+      { h: '暖气', p: 'nuǎn qì', v: 'lò sưởi, hơi ấm' },
+      { h: '拍照', p: 'pāi zhào', v: 'chụp ảnh' },
+      { h: '胖子', p: 'pàng zi', v: 'người béo' },
+      { h: '平稳', p: 'píng wěn', v: 'ổn định, bình ổn' },
+      { h: '期末', p: 'qī mò', v: 'cuối kỳ' },
+      { h: '期中', p: 'qī zhōng', v: 'giữa kỳ' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '公司内部有个___机会。', options: ['面试', '期末', '暖气'], answer: '面试' },
+        { type: 'fill', sentence: '___过了，期末快到了。', options: ['期中', '内部', '名牌儿'], answer: '期中' },
+        { type: 'fill', sentence: '房间很___，适合面试。', options: ['宁静', '闹', '密'], answer: '宁静' },
+        { type: 'fill', sentence: '冬天开___很暖和。', options: ['暖气', '美金', '胖子'], answer: '暖气' },
+        { type: 'fill', sentence: '我们一起___留个纪念。', options: ['拍照', '描述', '面试'], answer: '拍照' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我要好好___自己的经历。', options: ['描述', '拍照', '梦见'], answer: '描述' },
+        { type: 'fill', sentence: '面试时___都一样，重点是能力。', options: ['男女', '名牌儿', '期末'], answer: '男女' },
+        { type: 'fill', sentence: '只要___发挥就好。', options: ['平稳', '宁静', '内部'], answer: '平稳' },
+        { type: 'fill', sentence: '别___了，安静一点。', options: ['闹', '描述', '拍照'], answer: '闹' },
+        { type: 'order', words: ['公司', '内部', '有', '个', '面试', '机会'], answer: '公司内部有个面试机会' },
+        { type: 'order', words: ['不必', '穿', '名牌儿'], answer: '不必穿名牌儿' },
+        { type: 'fill', sentence: '___这么快就到面试了！', options: ['没想到', '内部', '平稳'], answer: '没想到' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '月___公司发美金奖金。', options: ['末', '密', '闹'], answer: '末' },
+        { type: 'fill', sentence: '我不想像___那样打扮。', options: ['模特儿', '男士', '胖子'], answer: '模特儿' },
+        { type: 'translate', prompt: 'Không ngờ nhanh vậy!', answer: '没想到这么快！' },
+        { type: 'translate', prompt: 'Khi phỏng vấn nam nữ đều như nhau, quan trọng là năng lực.', answer: '面试时男女都一样，重点是能力。' },
+        { type: 'translate', prompt: 'Dạo này lịch khá dày, nhưng rất sung túc.', answer: '这段时间日程很密，但很充实。' },
+        { type: 'fill', sentence: '一位___问了我几个问题。', options: ['男士', '胖子', '暖气'], answer: '男士' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 135: Cân bằng học và làm — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  135: {
+    id: 135,
+    level: 4,
+    title: 'Cân bằng học và làm',
+    context: 'Mai học cách cân bằng giữa thực tập và học hành. Em đi đầu đăng ký một hoạt động tình nguyện giúp người nghèo, rồi đi kiểm tra sức khỏe theo lịch công ty.',
+    vocabPreview: ['率先', '食堂', '穷人', '体检', '替代'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân trường · Trưa', bg: 'campus',
+        cast: ['mai', 'xiaomei'],
+        text: 'Mai cố cân bằng giữa thực tập và việc học.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '实习和学习要平衡，我率先报名了志愿活动。',
+        pinyin: 'Shíxí hé xuéxí yào pínghéng, wǒ shuàixiān bàomíng le zhìyuàn huódòng.',
+        meaning: 'Thực tập và học hành phải cân bằng, tớ đi đầu đăng ký hoạt động tình nguyện.',
+        expression: 'happy', vocab: ['率先'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '我们去食堂喝点汽水、酸奶，顺便聊聊。',
+        pinyin: 'Wǒmen qù shítáng hē diǎn qìshuǐ, suānnǎi, shùnbiàn liáoliáo.',
+        meaning: 'Tụi mình ra căng-tin uống chút nước ngọt, sữa chua, tiện thể nói chuyện.',
+        expression: 'happy', vocab: ['食堂', '汽水', '酸奶'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '活动是帮助穷人，送他们日用品，别用太多塑料。',
+        pinyin: 'Huódòng shì bāngzhù qióngrén, sòng tāmen rìyòngpǐn, bié yòng tài duō sùliào.',
+        meaning: 'Hoạt động là giúp người nghèo, tặng họ đồ dùng, đừng dùng quá nhiều nhựa.',
+        expression: 'focused', vocab: ['穷人', '塑料'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '你们的友谊很深厚、很亲密。上楼帮我搬东西好吗？',
+        pinyin: 'Nǐmen de yǒuyì hěn shēnhòu, hěn qīnmì. Shàng lóu bāng wǒ bān dōngxi hǎo ma?',
+        meaning: 'Tình bạn của các em rất sâu sắc, rất thân thiết. Lên gác giúp thầy khiêng đồ nhé?',
+        expression: 'happy', vocab: ['深厚', '亲密', '上楼'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '好，我使劲抬。布置时我们挂了不少气球，活动后再一起扫地。',
+        pinyin: 'Hǎo, wǒ shǐjìn tái. Bùzhì shí wǒmen guà le bùshǎo qìqiú, huódòng hòu zài yìqǐ sǎo dì.',
+        meaning: 'Vâng, em ráng sức khiêng. Lúc trang trí tụi em treo nhiều bóng bay, sau hoạt động cùng quét dọn.',
+        expression: 'focused', vocab: ['使劲', '气球', '扫'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '公司还安排了体检，护士量了我的身高。',
+        pinyin: 'Gōngsī hái ānpái le tǐjiǎn, hùshi liáng le wǒ de shēngāo.',
+        meaning: 'Công ty còn sắp xếp khám sức khỏe, y tá đo chiều cao của tôi.',
+        expression: 'curious', vocab: ['体检', '身高'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'laoli'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'focused',
+        q: 'Một đồng nghiệp xin nghỉ. Diễn đạt "Tôi điền giúp anh ấy một cái biểu mẫu" sao cho đúng?',
+        options: [
+          { text: '我替他填一下表格。', pinyin: 'Wǒ tì tā tián yíxià biǎogé.', meaning: 'Tôi điền giúp (thay) anh ấy một cái biểu mẫu.', correct: true,
+            feedback: 'Đúng! 替 = thay (ai); 填 = điền.' },
+          { text: '我扫他填一下表格。', pinyin: 'Wǒ sǎo tā tián yíxià biǎogé.', meaning: '(không thông)', correct: false,
+            feedback: '扫 = quét, không phải "thay".' },
+          { text: '我赏他填一下表格。', pinyin: 'Wǒ shǎng tā tián yíxià biǎogé.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '赏 = thưởng/ngắm, không hợp.' }
+        ], vocab: ['替', '填', '扫', '赏'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '机器坏了，用新的替代旧的。表现好，公司会赏你。台上的人在表演，大家鼓掌。',
+        pinyin: 'Jīqì huài le, yòng xīn de tìdài jiù de. Biǎoxiàn hǎo, gōngsī huì shǎng nǐ. Tái shàng de rén zài biǎoyǎn, dàjiā gǔzhǎng.',
+        meaning: 'Máy hỏng rồi, dùng cái mới thay cái cũ. Làm tốt, công ty sẽ thưởng cho em. Người trên sân khấu đang biểu diễn, mọi người vỗ tay.',
+        expression: 'happy', vocab: ['替代', '赏', '台上'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '噪音太大会伤害听力，我们要小心。',
+        pinyin: 'Zàoyīn tài dà huì shānghài tīnglì, wǒmen yào xiǎoxīn.',
+        meaning: 'Tiếng ồn quá lớn sẽ làm hại thính giác, chúng ta phải cẩn thận.',
+        expression: 'focused', vocab: ['伤害'] },
+      { type: 'checkpoint', questions: [
+        { q: '“体检” nghĩa là?', options: ['Kiểm tra sức khỏe', 'Thi cử', 'Tình nguyện', 'Dọn dẹp'], answer: 0 },
+        { q: '“替他填表格” — “替” nghĩa là?', options: ['Thay (ai đó)', 'Quét', 'Thưởng', 'Làm hại'], answer: 0 },
+        { q: '“友谊很深厚” — “深厚” nghĩa là?', options: ['Sâu sắc, thâm tình', 'Mỏng manh', 'Ồn ào', 'Nhanh chóng'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '气球', p: 'qì qiú', v: 'bóng bay' },
+      { h: '汽水', p: 'qì shuǐ', v: 'nước ngọt có ga' },
+      { h: '亲密', p: 'qīn mì', v: 'thân mật, gần gũi' },
+      { h: '穷人', p: 'qióng rén', v: 'người nghèo' },
+      { h: '扫', p: 'sǎo', v: 'quét, quét dọn' },
+      { h: '伤害', p: 'shāng hài', v: 'làm hại, gây thương tích' },
+      { h: '赏', p: 'shǎng', v: 'thưởng, ngắm (cảnh)' },
+      { h: '上楼', p: 'shàng lóu', v: 'lên lầu, lên gác' },
+      { h: '身高', p: 'shēn gāo', v: 'chiều cao' },
+      { h: '深厚', p: 'shēn hòu', v: 'sâu sắc, thâm tình' },
+      { h: '食堂', p: 'shí táng', v: 'nhà ăn, căng-tin' },
+      { h: '使劲', p: 'shǐ jìn', v: 'dùng sức, ráng sức' },
+      { h: '率先', p: 'shuài xiān', v: 'đi đầu, tiên phong' },
+      { h: '塑料', p: 'sù liào', v: 'nhựa, chất dẻo' },
+      { h: '酸奶', p: 'suān nǎi', v: 'sữa chua' },
+      { h: '台上', p: 'tái shàng', v: 'trên sân khấu' },
+      { h: '体检', p: 'tǐ jiǎn', v: 'kiểm tra sức khỏe' },
+      { h: '替', p: 'tì', v: 'thay, thay cho' },
+      { h: '替代', p: 'tì dài', v: 'thay thế, thế chỗ' },
+      { h: '填', p: 'tián', v: 'điền vào, lấp đầy' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我们去___喝点汽水。', options: ['食堂', '台上', '身高'], answer: '食堂' },
+        { type: 'fill', sentence: '夏天喝___很解渴。', options: ['汽水', '塑料', '气球'], answer: '汽水' },
+        { type: 'fill', sentence: '活动帮助___，送日用品。', options: ['穷人', '气球', '台上'], answer: '穷人' },
+        { type: 'fill', sentence: '护士量了我的___。', options: ['身高', '塑料', '酸奶'], answer: '身高' },
+        { type: 'fill', sentence: '请___一下这张表格。', options: ['填', '扫', '赏'], answer: '填' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我___报名了志愿活动。', options: ['率先', '使劲', '替代'], answer: '率先' },
+        { type: 'fill', sentence: '我___抬，箱子很重。', options: ['使劲', '率先', '亲密'], answer: '使劲' },
+        { type: 'fill', sentence: '用新的___旧的机器。', options: ['替代', '伤害', '上楼'], answer: '替代' },
+        { type: 'fill', sentence: '别用太多___，污染环境。', options: ['塑料', '气球', '酸奶'], answer: '塑料' },
+        { type: 'order', words: ['我', '替', '他', '填', '一下', '表格'], answer: '我替他填一下表格' },
+        { type: 'order', words: ['你们', '的', '友谊', '很', '深厚'], answer: '你们的友谊很深厚' },
+        { type: 'fill', sentence: '公司安排了___，量身高体重。', options: ['体检', '台上', '气球'], answer: '体检' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '噪音太大会___听力。', options: ['伤害', '替代', '率先'], answer: '伤害' },
+        { type: 'fill', sentence: '我们关系很___，无话不说。', options: ['亲密', '塑料', '台上'], answer: '亲密' },
+        { type: 'translate', prompt: 'Thực tập và học hành phải cân bằng.', answer: '实习和学习要平衡。' },
+        { type: 'translate', prompt: 'Tôi điền giúp thay anh ấy một cái biểu mẫu.', answer: '我替他填一下表格。' },
+        { type: 'translate', prompt: 'Làm tốt, công ty sẽ thưởng cho em.', answer: '表现好，公司会赏你。' },
+        { type: 'fill', sentence: '___的人在表演，大家鼓掌。', options: ['台上', '食堂', '身高'], answer: '台上' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 136: Quyết định quan trọng — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  136: {
+    id: 136,
+    level: 4,
+    title: 'Quyết định quan trọng',
+    context: 'Mai nhận một giấy thông báo quan trọng, buộc em phải đưa ra quyết định lớn về tương lai. Em nhớ về tuổi thơ, cân nhắc kỹ rồi quyết định.',
+    vocabPreview: ['通知书', '无法', '投入', '童年', '挑选'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng trọ · Tối', bg: 'dorm-room',
+        cast: ['mai'],
+        text: 'Mai nhận được một giấy thông báo quan trọng.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我收到一封通知书，让我做一个重要决定。',
+        pinyin: 'Wǒ shōudào yì fēng tōngzhīshū, ràng wǒ zuò yí ge zhòngyào juédìng.',
+        meaning: 'Tôi nhận được một giấy thông báo, khiến tôi phải đưa ra quyết định quan trọng.',
+        expression: 'surprise', vocab: ['通知书'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '别急着投，先停下想清楚。这关系到你的未来，机会无限。',
+        pinyin: 'Bié jízhe tóu, xiān tíngxià xiǎng qīngchu. Zhè guānxì dào nǐ de wèilái, jīhuì wúxiàn.',
+        meaning: 'Đừng vội nộp, dừng lại nghĩ cho rõ. Việc này liên quan đến tương lai của em, cơ hội vô hạn.',
+        expression: 'focused', vocab: ['投', '停下', '无限'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '我投入了很多努力，无法马上放弃。',
+        pinyin: 'Wǒ tóurù le hěn duō nǔlì, wúfǎ mǎshàng fàngqì.',
+        meaning: 'Em đã đầu tư rất nhiều công sức, không thể từ bỏ ngay được.',
+        expression: 'sad', vocab: ['投入', '无法'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这让我想起童年，我们一起吃西瓜、挑选玩具的日子。',
+        pinyin: 'Zhè ràng wǒ xiǎngqǐ tóngnián, wǒmen yìqǐ chī xīguā, tiāoxuǎn wánjù de rìzi.',
+        meaning: 'Điều này khiến tớ nhớ tuổi thơ, những ngày cùng ăn dưa hấu, chọn đồ chơi.',
+        expression: 'happy', vocab: ['童年', '西瓜', '挑选'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '是啊。新鲜的西瓜很甜，有西瓜味儿。',
+        pinyin: 'Shì a. Xīnxiān de xīguā hěn tián, yǒu xīguā wèir.',
+        meaning: 'Ừ. Dưa hấu tươi rất ngọt, có mùi vị dưa hấu.',
+        expression: 'happy', vocab: ['鲜', '味儿'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '工作途中要看外汇行情，王经理会教你。把网址贴在电脑上。',
+        pinyin: 'Gōngzuò túzhōng yào kàn wàihuì hángqíng, Wáng jīnglǐ huì jiāo nǐ. Bǎ wǎngzhǐ tiē zài diànnǎo shàng.',
+        meaning: 'Trong quá trình làm việc cần xem tỷ giá ngoại hối, giám đốc Vương sẽ dạy em. Dán địa chỉ web lên máy tính.',
+        expression: null, vocab: ['途中', '外汇', '王', '网址', '贴'] },
+      { type: 'choice', speaker: 'laoli', cast: ['mai', 'laoli'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'focused',
+        q: 'Trong văn phòng. Diễn đạt "Đừng hút thuốc, sẽ làm chất lượng không khí giảm xuống" sao cho đúng?',
+        options: [
+          { text: '请别吸烟，会让空气质量下降。', pinyin: 'Qǐng bié xīyān, huì ràng kōngqì zhìliàng xiàjiàng.', meaning: 'Xin đừng hút thuốc, sẽ làm chất lượng không khí giảm xuống.', correct: true,
+            feedback: 'Đúng! 吸烟 = hút thuốc; 下降 = giảm xuống.' },
+          { text: '请别吸气，会让空气质量下降。', pinyin: 'Qǐng bié xīqì, huì ràng kōngqì zhìliàng xiàjiàng.', meaning: '(sai ý)', correct: false,
+            feedback: '吸气 = hít vào (bình thường); ở đây phải là 吸烟.' },
+          { text: '请别吸烟，会让空气质量下楼。', pinyin: 'Qǐng bié xīyān, huì ràng kōngqì zhìliàng xià lóu.', meaning: '(không thông)', correct: false,
+            feedback: '下楼 = xuống lầu, không phải "giảm xuống".' }
+        ], vocab: ['吸烟', '下降', '吸', '下楼'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我深吸一口气，作出决定，然后下楼透气。',
+        pinyin: 'Wǒ shēn xī yì kǒu qì, zuòchū juédìng, ránhòu xià lóu tòuqì.',
+        meaning: 'Tôi hít sâu một hơi, đưa ra quyết định, rồi xuống gác hít thở.',
+        expression: 'focused', vocab: ['吸', '下楼'] },
+      { type: 'checkpoint', questions: [
+        { q: '“通知书” là gì?', options: ['Giấy thông báo', 'Dưa hấu', 'Tuổi thơ', 'Ngoại tệ'], answer: 0 },
+        { q: '“空气质量下降” — “下降” nghĩa là?', options: ['Giảm xuống', 'Tăng lên', 'Ổn định', 'Tươi mới'], answer: 0 },
+        { q: '“无法马上放弃” — “无法” nghĩa là?', options: ['Không thể', 'Vô hạn', 'Trên đường', 'Ngoại hối'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '挑选', p: 'tiāo xuǎn', v: 'lựa chọn, chọn lọc' },
+      { h: '贴', p: 'tiē', v: 'dán, gắn vào' },
+      { h: '停下', p: 'tíng xia', v: 'dừng lại, ngừng lại' },
+      { h: '通知书', p: 'tōng zhī shū', v: 'giấy thông báo' },
+      { h: '童年', p: 'tóng nián', v: 'tuổi thơ' },
+      { h: '投', p: 'tóu', v: 'ném, nộp, đầu tư' },
+      { h: '投入', p: 'tóu rù', v: 'đầu tư vào, dồn sức' },
+      { h: '途中', p: 'tú zhōng', v: 'trên đường, dọc đường' },
+      { h: '外汇', p: 'wài huì', v: 'ngoại hối, ngoại tệ' },
+      { h: '王', p: 'wáng', v: 'vương, vua; họ Vương' },
+      { h: '网址', p: 'wǎng zhǐ', v: 'địa chỉ website, URL' },
+      { h: '味儿', p: 'wèir', v: 'mùi vị, hương vị' },
+      { h: '无法', p: 'wú fǎ', v: 'không thể, không có cách' },
+      { h: '无限', p: 'wú xiàn', v: 'vô hạn, không giới hạn' },
+      { h: '西瓜', p: 'xī guā', v: 'dưa hấu' },
+      { h: '吸', p: 'xī', v: 'hít, hút vào' },
+      { h: '吸烟', p: 'xī yān', v: 'hút thuốc lá' },
+      { h: '下降', p: 'xià jiàng', v: 'giảm xuống, hạ xuống' },
+      { h: '下楼', p: 'xià lóu', v: 'xuống lầu, xuống gác' },
+      { h: '鲜', p: 'xiān', v: 'tươi, tươi sống' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我收到一封___。', options: ['通知书', '外汇', '西瓜'], answer: '通知书' },
+        { type: 'fill', sentence: '先___想清楚再决定。', options: ['停下', '投入', '挑选'], answer: '停下' },
+        { type: 'fill', sentence: '夏天我爱吃___。', options: ['西瓜', '网址', '味儿'], answer: '西瓜' },
+        { type: 'fill', sentence: '请把___贴在电脑上。', options: ['网址', '童年', '外汇'], answer: '网址' },
+        { type: 'fill', sentence: '办公室里请别___。', options: ['吸烟', '挑选', '下楼'], answer: '吸烟' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我___了很多努力，舍不得放弃。', options: ['投入', '停下', '挑选'], answer: '投入' },
+        { type: 'fill', sentence: '这让我想起___的快乐时光。', options: ['童年', '外汇', '味儿'], answer: '童年' },
+        { type: 'fill', sentence: '认真___合适的玩具。', options: ['挑选', '投', '贴'], answer: '挑选' },
+        { type: 'fill', sentence: '这个机会___，前途光明。', options: ['无限', '无法', '途中'], answer: '无限' },
+        { type: 'order', words: ['我', '无法', '马上', '放弃'], answer: '我无法马上放弃' },
+        { type: 'order', words: ['请', '别', '吸烟', '空气', '质量', '会', '下降'], answer: '请别吸烟空气质量会下降' },
+        { type: 'fill', sentence: '新鲜的西瓜有西瓜___。', options: ['味儿', '网址', '外汇'], answer: '味儿' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '工作___要看外汇行情。', options: ['途中', '无限', '下楼'], answer: '途中' },
+        { type: 'fill', sentence: '吸烟会让空气质量___。', options: ['下降', '下楼', '无限'], answer: '下降' },
+        { type: 'translate', prompt: 'Tôi nhận được một giấy thông báo quan trọng.', answer: '我收到一封重要的通知书。' },
+        { type: 'translate', prompt: 'Tôi đã đầu tư rất nhiều công sức, không thể từ bỏ ngay.', answer: '我投入了很多努力，无法马上放弃。' },
+        { type: 'translate', prompt: 'Tôi hít sâu một hơi, đưa ra quyết định.', answer: '我深吸一口气，作出决定。' },
+        { type: 'fill', sentence: '新___的西瓜很甜。', options: ['鲜', '投', '贴'], answer: '鲜' }
+      ]
+    }
+  }
+
+});
+
+// ───────────────────────────────────────────────────────
+// BATCH 4 (tiếp) — Bài 137-138 (Trưởng thành · Nhìn lại)
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 137: Trưởng thành hơn — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  137: {
+    id: 137,
+    level: 4,
+    title: 'Trưởng thành hơn',
+    context: 'Kỳ thực tập gần khép lại. Mai dọn hành lý, ngắm những tấm ảnh cũ và nhận ra mình đã trưởng thành. Thầy Lý tặng em một món quà kỷ niệm.',
+    vocabPreview: ['选择', '相片', '优良', '研制', '一般来说'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng trọ · Tối', bg: 'dorm-room',
+        cast: ['mai'],
+        text: 'Kỳ thực tập gần khép lại, Mai bắt đầu dọn hành lý.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我整理行李箱，看到一些旧相片，想起这段日子。',
+        pinyin: 'Wǒ zhěnglǐ xínglǐ xiāng, kàndào yìxiē jiù xiàngpiàn, xiǎngqǐ zhè duàn rìzi.',
+        meaning: 'Tôi sắp xếp vali, thấy mấy tấm ảnh cũ, nhớ lại quãng thời gian này.',
+        expression: 'curious', vocab: ['箱', '相片', '些'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '你成长了不少。一般来说，年轻人要学会选择。',
+        pinyin: 'Nǐ chéngzhǎng le bù shǎo. Yìbān láishuō, niánqīngrén yào xuéhuì xuǎnzé.',
+        meaning: 'Em trưởng thành nhiều rồi. Nói chung, người trẻ phải học cách lựa chọn.',
+        expression: 'happy', vocab: ['一般来说', '选择'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '这次经历在我眼里很珍贵，让我流下眼泪。',
+        pinyin: 'Zhè cì jīnglì zài wǒ yǎn lǐ hěn zhēnguì, ràng wǒ liú xià yǎnlèi.',
+        meaning: 'Trải nghiệm này trong mắt em rất quý giá, khiến em rơi nước mắt.',
+        expression: 'sad', vocab: ['眼里', '眼泪'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '公司研制了新型产品，型号很多，质量优良。',
+        pinyin: 'Gōngsī yánzhì le xīn xíng chǎnpǐn, xínghào hěn duō, zhìliàng yōuliáng.',
+        meaning: 'Công ty đã nghiên cứu chế tạo sản phẩm kiểu mới, có nhiều model, chất lượng ưu việt.',
+        expression: 'happy', vocab: ['研制', '型', '型号', '优良'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '我们引进了先进设备，资源虽然有限，但成果在预期以内。',
+        pinyin: 'Wǒmen yǐnjìn le xiānjìn shèbèi, zīyuán suīrán yǒuxiàn, dàn chéngguǒ zài yùqī yǐnèi.',
+        meaning: 'Chúng tôi nhập thiết bị tiên tiến, tuy nguồn lực có hạn, nhưng thành quả nằm trong dự kiến.',
+        expression: 'focused', vocab: ['引进', '有限', '以内'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '这块玉送给你做纪念。遇到困难别怕，你浑身有劲儿。',
+        pinyin: 'Zhè kuài yù sòng gěi nǐ zuò jìniàn. Yùdào kùnnán bié pà, nǐ húnshēn yǒujìnr.',
+        meaning: 'Miếng ngọc này tặng em làm kỷ niệm. Gặp khó khăn đừng sợ, em tràn đầy sức lực.',
+        expression: 'happy', vocab: ['玉', '遇', '有劲儿'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'laoli'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'focused',
+        q: 'Thầy Lý nghiêm khắc nhưng công bằng. Diễn đạt "Thầy rất nghiêm với chúng em, nhưng chúng em tôn trọng thầy" sao cho đúng?',
+        options: [
+          { text: '老师对我们很严，但我们尊重他。', pinyin: 'Lǎoshī duì wǒmen hěn yán, dàn wǒmen zūnzhòng tā.', meaning: 'Thầy rất nghiêm với chúng em, nhưng chúng em tôn trọng thầy.', correct: true,
+            feedback: 'Đúng! 严 = nghiêm khắc.' },
+          { text: '老师对我们很引，但我们尊重他。', pinyin: 'Lǎoshī duì wǒmen hěn yǐn, dàn wǒmen zūnzhòng tā.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '引 = dẫn dắt/trích dẫn, không phải tính từ "nghiêm".' },
+          { text: '老师对我们很玉，但我们尊重他。', pinyin: 'Lǎoshī duì wǒmen hěn yù, dàn wǒmen zūnzhòng tā.', meaning: '(không thông)', correct: false,
+            feedback: '玉 = ngọc, không phải tính từ "nghiêm".' }
+        ], vocab: ['严', '引', '玉'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我参加过亚运会的志愿活动，一直引以为荣。',
+        pinyin: 'Wǒ cānjiā guo Yàyùnhuì de zhìyuàn huódòng, yìzhí yǐn yǐ wéi róng.',
+        meaning: 'Tôi từng tham gia hoạt động tình nguyện ở ASIAD, luôn lấy đó làm tự hào.',
+        expression: 'happy', vocab: ['亚运会', '引'] },
+      { type: 'checkpoint', questions: [
+        { q: '“选择” nghĩa là?', options: ['Lựa chọn', 'Từ bỏ', 'Gặp gỡ', 'Nghiêm khắc'], answer: 0 },
+        { q: '“质量优良” — “优良” nghĩa là?', options: ['Ưu tú, xuất sắc', 'Kém cỏi', 'Có hạn', 'Tươi mới'], answer: 0 },
+        { q: '“一般来说” nghĩa là?', options: ['Nói chung, thông thường', 'Đặc biệt là', 'Không thể', 'Vô hạn'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '箱', p: 'xiāng', v: 'hộp, thùng, vali' },
+      { h: '相片', p: 'xiàng piàn', v: 'ảnh, tấm hình' },
+      { h: '些', p: 'xiē', v: 'một vài, một số' },
+      { h: '型', p: 'xíng', v: 'kiểu, loại, khuôn mẫu' },
+      { h: '型号', p: 'xíng hào', v: 'số kiểu, mã model' },
+      { h: '选择', p: 'xuǎn zé', v: 'lựa chọn' },
+      { h: '亚运会', p: 'yà yùn huì', v: 'Đại hội thể thao châu Á (ASIAD)' },
+      { h: '严', p: 'yán', v: 'nghiêm khắc' },
+      { h: '研制', p: 'yán zhì', v: 'nghiên cứu chế tạo' },
+      { h: '眼泪', p: 'yǎn lèi', v: 'nước mắt, lệ' },
+      { h: '眼里', p: 'yǎn li', v: 'trong mắt' },
+      { h: '以内', p: 'yǐ nèi', v: 'trong vòng, không quá' },
+      { h: '一般来说', p: 'yì bān lái shuō', v: 'nói chung, thông thường' },
+      { h: '引', p: 'yǐn', v: 'dẫn dắt, trích dẫn' },
+      { h: '引进', p: 'yǐn jìn', v: 'nhập khẩu, du nhập' },
+      { h: '优良', p: 'yōu liáng', v: 'ưu tú, xuất sắc' },
+      { h: '有劲儿', p: 'yǒu jìnr', v: 'có sức, hứng khởi' },
+      { h: '有限', p: 'yǒu xiàn', v: 'có hạn, giới hạn' },
+      { h: '玉', p: 'yù', v: 'ngọc bích' },
+      { h: '遇', p: 'yù', v: 'gặp gỡ, gặp phải' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我整理行李___。', options: ['箱', '些', '型'], answer: '箱' },
+        { type: 'fill', sentence: '我看到一些旧___。', options: ['相片', '型号', '眼泪'], answer: '相片' },
+        { type: 'fill', sentence: '年轻人要学会___。', options: ['选择', '引进', '研制'], answer: '选择' },
+        { type: 'fill', sentence: '产品质量很___。', options: ['优良', '有限', '以内'], answer: '优良' },
+        { type: 'fill', sentence: '太感动了，我流下___。', options: ['眼泪', '相片', '型号'], answer: '眼泪' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '公司___了新产品。', options: ['研制', '选择', '引'], answer: '研制' },
+        { type: 'fill', sentence: '这款产品有很多___。', options: ['型号', '眼泪', '相片'], answer: '型号' },
+        { type: 'fill', sentence: '我们___了先进设备。', options: ['引进', '研制', '有限'], answer: '引进' },
+        { type: 'fill', sentence: '资源虽然___，但够用。', options: ['有限', '优良', '以内'], answer: '有限' },
+        { type: 'order', words: ['年轻人', '要', '学会', '选择'], answer: '年轻人要学会选择' },
+        { type: 'order', words: ['这', '次', '经历', '在', '我', '眼里', '很', '珍贵'], answer: '这次经历在我眼里很珍贵' },
+        { type: 'fill', sentence: '___，年轻人要多尝试。', options: ['一般来说', '以内', '有劲儿'], answer: '一般来说' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '老师对我们很___，但公正。', options: ['严', '引', '玉'], answer: '严' },
+        { type: 'fill', sentence: '这块___送给你做纪念。', options: ['玉', '箱', '些'], answer: '玉' },
+        { type: 'translate', prompt: 'Trải nghiệm này trong mắt em rất quý giá.', answer: '这次经历在我眼里很珍贵。' },
+        { type: 'translate', prompt: 'Nói chung, người trẻ phải học cách lựa chọn.', answer: '一般来说，年轻人要学会选择。' },
+        { type: 'translate', prompt: 'Tuy nguồn lực có hạn, nhưng thành quả nằm trong dự kiến.', answer: '资源虽然有限，但成果在预期以内。' },
+        { type: 'fill', sentence: '遇到困难别怕，你浑身___。', options: ['有劲儿', '有限', '以内'], answer: '有劲儿' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 138: Nhìn lại chặng đường — 15 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  138: {
+    id: 138,
+    level: 4,
+    title: 'Nhìn lại chặng đường',
+    context: 'Kỳ thực tập khép lại. Mai cùng thầy Lý và Tiểu Mỹ nhìn lại chặng đường đã qua, những khó khăn đã vượt, và em tự đưa ra quyết định cho bước tiếp theo.',
+    vocabPreview: ['战胜', '之前', '作出', '招呼', '遇到'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Chiều', bg: 'office',
+        cast: ['mai', 'laoli'],
+        text: 'Kỳ thực tập đã đến những ngày cuối.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '实习快结束了。回想之前，你战胜了很多困难。',
+        pinyin: 'Shíxí kuài jiéshù le. Huíxiǎng zhīqián, nǐ zhànshèng le hěn duō kùnnán.',
+        meaning: 'Kỳ thực tập sắp kết thúc. Nhìn lại trước đó, em đã chiến thắng rất nhiều khó khăn.',
+        expression: 'happy', vocab: ['之前', '战胜'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '谢谢老师的赞赏。我像个小战士，遇到问题就解决。',
+        pinyin: 'Xièxie lǎoshī de zànshǎng. Wǒ xiàng ge xiǎo zhànshì, yùdào wèntí jiù jiějué.',
+        meaning: 'Cảm ơn lời khen của thầy. Em như một chiến sĩ nhỏ, gặp vấn đề là giải quyết.',
+        expression: 'happy', vocab: ['赞赏', '战士', '遇到'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '还记得我们之间第一次打招呼吗？在路口转弯就遇见了。',
+        pinyin: 'Hái jìde wǒmen zhījiān dì-yī cì dǎ zhāohu ma? Zài lùkǒu zhuǎnwān jiù yùjiàn le.',
+        meaning: 'Còn nhớ lần đầu chào hỏi giữa hai đứa mình không? Rẽ cua ở ngã tư là gặp ngay.',
+        expression: 'happy', vocab: ['之间', '招呼', '转弯', '遇见'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '记得！那天我还以为中奖了，运气真好。',
+        pinyin: 'Jìde! Nà tiān wǒ hái yǐwéi zhòngjiǎng le, yùnqi zhēn hǎo.',
+        meaning: 'Nhớ chứ! Hôm đó tớ còn tưởng trúng thưởng, may mắn thật.',
+        expression: 'happy', vocab: ['中奖'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '有次实验装置差点着火，我们赶紧处理，幸好没事。',
+        pinyin: 'Yǒu cì shíyàn zhuāngzhì chàdiǎn zháohuǒ, wǒmen gǎnjǐn chǔlǐ, xìnghǎo méishì.',
+        meaning: 'Có lần thiết bị thí nghiệm suýt bốc cháy, chúng tôi xử lý ngay, may mà không sao.',
+        expression: 'surprise', vocab: ['装置', '着火'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'focused',
+        q: 'Mai chuẩn bị theo đuổi mục tiêu mới. Diễn đạt "Tôi sẽ chiến thắng chính mình, biến giấc mơ thành hiện thực" sao cho đúng?',
+        options: [
+          { text: '我要战胜自己，让梦想成真。', pinyin: 'Wǒ yào zhànshèng zìjǐ, ràng mèngxiǎng chéngzhēn.', meaning: 'Tôi sẽ chiến thắng chính mình, biến giấc mơ thành hiện thực.', correct: true,
+            feedback: 'Đúng! 战胜 = chiến thắng, vượt qua.' },
+          { text: '我要做梦自己，让梦想成真。', pinyin: 'Wǒ yào zuòmèng zìjǐ, ràng mèngxiǎng chéngzhēn.', meaning: '(không thông)', correct: false,
+            feedback: '做梦 = nằm mơ, không dùng kiểu này.' },
+          { text: '我要招呼自己，让梦想成真。', pinyin: 'Wǒ yào zhāohu zìjǐ, ràng mèngxiǎng chéngzhēn.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '招呼 = chào hỏi, không hợp.' }
+        ], vocab: ['战胜', '做梦', '招呼'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这段日子让我成长，我自己作出了重要决定。晚上我做了个好梦，梦见未来的自己。明天，新的挑战在等我。',
+        pinyin: 'Zhè duàn rìzi ràng wǒ chéngzhǎng, wǒ zìjǐ zuòchū le zhòngyào juédìng. Wǎnshang wǒ zuò le ge hǎo mèng, mèngjiàn wèilái de zìjǐ. Míngtiān, xīn de tiǎozhàn zài děng wǒ.',
+        meaning: 'Quãng thời gian này giúp tôi trưởng thành, tự mình đưa ra quyết định quan trọng. Tối đó tôi mơ một giấc đẹp, mơ thấy chính mình trong tương lai. Ngày mai, thử thách mới đang đợi tôi.',
+        expression: 'happy', vocab: ['自', '作出', '做梦'] },
+      { type: 'checkpoint', questions: [
+        { q: '“战胜困难” — “战胜” nghĩa là?', options: ['Chiến thắng, vượt qua', 'Thua cuộc', 'Gặp gỡ', 'Chào hỏi'], answer: 0 },
+        { q: '“打招呼” nghĩa là?', options: ['Chào hỏi', 'Rẽ cua', 'Trúng thưởng', 'Bốc cháy'], answer: 0 },
+        { q: '“作出决定” — “作出” nghĩa là?', options: ['Đưa ra (quyết định)', 'Nằm mơ', 'Gặp lại', 'Tán dương'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '遇到', p: 'yù dào', v: 'gặp phải, gặp gỡ' },
+      { h: '遇见', p: 'yù jiàn', v: 'tình cờ gặp, bắt gặp' },
+      { h: '赞赏', p: 'zàn shǎng', v: 'tán dương, khen ngợi' },
+      { h: '战胜', p: 'zhàn shèng', v: 'chiến thắng, đánh thắng' },
+      { h: '战士', p: 'zhàn shì', v: 'chiến sĩ, binh sĩ' },
+      { h: '招呼', p: 'zhāo hu', v: 'chào hỏi, chào đón' },
+      { h: '着火', p: 'zháo huǒ', v: 'bắt lửa, bốc cháy' },
+      { h: '之间', p: 'zhī jiān', v: 'giữa (hai bên)' },
+      { h: '之前', p: 'zhī qián', v: 'trước đó, trước khi' },
+      { h: '中奖', p: 'zhòng jiǎng', v: 'trúng thưởng, trúng số' },
+      { h: '转弯', p: 'zhuǎn wān', v: 'rẽ cua, quẹo' },
+      { h: '装置', p: 'zhuāng zhì', v: 'thiết bị, lắp đặt' },
+      { h: '自', p: 'zì', v: 'từ, tự mình' },
+      { h: '作出', p: 'zuò chū', v: 'đưa ra, làm ra' },
+      { h: '做梦', p: 'zuò mèng', v: 'nằm mơ, mơ giấc' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '你___了很多困难，真棒。', options: ['战胜', '招呼', '中奖'], answer: '战胜' },
+        { type: 'fill', sentence: '见面时互相打___。', options: ['招呼', '转弯', '装置'], answer: '招呼' },
+        { type: 'fill', sentence: '在路口___就到了。', options: ['转弯', '中奖', '着火'], answer: '转弯' },
+        { type: 'fill', sentence: '我以为自己___了，运气真好。', options: ['中奖', '战胜', '遇到'], answer: '中奖' },
+        { type: 'fill', sentence: '回想___，我们经历了很多。', options: ['之前', '之间', '自'], answer: '之前' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我像个小___，遇到问题就解决。', options: ['战士', '装置', '招呼'], answer: '战士' },
+        { type: 'fill', sentence: '谢谢老师的___。', options: ['赞赏', '转弯', '着火'], answer: '赞赏' },
+        { type: 'fill', sentence: '我们___第一次见面就成了朋友。', options: ['之间', '之前', '自'], answer: '之间' },
+        { type: 'fill', sentence: '实验___差点着火。', options: ['装置', '战士', '招呼'], answer: '装置' },
+        { type: 'order', words: ['你', '战胜', '了', '很多', '困难'], answer: '你战胜了很多困难' },
+        { type: 'order', words: ['我', '自己', '作出', '了', '重要', '决定'], answer: '我自己作出了重要决定' },
+        { type: 'fill', sentence: '我们在路口转弯就___了。', options: ['遇见', '中奖', '赞赏'], answer: '遇见' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我要___自己，让梦想成真。', options: ['战胜', '做梦', '招呼'], answer: '战胜' },
+        { type: 'fill', sentence: '这段日子让我成长，我___作出了决定。', options: ['自', '之间', '转弯'], answer: '自' },
+        { type: 'translate', prompt: 'Nhìn lại trước đó, em đã chiến thắng rất nhiều khó khăn.', answer: '回想之前，你战胜了很多困难。' },
+        { type: 'translate', prompt: 'Tôi tự mình đưa ra quyết định quan trọng.', answer: '我自己作出了重要决定。' },
+        { type: 'translate', prompt: 'Thiết bị thí nghiệm suýt bốc cháy.', answer: '实验装置差点着火。' },
+        { type: 'fill', sentence: '晚上我___，梦见未来的自己。', options: ['做梦', '中奖', '转弯'], answer: '做梦' }
+      ]
+    }
+  }
+
+});

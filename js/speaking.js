@@ -2,6 +2,8 @@ var Speaking = (function () {
   'use strict';
 
   var HIST_KEY = 'speaking_history_v1';
+  var PINYIN_KEY = 'speaking_show_pinyin';
+  var _showPinyin = true;
   var _set = null;
   var _idx = 0;
   var _blob = null;
@@ -21,7 +23,16 @@ var Speaking = (function () {
   function _show(el, on) { if (el) el.style.display = on ? '' : 'none'; }
   function _speechFn() { return (typeof SB_URL !== 'undefined' && SB_URL ? SB_URL : '') + '/functions/v1/speech-proxy'; }
 
+  function _updatePinyinToggle() {
+    var btn = $('spPinyinToggle');
+    if (!btn) return;
+    if (_showPinyin) btn.classList.add('sp-pinyin-toggle--active');
+    else btn.classList.remove('sp-pinyin-toggle--active');
+  }
+
   function init() {
+    var saved = localStorage.getItem(PINYIN_KEY);
+    _showPinyin = saved !== 'false';
     _renderSets();
     _renderHistory();
     var first = $('spFirstSetBtn');
@@ -33,6 +44,17 @@ var Speaking = (function () {
     if (mic) mic.onclick = _micCheck;
     var back = $('spBackToSets');
     if (back) back.onclick = _backToSets;
+    var toggle = $('spPinyinToggle');
+    if (toggle) {
+      _updatePinyinToggle();
+      toggle.onclick = function () {
+        _showPinyin = !_showPinyin;
+        try { localStorage.setItem(PINYIN_KEY, String(_showPinyin)); } catch (e) {}
+        _updatePinyinToggle();
+        var py = $('spLinePinyin');
+        if (py) py.style.display = _showPinyin ? '' : 'none';
+      };
+    }
     if (window.Monetization && Monetization.isPro) Monetization.isPro();
   }
 
@@ -93,7 +115,9 @@ var Speaking = (function () {
     $('spProgressFill').style.width = (((_idx + 1) / total) * 100) + '%';
     $('spLineLabel').textContent = _set.focus + ' · HSK ' + _set.level;
     $('spLineHanzi').textContent = line.h;
-    $('spLinePinyin').textContent = line.p;
+    var pyEl = $('spLinePinyin');
+    pyEl.textContent = line.p;
+    pyEl.style.display = _showPinyin ? '' : 'none';
     $('spLineVi').textContent = line.v;
     $('spLineTip').textContent = line.tip || '';
 

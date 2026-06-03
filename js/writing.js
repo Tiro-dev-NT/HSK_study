@@ -257,6 +257,16 @@ var Writing = (function () {
     var errBlock = document.getElementById('wtErrorsBlock');
     var errWrap = document.getElementById('wtErrors');
     var errs = Array.isArray(o.errors) ? o.errors : [];
+    // Guard CỨNG (không phụ thuộc model): bỏ mục KHÔNG phải lỗi — original trùng
+    // correction (chỉ khác dấu câu/khoảng trắng) hoặc rỗng. Model (kể cả Claude)
+    // đôi khi nhét câu đúng vào "errors" kèm ghi chú "không có lỗi".
+    var _normErr = function (s) {
+      return String(s == null ? '' : s).replace(/[\s。，、！？；：.,!?;:""'']+/g, '');
+    };
+    errs = errs.filter(function (e) {
+      var eo = _normErr(e && e.original), ec = _normErr(e && e.correction);
+      return eo && ec && eo !== ec;
+    });
     if (errWrap) {
       if (!errs.length) {
         errWrap.innerHTML = '<p class="wt-noerr">Không phát hiện lỗi đáng kể — làm tốt lắm! 🎉</p>';

@@ -72,6 +72,108 @@ var BanDoHsk = (function() {
     return { mastered: st.mastered || 0, total: st.total || 0 };
   }
 
+  // ── Lát 3: tấm gương động lực — marker Bé Rồng + huy hiệu kỹ năng ──
+  var _activeKey   = null;   // node "bạn đang ở đây" (set trong render)
+  var _activeLevel = null;   // cấp HSK của node active (gán Speaking về vùng này)
+
+  function _loadJSON(key, dflt) {
+    try { var v = JSON.parse(localStorage.getItem(key) || dflt); return v; }
+    catch (e) { try { return JSON.parse(dflt); } catch (x) { return null; } }
+  }
+  function _loadArr(key) {
+    var a = _loadJSON(key, '[]');
+    return Array.isArray(a) ? a : [];
+  }
+
+  // HSKK lưu cấp theo band-string; map về band id (1=Sơ · 2=Trung · 3=Cao)
+  var _HSKK_BAND = { 1: 'so-cap', 2: 'trung-cap', 3: 'cao-cap' };
+
+  function _dots(n, t1, t2, t3) { return n >= t3 ? 3 : n >= t2 ? 2 : n >= t1 ? 1 : 0; }
+
+  // 4 kỹ năng của MỘT vùng → {read,listen,speak,write} mỗi cái 0..3 chấm.
+  // Mục đích: soi LỆCH kỹ năng (input đầy vs output trống), không phải đo chính xác.
+  // Nguồn (đã xác minh shape): checkpoints ải/trùm · reading_progress_v1 ·
+  // hskk_history_v1 (level band-string) · speaking_history_v1 (không gắn cấp) ·
+  // writing_history_v1 (level '1'..'9') · hsk_course_progress (Truyện Mai = đọc chính).
+  function _bandSkills(band, activeLevel) {
+    var levels = band.levels || [];
+    var inBand = function(lv) { return levels.indexOf(lv) >= 0; };
+
+    // Đọc: Truyện Mai (đọc chính) là nền → tỉ lệ bài hoàn thành trong vùng
+    var prog = _courseProgress(), sDone = 0, sTotal = 0;
+    levels.forEach(function(lv) {
+      var ids = _courseIdsOfLevel(lv);
+      sTotal += ids.length;
+      sDone  += ids.filter(function(id) { return prog[id] && prog[id].completed; }).length;
+    });
+    var storyRatio = sTotal ? sDone / sTotal : 0;
+
+    // Ải/trùm đã qua trong vùng (mock kiểm Nghe+Đọc)
+    var cp = _loadJSON('hsk_course_checkpoints', '{}') || {}, cpPassed = 0;
+    Object.keys(cp).forEach(function(k) {
+      var m = k.match(/^hsk(\d+)_/);
+      if (m && inBand(+m[1]) && cp[k] && cp[k].passed) cpPassed++;
+    });
+    // Bài đọc thêm đã đọc trong vùng (id dạng r{lv}_NN)
+    var rp = _loadJSON('reading_progress_v1', '{}') || {}, rRead = 0;
+    Object.keys(rp).forEach(function(k) {
+      var m = k.match(/^r(\d+)_/);
+      if (m && inBand(+m[1]) && rp[k]) rRead++;
+    });
+
+    // Nói: HSKK đúng vùng + Speaking (không gắn cấp → quy về vùng đang học)
+    var hskkN = _loadArr('hskk_history_v1').filter(function(e) {
+      return e && e.level === _HSKK_BAND[band.id];
+    }).length;
+    var speakG = (activeLevel != null && inBand(activeLevel))
+      ? _loadArr('speaking_history_v1').length : 0;
+    var speakN = hskkN + speakG;
+    // Viết: writing_history theo level trong vùng
+    var writeN = _loadArr('writing_history_v1').filter(function(e) {
+      return e && inBand(parseInt(e.level, 10));
+    }).length;
+
+    // Đọc = story-led, nâng thêm bởi ải/đọc thêm
+    var read = storyRatio >= 0.8 ? 3 : storyRatio >= 0.3 ? 2 : storyRatio > 0 ? 1 : 0;
+    read = Math.max(read, _dots(cpPassed + (rRead >= 1 ? 1 : 0) + (rRead >= 4 ? 1 : 0), 1, 2, 3));
+    // Nghe = checkpoints (mock Nghe); sàn 1 nếu đã nghe hội thoại Truyện Mai
+    var listen = _dots(cpPassed, 1, 2, 3);
+    if (storyRatio > 0) listen = Math.max(listen, 1);
+
+    return {
+      read:   read,
+      listen: listen,
+      speak:  _dots(speakN, 1, 2, 4),
+      write:  _dots(writeN, 1, 2, 4)
+    };
+  }
+
+  var _SKILL_META = [
+    { key: 'listen', icon: '👂',  label: 'Nghe', route: 'mock-exam' },
+    { key: 'read',   icon: '📖',  label: 'Đọc',  route: 'reading'   },
+    { key: 'speak',  icon: '🎙️', label: 'Nói',  route: 'speaking'  },
+    { key: 'write',  icon: '✍️', label: 'Viết', route: 'writing'   }
+  ];
+
+  function _renderSkills(skills) {
+    var items = _SKILL_META.map(function(m) {
+      var v = skills[m.key] || 0;
+      var dots = '';
+      for (var i = 0; i < 3; i++) dots += '<span class="bdh-skill-dot' + (i < v ? ' bdh-skill-dot--on' : '') + '"></span>';
+      var lvlCls = v >= 3 ? 'bdh-skill--strong' : v >= 1 ? 'bdh-skill--mid' : 'bdh-skill--none';
+      return '<button class="bdh-skill ' + lvlCls + '" onclick="BanDoHsk.goToSkill(\'' + m.route + '\')"' +
+        ' aria-label="' + m.label + ' — ' + (v === 0 ? 'chưa luyện' : v + '/3') + '">' +
+        '<span class="bdh-skill-icon">' + m.icon + '</span>' +
+        '<span class="bdh-skill-label">' + m.label + '</span>' +
+        '<span class="bdh-skill-dots">' + dots + '</span>' +
+      '</button>';
+    }).join('');
+    return '<div class="bdh-skills">' +
+      '<div class="bdh-skills-head">⚖️ Cân bằng kỹ năng</div>' +
+      '<div class="bdh-skills-row">' + items + '</div>' +
+    '</div>';
+  }
+
   // Tiến độ 1 node theo CÁCH HỌC CHÍNH của cấp đó
   // Trả { pct, stat, mode, modeTag }
   function _nodeProgress(node) {
@@ -193,11 +295,17 @@ var BanDoHsk = (function() {
     var clickAttr = (s.state !== 'locked')
       ? ' onclick="BanDoHsk.goToNode(\'' + n.type + '\',' + n.lv + ')"' : '';
 
+    // Marker Bé Rồng — "bạn đang ở đây" (chỉ node active toàn cục)
+    var dragon = (n.key === _activeKey)
+      ? '<img src="assets/icon-soft.webp" class="bdh-dragon-marker" alt="Bạn đang ở đây"' +
+        ' title="Bé Rồng đang ở đây 🐉" width="30" height="30" loading="lazy"/>'
+      : '';
+
     var nodeHtml =
-      '<button class="bdh-level-node ' + stateClass + '"' + clickAttr +
+      '<button class="bdh-level-node ' + stateClass + (dragon ? ' bdh-level-node--here' : '') + '"' + clickAttr +
         ' aria-label="' + nameTxt + (s.state === 'locked' ? ' (chưa mở khóa)' : '') + '">' +
         '<div class="bdh-level-circle">' + ring +
-          '<div class="bdh-level-inner">' + inner + badge + '</div>' +
+          '<div class="bdh-level-inner">' + inner + badge + '</div>' + dragon +
         '</div>' +
         '<div class="bdh-level-info">' +
           '<div class="bdh-level-name">' + nameTxt + '</div>' +
@@ -217,13 +325,15 @@ var BanDoHsk = (function() {
   }
 
   // ── Render one band card ─────────────────────────────
-  function _renderBand(band, stateMap, openBandId) {
+  function _renderBand(band, stateMap, openBandId, celebrateId) {
     // band.nodeKeys = danh sách key node thuộc band (đã build sẵn)
     var states  = band.nodeKeys.map(function(k) { return stateMap[k]; });
     var state   = _bandStateFrom(states);
     var isOpen  = (band.id === openBandId);
+    var celebrate = (celebrateId != null && band.id === celebrateId && !band.foundation);
     var bandClass = 'bdh-band bdh-band--' + state + (isOpen ? ' bdh-band--open' : '') +
-                    (band.foundation ? ' bdh-band--foundation' : '');
+                    (band.foundation ? ' bdh-band--foundation' : '') +
+                    (celebrate ? ' bdh-band--celebrate' : '');
 
     var badgeLabel = state === 'done'   ? '✓ Hoàn thành'
                    : state === 'active' ? '▶ Đang học'
@@ -255,6 +365,7 @@ var BanDoHsk = (function() {
           '</div>' +
         '</button>' +
         '<div class="bdh-band-body">' +
+          (celebrate ? '<div class="bdh-celebrate-banner">🏆 Bạn vừa chinh phục ' + band.name + '!</div>' : '') +
           '<div class="bdh-band-progress-wrap">' +
             '<div class="bdh-band-prog-row">' +
               '<span>' + doneCount + ' / ' + states.length + ' chặng</span>' +
@@ -265,6 +376,7 @@ var BanDoHsk = (function() {
             '</div>' +
           '</div>' +
           '<div class="bdh-level-path">' + nodesHtml + '</div>' +
+          (band.foundation ? '' : _renderSkills(_bandSkills(band, _activeLevel))) +
         '</div>' +
       '</div>'
     );
@@ -297,6 +409,20 @@ var BanDoHsk = (function() {
       });
       if (!activeKey) activeKey = orderedKeys[orderedKeys.length - 1];
       var activeS = stateMap[activeKey];
+      _activeKey   = activeKey;            // marker Bé Rồng (Lát 3)
+      _activeLevel = activeS.node.lv;      // quy Speaking về vùng đang học
+
+      // Ăn mừng "đã chinh phục vùng" — handoff từ mock-exam khi pass trùm
+      var celebrateId = null, celebrateLevel = null;
+      try {
+        var _cl = sessionStorage.getItem('bdh_celebrate_level');
+        if (_cl) { celebrateLevel = parseInt(_cl, 10); sessionStorage.removeItem('bdh_celebrate_level'); }
+      } catch (e) {}
+      if (celebrateLevel != null) {
+        hskBands.forEach(function(b) {
+          if ((b.levels || []).indexOf(celebrateLevel) >= 0) celebrateId = b.id;
+        });
+      }
 
       // ── Overall dots (toàn bộ chặng kể cả HSK 0) ──
       var dotsEl = document.getElementById('bdhOverallDots');
@@ -345,9 +471,19 @@ var BanDoHsk = (function() {
       // ── Render bands ──
       var bandsEl = document.getElementById('bdhBands');
       if (!bandsEl) return;
+      // Nếu đang ăn mừng → mở đúng vùng đó (đè band tự mở)
+      if (celebrateId != null) openBandId = celebrateId;
       bandsEl.innerHTML = bands.map(function(b) {
-        return _renderBand(b, stateMap, openBandId);
+        return _renderBand(b, stateMap, openBandId, celebrateId);
       }).join('');
+
+      // Cuộn tới vùng vừa chinh phục để thấy hiệu ứng
+      if (celebrateId != null) {
+        setTimeout(function() {
+          var cel = document.getElementById('bdhBand' + celebrateId);
+          if (cel) cel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 90);
+      }
 
       // ── CTA bar (mobile) ──
       var ctaLvl  = document.getElementById('bdhCtaLevel');
@@ -383,6 +519,11 @@ var BanDoHsk = (function() {
         return;
       }
       BanDoHsk.goToLevel(lv);
+    },
+
+    // Tap huy hiệu kỹ năng → mở module tương ứng (Nghe→mock, Đọc, Nói, Viết)
+    goToSkill: function(route) {
+      if (typeof Router !== 'undefined' && route) Router.navigateTo(route);
     },
 
     // Cấp từ vựng → mở deck sys_hsk{lv} trong tab Học

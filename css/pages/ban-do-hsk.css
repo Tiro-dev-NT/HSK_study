@@ -404,3 +404,101 @@
 }
 .bdh-hskk-badge { font-weight: 700; font-size: 13px; color: var(--primary); min-width: 76px; }
 .bdh-hskk-when { color: var(--text2); font-size: 13px; }
+
+/* ════════════════════════════════════════
+   Lát 3 — Tấm gương động lực
+   ════════════════════════════════════════ */
+
+/* ── Marker Bé Rồng "bạn đang ở đây" ── */
+.bdh-level-circle { overflow: visible; }
+.bdh-dragon-marker {
+  position: absolute;
+  top: -14px; right: -16px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 3;
+  background: var(--surface);
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  border: 2px solid var(--primary);
+  animation: bdhDragonBob 1.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes bdhDragonBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bdh-dragon-marker { animation: none; }
+}
+
+/* ── Cụm huy hiệu kỹ năng Nghe/Đọc/Nói/Viết ── */
+.bdh-skills {
+  padding: 4px 18px 18px;
+  margin-top: 2px;
+}
+@media (min-width: 1024px) { .bdh-skills { padding: 4px 14px 18px; } }
+.bdh-skills-head {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.bdh-skills-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.bdh-skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 9px 4px 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: border-color .15s, transform .12s, background .15s;
+}
+.bdh-skill:hover { transform: translateY(-2px); border-color: var(--primary); }
+.bdh-skill:active { transform: scale(.97); }
+.bdh-skill-icon  { font-size: 18px; line-height: 1; }
+.bdh-skill-label { font-size: 11px; font-weight: 700; color: var(--text2); }
+.bdh-skill-dots  { display: flex; gap: 3px; margin-top: 1px; }
+.bdh-skill-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.bdh-skill-dot--on { background: var(--primary); }
+/* Vững (3/3) → tông Thúy lục; chưa luyện → mờ để lộ "lỗ hổng" */
+.bdh-skill--strong { border-color: rgba(16,185,129,.35); }
+.bdh-skill--strong .bdh-skill-dot--on { background: var(--success); }
+.bdh-skill--strong .bdh-skill-label { color: var(--success); }
+.bdh-skill--none { opacity: .72; border-style: dashed; }
+.bdh-skill--none .bdh-skill-icon { filter: grayscale(.6); opacity: .8; }
+
+/* ── Ăn mừng "đã chinh phục vùng" ── */
+.bdh-band--celebrate {
+  border-color: var(--warning);
+  animation: bdhConquer 1.6s ease-in-out 2;
+}
+@keyframes bdhConquer {
+  0%, 100% { box-shadow: 0 4px 24px rgba(245,158,11,.12); }
+  50%      { box-shadow: 0 4px 34px rgba(245,158,11,.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bdh-band--celebrate { animation: none; }
+}
+.bdh-celebrate-banner {
+  margin: 14px 18px 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--warning-bg, rgba(245,158,11,.14));
+  color: var(--warning);
+  font-size: 13.5px;
+  font-weight: 800;
+  text-align: center;
+}

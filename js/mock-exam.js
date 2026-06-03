@@ -380,7 +380,9 @@ var MockExam = (function() {
         '</div>' +
         wrongHTML +
         '<div class="me-result-actions">' +
-          '<button class="btn-primary" id="meRetryBtn">🔄 Thi lại</button>' +
+          ((passed && _state.quick && _state.quick.isBoss)
+            ? '<button class="btn-primary" id="meMapBtn">🗺️ Xem vùng đã chinh phục</button>'
+            : '<button class="btn-primary" id="meRetryBtn">🔄 Thi lại</button>') +
           '<button class="btn-outline" id="meBackBtn">' + (_state.quick ? '← Về lộ trình' : '← Luyện tập') + '</button>' +
         '</div>' +
       '</div>';
@@ -405,6 +407,13 @@ var MockExam = (function() {
         b.classList.toggle('active', parseInt(b.dataset.level) === savedLevel);
       });
       _updatePreview(savedLevel);
+    });
+
+    var mapBtn = document.getElementById('meMapBtn');
+    if (mapBtn) mapBtn.addEventListener('click', function() {
+      // Handoff ăn mừng → Bản đồ HSK highlight vùng vừa chinh phục (Lát 3)
+      try { sessionStorage.setItem('bdh_celebrate_level', String(_state.level)); } catch (e) {}
+      if (typeof Router !== 'undefined') Router.navigateTo('ban-do-hsk');
     });
 
     var backBtn = document.getElementById('meBackBtn');

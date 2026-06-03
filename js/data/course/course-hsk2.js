@@ -13,6 +13,31 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (1)',
     context: 'Mai và Tiểu Mỹ bàn chuyện đăng ký chương trình du học hè. Hai bạn tìm hiểu thông tin và chuẩn bị hồ sơ.',
     vocabPreview: ['报名', '参加', '出国', '帮助', '变成'],
+    objectives: [
+      'Nêu ví dụ bằng 比如 / 比如说',
+      'So sánh “A không bằng B” bằng 不如',
+      'Diễn đạt “biến thành / trở thành” bằng 变成 · 成为',
+      'Nói về đăng ký, tham gia một chương trình (报名 · 参加 · 出国)'
+    ],
+    grammarNotes: [
+      { point: '比如 / 比如说 — nêu ví dụ',
+        explain: 'Đặt 比如 hoặc 比如说 ở đầu phần ví dụ để minh hoạ cho ý vừa nói.',
+        examples: [
+          { zh: '比如说，我们可以先去办公室问问。', py: 'Bǐrúshuō, wǒmen kěyǐ xiān qù bàngōngshì wènwen.', vi: 'Ví dụ như, chúng ta có thể đến văn phòng hỏi trước.' },
+          { zh: '比如，我们需要办什么手续？', py: 'Bǐrú, wǒmen xūyào bàn shénme shǒuxù?', vi: 'Ví dụ, chúng ta cần làm thủ tục gì?' }
+        ] },
+      { point: '不如 — A 不如 B (A không bằng B)',
+        explain: 'Dùng 不如 để so sánh A kém hơn B, hoặc “chi bằng…” khi đề xuất phương án hay hơn.',
+        examples: [
+          { zh: '不如我们一起准备吧。', py: 'Bùrú wǒmen yìqǐ zhǔnbèi ba.', vi: 'Chi bằng chúng ta cùng chuẩn bị đi.' }
+        ] },
+      { point: '变成 / 成为 — biến thành, trở thành',
+        explain: '变成 nhấn sự thay đổi sang trạng thái mới; 成为 + danh từ nhấn “trở thành (ai/cái gì)”.',
+        examples: [
+          { zh: '报名人数变成这么多了！', py: 'Bàomíng rénshù biànchéng zhème duō le!', vi: 'Số người đăng ký trở thành nhiều thế rồi!' },
+          { zh: '我想成为翻译。', py: 'Wǒ xiǎng chéngwéi fānyì.', vi: 'Em muốn trở thành phiên dịch.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -169,25 +194,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '办', p: 'bàn', v: 'làm, xử lý (thủ tục)' },
-      { h: '帮助', p: 'bāngzhù', v: 'giúp đỡ' },
-      { h: '报名', p: 'bàomíng', v: 'đăng ký' },
-      { h: '背', p: 'bèi', v: 'học thuộc lòng; mang trên lưng' },
-      { h: '比如', p: 'bǐrú', v: 'ví dụ' },
-      { h: '比如说', p: 'bǐrúshuō', v: 'ví dụ như' },
-      { h: '变', p: 'biàn', v: 'thay đổi, biến đổi' },
-      { h: '变成', p: 'biànchéng', v: 'biến thành, trở thành' },
-      { h: '不如', p: 'bùrú', v: 'chi bằng, không bằng' },
-      { h: '参观', p: 'cānguān', v: 'tham quan' },
-      { h: '参加', p: 'cānjiā', v: 'tham gia' },
-      { h: '查', p: 'chá', v: 'tra cứu, kiểm tra' },
-      { h: '超过', p: 'chāoguò', v: 'vượt quá' },
-      { h: '称', p: 'chēng', v: 'gọi là, xưng' },
-      { h: '成', p: 'chéng', v: 'thành, trở thành' },
-      { h: '成为', p: 'chéngwéi', v: 'trở thành' },
-      { h: '出发', p: 'chūfā', v: 'xuất phát' },
-      { h: '出国', p: 'chūguó', v: 'ra nước ngoài' },
-      { h: '出口', p: 'chūkǒu', v: 'cửa ra, lối ra' }
+      { h: '办', p: 'bàn', v: 'làm, xử lý (thủ tục)', e: 'to do' },
+      { h: '帮助', p: 'bāngzhù', v: 'giúp đỡ', e: 'assistance' },
+      { h: '报名', p: 'bàomíng', v: 'đăng ký', e: 'to sign up' },
+      { h: '背', p: 'bèi', v: 'học thuộc lòng; mang trên lưng', e: 'to carry on the back, back (body)' },
+      { h: '比如', p: 'bǐrú', v: 'ví dụ', e: 'for example' },
+      { h: '比如说', p: 'bǐrúshuō', v: 'ví dụ như', e: 'for example' },
+      { h: '变', p: 'biàn', v: 'thay đổi, biến đổi', e: 'to change' },
+      { h: '变成', p: 'biànchéng', v: 'biến thành, trở thành', e: 'to change into' },
+      { h: '不如', p: 'bùrú', v: 'chi bằng, không bằng', e: 'not equal to' },
+      { h: '参观', p: 'cānguān', v: 'tham quan', e: 'to look around' },
+      { h: '参加', p: 'cānjiā', v: 'tham gia', e: 'to participate' },
+      { h: '查', p: 'chá', v: 'tra cứu, kiểm tra', e: 'to check, to investigate, to look up' },
+      { h: '超过', p: 'chāoguò', v: 'vượt quá', e: 'to surpass' },
+      { h: '称', p: 'chēng', v: 'gọi là, xưng', e: 'to fit' },
+      { h: '成', p: 'chéng', v: 'thành, trở thành', e: 'to succeed, to become, accomplished' },
+      { h: '成为', p: 'chéngwéi', v: 'trở thành', e: 'to become' },
+      { h: '出发', p: 'chūfā', v: 'xuất phát', e: 'to set off' },
+      { h: '出国', p: 'chūguó', v: 'ra nước ngoài', e: 'to go abroad' },
+      { h: '出口', p: 'chūkǒu', v: 'cửa ra, lối ra', e: 'an exit' }
     ],
     workbook: {
       easy: [
@@ -227,6 +252,30 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (2)',
     context: 'Mai kể về cuộc sống hằng ngày: ra ngoài, đi làm thêm, và những kế hoạch tương lai.',
     vocabPreview: ['出门', '打工', '打算', '带', '答应'],
+    objectives: [
+      'Dùng 得 (děi) để nói “phải / cần” làm gì',
+      'Dùng bổ ngữ trình độ V得… để miêu tả mức độ (吹得我很冷)',
+      'Nói về phép tính đơn giản bằng 等于',
+      'Kể về ra ngoài, đi làm thêm (出门 · 打工 · 打算)'
+    ],
+    grammarNotes: [
+      { point: '得 (děi) — phải, cần',
+        explain: '得 đọc “děi”, đặt trước động từ để diễn đạt sự cần thiết “phải/cần”. Khác với trợ từ 得 (de) của bổ ngữ.',
+        examples: [
+          { zh: '你们当服务员，得学很多东西吧？', py: 'Nǐmen dāng fúwùyuán, děi xué hěn duō dōngxi ba?', vi: 'Các em làm phục vụ, phải học nhiều thứ nhỉ?' }
+        ] },
+      { point: 'V + 得 + bổ ngữ trình độ',
+        explain: 'Động từ + 得 + tính từ/cụm để nói động tác đạt mức độ nào hoặc gây ra kết quả gì.',
+        examples: [
+          { zh: '风吹得我很冷。', py: 'Fēng chuī de wǒ hěn lěng.', vi: 'Gió thổi làm tớ lạnh cóng.' }
+        ] },
+      { point: '等于 / 等到 — bằng với / đợi đến',
+        explain: '等于 nối hai vế “bằng nhau”; 等到 + mốc thời gian nghĩa “đợi đến lúc…”.',
+        examples: [
+          { zh: '一加一等于二。', py: 'Yī jiā yī děngyú èr.', vi: 'Một cộng một bằng hai.' },
+          { zh: '等到周末，我再来。', py: 'Děngdào zhōumò, wǒ zài lái.', vi: 'Đợi đến cuối tuần, tôi sẽ lại đến.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -383,25 +432,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '出门', p: 'chūmén', v: 'ra ngoài, ra khỏi nhà' },
-      { h: '出生', p: 'chūshēng', v: 'sinh ra, ra đời' },
-      { h: '出现', p: 'chūxiàn', v: 'xuất hiện' },
-      { h: '出院', p: 'chūyuàn', v: 'xuất viện' },
-      { h: '出租', p: 'chūzū', v: 'cho thuê; taxi' },
-      { h: '吹', p: 'chuī', v: 'thổi' },
-      { h: '答应', p: 'dāying', v: 'đồng ý, nhận lời' },
-      { h: '打工', p: 'dǎgōng', v: 'làm thêm, đi làm' },
-      { h: '打算', p: 'dǎsuàn', v: 'dự định, kế hoạch' },
-      { h: '打印', p: 'dǎyìn', v: 'in ấn' },
-      { h: '带', p: 'dài', v: 'mang theo, dẫn' },
-      { h: '带来', p: 'dàilái', v: 'mang đến, đem lại' },
-      { h: '当', p: 'dāng', v: 'làm, đảm nhiệm' },
-      { h: '倒', p: 'dào', v: 'rót, đổ' },
-      { h: '道', p: 'dào', v: 'đường, con đường' },
-      { h: '得', p: 'děi', v: 'phải, cần' },
-      { h: '得出', p: 'déchū', v: 'rút ra (kết luận)' },
-      { h: '等到', p: 'děngdào', v: 'đợi đến' },
-      { h: '等于', p: 'děngyú', v: 'bằng với' }
+      { h: '出门', p: 'chūmén', v: 'ra ngoài, ra khỏi nhà', e: 'to go out' },
+      { h: '出生', p: 'chūshēng', v: 'sinh ra, ra đời', e: 'to be born' },
+      { h: '出现', p: 'chūxiàn', v: 'xuất hiện', e: 'to appear' },
+      { h: '出院', p: 'chūyuàn', v: 'xuất viện', e: 'to leave hospital' },
+      { h: '出租', p: 'chūzū', v: 'cho thuê; taxi', e: 'to rent' },
+      { h: '吹', p: 'chuī', v: 'thổi', e: 'to blow' },
+      { h: '答应', p: 'dāying', v: 'đồng ý, nhận lời', e: 'to answer' },
+      { h: '打工', p: 'dǎgōng', v: 'làm thêm, đi làm', e: 'to work a temporary or casual job' },
+      { h: '打算', p: 'dǎsuàn', v: 'dự định, kế hoạch', e: 'to plan' },
+      { h: '打印', p: 'dǎyìn', v: 'in ấn', e: 'to affix a seal' },
+      { h: '带', p: 'dài', v: 'mang theo, dẫn', e: 'band' },
+      { h: '带来', p: 'dàilái', v: 'mang đến, đem lại', e: 'to bring' },
+      { h: '当', p: 'dāng', v: 'làm, đảm nhiệm', e: 'dong' },
+      { h: '倒', p: 'dào', v: 'rót, đổ', e: 'to fall' },
+      { h: '道', p: 'dào', v: 'đường, con đường', e: 'road' },
+      { h: '得', p: 'děi', v: 'phải, cần', e: 'to obtain' },
+      { h: '得出', p: 'déchū', v: 'rút ra (kết luận)', e: 'to obtain (a result)' },
+      { h: '等到', p: 'děngdào', v: 'đợi đến', e: 'to wait until' },
+      { h: '等于', p: 'děngyú', v: 'bằng với', e: 'to equal' }
     ],
     workbook: {
       easy: [
@@ -441,6 +490,30 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (3)',
     context: 'Mai và Tiểu Mỹ ôn bài trong thư viện, bàn về cách học hiệu quả và những thay đổi trong cuộc sống.',
     vocabPreview: ['复习', '懂', '发现', '改变', '感觉'],
+    objectives: [
+      'Hỏi/đáp mức độ làm việc bằng bổ ngữ trình độ V得 (复习得怎么样)',
+      'Dùng bổ ngữ xu hướng 起来 · 下 (捡起来 · 放下)',
+      'Diễn đạt “hiểu / phát hiện / cảm thấy” (懂 · 发现 · 感觉)',
+      'Đếm thư từ bằng lượng từ 封'
+    ],
+    grammarNotes: [
+      { point: 'V + 得 + 怎么样 — hỏi mức độ',
+        explain: 'Dùng 得 sau động từ rồi thêm 怎么样 / tính từ để hỏi hoặc nhận xét động tác làm tốt/kém ra sao.',
+        examples: [
+          { zh: '你复习得怎么样了？', py: 'Nǐ fùxí de zěnmeyàng le?', vi: 'Cậu ôn bài thế nào rồi?' }
+        ] },
+      { point: 'Bổ ngữ xu hướng 起来 / 下 / 下来',
+        explain: 'Thêm 起来, 下, 下来 sau động từ để chỉ hướng và kết quả của động tác (lên/xuống/buông).',
+        examples: [
+          { zh: '我的笔掉了，我捡起来。', py: 'Wǒ de bǐ diào le, wǒ jiǎn qǐlái.', vi: 'Bút tớ rơi rồi, tớ nhặt lên.' },
+          { zh: '我学会了放下手机。', py: 'Wǒ xuéhuì le fàngxià shǒujī.', vi: 'Tớ học được cách đặt điện thoại xuống.' }
+        ] },
+      { point: '发现 / 感觉 / 感到 — phát hiện, cảm thấy',
+        explain: 'Các động từ này thường đứng trước một mệnh đề làm tân ngữ (phát hiện/cảm thấy rằng…).',
+        examples: [
+          { zh: '我发现这个其实很简单。', py: 'Wǒ fāxiàn zhège qíshí hěn jiǎndān.', vi: 'Tớ phát hiện cái này thực ra rất đơn giản.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -590,25 +663,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '点头', p: 'diǎntóu', v: 'gật đầu' },
-      { h: '掉', p: 'diào', v: 'rơi, rớt' },
-      { h: '懂', p: 'dǒng', v: 'hiểu' },
-      { h: '懂得', p: 'dǒngde', v: 'hiểu được, biết' },
-      { h: '度', p: 'dù', v: 'độ (nhiệt độ)' },
-      { h: '对话', p: 'duìhuà', v: 'hội thoại, đối thoại' },
-      { h: '对面', p: 'duìmiàn', v: 'đối diện' },
-      { h: '发', p: 'fā', v: 'gửi, phát' },
-      { h: '发现', p: 'fāxiàn', v: 'phát hiện' },
-      { h: '放下', p: 'fàngxià', v: 'đặt xuống, buông bỏ' },
-      { h: '放心', p: 'fàngxīn', v: 'yên tâm' },
-      { h: '分开', p: 'fēnkāi', v: 'chia tay, tách ra' },
-      { h: '封', p: 'fēng', v: 'bức (thư); phong bì' },
-      { h: '服务', p: 'fúwù', v: 'phục vụ, dịch vụ' },
-      { h: '复习', p: 'fùxí', v: 'ôn tập' },
-      { h: '改', p: 'gǎi', v: 'sửa, thay đổi' },
-      { h: '改变', p: 'gǎibiàn', v: 'thay đổi' },
-      { h: '感到', p: 'gǎndào', v: 'cảm thấy' },
-      { h: '感觉', p: 'gǎnjué', v: 'cảm giác, cảm thấy' }
+      { h: '点头', p: 'diǎntóu', v: 'gật đầu', e: 'to nod' },
+      { h: '掉', p: 'diào', v: 'rơi, rớt', e: 'to fall' },
+      { h: '懂', p: 'dǒng', v: 'hiểu', e: 'to understand' },
+      { h: '懂得', p: 'dǒngde', v: 'hiểu được, biết', e: 'to understand' },
+      { h: '度', p: 'dù', v: 'độ (nhiệt độ)', e: 'to pass' },
+      { h: '对话', p: 'duìhuà', v: 'hội thoại, đối thoại', e: 'to talk (with sb)' },
+      { h: '对面', p: 'duìmiàn', v: 'đối diện', e: 'opposite' },
+      { h: '发', p: 'fā', v: 'gửi, phát', e: 'to send out' },
+      { h: '发现', p: 'fāxiàn', v: 'phát hiện', e: 'to notice' },
+      { h: '放下', p: 'fàngxià', v: 'đặt xuống, buông bỏ', e: 'to lay down' },
+      { h: '放心', p: 'fàngxīn', v: 'yên tâm', e: 'to feel relieved' },
+      { h: '分开', p: 'fēnkāi', v: 'chia tay, tách ra', e: 'to separate' },
+      { h: '封', p: 'fēng', v: 'bức (thư); phong bì', e: 'classifier for letters, to seal' },
+      { h: '服务', p: 'fúwù', v: 'phục vụ, dịch vụ', e: 'to serve' },
+      { h: '复习', p: 'fùxí', v: 'ôn tập', e: 'to review' },
+      { h: '改', p: 'gǎi', v: 'sửa, thay đổi', e: 'to change' },
+      { h: '改变', p: 'gǎibiàn', v: 'thay đổi', e: 'to change' },
+      { h: '感到', p: 'gǎndào', v: 'cảm thấy', e: 'to feel' },
+      { h: '感觉', p: 'gǎnjué', v: 'cảm giác, cảm thấy', e: 'feeling' }
     ],
     workbook: {
       easy: [
@@ -648,6 +721,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (4)',
     context: 'Tết Nguyên Đán sắp đến, Mai và các bạn lên kế hoạch tổ chức tiệc và chuẩn bị về nước.',
     vocabPreview: ['过年', '计划', '欢迎', '感谢', '回国'],
+    objectives: [
+      'Phỏng đoán bằng 好像 (hình như, dường như)',
+      'Dùng bổ ngữ xu hướng 过来 / 过去 (过来坐)',
+      'Làm dịu hành động bằng V + 一下 (检查一下)',
+      'Nói về dịp lễ Tết và lời chúc (过年 · 一路平安)'
+    ],
+    grammarNotes: [
+      { point: '好像 — hình như, dường như',
+        explain: '好像 đặt trước vị ngữ để diễn đạt phỏng đoán không chắc chắn.',
+        examples: [
+          { zh: '我好像很久没见到家人了。', py: 'Wǒ hǎoxiàng hěn jiǔ méi jiàndào jiārén le.', vi: 'Tớ hình như lâu rồi chưa gặp gia đình.' }
+        ] },
+      { point: '过来 / 过去 — bổ ngữ xu hướng',
+        explain: '过来 chỉ hướng lại gần người nói; 过去 chỉ hướng ra xa.',
+        examples: [
+          { zh: '老师，过来坐！', py: 'Lǎoshī, guòlái zuò!', vi: 'Thầy ơi, lại đây ngồi!' }
+        ] },
+      { point: 'V + 一下 — làm nhẹ / thử một chút',
+        explain: 'Thêm 一下 sau động từ để làm dịu ngữ khí, nghĩa “làm một chút / thử”.',
+        examples: [
+          { zh: '你帮我检查一下好吗？', py: 'Nǐ bāng wǒ jiǎnchá yíxià hǎo ma?', vi: 'Cậu giúp tớ kiểm tra một chút được không?' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -797,25 +893,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '感谢', p: 'gǎnxiè', v: 'cảm ơn, cảm tạ' },
-      { h: '干杯', p: 'gānbēi', v: 'nâng cốc, cạn ly' },
-      { h: '干活儿', p: 'gànhuór', v: 'làm việc' },
-      { h: '够', p: 'gòu', v: 'đủ' },
-      { h: '关机', p: 'guānjī', v: 'tắt máy' },
-      { h: '关心', p: 'guānxīn', v: 'quan tâm' },
-      { h: '过来', p: 'guòlái', v: 'đi lại, đến đây' },
-      { h: '过年', p: 'guònián', v: 'ăn Tết, đón năm mới' },
-      { h: '喊', p: 'hǎn', v: 'gọi, hét' },
-      { h: '好像', p: 'hǎoxiàng', v: 'hình như, dường như' },
-      { h: '画', p: 'huà', v: 'vẽ' },
-      { h: '换', p: 'huàn', v: 'đổi, thay' },
-      { h: '欢迎', p: 'huānyíng', v: 'chào mừng, hoan nghênh' },
-      { h: '回国', p: 'huíguó', v: 'về nước' },
-      { h: '活动', p: 'huódòng', v: 'hoạt động' },
-      { h: '计划', p: 'jìhuà', v: 'kế hoạch' },
-      { h: '加油', p: 'jiāyóu', v: 'cố lên, thêm dầu' },
-      { h: '检查', p: 'jiǎnchá', v: 'kiểm tra' },
-      { h: '见到', p: 'jiàndào', v: 'gặp, nhìn thấy' }
+      { h: '感谢', p: 'gǎnxiè', v: 'cảm ơn, cảm tạ', e: 'thanks' },
+      { h: '干杯', p: 'gānbēi', v: 'nâng cốc, cạn ly', e: 'to drink a toast' },
+      { h: '干活儿', p: 'gànhuór', v: 'làm việc', e: 'erhua variant of 干活' },
+      { h: '够', p: 'gòu', v: 'đủ', e: 'enough (sufficient)' },
+      { h: '关机', p: 'guānjī', v: 'tắt máy', e: 'to turn off (a machine or device)' },
+      { h: '关心', p: 'guānxīn', v: 'quan tâm', e: 'to be concerned about' },
+      { h: '过来', p: 'guòlái', v: 'đi lại, đến đây', e: 'to come over' },
+      { h: '过年', p: 'guònián', v: 'ăn Tết, đón năm mới', e: 'to celebrate the Chinese New Year' },
+      { h: '喊', p: 'hǎn', v: 'gọi, hét', e: 'to yell' },
+      { h: '好像', p: 'hǎoxiàng', v: 'hình như, dường như', e: 'as if' },
+      { h: '画', p: 'huà', v: 'vẽ', e: 'to draw' },
+      { h: '换', p: 'huàn', v: 'đổi, thay', e: 'to exchange' },
+      { h: '欢迎', p: 'huānyíng', v: 'chào mừng, hoan nghênh', e: 'to welcome' },
+      { h: '回国', p: 'huíguó', v: 'về nước', e: 'to return to one\\\'s home country' },
+      { h: '活动', p: 'huódòng', v: 'hoạt động', e: 'to exercise' },
+      { h: '计划', p: 'jìhuà', v: 'kế hoạch', e: 'plan' },
+      { h: '加油', p: 'jiāyóu', v: 'cố lên, thêm dầu', e: 'to add oil' },
+      { h: '检查', p: 'jiǎnchá', v: 'kiểm tra', e: 'inspection' },
+      { h: '见到', p: 'jiàndào', v: 'gặp, nhìn thấy', e: 'to see' }
     ],
     workbook: {
       easy: [
@@ -855,6 +951,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (5)',
     context: 'Mai tham gia lớp học mới, làm quen với bạn bè và tìm hiểu về phương pháp giảng dạy.',
     vocabPreview: ['交朋友', '教学', '接受', '进行', '讲'],
+    objectives: [
+      'Nối ý theo trình tự bằng 接下来 / 接着',
+      'Dùng 叫作 để giới thiệu tên gọi',
+      'Diễn đạt “đưa / nộp cho ai” bằng V + 给 (交给老师)',
+      'Nói về lên lớp, kết bạn (讲 · 交朋友 · 接受)'
+    ],
+    grammarNotes: [
+      { point: '接下来 / 接着 — tiếp theo',
+        explain: 'Dùng ở đầu câu để nối các bước/sự việc theo trình tự thời gian.',
+        examples: [
+          { zh: '接下来，我要讲一个故事。', py: 'Jiēxiàlái, wǒ yào jiǎng yí gè gùshi.', vi: 'Tiếp theo, tôi sẽ kể một câu chuyện.' }
+        ] },
+      { point: '叫作 — gọi là',
+        explain: '叫作 + tên dùng để nêu cách gọi / tên của sự vật.',
+        examples: [
+          { zh: '这叫作“故事教学法”。', py: 'Zhè jiàozuò “gùshi jiàoxué fǎ”.', vi: 'Đây gọi là “phương pháp dạy học bằng truyện”.' }
+        ] },
+      { point: 'V + 给 + người — đưa / giao cho',
+        explain: 'Sau một số động từ như 交, 送, 还 thêm 给 + đối tượng để chỉ người nhận.',
+        examples: [
+          { zh: '我帮你交作业给老师。', py: 'Wǒ bāng nǐ jiāo zuòyè gěi lǎoshī.', vi: 'Tớ giúp cậu nộp bài cho thầy.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -990,25 +1109,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '讲', p: 'jiǎng', v: 'nói, kể, giảng' },
-      { h: '讲话', p: 'jiǎnghuà', v: 'nói chuyện, bài giảng' },
-      { h: '交', p: 'jiāo', v: 'nộp, giao' },
-      { h: '交给', p: 'jiāogěi', v: 'giao cho, đưa cho' },
-      { h: '交朋友', p: 'jiāo péngyou', v: 'kết bạn' },
-      { h: '叫作', p: 'jiàozuò', v: 'gọi là' },
-      { h: '教学', p: 'jiàoxué', v: 'dạy học, giảng dạy' },
-      { h: '教育', p: 'jiàoyù', v: 'giáo dục' },
-      { h: '接', p: 'jiē', v: 'đón, nhận' },
-      { h: '接到', p: 'jiēdào', v: 'nhận được' },
-      { h: '接受', p: 'jiēshòu', v: 'chấp nhận, tiếp nhận' },
-      { h: '接下来', p: 'jiēxiàlái', v: 'tiếp theo' },
-      { h: '接着', p: 'jiēzhe', v: 'tiếp theo, tiếp tục' },
-      { h: '节', p: 'jié', v: 'tiết (học), đốt' },
-      { h: '借', p: 'jiè', v: 'mượn, cho mượn' },
-      { h: '进入', p: 'jìnrù', v: 'bước vào, tiến vào' },
-      { h: '进行', p: 'jìnxíng', v: 'tiến hành' },
-      { h: '经过', p: 'jīngguò', v: 'đi qua, trải qua' },
-      { h: '举', p: 'jǔ', v: 'giơ, nâng' }
+      { h: '讲', p: 'jiǎng', v: 'nói, kể, giảng', e: 'to speak' },
+      { h: '讲话', p: 'jiǎnghuà', v: 'nói chuyện, bài giảng', e: 'a speech' },
+      { h: '交', p: 'jiāo', v: 'nộp, giao', e: 'to hand over' },
+      { h: '交给', p: 'jiāogěi', v: 'giao cho, đưa cho', e: 'to give' },
+      { h: '交朋友', p: 'jiāo péngyou', v: 'kết bạn', e: 'to make friends' },
+      { h: '叫作', p: 'jiàozuò', v: 'gọi là', e: 'to call' },
+      { h: '教学', p: 'jiàoxué', v: 'dạy học, giảng dạy', e: 'to teach (as a professor)' },
+      { h: '教育', p: 'jiàoyù', v: 'giáo dục', e: 'to educate' },
+      { h: '接', p: 'jiē', v: 'đón, nhận', e: 'to receive' },
+      { h: '接到', p: 'jiēdào', v: 'nhận được', e: 'to receive (letter etc)' },
+      { h: '接受', p: 'jiēshòu', v: 'chấp nhận, tiếp nhận', e: 'to accept' },
+      { h: '接下来', p: 'jiēxiàlái', v: 'tiếp theo', e: 'to accept' },
+      { h: '接着', p: 'jiēzhe', v: 'tiếp theo, tiếp tục', e: 'to catch and hold on' },
+      { h: '节', p: 'jié', v: 'tiết (học), đốt', e: 'see 节骨眼' },
+      { h: '借', p: 'jiè', v: 'mượn, cho mượn', e: 'to lend' },
+      { h: '进入', p: 'jìnrù', v: 'bước vào, tiến vào', e: 'to enter' },
+      { h: '进行', p: 'jìnxíng', v: 'tiến hành', e: 'to advance' },
+      { h: '经过', p: 'jīngguò', v: 'đi qua, trải qua', e: 'to pass' },
+      { h: '举', p: 'jǔ', v: 'giơ, nâng', e: 'to lift, to raise, to cite as example' }
     ],
     workbook: {
       easy: [
@@ -1048,6 +1167,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (6)',
     context: 'Ngày khai giảng, Mai tham gia lễ khai mạc và làm quen với bạn mới từ nhiều nơi.',
     vocabPreview: ['开学', '举行', '来自', '可能', '练习'],
+    objectives: [
+      'Nói khoảng cách bằng A 离 B + 远/近 (学校离我家很远)',
+      'Nói xuất xứ bằng 来自',
+      'Chuyển ý bằng 可是',
+      'Nêu ví dụ bằng 例如'
+    ],
+    grammarNotes: [
+      { point: '离 — biểu thị khoảng cách',
+        explain: 'Cấu trúc “A 离 B + 远/近 / số đo” cho biết A cách B bao xa.',
+        examples: [
+          { zh: '学校离我家很远。', py: 'Xuéxiào lí wǒ jiā hěn yuǎn.', vi: 'Trường cách nhà tớ rất xa.' }
+        ] },
+      { point: '来自 — đến từ',
+        explain: '来自 + nơi chốn nghĩa “đến từ nơi nào”, trang trọng hơn 从…来.',
+        examples: [
+          { zh: '我来自越南。', py: 'Wǒ láizì Yuènán.', vi: 'Em đến từ Việt Nam.' }
+        ] },
+      { point: '可是 — nhưng',
+        explain: '可是 nối hai vế đối lập, đặt đầu vế sau, tương tự 但是.',
+        examples: [
+          { zh: '可是我的发音不太好。', py: 'Kěshì wǒ de fāyīn bú tài hǎo.', vi: 'Nhưng phát âm của tớ không tốt lắm.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -1197,25 +1339,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '举手', p: 'jǔshǒu', v: 'giơ tay' },
-      { h: '举行', p: 'jǔxíng', v: 'tổ chức, cử hành' },
-      { h: '卡', p: 'kǎ', v: 'kẹt, thẻ' },
-      { h: '开机', p: 'kāijī', v: 'bật máy, khởi động' },
-      { h: '开学', p: 'kāixué', v: 'khai giảng' },
-      { h: '靠', p: 'kào', v: 'dựa vào, lại gần' },
-      { h: '可能', p: 'kěnéng', v: 'có thể, có lẽ' },
-      { h: '可是', p: 'kěshì', v: 'nhưng, nhưng mà' },
-      { h: '可以', p: 'kěyǐ', v: 'có thể, được' },
-      { h: '刻', p: 'kè', v: 'khắc (15 phút)' },
-      { h: '哭', p: 'kū', v: 'khóc' },
-      { h: '来自', p: 'láizì', v: 'đến từ' },
-      { h: '离', p: 'lí', v: 'cách (khoảng cách)' },
-      { h: '离开', p: 'líkāi', v: 'rời khỏi' },
-      { h: '例如', p: 'lìrú', v: 'ví dụ' },
-      { h: '练', p: 'liàn', v: 'luyện' },
-      { h: '练习', p: 'liànxí', v: 'luyện tập' },
-      { h: '流', p: 'liú', v: 'chảy' },
-      { h: '流行', p: 'liúxíng', v: 'thịnh hành, phổ biến' }
+      { h: '举手', p: 'jǔshǒu', v: 'giơ tay', e: 'to raise a hand' },
+      { h: '举行', p: 'jǔxíng', v: 'tổ chức, cử hành', e: 'to hold (a meeting, ceremony etc)' },
+      { h: '卡', p: 'kǎ', v: 'kẹt, thẻ', e: 'to stop' },
+      { h: '开机', p: 'kāijī', v: 'bật máy, khởi động', e: 'to start an engine' },
+      { h: '开学', p: 'kāixué', v: 'khai giảng', e: 'foundation of a University or College' },
+      { h: '靠', p: 'kào', v: 'dựa vào, lại gần', e: 'to lean against or on' },
+      { h: '可能', p: 'kěnéng', v: 'có thể, có lẽ', e: 'might (happen)' },
+      { h: '可是', p: 'kěshì', v: 'nhưng, nhưng mà', e: 'but' },
+      { h: '可以', p: 'kěyǐ', v: 'có thể, được', e: 'can' },
+      { h: '刻', p: 'kè', v: 'khắc (15 phút)', e: 'quarter (hour)' },
+      { h: '哭', p: 'kū', v: 'khóc', e: 'to cry' },
+      { h: '来自', p: 'láizì', v: 'đến từ', e: 'to come from (a place)' },
+      { h: '离', p: 'lí', v: 'cách (khoảng cách)', e: 'mythical beast (archaic)' },
+      { h: '离开', p: 'líkāi', v: 'rời khỏi', e: 'to depart' },
+      { h: '例如', p: 'lìrú', v: 'ví dụ', e: 'for example' },
+      { h: '练', p: 'liàn', v: 'luyện', e: 'to practice' },
+      { h: '练习', p: 'liànxí', v: 'luyện tập', e: 'to practice' },
+      { h: '流', p: 'liú', v: 'chảy', e: 'to flow' },
+      { h: '流行', p: 'liúxíng', v: 'thịnh hành, phổ biến', e: 'to spread' }
     ],
     workbook: {
       easy: [
@@ -1255,6 +1397,31 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (7)',
     context: 'Mai và Tiểu Mỹ lên kế hoạch đi du lịch cuối tuần, bàn về địa điểm và hoạt động.',
     vocabPreview: ['旅游', '爬山', '满意', '能够', '排队'],
+    objectives: [
+      'Diễn đạt khả năng bằng 能够',
+      'Dùng lượng từ 只 (con vật) và 碗 (bát)',
+      'Dùng bổ ngữ kết quả 到 (碰到 · 拿到)',
+      'Bàn kế hoạch du lịch, leo núi (旅游 · 爬山 · 排队)'
+    ],
+    grammarNotes: [
+      { point: '能够 — có thể',
+        explain: '能够 đặt trước động từ chỉ khả năng / điều kiện thực hiện, trang trọng hơn 能.',
+        examples: [
+          { zh: '我们能够早点出发。', py: 'Wǒmen nénggòu zǎodiǎn chūfā.', vi: 'Chúng ta có thể xuất phát sớm.' }
+        ] },
+      { point: 'Lượng từ 只 / 碗',
+        explain: '只 đếm phần lớn động vật; 碗 đếm thứ đựng trong bát.',
+        examples: [
+          { zh: '你看那只猫！', py: 'Nǐ kàn nà zhī māo!', vi: 'Cậu nhìn con mèo kia!' },
+          { zh: '吃碗面再走。', py: 'Chī wǎn miàn zài zǒu.', vi: 'Ăn bát mì rồi đi.' }
+        ] },
+      { point: 'Bổ ngữ kết quả 到',
+        explain: 'Thêm 到 sau động từ để chỉ động tác đạt được kết quả (gặp được, lấy được).',
+        examples: [
+          { zh: '我昨天碰到它了。', py: 'Wǒ zuótiān pèngdào tā le.', vi: 'Tớ hôm qua gặp nó rồi.' },
+          { zh: '我拿到钱包了。', py: 'Wǒ nádào qiánbāo le.', vi: 'Tớ lấy được ví rồi.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -1397,25 +1564,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '留', p: 'liú', v: 'ở lại, giữ lại' },
-      { h: '留下', p: 'liúxià', v: 'ở lại, để lại' },
-      { h: '旅行', p: 'lǚxíng', v: 'du lịch, đi chơi' },
-      { h: '旅游', p: 'lǚyóu', v: 'du lịch' },
-      { h: '卖', p: 'mài', v: 'bán' },
-      { h: '满意', p: 'mǎnyì', v: 'hài lòng' },
-      { h: '猫', p: 'māo', v: 'mèo' },
-      { h: '面', p: 'miàn', v: 'mì, mặt' },
-      { h: '拿出', p: 'náchū', v: 'lấy ra' },
-      { h: '拿到', p: 'nádào', v: 'lấy được, nhận được' },
-      { h: '能够', p: 'nénggòu', v: 'có thể' },
-      { h: '弄', p: 'nòng', v: 'làm, chuẩn bị' },
-      { h: '爬', p: 'pá', v: 'leo, bò' },
-      { h: '爬山', p: 'páshān', v: 'leo núi' },
-      { h: '怕', p: 'pà', v: 'sợ' },
-      { h: '排', p: 'pái', v: 'xếp, hàng' },
-      { h: '排队', p: 'páiduì', v: 'xếp hàng' },
-      { h: '碰', p: 'pèng', v: 'chạm, va' },
-      { h: '碰到', p: 'pèngdào', v: 'gặp, chạm phải' }
+      { h: '留', p: 'liú', v: 'ở lại, giữ lại', e: 'to stay, to remain, to keep' },
+      { h: '留下', p: 'liúxià', v: 'ở lại, để lại', e: 'to leave behind' },
+      { h: '旅行', p: 'lǚxíng', v: 'du lịch, đi chơi', e: 'to travel' },
+      { h: '旅游', p: 'lǚyóu', v: 'du lịch', e: 'trip' },
+      { h: '卖', p: 'mài', v: 'bán', e: 'to sell' },
+      { h: '满意', p: 'mǎnyì', v: 'hài lòng', e: 'satisfied' },
+      { h: '猫', p: 'māo', v: 'mèo', e: 'cat' },
+      { h: '面', p: 'miàn', v: 'mì, mặt', e: 'face' },
+      { h: '拿出', p: 'náchū', v: 'lấy ra', e: 'to take out' },
+      { h: '拿到', p: 'nádào', v: 'lấy được, nhận được', e: 'to get' },
+      { h: '能够', p: 'nénggòu', v: 'có thể', e: 'to be capable of' },
+      { h: '弄', p: 'nòng', v: 'làm, chuẩn bị', e: 'lane' },
+      { h: '爬', p: 'pá', v: 'leo, bò', e: 'to crawl' },
+      { h: '爬山', p: 'páshān', v: 'leo núi', e: 'to climb a mountain' },
+      { h: '怕', p: 'pà', v: 'sợ', e: 'to fear, to be afraid of' },
+      { h: '排', p: 'pái', v: 'xếp, hàng', e: 'a row' },
+      { h: '排队', p: 'páiduì', v: 'xếp hàng', e: 'to line up' },
+      { h: '碰', p: 'pèng', v: 'chạm, va', e: 'to touch, to bump into, to meet by chance' },
+      { h: '碰到', p: 'pèngdào', v: 'gặp, chạm phải', e: 'to come across' }
     ],
     workbook: {
       easy: [
@@ -1455,6 +1622,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (8)',
     context: 'Mai chuẩn bị đi thực tập, bàn bạc với Tiểu Mỹ về cuộc sống và công việc tương lai.',
     vocabPreview: ['实习', '生活', '认为', '如果', '商量'],
+    objectives: [
+      'Đặt câu điều kiện bằng 如果…(就)…',
+      'Diễn đạt “sắp xảy ra” bằng 快要…了',
+      'Dùng 让 để sai khiến (让它吃饱)',
+      'Bàn về thực tập và lời khuyên (实习 · 应该 · 商量)'
+    ],
+    grammarNotes: [
+      { point: '如果…(就)… — nếu…thì…',
+        explain: 'Vế 如果 nêu điều kiện, vế sau thường có 就 nêu kết quả.',
+        examples: [
+          { zh: '如果顺利，我可以学到很多。', py: 'Rúguǒ shùnlì, wǒ kěyǐ xuédào hěn duō.', vi: 'Nếu thuận lợi, tớ có thể học được nhiều.' }
+        ] },
+      { point: '快要…了 — sắp (sửa)',
+        explain: 'Khung “快要 + V + 了” diễn đạt việc sắp xảy ra.',
+        examples: [
+          { zh: '飞机快要起飞了！', py: 'Fēijī kuàiyào qǐfēi le!', vi: 'Máy bay sắp cất cánh rồi!' }
+        ] },
+      { point: '让 — bảo, khiến, để cho',
+        explain: '让 + đối tượng + động từ: bảo / để cho ai làm gì (câu sai khiến).',
+        examples: [
+          { zh: '让它每天吃饱。', py: 'Ràng tā měi tiān chībǎo.', vi: 'Để nó mỗi ngày ăn no.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -1604,25 +1794,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '碰见', p: 'pèngjiàn', v: 'gặp (tình cờ)' },
-      { h: '骑', p: 'qí', v: 'cưỡi, đạp (xe)' },
-      { h: '骑车', p: 'qíchē', v: 'đạp xe' },
-      { h: '起飞', p: 'qǐfēi', v: 'cất cánh' },
-      { h: '气', p: 'qì', v: 'giận, khí' },
-      { h: '晴', p: 'qíng', v: 'nắng, trời đẹp' },
-      { h: '请客', p: 'qǐngkè', v: 'mời khách, đãi' },
-      { h: '请求', p: 'qǐngqiú', v: 'yêu cầu, đề nghị' },
-      { h: '求', p: 'qiú', v: 'xin, cầu xin' },
-      { h: '取', p: 'qǔ', v: 'lấy' },
-      { h: '取得', p: 'qǔdé', v: 'đạt được, lấy được' },
-      { h: '让', p: 'ràng', v: 'để, cho phép, bảo' },
-      { h: '认为', p: 'rènwéi', v: 'cho rằng, nghĩ rằng' },
-      { h: '如果', p: 'rúguǒ', v: 'nếu' },
-      { h: '入口', p: 'rùkǒu', v: 'lối vào' },
-      { h: '商量', p: 'shāngliang', v: 'bàn bạc' },
-      { h: '生活', p: 'shēnghuó', v: 'cuộc sống' },
-      { h: '省', p: 'shěng', v: 'tiết kiệm; tỉnh' },
-      { h: '实习', p: 'shíxí', v: 'thực tập' }
+      { h: '碰见', p: 'pèngjiàn', v: 'gặp (tình cờ)', e: 'to run into' },
+      { h: '骑', p: 'qí', v: 'cưỡi, đạp (xe)', e: 'saddle horse' },
+      { h: '骑车', p: 'qíchē', v: 'đạp xe', e: 'to ride a bike (motorbike or bicycle)' },
+      { h: '起飞', p: 'qǐfēi', v: 'cất cánh', e: 'to take off' },
+      { h: '气', p: 'qì', v: 'giận, khí', e: 'gas' },
+      { h: '晴', p: 'qíng', v: 'nắng, trời đẹp', e: 'clear' },
+      { h: '请客', p: 'qǐngkè', v: 'mời khách, đãi', e: 'to give a dinner party' },
+      { h: '请求', p: 'qǐngqiú', v: 'yêu cầu, đề nghị', e: 'to request' },
+      { h: '求', p: 'qiú', v: 'xin, cầu xin', e: 'to seek' },
+      { h: '取', p: 'qǔ', v: 'lấy', e: 'to take' },
+      { h: '取得', p: 'qǔdé', v: 'đạt được, lấy được', e: 'to acquire' },
+      { h: '让', p: 'ràng', v: 'để, cho phép, bảo', e: 'to yield' },
+      { h: '认为', p: 'rènwéi', v: 'cho rằng, nghĩ rằng', e: 'to believe' },
+      { h: '如果', p: 'rúguǒ', v: 'nếu', e: 'if' },
+      { h: '入口', p: 'rùkǒu', v: 'lối vào', e: 'entrance' },
+      { h: '商量', p: 'shāngliang', v: 'bàn bạc', e: 'to consult' },
+      { h: '生活', p: 'shēnghuó', v: 'cuộc sống', e: 'to live' },
+      { h: '省', p: 'shěng', v: 'tiết kiệm; tỉnh', e: 'to save' },
+      { h: '实习', p: 'shíxí', v: 'thực tập', e: 'to practice' }
     ],
     workbook: {
       easy: [
@@ -1662,6 +1852,31 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (9)',
     context: 'Mai và Tiểu Mỹ thảo luận về bài tập nhóm, cách nâng cao kỹ năng và chia sẻ quà tặng.',
     vocabPreview: ['讨论', '提高', '收到', '送给', '使用'],
+    objectives: [
+      'Phân biệt nhóm từ ghép với 提 (提出 · 提到 · 提高)',
+      'Lặp động từ V一V / V了V để “làm thử / một chút” (算一算 · 数了数)',
+      'Dùng bổ ngữ kết quả 到 (收到 · 送到)',
+      'Thảo luận bài tập, đề xuất ý tưởng (讨论 · 使用)'
+    ],
+    grammarNotes: [
+      { point: '提出 / 提到 / 提高',
+        explain: '提出 = đề xuất (ý kiến); 提到 = nhắc đến; 提高 = nâng cao (trình độ, thành tích).',
+        examples: [
+          { zh: '我想提出一个想法。', py: 'Wǒ xiǎng tíchū yí gè xiǎngfǎ.', vi: 'Tớ muốn đề xuất một ý tưởng.' },
+          { zh: '这样可以提高我们的成绩。', py: 'Zhèyàng kěyǐ tígāo wǒmen de chéngjì.', vi: 'Như vậy có thể nâng cao thành tích.' }
+        ] },
+      { point: 'Lặp động từ — làm thử / một chút',
+        explain: 'Dạng V一V (算一算) hoặc V了V (数了数) làm dịu ngữ khí, nghĩa “làm qua / thử một chút”.',
+        examples: [
+          { zh: '算一算，我们还有三天。', py: 'Suàn yi suàn, wǒmen hái yǒu sān tiān.', vi: 'Tính xem, chúng ta còn ba ngày.' },
+          { zh: '快递员数了数。', py: 'Kuàidìyuán shǔ le shǔ.', vi: 'Shipper đếm xem.' }
+        ] },
+      { point: 'Bổ ngữ kết quả 到',
+        explain: '到 sau động từ chỉ động tác có kết quả (nhận được, gửi tới).',
+        examples: [
+          { zh: '我收到一个包裹了。', py: 'Wǒ shōudào yí gè bāoguǒ le.', vi: 'Tớ nhận được một bưu kiện rồi.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -1804,25 +2019,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '实现', p: 'shíxiàn', v: 'thực hiện' },
-      { h: '使用', p: 'shǐyòng', v: 'sử dụng' },
-      { h: '收', p: 'shōu', v: 'thu, cất' },
-      { h: '收到', p: 'shōudào', v: 'nhận được' },
-      { h: '收入', p: 'shōurù', v: 'thu nhập' },
-      { h: '受到', p: 'shòudào', v: 'nhận được, chịu' },
-      { h: '数', p: 'shǔ', v: 'đếm' },
-      { h: '说明', p: 'shuōmíng', v: 'giải thích, làm rõ' },
-      { h: '送到', p: 'sòngdào', v: 'gửi đến' },
-      { h: '送给', p: 'sònggěi', v: 'tặng cho' },
-      { h: '算', p: 'suàn', v: 'tính, tính toán' },
-      { h: '讨论', p: 'tǎolùn', v: 'thảo luận' },
-      { h: '套', p: 'tào', v: 'bộ (quần áo)' },
-      { h: '提', p: 'tí', v: 'nêu, đề cập' },
-      { h: '提出', p: 'tíchū', v: 'đề xuất' },
-      { h: '提到', p: 'tídào', v: 'đề cập, nhắc đến' },
-      { h: '提高', p: 'tígāo', v: 'nâng cao' },
-      { h: '题', p: 'tí', v: 'câu hỏi, đề' },
-      { h: '听讲', p: 'tīngjiǎng', v: 'nghe giảng' }
+      { h: '实现', p: 'shíxiàn', v: 'thực hiện', e: 'to achieve' },
+      { h: '使用', p: 'shǐyòng', v: 'sử dụng', e: 'to use' },
+      { h: '收', p: 'shōu', v: 'thu, cất', e: 'to receive' },
+      { h: '收到', p: 'shōudào', v: 'nhận được', e: 'to receive' },
+      { h: '收入', p: 'shōurù', v: 'thu nhập', e: 'to take in' },
+      { h: '受到', p: 'shòudào', v: 'nhận được, chịu', e: 'to receive (praise, an education, punishment etc)' },
+      { h: '数', p: 'shǔ', v: 'đếm', e: 'to count' },
+      { h: '说明', p: 'shuōmíng', v: 'giải thích, làm rõ', e: 'to explain' },
+      { h: '送到', p: 'sòngdào', v: 'gửi đến', e: 'Deliver' },
+      { h: '送给', p: 'sònggěi', v: 'tặng cho', e: 'to send' },
+      { h: '算', p: 'suàn', v: 'tính, tính toán', e: 'to regard as' },
+      { h: '讨论', p: 'tǎolùn', v: 'thảo luận', e: 'to discuss' },
+      { h: '套', p: 'tào', v: 'bộ (quần áo)', e: 'to cover' },
+      { h: '提', p: 'tí', v: 'nêu, đề cập', e: 'used in 防 and 溜' },
+      { h: '提出', p: 'tíchū', v: 'đề xuất', e: 'to raise (an issue)' },
+      { h: '提到', p: 'tídào', v: 'đề cập, nhắc đến', e: 'to mention' },
+      { h: '提高', p: 'tígāo', v: 'nâng cao', e: 'to raise' },
+      { h: '题', p: 'tí', v: 'câu hỏi, đề', e: 'topic, problem, question, title' },
+      { h: '听讲', p: 'tīngjiǎng', v: 'nghe giảng', e: 'to attend a lecture' }
     ],
     workbook: {
       easy: [
@@ -1862,6 +2077,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (10)',
     context: 'Mai và Tiểu Mỹ trải qua một ngày bình thường: ăn trưa, nghỉ ngơi và hoàn thành công việc.',
     vocabPreview: ['午餐', '完成', '习惯', '通过', '听说'],
+    objectives: [
+      'Chỉ hướng di chuyển bằng 往 + phương vị + V (往前走)',
+      'Dẫn lời nghe được bằng 听说',
+      'Nêu đối tượng phục vụ bằng 为 (我为你买)',
+      'Nói về thói quen, hoàn thành việc (习惯 · 完成 · 通过)'
+    ],
+    grammarNotes: [
+      { point: '往 + phương vị + động từ',
+        explain: '往 chỉ phương hướng của động tác di chuyển: 往前 / 往左 走…',
+        examples: [
+          { zh: '我们往前走吧。', py: 'Wǒmen wǎng qián zǒu ba.', vi: 'Chúng ta đi về phía trước đi.' }
+        ] },
+      { point: '听说 — nghe nói',
+        explain: '听说 đặt đầu câu để dẫn thông tin nghe được từ người khác.',
+        examples: [
+          { zh: '我听说今天有新菜。', py: 'Wǒ tīngshuō jīntiān yǒu xīn cài.', vi: 'Tớ nghe nói hôm nay có món mới.' }
+        ] },
+      { point: '为 — vì, cho',
+        explain: '为 + đối tượng đặt trước động từ để nêu người / việc được hưởng lợi.',
+        examples: [
+          { zh: '我为你买了一本书。', py: 'Wǒ wèi nǐ mǎi le yì běn shū.', vi: 'Tớ mua cho cậu một cuốn sách.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -2011,25 +2249,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '听说', p: 'tīngshuō', v: 'nghe nói' },
-      { h: '停', p: 'tíng', v: 'dừng' },
-      { h: '停车', p: 'tíngchē', v: 'đỗ xe' },
-      { h: '挺', p: 'tǐng', v: 'khá, khá là' },
-      { h: '通过', p: 'tōngguò', v: 'thông qua, vượt qua' },
-      { h: '通知', p: 'tōngzhī', v: 'thông báo' },
-      { h: '推', p: 'tuī', v: 'đẩy' },
-      { h: '完', p: 'wán', v: 'xong, hết' },
-      { h: '完成', p: 'wánchéng', v: 'hoàn thành' },
-      { h: '晚安', p: 'wǎn\'ān', v: 'chúc ngủ ngon' },
-      { h: '网', p: 'wǎng', v: 'mạng, lưới' },
-      { h: '往', p: 'wǎng', v: 'về phía, hướng' },
-      { h: '为', p: 'wèi', v: 'vì, cho' },
-      { h: '喂', p: 'wèi', v: 'này, alo' },
-      { h: '闻', p: 'wén', v: 'ngửi' },
-      { h: '问路', p: 'wènlù', v: 'hỏi đường' },
-      { h: '午餐', p: 'wǔcān', v: 'bữa trưa' },
-      { h: '午睡', p: 'wǔshuì', v: 'ngủ trưa' },
-      { h: '习惯', p: 'xíguàn', v: 'quen, thói quen' }
+      { h: '听说', p: 'tīngshuō', v: 'nghe nói', e: 'to hear (sth said)' },
+      { h: '停', p: 'tíng', v: 'dừng', e: 'to stop' },
+      { h: '停车', p: 'tíngchē', v: 'đỗ xe', e: 'to pull up (stop one\\\'s vehicle)' },
+      { h: '挺', p: 'tǐng', v: 'khá, khá là', e: 'straight' },
+      { h: '通过', p: 'tōngguò', v: 'thông qua, vượt qua', e: 'to pass through' },
+      { h: '通知', p: 'tōngzhī', v: 'thông báo', e: 'to notify' },
+      { h: '推', p: 'tuī', v: 'đẩy', e: 'to push' },
+      { h: '完', p: 'wán', v: 'xong, hết', e: 'to finish' },
+      { h: '完成', p: 'wánchéng', v: 'hoàn thành', e: 'to complete' },
+      { h: '晚安', p: 'wǎn\'ān', v: 'chúc ngủ ngon', e: 'Good night!' },
+      { h: '网', p: 'wǎng', v: 'mạng, lưới', e: 'net' },
+      { h: '往', p: 'wǎng', v: 'về phía, hướng', e: 'to go (in a direction)' },
+      { h: '为', p: 'wèi', v: 'vì, cho', e: 'as (in the capacity of)' },
+      { h: '喂', p: 'wèi', v: 'này, alo', e: 'hello (when answering the phone)' },
+      { h: '闻', p: 'wén', v: 'ngửi', e: 'to smell, to hear, news' },
+      { h: '问路', p: 'wènlù', v: 'hỏi đường', e: 'to ask for directions' },
+      { h: '午餐', p: 'wǔcān', v: 'bữa trưa', e: 'lunch' },
+      { h: '午睡', p: 'wǔshuì', v: 'ngủ trưa', e: 'to take a nap' },
+      { h: '习惯', p: 'xíguàn', v: 'quen, thói quen', e: 'habit' }
     ],
     workbook: {
       easy: [
@@ -2069,6 +2307,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (11)',
     context: 'Mai chuẩn bị về nước nghỉ phép, chia sẻ suy nghĩ và kế hoạch với Tiểu Mỹ.',
     vocabPreview: ['休假', '相信', '想法', '应该', '一路顺风'],
+    objectives: [
+      'Diễn đạt nhận định sai bằng 以为 (我以为你忘了)',
+      'So sánh tương đồng bằng 像…一样',
+      'Phân biệt nhóm 想 (想到 · 想起 · 想法)',
+      'Nói lời dặn dò, chúc đi đường (一路顺风 · 应该)'
+    ],
+    grammarNotes: [
+      { point: '以为 — tưởng (rằng)',
+        explain: '以为 diễn đạt một nhận định trước đó hoá ra sai so với thực tế.',
+        examples: [
+          { zh: '我以为你忘了。', py: 'Wǒ yǐwéi nǐ wàng le.', vi: 'Tớ tưởng cậu quên rồi.' }
+        ] },
+      { point: '像…一样 — giống như',
+        explain: 'Khung “像 + đối tượng + 一样” so sánh hai sự vật giống nhau.',
+        examples: [
+          { zh: '你像我姐姐一样！', py: 'Nǐ xiàng wǒ jiějie yíyàng!', vi: 'Cậu giống chị gái tớ vậy!' }
+        ] },
+      { point: '想到 / 想起 / 想法',
+        explain: '想到 = nghĩ đến (chợt nảy ra); 想起 = nhớ ra; 想法 = ý nghĩ, suy nghĩ (danh từ).',
+        examples: [
+          { zh: '我想起来了，你姓阮！', py: 'Wǒ xiǎng qǐlái le, nǐ xìng Ruǎn!', vi: 'Tớ nhớ ra rồi, cậu họ Nguyễn!' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -2211,25 +2472,25 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '洗澡', p: 'xǐzǎo', v: 'tắm' },
-      { h: '下雪', p: 'xiàxuě', v: 'tuyết rơi' },
-      { h: '相信', p: 'xiāngxìn', v: 'tin tưởng' },
-      { h: '想到', p: 'xiǎngdào', v: 'nghĩ đến' },
-      { h: '想法', p: 'xiǎngfǎ', v: 'suy nghĩ, ý tưởng' },
-      { h: '想起', p: 'xiǎngqǐ', v: 'nhớ ra' },
-      { h: '向', p: 'xiàng', v: 'hướng về, với' },
-      { h: '像', p: 'xiàng', v: 'giống như' },
-      { h: '信', p: 'xìn', v: 'thư, tin nhắn' },
-      { h: '行动', p: 'xíngdòng', v: 'hành động' },
-      { h: '姓', p: 'xìng', v: 'họ' },
-      { h: '休假', p: 'xiūjià', v: 'nghỉ phép' },
-      { h: '选', p: 'xuǎn', v: 'chọn' },
-      { h: '养', p: 'yǎng', v: 'nuôi' },
-      { h: '要求', p: 'yāoqiú', v: 'yêu cầu' },
-      { h: '一路顺风', p: 'yílùshùnfēng', v: 'thượng lộ bình an' },
-      { h: '以为', p: 'yǐwéi', v: 'tưởng rằng' },
-      { h: '意思', p: 'yìsi', v: 'ý nghĩa' },
-      { h: '应该', p: 'yīnggāi', v: 'nên' }
+      { h: '洗澡', p: 'xǐzǎo', v: 'tắm', e: 'to bathe' },
+      { h: '下雪', p: 'xiàxuě', v: 'tuyết rơi', e: 'to snow' },
+      { h: '相信', p: 'xiāngxìn', v: 'tin tưởng', e: 'to be convinced (that sth is true)' },
+      { h: '想到', p: 'xiǎngdào', v: 'nghĩ đến', e: 'to think of' },
+      { h: '想法', p: 'xiǎngfǎ', v: 'suy nghĩ, ý tưởng', e: 'way of thinking' },
+      { h: '想起', p: 'xiǎngqǐ', v: 'nhớ ra', e: 'to recall' },
+      { h: '向', p: 'xiàng', v: 'hướng về, với', e: 'toward, in the direction of, to face' },
+      { h: '像', p: 'xiàng', v: 'giống như', e: 'to resemble' },
+      { h: '信', p: 'xìn', v: 'thư, tin nhắn', e: 'letter' },
+      { h: '行动', p: 'xíngdòng', v: 'hành động', e: 'operation' },
+      { h: '姓', p: 'xìng', v: 'họ', e: 'family name' },
+      { h: '休假', p: 'xiūjià', v: 'nghỉ phép', e: 'to go on vacation' },
+      { h: '选', p: 'xuǎn', v: 'chọn', e: 'to choose' },
+      { h: '养', p: 'yǎng', v: 'nuôi', e: 'to raise (animals)' },
+      { h: '要求', p: 'yāoqiú', v: 'yêu cầu', e: 'to request' },
+      { h: '一路顺风', p: 'yílùshùnfēng', v: 'thượng lộ bình an', e: 'to have a pleasant journey (idiom)' },
+      { h: '以为', p: 'yǐwéi', v: 'tưởng rằng', e: 'to think (i.e. to take it to be true that ...) (Usually there is an implication that the notion is mistaken – except when expressing one\\\'s own current opinion.)' },
+      { h: '意思', p: 'yìsi', v: 'ý nghĩa', e: 'idea' },
+      { h: '应该', p: 'yīnggāi', v: 'nên', e: 'ought to' }
     ],
     workbook: {
       easy: [
@@ -2269,6 +2530,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động hằng ngày (12)',
     context: 'Mai và Tiểu Mỹ nói về cuộc sống hằng ngày, chăm sóc gia đình và những kỷ niệm thời thơ ấu.',
     vocabPreview: ['照顾', '长大', '运动', '做饭', '愿意'],
+    objectives: [
+      'Diễn đạt cấu tạo bằng 由…组成 (由很多部分组成)',
+      'Nhấn điều kiện bằng 才 (…我才能完成)',
+      'Dùng bổ ngữ xu hướng 进 · 过 · 开 (走进 · 走过 · 走开)',
+      'Nói về gia đình, chăm sóc (照顾 · 长大 · 做饭)'
+    ],
+    grammarNotes: [
+      { point: '由…组成 — được tạo thành từ',
+        explain: 'Khung “由 + thành phần + 组成” cho biết một thứ gồm những phần nào.',
+        examples: [
+          { zh: '这个公园是由很多部分组成的。', py: 'Zhège gōngyuán shì yóu hěn duō bùfen zǔchéng de.', vi: 'Công viên này được tạo thành từ nhiều phần.' }
+        ] },
+      { point: '才 — mới (nhờ điều kiện)',
+        explain: '才 đặt trước động từ, nhấn rằng nhờ có điều kiện trước đó mới thực hiện được.',
+        examples: [
+          { zh: '正是因为你帮我，我才能完成。', py: 'Zhèng shì yīnwèi nǐ bāng wǒ, wǒ cái néng wánchéng.', vi: 'Chính vì cậu giúp, tớ mới hoàn thành được.' }
+        ] },
+      { point: 'Bổ ngữ xu hướng 进 / 过 / 开',
+        explain: 'Gắn sau 走 (và nhiều động từ) để chỉ hướng: vào trong (进), đi qua (过), rời khỏi (开).',
+        examples: [
+          { zh: '我走进病房看她。', py: 'Wǒ zǒujìn bìngfáng kàn tā.', vi: 'Tớ bước vào phòng bệnh thăm bà.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -2425,29 +2709,29 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '影响', p: 'yǐngxiǎng', v: 'ảnh hưởng' },
-      { h: '愿意', p: 'yuànyì', v: 'sẵn lòng, muốn' },
-      { h: '运动', p: 'yùndòng', v: 'vận động, thể thao' },
-      { h: '占', p: 'zhàn', v: 'chiếm' },
-      { h: '站住', p: 'zhànzhù', v: 'đứng lại' },
-      { h: '长大', p: 'zhǎngdà', v: 'lớn lên' },
-      { h: '照顾', p: 'zhàogu', v: 'chăm sóc' },
-      { h: '照相', p: 'zhàoxiàng', v: 'chụp ảnh' },
-      { h: '正是', p: 'zhèngshì', v: 'chính là' },
-      { h: '只能', p: 'zhǐnéng', v: 'chỉ có thể' },
-      { h: '重视', p: 'zhòngshì', v: 'coi trọng' },
-      { h: '住院', p: 'zhùyuàn', v: 'nhập viện' },
-      { h: '装', p: 'zhuāng', v: 'đóng gói, lắp' },
-      { h: '走过', p: 'zǒuguò', v: 'đi qua' },
-      { h: '走进', p: 'zǒujìn', v: 'bước vào' },
-      { h: '走开', p: 'zǒukāi', v: 'đi khỏi' },
-      { h: '租', p: 'zū', v: 'thuê' },
-      { h: '组', p: 'zǔ', v: 'nhóm, tổ' },
-      { h: '组成', p: 'zǔchéng', v: 'tạo thành' },
-      { h: '作业', p: 'zuòyè', v: 'bài tập' },
-      { h: '作用', p: 'zuòyòng', v: 'tác dụng' },
-      { h: '做到', p: 'zuòdào', v: 'làm được' },
-      { h: '做饭', p: 'zuòfàn', v: 'nấu cơm' }
+      { h: '影响', p: 'yǐngxiǎng', v: 'ảnh hưởng', e: 'influence' },
+      { h: '愿意', p: 'yuànyì', v: 'sẵn lòng, muốn', e: 'to wish' },
+      { h: '运动', p: 'yùndòng', v: 'vận động, thể thao', e: 'to move' },
+      { h: '占', p: 'zhàn', v: 'chiếm', e: 'to occupy, to take up, to seize' },
+      { h: '站住', p: 'zhànzhù', v: 'đứng lại', e: 'to stand' },
+      { h: '长大', p: 'zhǎngdà', v: 'lớn lên', e: 'to grow up' },
+      { h: '照顾', p: 'zhàogu', v: 'chăm sóc', e: 'to take care of' },
+      { h: '照相', p: 'zhàoxiàng', v: 'chụp ảnh', e: 'to take a photograph' },
+      { h: '正是', p: 'zhèngshì', v: 'chính là', e: 'is precisely' },
+      { h: '只能', p: 'zhǐnéng', v: 'chỉ có thể', e: 'can only' },
+      { h: '重视', p: 'zhòngshì', v: 'coi trọng', e: 'to attach importance to sth' },
+      { h: '住院', p: 'zhùyuàn', v: 'nhập viện', e: 'to be in hospital' },
+      { h: '装', p: 'zhuāng', v: 'đóng gói, lắp', e: 'adornment' },
+      { h: '走过', p: 'zǒuguò', v: 'đi qua', e: 'to walk past' },
+      { h: '走进', p: 'zǒujìn', v: 'bước vào', e: 'to enter' },
+      { h: '走开', p: 'zǒukāi', v: 'đi khỏi', e: 'to leave' },
+      { h: '租', p: 'zū', v: 'thuê', e: 'to hire' },
+      { h: '组', p: 'zǔ', v: 'nhóm, tổ', e: 'group, team, to organize' },
+      { h: '组成', p: 'zǔchéng', v: 'tạo thành', e: 'to form' },
+      { h: '作业', p: 'zuòyè', v: 'bài tập', e: 'school assignment' },
+      { h: '作用', p: 'zuòyòng', v: 'tác dụng', e: 'to act on' },
+      { h: '做到', p: 'zuòdào', v: 'làm được', e: 'to accomplish' },
+      { h: '做饭', p: 'zuòfàn', v: 'nấu cơm', e: 'to prepare a meal' }
     ],
     workbook: {
       easy: [
@@ -2487,6 +2771,30 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (1)',
     context: 'Mai và Tiểu Mỹ trò chuyện về cuộc sống học đường, lớp trưởng và những quy định trong trường.',
     vocabPreview: ['必须', '不但', '办法', '办公室', '班长'],
+    objectives: [
+      'Dùng cặp 不但…而且… để tăng tiến',
+      'Chuyển ý nhẹ bằng 不过',
+      'Dùng 必须 / 不要 để nói “phải / đừng”',
+      'Nhấn điều kiện bằng 才 (做完…才能休息)'
+    ],
+    grammarNotes: [
+      { point: '不但…而且… — không những…mà còn…',
+        explain: 'Cặp liên từ nối hai ý cùng chiều, ý sau mạnh hơn ý trước.',
+        examples: [
+          { zh: '他不但学习好，而且很热心。', py: 'Tā búdàn xuéxí hǎo, érqiě hěn rèxīn.', vi: 'Anh ấy không những học giỏi, mà còn rất nhiệt tình.' }
+        ] },
+      { point: '不过 — nhưng mà',
+        explain: '不过 chuyển ý nhẹ nhàng hơn 但是, đặt đầu vế sau.',
+        examples: [
+          { zh: '不过我听说他很负责任。', py: 'Búguò wǒ tīngshuō tā hěn fùzérèn.', vi: 'Nhưng mà tớ nghe nói anh ấy rất có trách nhiệm.' }
+        ] },
+      { point: '必须 / 不要 — phải / đừng',
+        explain: '必须 + V nhấn sự bắt buộc; 不要 + V là lời khuyên ngăn “đừng”.',
+        examples: [
+          { zh: '我们必须去办公室交作业。', py: 'Wǒmen bìxū qù bàngōngshì jiāo zuòyè.', vi: 'Chúng ta phải đến văn phòng nộp bài.' },
+          { zh: '不要担心！', py: 'Búyào dānxīn!', vi: 'Đừng lo!' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -2629,26 +2937,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '啊', p: 'a', v: 'à, này (ngữ khí từ)' },
-      { h: '爱情', p: 'àiqíng', v: 'tình yêu' },
-      { h: '班长', p: 'bānzhǎng', v: 'lớp trưởng' },
-      { h: '办法', p: 'bànfǎ', v: 'cách, phương pháp' },
-      { h: '办公室', p: 'bàngōngshì', v: 'văn phòng' },
-      { h: '笔记', p: 'bǐjì', v: 'ghi chú' },
-      { h: '必须', p: 'bìxū', v: 'phải, bắt buộc' },
-      { h: '边', p: 'biān', v: 'bên, cạnh' },
-      { h: '不但', p: 'búdàn', v: 'không những' },
-      { h: '不过', p: 'búguò', v: 'nhưng mà, tuy nhiên' },
-      { h: '不太', p: 'bú tài', v: 'không lắm' },
-      { h: '不要', p: 'bú yào', v: 'đừng, không muốn' },
-      { h: '不一定', p: 'bù yīdìng', v: 'không nhất định' },
-      { h: '不一会儿', p: 'bù yīhuǐr', v: 'một lát, chốc lát' },
-      { h: '部分', p: 'bùfen', v: 'phần, bộ phận' },
-      { h: '才', p: 'cái', v: 'mới (chỉ sau khi...)' },
-      { h: '草地', p: 'cǎodì', v: 'bãi cỏ' },
-      { h: '层', p: 'céng', v: 'tầng, lớp' },
-      { h: '差不多', p: 'chàbuduō', v: 'gần như, khoảng' },
-      { h: '场', p: 'chǎng', v: 'sân, trường (lượng từ)' }
+      { h: '啊', p: 'a', v: 'à, này (ngữ khí từ)', e: 'interjection of surprise' },
+      { h: '爱情', p: 'àiqíng', v: 'tình yêu', e: 'romance' },
+      { h: '班长', p: 'bānzhǎng', v: 'lớp trưởng', e: 'class monitor' },
+      { h: '办法', p: 'bànfǎ', v: 'cách, phương pháp', e: 'means' },
+      { h: '办公室', p: 'bàngōngshì', v: 'văn phòng', e: 'office' },
+      { h: '笔记', p: 'bǐjì', v: 'ghi chú', e: 'to take down (in writing)' },
+      { h: '必须', p: 'bìxū', v: 'phải, bắt buộc', e: 'to have to' },
+      { h: '边', p: 'biān', v: 'bên, cạnh', e: 'side' },
+      { h: '不但', p: 'búdàn', v: 'không những', e: 'not only (... but also ...)' },
+      { h: '不过', p: 'búguò', v: 'nhưng mà, tuy nhiên', e: 'only' },
+      { h: '不太', p: 'bú tài', v: 'không lắm', e: 'Not too' },
+      { h: '不要', p: 'bú yào', v: 'đừng, không muốn', e: 'don\\\'t!' },
+      { h: '不一定', p: 'bù yīdìng', v: 'không nhất định', e: 'not necessarily' },
+      { h: '不一会儿', p: 'bù yīhuǐr', v: 'một lát, chốc lát', e: 'Take a short while' },
+      { h: '部分', p: 'bùfen', v: 'phần, bộ phận', e: 'part' },
+      { h: '才', p: 'cái', v: 'mới (chỉ sau khi...)', e: 'ability' },
+      { h: '草地', p: 'cǎodì', v: 'bãi cỏ', e: 'lawn' },
+      { h: '层', p: 'céng', v: 'tầng, lớp', e: 'to pile on top of one another' },
+      { h: '差不多', p: 'chàbuduō', v: 'gần như, khoảng', e: 'almost' },
+      { h: '场', p: 'chǎng', v: 'sân, trường (lượng từ)', e: 'threshing floor' }
     ],
     workbook: {
       easy: [
@@ -2688,6 +2996,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (2)',
     context: 'Mai và Tiểu Mỹ đi chơi cuối tuần, thăm vườn thú và mua sắm.',
     vocabPreview: ['动物园', '但是', '到处', '地铁', '成绩'],
+    objectives: [
+      'Đặt giả định bằng …的话 (你想去的话)',
+      'Chuyển ý bằng 但是 / 但',
+      'Diễn đạt “từ nhỏ đã…” bằng 从小',
+      'Nói về đi chơi, phương tiện (动物园 · 地铁 · 到处)'
+    ],
+    grammarNotes: [
+      { point: '…的话 — nếu…thì',
+        explain: 'Đặt 的话 ở cuối vế điều kiện để nêu giả định, vế sau nêu kết quả.',
+        examples: [
+          { zh: '你想去的话，我们现在出发。', py: 'Nǐ xiǎng qù dehuà, wǒmen xiànzài chūfā.', vi: 'Nếu cậu muốn đi thì chúng ta xuất phát ngay.' }
+        ] },
+      { point: '但是 / 但 — nhưng',
+        explain: '但是 (và dạng rút gọn 但) nối vế đối lập, đặt đầu vế sau.',
+        examples: [
+          { zh: '但是我们怎么去？', py: 'Dànshì wǒmen zěnme qù?', vi: 'Nhưng chúng ta đi thế nào?' }
+        ] },
+      { point: '从小 — từ nhỏ (đã)',
+        explain: '从小 + (就) + động từ: việc đã diễn ra từ khi còn nhỏ.',
+        examples: [
+          { zh: '我从小就喜欢动物。', py: 'Wǒ cóngxiǎo jiù xǐhuan dòngwù.', vi: 'Tớ từ nhỏ đã thích động vật.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -2837,26 +3168,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '成绩', p: 'chéngjì', v: 'thành tích, điểm số' },
-      { h: '词典', p: 'cídiǎn', v: 'từ điển' },
-      { h: '从小', p: 'cóngxiǎo', v: 'từ nhỏ' },
-      { h: '大部分', p: 'dà bùfen', v: 'phần lớn' },
-      { h: '大人', p: 'dàrén', v: 'người lớn' },
-      { h: '大声', p: 'dàshēng', v: 'to tiếng' },
-      { h: '大小', p: 'dàxiǎo', v: 'kích cỡ' },
-      { h: '大衣', p: 'dàyī', v: 'áo khoác' },
-      { h: '单位', p: 'dānwèi', v: 'đơn vị, cơ quan' },
-      { h: '但', p: 'dàn', v: 'nhưng' },
-      { h: '但是', p: 'dànshì', v: 'nhưng mà' },
-      { h: '到处', p: 'dàochù', v: 'khắp nơi' },
-      { h: '道路', p: 'dàolù', v: 'con đường' },
-      { h: '地铁', p: 'dìtiě', v: 'tàu điện ngầm' },
-      { h: '的话', p: 'de huà', v: 'nếu...thì' },
-      { h: '店', p: 'diàn', v: 'cửa hàng' },
-      { h: '动物', p: 'dòngwù', v: 'động vật' },
-      { h: '动物园', p: 'dòngwùyuán', v: 'vườn thú' },
-      { h: '短信', p: 'duǎnxìn', v: 'tin nhắn' },
-      { h: '队', p: 'duì', v: 'đội, hàng' }
+      { h: '成绩', p: 'chéngjì', v: 'thành tích, điểm số', e: 'achievement' },
+      { h: '词典', p: 'cídiǎn', v: 'từ điển', e: 'dictionary' },
+      { h: '从小', p: 'cóngxiǎo', v: 'từ nhỏ', e: 'from childhood' },
+      { h: '大部分', p: 'dà bùfen', v: 'phần lớn', e: 'in large part' },
+      { h: '大人', p: 'dàrén', v: 'người lớn', e: 'adult' },
+      { h: '大声', p: 'dàshēng', v: 'to tiếng', e: 'loud voice' },
+      { h: '大小', p: 'dàxiǎo', v: 'kích cỡ', e: 'dimension' },
+      { h: '大衣', p: 'dàyī', v: 'áo khoác', e: 'overcoat' },
+      { h: '单位', p: 'dānwèi', v: 'đơn vị, cơ quan', e: 'unit (of measure)' },
+      { h: '但', p: 'dàn', v: 'nhưng', e: 'but' },
+      { h: '但是', p: 'dànshì', v: 'nhưng mà', e: 'but' },
+      { h: '到处', p: 'dàochù', v: 'khắp nơi', e: 'everywhere' },
+      { h: '道路', p: 'dàolù', v: 'con đường', e: 'road' },
+      { h: '地铁', p: 'dìtiě', v: 'tàu điện ngầm', e: 'underground railway' },
+      { h: '的话', p: 'de huà', v: 'nếu...thì', e: 'if (coming after a conditional clause)' },
+      { h: '店', p: 'diàn', v: 'cửa hàng', e: 'inn' },
+      { h: '动物', p: 'dòngwù', v: 'động vật', e: 'animal' },
+      { h: '动物园', p: 'dòngwùyuán', v: 'vườn thú', e: 'zoo' },
+      { h: '短信', p: 'duǎnxìn', v: 'tin nhắn', e: 'text message' },
+      { h: '队', p: 'duì', v: 'đội, hàng', e: 'squadron' }
     ],
     workbook: {
       easy: [
@@ -2896,6 +3227,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (3)',
     context: 'Mai và Tiểu Mỹ đi dạo ở quảng trường, nói về nghệ thuật và cuộc sống.',
     vocabPreview: ['而且', '更', '方法', '广场', '故事'],
+    objectives: [
+      'So sánh tăng tiến bằng 更 (更漂亮)',
+      'Bổ sung ý bằng 而且',
+      'Diễn đạt sự việc bất ngờ bằng 忽然',
+      'Nói về quảng trường, nghệ thuật (广场 · 画家 · 故事)'
+    ],
+    grammarNotes: [
+      { point: '更 — hơn (so sánh)',
+        explain: '更 + tính từ nhấn mức độ cao hơn so với mốc đã có.',
+        examples: [
+          { zh: '这幅画儿更漂亮！', py: 'Zhè fú huàr gèng piàoliang!', vi: 'Bức tranh này còn đẹp hơn!' }
+        ] },
+      { point: '而且 — hơn nữa, mà còn',
+        explain: '而且 nối thêm một ý cùng chiều, làm rõ / tăng ý trước.',
+        examples: [
+          { zh: '这个广场真大，而且很漂亮。', py: 'Zhège guǎngchǎng zhēn dà, érqiě hěn piàoliang.', vi: 'Quảng trường này thật lớn, mà còn rất đẹp.' }
+        ] },
+      { point: '忽然 — đột nhiên',
+        explain: '忽然 đặt trước động từ chỉ việc xảy ra bất ngờ.',
+        examples: [
+          { zh: '忽然下雨了！', py: 'Hūrán xià yǔ le!', vi: 'Đột nhiên mưa rồi!' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -3038,26 +3392,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '队长', p: 'duìzhǎng', v: 'đội trưởng' },
-      { h: '而且', p: 'érqiě', v: 'mà còn, hơn nữa' },
-      { h: '方法', p: 'fāngfǎ', v: 'phương pháp, cách' },
-      { h: '方向', p: 'fāngxiàng', v: 'phương hướng' },
-      { h: '刚', p: 'gāng', v: 'vừa mới' },
-      { h: '个子', p: 'gèzi', v: 'chiều cao, dáng người' },
-      { h: '更', p: 'gèng', v: 'còn, hơn (so sánh)' },
-      { h: '公里', p: 'gōnglǐ', v: 'cây số, km' },
-      { h: '故事', p: 'gùshi', v: 'câu chuyện' },
-      { h: '顾客', p: 'gùkè', v: 'khách hàng' },
-      { h: '观点', p: 'guāndiǎn', v: 'quan điểm' },
-      { h: '广场', p: 'guǎngchǎng', v: 'quảng trường' },
-      { h: '广告', p: 'guǎnggào', v: 'quảng cáo' },
-      { h: '海边', p: 'hǎibiān', v: 'bờ biển' },
-      { h: '好处', p: 'hǎochu', v: 'lợi ích' },
-      { h: '好人', p: 'hǎorén', v: 'người tốt' },
-      { h: '好事', p: 'hǎoshì', v: 'việc tốt' },
-      { h: '忽然', p: 'hūrán', v: 'đột nhiên' },
-      { h: '画儿', p: 'huàr', v: 'tranh, bức vẽ' },
-      { h: '画家', p: 'huàjiā', v: 'họa sĩ' }
+      { h: '队长', p: 'duìzhǎng', v: 'đội trưởng', e: 'captain' },
+      { h: '而且', p: 'érqiě', v: 'mà còn, hơn nữa', e: 'but also' },
+      { h: '方法', p: 'fāngfǎ', v: 'phương pháp, cách', e: 'method' },
+      { h: '方向', p: 'fāngxiàng', v: 'phương hướng', e: 'direction' },
+      { h: '刚', p: 'gāng', v: 'vừa mới', e: 'hard' },
+      { h: '个子', p: 'gèzi', v: 'chiều cao, dáng người', e: 'height' },
+      { h: '更', p: 'gèng', v: 'còn, hơn (so sánh)', e: 'to change or replace' },
+      { h: '公里', p: 'gōnglǐ', v: 'cây số, km', e: 'kilometer' },
+      { h: '故事', p: 'gùshi', v: 'câu chuyện', e: 'old practice' },
+      { h: '顾客', p: 'gùkè', v: 'khách hàng', e: 'customer' },
+      { h: '观点', p: 'guāndiǎn', v: 'quan điểm', e: 'point of view' },
+      { h: '广场', p: 'guǎngchǎng', v: 'quảng trường', e: 'public square' },
+      { h: '广告', p: 'guǎnggào', v: 'quảng cáo', e: 'to advertise' },
+      { h: '海边', p: 'hǎibiān', v: 'bờ biển', e: 'coast' },
+      { h: '好处', p: 'hǎochu', v: 'lợi ích', e: 'easy to get along with' },
+      { h: '好人', p: 'hǎorén', v: 'người tốt', e: 'good person' },
+      { h: '好事', p: 'hǎoshì', v: 'việc tốt', e: 'good action, deed, thing or work (also sarcastic, "a fine thing indeed")' },
+      { h: '忽然', p: 'hūrán', v: 'đột nhiên', e: 'suddenly' },
+      { h: '画儿', p: 'huàr', v: 'tranh, bức vẽ', e: 'picture' },
+      { h: '画家', p: 'huàjiā', v: 'họa sĩ', e: 'painter' }
     ],
     workbook: {
       easy: [
@@ -3097,6 +3451,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (4)',
     context: 'Mai và Tiểu Mỹ chuẩn bị đón khách, nói về ẩm thực và các ngày lễ.',
     vocabPreview: ['或者', '节日', '客人', '快点儿', '看法'],
+    objectives: [
+      'Nêu lựa chọn trong câu trần thuật bằng 或者 / 或',
+      'Diễn đạt “sắp” bằng 就要…了',
+      'Diễn đạt kinh nghiệm bằng V过 (见过)',
+      'Nói về ngày lễ, đãi khách (节日 · 客人 · 看法)'
+    ],
+    grammarNotes: [
+      { point: '或者 / 或 — hoặc (câu trần thuật)',
+        explain: '或者 nối lựa chọn trong câu kể; câu hỏi lựa chọn dùng 还是.',
+        examples: [
+          { zh: '我们做饺子或者买快餐？', py: 'Wǒmen zuò jiǎozi huòzhě mǎi kuàicān?', vi: 'Chúng ta làm sủi cảo hay mua đồ ăn nhanh?' }
+        ] },
+      { point: '就要…了 — sắp (sửa)',
+        explain: 'Khung “就要 + V + 了” nhấn việc sắp xảy ra, thường rất gần.',
+        examples: [
+          { zh: '客人就要来了！', py: 'Kèrén jiùyào lái le!', vi: 'Khách sắp đến rồi!' }
+        ] },
+      { point: 'V过 — đã từng (kinh nghiệm)',
+        explain: '过 sau động từ chỉ kinh nghiệm “đã từng làm / gặp”.',
+        examples: [
+          { zh: '你见过那个科学家吗？', py: 'Nǐ jiànguo nàge kēxuéjiā ma?', vi: 'Cậu đã gặp nhà khoa học kia chưa?' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -3239,26 +3616,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '坏处', p: 'huàichu', v: 'tác hại, điểm xấu' },
-      { h: '坏人', p: 'huàirén', v: 'người xấu' },
-      { h: '或', p: 'huò', v: 'hoặc' },
-      { h: '或者', p: 'huòzhě', v: 'hoặc, hay' },
-      { h: '鸡', p: 'jī', v: 'gà' },
-      { h: '级', p: 'jí', v: 'cấp, bậc' },
-      { h: '见过', p: 'jiànguò', v: 'đã gặp' },
-      { h: '交通', p: 'jiāotōng', v: 'giao thông' },
-      { h: '角', p: 'jiǎo', v: 'góc' },
-      { h: '角度', p: 'jiǎodù', v: 'góc độ' },
-      { h: '饺子', p: 'jiǎozi', v: 'sủi cảo' },
-      { h: '节目', p: 'jiémù', v: 'chương trình' },
-      { h: '节日', p: 'jiérì', v: 'ngày lễ' },
-      { h: '就要', p: 'jiùyào', v: 'sắp, sẽ' },
-      { h: '看法', p: 'kànfǎ', v: 'ý kiến, quan điểm' },
-      { h: '科学家', p: 'kēxuéjiā', v: 'nhà khoa học' },
-      { h: '客人', p: 'kèrén', v: 'khách' },
-      { h: '空气', p: 'kōngqì', v: 'không khí' },
-      { h: '快餐', p: 'kuàicān', v: 'đồ ăn nhanh' },
-      { h: '快点儿', p: 'kuàidiǎnr', v: 'nhanh lên' }
+      { h: '坏处', p: 'huàichu', v: 'tác hại, điểm xấu', e: 'harm' },
+      { h: '坏人', p: 'huàirén', v: 'người xấu', e: 'bad person' },
+      { h: '或', p: 'huò', v: 'hoặc', e: 'maybe' },
+      { h: '或者', p: 'huòzhě', v: 'hoặc, hay', e: 'or' },
+      { h: '鸡', p: 'jī', v: 'gà', e: 'fowl' },
+      { h: '级', p: 'jí', v: 'cấp, bậc', e: 'level' },
+      { h: '见过', p: 'jiànguò', v: 'đã gặp', e: 'seen' },
+      { h: '交通', p: 'jiāotōng', v: 'giao thông', e: 'to be connected' },
+      { h: '角', p: 'jiǎo', v: 'góc', e: 'corner, angle, jiao (0.1 yuan)' },
+      { h: '角度', p: 'jiǎodù', v: 'góc độ', e: 'angle' },
+      { h: '饺子', p: 'jiǎozi', v: 'sủi cảo', e: 'dumpling' },
+      { h: '节目', p: 'jiémù', v: 'chương trình', e: 'program' },
+      { h: '节日', p: 'jiérì', v: 'ngày lễ', e: 'holiday' },
+      { h: '就要', p: 'jiùyào', v: 'sắp, sẽ', e: 'will' },
+      { h: '看法', p: 'kànfǎ', v: 'ý kiến, quan điểm', e: 'way of looking at a thing' },
+      { h: '科学家', p: 'kēxuéjiā', v: 'nhà khoa học', e: 'scientist' },
+      { h: '客人', p: 'kèrén', v: 'khách', e: 'visitor' },
+      { h: '空气', p: 'kōngqì', v: 'không khí', e: 'air' },
+      { h: '快餐', p: 'kuàicān', v: 'đồ ăn nhanh', e: 'fast food' },
+      { h: '快点儿', p: 'kuàidiǎnr', v: 'nhanh lên', e: 'erhua variant of 快点' }
     ],
     workbook: {
       easy: [
@@ -3297,6 +3674,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (5)',
     context: 'Một người bạn cũ sắp từ nước ngoài trở về. Mai và Tiểu Mỹ lên kế hoạch tổ chức buổi gặp mặt chào đón.',
     vocabPreview: ['老朋友', '礼物', '名单', '目的', '球场'],
+    objectives: [
+      'Dùng 让 để nói “để cho mọi người…” (让大家见面)',
+      'Dự đoán bằng câu chính phản 会不会 (会不会太多)',
+      'Diễn đạt phương thức kèm theo bằng V着 (照着做)',
+      'Nói về tổ chức gặp mặt (名单 · 目的 · 礼物)'
+    ],
+    grammarNotes: [
+      { point: '让 — để, khiến',
+        explain: '让 + đối tượng + động từ: để / cho / khiến ai làm gì.',
+        examples: [
+          { zh: '目的就是让大家见面。', py: 'Mùdì jiùshì ràng dàjiā jiànmiàn.', vi: 'Mục đích là để mọi người gặp nhau.' }
+        ] },
+      { point: '会不会 — có…không (dự đoán)',
+        explain: 'Dạng chính phản “会不会 + V” hỏi / đoán khả năng xảy ra.',
+        examples: [
+          { zh: '人数会不会太多？', py: 'Rénshù huì bú huì tài duō?', vi: 'Số người có quá nhiều không?' }
+        ] },
+      { point: 'V着 — theo trạng thái / phương thức',
+        explain: '着 sau động từ chỉ trạng thái duy trì hoặc cách thức kèm theo.',
+        examples: [
+          { zh: '看墙上的例子，照着做就行。', py: 'Kàn qiáng shàng de lìzi, zhàozhe zuò jiù xíng.', vi: 'Nhìn ví dụ trên tường, làm theo là được.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -3432,26 +3832,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '老朋友', p: 'lǎopéngyou', v: 'bạn cũ, bạn lâu năm' },
-      { h: '礼物', p: 'lǐwù', v: 'quà, món quà' },
-      { h: '里头', p: 'lǐtou', v: 'bên trong' },
-      { h: '例子', p: 'lìzi', v: 'ví dụ' },
-      { h: '路边', p: 'lùbiān', v: 'bên đường, lề đường' },
-      { h: '旅客', p: 'lǚkè', v: 'lữ khách, hành khách' },
-      { h: '面前', p: 'miànqián', v: 'trước mặt' },
-      { h: '名称', p: 'míngchēng', v: 'tên gọi' },
-      { h: '名单', p: 'míngdān', v: 'danh sách (tên người)' },
-      { h: '目的', p: 'mùdì', v: 'mục đích' },
-      { h: '难题', p: 'nántí', v: 'bài toán khó, vấn đề nan giải' },
-      { h: '墙', p: 'qiáng', v: 'tường' },
-      { h: '青年', p: 'qīngnián', v: 'thanh niên' },
-      { h: '青少年', p: 'qīngshàonián', v: 'thanh thiếu niên' },
-      { h: '球场', p: 'qiúchǎng', v: 'sân bóng' },
-      { h: '全身', p: 'quánshēn', v: 'toàn thân, cả người' },
-      { h: '全体', p: 'quántǐ', v: 'toàn thể' },
-      { h: '人口', p: 'rénkǒu', v: 'dân số' },
-      { h: '人们', p: 'rénmen', v: 'mọi người, người ta' },
-      { h: '人数', p: 'rénshù', v: 'số người' }
+      { h: '老朋友', p: 'lǎopéngyou', v: 'bạn cũ, bạn lâu năm', e: 'old friend' },
+      { h: '礼物', p: 'lǐwù', v: 'quà, món quà', e: 'gift' },
+      { h: '里头', p: 'lǐtou', v: 'bên trong', e: 'inside' },
+      { h: '例子', p: 'lìzi', v: 'ví dụ', e: 'case' },
+      { h: '路边', p: 'lùbiān', v: 'bên đường, lề đường', e: 'curb' },
+      { h: '旅客', p: 'lǚkè', v: 'lữ khách, hành khách', e: 'traveler' },
+      { h: '面前', p: 'miànqián', v: 'trước mặt', e: 'in front of' },
+      { h: '名称', p: 'míngchēng', v: 'tên gọi', e: 'name (of a thing)' },
+      { h: '名单', p: 'míngdān', v: 'danh sách (tên người)', e: 'list of names' },
+      { h: '目的', p: 'mùdì', v: 'mục đích', e: 'purpose' },
+      { h: '难题', p: 'nántí', v: 'bài toán khó, vấn đề nan giải', e: 'difficult problem' },
+      { h: '墙', p: 'qiáng', v: 'tường', e: 'wall' },
+      { h: '青年', p: 'qīngnián', v: 'thanh niên', e: 'youth' },
+      { h: '青少年', p: 'qīngshàonián', v: 'thanh thiếu niên', e: 'adolescent' },
+      { h: '球场', p: 'qiúchǎng', v: 'sân bóng', e: 'stadium' },
+      { h: '全身', p: 'quánshēn', v: 'toàn thân, cả người', e: 'the whole body' },
+      { h: '全体', p: 'quántǐ', v: 'toàn thể', e: 'all' },
+      { h: '人口', p: 'rénkǒu', v: 'dân số', e: 'population' },
+      { h: '人们', p: 'rénmen', v: 'mọi người, người ta', e: 'people' },
+      { h: '人数', p: 'rénshù', v: 'số người', e: 'number of people' }
     ],
     workbook: {
       easy: [
@@ -3490,6 +3890,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (6)',
     context: 'Buổi gặp mặt diễn ra ở sân vận động. Mai và Tiểu Mỹ gặp nhiều người và trò chuyện về công việc, thái độ và điều kiện tổ chức.',
     vocabPreview: ['虽然', '所以', '态度', '条件', '体育场'],
+    objectives: [
+      'Dùng cặp 虽然…但是… (tuy…nhưng)',
+      'Dùng cặp 因为…所以… (vì…nên)',
+      'Nhấn mức độ bằng 十分 (十分漂亮)',
+      'Nói về sự kiện, con người (态度 · 条件 · 水平)'
+    ],
+    grammarNotes: [
+      { point: '虽然…但是… — tuy…nhưng…',
+        explain: '虽然 mở vế nhượng bộ, vế sau dùng 但是 / 可是 — KHÔNG dùng 所以. (所以 chỉ đi với 因为.)',
+        examples: [
+          { zh: '虽然体育馆小一点，但是更热闹。', py: 'Suīrán tǐyùguǎn xiǎo yìdiǎn, dànshì gèng rènao.', vi: 'Tuy nhà thi đấu nhỏ hơn, nhưng lại náo nhiệt hơn.' }
+        ] },
+      { point: '因为…所以… — vì…nên…',
+        explain: '因为 nêu nguyên nhân, 所以 nêu kết quả; có thể lược bỏ một trong hai.',
+        examples: [
+          { zh: '因为人多，所以很热闹。', py: 'Yīnwèi rén duō, suǒyǐ hěn rènao.', vi: 'Vì đông người nên rất náo nhiệt.' }
+        ] },
+      { point: '十分 — rất, vô cùng',
+        explain: '十分 là phó từ chỉ mức độ cao, đứng trước tính từ.',
+        examples: [
+          { zh: '天上的云十分漂亮。', py: 'Tiānshàng de yún shífēn piàoliang.', vi: 'Mây trên trời đẹp vô cùng.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -3611,26 +4034,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '商人', p: 'shāngrén', v: 'thương nhân, người buôn bán' },
-      { h: '身边', p: 'shēnbiān', v: 'bên cạnh, bên mình' },
-      { h: '声音', p: 'shēngyīn', v: 'âm thanh, giọng nói' },
-      { h: '十分', p: 'shífēn', v: 'rất, vô cùng' },
-      { h: '食物', p: 'shíwù', v: 'thức ăn, thực phẩm' },
-      { h: '市长', p: 'shìzhǎng', v: 'thị trưởng' },
-      { h: '事情', p: 'shìqing', v: 'việc, sự việc' },
-      { h: '数字', p: 'shùzì', v: 'con số, chữ số' },
-      { h: '水平', p: 'shuǐpíng', v: 'trình độ' },
-      { h: '司机', p: 'sījī', v: 'tài xế' },
-      { h: '虽然', p: 'suīrán', v: 'tuy nhiên, mặc dù' },
-      { h: '随时', p: 'suíshí', v: 'bất cứ lúc nào' },
-      { h: '所以', p: 'suǒyǐ', v: 'cho nên, vì vậy' },
-      { h: '太太', p: 'tàitai', v: 'vợ, bà (xưng hô)' },
-      { h: '态度', p: 'tàidù', v: 'thái độ' },
-      { h: '特点', p: 'tèdiǎn', v: 'đặc điểm' },
-      { h: '体育场', p: 'tǐyùchǎng', v: 'sân vận động' },
-      { h: '体育馆', p: 'tǐyùguǎn', v: 'nhà thi đấu' },
-      { h: '天上', p: 'tiānshàng', v: 'trên trời' },
-      { h: '条件', p: 'tiáojiàn', v: 'điều kiện' }
+      { h: '商人', p: 'shāngrén', v: 'thương nhân, người buôn bán', e: 'merchant' },
+      { h: '身边', p: 'shēnbiān', v: 'bên cạnh, bên mình', e: 'at one\\\'s side' },
+      { h: '声音', p: 'shēngyīn', v: 'âm thanh, giọng nói', e: 'voice' },
+      { h: '十分', p: 'shífēn', v: 'rất, vô cùng', e: 'very' },
+      { h: '食物', p: 'shíwù', v: 'thức ăn, thực phẩm', e: 'food' },
+      { h: '市长', p: 'shìzhǎng', v: 'thị trưởng', e: 'mayor' },
+      { h: '事情', p: 'shìqing', v: 'việc, sự việc', e: 'affair' },
+      { h: '数字', p: 'shùzì', v: 'con số, chữ số', e: 'numeral' },
+      { h: '水平', p: 'shuǐpíng', v: 'trình độ', e: 'level (of achievement etc)' },
+      { h: '司机', p: 'sījī', v: 'tài xế', e: 'chauffeur' },
+      { h: '虽然', p: 'suīrán', v: 'tuy nhiên, mặc dù', e: 'although' },
+      { h: '随时', p: 'suíshí', v: 'bất cứ lúc nào', e: 'at any time' },
+      { h: '所以', p: 'suǒyǐ', v: 'cho nên, vì vậy', e: 'therefore' },
+      { h: '太太', p: 'tàitai', v: 'vợ, bà (xưng hô)', e: 'married woman' },
+      { h: '态度', p: 'tàidù', v: 'thái độ', e: 'manner' },
+      { h: '特点', p: 'tèdiǎn', v: 'đặc điểm', e: 'characteristic (feature)' },
+      { h: '体育场', p: 'tǐyùchǎng', v: 'sân vận động', e: 'stadium' },
+      { h: '体育馆', p: 'tǐyùguǎn', v: 'nhà thi đấu', e: 'gym' },
+      { h: '天上', p: 'tiānshàng', v: 'trên trời', e: 'celestial' },
+      { h: '条件', p: 'tiáojiàn', v: 'điều kiện', e: 'condition' }
     ],
     workbook: {
       easy: [
@@ -3669,6 +4092,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (7)',
     context: 'Mai và Tiểu Mỹ lập một nhóm nhỏ làm trang web đăng ký cho buổi gặp mặt. Họ xử lý thông tin và họ tên của khách.',
     vocabPreview: ['网站', '信息', '小组', '心情', '姓名'],
+    objectives: [
+      'Khuyên ngăn bằng 别 + V (别担心)',
+      'Diễn đạt sắc thái không như ý bằng 有点儿 + adj (有点担心)',
+      'Nối hai việc song song bằng 同时',
+      'Nói về làm trang web, thông tin (网站 · 信息 · 姓名)'
+    ],
+    grammarNotes: [
+      { point: '别 + V — đừng (khuyên ngăn)',
+        explain: '别 + động từ là cách nói ngắn của 不要, khuyên / cấm đừng làm gì.',
+        examples: [
+          { zh: '别担心，要有信心！', py: 'Bié dānxīn, yào yǒu xìnxīn!', vi: 'Đừng lo, phải có lòng tin!' }
+        ] },
+      { point: '有点儿 + tính từ — hơi (không như ý)',
+        explain: '有点儿 + tính từ (thường mang nghĩa tiêu cực) diễn đạt mức độ nhẹ “hơi…”.',
+        examples: [
+          { zh: '这里信号不好，我有点担心。', py: 'Zhèlǐ xìnhào bù hǎo, wǒ yǒudiǎn dānxīn.', vi: 'Ở đây tín hiệu kém, tớ hơi lo.' }
+        ] },
+      { point: '同时 — đồng thời',
+        explain: '同时 nối hai việc xảy ra / cần làm cùng lúc.',
+        examples: [
+          { zh: '同时也要填姓名。', py: 'Tóngshí yě yào tián xìngmíng.', vi: 'Đồng thời cũng phải điền họ tên.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -3790,26 +4236,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '挺好', p: 'tǐng hǎo', v: 'khá tốt, ổn đấy' },
-      { h: '同时', p: 'tóngshí', v: 'đồng thời, cùng lúc' },
-      { h: '图片', p: 'túpiàn', v: 'hình ảnh, tranh ảnh' },
-      { h: '外地', p: 'wàidì', v: 'nơi khác, ngoại tỉnh' },
-      { h: '网站', p: 'wǎngzhàn', v: 'trang web' },
-      { h: '问题', p: 'wèntí', v: 'vấn đề, câu hỏi' },
-      { h: '小组', p: 'xiǎozǔ', v: 'nhóm nhỏ' },
-      { h: '校园', p: 'xiàoyuán', v: 'khuôn viên trường' },
-      { h: '笑话', p: 'xiàohua', v: 'chuyện cười, lời nói đùa' },
-      { h: '笑话儿', p: 'xiàohuar', v: 'chuyện cười (khẩu ngữ)' },
-      { h: '心情', p: 'xīnqíng', v: 'tâm trạng' },
-      { h: '心中', p: 'xīnzhōng', v: 'trong lòng' },
-      { h: '新闻', p: 'xīnwén', v: 'tin tức' },
-      { h: '信号', p: 'xìnhào', v: 'tín hiệu' },
-      { h: '信息', p: 'xìnxī', v: 'thông tin' },
-      { h: '信心', p: 'xìnxīn', v: 'lòng tin, sự tự tin' },
-      { h: '信用卡', p: 'xìnyòngkǎ', v: 'thẻ tín dụng' },
-      { h: '行人', p: 'xíngrén', v: 'người đi bộ' },
-      { h: '行为', p: 'xíngwéi', v: 'hành vi' },
-      { h: '姓名', p: 'xìngmíng', v: 'họ tên' }
+      { h: '挺好', p: 'tǐng hǎo', v: 'khá tốt, ổn đấy', e: 'very good' },
+      { h: '同时', p: 'tóngshí', v: 'đồng thời, cùng lúc', e: 'at the same time' },
+      { h: '图片', p: 'túpiàn', v: 'hình ảnh, tranh ảnh', e: 'picture' },
+      { h: '外地', p: 'wàidì', v: 'nơi khác, ngoại tỉnh', e: 'parts of the country other than where one is' },
+      { h: '网站', p: 'wǎngzhàn', v: 'trang web', e: 'website' },
+      { h: '问题', p: 'wèntí', v: 'vấn đề, câu hỏi', e: 'question' },
+      { h: '小组', p: 'xiǎozǔ', v: 'nhóm nhỏ', e: 'group' },
+      { h: '校园', p: 'xiàoyuán', v: 'khuôn viên trường', e: 'campus' },
+      { h: '笑话', p: 'xiàohua', v: 'chuyện cười, lời nói đùa', e: 'joke' },
+      { h: '笑话儿', p: 'xiàohuar', v: 'chuyện cười (khẩu ngữ)', e: 'Joke' },
+      { h: '心情', p: 'xīnqíng', v: 'tâm trạng', e: 'mood' },
+      { h: '心中', p: 'xīnzhōng', v: 'trong lòng', e: 'central point' },
+      { h: '新闻', p: 'xīnwén', v: 'tin tức', e: 'news' },
+      { h: '信号', p: 'xìnhào', v: 'tín hiệu', e: 'signal' },
+      { h: '信息', p: 'xìnxī', v: 'thông tin', e: 'information' },
+      { h: '信心', p: 'xìnxīn', v: 'lòng tin, sự tự tin', e: 'confidence' },
+      { h: '信用卡', p: 'xìnyòngkǎ', v: 'thẻ tín dụng', e: 'credit card' },
+      { h: '行人', p: 'xíngrén', v: 'người đi bộ', e: 'pedestrian' },
+      { h: '行为', p: 'xíngwéi', v: 'hành vi', e: 'action' },
+      { h: '姓名', p: 'xìngmíng', v: 'họ tên', e: 'full name (surname and given name)' }
     ],
     workbook: {
       easy: [
@@ -3848,6 +4294,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (8)',
     context: 'Cuối học kỳ, buổi gặp mặt kết thúc. Bạn cũ sắp lên đường về nước. Mọi người cùng nhau xem phim kỷ niệm và tạm biệt.',
     vocabPreview: ['学期', '已经', '一直', '一路平安', '原因'],
+    objectives: [
+      'Dùng khung 除了…以外，还… (ngoài…ra, còn…)',
+      'Diễn đạt việc đã hoàn tất bằng 已经…了',
+      'Dùng bổ ngữ khả năng 听得懂 (nghe hiểu được)',
+      'Nói về kết thúc học kỳ, chia tay (学期 · 原因 · 一直)'
+    ],
+    grammarNotes: [
+      { point: '除了…以外，还… — ngoài…ra, còn…',
+        explain: 'Khung này bổ sung thêm đối tượng / việc ngoài cái đã nêu.',
+        examples: [
+          { zh: '除了学生以外，还有很多游客。', py: 'Chúle xuésheng yǐwài, hái yǒu hěn duō yóukè.', vi: 'Ngoài học sinh ra, còn có nhiều du khách.' }
+        ] },
+      { point: '已经…了 — đã…rồi',
+        explain: 'Khung “已经 + … + 了” diễn đạt việc đã hoàn thành / đạt mức.',
+        examples: [
+          { zh: '这个学期已经快结束了。', py: 'Zhège xuéqī yǐjīng kuài jiéshù le.', vi: 'Học kỳ này đã sắp kết thúc rồi.' }
+        ] },
+      { point: '听得懂 — bổ ngữ khả năng',
+        explain: 'V + 得 + kết quả = có thể…; phủ định V + 不 + kết quả (听不懂).',
+        examples: [
+          { zh: '每个音节我都听得懂了。', py: 'Měi gè yīnjié wǒ dōu tīng de dǒng le.', vi: 'Mỗi âm tiết tớ đều nghe hiểu được.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -3969,26 +4438,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '学期', p: 'xuéqī', v: 'học kỳ' },
-      { h: '样子', p: 'yàngzi', v: 'dáng vẻ, bộ dạng' },
-      { h: '也许', p: 'yěxǔ', v: 'có lẽ, có thể' },
-      { h: '一共', p: 'yígòng', v: 'tổng cộng' },
-      { h: '一路平安', p: 'yílù píng’ān', v: 'thượng lộ bình an' },
-      { h: '一生', p: 'yìshēng', v: 'cả đời, cả cuộc đời' },
-      { h: '一直', p: 'yìzhí', v: 'luôn luôn, mãi' },
-      { h: '已经', p: 'yǐjīng', v: 'đã, đã rồi' },
-      { h: '以后', p: 'yǐhòu', v: 'sau này, về sau' },
-      { h: '以前', p: 'yǐqián', v: 'trước đây, trước kia' },
-      { h: '以外', p: 'yǐwài', v: 'ngoài ra, ngoài... ra' },
-      { h: '因为', p: 'yīnwèi', v: 'vì, bởi vì' },
-      { h: '音节', p: 'yīnjié', v: 'âm tiết' },
-      { h: '影片', p: 'yǐngpiàn', v: 'bộ phim' },
-      { h: '游客', p: 'yóukè', v: 'du khách' },
-      { h: '有空儿', p: 'yǒu kòngr', v: 'có thời gian rảnh' },
-      { h: '有一点儿', p: 'yǒu yìdiǎnr', v: 'có một chút' },
-      { h: '有意思', p: 'yǒuyìsi', v: 'thú vị, hay' },
-      { h: '又', p: 'yòu', v: 'lại (lặp lại)' },
-      { h: '原因', p: 'yuányīn', v: 'nguyên nhân, lý do' }
+      { h: '学期', p: 'xuéqī', v: 'học kỳ', e: 'term' },
+      { h: '样子', p: 'yàngzi', v: 'dáng vẻ, bộ dạng', e: 'appearance' },
+      { h: '也许', p: 'yěxǔ', v: 'có lẽ, có thể', e: 'perhaps' },
+      { h: '一共', p: 'yígòng', v: 'tổng cộng', e: 'altogether' },
+      { h: '一路平安', p: 'yílù píng’ān', v: 'thượng lộ bình an', e: 'to have a pleasant journey' },
+      { h: '一生', p: 'yìshēng', v: 'cả đời, cả cuộc đời', e: 'all one\\\'s life' },
+      { h: '一直', p: 'yìzhí', v: 'luôn luôn, mãi', e: 'straight (in a straight line)' },
+      { h: '已经', p: 'yǐjīng', v: 'đã, đã rồi', e: 'already' },
+      { h: '以后', p: 'yǐhòu', v: 'sau này, về sau', e: 'after' },
+      { h: '以前', p: 'yǐqián', v: 'trước đây, trước kia', e: 'before' },
+      { h: '以外', p: 'yǐwài', v: 'ngoài ra, ngoài... ra', e: 'apart from' },
+      { h: '因为', p: 'yīnwèi', v: 'vì, bởi vì', e: 'because' },
+      { h: '音节', p: 'yīnjié', v: 'âm tiết', e: 'syllable' },
+      { h: '影片', p: 'yǐngpiàn', v: 'bộ phim', e: 'a copy of a film' },
+      { h: '游客', p: 'yóukè', v: 'du khách', e: 'traveler' },
+      { h: '有空儿', p: 'yǒu kòngr', v: 'có thời gian rảnh', e: 'available' },
+      { h: '有一点儿', p: 'yǒu yìdiǎnr', v: 'có một chút', e: 'a bit' },
+      { h: '有意思', p: 'yǒuyìsi', v: 'thú vị, hay', e: 'interesting' },
+      { h: '又', p: 'yòu', v: 'lại (lặp lại)', e: 'again' },
+      { h: '原因', p: 'yuányīn', v: 'nguyên nhân, lý do', e: 'cause' }
     ],
     workbook: {
       easy: [
@@ -4027,6 +4496,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (9)',
     context: 'Sau kỳ nghỉ, Mai trở lại trung tâm học tập. Cô làm tổ trưởng, viết bài văn và sắp xếp lại chỗ ngồi cho nhóm.',
     vocabPreview: ['中心', '组长', '作文', '只要', '重新'],
+    objectives: [
+      'Dùng câu chữ 把 (把照片放进作文里)',
+      'Dùng cặp 只要…就… (chỉ cần…là…)',
+      'Diễn đạt biến đổi tăng dần bằng 越来越',
+      'Nói về làm tổ trưởng, viết văn (组长 · 作文 · 重新)'
+    ],
+    grammarNotes: [
+      { point: '把 — câu chữ 把',
+        explain: 'Khung “把 + tân ngữ + động từ + thành phần khác” nhấn việc xử lý đối tượng và kết quả của nó.',
+        examples: [
+          { zh: '我把这张照片放进作文里。', py: 'Wǒ bǎ zhè zhāng zhàopiàn fàngjìn zuòwén lǐ.', vi: 'Tớ để bức ảnh này vào bài văn.' }
+        ] },
+      { point: '只要…就… — chỉ cần…là…',
+        explain: '只要 nêu điều kiện đủ, vế sau dùng 就 nêu kết quả.',
+        examples: [
+          { zh: '只要努力就能做到！', py: 'Zhǐyào nǔlì jiù néng zuòdào!', vi: 'Chỉ cần cố gắng là làm được!' }
+        ] },
+      { point: '越来越 — càng ngày càng',
+        explain: '越来越 + tính từ / động từ chỉ mức độ tăng dần theo thời gian.',
+        examples: [
+          { zh: '大家越来越听你的。', py: 'Dàjiā yuèláiyuè tīng nǐ de.', vi: 'Mọi người càng ngày càng nghe cậu.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -4148,24 +4640,24 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '越来越', p: 'yuèláiyuè', v: 'càng ngày càng' },
-      { h: '早餐', p: 'zǎocān', v: 'bữa sáng' },
-      { h: '早就', p: 'zǎojiù', v: 'sớm đã, từ lâu đã' },
-      { h: '找出', p: 'zhǎochū', v: 'tìm ra' },
-      { h: '照片', p: 'zhàopiàn', v: 'bức ảnh' },
-      { h: '正好', p: 'zhènghǎo', v: 'vừa hay, vừa lúc' },
-      { h: '只要', p: 'zhǐyào', v: 'chỉ cần' },
-      { h: '中餐', p: 'zhōngcān', v: 'cơm trưa, món Trung' },
-      { h: '中心', p: 'zhōngxīn', v: 'trung tâm' },
-      { h: '重新', p: 'chóngxīn', v: 'lại từ đầu, làm lại' },
-      { h: '主人', p: 'zhǔrén', v: 'chủ nhân' },
-      { h: '住房', p: 'zhùfáng', v: 'nhà ở, chỗ ở' },
-      { h: '字典', p: 'zìdiǎn', v: 'từ điển (chữ)' },
-      { h: '组长', p: 'zǔzhǎng', v: 'tổ trưởng' },
-      { h: '作文', p: 'zuòwén', v: 'bài văn, bài tập làm văn' },
-      { h: '座位', p: 'zuòwèi', v: 'chỗ ngồi' },
-      { h: '表示', p: 'biǎoshì', v: 'biểu thị, bày tỏ' },
-      { h: '称', p: 'chēng', v: 'gọi là, xưng là' }
+      { h: '越来越', p: 'yuèláiyuè', v: 'càng ngày càng', e: 'more and more' },
+      { h: '早餐', p: 'zǎocān', v: 'bữa sáng', e: 'breakfast' },
+      { h: '早就', p: 'zǎojiù', v: 'sớm đã, từ lâu đã', e: 'already at an earlier time' },
+      { h: '找出', p: 'zhǎochū', v: 'tìm ra', e: 'to find' },
+      { h: '照片', p: 'zhàopiàn', v: 'bức ảnh', e: 'photograph' },
+      { h: '正好', p: 'zhènghǎo', v: 'vừa hay, vừa lúc', e: 'just (in time)' },
+      { h: '只要', p: 'zhǐyào', v: 'chỉ cần', e: 'if only' },
+      { h: '中餐', p: 'zhōngcān', v: 'cơm trưa, món Trung', e: 'lunch' },
+      { h: '中心', p: 'zhōngxīn', v: 'trung tâm', e: 'center' },
+      { h: '重新', p: 'chóngxīn', v: 'lại từ đầu, làm lại', e: 'again' },
+      { h: '主人', p: 'zhǔrén', v: 'chủ nhân', e: 'master' },
+      { h: '住房', p: 'zhùfáng', v: 'nhà ở, chỗ ở', e: 'housing' },
+      { h: '字典', p: 'zìdiǎn', v: 'từ điển (chữ)', e: 'Chinese character dictionary (containing entries for single characters, contrasted with a 词典, which has entries for words of one or more characters)' },
+      { h: '组长', p: 'zǔzhǎng', v: 'tổ trưởng', e: 'group leader' },
+      { h: '作文', p: 'zuòwén', v: 'bài văn, bài tập làm văn', e: 'to write an essay' },
+      { h: '座位', p: 'zuòwèi', v: 'chỗ ngồi', e: 'seat' },
+      { h: '表示', p: 'biǎoshì', v: 'biểu thị, bày tỏ', e: 'to express, to indicate, to show' },
+      { h: '称', p: 'chēng', v: 'gọi là, xưng là', e: 'to fit' }
     ],
     workbook: {
       easy: [
@@ -4204,6 +4696,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (1)',
     context: 'Cả nhóm tìm một quán ăn mới gần trường để ăn mừng. Mai và Tiểu Mỹ miêu tả quán và món ăn.',
     vocabPreview: ['安静', '便宜', '不错', '方便', '感动'],
+    objectives: [
+      'Diễn đạt hai tính chất song song bằng 又…又…',
+      'Cảm thán bằng 多么…啊',
+      'Dùng bổ ngữ khả năng phủ định V不… (吃不饱)',
+      'Miêu tả quán ăn, món ăn (安静 · 便宜 · 高级)'
+    ],
+    grammarNotes: [
+      { point: '又…又… — vừa…vừa…',
+        explain: 'Nối hai tính chất / động tác cùng tồn tại của một chủ thể.',
+        examples: [
+          { zh: '又方便又便宜。', py: 'Yòu fāngbiàn yòu piányi.', vi: 'Vừa tiện vừa rẻ.' }
+        ] },
+      { point: '多么…啊 — biết bao (cảm thán)',
+        explain: 'Khung “多么 + tính từ + 啊” bộc lộ cảm xúc mạnh.',
+        examples: [
+          { zh: '老师多么好啊！', py: 'Lǎoshī duōme hǎo a!', vi: 'Thầy tốt biết bao!' }
+        ] },
+      { point: 'V不… — bổ ngữ khả năng phủ định',
+        explain: 'V + 不 + kết quả nghĩa “không thể…”; dạng khẳng định là V得… (吃得饱).',
+        examples: [
+          { zh: '这样吃不饱。', py: 'Zhèyàng chībubǎo.', vi: 'Ăn vậy không no.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -4325,26 +4840,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '安静', p: 'ānjìng', v: 'yên tĩnh' },
-      { h: '安全', p: 'ānquán', v: 'an toàn' },
-      { h: '饱', p: 'bǎo', v: 'no (đã ăn đủ)' },
-      { h: '便宜', p: 'piányi', v: 'rẻ' },
-      { h: '遍', p: 'biàn', v: 'lượt, lần (làm trọn vẹn)' },
-      { h: '不错', p: 'búcuò', v: 'khá tốt, không tệ' },
-      { h: '不够', p: 'búgòu', v: 'không đủ' },
-      { h: '不好意思', p: 'bù hǎoyìsi', v: 'ngại, ngượng' },
-      { h: '不满', p: 'bùmǎn', v: 'bất mãn, không hài lòng' },
-      { h: '不同', p: 'bùtóng', v: 'khác nhau' },
-      { h: '不行', p: 'bùxíng', v: 'không được' },
-      { h: '常见', p: 'chángjiàn', v: 'thường gặp' },
-      { h: '常用', p: 'chángyòng', v: 'thường dùng, thông dụng' },
-      { h: '大大', p: 'dàdà', v: 'rất, to lớn, đáng kể' },
-      { h: '低', p: 'dī', v: 'thấp' },
-      { h: '短', p: 'duǎn', v: 'ngắn' },
-      { h: '多么', p: 'duōme', v: 'biết bao, biết mấy' },
-      { h: '方便', p: 'fāngbiàn', v: 'tiện lợi' },
-      { h: '感动', p: 'gǎndòng', v: 'cảm động' },
-      { h: '高级', p: 'gāojí', v: 'cao cấp' }
+      { h: '安静', p: 'ānjìng', v: 'yên tĩnh', e: 'quiet' },
+      { h: '安全', p: 'ānquán', v: 'an toàn', e: 'safe' },
+      { h: '饱', p: 'bǎo', v: 'no (đã ăn đủ)', e: 'to eat till full' },
+      { h: '便宜', p: 'piányi', v: 'rẻ', e: 'convenient' },
+      { h: '遍', p: 'biàn', v: 'lượt, lần (làm trọn vẹn)', e: 'time(s), all over, everywhere' },
+      { h: '不错', p: 'búcuò', v: 'khá tốt, không tệ', e: 'correct' },
+      { h: '不够', p: 'búgòu', v: 'không đủ', e: 'not enough' },
+      { h: '不好意思', p: 'bù hǎoyìsi', v: 'ngại, ngượng', e: 'to feel embarrassed' },
+      { h: '不满', p: 'bùmǎn', v: 'bất mãn, không hài lòng', e: 'resentful' },
+      { h: '不同', p: 'bùtóng', v: 'khác nhau', e: 'different' },
+      { h: '不行', p: 'bùxíng', v: 'không được', e: 'won\\\'t do' },
+      { h: '常见', p: 'chángjiàn', v: 'thường gặp', e: 'commonly seen' },
+      { h: '常用', p: 'chángyòng', v: 'thường dùng, thông dụng', e: 'in common usage' },
+      { h: '大大', p: 'dàdà', v: 'rất, to lớn, đáng kể', e: 'greatly' },
+      { h: '低', p: 'dī', v: 'thấp', e: 'low' },
+      { h: '短', p: 'duǎn', v: 'ngắn', e: 'short' },
+      { h: '多么', p: 'duōme', v: 'biết bao, biết mấy', e: 'how (wonderful etc)' },
+      { h: '方便', p: 'fāngbiàn', v: 'tiện lợi', e: 'convenient' },
+      { h: '感动', p: 'gǎndòng', v: 'cảm động', e: 'to move (sb)' },
+      { h: '高级', p: 'gāojí', v: 'cao cấp', e: 'high level' }
     ],
     workbook: {
       easy: [
@@ -4383,6 +4898,30 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (2)',
     context: 'Cuối tuần, cả nhóm đi dạo ở hồ gần trường. Họ ngắm cảnh, nói về sức khỏe và tâm trạng vui vẻ.',
     vocabPreview: ['健康', '开心', '可爱', '合适', '快乐'],
+    objectives: [
+      'Nêu đối tượng tác động bằng 对 (对健康好)',
+      'Diễn đạt hai tính chất bằng 又…又…',
+      'Khuyên ngăn bằng 别 (别急 · 别生气)',
+      'Miêu tả sức khỏe, tâm trạng (健康 · 开心 · 合适)'
+    ],
+    grammarNotes: [
+      { point: '对…好 / 对…有作用',
+        explain: '对 + đối tượng đặt trước vị ngữ để nêu “đối với… thì…”.',
+        examples: [
+          { zh: '这样对健康好。', py: 'Zhèyàng duì jiànkāng hǎo.', vi: 'Như vậy tốt cho sức khỏe.' },
+          { zh: '运动对健康有很大的作用。', py: 'Yùndòng duì jiànkāng yǒu hěn dà de zuòyòng.', vi: 'Vận động có tác dụng lớn với sức khỏe.' }
+        ] },
+      { point: '又…又… — vừa…vừa…',
+        explain: 'Nối hai tính chất cùng có ở một đối tượng.',
+        examples: [
+          { zh: '那只猫又黑又可爱。', py: 'Nà zhī māo yòu hēi yòu kě\'ài.', vi: 'Con mèo kia vừa đen vừa đáng yêu.' }
+        ] },
+      { point: '别 + V — đừng',
+        explain: '别 + động từ là lời khuyên ngăn “đừng làm gì”.',
+        examples: [
+          { zh: '别急，慢慢来。', py: 'Bié jí, mànman lái.', vi: 'Đừng vội, từ từ thôi.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -4497,26 +5036,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '公平', p: 'gōngpíng', v: 'công bằng' },
-      { h: '故意', p: 'gùyì', v: 'cố ý' },
-      { h: '合适', p: 'héshì', v: 'hợp, thích hợp' },
-      { h: '黑', p: 'hēi', v: 'đen' },
-      { h: '红', p: 'hóng', v: 'đỏ' },
-      { h: '湖', p: 'hú', v: 'hồ' },
-      { h: '黄', p: 'huáng', v: 'vàng' },
-      { h: '急', p: 'jí', v: 'vội, gấp' },
-      { h: '加', p: 'jiā', v: 'thêm, cộng' },
-      { h: '假', p: 'jiǎ', v: 'giả' },
-      { h: '健康', p: 'jiànkāng', v: 'sức khỏe, khỏe mạnh' },
-      { h: '近', p: 'jìn', v: 'gần' },
-      { h: '经常', p: 'jīngcháng', v: 'thường xuyên' },
-      { h: '开心', p: 'kāixīn', v: 'vui, vui vẻ' },
-      { h: '科学', p: 'kēxué', v: 'khoa học' },
-      { h: '可爱', p: 'kě’ài', v: 'đáng yêu' },
-      { h: '可怕', p: 'kěpà', v: 'đáng sợ' },
-      { h: '克', p: 'kè', v: 'gram' },
-      { h: '快乐', p: 'kuàilè', v: 'vui vẻ, hạnh phúc' },
-      { h: '拉', p: 'lā', v: 'kéo' }
+      { h: '公平', p: 'gōngpíng', v: 'công bằng', e: 'fair' },
+      { h: '故意', p: 'gùyì', v: 'cố ý', e: 'deliberately' },
+      { h: '合适', p: 'héshì', v: 'hợp, thích hợp', e: 'suitable' },
+      { h: '黑', p: 'hēi', v: 'đen', e: 'abbr. for Heilongjiang province 黑龙江' },
+      { h: '红', p: 'hóng', v: 'đỏ', e: 'red' },
+      { h: '湖', p: 'hú', v: 'hồ', e: 'lake' },
+      { h: '黄', p: 'huáng', v: 'vàng', e: 'yellow' },
+      { h: '急', p: 'jí', v: 'vội, gấp', e: 'urgent' },
+      { h: '加', p: 'jiā', v: 'thêm, cộng', e: 'Canada (abbr. for 大)' },
+      { h: '假', p: 'jiǎ', v: 'giả', e: 'used in 掰' },
+      { h: '健康', p: 'jiànkāng', v: 'sức khỏe, khỏe mạnh', e: 'health' },
+      { h: '近', p: 'jìn', v: 'gần', e: 'near' },
+      { h: '经常', p: 'jīngcháng', v: 'thường xuyên', e: 'frequently' },
+      { h: '开心', p: 'kāixīn', v: 'vui, vui vẻ', e: 'to feel happy' },
+      { h: '科学', p: 'kēxué', v: 'khoa học', e: 'science' },
+      { h: '可爱', p: 'kě’ài', v: 'đáng yêu', e: 'adorable' },
+      { h: '可怕', p: 'kěpà', v: 'đáng sợ', e: 'awful' },
+      { h: '克', p: 'kè', v: 'gram', e: 'abbr. for 克罗地亚, Croatia' },
+      { h: '快乐', p: 'kuàilè', v: 'vui vẻ, hạnh phúc', e: 'happy' },
+      { h: '拉', p: 'lā', v: 'kéo', e: 'to pull' }
     ],
     workbook: {
       easy: [
@@ -4555,6 +5094,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (3)',
     context: 'Buổi chiều bên hồ, cả nhóm ngắm cảnh trời xanh nước biếc và trò chuyện về việc học, về tâm trạng.',
     vocabPreview: ['漂亮', '流利', '清楚', '年轻', '努力'],
+    objectives: [
+      'Diễn đạt mức độ tăng dần bằng 越来越 (越来越流利)',
+      'Hiểu nhóm tính từ 难 + V (难听 · 难看 · 难受)',
+      'Nói “…hơn một chút” bằng adj + 一点(儿) (轻一点)',
+      'Miêu tả cảnh vật, con người (漂亮 · 流利 · 年轻)'
+    ],
+    grammarNotes: [
+      { point: '越来越 + tính từ',
+        explain: 'Diễn đạt tính chất thay đổi tăng dần theo thời gian.',
+        examples: [
+          { zh: '你的中文越来越流利了！', py: 'Nǐ de Zhōngwén yuèláiyuè liúlì le!', vi: 'Tiếng Trung của cậu càng ngày càng lưu loát!' }
+        ] },
+      { point: '难 + V — khó (gây cảm giác khó chịu)',
+        explain: '难 + động từ cảm nhận tạo tính từ: 难听 (khó nghe), 难看 (khó coi), 难受 (khó chịu).',
+        examples: [
+          { zh: '这首歌太难听了！', py: 'Zhè shǒu gē tài nántīng le!', vi: 'Bài hát này dở quá!' }
+        ] },
+      { point: 'Tính từ + 一点(儿) — …hơn một chút',
+        explain: 'Thêm 一点儿 sau tính từ để đề nghị điều chỉnh mức độ.',
+        examples: [
+          { zh: '你声音轻一点。', py: 'Nǐ shēngyīn qīng yìdiǎn.', vi: 'Cậu nói nhỏ một chút.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -4669,26 +5231,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '蓝', p: 'lán', v: 'xanh (lam)' },
-      { h: '理想', p: 'lǐxiǎng', v: 'lý tưởng' },
-      { h: '凉', p: 'liáng', v: 'mát, lạnh' },
-      { h: '凉快', p: 'liángkuai', v: 'mát mẻ' },
-      { h: '亮', p: 'liàng', v: 'sáng' },
-      { h: '流利', p: 'liúlì', v: 'lưu loát, trôi chảy' },
-      { h: '绿', p: 'lǜ', v: 'xanh (lục)' },
-      { h: '满', p: 'mǎn', v: 'đầy, thỏa mãn' },
-      { h: '难过', p: 'nánguò', v: 'buồn' },
-      { h: '难看', p: 'nánkàn', v: 'khó coi, xấu' },
-      { h: '难受', p: 'nánshòu', v: 'khó chịu' },
-      { h: '难听', p: 'nántīng', v: 'khó nghe, dở' },
-      { h: '年轻', p: 'niánqīng', v: 'trẻ, trẻ tuổi' },
-      { h: '努力', p: 'nǔlì', v: 'nỗ lực, cố gắng' },
-      { h: '漂亮', p: 'piàoliang', v: 'đẹp, xinh' },
-      { h: '平', p: 'píng', v: 'phẳng, bằng' },
-      { h: '平等', p: 'píngděng', v: 'bình đẳng' },
-      { h: '普通', p: 'pǔtōng', v: 'phổ thông, bình thường' },
-      { h: '轻', p: 'qīng', v: 'nhẹ, khẽ' },
-      { h: '清楚', p: 'qīngchu', v: 'rõ, rõ ràng' }
+      { h: '蓝', p: 'lán', v: 'xanh (lam)', e: 'blue' },
+      { h: '理想', p: 'lǐxiǎng', v: 'lý tưởng', e: 'an ideal' },
+      { h: '凉', p: 'liáng', v: 'mát, lạnh', e: 'the five Liang of the Sixteen Kingdoms, namely: Former Liang 前凉 (314-376), Later Liang 后凉 (386-403), Northern Liang 北凉 (398-439), Southern Liang 南凉 (397-414), Western Liang 西凉 (400-421)' },
+      { h: '凉快', p: 'liángkuai', v: 'mát mẻ', e: 'nice and cold' },
+      { h: '亮', p: 'liàng', v: 'sáng', e: 'bright' },
+      { h: '流利', p: 'liúlì', v: 'lưu loát, trôi chảy', e: 'fluent' },
+      { h: '绿', p: 'lǜ', v: 'xanh (lục)', e: 'green' },
+      { h: '满', p: 'mǎn', v: 'đầy, thỏa mãn', e: 'Manchu ethnic group' },
+      { h: '难过', p: 'nánguò', v: 'buồn', e: 'to feel sad' },
+      { h: '难看', p: 'nánkàn', v: 'khó coi, xấu', e: 'ugly' },
+      { h: '难受', p: 'nánshòu', v: 'khó chịu', e: 'to feel unwell' },
+      { h: '难听', p: 'nántīng', v: 'khó nghe, dở', e: 'unpleasant to hear' },
+      { h: '年轻', p: 'niánqīng', v: 'trẻ, trẻ tuổi', e: 'young' },
+      { h: '努力', p: 'nǔlì', v: 'nỗ lực, cố gắng', e: 'to make an effort' },
+      { h: '漂亮', p: 'piàoliang', v: 'đẹp, xinh', e: 'pretty' },
+      { h: '平', p: 'píng', v: 'phẳng, bằng', e: 'flat, level, equal, ordinary' },
+      { h: '平等', p: 'píngděng', v: 'bình đẳng', e: 'equal' },
+      { h: '普通', p: 'pǔtōng', v: 'phổ thông, bình thường', e: 'common' },
+      { h: '轻', p: 'qīng', v: 'nhẹ, khẽ', e: 'light' },
+      { h: '清楚', p: 'qīngchu', v: 'rõ, rõ ràng', e: 'clear' }
     ],
     workbook: {
       easy: [
@@ -4727,6 +5289,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (4)',
     context: 'Mai bị mệt, đau đầu. Tiểu Mỹ và thầy Lý quan tâm chăm sóc, rồi cùng nói về việc học từ vựng.',
     vocabPreview: ['舒服', '热情', '特别', '小心', '完全'],
+    objectives: [
+      'Đặt câu hỏi lựa chọn bằng 还是 (生的还是熟的)',
+      'Dùng khung 所有…都… (tất cả…đều)',
+      'Nhấn mức độ bằng 实在 / 特别',
+      'Miêu tả cảm giác cơ thể (舒服 · 累 · 疼)'
+    ],
+    grammarNotes: [
+      { point: '还是 — hay (câu hỏi lựa chọn)',
+        explain: '还是 nối hai lựa chọn trong câu hỏi (A 还是 B?). Câu trần thuật dùng 或者.',
+        examples: [
+          { zh: '这些菜是生的还是熟的？', py: 'Zhèxiē cài shì shēng de háishi shú de?', vi: 'Mấy món này là sống hay chín?' }
+        ] },
+      { point: '所有…都… — tất cả…đều',
+        explain: '所有 + danh từ + 都 nhấn “toàn bộ không trừ ai / cái nào”.',
+        examples: [
+          { zh: '所有人都很热情。', py: 'Suǒyǒu rén dōu hěn rèqíng.', vi: 'Mọi người đều rất nhiệt tình.' }
+        ] },
+      { point: '实在 / 特别 — thực sự / đặc biệt',
+        explain: 'Phó từ mức độ: 实在 nhấn “quả thực”, 特别 nhấn “đặc biệt, rất”.',
+        examples: [
+          { zh: '你实在太累了，特别需要休息。', py: 'Nǐ shízài tài lèi le, tèbié xūyào xiūxi.', vi: 'Cậu thực sự quá mệt, đặc biệt cần nghỉ.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -4841,26 +5426,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '全', p: 'quán', v: 'toàn bộ, cả' },
-      { h: '热情', p: 'rèqíng', v: 'nhiệt tình' },
-      { h: '生', p: 'shēng', v: 'sống (chưa chín)' },
-      { h: '实际', p: 'shíjì', v: 'thực tế' },
-      { h: '实在', p: 'shízài', v: 'thực sự, quả thực' },
-      { h: '舒服', p: 'shūfu', v: 'thoải mái, dễ chịu' },
-      { h: '熟', p: 'shú', v: 'chín; quen, thành thạo' },
-      { h: '顺利', p: 'shùnlì', v: 'thuận lợi' },
-      { h: '随便', p: 'suíbiàn', v: 'tùy ý, tùy tiện' },
-      { h: '所有', p: 'suǒyǒu', v: 'tất cả, mọi' },
-      { h: '特别', p: 'tèbié', v: 'đặc biệt' },
-      { h: '疼', p: 'téng', v: 'đau' },
-      { h: '通', p: 'tōng', v: 'thông, thông suốt' },
-      { h: '同样', p: 'tóngyàng', v: 'như nhau, giống nhau' },
-      { h: '完全', p: 'wánquán', v: 'hoàn toàn' },
-      { h: '相同', p: 'xiāngtóng', v: 'giống nhau' },
-      { h: '响', p: 'xiǎng', v: 'vang, to (âm thanh)' },
-      { h: '小声', p: 'xiǎoshēng', v: 'nói nhỏ, khẽ' },
-      { h: '小心', p: 'xiǎoxīn', v: 'cẩn thận' },
-      { h: '一般', p: 'yìbān', v: 'bình thường, nói chung' }
+      { h: '全', p: 'quán', v: 'toàn bộ, cả', e: 'whole, complete, all, entirely' },
+      { h: '热情', p: 'rèqíng', v: 'nhiệt tình', e: 'cordial' },
+      { h: '生', p: 'shēng', v: 'sống (chưa chín)', e: 'to be born' },
+      { h: '实际', p: 'shíjì', v: 'thực tế', e: 'reality' },
+      { h: '实在', p: 'shízài', v: 'thực sự, quả thực', e: 'really' },
+      { h: '舒服', p: 'shūfu', v: 'thoải mái, dễ chịu', e: 'comfortable' },
+      { h: '熟', p: 'shú', v: 'chín; quen, thành thạo', e: 'ripe' },
+      { h: '顺利', p: 'shùnlì', v: 'thuận lợi', e: 'smoothly' },
+      { h: '随便', p: 'suíbiàn', v: 'tùy ý, tùy tiện', e: 'as one wishes' },
+      { h: '所有', p: 'suǒyǒu', v: 'tất cả, mọi', e: 'all' },
+      { h: '特别', p: 'tèbié', v: 'đặc biệt', e: 'unusual' },
+      { h: '疼', p: 'téng', v: 'đau', e: 'hurts' },
+      { h: '通', p: 'tōng', v: 'thông, thông suốt', e: 'to go through' },
+      { h: '同样', p: 'tóngyàng', v: 'như nhau, giống nhau', e: 'same' },
+      { h: '完全', p: 'wánquán', v: 'hoàn toàn', e: 'complete' },
+      { h: '相同', p: 'xiāngtóng', v: 'giống nhau', e: 'identical' },
+      { h: '响', p: 'xiǎng', v: 'vang, to (âm thanh)', e: 'echo' },
+      { h: '小声', p: 'xiǎoshēng', v: 'nói nhỏ, khẽ', e: 'in a low voice' },
+      { h: '小心', p: 'xiǎoxīn', v: 'cẩn thận', e: 'to be careful' },
+      { h: '一般', p: 'yìbān', v: 'bình thường, nói chung', e: 'same' }
     ],
     workbook: {
       easy: [
@@ -4899,6 +5484,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (5)',
     context: 'Trời âm u, cả nhóm trú trong lớp. Họ nói về tình bạn, về sự đúng đắn của bài học và ước mơ tự do.',
     vocabPreview: ['正常', '正确', '永远', '友好', '自由'],
+    objectives: [
+      'Diễn đạt phát hiện sự thật bằng 原来',
+      'Nhấn chắc chắn / yêu cầu bằng 一定',
+      'Nhấn “thật sự” bằng 真正(的)',
+      'Miêu tả thời tiết, sự đúng đắn (正常 · 正确 · 自由)'
+    ],
+    grammarNotes: [
+      { point: '原来 — thì ra',
+        explain: '原来 đặt đầu câu diễn đạt sự phát hiện điều trước đó chưa biết.',
+        examples: [
+          { zh: '原来你早就知道了！', py: 'Yuánlái nǐ zǎo jiù zhīdào le!', vi: 'Thì ra cậu biết từ sớm rồi!' }
+        ] },
+      { point: '一定 — nhất định',
+        explain: '一定 + V chỉ sự chắc chắn hoặc yêu cầu mạnh.',
+        examples: [
+          { zh: '我们一定要带伞。', py: 'Wǒmen yídìng yào dài sǎn.', vi: 'Chúng ta nhất định phải mang ô.' }
+        ] },
+      { point: '真正(的) — thật sự, đích thực',
+        explain: '真正 nhấn bản chất “đúng nghĩa”, thường + 的 + danh từ.',
+        examples: [
+          { zh: '你们是真正的朋友。', py: 'Nǐmen shì zhēnzhèng de péngyou.', vi: 'Các em là bạn thật sự.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -5013,24 +5621,24 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '一定', p: 'yídìng', v: 'nhất định' },
-      { h: '阴', p: 'yīn', v: 'âm u, râm' },
-      { h: '永远', p: 'yǒngyuǎn', v: 'mãi mãi' },
-      { h: '友好', p: 'yǒuhǎo', v: 'thân thiện, hữu hảo' },
-      { h: '原来', p: 'yuánlái', v: 'thì ra, vốn dĩ' },
-      { h: '越', p: 'yuè', v: 'càng' },
-      { h: '云', p: 'yún', v: 'mây' },
-      { h: '脏', p: 'zāng', v: 'bẩn' },
-      { h: '长', p: 'cháng', v: 'dài' },
-      { h: '真正', p: 'zhēnzhèng', v: 'thật sự, đích thực' },
-      { h: '正常', p: 'zhèngcháng', v: 'bình thường' },
-      { h: '正确', p: 'zhèngquè', v: 'chính xác, đúng đắn' },
-      { h: '直接', p: 'zhíjiē', v: 'trực tiếp, thẳng' },
-      { h: '中级', p: 'zhōngjí', v: 'trung cấp' },
-      { h: '重复', p: 'chóngfù', v: 'lặp lại' },
-      { h: '主要', p: 'zhǔyào', v: 'chủ yếu, chính' },
-      { h: '准确', p: 'zhǔnquè', v: 'chuẩn xác' },
-      { h: '自由', p: 'zìyóu', v: 'tự do' }
+      { h: '一定', p: 'yídìng', v: 'nhất định', e: 'surely' },
+      { h: '阴', p: 'yīn', v: 'âm u, râm', e: 'overcast, cloudy, yin (negative)' },
+      { h: '永远', p: 'yǒngyuǎn', v: 'mãi mãi', e: 'forever' },
+      { h: '友好', p: 'yǒuhǎo', v: 'thân thiện, hữu hảo', e: 'Youhao district of Yichun city 市, Heilongjiang' },
+      { h: '原来', p: 'yuánlái', v: 'thì ra, vốn dĩ', e: 'original' },
+      { h: '越', p: 'yuè', v: 'càng', e: 'generic word for peoples or states of south China or south Asia at different historical periods' },
+      { h: '云', p: 'yún', v: 'mây', e: 'to say' },
+      { h: '脏', p: 'zāng', v: 'bẩn', e: 'viscera' },
+      { h: '长', p: 'cháng', v: 'dài', e: 'length' },
+      { h: '真正', p: 'zhēnzhèng', v: 'thật sự, đích thực', e: 'genuine' },
+      { h: '正常', p: 'zhèngcháng', v: 'bình thường', e: 'regular' },
+      { h: '正确', p: 'zhèngquè', v: 'chính xác, đúng đắn', e: 'correct' },
+      { h: '直接', p: 'zhíjiē', v: 'trực tiếp, thẳng', e: 'direct (opposite: indirect 间接)' },
+      { h: '中级', p: 'zhōngjí', v: 'trung cấp', e: 'middle level (in a hierarchy)' },
+      { h: '重复', p: 'chóngfù', v: 'lặp lại', e: 'to repeat' },
+      { h: '主要', p: 'zhǔyào', v: 'chủ yếu, chính', e: 'main' },
+      { h: '准确', p: 'zhǔnquè', v: 'chuẩn xác', e: 'accurate' },
+      { h: '自由', p: 'zìyóu', v: 'tự do', e: 'freedom' }
     ],
     workbook: {
       easy: [
@@ -5069,6 +5677,30 @@ Object.assign(COURSE_DATA, {
     title: 'Thời gian & lịch trình (1)',
     context: 'Sắp nghỉ lễ. Mai và Tiểu Mỹ bàn kế hoạch về quê ăn Tết, nhớ lại chuyện học hành ngày trước.',
     vocabPreview: ['春节', '假期', '快要', '平时', '刚刚'],
+    objectives: [
+      'Phân biệt 刚才 (thời điểm) và 刚刚 / 刚 (vừa mới)',
+      'Diễn đạt “sắp” bằng 快要…了',
+      'Nhấn “muộn hơn dự kiến” bằng 才 (春天才来)',
+      'Nói về kỳ nghỉ, mùa (春节 · 假期 · 平时)'
+    ],
+    grammarNotes: [
+      { point: '刚才 vs 刚 / 刚刚',
+        explain: '刚才 là danh từ chỉ thời điểm “vừa nãy”; 刚 / 刚刚 là phó từ “vừa mới” đứng trước động từ.',
+        examples: [
+          { zh: '刚才老师查过了。', py: 'Gāngcái lǎoshī chá guo le.', vi: 'Vừa nãy thầy đã tra rồi.' },
+          { zh: '我刚刚到。', py: 'Wǒ gānggāng dào.', vi: 'Tớ vừa mới đến.' }
+        ] },
+      { point: '快要…了 — sắp (sửa)',
+        explain: 'Khung “快要 + V + 了” diễn đạt việc sắp xảy ra.',
+        examples: [
+          { zh: '快要放假了！', py: 'Kuàiyào fàngjià le!', vi: 'Sắp được nghỉ rồi!' }
+        ] },
+      { point: '才 — mới (muộn hơn dự kiến)',
+        explain: '才 đặt trước động từ nhấn việc xảy ra muộn / chậm hơn mong đợi.',
+        examples: [
+          { zh: '今年春天才来这儿。', py: 'Jīnnián chūntiān cái lái zhèr.', vi: 'Mùa xuân năm nay mới đến đây.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -5190,26 +5822,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '半夜', p: 'bànyè', v: 'nửa đêm' },
-      { h: '不久', p: 'bùjiǔ', v: 'không lâu, chẳng bao lâu' },
-      { h: '春节', p: 'chūnjié', v: 'Tết (Xuân tiết)' },
-      { h: '春天', p: 'chūntiān', v: 'mùa xuân' },
-      { h: '当时', p: 'dāngshí', v: 'lúc đó, hồi đó' },
-      { h: '冬天', p: 'dōngtiān', v: 'mùa đông' },
-      { h: '分钟', p: 'fēnzhōng', v: 'phút' },
-      { h: '刚才', p: 'gāngcái', v: 'vừa nãy' },
-      { h: '刚刚', p: 'gānggang', v: 'vừa mới' },
-      { h: '过去', p: 'guòqù', v: 'quá khứ; đi qua' },
-      { h: '后来', p: 'hòulái', v: 'về sau, sau đó' },
-      { h: '假期', p: 'jiàqī', v: 'kỳ nghỉ' },
-      { h: '今后', p: 'jīnhòu', v: 'từ nay về sau' },
-      { h: '快要', p: 'kuàiyào', v: 'sắp (sửa)' },
-      { h: '老年', p: 'lǎonián', v: 'tuổi già, người già' },
-      { h: '老是', p: 'lǎoshi', v: 'cứ, hay (lặp lại)' },
-      { h: '平常', p: 'píngcháng', v: 'thường ngày, bình thường' },
-      { h: '平时', p: 'píngshí', v: 'ngày thường' },
-      { h: '千', p: 'qiān', v: 'nghìn' },
-      { h: '前年', p: 'qiánnián', v: 'năm kia' }
+      { h: '半夜', p: 'bànyè', v: 'nửa đêm', e: 'midnight' },
+      { h: '不久', p: 'bùjiǔ', v: 'không lâu, chẳng bao lâu', e: 'not long (after)' },
+      { h: '春节', p: 'chūnjié', v: 'Tết (Xuân tiết)', e: 'Spring Festival (Chinese New Year)' },
+      { h: '春天', p: 'chūntiān', v: 'mùa xuân', e: 'spring (season)' },
+      { h: '当时', p: 'dāngshí', v: 'lúc đó, hồi đó', e: 'then' },
+      { h: '冬天', p: 'dōngtiān', v: 'mùa đông', e: 'winter' },
+      { h: '分钟', p: 'fēnzhōng', v: 'phút', e: 'minute' },
+      { h: '刚才', p: 'gāngcái', v: 'vừa nãy', e: 'just now' },
+      { h: '刚刚', p: 'gānggang', v: 'vừa mới', e: 'just recently' },
+      { h: '过去', p: 'guòqù', v: 'quá khứ; đi qua', e: 'past' },
+      { h: '后来', p: 'hòulái', v: 'về sau, sau đó', e: 'afterwards' },
+      { h: '假期', p: 'jiàqī', v: 'kỳ nghỉ', e: 'vacation' },
+      { h: '今后', p: 'jīnhòu', v: 'từ nay về sau', e: 'hereafter' },
+      { h: '快要', p: 'kuàiyào', v: 'sắp (sửa)', e: 'nearly at the point of (doing sth)' },
+      { h: '老年', p: 'lǎonián', v: 'tuổi già, người già', e: 'elderly' },
+      { h: '老是', p: 'lǎoshi', v: 'cứ, hay (lặp lại)', e: 'always' },
+      { h: '平常', p: 'píngcháng', v: 'thường ngày, bình thường', e: 'ordinary' },
+      { h: '平时', p: 'píngshí', v: 'ngày thường', e: 'ordinarily' },
+      { h: '千', p: 'qiān', v: 'nghìn', e: 'thousand' },
+      { h: '前年', p: 'qiánnián', v: 'năm kia', e: 'the year before last' }
     ],
     workbook: {
       easy: [
@@ -5248,6 +5880,29 @@ Object.assign(COURSE_DATA, {
     title: 'Thời gian & lịch trình (2)',
     context: 'Một buổi sáng đầu thu, cả nhóm bàn về buổi dạ hội cuối tuần và nhớ lại những ngày thơ ấu.',
     vocabPreview: ['最近', '周末', '早晨', '小时候', '月份'],
+    objectives: [
+      'Dùng từ chỉ thời gian 上周 / 下周 / 最近 / 早晨',
+      'Diễn đạt tần suất bằng 常常',
+      'Dùng cụm 这时候 / 那时候 (lúc này / lúc đó)',
+      'Nói về dạo này, tuổi thơ (周末 · 小时候 · 月份)'
+    ],
+    grammarNotes: [
+      { point: 'Từ chỉ thời gian: 上周 / 下周 / 最近',
+        explain: '上周 = tuần trước, 下周 = tuần sau, 最近 = dạo này; đặt trước động từ hoặc đầu câu.',
+        examples: [
+          { zh: '上周我太忙，下周才有空。', py: 'Shàng zhōu wǒ tài máng, xià zhōu cái yǒu kòng.', vi: 'Tuần trước tớ bận quá, tuần sau mới rảnh.' }
+        ] },
+      { point: '常常 — thường (tần suất)',
+        explain: '常常 đặt trước động từ chỉ việc xảy ra nhiều lần.',
+        examples: [
+          { zh: '我夜里常常学到很晚。', py: 'Wǒ yèlǐ chángcháng xuédào hěn wǎn.', vi: 'Tớ ban đêm thường học đến rất khuya.' }
+        ] },
+      { point: '这时候 / 那时候 — lúc này / lúc đó',
+        explain: 'Cụm chỉ thời điểm; 这时候 cho hiện tại / lúc đang nói, 那时候 cho quá khứ.',
+        examples: [
+          { zh: '那时候日子很简单。', py: 'Nà shíhou rìzi hěn jiǎndān.', vi: 'Lúc đó ngày tháng rất đơn giản.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -5369,26 +6024,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '秋天', p: 'qiūtiān', v: 'mùa thu' },
-      { h: '全年', p: 'quánnián', v: 'cả năm, suốt năm' },
-      { h: '日子', p: 'rìzi', v: 'ngày tháng, đời sống' },
-      { h: '上周', p: 'shàngzhōu', v: 'tuần trước' },
-      { h: '少年', p: 'shàonián', v: 'thiếu niên' },
-      { h: '晚会', p: 'wǎnhuì', v: 'dạ hội, buổi liên hoan' },
-      { h: '万', p: 'wàn', v: 'vạn, mười nghìn' },
-      { h: '下周', p: 'xiàzhōu', v: 'tuần sau' },
-      { h: '夏天', p: 'xiàtiān', v: 'mùa hè' },
-      { h: '小时候', p: 'xiǎoshíhou', v: 'hồi nhỏ, thuở bé' },
-      { h: '夜', p: 'yè', v: 'đêm' },
-      { h: '夜里', p: 'yèlǐ', v: 'ban đêm, trong đêm' },
-      { h: '一点点', p: 'yìdiǎndiǎn', v: 'một chút xíu' },
-      { h: '月份', p: 'yuèfèn', v: 'tháng (trong năm)' },
-      { h: '早晨', p: 'zǎochén', v: 'buổi sáng sớm' },
-      { h: '这时候', p: 'zhèshíhou', v: 'lúc này, lúc đó' },
-      { h: '中年', p: 'zhōngnián', v: 'tuổi trung niên' },
-      { h: '周', p: 'zhōu', v: 'tuần' },
-      { h: '周末', p: 'zhōumò', v: 'cuối tuần' },
-      { h: '最近', p: 'zuìjìn', v: 'dạo này, gần đây' }
+      { h: '秋天', p: 'qiūtiān', v: 'mùa thu', e: 'autumn' },
+      { h: '全年', p: 'quánnián', v: 'cả năm, suốt năm', e: 'the whole year' },
+      { h: '日子', p: 'rìzi', v: 'ngày tháng, đời sống', e: 'day' },
+      { h: '上周', p: 'shàngzhōu', v: 'tuần trước', e: 'last week' },
+      { h: '少年', p: 'shàonián', v: 'thiếu niên', e: 'early youth' },
+      { h: '晚会', p: 'wǎnhuì', v: 'dạ hội, buổi liên hoan', e: 'evening party' },
+      { h: '万', p: 'wàn', v: 'vạn, mười nghìn', e: 'used in 俟' },
+      { h: '下周', p: 'xiàzhōu', v: 'tuần sau', e: 'next week' },
+      { h: '夏天', p: 'xiàtiān', v: 'mùa hè', e: 'summer' },
+      { h: '小时候', p: 'xiǎoshíhou', v: 'hồi nhỏ, thuở bé', e: 'in one\\\'s childhood' },
+      { h: '夜', p: 'yè', v: 'đêm', e: 'night, nighttime' },
+      { h: '夜里', p: 'yèlǐ', v: 'ban đêm, trong đêm', e: 'during the night' },
+      { h: '一点点', p: 'yìdiǎndiǎn', v: 'một chút xíu', e: 'a little bit' },
+      { h: '月份', p: 'yuèfèn', v: 'tháng (trong năm)', e: 'month' },
+      { h: '早晨', p: 'zǎochén', v: 'buổi sáng sớm', e: 'early morning' },
+      { h: '这时候', p: 'zhèshíhou', v: 'lúc này, lúc đó', e: 'At this moment' },
+      { h: '中年', p: 'zhōngnián', v: 'tuổi trung niên', e: 'middle age' },
+      { h: '周', p: 'zhōu', v: 'tuần', e: 'week, all around, circuit' },
+      { h: '周末', p: 'zhōumò', v: 'cuối tuần', e: 'weekend' },
+      { h: '最近', p: 'zuìjìn', v: 'dạo này, gần đây', e: 'recently' }
     ],
     workbook: {
       easy: [
@@ -5427,6 +6082,30 @@ Object.assign(COURSE_DATA, {
     title: 'Số đếm & đại từ (1)',
     context: 'Cả nhóm đi siêu thị mua đồ chuẩn bị cho buổi dạ hội. Họ tính toán số lượng và nhớ lại chuyện ngày xưa.',
     vocabPreview: ['大家', '不少', '公斤', '多久', '其他'],
+    objectives: [
+      'Dùng đúng lượng từ: 斤 / 公斤 / 份 / 件 / 辆 / 段 / 句',
+      'Diễn đạt “nên / đến lúc” bằng 该 (该走了)',
+      'Dùng đại từ chỉ định 那么 / 那样 / 那会儿',
+      'Nói về mua sắm, số lượng (不少 · 大量 · 多久)'
+    ],
+    grammarNotes: [
+      { point: 'Lượng từ thường gặp',
+        explain: '斤 (≈500g), 公斤 (kg) đo trọng lượng; 份 đếm suất / phần; 件 đếm áo, việc; 辆 đếm xe; 段 đếm đoạn; 句 đếm câu nói.',
+        examples: [
+          { zh: '买两份礼物，再买几件衣服。', py: 'Mǎi liǎng fèn lǐwù, zài mǎi jǐ jiàn yīfu.', vi: 'Mua hai phần quà, mua thêm vài bộ quần áo.' },
+          { zh: '开一辆车去吧。', py: 'Kāi yí liàng chē qù ba.', vi: 'Lái một chiếc xe đi đi.' }
+        ] },
+      { point: '该 — nên, đến lúc',
+        explain: '该 + V diễn đạt “đến lúc nên làm gì”.',
+        examples: [
+          { zh: '我们该走了。', py: 'Wǒmen gāi zǒu le.', vi: 'Chúng ta nên đi thôi.' }
+        ] },
+      { point: '那么 / 那样 — đến thế / như vậy',
+        explain: '那么 + tính từ nhấn mức độ; 那样 chỉ cách thức “như vậy”.',
+        examples: [
+          { zh: '别像那样浪费。', py: 'Bié xiàng nàyàng làngfèi.', vi: 'Đừng lãng phí như vậy.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -5548,28 +6227,28 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '不少', p: 'bùshǎo', v: 'không ít, khá nhiều' },
-      { h: '大多数', p: 'dàduōshù', v: 'đại đa số' },
-      { h: '大量', p: 'dàliàng', v: 'số lượng lớn' },
-      { h: '段', p: 'duàn', v: 'đoạn (lượng từ)' },
-      { h: '多数', p: 'duōshù', v: 'đa số, phần lớn' },
-      { h: '份', p: 'fèn', v: 'phần (lượng từ)' },
-      { h: '公斤', p: 'gōngjīn', v: 'kilogram, ký' },
-      { h: '好多', p: 'hǎoduō', v: 'rất nhiều' },
-      { h: '好久', p: 'hǎojiǔ', v: 'lâu, hồi lâu' },
-      { h: '件', p: 'jiàn', v: 'cái, bộ (lượng từ)' },
-      { h: '斤', p: 'jīn', v: 'cân (500g)' },
-      { h: '句', p: 'jù', v: 'câu (lượng từ)' },
-      { h: '辆', p: 'liàng', v: 'chiếc (lượng từ xe)' },
-      { h: '零下', p: 'língxià', v: 'dưới 0 độ' },
-      { h: '大家', p: 'dàjiā', v: 'mọi người' },
-      { h: '多久', p: 'duōjiǔ', v: 'bao lâu' },
-      { h: '该', p: 'gāi', v: 'nên, đáng' },
-      { h: '那会儿', p: 'nàhuìr', v: 'dạo ấy, lúc đó' },
-      { h: '那么', p: 'nàme', v: 'như thế, đến thế' },
-      { h: '那时', p: 'nàshí', v: 'hồi đó, khi đó' },
-      { h: '那样', p: 'nàyàng', v: 'như vậy, kiểu đó' },
-      { h: '其他', p: 'qítā', v: '(những cái) khác' }
+      { h: '不少', p: 'bùshǎo', v: 'không ít, khá nhiều', e: 'many' },
+      { h: '大多数', p: 'dàduōshù', v: 'đại đa số', e: 'majority' },
+      { h: '大量', p: 'dàliàng', v: 'số lượng lớn', e: 'great amount' },
+      { h: '段', p: 'duàn', v: 'đoạn (lượng từ)', e: 'section, paragraph, period' },
+      { h: '多数', p: 'duōshù', v: 'đa số, phần lớn', e: 'majority' },
+      { h: '份', p: 'fèn', v: 'phần (lượng từ)', e: 'classifier for gifts, newspaper, magazine, papers, reports, contracts etc' },
+      { h: '公斤', p: 'gōngjīn', v: 'kilogram, ký', e: 'kilogram (kg)' },
+      { h: '好多', p: 'hǎoduō', v: 'rất nhiều', e: 'many' },
+      { h: '好久', p: 'hǎojiǔ', v: 'lâu, hồi lâu', e: 'quite a while' },
+      { h: '件', p: 'jiàn', v: 'cái, bộ (lượng từ)', e: 'item' },
+      { h: '斤', p: 'jīn', v: 'cân (500g)', e: 'catty' },
+      { h: '句', p: 'jù', v: 'câu (lượng từ)', e: 'sentence, clause' },
+      { h: '辆', p: 'liàng', v: 'chiếc (lượng từ xe)', e: 'classifier for vehicles' },
+      { h: '零下', p: 'língxià', v: 'dưới 0 độ', e: 'below zero' },
+      { h: '大家', p: 'dàjiā', v: 'mọi người', e: 'everyone' },
+      { h: '多久', p: 'duōjiǔ', v: 'bao lâu', e: 'how long?' },
+      { h: '该', p: 'gāi', v: 'nên, đáng', e: 'should' },
+      { h: '那会儿', p: 'nàhuìr', v: 'dạo ấy, lúc đó', e: 'at that time (in the past or the future)' },
+      { h: '那么', p: 'nàme', v: 'như thế, đến thế', e: 'like that' },
+      { h: '那时', p: 'nàshí', v: 'hồi đó, khi đó', e: 'then' },
+      { h: '那样', p: 'nàyàng', v: 'như vậy, kiểu đó', e: 'that kind' },
+      { h: '其他', p: 'qítā', v: '(những cái) khác', e: 'other' }
     ],
     workbook: {
       easy: [
@@ -5608,6 +6287,29 @@ Object.assign(COURSE_DATA, {
     title: 'Số đếm & đại từ (2)',
     context: 'Nhân dịp kỷ niệm thành lập trường, cả nhóm cùng làm một bài viết và chọn ảnh cho triển lãm.',
     vocabPreview: ['咱们', '许多', '全部', '为什么', '它们'],
+    objectives: [
+      'Dùng đúng lượng từ: 篇 / 片 / 位 / 名 / 座 / 只',
+      'Phân biệt 咱们 (gồm người nghe) và 我们',
+      'Dùng đại từ 它 / 它们 cho vật và con vật',
+      'Nói về làm bài viết, chọn ảnh (文章 · 照片 · 全部)'
+    ],
+    grammarNotes: [
+      { point: 'Lượng từ: 篇 / 片 / 位 / 名 / 座 / 只',
+        explain: '篇 đếm bài văn; 片 đếm tấm / miếng; 位 đếm người (lịch sự); 名 đếm người (chính thức); 座 đếm tòa / ngọn; 只 đếm con vật.',
+        examples: [
+          { zh: '这座楼里有十位老师，三名学生。', py: 'Zhè zuò lóu lǐ yǒu shí wèi lǎoshī, sān míng xuésheng.', vi: 'Tòa nhà này có mười giáo viên, ba học sinh.' }
+        ] },
+      { point: '咱们 vs 我们',
+        explain: '咱们 nhất định bao gồm cả người nghe; 我们 có thể bao gồm hoặc không.',
+        examples: [
+          { zh: '咱们一起做吧！', py: 'Zánmen yìqǐ zuò ba!', vi: 'Chúng mình cùng làm nhé!' }
+        ] },
+      { point: '它 / 它们 — nó / chúng (vật, con vật)',
+        explain: '它 thay cho vật hoặc con vật số ít; 它们 cho số nhiều.',
+        examples: [
+          { zh: '它们真可爱！', py: 'Tāmen zhēn kě\'ài!', vi: 'Chúng thật đáng yêu!' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -5729,28 +6431,28 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '名', p: 'míng', v: 'người (lượng từ)' },
-      { h: '篇', p: 'piān', v: 'bài (lượng từ văn bản)' },
-      { h: '片', p: 'piàn', v: 'tấm, miếng (lượng từ)' },
-      { h: '千克', p: 'qiānkè', v: 'kilogram' },
-      { h: '全部', p: 'quánbù', v: 'toàn bộ, tất cả' },
-      { h: '少数', p: 'shǎoshù', v: 'số ít, thiểu số' },
-      { h: '条', p: 'tiáo', v: 'cái, sợi (lượng từ)' },
-      { h: '位', p: 'wèi', v: 'vị (lượng từ người, lịch sự)' },
-      { h: '许多', p: 'xǔduō', v: 'rất nhiều' },
-      { h: '一部分', p: 'yíbùfèn', v: 'một phần' },
-      { h: '亿', p: 'yì', v: 'trăm triệu' },
-      { h: '只', p: 'zhī', v: 'con (lượng từ động vật)' },
-      { h: '周年', p: 'zhōunián', v: 'năm tròn (kỷ niệm)' },
-      { h: '座', p: 'zuò', v: 'tòa, ngọn (lượng từ)' },
-      { h: '其中', p: 'qízhōng', v: 'trong đó' },
-      { h: '什么样', p: 'shénmeyàng', v: 'như thế nào, kiểu gì' },
-      { h: '它', p: 'tā', v: 'nó (vật, con vật)' },
-      { h: '它们', p: 'tāmen', v: 'chúng nó (vật, con vật)' },
-      { h: '为什么', p: 'wèishénme', v: 'vì sao, tại sao' },
-      { h: '有人', p: 'yǒurén', v: 'có người, có ai đó' },
-      { h: '咱', p: 'zán', v: 'mình, tôi (khẩu ngữ)' },
-      { h: '咱们', p: 'zánmen', v: 'chúng mình (gồm người nghe)' }
+      { h: '名', p: 'míng', v: 'người (lượng từ)', e: 'name' },
+      { h: '篇', p: 'piān', v: 'bài (lượng từ văn bản)', e: 'sheet' },
+      { h: '片', p: 'piàn', v: 'tấm, miếng (lượng từ)', e: 'disk' },
+      { h: '千克', p: 'qiānkè', v: 'kilogram', e: 'kilogram' },
+      { h: '全部', p: 'quánbù', v: 'toàn bộ, tất cả', e: 'whole' },
+      { h: '少数', p: 'shǎoshù', v: 'số ít, thiểu số', e: 'small number' },
+      { h: '条', p: 'tiáo', v: 'cái, sợi (lượng từ)', e: 'strip' },
+      { h: '位', p: 'wèi', v: 'vị (lượng từ người, lịch sự)', e: 'position' },
+      { h: '许多', p: 'xǔduō', v: 'rất nhiều', e: 'many' },
+      { h: '一部分', p: 'yíbùfèn', v: 'một phần', e: 'portion' },
+      { h: '亿', p: 'yì', v: 'trăm triệu', e: '100 million' },
+      { h: '只', p: 'zhī', v: 'con (lượng từ động vật)', e: 'only' },
+      { h: '周年', p: 'zhōunián', v: 'năm tròn (kỷ niệm)', e: 'anniversary' },
+      { h: '座', p: 'zuò', v: 'tòa, ngọn (lượng từ)', e: 'seat' },
+      { h: '其中', p: 'qízhōng', v: 'trong đó', e: 'among' },
+      { h: '什么样', p: 'shénmeyàng', v: 'như thế nào, kiểu gì', e: 'what kind?' },
+      { h: '它', p: 'tā', v: 'nó (vật, con vật)', e: 'it' },
+      { h: '它们', p: 'tāmen', v: 'chúng nó (vật, con vật)', e: 'they (for inanimate objects)' },
+      { h: '为什么', p: 'wèishénme', v: 'vì sao, tại sao', e: 'why?' },
+      { h: '有人', p: 'yǒurén', v: 'có người, có ai đó', e: 'someone' },
+      { h: '咱', p: 'zán', v: 'mình, tôi (khẩu ngữ)', e: 'we, us (including listener)' },
+      { h: '咱们', p: 'zánmen', v: 'chúng mình (gồm người nghe)', e: 'we or us (including both the speaker and the person(s) spoken to)' }
     ],
     workbook: {
       easy: [
@@ -5789,6 +6491,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đại từ nâng cao',
     context: 'Mai quên mang sách, không biết xoay xở thế nào. Tiểu Mỹ giúp cô tìm cách giải quyết.',
     vocabPreview: ['怎么办', '怎么样', '这样', '自己', '这么'],
+    objectives: [
+      'Cầu cứu phương án bằng 怎么办',
+      'Hỏi ý kiến / tình trạng bằng 怎么样 / 怎样',
+      'Tự xử lý bằng 自己 (自己想办法)',
+      'Ôn lại câu chữ 把 (把书忘了)'
+    ],
+    grammarNotes: [
+      { point: '怎么办 — làm sao đây',
+        explain: '怎么办 hỏi nên xử lý thế nào khi gặp khó, thường đứng cuối câu.',
+        examples: [
+          { zh: '我把书忘了，怎么办？', py: 'Wǒ bǎ shū wàng le, zěnme bàn?', vi: 'Tớ quên sách rồi, làm sao đây?' }
+        ] },
+      { point: '怎么样 / 怎样 — thế nào',
+        explain: 'Hỏi ý kiến hoặc tình trạng; 怎样 là dạng trang trọng của 怎么样.',
+        examples: [
+          { zh: '你觉得这个办法怎么样？', py: 'Nǐ juéde zhège bànfǎ zěnmeyàng?', vi: 'Cậu thấy cách này thế nào?' }
+        ] },
+      { point: '自己 — tự mình, bản thân',
+        explain: '自己 nhấn chính chủ thể tự làm, có thể đứng sau chủ ngữ.',
+        examples: [
+          { zh: '自己先想想办法。', py: 'Zìjǐ xiān xiǎngxiang bànfǎ.', vi: 'Tự mình nghĩ cách trước đã.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -5868,13 +6593,13 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '怎么办', p: 'zěnmebàn', v: 'làm sao đây, làm thế nào' },
-      { h: '怎么样', p: 'zěnmeyàng', v: 'thế nào, ra sao' },
-      { h: '怎样', p: 'zěnyàng', v: 'thế nào (như 怎么样)' },
-      { h: '这么', p: 'zhème', v: 'thế này, đến mức này' },
-      { h: '这时', p: 'zhèshí', v: 'lúc này, lúc đó' },
-      { h: '这样', p: 'zhèyàng', v: 'thế này, như vậy' },
-      { h: '自己', p: 'zìjǐ', v: 'tự mình, bản thân' }
+      { h: '怎么办', p: 'zěnmebàn', v: 'làm sao đây, làm thế nào', e: 'what\\\'s to be done' },
+      { h: '怎么样', p: 'zěnmeyàng', v: 'thế nào, ra sao', e: 'how?' },
+      { h: '怎样', p: 'zěnyàng', v: 'thế nào (như 怎么样)', e: 'how' },
+      { h: '这么', p: 'zhème', v: 'thế này, đến mức này', e: 'so much' },
+      { h: '这时', p: 'zhèshí', v: 'lúc này, lúc đó', e: 'at this time' },
+      { h: '这样', p: 'zhèyàng', v: 'thế này, như vậy', e: 'this kind of' },
+      { h: '自己', p: 'zìjǐ', v: 'tự mình, bản thân', e: 'oneself' }
     ],
     workbook: {
       easy: [
@@ -5911,6 +6636,30 @@ Object.assign(COURSE_DATA, {
     title: 'Địa điểm & đồ vật (1)',
     context: 'Mai và Tiểu Mỹ đi siêu thị gần công viên, nói về phương hướng và mua văn phòng phẩm.',
     vocabPreview: ['超市', '公园', '机会', '笔记本', '国际'],
+    objectives: [
+      'Dùng phương vị từ: 东边 / 东方 / 东北 / 东南',
+      'Nói khoảng cách bằng 离 (离花园很近)',
+      'Dùng đúng lượng từ 瓶 / 双 / 台 (一瓶水)',
+      'Nói về siêu thị, văn phòng phẩm (超市 · 笔记本 · 国际)'
+    ],
+    grammarNotes: [
+      { point: 'Phương vị từ',
+        explain: '东边 / 南方 chỉ phía; 东北 (Đông Bắc), 东南 (Đông Nam) ghép hai hướng; 东方 chỉ phương Đông.',
+        examples: [
+          { zh: '超市在公园东边。', py: 'Chāoshì zài gōngyuán dōngbian.', vi: 'Siêu thị ở phía đông công viên.' }
+        ] },
+      { point: '离 — cách (khoảng cách)',
+        explain: '“A 离 B + 远 / 近” cho biết A cách B gần hay xa.',
+        examples: [
+          { zh: '离花园很近。', py: 'Lí huāyuán hěn jìn.', vi: 'Cách vườn hoa rất gần.' }
+        ] },
+      { point: 'Lượng từ 瓶 / 双 / 台',
+        explain: '瓶 đếm chai; 双 đếm đôi (giày, đũa); 台 đếm máy móc.',
+        examples: [
+          { zh: '桌上有一瓶水。', py: 'Zhuō shàng yǒu yì píng shuǐ.', vi: 'Trên bàn có một chai nước.' },
+          { zh: '那双球鞋也是我的。', py: 'Nà shuāng qiúxié yě shì wǒ de.', vi: 'Đôi giày thể thao kia cũng của tớ.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -6025,27 +6774,27 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '北方', p: 'běifāng', v: 'phương Bắc, miền Bắc' },
-      { h: '笔记本', p: 'bǐjìběn', v: 'quyển vở; máy tính xách tay' },
-      { h: '超市', p: 'chāoshì', v: 'siêu thị' },
-      { h: '东北', p: 'dōngběi', v: 'Đông Bắc' },
-      { h: '东方', p: 'dōngfāng', v: 'phương Đông' },
-      { h: '东南', p: 'dōngnán', v: 'Đông Nam' },
-      { h: '公园', p: 'gōngyuán', v: 'công viên' },
-      { h: '国际', p: 'guójì', v: 'quốc tế' },
-      { h: '花园', p: 'huāyuán', v: 'vườn hoa' },
-      { h: '机会', p: 'jīhuì', v: 'cơ hội' },
-      { h: '南方', p: 'nánfāng', v: 'phương Nam, miền Nam' },
-      { h: '报纸', p: 'bàozhǐ', v: 'báo, tờ báo' },
-      { h: '笔', p: 'bǐ', v: 'bút' },
-      { h: '灯', p: 'dēng', v: 'đèn' },
-      { h: '黑板', p: 'hēibǎn', v: 'bảng đen' },
-      { h: '计算机', p: 'jìsuànjī', v: 'máy tính' },
-      { h: '筷子', p: 'kuàizi', v: 'đũa' },
-      { h: '那时候', p: 'nàshíhou', v: 'hồi đó, lúc đó' },
-      { h: '瓶', p: 'píng', v: 'chai (lượng từ)' },
-      { h: '瓶子', p: 'píngzi', v: 'cái chai' },
-      { h: '球鞋', p: 'qiúxié', v: 'giày thể thao' }
+      { h: '北方', p: 'běifāng', v: 'phương Bắc, miền Bắc', e: 'north' },
+      { h: '笔记本', p: 'bǐjìběn', v: 'quyển vở; máy tính xách tay', e: 'notebook (stationery)' },
+      { h: '超市', p: 'chāoshì', v: 'siêu thị', e: 'supermarket (abbr. for 超级市场)' },
+      { h: '东北', p: 'dōngběi', v: 'Đông Bắc', e: 'Northeast China' },
+      { h: '东方', p: 'dōngfāng', v: 'phương Đông', e: 'the East' },
+      { h: '东南', p: 'dōngnán', v: 'Đông Nam', e: 'southeast' },
+      { h: '公园', p: 'gōngyuán', v: 'công viên', e: 'park (for public recreation)' },
+      { h: '国际', p: 'guójì', v: 'quốc tế', e: 'international' },
+      { h: '花园', p: 'huāyuán', v: 'vườn hoa', e: 'garden' },
+      { h: '机会', p: 'jīhuì', v: 'cơ hội', e: 'opportunity' },
+      { h: '南方', p: 'nánfāng', v: 'phương Nam, miền Nam', e: 'south' },
+      { h: '报纸', p: 'bàozhǐ', v: 'báo, tờ báo', e: 'newspaper' },
+      { h: '笔', p: 'bǐ', v: 'bút', e: 'pen' },
+      { h: '灯', p: 'dēng', v: 'đèn', e: 'lamp' },
+      { h: '黑板', p: 'hēibǎn', v: 'bảng đen', e: 'blackboard' },
+      { h: '计算机', p: 'jìsuànjī', v: 'máy tính', e: 'computer' },
+      { h: '筷子', p: 'kuàizi', v: 'đũa', e: 'chopsticks' },
+      { h: '那时候', p: 'nàshíhou', v: 'hồi đó, lúc đó', e: 'at that time' },
+      { h: '瓶', p: 'píng', v: 'chai (lượng từ)', e: 'bottle' },
+      { h: '瓶子', p: 'píngzi', v: 'cái chai', e: 'bottle' },
+      { h: '球鞋', p: 'qiúxié', v: 'giày thể thao', e: 'athletic shoes' }
     ],
     workbook: {
       easy: [
@@ -6084,6 +6833,29 @@ Object.assign(COURSE_DATA, {
     title: 'Địa điểm & đồ vật (2)',
     context: 'Mai và Tiểu Mỹ đi ngân hàng rồi sắm vài món đồ dùng. Họ nói về phương hướng và báo chí.',
     vocabPreview: ['银行', '停车场', '相机', '以上', '有点儿'],
+    objectives: [
+      'Dùng 以上 / 以下 nêu mốc số lượng (八十分以上)',
+      'Dùng phương vị 西北 / 西南 / 西方',
+      'Diễn đạt mức độ nhẹ bằng 有点儿 (有点儿累)',
+      'Nói về ngân hàng, đồ dùng (银行 · 相机 · 停车场)'
+    ],
+    grammarNotes: [
+      { point: '以上 / 以下 — trở lên / trở xuống',
+        explain: 'Đặt sau con số / mốc để chỉ phạm vi từ đó trở lên hay trở xuống.',
+        examples: [
+          { zh: '八十分以上算好，六十分以下要努力。', py: 'Bāshí fēn yǐshàng suàn hǎo, liùshí fēn yǐxià yào nǔlì.', vi: 'Trên 80 điểm là tốt, dưới 60 thì phải cố.' }
+        ] },
+      { point: 'Phương vị ghép 西北 / 西南',
+        explain: '西北 (Tây Bắc), 西南 (Tây Nam) ghép hướng chính; 西方 chỉ phương Tây.',
+        examples: [
+          { zh: '这座城市在全国西北。', py: 'Zhè zuò chéngshì zài quánguó xīběi.', vi: 'Thành phố này ở phía Tây Bắc cả nước.' }
+        ] },
+      { point: '有点儿 — hơi (một chút)',
+        explain: '有点儿 + tính từ diễn đạt mức độ nhẹ, thường nghĩa không như ý.',
+        examples: [
+          { zh: '我有点儿累。', py: 'Wǒ yǒudiǎnr lèi.', vi: 'Tớ hơi mệt.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -6198,26 +6970,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '全国', p: 'quánguó', v: 'cả nước, toàn quốc' },
-      { h: '市', p: 'shì', v: 'thành phố, thị' },
-      { h: '停车场', p: 'tíngchēchǎng', v: 'bãi đỗ xe' },
-      { h: '西北', p: 'xīběi', v: 'Tây Bắc' },
-      { h: '西餐', p: 'xīcān', v: 'món Tây, cơm Tây' },
-      { h: '西方', p: 'xīfāng', v: 'phương Tây' },
-      { h: '西南', p: 'xīnán', v: 'Tây Nam' },
-      { h: '药水', p: 'yàoshuǐ', v: 'thuốc nước' },
-      { h: '银行', p: 'yínháng', v: 'ngân hàng' },
-      { h: '银行卡', p: 'yínhángkǎ', v: 'thẻ ngân hàng' },
-      { h: '日报', p: 'rìbào', v: 'nhật báo' },
-      { h: '晚报', p: 'wǎnbào', v: 'báo buổi chiều/tối' },
-      { h: '碗', p: 'wǎn', v: 'bát, chén' },
-      { h: '洗衣机', p: 'xǐyījī', v: 'máy giặt' },
-      { h: '相机', p: 'xiàngjī', v: 'máy ảnh' },
-      { h: '鞋', p: 'xié', v: 'giày' },
-      { h: '以上', p: 'yǐshàng', v: 'trở lên, trên' },
-      { h: '以下', p: 'yǐxià', v: 'trở xuống, dưới' },
-      { h: '有点儿', p: 'yǒudiǎnr', v: 'hơi, một chút' },
-      { h: '纸', p: 'zhǐ', v: 'giấy' }
+      { h: '全国', p: 'quánguó', v: 'cả nước, toàn quốc', e: 'whole nation' },
+      { h: '市', p: 'shì', v: 'thành phố, thị', e: 'market' },
+      { h: '停车场', p: 'tíngchēchǎng', v: 'bãi đỗ xe', e: 'parking lot' },
+      { h: '西北', p: 'xīběi', v: 'Tây Bắc', e: 'Northwest China (Shaanxi, Gansu, Qinghai, Ningxia, Xinjiang)' },
+      { h: '西餐', p: 'xīcān', v: 'món Tây, cơm Tây', e: 'Western-style food' },
+      { h: '西方', p: 'xīfāng', v: 'phương Tây', e: 'the West' },
+      { h: '西南', p: 'xīnán', v: 'Tây Nam', e: 'southwest' },
+      { h: '药水', p: 'yàoshuǐ', v: 'thuốc nước', e: 'Yaksu in North Korea, near the border with Liaoning and Jiling province' },
+      { h: '银行', p: 'yínháng', v: 'ngân hàng', e: 'bank' },
+      { h: '银行卡', p: 'yínhángkǎ', v: 'thẻ ngân hàng', e: 'bank card' },
+      { h: '日报', p: 'rìbào', v: 'nhật báo', e: 'daily newspaper' },
+      { h: '晚报', p: 'wǎnbào', v: 'báo buổi chiều/tối', e: 'evening newspaper' },
+      { h: '碗', p: 'wǎn', v: 'bát, chén', e: 'bowl' },
+      { h: '洗衣机', p: 'xǐyījī', v: 'máy giặt', e: 'washing machine' },
+      { h: '相机', p: 'xiàngjī', v: 'máy ảnh', e: 'camera (abbr. for 照相机)' },
+      { h: '鞋', p: 'xié', v: 'giày', e: 'shoe' },
+      { h: '以上', p: 'yǐshàng', v: 'trở lên, trên', e: 'that level or higher' },
+      { h: '以下', p: 'yǐxià', v: 'trở xuống, dưới', e: 'that level or lower' },
+      { h: '有点儿', p: 'yǒudiǎnr', v: 'hơi, một chút', e: 'slightly' },
+      { h: '纸', p: 'zhǐ', v: 'giấy', e: 'paper' }
     ],
     workbook: {
       easy: [
@@ -6256,6 +7028,29 @@ Object.assign(COURSE_DATA, {
     title: 'Cơ thể & thiên nhiên (1)',
     context: 'Cả nhóm đi dã ngoại ra biển. Họ đi bộ nhiều, nói về cơ thể mệt mỏi và vẻ đẹp thiên nhiên.',
     vocabPreview: ['大海', '脚', '手表', '大自然', '地球'],
+    objectives: [
+      'Dùng lượng từ 块 cho đồng hồ, vật dẹt (这块表)',
+      'Diễn đạt “đều…rồi” bằng …都…了 (脚和腿都累了)',
+      'Dùng bổ ngữ xu hướng 出去 / 下 (出去 · 低下头)',
+      'Nói về cơ thể, thiên nhiên (大海 · 脚 · 地球)'
+    ],
+    grammarNotes: [
+      { point: 'Lượng từ 块',
+        explain: '块 đếm vật dẹt / cục như đồng hồ (表), bánh xà phòng, đất; cũng đếm tiền (khẩu ngữ).',
+        examples: [
+          { zh: '这块表很准。', py: 'Zhè kuài biǎo hěn zhǔn.', vi: 'Cái đồng hồ này rất chuẩn.' }
+        ] },
+      { point: '…都…了 — đều…rồi',
+        explain: '都 nhấn “tất cả”, kết hợp 了 chỉ trạng thái mới đã diễn ra.',
+        examples: [
+          { zh: '我的脚和腿都累了。', py: 'Wǒ de jiǎo hé tuǐ dōu lèi le.', vi: 'Chân và cẳng chân tớ đều mỏi rồi.' }
+        ] },
+      { point: 'Bổ ngữ xu hướng 出去 / 下',
+        explain: '出去 chỉ hướng ra ngoài; 下 chỉ hướng xuống.',
+        examples: [
+          { zh: '从大门出去就能看到大海。', py: 'Cóng dàmén chūqù jiù néng kàndào dàhǎi.', vi: 'Ra khỏi cổng lớn là thấy biển.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -6363,22 +7158,22 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '表', p: 'biǎo', v: 'đồng hồ; bảng biểu' },
-      { h: '家长', p: 'jiāzhǎng', v: 'phụ huynh' },
-      { h: '脚', p: 'jiǎo', v: 'bàn chân' },
-      { h: '脸', p: 'liǎn', v: 'mặt' },
-      { h: '球队', p: 'qiúduì', v: 'đội bóng' },
-      { h: '手表', p: 'shǒubiǎo', v: 'đồng hồ đeo tay' },
-      { h: '头', p: 'tóu', v: 'đầu' },
-      { h: '头发', p: 'tóufa', v: 'tóc' },
-      { h: '腿', p: 'tuǐ', v: 'chân, cẳng chân' },
-      { h: '草', p: 'cǎo', v: 'cỏ' },
-      { h: '大海', p: 'dàhǎi', v: 'biển lớn' },
-      { h: '大门', p: 'dàmén', v: 'cổng lớn' },
-      { h: '大自然', p: 'dàzìrán', v: 'thiên nhiên' },
-      { h: '地球', p: 'dìqiú', v: 'Trái Đất' },
-      { h: '海', p: 'hǎi', v: 'biển' },
-      { h: '河', p: 'hé', v: 'sông' }
+      { h: '表', p: 'biǎo', v: 'đồng hồ; bảng biểu', e: 'exterior surface' },
+      { h: '家长', p: 'jiāzhǎng', v: 'phụ huynh', e: 'head of a household' },
+      { h: '脚', p: 'jiǎo', v: 'bàn chân', e: 'foot' },
+      { h: '脸', p: 'liǎn', v: 'mặt', e: 'face' },
+      { h: '球队', p: 'qiúduì', v: 'đội bóng', e: 'sports team (basketball, soccer, football etc)' },
+      { h: '手表', p: 'shǒubiǎo', v: 'đồng hồ đeo tay', e: 'wristwatch' },
+      { h: '头', p: 'tóu', v: 'đầu', e: 'head' },
+      { h: '头发', p: 'tóufa', v: 'tóc', e: 'hair (on the head)' },
+      { h: '腿', p: 'tuǐ', v: 'chân, cẳng chân', e: 'leg' },
+      { h: '草', p: 'cǎo', v: 'cỏ', e: 'grass, straw, careless' },
+      { h: '大海', p: 'dàhǎi', v: 'biển lớn', e: 'sea' },
+      { h: '大门', p: 'dàmén', v: 'cổng lớn', e: 'the Doors, US rock band' },
+      { h: '大自然', p: 'dàzìrán', v: 'thiên nhiên', e: 'nature (the natural world)' },
+      { h: '地球', p: 'dìqiú', v: 'Trái Đất', e: 'the earth' },
+      { h: '海', p: 'hǎi', v: 'biển', e: 'sea, ocean' },
+      { h: '河', p: 'hé', v: 'sông', e: 'river' }
     ],
     workbook: {
       easy: [
@@ -6417,6 +7212,29 @@ Object.assign(COURSE_DATA, {
     title: 'Cơ thể & thiên nhiên (2)',
     context: 'Một buổi tối trời quang, cả nhóm ngắm trăng sao, gọi đồ ăn và trò chuyện về một vị viện trưởng nổi tiếng.',
     vocabPreview: ['太阳', '月亮', '眼睛', '外卖', '心里'],
+    objectives: [
+      'Dùng bổ ngữ kết quả 到 (看到月亮)',
+      'Diễn đạt vị trí động tác bằng V + 在 (坐在椅子上)',
+      'Đối lập 心里 / 嘴上 (trong lòng / ngoài miệng)',
+      'Nói về bầu trời, đồ ăn ngoài (太阳 · 月亮 · 外卖)'
+    ],
+    grammarNotes: [
+      { point: 'Bổ ngữ kết quả 到 (nhìn / nghe thấy)',
+        explain: '看到, 听到 nghĩa “thấy / nghe được” — động tác có kết quả.',
+        examples: [
+          { zh: '晚上能看到月亮和星星。', py: 'Wǎnshang néng kàndào yuèliang hé xīngxing.', vi: 'Buổi tối có thể thấy trăng và sao.' }
+        ] },
+      { point: 'V + 在 + nơi chốn',
+        explain: 'Động từ + 在 + địa điểm chỉ vị trí diễn ra / kết thúc động tác.',
+        examples: [
+          { zh: '我们坐在椅子上。', py: 'Wǒmen zuò zài yǐzi shàng.', vi: 'Mình ngồi trên ghế.' }
+        ] },
+      { point: '心里 / 嘴上 — trong lòng / ngoài miệng',
+        explain: 'Cặp đối lập nêu cảm xúc bên trong và biểu hiện bên ngoài.',
+        examples: [
+          { zh: '我心里很高兴，嘴上不说。', py: 'Wǒ xīnlǐ hěn gāoxìng, zuǐ shàng bù shuō.', vi: 'Trong lòng tớ rất vui, ngoài miệng không nói.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -6531,22 +7349,22 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '外卖', p: 'wàimài', v: 'đồ ăn mang đi, đặt ship' },
-      { h: '心里', p: 'xīnlǐ', v: 'trong lòng' },
-      { h: '眼', p: 'yǎn', v: 'mắt' },
-      { h: '眼睛', p: 'yǎnjing', v: 'mắt (đôi mắt)' },
-      { h: '椅子', p: 'yǐzi', v: 'cái ghế' },
-      { h: '院长', p: 'yuànzhǎng', v: 'viện trưởng' },
-      { h: '嘴', p: 'zuǐ', v: 'miệng' },
-      { h: '做法', p: 'zuòfǎ', v: 'cách làm' },
-      { h: '面', p: 'miàn', v: 'mì; mặt' },
-      { h: '街', p: 'jiē', v: 'phố, đường phố' },
-      { h: '明星', p: 'míngxīng', v: 'ngôi sao, người nổi tiếng' },
-      { h: '晴天', p: 'qíngtiān', v: 'trời quang, trời nắng' },
-      { h: '太阳', p: 'tàiyáng', v: 'mặt trời' },
-      { h: '星星', p: 'xīngxing', v: 'ngôi sao (trên trời)' },
-      { h: '药', p: 'yào', v: 'thuốc' },
-      { h: '月亮', p: 'yuèliang', v: 'mặt trăng' }
+      { h: '外卖', p: 'wàimài', v: 'đồ ăn mang đi, đặt ship', e: 'to provide a takeout or home delivery meal' },
+      { h: '心里', p: 'xīnlǐ', v: 'trong lòng', e: 'chest' },
+      { h: '眼', p: 'yǎn', v: 'mắt', e: 'eye' },
+      { h: '眼睛', p: 'yǎnjing', v: 'mắt (đôi mắt)', e: 'eye' },
+      { h: '椅子', p: 'yǐzi', v: 'cái ghế', e: 'chair' },
+      { h: '院长', p: 'yuànzhǎng', v: 'viện trưởng', e: 'the head of an institution whose name ends in 院' },
+      { h: '嘴', p: 'zuǐ', v: 'miệng', e: 'mouth' },
+      { h: '做法', p: 'zuòfǎ', v: 'cách làm', e: 'way of handling sth' },
+      { h: '面', p: 'miàn', v: 'mì; mặt', e: 'face' },
+      { h: '街', p: 'jiē', v: 'phố, đường phố', e: 'street' },
+      { h: '明星', p: 'míngxīng', v: 'ngôi sao, người nổi tiếng', e: 'star' },
+      { h: '晴天', p: 'qíngtiān', v: 'trời quang, trời nắng', e: 'clear sky' },
+      { h: '太阳', p: 'tàiyáng', v: 'mặt trời', e: 'sun' },
+      { h: '星星', p: 'xīngxing', v: 'ngôi sao (trên trời)', e: 'a star' },
+      { h: '药', p: 'yào', v: 'thuốc', e: 'leaf of the iris' },
+      { h: '月亮', p: 'yuèliang', v: 'mặt trăng', e: 'the moon' }
     ],
     workbook: {
       easy: [
@@ -6585,6 +7403,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Ăn uống & trường học',
     context: 'Cả nhóm ăn tối ở một quán ăn, rồi trò chuyện về chuyện trường lớp, môn học và điểm số.',
     vocabPreview: ['饭馆', '菜单', '教室', '年级', '留学生'],
+    objectives: [
+      'Dùng 多 / 少 + V để bớt / thêm (少放油)',
+      'Đặt điều kiện rút gọn bằng 没…就… (没时间就吃方便面)',
+      'Dùng lượng từ 碗 / 个 / 套 (一碗面)',
+      'Nói về ăn uống, trường lớp (饭馆 · 教室 · 年级)'
+    ],
+    grammarNotes: [
+      { point: '多 / 少 + động từ',
+        explain: '多 / 少 đặt trước động từ để yêu cầu làm nhiều hơn / ít hơn.',
+        examples: [
+          { zh: '我要一碗面，少放油。', py: 'Wǒ yào yì wǎn miàn, shǎo fàng yóu.', vi: 'Tớ muốn một bát mì, cho ít dầu thôi.' }
+        ] },
+      { point: '没…就… — không…thì…',
+        explain: 'Vế trước nêu điều kiện thiếu, vế sau dùng 就 nêu cách xử lý.',
+        examples: [
+          { zh: '没时间就吃方便面。', py: 'Méi shíjiān jiù chī fāngbiànmiàn.', vi: 'Không có thời gian thì ăn mì gói.' }
+        ] },
+      { point: 'Lượng từ 碗 / 个 / 套',
+        explain: '碗 đếm thứ đựng trong bát; 个 lượng từ phổ thông; 套 đếm bộ.',
+        examples: [
+          { zh: '一碗面、一个蛋。', py: 'Yì wǎn miàn, yí gè dàn.', vi: 'Một bát mì, một quả trứng.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -6699,28 +7540,28 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '菜单', p: 'càidān', v: 'thực đơn' },
-      { h: '蛋', p: 'dàn', v: 'trứng' },
-      { h: '饭馆', p: 'fànguǎn', v: 'quán ăn, nhà hàng' },
-      { h: '方便面', p: 'fāngbiànmiàn', v: 'mì ăn liền' },
-      { h: '酒', p: 'jiǔ', v: 'rượu' },
-      { h: '酒店', p: 'jiǔdiàn', v: 'khách sạn' },
-      { h: '米', p: 'mǐ', v: 'gạo; mét' },
-      { h: '晚餐', p: 'wǎncān', v: 'bữa tối' },
-      { h: '味道', p: 'wèidao', v: 'mùi vị' },
-      { h: '油', p: 'yóu', v: 'dầu, mỡ' },
-      { h: '面', p: 'miàn', v: 'mì; mặt' },
-      { h: '分数', p: 'fēnshù', v: 'điểm số' },
-      { h: '高中', p: 'gāozhōng', v: 'trung học phổ thông (cấp ba)' },
-      { h: '教师', p: 'jiàoshī', v: 'giáo viên' },
-      { h: '教室', p: 'jiàoshì', v: 'phòng học' },
-      { h: '考生', p: 'kǎoshēng', v: 'thí sinh' },
-      { h: '科', p: 'kē', v: 'môn, khoa' },
-      { h: '课堂', p: 'kètáng', v: 'lớp học (giờ học)' },
-      { h: '留学生', p: 'liúxuéshēng', v: 'du học sinh' },
-      { h: '年级', p: 'niánjí', v: 'khối lớp, niên khóa' },
-      { h: '生词', p: 'shēngcí', v: 'từ mới' },
-      { h: '中小学', p: 'zhōngxiǎoxué', v: 'trường phổ thông (tiểu học và trung học)' }
+      { h: '菜单', p: 'càidān', v: 'thực đơn', e: 'menu' },
+      { h: '蛋', p: 'dàn', v: 'trứng', e: 'egg' },
+      { h: '饭馆', p: 'fànguǎn', v: 'quán ăn, nhà hàng', e: 'restaurant' },
+      { h: '方便面', p: 'fāngbiànmiàn', v: 'mì ăn liền', e: 'instant noodles' },
+      { h: '酒', p: 'jiǔ', v: 'rượu', e: 'wine (esp. rice wine)' },
+      { h: '酒店', p: 'jiǔdiàn', v: 'khách sạn', e: 'wine shop' },
+      { h: '米', p: 'mǐ', v: 'gạo; mét', e: 'rice, meter' },
+      { h: '晚餐', p: 'wǎncān', v: 'bữa tối', e: 'evening meal' },
+      { h: '味道', p: 'wèidao', v: 'mùi vị', e: 'flavor' },
+      { h: '油', p: 'yóu', v: 'dầu, mỡ', e: 'oil' },
+      { h: '面', p: 'miàn', v: 'mì; mặt', e: 'face' },
+      { h: '分数', p: 'fēnshù', v: 'điểm số', e: 'grade' },
+      { h: '高中', p: 'gāozhōng', v: 'trung học phổ thông (cấp ba)', e: 'senior high school' },
+      { h: '教师', p: 'jiàoshī', v: 'giáo viên', e: 'teacher' },
+      { h: '教室', p: 'jiàoshì', v: 'phòng học', e: 'classroom' },
+      { h: '考生', p: 'kǎoshēng', v: 'thí sinh', e: 'exam candidate' },
+      { h: '科', p: 'kē', v: 'môn, khoa', e: 'branch of study' },
+      { h: '课堂', p: 'kètáng', v: 'lớp học (giờ học)', e: 'classroom' },
+      { h: '留学生', p: 'liúxuéshēng', v: 'du học sinh', e: 'student studying abroad' },
+      { h: '年级', p: 'niánjí', v: 'khối lớp, niên khóa', e: 'grade' },
+      { h: '生词', p: 'shēngcí', v: 'từ mới', e: 'new word (in textbook)' },
+      { h: '中小学', p: 'zhōngxiǎoxué', v: 'trường phổ thông (tiểu học và trung học)', e: 'middle and elementary school' }
     ],
     workbook: {
       easy: [
@@ -6759,6 +7600,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Ngôn ngữ & giao tiếp',
     context: 'Mai và Tiểu Mỹ bàn về việc học ngoại ngữ: phát âm, từ ngữ và cách đặt câu.',
     vocabPreview: ['语言', '普通话', '英语', '句子', '读音'],
+    objectives: [
+      'Dùng 让 để nói “bảo ai làm gì” (老师让我写句子)',
+      'Khoanh vùng bằng 在…方面 (在发音方面)',
+      'Dùng A 和 B 都… (A và B đều…)',
+      'Nói về học ngôn ngữ (语言 · 句子 · 读音)'
+    ],
+    grammarNotes: [
+      { point: '让 — bảo, sai khiến',
+        explain: '让 + người + động từ: yêu cầu / bảo ai làm gì.',
+        examples: [
+          { zh: '老师让我写一个句子。', py: 'Lǎoshī ràng wǒ xiě yí gè jùzi.', vi: 'Cô bảo tớ viết một câu.' }
+        ] },
+      { point: '在…方面 — về mặt, phương diện',
+        explain: 'Khoanh vùng phạm vi nói tới: “về mặt / phương diện…”.',
+        examples: [
+          { zh: '在发音方面要注意。', py: 'Zài fāyīn fāngmiàn yào zhùyì.', vi: 'Về mặt phát âm phải chú ý.' }
+        ] },
+      { point: 'A 和 B 都… — A và B đều…',
+        explain: '都 đặt sau chủ ngữ kép để nhấn “cả hai đều”.',
+        examples: [
+          { zh: '普通话和英语都重要。', py: 'Pǔtōnghuà hé Yīngyǔ dōu zhòngyào.', vi: 'Tiếng phổ thông và tiếng Anh đều quan trọng.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -6831,16 +7695,16 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '词', p: 'cí', v: 'từ' },
-      { h: '词语', p: 'cíyǔ', v: 'từ ngữ' },
-      { h: '读音', p: 'dúyīn', v: 'cách đọc, âm đọc' },
-      { h: '句子', p: 'jùzi', v: 'câu' },
-      { h: '平安', p: 'píng’ān', v: 'bình an' },
-      { h: '普通话', p: 'pǔtōnghuà', v: 'tiếng phổ thông' },
-      { h: '英文', p: 'yīngwén', v: 'tiếng Anh (chữ viết)' },
-      { h: '英语', p: 'yīngyǔ', v: 'tiếng Anh' },
-      { h: '语言', p: 'yǔyán', v: 'ngôn ngữ' },
-      { h: '方面', p: 'fāngmiàn', v: 'phương diện, mặt' }
+      { h: '词', p: 'cí', v: 'từ', e: 'word, phrase, part of speech' },
+      { h: '词语', p: 'cíyǔ', v: 'từ ngữ', e: 'word (general term including monosyllables through to short phrases)' },
+      { h: '读音', p: 'dúyīn', v: 'cách đọc, âm đọc', e: 'pronunciation' },
+      { h: '句子', p: 'jùzi', v: 'câu', e: 'sentence' },
+      { h: '平安', p: 'píng’ān', v: 'bình an', e: 'safe and sound' },
+      { h: '普通话', p: 'pǔtōnghuà', v: 'tiếng phổ thông', e: 'Mandarin (common language)' },
+      { h: '英文', p: 'yīngwén', v: 'tiếng Anh (chữ viết)', e: 'English (language)' },
+      { h: '英语', p: 'yīngyǔ', v: 'tiếng Anh', e: 'English (language)' },
+      { h: '语言', p: 'yǔyán', v: 'ngôn ngữ', e: 'language' },
+      { h: '方面', p: 'fāngmiàn', v: 'phương diện, mặt', e: 'respect' }
     ],
     workbook: {
       easy: [
@@ -6877,6 +7741,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Màu sắc & động vật',
     context: 'Cả nhóm ra công viên, nói về màu sắc yêu thích, các con vật và thời tiết.',
     vocabPreview: ['颜色', '红色', '气温', '然后', '结果'],
+    objectives: [
+      'Nối trình tự bằng 先…然后… (trước…rồi sau đó)',
+      'Dùng bổ ngữ trình độ V得 (找得多)',
+      'Hỏi bằng 什么 (喜欢什么颜色)',
+      'Nói về màu sắc, động vật (颜色 · 结果 · 气温)'
+    ],
+    grammarNotes: [
+      { point: '先…然后… — trước…rồi sau đó…',
+        explain: 'Cặp từ nối hai hành động theo thứ tự thời gian.',
+        examples: [
+          { zh: '先看动物，然后看结果。', py: 'Xiān kàn dòngwù, ránhòu kàn jiéguǒ.', vi: 'Xem động vật trước, sau đó xem kết quả.' }
+        ] },
+      { point: 'V + 得 + tính từ — bổ ngữ trình độ',
+        explain: 'Động từ + 得 + tính từ nhận xét mức độ của động tác.',
+        examples: [
+          { zh: '看结果谁找得多。', py: 'Kàn jiéguǒ shéi zhǎo de duō.', vi: 'Xem kết quả ai tìm được nhiều.' }
+        ] },
+      { point: '什么 — gì (nghi vấn)',
+        explain: '什么 đặt trước danh từ để hỏi “… gì”.',
+        examples: [
+          { zh: '你喜欢什么颜色？', py: 'Nǐ xǐhuan shénme yánsè?', vi: 'Cậu thích màu gì?' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -6956,20 +7843,20 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '白色', p: 'báisè', v: 'màu trắng' },
-      { h: '黑色', p: 'hēisè', v: 'màu đen' },
-      { h: '红色', p: 'hóngsè', v: 'màu đỏ' },
-      { h: '黄色', p: 'huángsè', v: 'màu vàng' },
-      { h: '蓝色', p: 'lánsè', v: 'màu xanh lam' },
-      { h: '绿色', p: 'lǜsè', v: 'màu xanh lục' },
-      { h: '颜色', p: 'yánsè', v: 'màu sắc' },
-      { h: '狗', p: 'gǒu', v: 'chó' },
-      { h: '结果', p: 'jiéguǒ', v: 'kết quả' },
-      { h: '鸟', p: 'niǎo', v: 'chim' },
-      { h: '气温', p: 'qìwēn', v: 'nhiệt độ không khí' },
-      { h: '然后', p: 'ránhòu', v: 'sau đó, rồi thì' },
-      { h: '温度', p: 'wēndù', v: 'nhiệt độ' },
-      { h: '鱼', p: 'yú', v: 'cá' }
+      { h: '白色', p: 'báisè', v: 'màu trắng', e: 'white' },
+      { h: '黑色', p: 'hēisè', v: 'màu đen', e: 'black' },
+      { h: '红色', p: 'hóngsè', v: 'màu đỏ', e: 'red (color)' },
+      { h: '黄色', p: 'huángsè', v: 'màu vàng', e: 'yellow (color)' },
+      { h: '蓝色', p: 'lánsè', v: 'màu xanh lam', e: 'blue (color)' },
+      { h: '绿色', p: 'lǜsè', v: 'màu xanh lục', e: 'green' },
+      { h: '颜色', p: 'yánsè', v: 'màu sắc', e: 'color' },
+      { h: '狗', p: 'gǒu', v: 'chó', e: 'dog' },
+      { h: '结果', p: 'jiéguǒ', v: 'kết quả', e: 'to bear fruit' },
+      { h: '鸟', p: 'niǎo', v: 'chim', e: 'bird' },
+      { h: '气温', p: 'qìwēn', v: 'nhiệt độ không khí', e: 'air temperature' },
+      { h: '然后', p: 'ránhòu', v: 'sau đó, rồi thì', e: 'then' },
+      { h: '温度', p: 'wēndù', v: 'nhiệt độ', e: 'temperature' },
+      { h: '鱼', p: 'yú', v: 'cá', e: 'fish' }
     ],
     workbook: {
       easy: [
@@ -7006,6 +7893,30 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Giao thông & thể thao',
     context: 'Cả nhóm bàn cách đi đến nhà thi đấu và nói về các môn thể thao yêu thích.',
     vocabPreview: ['公交车', '自行车', '地铁站', '护照', '体育'],
+    objectives: [
+      'Diễn đạt đi bằng phương tiện: 坐 / 骑 + xe (坐公交车)',
+      'Nêu lựa chọn bằng 或者',
+      'Dùng 要 để nói “phải / cần” (要带护照)',
+      'Nói về giao thông, thể thao (公交车 · 自行车 · 体育)'
+    ],
+    grammarNotes: [
+      { point: '坐 / 骑 + phương tiện',
+        explain: '坐 dùng cho xe / tàu / thuyền (ngồi); 骑 dùng cho xe đạp, xe máy, ngựa (cưỡi).',
+        examples: [
+          { zh: '去体育馆可以坐公交车。', py: 'Qù tǐyùguǎn kěyǐ zuò gōngjiāochē.', vi: 'Đến nhà thi đấu có thể đi xe buýt.' },
+          { zh: '也可以骑自行车。', py: 'Yě kěyǐ qí zìxíngchē.', vi: 'Cũng có thể đạp xe đạp.' }
+        ] },
+      { point: '或者 — hoặc',
+        explain: '或者 nối lựa chọn trong câu trần thuật.',
+        examples: [
+          { zh: '骑自行车，或者坐出租车。', py: 'Qí zìxíngchē, huòzhě zuò chūzūchē.', vi: 'Đạp xe đạp, hoặc đi taxi.' }
+        ] },
+      { point: '要 — phải, cần',
+        explain: '要 + động từ chỉ sự cần thiết phải làm gì.',
+        examples: [
+          { zh: '出国坐船要带护照。', py: 'Chūguó zuò chuán yào dài hùzhào.', vi: 'Đi nước ngoài bằng tàu phải mang hộ chiếu.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -7085,20 +7996,20 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '车辆', p: 'chēliàng', v: 'xe cộ (nói chung)' },
-      { h: '出租车', p: 'chūzūchē', v: 'taxi' },
-      { h: '船', p: 'chuán', v: 'thuyền, tàu thủy' },
-      { h: '地铁站', p: 'dìtiězhàn', v: 'ga tàu điện ngầm' },
-      { h: '公共汽车', p: 'gōnggòng qìchē', v: 'xe khách công cộng' },
-      { h: '公路', p: 'gōnglù', v: 'đường lớn, quốc lộ' },
-      { h: '自行车', p: 'zìxíngchē', v: 'xe đạp' },
-      { h: '公交车', p: 'gōngjiāochē', v: 'xe buýt' },
-      { h: '护照', p: 'hùzhào', v: 'hộ chiếu' },
-      { h: '篮球', p: 'lánqiú', v: 'bóng rổ' },
-      { h: '排球', p: 'páiqiú', v: 'bóng chuyền' },
-      { h: '体育', p: 'tǐyù', v: 'thể dục, thể thao' },
-      { h: '同事', p: 'tóngshì', v: 'đồng nghiệp' },
-      { h: '网球', p: 'wǎngqiú', v: 'quần vợt (tennis)' }
+      { h: '车辆', p: 'chēliàng', v: 'xe cộ (nói chung)', e: 'vehicle' },
+      { h: '出租车', p: 'chūzūchē', v: 'taxi', e: 'taxi' },
+      { h: '船', p: 'chuán', v: 'thuyền, tàu thủy', e: 'boat, ship, vessel' },
+      { h: '地铁站', p: 'dìtiězhàn', v: 'ga tàu điện ngầm', e: 'subway station' },
+      { h: '公共汽车', p: 'gōnggòng qìchē', v: 'xe khách công cộng', e: 'bus' },
+      { h: '公路', p: 'gōnglù', v: 'đường lớn, quốc lộ', e: 'highway' },
+      { h: '自行车', p: 'zìxíngchē', v: 'xe đạp', e: 'bicycle' },
+      { h: '公交车', p: 'gōngjiāochē', v: 'xe buýt', e: 'public transport vehicle' },
+      { h: '护照', p: 'hùzhào', v: 'hộ chiếu', e: 'passport' },
+      { h: '篮球', p: 'lánqiú', v: 'bóng rổ', e: 'basketball' },
+      { h: '排球', p: 'páiqiú', v: 'bóng chuyền', e: 'volleyball' },
+      { h: '体育', p: 'tǐyù', v: 'thể dục, thể thao', e: 'sports' },
+      { h: '同事', p: 'tóngshì', v: 'đồng nghiệp', e: 'colleague' },
+      { h: '网球', p: 'wǎngqiú', v: 'quần vợt (tennis)', e: 'tennis' }
     ],
     workbook: {
       easy: [
@@ -7136,6 +8047,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Nghệ thuật, gia đình & thời tiết',
     context: 'Một ngày nhiều mây, cả nhóm nói về tiểu thuyết, âm nhạc, gia đình và chuyện sức khỏe.',
     vocabPreview: ['小说', '音乐', '家庭', '多云', '药店'],
+    objectives: [
+      'Dùng lượng từ 位 / 座 / 棵 (这位作家 · 一棵树)',
+      'Phỏng đoán bằng 可能 (可能下雪)',
+      'Dùng 让 để nói “bảo ai làm gì” (西医让我买药片)',
+      'Nói về nghệ thuật, gia đình, thời tiết (小说 · 家庭 · 多云)'
+    ],
+    grammarNotes: [
+      { point: 'Lượng từ 位 / 座 / 棵',
+        explain: '位 đếm người (lịch sự); 座 đếm công trình / núi; 棵 đếm cây.',
+        examples: [
+          { zh: '这位作家是我们校长的爱人。', py: 'Zhè wèi zuòjiā shì wǒmen xiàozhǎng de àiren.', vi: 'Nhà văn này là vợ / chồng của hiệu trưởng.' }
+        ] },
+      { point: '可能 — có thể, có lẽ',
+        explain: '可能 đặt trước vị ngữ để phỏng đoán khả năng xảy ra.',
+        examples: [
+          { zh: '明天阴天，可能下雪。', py: 'Míngtiān yīntiān, kěnéng xià xuě.', vi: 'Mai trời âm u, có thể có tuyết.' }
+        ] },
+      { point: '让 — bảo, sai khiến',
+        explain: '让 + người + động từ: bảo / khiến ai làm gì.',
+        examples: [
+          { zh: '西医让我去药店买药片。', py: 'Xīyī ràng wǒ qù yàodiàn mǎi yàopiàn.', vi: 'Bác sĩ Tây y bảo tôi ra hiệu thuốc mua viên thuốc.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -7215,23 +8149,23 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '小说', p: 'xiǎoshuō', v: 'tiểu thuyết' },
-      { h: '音乐', p: 'yīnyuè', v: 'âm nhạc' },
-      { h: '音乐会', p: 'yīnyuèhuì', v: 'buổi hòa nhạc' },
-      { h: '作家', p: 'zuòjiā', v: 'nhà văn' },
-      { h: '校长', p: 'xiàozhǎng', v: 'hiệu trưởng' },
-      { h: '院', p: 'yuàn', v: 'viện, khu nhà' },
-      { h: '院子', p: 'yuànzi', v: 'sân (nhà)' },
-      { h: '重点', p: 'zhòngdiǎn', v: 'trọng điểm, điều quan trọng' },
-      { h: '爱人', p: 'àirén', v: 'vợ/chồng' },
-      { h: '家庭', p: 'jiātíng', v: 'gia đình' },
-      { h: '全家', p: 'quánjiā', v: 'cả nhà' },
-      { h: '多云', p: 'duōyún', v: 'nhiều mây' },
-      { h: '雪', p: 'xuě', v: 'tuyết' },
-      { h: '阴天', p: 'yīntiān', v: 'trời âm u' },
-      { h: '西医', p: 'xīyī', v: 'Tây y; bác sĩ Tây y' },
-      { h: '药店', p: 'yàodiàn', v: 'hiệu thuốc' },
-      { h: '药片', p: 'yàopiàn', v: 'viên thuốc' }
+      { h: '小说', p: 'xiǎoshuō', v: 'tiểu thuyết', e: 'novel' },
+      { h: '音乐', p: 'yīnyuè', v: 'âm nhạc', e: 'music' },
+      { h: '音乐会', p: 'yīnyuèhuì', v: 'buổi hòa nhạc', e: 'concert' },
+      { h: '作家', p: 'zuòjiā', v: 'nhà văn', e: 'author' },
+      { h: '校长', p: 'xiàozhǎng', v: 'hiệu trưởng', e: 'president' },
+      { h: '院', p: 'yuàn', v: 'viện, khu nhà', e: 'courtyard' },
+      { h: '院子', p: 'yuànzi', v: 'sân (nhà)', e: 'courtyard' },
+      { h: '重点', p: 'zhòngdiǎn', v: 'trọng điểm, điều quan trọng', e: 'to recount (e.g. results of election)' },
+      { h: '爱人', p: 'àirén', v: 'vợ/chồng', e: 'spouse (PRC)' },
+      { h: '家庭', p: 'jiātíng', v: 'gia đình', e: 'family' },
+      { h: '全家', p: 'quánjiā', v: 'cả nhà', e: 'whole family' },
+      { h: '多云', p: 'duōyún', v: 'nhiều mây', e: 'cloudy (meteorology)' },
+      { h: '雪', p: 'xuě', v: 'tuyết', e: 'snow' },
+      { h: '阴天', p: 'yīntiān', v: 'trời âm u', e: 'cloudy day' },
+      { h: '西医', p: 'xīyī', v: 'Tây y; bác sĩ Tây y', e: 'Western medicine' },
+      { h: '药店', p: 'yàodiàn', v: 'hiệu thuốc', e: 'pharmacy' },
+      { h: '药片', p: 'yàopiàn', v: 'viên thuốc', e: 'a (medicine) pill or tablet' }
     ],
     workbook: {
       easy: [
@@ -7270,6 +8204,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Công việc & học thuật',
     context: 'Mai và Tiểu Mỹ nói về công việc ở công ty và một quan điểm về y học cổ truyền.',
     vocabPreview: ['公司', '经理', '道理', '意见', '中医'],
+    objectives: [
+      'Nhận xét bằng bổ ngữ trình độ V得 (说得有道理)',
+      'Diễn đạt “làm việc ở đâu” bằng 在 + nơi + 上班',
+      'Bày tỏ tán thành bằng 同意…的意见',
+      'Nói về công việc, quan điểm (公司 · 经理 · 意见)'
+    ],
+    grammarNotes: [
+      { point: 'V + 得 + nhận xét',
+        explain: 'Động từ + 得 + cụm để đánh giá động tác (nói có lý, làm tốt…).',
+        examples: [
+          { zh: '你说得有道理。', py: 'Nǐ shuō de yǒu dàolǐ.', vi: 'Cậu nói có lý.' }
+        ] },
+      { point: '在 + nơi chốn + V',
+        explain: '在 + địa điểm đặt trước động từ để nêu nơi diễn ra hành động.',
+        examples: [
+          { zh: '我表哥在一家公司上班。', py: 'Wǒ biǎogē zài yì jiā gōngsī shàngbān.', vi: 'Anh họ tớ làm việc ở một công ty.' }
+        ] },
+      { point: '同意 — đồng ý (với)',
+        explain: '同意 + ý kiến / người để bày tỏ tán thành.',
+        examples: [
+          { zh: '我同意你的意见。', py: 'Wǒ tóngyì nǐ de yìjiàn.', vi: 'Tớ đồng ý với ý kiến của cậu.' }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -7342,11 +8299,11 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '道理', p: 'dàoli', v: 'lý lẽ, đạo lý' },
-      { h: '意见', p: 'yìjiàn', v: 'ý kiến' },
-      { h: '公司', p: 'gōngsī', v: 'công ty' },
-      { h: '经理', p: 'jīnglǐ', v: 'quản lý, giám đốc' },
-      { h: '中医', p: 'zhōngyī', v: 'Đông y, y học cổ truyền' }
+      { h: '道理', p: 'dàoli', v: 'lý lẽ, đạo lý', e: 'reason' },
+      { h: '意见', p: 'yìjiàn', v: 'ý kiến', e: 'idea' },
+      { h: '公司', p: 'gōngsī', v: 'công ty', e: 'company' },
+      { h: '经理', p: 'jīnglǐ', v: 'quản lý, giám đốc', e: 'manager' },
+      { h: '中医', p: 'zhōngyī', v: 'Đông y, y học cổ truyền', e: 'traditional Chinese medical science' }
     ],
     workbook: {
       easy: [

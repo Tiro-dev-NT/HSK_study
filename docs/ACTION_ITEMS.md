@@ -1,5 +1,29 @@
 # Action Items
 
+## 🟢 Session 2026-06-03 — Writing Tutor nâng cấp + Admin credit + dọn repo
+
+**✅ VIỆC SUPABASE — ĐÃ LÀM HẾT (user xác nhận 2026-06-03):**
+- ☑ **`supabase functions deploy ai-proxy`** DONE — task `essay_grade_pro` đã live (HSK 4-6/Ngẫu nhiên Pro 10cr; HSK 1-3 Flash 8cr; routeChain + V4 non-thinking + max_tokens 2048).
+- ☑ **Run `sql/v17_admin_ai_credit.sql`** DONE — RPC `admin_grant_ai_credit` đã có (nút "Cấp AI Credit" ở Admin chạy được).
+- ☑ **Run `sql/v18_admin_credit_uncap.sql`** DONE — admin miễn daily-cap lượt AI.
+- 📌 `ANTHROPIC_API_KEY` + `DEEPSEEK_API_KEY` đã set (Chấm sâu = Claude thật, verified).
+- → **Writing Tutor + Admin credit + Admin uncap: full operational.**
+
+**✅ ĐÃ XONG (đã push main):**
+- **Writing Tutor (Phase S) nâng cấp:** route model theo cấp (Flash 8cr / Pro 10cr / Claude 38cr) · nút "🔬 Chấm sâu" opt-in · đề tự ghi tùy ý · prompt siết (giữ số, không over-correct, rule 2b) · guard client lọc lỗi giả `X→X`. Verify thật Flash/Pro/Claude.
+- **Admin cấp AI Credit:** form ở section Quest & Token + RPC `admin_grant_ai_credit` (token đã có sẵn).
+- **Floating Dictionary Panel:** cherry-pick vào main (`js/lookup-panel.js`), hover tra chữ Hán desktop.
+- **ai-proxy logging:** `routeChain` gom lỗi mọi provider — đã giúp tìm ra DeepSeek key http_401.
+- **Dọn repo:** xóa ~27 worktree merged + 14 thư mục mồ côi + 33 nhánh merged. GIỮ `compassionate-elgamal-c3ffe2` (commit "474 từ vựng HSK 1-6" chưa merge).
+- **Doc giá SpeechSuper** ghi vào `docs/AI_API_SETUP.md` (Sentence ~125đ, HSKK ~715đ).
+
+**📌 Còn treo (chưa gấp):**
+- ☑ **Review nhánh `compassionate-elgamal-c3ffe2` (474 từ HSK 1-6) DONE 2026-06-03 — KẾT LUẬN: KHÔNG merge.** Nhánh đổ 474 từ vào namespace **HSK 2.0** (`HSK_DATA`, `js/data/hsk{1..6}*.js`) + thêm 7 thẻ `<script>`. Nhưng app **HSK 3.0-only từ 2026-05-27**: `data.js` `activeHSKData()` hardcode trả `HSK3_DATA`, từ điển `getAllWordsBothVersions()` chỉ đọc HSK3_DATA. `HSK_DATA` chỉ còn dùng cho việc phụ (content-filter chính trị, admin count, learn-method fallback) — KHÔNG phải luồng học/từ điển. Spot-check: `投资`/`辩论` đã có trong HSK3_DATA, `能` xuất hiện 39 lần. → Merge chỉ thêm code chết + tải thừa, 0 giá trị user. **Hành động đề xuất:** đóng/xóa nhánh `claude/compassionate-elgamal-c3ffe2` (cả local + origin) — CHỜ user xác nhận vì origin PUBLIC.
+- ☑ **Nhãn "Chấm bởi: `<model>`" ở ô kết quả Writing DONE 2026-06-03** — badge `#wtScoreModel` map id provider→tên (DeepSeek V4 Pro/Flash, Qwen3 Max, GLM-5, Kimi K2, Claude Sonnet). Hiện cả ở fallback raw. `writing.js?v=1.9` + `writing.css?v=1.3`.
+- ☑ **Đẩy gợi ý "không sai" sang Tips + summary khớp errors DONE 2026-06-03** — lọc lỗi giả (`original==correction`) chuyển `explain` sang Tips (prefix 💡 "+ không sai, chỉ là gợi ý"); khi MỌI "lỗi" đều giả mà summary còn nhắc "lỗi/sai" → tự thêm chú thích làm rõ. Verify Playwright 2 nhánh: lỗi thật giữ + giả lọc→tips; all-fake→summary bổ sung. 0 lỗi console.
+
+---
+
 ## ☁️ Audio Mai → Cloudflare R2 (DONE 2026-06-01)
 
 > Tách audio khỏi git để repo không phình (676 file ~17MB HSK1+2, sẽ lên 100MB+ khi HSK3-9). R2 egress free.

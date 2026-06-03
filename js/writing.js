@@ -31,6 +31,21 @@ var Writing = (function () {
   };
   var _topicIdx = 0;
 
+  // Nhãn model thân thiện (id provider từ ai-proxy → tên hiển thị)
+  var MODEL_LABELS = {
+    'deepseek-v4-pro': 'DeepSeek V4 Pro',
+    'deepseek-v4-flash': 'DeepSeek V4 Flash',
+    'qwen3-max': 'Qwen3 Max',
+    'glm-5': 'GLM-5',
+    'kimi-k2': 'Kimi K2',
+    'claude-sonnet': 'Claude Sonnet',
+    'ping': 'Test'
+  };
+  function _modelLabel(id) {
+    if (!id) return '';
+    return MODEL_LABELS[id] || String(id);
+  }
+
   function _esc(s) {
     return (typeof escapeHtml === 'function') ? escapeHtml(s)
       : String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
@@ -191,7 +206,7 @@ var Writing = (function () {
     }
 
     var parsed = _parse(r.text);
-    _renderResult(parsed, r.text);
+    _renderResult(parsed, r.text, r.model);
     _saveHistory({
       ts: Date.now(),
       level: _level,
@@ -217,7 +232,15 @@ var Writing = (function () {
     return null;
   }
 
-  function _renderResult(o, raw) {
+  function _setModel(model, showAlways) {
+    var el = document.getElementById('wtScoreModel');
+    if (!el) return;
+    var label = _modelLabel(model);
+    if (label) { el.textContent = 'Chấm bởi: ' + label; el.style.display = ''; }
+    else { el.textContent = ''; el.style.display = 'none'; }
+  }
+
+  function _renderResult(o, raw, model) {
     var res = document.getElementById('wtResult');
     if (res) res.style.display = 'block';
 
@@ -233,6 +256,9 @@ var Writing = (function () {
         rawBlock.style.display = 'block';
         var rt = document.getElementById('wtRawText');
         if (rt) rt.textContent = raw || '';
+        var rtitle = rawBlock.querySelector('.wt-block-title');
+        if (rtitle) rtitle.textContent = model
+          ? ('Phản hồi từ AI · ' + _modelLabel(model)) : 'Phản hồi từ AI';
       }
       _scrollTo(res);
       return;
@@ -241,6 +267,27 @@ var Writing = (function () {
     if (rawBlock) rawBlock.style.display = 'none';
     var scoreRow = document.querySelector('.wt-score-row');
     if (scoreRow) scoreRow.style.display = 'flex';
+
+    // Nhãn model
+    _setModel(model);
+
+    // ── Lọc lỗi giả SỚM (trước khi render summary để giữ nhất quán) ──
+    // Guard CỨNG (không phụ thuộc model): bỏ mục KHÔNG phải lỗi — original trùng
+    // correction (chỉ khác dấu câu/khoảng trắng) hoặc rỗng. Model (kể cả Claude)
+    // đôi khi nhét câu đúng vào "errors" kèm ghi chú "không có lỗi".
+    var _normErr = function (s) {
+      return String(s == null ? '' : s).replace(/[\s。，、！？；：.,!?;:""'']+/g, '');
+    };
+    var rawErrs = Array.isArray(o.errors) ? o.errors : [];
+    var errs = [], droppedTips = [];
+    rawErrs.forEach(function (e) {
+      var eo = _normErr(e && e.original), ec = _normErr(e && e.correction);
+      if (eo && ec && eo !== ec) { errs.push(e); return; }
+      // Không phải lỗi thật → nếu có giải thích/gợi ý hữu ích, đẩy sang Tips
+      var note = (e && (e.explain || e.correction || e.original) || '').trim();
+      if (note) droppedTips.push('💡 ' + note + ' (không sai, chỉ là gợi ý)');
+    });
+    var hadFakeOnly = rawErrs.length > 0 && errs.length === 0;
 
     // Score
     var score = Math.max(0, Math.min(100, parseInt(o.score, 10) || 0));
@@ -255,25 +302,22 @@ var Writing = (function () {
     var lvlEl = document.getElementById('wtScoreLevel');
     if (lvlEl) lvlEl.textContent = o.level_estimate || _levelLabel();
     var sumEl = document.getElementById('wtScoreSummary');
-    if (sumEl) sumEl.textContent = o.summary || '';
+    if (sumEl) {
+      var sumText = o.summary || '';
+      // Nếu sau rà soát KHÔNG còn lỗi thật mà summary lại nhắc tới "lỗi/sai" →
+      // bổ sung làm rõ để summary khớp với danh sách lỗi (rỗng).
+      if (hadFakeOnly && /lỗi|sai/i.test(sumText)) {
+        sumText += ' (Sau rà soát: các điểm nêu chỉ là gợi ý nâng cao, không phải lỗi.)';
+      }
+      sumEl.textContent = sumText;
+    }
 
     // Strengths
     _renderList('wtStrengths', 'wtStrengthsBlock', o.strengths);
 
-    // Errors
+    // Errors (đã lọc giả ở trên → dùng lại `errs`)
     var errBlock = document.getElementById('wtErrorsBlock');
     var errWrap = document.getElementById('wtErrors');
-    var errs = Array.isArray(o.errors) ? o.errors : [];
-    // Guard CỨNG (không phụ thuộc model): bỏ mục KHÔNG phải lỗi — original trùng
-    // correction (chỉ khác dấu câu/khoảng trắng) hoặc rỗng. Model (kể cả Claude)
-    // đôi khi nhét câu đúng vào "errors" kèm ghi chú "không có lỗi".
-    var _normErr = function (s) {
-      return String(s == null ? '' : s).replace(/[\s。，、！？；：.,!?;:""'']+/g, '');
-    };
-    errs = errs.filter(function (e) {
-      var eo = _normErr(e && e.original), ec = _normErr(e && e.correction);
-      return eo && ec && eo !== ec;
-    });
     if (errWrap) {
       if (!errs.length) {
         errWrap.innerHTML = '<p class="wt-noerr">Không phát hiện lỗi đáng kể — làm tốt lắm! 🎉</p>';
@@ -299,8 +343,9 @@ var Writing = (function () {
     if (imp && o.improved) { imp.textContent = o.improved; impBlock.style.display = 'block'; }
     else if (impBlock) impBlock.style.display = 'none';
 
-    // Tips
-    _renderList('wtTips', 'wtTipsBlock', o.tips);
+    // Tips — gộp gợi ý gốc + các "không sai" đã chuyển từ errors sang
+    var tips = (Array.isArray(o.tips) ? o.tips.filter(Boolean) : []).concat(droppedTips);
+    _renderList('wtTips', 'wtTipsBlock', tips);
 
     _scrollTo(res);
   }

@@ -200,6 +200,17 @@
   margin-bottom: 8px;
 }
 .wt-score-summary { margin: 0; color: var(--text); line-height: 1.55; font-size: 0.96rem; }
+.wt-score-model {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text2);
+  background: var(--surface-2, rgba(127,127,127,.1));
+  border: 1px solid var(--border, rgba(127,127,127,.2));
+  border-radius: 999px;
+  padding: 2px 10px;
+}
 
 .wt-block {
   background: var(--surface, var(--card-bg));

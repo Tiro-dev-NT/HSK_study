@@ -23,7 +23,7 @@ Object.assign(COURSE_DATA, {
         explain: 'Chủ ngữ + 是 + danh từ để nói “A là B”. Phủ định thêm 不 trước 是 → 不是.',
         examples: [
           { zh: '我是学生。', py: 'Wǒ shì xuésheng.', vi: 'Em là học sinh.' },
-          { zh: '他是中国人。', py: 'Tā shì Zhōngguó rén.', vi: 'Thầy ấy là người Trung Quốc.' }
+          { zh: '他是中国人。', py: 'Tā shì Zhōngguó rén.', vi: 'Anh ấy là người Trung Quốc.' }
         ] },
       { point: '吗 — biến câu trần thuật thành câu hỏi',
         explain: 'Thêm 吗 vào cuối câu khẳng định để hỏi “có…không?”, trật tự câu giữ nguyên.',
@@ -2219,7 +2219,7 @@ Object.assign(COURSE_DATA, {
       { point: 'Bổ ngữ khả năng: 看得到 / 看不到',
         explain: '动词 + 得 + bổ ngữ = có thể; + 不 + bổ ngữ = không thể. 看得到 = nhìn thấy được.',
         examples: [
-          { zh: '看得到了！', py: 'Kàn de dào le!', vi: 'Nhìn thấy rồi!' }
+          { zh: '看得到了！', py: 'Kàn de dào le!', vi: 'Nhìn thấy được rồi!' }
         ] },
       { point: '一边…一边… — vừa…vừa…',
         explain: 'Hai 一边 đặt trước hai động từ chỉ hai hành động xảy ra đồng thời.',

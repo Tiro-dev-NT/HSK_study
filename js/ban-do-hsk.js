@@ -65,30 +65,40 @@ var BanDoHsk = (function() {
     return st.total ? Math.round((st.total - st.new) / st.total * 100) : 0;
   }
 
+  // "Nhớ chắc" = từ có SRS interval ≥ 21 (mastered) — đo retention thật, không chỉ độ phủ
+  function _levelMastery(lv) {
+    if (typeof getLevelStats !== 'function') return { mastered: 0, total: 0 };
+    var st = getLevelStats(lv);
+    return { mastered: st.mastered || 0, total: st.total || 0 };
+  }
+
   // Tiến độ 1 node theo CÁCH HỌC CHÍNH của cấp đó
   // Trả { pct, stat, mode, modeTag }
   function _nodeProgress(node) {
     if (node.type === 'hsk0') {
       var passed = _hsk0Passed();
       return { pct: passed ? 100 : 0, stat: 'Phát âm · nét chữ · số đếm',
-               mode: 'foundation', modeTag: '🔰 Nền tảng' };
+               mode: 'foundation', modeTag: '🔰 Nền tảng', mastered: 0, vocabTotal: 0 };
     }
     if (node.type === 'story') {
       var prog = _courseProgress();
       var ids  = _courseIdsOfLevel(node.lv);
       var done = ids.filter(function(id) { return prog[id] && prog[id].completed; }).length;
       var pct  = ids.length ? Math.round(done / ids.length * 100) : 0;
+      var sm   = _levelMastery(node.lv);
       return { pct: pct, stat: done + ' / ' + ids.length + ' bài',
-               mode: 'story', modeTag: '📖 Truyện' };
+               mode: 'story', modeTag: '📖 Truyện', mastered: sm.mastered, vocabTotal: sm.total };
     }
     // vocab
     var vpct = _getLevelPct(node.lv);
-    var vstat = '';
+    var vstat = '', vm = { mastered: 0, total: 0 };
     if (typeof getLevelStats === 'function') {
       var st = getLevelStats(node.lv);
       vstat = (st.total - st.new) + ' / ' + st.total + ' từ';
+      vm = { mastered: st.mastered || 0, total: st.total || 0 };
     }
-    return { pct: vpct, stat: vstat, mode: 'vocab', modeTag: 'Từ vựng' };
+    return { pct: vpct, stat: vstat, mode: 'vocab', modeTag: 'Từ vựng',
+             mastered: vm.mastered, vocabTotal: vm.total };
   }
 
   // ── Build journey: foundation node + HSK level nodes ──
@@ -127,7 +137,8 @@ var BanDoHsk = (function() {
         // Khóa mềm: cấp đã có tiến độ vẫn vào được
         s = (p.pct > 0) ? 'active' : 'locked';
       }
-      map[n.key] = { node: n, pct: p.pct, stat: p.stat, modeTag: p.modeTag, mode: p.mode, state: s };
+      map[n.key] = { node: n, pct: p.pct, stat: p.stat, modeTag: p.modeTag, mode: p.mode, state: s,
+                     mastered: p.mastered || 0, vocabTotal: p.vocabTotal || 0 };
     });
     return map;
   }
@@ -194,6 +205,10 @@ var BanDoHsk = (function() {
             '<span class="bdh-level-mode bdh-level-mode--' + s.mode + '">' + s.modeTag + '</span> ' +
             (s.stat || '') +
           '</div>' +
+          (s.mastered > 0
+            ? '<div class="bdh-level-mastery">💪 Nhớ chắc ' + s.mastered +
+              (s.vocabTotal ? ' / ' + s.vocabTotal : '') + ' từ</div>'
+            : '') +
         '</div>' +
         pctLabel +
       '</button>';

@@ -245,6 +245,11 @@ var Dictionary = {
 
   // ── Modal ──────────────────────────────────────────
   openModal: function(word) {
+    // Quota tra cứu: free 50/ngày, Pro 200/ngày (matrix). Vượt → gate Pro.
+    if (typeof Monetization !== 'undefined' && Monetization.checkDailyQuota &&
+        !Monetization.checkDailyQuota('dict_lookup', 50, 200, 'Tra từ điển')) {
+      return;
+    }
     Dictionary._bindModalEvents();
     // Track this word in recent searches
     Dictionary._addToRecent(word.h);

@@ -85,6 +85,28 @@ var Monetization = (function() {
     return true;
   }
 
+  // Daily quota theo tier: free=freeLimit, Pro=proLimit lượt/ngày (local).
+  // localStorage gate_quota_{key} = {date,count}. Trả true nếu còn lượt
+  // (đã +1), false nếu hết (hiện gate). Dùng cho tra từ điển (50/200…).
+  function checkDailyQuota(featureKey, freeLimit, proLimit, featureName) {
+    var limit = isProSync() ? proLimit : freeLimit;
+    var d = new Date();
+    var today = d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+    var storeKey = 'gate_quota_' + featureKey;
+    var rec;
+    try { rec = JSON.parse(localStorage.getItem(storeKey) || 'null'); } catch (e) { rec = null; }
+    if (!rec || rec.date !== today) rec = { date: today, count: 0 };
+    if (rec.count >= limit) {
+      showGate(featureName || featureKey);
+      return false;
+    }
+    rec.count++;
+    try { localStorage.setItem(storeKey, JSON.stringify(rec)); } catch (e) {}
+    return true;
+  }
+
   function showGate(featureName) {
     var g = document.getElementById('proGate');
     if (!g) return;
@@ -108,6 +130,7 @@ var Monetization = (function() {
     getDurationSync: getDurationSync,
     resetCache:      resetCache,
     showGate:        showGate,
-    checkDailyLimit: checkDailyLimit
+    checkDailyLimit: checkDailyLimit,
+    checkDailyQuota: checkDailyQuota
   };
 }());

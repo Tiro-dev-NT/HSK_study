@@ -451,6 +451,14 @@ var MockExam = (function() {
       return;
     }
 
+    // Free: 1 lượt thi thử/ngày (mọi cấp); Pro không giới hạn.
+    // MIỄN cho quick-mode (ải chương / trùm cấp của lộ trình — phần học free).
+    // Đặt SAU validate để start lỗi (thiếu data) không đốt lượt free.
+    if (!_state.quick && typeof Monetization !== 'undefined' &&
+        !Monetization.checkDailyLimit('mock_exam', 'Thi thử HSK')) {
+      return;
+    }
+
     _state.questions = questions;
     _state.qIndex    = 0;
     _state.answers   = [];

@@ -1334,6 +1334,7 @@ var Course = {
 
     var nextId = l.id + 1;
     var hasNext = typeof COURSE_DATA !== 'undefined' && !!COURSE_DATA[nextId];
+    var spk = Math.min(Course._spokenLineCount(l), 8);
 
     Course._getEl().innerHTML =
       '<div class="cs-complete">' +
@@ -1346,10 +1347,28 @@ var Course = {
         Course._grammarNotesHTML() +
         '<div class="cs-complete-btns">' +
           (hasNext ? '<button class="cs-btn-primary" onclick="Course.loadLesson(' + nextId + ')">Bài tiếp theo →</button>' : '') +
+          (spk > 0 ? '<button class="cs-btn-secondary cs-speak-btn" onclick="Course.openShadowing(' + l.id + ')">🎙️ Luyện nói ' + spk + ' câu trong bài</button>' : '') +
           '<button class="cs-btn-secondary" onclick="Handout.open(' + l.id + ')">📔 Trang chép bài</button>' +
           '<button class="cs-btn-secondary" onclick="Router.navigateTo(\'learn\')">← Về Học</button>' +
         '</div>' +
       '</div>';
+  },
+
+  // Số câu thoại tiếng Trung có thể luyện nói (bỏ dòng dẫn truyện)
+  _spokenLineCount: function(l) {
+    if (!l || !l.steps) return 0;
+    var n = 0;
+    for (var i = 0; i < l.steps.length; i++) {
+      var s = l.steps[i];
+      if (s.type === 'dialogue' && s.speaker !== 'narrator' && s.pinyin && s.text) n++;
+    }
+    return n;
+  },
+
+  // Mở Speaking luyện nói chính câu thoại của bài này (handoff qua sessionStorage)
+  openShadowing: function(id) {
+    try { sessionStorage.setItem('speaking_lesson_launch', String(id)); } catch (e) {}
+    if (typeof Router !== 'undefined') Router.navigateTo('speaking');
   },
 
   _confettiHTML: function() {

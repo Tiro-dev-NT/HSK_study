@@ -349,6 +349,13 @@
 .cs-btn-secondary:hover { background: var(--border-2); }
 .cs-btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
 
+/* Nút luyện nói ở màn complete — nhấn nhẹ tông Thúy lục (output checkpoint) */
+.cs-speak-btn {
+  border-color: var(--success);
+  color: var(--success);
+}
+.cs-speak-btn:hover { background: color-mix(in srgb, var(--success) 12%, transparent); }
+
 .cs-btn-sm {
   background: var(--primary);
   color: #fff;

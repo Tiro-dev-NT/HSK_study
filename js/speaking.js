@@ -56,6 +56,15 @@ var Speaking = (function () {
       };
     }
     if (window.Monetization && Monetization.isPro) Monetization.isPro();
+
+    // Handoff từ màn complete của Truyện Mai → mở thẳng luyện nói câu của bài đó
+    try {
+      var launch = sessionStorage.getItem('speaking_lesson_launch');
+      if (launch) {
+        sessionStorage.removeItem('speaking_lesson_launch');
+        openLesson(parseInt(launch, 10));
+      }
+    } catch (e) {}
   }
 
   function _sets() { return (window.SHADOW_DATA && SHADOW_DATA.sets) || []; }
@@ -82,12 +91,62 @@ var Speaking = (function () {
 
   function _openSet(id) {
     var sets = _sets();
-    _set = sets.find(function (s) { return s.id === id; }) || sets[0] || null;
+    _activateSet(sets.find(function (s) { return s.id === id; }) || sets[0] || null);
+  }
+
+  function _activateSet(set) {
+    if (!set) return;
+    _set = set;
     _idx = 0;
     _show($('spIntro'), false);
     _show($('spPractice'), true);
     _renderLine();
     try { window.scrollTo(0, 0); } catch (e) {}
+  }
+
+  // ── Luyện nói theo câu thoại của 1 bài Truyện Mai (handoff từ màn complete) ──
+  function _lessonLines(lessonId) {
+    if (typeof COURSE_DATA === 'undefined') return null;
+    var l = COURSE_DATA[lessonId];
+    if (!l || !l.steps) return null;
+    var out = [];
+    for (var i = 0; i < l.steps.length; i++) {
+      var s = l.steps[i];
+      if (s.type === 'dialogue' && s.speaker !== 'narrator' && s.pinyin && s.text) {
+        out.push({ h: s.text, p: s.pinyin, v: s.meaning || '', tip: '', _hasVocab: !!(s.vocab && s.vocab.length) });
+      }
+    }
+    return { lesson: l, lines: out };
+  }
+
+  function _capLines(lines, max) {
+    if (lines.length <= max) return lines;
+    // Ưu tiên câu có từ mới, giữ thứ tự gốc
+    var keep = {};
+    var picked = 0;
+    for (var i = 0; i < lines.length && picked < max; i++) {
+      if (lines[i]._hasVocab) { keep[i] = true; picked++; }
+    }
+    for (var j = 0; j < lines.length && picked < max; j++) {
+      if (!keep[j]) { keep[j] = true; picked++; }
+    }
+    return lines.filter(function (_, idx) { return keep[idx]; });
+  }
+
+  function openLesson(lessonId) {
+    var data = _lessonLines(lessonId);
+    if (!data || !data.lines.length) {
+      _toast('Bài này chưa có câu thoại để luyện nói.');
+      return;
+    }
+    _activateSet({
+      id: 'mai-' + lessonId,
+      title: 'Hội thoại Bài ' + lessonId,
+      focus: 'Hội thoại Mai',
+      level: data.lesson.level || 1,
+      desc: data.lesson.title || '',
+      lines: _capLines(data.lines, 8)
+    });
   }
 
   function _backToSets() {
@@ -535,7 +594,7 @@ var Speaking = (function () {
     return new Blob([view], { type: 'audio/wav' });
   }
 
-  return { init: init };
+  return { init: init, openLesson: openLesson };
 }());
 
 if (typeof window !== 'undefined') window.Speaking = Speaking;

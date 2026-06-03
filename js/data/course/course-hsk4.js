@@ -1093,3 +1093,492 @@ Object.assign(COURSE_DATA, {
   }
 
 });
+
+// ───────────────────────────────────────────────────────
+// BATCH 3 — Bài 130-133 (Áp lực · Dự án chung · Thuyết trình)
+// ───────────────────────────────────────────────────────
+Object.assign(COURSE_DATA, {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 130: Áp lực và động viên — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  130: {
+    id: 130,
+    level: 4,
+    title: 'Áp lực và động viên',
+    context: 'Trước kỳ đánh giá giữa kỳ, Mai cảm thấy áp lực và sợ thất bại. Thầy Lý động viên em coi trọng chữ tín hơn điểm số, và biết nghỉ ngơi để lấy lại sức.',
+    vocabPreview: ['测试', '诚信', '充电', '不在乎', '被迫'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Sáng', bg: 'office',
+        cast: ['mai', 'laoli'],
+        text: 'Trước kỳ đánh giá giữa kỳ, Mai cảm thấy áp lực.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '下周有个测试，我担心自己会败。',
+        pinyin: 'Xià zhōu yǒu ge cèshì, wǒ dānxīn zìjǐ huì bài.',
+        meaning: 'Tuần sau có bài kiểm tra, em lo mình sẽ thất bại.',
+        expression: 'sad', vocab: ['测试', '败'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '失败也别太放在心上，要学会不在乎别人的眼光。你曾经克服过更难的事。',
+        pinyin: 'Shībài yě bié tài fàng zài xīn shàng, yào xuéhuì búzàihu biérén de yǎnguāng. Nǐ céngjīng kèfú guo gèng nán de shì.',
+        meaning: 'Thất bại cũng đừng để bụng quá, phải học cách không bận tâm ánh mắt người khác. Em từng vượt qua việc khó hơn mà.',
+        expression: 'happy', vocab: ['不在乎', '曾'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '我不想被迫放弃，我要靠诚信做事。',
+        pinyin: 'Wǒ bù xiǎng bèipò fàngqì, wǒ yào kào chéngxìn zuòshì.',
+        meaning: 'Em không muốn bị ép phải bỏ cuộc, em muốn dựa vào chữ tín mà làm việc.',
+        expression: 'focused', vocab: ['被迫', '诚信'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '对。累了就去充电休息，别抄写别人的答案。',
+        pinyin: 'Duì. Lèi le jiù qù chōngdiàn xiūxi, bié chāoxiě biérén de dá\'àn.',
+        meaning: 'Đúng. Mệt thì đi "sạc pin" nghỉ ngơi, đừng chép bài người khác.',
+        expression: 'focused', vocab: ['充电', '抄写'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'laoli'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'focused',
+        q: 'Có người chép bài. Mai coi trọng chữ tín. Câu nào thể hiện đúng "làm người phải giữ chữ tín, không chép bài người khác"?',
+        options: [
+          { text: '做人要讲诚信，不能抄写别人的答案。', pinyin: 'Zuòrén yào jiǎng chéngxìn, bùnéng chāoxiě biérén de dá\'àn.', meaning: 'Làm người phải giữ chữ tín, không được chép bài người khác.', correct: true,
+            feedback: 'Đúng! 诚信 = chữ tín/trung thực; 抄写 = chép lại.' },
+          { text: '做人要讲被迫，不能抄写别人的答案。', pinyin: 'Zuòrén yào jiǎng bèipò, bùnéng chāoxiě biérén de dá\'àn.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '被迫 = bị ép buộc, không phải phẩm chất.' },
+          { text: '做人要讲诚信，不能充电别人的答案。', pinyin: 'Zuòrén yào jiǎng chéngxìn, bùnéng chōngdiàn biérén de dá\'àn.', meaning: '(không thông)', correct: false,
+            feedback: '充电 = sạc pin, không hợp với "đáp án".' }
+        ], vocab: ['诚信', '抄写', '被迫', '充电'] },
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Trung tâm thương mại · Chiều', bg: 'shop',
+        cast: ['mai', 'xiaomei'],
+        text: 'Để thư giãn, Mai đi dạo và gặp một đợt giảm giá.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '商场在出售旧唱片，买满还能抽奖。我抽了一次，没中。',
+        pinyin: 'Shāngchǎng zài chūshòu jiù chàngpiàn, mǎi mǎn hái néng chōujiǎng. Wǒ chōu le yí cì, méi zhòng.',
+        meaning: 'Trung tâm đang bán đĩa nhạc cũ, mua đủ còn được bốc thăm. Tớ rút một lần, không trúng.',
+        expression: 'happy', vocab: ['出售', '唱片', '抽奖', '抽'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '这件成人的衣服尺寸太大，你个子不矮，可以试试别的。今天有点潮，要下雨了。',
+        pinyin: 'Zhè jiàn chéngrén de yīfu chǐcùn tài dà, nǐ gèzi bù ǎi, kěyǐ shìshi biéde. Jīntiān yǒudiǎn cháo, yào xià yǔ le.',
+        meaning: 'Cái áo người lớn này cỡ to quá, cậu đâu có thấp, thử cái khác đi. Hôm nay hơi ẩm, sắp mưa rồi.',
+        expression: 'curious', vocab: ['成人', '尺寸', '矮', '潮'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'xiaomei'],
+        text: '这张老唱片是我的宝，我很喜欢。',
+        pinyin: 'Zhè zhāng lǎo chàngpiàn shì wǒ de bǎo, wǒ hěn xǐhuan.',
+        meaning: 'Cái đĩa nhạc cũ này là báu vật của tớ, tớ thích lắm.',
+        expression: 'happy', vocab: ['宝'] },
+      { type: 'checkpoint', questions: [
+        { q: '“测试” nghĩa là?', options: ['Bài kiểm tra, test', 'Nghỉ ngơi', 'Bán ra', 'Sạc pin'], answer: 0 },
+        { q: '“诚信” chỉ điều gì?', options: ['Chữ tín, trung thực', 'Áp lực', 'Thước đo', 'Người lớn'], answer: 0 },
+        { q: '“累了去充电” — “充电” ở đây ví với?', options: ['Nghỉ ngơi lấy lại sức', 'Sạc điện thoại', 'Học bài', 'Mua sắm'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '矮', p: 'ǎi', v: 'thấp, lùn' },
+      { h: '矮小', p: 'ǎi xiǎo', v: 'thấp bé, nhỏ con' },
+      { h: '败', p: 'bài', v: 'thua, thất bại' },
+      { h: '宝', p: 'bǎo', v: 'báu vật, quý giá' },
+      { h: '被迫', p: 'bèi pò', v: 'bị ép buộc, miễn cưỡng' },
+      { h: '不在乎', p: 'bù zài hu', v: 'không bận tâm, bất cần' },
+      { h: '测', p: 'cè', v: 'đo lường, đánh giá' },
+      { h: '测试', p: 'cè shì', v: 'kiểm tra, thử nghiệm' },
+      { h: '曾', p: 'céng', v: 'đã từng, từng' },
+      { h: '唱片', p: 'chàng piàn', v: 'đĩa nhạc, đĩa hát' },
+      { h: '抄写', p: 'chāo xiě', v: 'chép lại, sao chép' },
+      { h: '潮', p: 'cháo', v: 'ẩm ướt, thủy triều' },
+      { h: '成人', p: 'chéng rén', v: 'người lớn, người trưởng thành' },
+      { h: '诚信', p: 'chéng xìn', v: 'chữ tín, thành thật' },
+      { h: '尺', p: 'chǐ', v: 'thước (đơn vị/dụng cụ đo)' },
+      { h: '尺寸', p: 'chǐ cùn', v: 'kích thước, số đo' },
+      { h: '充电', p: 'chōng diàn', v: 'sạc pin, nạp năng lượng' },
+      { h: '抽', p: 'chōu', v: 'rút, kéo, bốc' },
+      { h: '抽奖', p: 'chōu jiǎng', v: 'bốc thăm trúng thưởng' },
+      { h: '出售', p: 'chū shòu', v: 'bán ra, chào bán' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '下周有个___，我要复习。', options: ['测试', '唱片', '尺寸'], answer: '测试' },
+        { type: 'fill', sentence: '做人要讲___。', options: ['诚信', '被迫', '抽奖'], answer: '诚信' },
+        { type: 'fill', sentence: '累了就去___休息一下。', options: ['充电', '出售', '抄写'], answer: '充电' },
+        { type: 'fill', sentence: '商场在___旧唱片。', options: ['出售', '测试', '充电'], answer: '出售' },
+        { type: 'fill', sentence: '买满商品还能___。', options: ['抽奖', '诚信', '成人'], answer: '抽奖' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '不要___别人的答案。', options: ['抄写', '出售', '抽奖'], answer: '抄写' },
+        { type: 'fill', sentence: '这件衣服的___太大了。', options: ['尺寸', '诚信', '测试'], answer: '尺寸' },
+        { type: 'fill', sentence: '我不想___放弃这次机会。', options: ['被迫', '充电', '出售'], answer: '被迫' },
+        { type: 'fill', sentence: '我___经做过更难的事。', options: ['曾', '潮', '宝'], answer: '曾' },
+        { type: 'order', words: ['做人', '要', '讲', '诚信'], answer: '做人要讲诚信' },
+        { type: 'order', words: ['累', '了', '就', '去', '充电', '休息'], answer: '累了就去充电休息' },
+        { type: 'fill', sentence: '要学会___别人的眼光。', options: ['不在乎', '出售', '抄写'], answer: '不在乎' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '这件___的衣服小孩穿太大。', options: ['成人', '潮', '宝'], answer: '成人' },
+        { type: 'fill', sentence: '今天有点___，可能要下雨。', options: ['潮', '矮', '败'], answer: '潮' },
+        { type: 'translate', prompt: 'Làm người phải giữ chữ tín.', answer: '做人要讲诚信。' },
+        { type: 'translate', prompt: 'Mệt thì đi nghỉ ngơi lấy lại sức.', answer: '累了就去充电休息。' },
+        { type: 'translate', prompt: 'Tôi lo mình sẽ thất bại trong bài kiểm tra.', answer: '我担心自己会在测试中失败。' },
+        { type: 'fill', sentence: '这张老唱片是我的___。', options: ['宝', '尺', '测'], answer: '宝' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 131: Dự án chung (1) — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  131: {
+    id: 131,
+    level: 4,
+    title: 'Dự án chung (1)',
+    context: 'Nhóm của Mai bắt tay vào một dự án quy mô lớn, đang ở giai đoạn then chốt. Mọi người đến từ nhiều nơi, ý tưởng đa dạng; Mai dọn dẹp phòng họp và chuẩn bị cuộc họp.',
+    vocabPreview: ['大规模', '处于', '多样', '独自', '打扫'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Sáng', bg: 'office',
+        cast: ['mai', 'laoli'],
+        text: 'Nhóm của Mai bắt đầu một dự án quy mô lớn.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '这次是大规模的项目，我们处于关键阶段。',
+        pinyin: 'Zhè cì shì dà guīmó de xiàngmù, wǒmen chǔyú guānjiàn jiēduàn.',
+        meaning: 'Lần này là dự án quy mô lớn, chúng ta đang ở giai đoạn then chốt.',
+        expression: 'focused', vocab: ['大规模', '处于'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '我们要打败竞争对手，方案要多样。',
+        pinyin: 'Wǒmen yào dǎbài jìngzhēng duìshǒu, fāng\'àn yào duōyàng.',
+        meaning: 'Chúng ta phải đánh bại đối thủ, phương án phải đa dạng.',
+        expression: 'focused', vocab: ['打败', '多样'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '大多同事来自大陆，想法多种多样。',
+        pinyin: 'Dàduō tóngshì láizì dàlù, xiǎngfǎ duō zhǒng duō yàng.',
+        meaning: 'Đa số đồng nghiệp đến từ đại lục, ý tưởng đủ loại đa dạng.',
+        expression: 'curious', vocab: ['大多', '大陆', '多种'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '开会前先点名。坐电梯上来，别走楼梯。',
+        pinyin: 'Kāihuì qián xiān diǎnmíng. Zuò diàntī shànglái, bié zǒu lóutī.',
+        meaning: 'Trước khi họp điểm danh đã. Đi thang máy lên, đừng đi cầu thang bộ.',
+        expression: null, vocab: ['点名', '电梯'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '路上堵车，我被堵了很久，有点烦。',
+        pinyin: 'Lùshang dǔchē, wǒ bèi dǔ le hěn jiǔ, yǒudiǎn fán.',
+        meaning: 'Trên đường kẹt xe, tôi bị tắc rất lâu, hơi bực.',
+        expression: 'sad', vocab: ['堵', '烦'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我独自打扫了会议室，摆好纯净水。',
+        pinyin: 'Wǒ dúzì dǎsǎo le huìyìshì, bǎi hǎo chúnjìngshuǐ.',
+        meaning: 'Tôi một mình dọn dẹp phòng họp, bày sẵn nước tinh khiết.',
+        expression: 'focused', vocab: ['独自', '打扫', '纯净水'] },
+      { type: 'choice', speaker: 'laoli', cast: ['mai', 'laoli'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'focused',
+        q: 'Diễn đạt "Dự án đang ở giai đoạn quan trọng" đúng nhất?',
+        options: [
+          { text: '项目处于关键阶段。', pinyin: 'Xiàngmù chǔyú guānjiàn jiēduàn.', meaning: 'Dự án đang ở giai đoạn quan trọng.', correct: true,
+            feedback: 'Đúng! 处于 = đang ở (trạng thái nào đó).' },
+          { text: '项目处关键阶段。', pinyin: 'Xiàngmù chù guānjiàn jiēduàn.', meaning: '(thiếu, không tự nhiên)', correct: false,
+            feedback: '处 đứng một mình không đủ; cần 处于 cho nghĩa "đang ở trạng thái".' },
+          { text: '项目此关键阶段。', pinyin: 'Xiàngmù cǐ guānjiàn jiēduàn.', meaning: '(không thông)', correct: false,
+            feedback: '此 = này/đây (trang trọng), không thay được 处于.' }
+        ], vocab: ['处于', '处', '此'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '这种材料很纯，但有点粗。我们试了多次。',
+        pinyin: 'Zhè zhǒng cáiliào hěn chún, dàn yǒudiǎn cū. Wǒmen shì le duō cì.',
+        meaning: 'Loại vật liệu này rất thuần, nhưng hơi thô. Chúng tôi đã thử nhiều lần.',
+        expression: 'curious', vocab: ['纯', '粗', '多次'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '把此事记下来，每人填一张单。',
+        pinyin: 'Bǎ cǐ shì jì xiàlái, měi rén tián yì zhāng dān.',
+        meaning: 'Ghi việc này lại, mỗi người điền một tờ đơn.',
+        expression: null, vocab: ['此', '单'] },
+      { type: 'checkpoint', questions: [
+        { q: '“大规模” nghĩa là?', options: ['Quy mô lớn', 'Quy mô nhỏ', 'Đơn giản', 'Nhanh chóng'], answer: 0 },
+        { q: '“堵车” — “堵” nghĩa là?', options: ['Tắc nghẽn', 'Thông suốt', 'Sạch sẽ', 'Đa dạng'], answer: 0 },
+        { q: '“独自打扫” — “独自” nghĩa là?', options: ['Một mình', 'Cùng nhau', 'Nhiều lần', 'Phiền phức'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '处于', p: 'chǔ yú', v: 'đang ở (trạng thái)' },
+      { h: '处', p: 'chù', v: 'nơi, chỗ; xử lý' },
+      { h: '纯', p: 'chún', v: 'thuần khiết, nguyên chất' },
+      { h: '纯净水', p: 'chún jìng shuǐ', v: 'nước tinh khiết' },
+      { h: '此', p: 'cǐ', v: 'này, đây' },
+      { h: '粗', p: 'cū', v: 'thô, to (đường kính)' },
+      { h: '打败', p: 'dǎ bài', v: 'đánh bại, thắng' },
+      { h: '打扫', p: 'dǎ sǎo', v: 'quét dọn' },
+      { h: '大多', p: 'dà duō', v: 'đa số, phần lớn' },
+      { h: '大规模', p: 'dà guī mó', v: 'quy mô lớn' },
+      { h: '大陆', p: 'dà lù', v: 'đại lục, lục địa' },
+      { h: '单', p: 'dān', v: 'đơn lẻ; tờ đơn' },
+      { h: '点名', p: 'diǎn míng', v: 'điểm danh, gọi tên' },
+      { h: '电梯', p: 'diàn tī', v: 'thang máy' },
+      { h: '独自', p: 'dú zì', v: 'một mình' },
+      { h: '堵', p: 'dǔ', v: 'tắc nghẽn, bít kín' },
+      { h: '多次', p: 'duō cì', v: 'nhiều lần' },
+      { h: '多样', p: 'duō yàng', v: 'đa dạng' },
+      { h: '多种', p: 'duō zhǒng', v: 'nhiều loại' },
+      { h: '烦', p: 'fán', v: 'phiền, bực bội' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '这是个___的项目，很重要。', options: ['大规模', '独自', '多次'], answer: '大规模' },
+        { type: 'fill', sentence: '坐___上楼比走楼梯快。', options: ['电梯', '大陆', '单'], answer: '电梯' },
+        { type: 'fill', sentence: '开会前先___。', options: ['点名', '打败', '堵'], answer: '点名' },
+        { type: 'fill', sentence: '我___打扫了会议室。', options: ['独自', '大多', '多样'], answer: '独自' },
+        { type: 'fill', sentence: '路上___车，我迟到了。', options: ['堵', '纯', '粗'], answer: '堵' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我们要___竞争对手。', options: ['打败', '打扫', '点名'], answer: '打败' },
+        { type: 'fill', sentence: '___同事来自大陆。', options: ['大多', '多次', '独自'], answer: '大多' },
+        { type: 'fill', sentence: '想法多种___。', options: ['多样', '大陆', '电梯'], answer: '多样' },
+        { type: 'fill', sentence: '等了很久，我有点___。', options: ['烦', '纯', '单'], answer: '烦' },
+        { type: 'order', words: ['我们', '处于', '关键', '阶段'], answer: '我们处于关键阶段' },
+        { type: 'order', words: ['我', '独自', '打扫', '了', '会议室'], answer: '我独自打扫了会议室' },
+        { type: 'fill', sentence: '请喝___，桌上有。', options: ['纯净水', '电梯', '点名'], answer: '纯净水' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '项目___关键阶段，要小心。', options: ['处于', '此', '单'], answer: '处于' },
+        { type: 'fill', sentence: '这种材料很___，但有点粗。', options: ['纯', '烦', '堵'], answer: '纯' },
+        { type: 'translate', prompt: 'Đa số đồng nghiệp đến từ đại lục.', answer: '大多同事来自大陆。' },
+        { type: 'translate', prompt: 'Chúng ta phải đánh bại đối thủ.', answer: '我们要打败竞争对手。' },
+        { type: 'translate', prompt: 'Ghi việc này lại, mỗi người điền một tờ đơn.', answer: '把此事记下来，每人填一张单。' },
+        { type: 'fill', sentence: '我们试了___，才成功。', options: ['多次', '多样', '大多'], answer: '多次' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 132: Dự án chung (2) — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  132: {
+    id: 132,
+    level: 4,
+    title: 'Dự án chung (2)',
+    context: 'Dự án của nhóm là về một loại nước uống. Mai phân tích dữ liệu, hàm lượng, nguồn cung, và đi tàu cao tốc tham quan nhà máy. Nếu phương án đoạt giải, vinh dự thuộc về cả nhóm.',
+    vocabPreview: ['感兴趣', '根据', '含有', '供应', '获奖'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Sáng', bg: 'office',
+        cast: ['mai', 'laoli'],
+        text: 'Dự án của nhóm xoay quanh một loại nước uống mới.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '我对这个关于饮料的项目很感兴趣。',
+        pinyin: 'Wǒ duì zhège guānyú yǐnliào de xiàngmù hěn gǎn xìngqù.',
+        meaning: 'Em rất hứng thú với dự án về đồ uống này.',
+        expression: 'happy', vocab: ['关于', '感兴趣'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '根据数据，这种饮料含有维生素，含量很高。',
+        pinyin: 'Gēnjù shùjù, zhè zhǒng yǐnliào hányǒu wéishēngsù, hánliàng hěn gāo.',
+        meaning: 'Dựa theo dữ liệu, loại đồ uống này chứa vitamin, hàm lượng rất cao.',
+        expression: 'focused', vocab: ['根据', '含有', '含量'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai', 'laoli'],
+        text: '每瓶五百毫升，工厂能稳定供应。',
+        pinyin: 'Měi píng wǔbǎi háoshēng, gōngchǎng néng wěndìng gōngyìng.',
+        meaning: 'Mỗi chai năm trăm ml, nhà máy cung ứng ổn định.',
+        expression: null, vocab: ['毫升', '供应'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '客户回复了邮件，几乎都满意，反应极好。',
+        pinyin: 'Kèhù huífù le yóujiàn, jīhū dōu mǎnyì, fǎnyìng jí hǎo.',
+        meaning: 'Khách hàng đã trả lời email, hầu như đều hài lòng, phản hồi cực tốt.',
+        expression: 'happy', vocab: ['回复', '几乎', '极'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '上周我坐高铁去参观工厂，路很远。',
+        pinyin: 'Shàng zhōu wǒ zuò gāotiě qù cānguān gōngchǎng, lù hěn yuǎn.',
+        meaning: 'Tuần trước tôi đi tàu cao tốc đến tham quan nhà máy, đường khá xa.',
+        expression: 'curious', vocab: ['高铁'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '如果方案获奖，荣誉归于整个团队。我们终于获了第一名。',
+        pinyin: 'Rúguǒ fāng\'àn huòjiǎng, róngyù guīyú zhěnggè tuánduì. Wǒmen zhōngyú huò le dì-yī míng.',
+        meaning: 'Nếu phương án đoạt giải, vinh dự thuộc về cả nhóm. Chúng ta cuối cùng đã giành giải nhất.',
+        expression: 'happy', vocab: ['获奖', '归', '获'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai', 'laoli'], bg: 'office',
+        scene: '📍 Văn phòng',
+        expression: 'focused',
+        q: 'Diễn đạt "Chúng ta cần lấy thêm dữ liệu" đúng nhất?',
+        options: [
+          { text: '我们需要获取更多数据。', pinyin: 'Wǒmen xūyào huòqǔ gèng duō shùjù.', meaning: 'Chúng ta cần lấy thêm nhiều dữ liệu.', correct: true,
+            feedback: 'Đúng! 获取 = lấy được/thu được (dữ liệu, thông tin).' },
+          { text: '我们需要含有更多数据。', pinyin: 'Wǒmen xūyào hányǒu gèng duō shùjù.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '含有 = chứa có, không dùng cho hành động "lấy dữ liệu".' },
+          { text: '我们需要归更多数据。', pinyin: 'Wǒmen xūyào guī gèng duō shùjù.', meaning: '(không thông)', correct: false,
+            feedback: '归 = trở về/thuộc về, không hợp.' }
+        ], vocab: ['获取', '含有', '归'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '仓库又寒冷又黑暗，我几乎冻僵了。',
+        pinyin: 'Cāngkù yòu hánlěng yòu hēi\'àn, wǒ jīhū dòngjiāng le.',
+        meaning: 'Nhà kho vừa lạnh giá vừa tối tăm, tôi gần như cóng cả người.',
+        expression: 'sad', vocab: ['寒冷', '黑暗'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '每户家庭都收到样品。这种瓜含糖，种的时候别用太多肥。',
+        pinyin: 'Měi hù jiātíng dōu shōudào yàngpǐn. Zhè zhǒng guā hán táng, zhòng de shíhou bié yòng tài duō féi.',
+        meaning: 'Mỗi hộ gia đình đều nhận được mẫu thử. Loại dưa này có đường, khi trồng đừng dùng quá nhiều phân.',
+        expression: null, vocab: ['户', '瓜', '肥'] },
+      { type: 'checkpoint', questions: [
+        { q: '“感兴趣” nghĩa là?', options: ['Cảm thấy hứng thú', 'Chán nản', 'Mệt mỏi', 'Tức giận'], answer: 0 },
+        { q: '“根据数据” — “根据” nghĩa là?', options: ['Dựa theo', 'Phản đối', 'Bỏ qua', 'Gửi đi'], answer: 0 },
+        { q: '“含有维生素” — “含有” nghĩa là?', options: ['Chứa có', 'Thiếu', 'Bán ra', 'Trở về'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '肥', p: 'féi', v: 'béo, phì; phân bón' },
+      { h: '感兴趣', p: 'gǎn xìng qù', v: 'cảm thấy hứng thú' },
+      { h: '高铁', p: 'gāo tiě', v: 'tàu cao tốc' },
+      { h: '根据', p: 'gēn jù', v: 'dựa theo, căn cứ vào' },
+      { h: '供应', p: 'gōng yìng', v: 'cung cấp, cung ứng' },
+      { h: '瓜', p: 'guā', v: 'quả dưa, bầu bí' },
+      { h: '关于', p: 'guān yú', v: 'về, liên quan đến' },
+      { h: '归', p: 'guī', v: 'trở về, thuộc về' },
+      { h: '含量', p: 'hán liàng', v: 'hàm lượng' },
+      { h: '含有', p: 'hán yǒu', v: 'chứa có, bao gồm' },
+      { h: '寒冷', p: 'hán lěng', v: 'lạnh giá' },
+      { h: '毫升', p: 'háo shēng', v: 'mililit (ml)' },
+      { h: '黑暗', p: 'hēi àn', v: 'tối tăm, bóng tối' },
+      { h: '户', p: 'hù', v: 'hộ, gia đình' },
+      { h: '回复', p: 'huí fù', v: 'trả lời, hồi đáp' },
+      { h: '获', p: 'huò', v: 'thu được, giành được' },
+      { h: '获奖', p: 'huò jiǎng', v: 'giành giải thưởng' },
+      { h: '获取', p: 'huò qǔ', v: 'lấy được, có được' },
+      { h: '几乎', p: 'jī hū', v: 'hầu như, gần như' },
+      { h: '极', p: 'jí', v: 'cực kỳ' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '我对这个项目很___。', options: ['感兴趣', '回复', '黑暗'], answer: '感兴趣' },
+        { type: 'fill', sentence: '___数据，这种饮料很健康。', options: ['根据', '供应', '获取'], answer: '根据' },
+        { type: 'fill', sentence: '这种饮料___维生素。', options: ['含有', '回复', '几乎'], answer: '含有' },
+        { type: 'fill', sentence: '我坐___去参观工厂。', options: ['高铁', '毫升', '瓜'], answer: '高铁' },
+        { type: 'fill', sentence: '客户___了我的邮件。', options: ['回复', '含有', '供应'], answer: '回复' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '工厂能稳定___产品。', options: ['供应', '获取', '回复'], answer: '供应' },
+        { type: 'fill', sentence: '客户___都满意。', options: ['几乎', '关于', '寒冷'], answer: '几乎' },
+        { type: 'fill', sentence: '反应___好，大家很高兴。', options: ['极', '户', '瓜'], answer: '极' },
+        { type: 'fill', sentence: '如果方案___，荣誉归于团队。', options: ['获奖', '回复', '含量'], answer: '获奖' },
+        { type: 'order', words: ['荣誉', '归于', '整个', '团队'], answer: '荣誉归于整个团队' },
+        { type: 'order', words: ['这', '种', '饮料', '含有', '维生素'], answer: '这种饮料含有维生素' },
+        { type: 'fill', sentence: '维生素的___很高。', options: ['含量', '高铁', '黑暗'], answer: '含量' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '我们需要___更多数据。', options: ['获取', '含有', '归'], answer: '获取' },
+        { type: 'fill', sentence: '仓库又___又黑暗。', options: ['寒冷', '感兴趣', '供应'], answer: '寒冷' },
+        { type: 'translate', prompt: 'Mỗi chai năm trăm ml.', answer: '每瓶五百毫升。' },
+        { type: 'translate', prompt: 'Dựa theo dữ liệu, hàm lượng vitamin rất cao.', answer: '根据数据，维生素含量很高。' },
+        { type: 'translate', prompt: 'Nếu phương án đoạt giải, vinh dự thuộc về cả nhóm.', answer: '如果方案获奖，荣誉归于整个团队。' },
+        { type: 'fill', sentence: '每___家庭都收到样品。', options: ['户', '瓜', '极'], answer: '户' }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // BÀI 133: Thuyết trình trước nhóm — 20 từ
+  // ─────────────────────────────────────────────────────────────────────────
+  133: {
+    id: 133,
+    level: 4,
+    title: 'Thuyết trình trước nhóm',
+    context: 'Đến lượt Mai lên thuyết trình. Em trình bày kế hoạch mở rộng thị trường, xúc động khi nói về quê nhà, và cả nhóm nhận ra thành công không thể tách rời nỗ lực của mọi người.',
+    vocabPreview: ['扩展', '历史', '离不开', '加入', '聚'],
+    steps: [
+      { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng họp · Sáng', bg: 'office',
+        cast: ['mai', 'laoli'],
+        text: 'Đến lượt Mai lên thuyết trình trước cả nhóm.',
+        pinyin: '', meaning: '', vocab: [] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '今天轮到你上台，大家都聚在会议室。',
+        pinyin: 'Jīntiān lún dào nǐ shàngtái, dàjiā dōu jù zài huìyìshì.',
+        meaning: 'Hôm nay đến lượt em lên thuyết trình, mọi người đều tụ họp ở phòng họp.',
+        expression: 'focused', vocab: ['轮', '聚'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '我从口袋里拿出讲稿，走上楼梯到台上。',
+        pinyin: 'Wǒ cóng kǒudai lǐ ná chū jiǎnggǎo, zǒu shàng lóutī dào tái shàng.',
+        meaning: 'Tôi lấy bài nói từ trong túi áo ra, bước lên cầu thang đến sân khấu.',
+        expression: 'focused', vocab: ['口袋', '楼梯'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '这个城市历史悠久，前景宽广，我们要扩展市场。',
+        pinyin: 'Zhège chéngshì lìshǐ yōujiǔ, qiánjǐng kuānguǎng, wǒmen yào kuòzhǎn shìchǎng.',
+        meaning: 'Thành phố này lịch sử lâu đời, triển vọng rộng mở, chúng ta cần mở rộng thị trường.',
+        expression: 'happy', vocab: ['历史', '宽广', '扩展'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '很好。把这几点列入计划，列为重点，一项一项列出来。',
+        pinyin: 'Hěn hǎo. Bǎ zhè jǐ diǎn lièrù jìhuà, lièwéi zhòngdiǎn, yí xiàng yí xiàng liè chūlái.',
+        meaning: 'Tốt lắm. Đưa mấy điểm này vào kế hoạch, xếp làm trọng điểm, liệt kê ra từng mục một.',
+        expression: 'happy', vocab: ['列入', '列为', '列'] },
+      { type: 'dialogue', speaker: 'xiaomei', cast: ['mai', 'xiaomei'],
+        text: '越来越多客户加入，产品要经过检测，质量不能降。',
+        pinyin: 'Yuèláiyuè duō kèhù jiārù, chǎnpǐn yào jīngguò jiǎncè, zhìliàng bùnéng jiàng.',
+        meaning: 'Ngày càng nhiều khách hàng tham gia, sản phẩm phải qua kiểm định, chất lượng không được giảm.',
+        expression: 'curious', vocab: ['加入', '检测', '降'] },
+      { type: 'choice', speaker: 'mai', cast: ['mai'], bg: 'office',
+        scene: '📍 Phòng họp',
+        expression: 'focused',
+        q: 'Diễn đạt "Thành công của dự án không thể tách rời nỗ lực của mọi người" đúng nhất?',
+        options: [
+          { text: '项目的成功离不开大家的努力。', pinyin: 'Xiàngmù de chénggōng líbukāi dàjiā de nǔlì.', meaning: 'Thành công của dự án không thể tách rời nỗ lực của mọi người.', correct: true,
+            feedback: 'Đúng! 离不开 = không thể thiếu/tách rời.' },
+          { text: '项目的成功列大家的努力。', pinyin: 'Xiàngmù de chénggōng liè dàjiā de nǔlì.', meaning: '(không hợp nghĩa)', correct: false,
+            feedback: '列 = liệt kê/xếp hàng, không hợp.' },
+          { text: '项目的成功轮大家的努力。', pinyin: 'Xiàngmù de chénggōng lún dàjiā de nǔlì.', meaning: '(không thông)', correct: false,
+            feedback: '轮 = lượt/vòng, không hợp.' }
+        ], vocab: ['离不开', '列', '轮'] },
+      { type: 'dialogue', speaker: 'mai', cast: ['mai'],
+        text: '说到老家，我流下泪水，眼里满是泪。',
+        pinyin: 'Shuō dào lǎojiā, wǒ liú xià lèishuǐ, yǎn lǐ mǎn shì lèi.',
+        meaning: 'Nói đến quê nhà, tôi rơi nước mắt, mắt đẫm lệ.',
+        expression: 'sad', vocab: ['老家', '泪水', '泪'] },
+      { type: 'dialogue', speaker: 'laoli', cast: ['mai', 'laoli'],
+        text: '路两边都是垃圾，活动后记得清理。如果得奖，每人有份。',
+        pinyin: 'Lù liǎngbiān dōu shì lājī, huódòng hòu jìde qīnglǐ. Rúguǒ déjiǎng, měi rén yǒu fèn.',
+        meaning: 'Hai bên đường đầy rác, sau hoạt động nhớ dọn. Nếu được giải, mỗi người có phần.',
+        expression: null, vocab: ['两边', '垃圾', '奖'] },
+      { type: 'checkpoint', questions: [
+        { q: '“轮到你上台” — “轮到” nghĩa là?', options: ['Đến lượt', 'Từ chối', 'Tụ tập', 'Liệt kê'], answer: 0 },
+        { q: '“离不开大家的努力” nghĩa là?', options: ['Không thể thiếu', 'Rời khỏi', 'Phản đối', 'Giảm bớt'], answer: 0 },
+        { q: '“历史悠久” — “历史” nghĩa là?', options: ['Lịch sử', 'Tương lai', 'Rác', 'Túi áo'], answer: 0 }
+      ] }
+    ],
+    vocab: [
+      { h: '加入', p: 'jiā rù', v: 'tham gia, gia nhập' },
+      { h: '检测', p: 'jiǎn cè', v: 'kiểm định, kiểm tra' },
+      { h: '奖', p: 'jiǎng', v: 'giải thưởng, khen thưởng' },
+      { h: '降', p: 'jiàng', v: 'hạ xuống, giảm' },
+      { h: '聚', p: 'jù', v: 'tụ tập, tụ họp' },
+      { h: '口袋', p: 'kǒu dai', v: 'túi áo, túi quần' },
+      { h: '宽广', p: 'kuān guǎng', v: 'rộng rãi, bao la' },
+      { h: '扩展', p: 'kuò zhǎn', v: 'mở rộng, phát triển' },
+      { h: '垃圾', p: 'lā jī', v: 'rác' },
+      { h: '老家', p: 'lǎo jiā', v: 'quê nhà, nhà cũ' },
+      { h: '泪', p: 'lèi', v: 'nước mắt, lệ' },
+      { h: '泪水', p: 'lèi shuǐ', v: 'nước mắt, giọt lệ' },
+      { h: '离不开', p: 'lí bu kāi', v: 'không thể thiếu, gắn bó' },
+      { h: '历史', p: 'lì shǐ', v: 'lịch sử' },
+      { h: '两边', p: 'liǎng biān', v: 'hai bên' },
+      { h: '列', p: 'liè', v: 'xếp hàng, liệt kê' },
+      { h: '列入', p: 'liè rù', v: 'đưa vào (danh sách)' },
+      { h: '列为', p: 'liè wéi', v: 'xếp vào loại, phân loại là' },
+      { h: '楼梯', p: 'lóu tī', v: 'cầu thang' },
+      { h: '轮', p: 'lún', v: 'vòng, lượt; bánh xe' }
+    ],
+    workbook: {
+      easy: [
+        { type: 'fill', sentence: '今天___到你上台。', options: ['轮', '聚', '降'], answer: '轮' },
+        { type: 'fill', sentence: '大家都___在会议室。', options: ['聚', '列', '降'], answer: '聚' },
+        { type: 'fill', sentence: '我从___里拿出讲稿。', options: ['口袋', '楼梯', '垃圾'], answer: '口袋' },
+        { type: 'fill', sentence: '走上___到台上。', options: ['楼梯', '口袋', '老家'], answer: '楼梯' },
+        { type: 'fill', sentence: '这个城市___悠久。', options: ['历史', '泪水', '垃圾'], answer: '历史' }
+      ],
+      normal: [
+        { type: 'fill', sentence: '我们要___市场，前景宽广。', options: ['扩展', '检测', '加入'], answer: '扩展' },
+        { type: 'fill', sentence: '越来越多客户___我们。', options: ['加入', '列入', '降'], answer: '加入' },
+        { type: 'fill', sentence: '产品要经过___。', options: ['检测', '聚', '轮'], answer: '检测' },
+        { type: 'fill', sentence: '把这几点___计划。', options: ['列入', '加入', '宽广'], answer: '列入' },
+        { type: 'order', words: ['大家', '都', '聚', '在', '会议室'], answer: '大家都聚在会议室' },
+        { type: 'order', words: ['路', '两边', '都', '是', '垃圾'], answer: '路两边都是垃圾' },
+        { type: 'fill', sentence: '质量不能___，要保证。', options: ['降', '聚', '列'], answer: '降' }
+      ],
+      hard: [
+        { type: 'fill', sentence: '项目的成功___大家的努力。', options: ['离不开', '列', '轮'], answer: '离不开' },
+        { type: 'fill', sentence: '说到老家，我流下___。', options: ['泪水', '口袋', '垃圾'], answer: '泪水' },
+        { type: 'translate', prompt: 'Đến lượt em lên thuyết trình.', answer: '轮到你上台。' },
+        { type: 'translate', prompt: 'Thành phố này lịch sử lâu đời, triển vọng rộng mở.', answer: '这个城市历史悠久，前景宽广。' },
+        { type: 'translate', prompt: 'Sau hoạt động nhớ dọn rác ở hai bên đường.', answer: '活动后记得清理路两边的垃圾。' },
+        { type: 'fill', sentence: '把这几点___重点。', options: ['列为', '加入', '检测'], answer: '列为' }
+      ]
+    }
+  }
+
+});

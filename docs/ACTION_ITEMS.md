@@ -42,6 +42,34 @@
 
 ---
 
+## 🎨 Design + 🛠️ Ops notes (session 2026-06-03) — để session sau không mất context
+
+### Icon UI — ✅ DONE (commit `44606ad`)
+- 6 icon WebP ở **`assets/icons/`** (`badge-xp`, `badge-streak`, `ai-credit-potion`, `honor-gift`, `quest-scroll`, `trophy`), 128px 3–5KB, convert từ `content/assets/output/icons-misc/*.png`.
+- **Pattern topbar chip:** icon gắn bằng CSS `::before` theo id (`#topbarTokenBadge`/`#topbarStreakBadge`/`#topbarAICreditBadge` trong `home.css`) — JS chỉ set SỐ (không emoji). Thêm chip mới muốn có icon → theo pattern này (ĐỪNG nhét emoji vào `textContent` vì JS overwrite).
+- Static `<img>`: leaderboard hero badge · quests `<h1>` · pricing card Hộp Ân Cần.
+- Cả 6 icon đã dùng hết. Gen thêm icon set sau → cùng pipeline.
+
+### Convert ảnh khi CHƯA cài cwebp
+- `scripts/process-images.ps1` dùng `cwebp` (CHƯA cài trên máy này). **Thay thế nhanh = Pillow** (đã có): `im=Image.open(png).convert('RGBA'); im.thumbnail((W,W)); im.save(out,'WEBP',quality=90,method=6)` — giữ trong suốt, dùng cho icon/asset nhỏ. (Asset lớn/nhiều vẫn nên cài cwebp + dùng script.)
+
+### Design principles cho BÀI TẬP (áp khi build B-P2/P3/P4, A4, HSK 3/4)
+1. **Active recall > recognition** — ưu tiên gõ/nói ra, giảm chọn-3-đáp-án.
+2. **Spacing** — từ làm SAI đẩy vào SRS (`hsk_srs_v3`) (P1 đã làm; giữ cho MỌI dạng mới).
+3. **Audio-first** — mỗi bài tập nên nghe được (TTS sẵn có).
+4. **Output** — ≥1 task nói/viết tự tạo mỗi bài (A4 roleplay/shadow).
+5. **Feedback giải thích** (field `explain`), không chỉ đỏ/xanh.
+6. **Interleaving** — chèn 1–2 câu ôn từ bài trước.
+
+### Ops lessons (tránh lặp lỗi)
+- **Cloudflare Pages kẹt ở bước `initialize` >20′** = sự cố hạ tầng CF, KHÔNG phải code. Fix: Dashboard → Deployments → **Cancel deployment → Retry** (gặp 2026-06-03, retry lên ngay, nhảy thẳng commit mới nhất).
+- **Worktree:** session phụ PHẢI làm trong worktree RIÊNG, KHÔNG `git checkout` branch ngay trong repo chính (1 session QA đã trót làm → repo chính nhảy nhánh, phải `git checkout main` lại).
+- **Orphan worktree folder** bị Playwright MCP / `http.server` giữ lock → `git worktree remove` báo Permission denied; git đã gỡ đăng ký (an toàn), folder vật lý xoá được sau khi process nhả lock.
+- **`.gitignore` chặn blanket `docs/` + `scripts/` + `content/`** → file MỚI trong đó cần `git add -f` mới commit (file cũ đã tracked thì không ảnh hưởng). `content/` cố ý giữ local (business intel); plan doc + script reusable thì force-add.
+- **Cache-bust:** sửa `js/data/course/course-hskN.js` → nhớ bump `?v` của CHÍNH file đó trong `index.html` (vd HSK2 `?v=1.2`); sửa renderer thì bump `course.js?v`.
+
+---
+
 ## 🎤 Shadowing (R.1) cải tiến + 🆚 So sánh SuperChinese (review 2026-06-03)
 
 > Khơi từ video TikTok competitor (app shadowing). **App ĐÃ CÓ lõi**: Speaking Shadowing (Phase R.1, `/speaking`, chấm `sent.eval.cn` per-syllable THẬT qua SpeechSuper) — mạnh hơn lời quảng cáo chung của video. Video lộ ra vài cải tiến + dịp đối chiếu SuperChinese.

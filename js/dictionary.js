@@ -16,16 +16,12 @@ var Dictionary = {
   setup: function() {
     const input = document.getElementById('dictSearch');
     if (!input) return;
-    if (Dictionary._setupDone) {
-      // Already wired — just refresh results
-      Dictionary._renderRecent();
-      Dictionary._populateAside();
-      Dictionary.searchDict(input.value.trim());
-      return;
-    }
     Dictionary._setupDone = true;
     Dictionary._renderRecent();
     Dictionary._populateAside();
+
+    // Restore the previous query so leaving & returning keeps your search (P1-3).
+    if (Dictionary._lastQuery && !input.value) input.value = Dictionary._lastQuery;
 
     // Background-load HSK 3.0 data for integrated search
     if (typeof HSKVersion !== 'undefined' && !HSKVersion.isV3Loaded()) {
@@ -35,13 +31,20 @@ var Dictionary = {
       });
     }
 
-    // Search input
-    input.addEventListener('input', function() {
-      Dictionary.searchDict(input.value.trim());
-    });
+    // The router rebuilds #content on every navigation, so the input + tab nodes
+    // are brand-new each visit. Bind per element (guard flag) instead of once
+    // globally — otherwise the search box goes dead after leaving & returning (P1-3).
+    if (!input._dictBound) {
+      input._dictBound = true;
+      input.addEventListener('input', function() {
+        Dictionary.searchDict(input.value.trim());
+      });
+    }
 
     // Search mode tabs
     document.querySelectorAll('.stab').forEach(function(btn) {
+      if (btn._dictBound) return;
+      btn._dictBound = true;
       btn.addEventListener('click', function() {
         document.querySelectorAll('.stab').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
@@ -67,8 +70,8 @@ var Dictionary = {
       });
     });
 
-    // Default search on startup
-    Dictionary.searchDict('');
+    // Initial render: restored query (P1-3) or default suggestions when empty.
+    Dictionary.searchDict(input.value.trim());
   },
 
   // ── Recent searches ────────────────────────────────
@@ -179,6 +182,8 @@ var Dictionary = {
   searchDict: function(query) {
     const res = document.getElementById('dictResults');
     if (!res) return;
+    // Remember the last query so leaving & returning to the page restores it (P1-3).
+    Dictionary._lastQuery = query;
     if (!query) {
       const label = document.createElement('p');
       label.className = 'rad-results-label';

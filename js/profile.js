@@ -341,7 +341,10 @@ var Profile = (function() {
       .select('month_year')
       .eq('user_id', Auth.user.id)
       .then(function(res) {
-        if (res.error || !res.data || !res.data.length) return;
+        // Log (don't silently swallow) — a 403 here means missing GRANT/RLS on
+        // user_honor_purchases (UX_AUDIT P2-2; fix: sql/v20_honor_purchases_grant_fix.sql).
+        if (res.error) { console.warn('[Profile] honor sync failed:', res.error.message || res.error); return; }
+        if (!res.data || !res.data.length) return;
         var months = res.data.map(function(r) { return r.month_year; });
         localStorage.setItem('hsk_honor_months', JSON.stringify(months));
         _renderOutfitSection();

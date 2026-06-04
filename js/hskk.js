@@ -691,6 +691,55 @@ var HSKK = (function () {
     return Math.round(v.reduce(function (a, b) { return a + b; }, 0) / v.length);
   }
 
+  // ── Heatmap per-syllable (Phần 1) ──────────────────────────────────────
+  // SpeechSuper sent.eval.cn trả result.words[] (per-âm/per-từ). Đọc thủ công,
+  // phòng thủ nhiều tên field (account/coreType khác nhau có shape khác).
+  function _isPunct(ch) {
+    return /[，。！？、；：·…—,.!?;:"'’“”（）()《》〈〉「」\s]/.test(ch);
+  }
+  // Lấy điểm số (ưu tiên overall → pronunciation) từ 1 object word/char.
+  function _sylScore(o) {
+    if (!o) return null;
+    var s = o.scores || o;
+    var v = s.overall;
+    if (typeof v !== 'number') v = s.pronunciation;
+    if (typeof v !== 'number') v = (typeof o.overall === 'number' ? o.overall
+                                  : (typeof o.score === 'number' ? o.score : null));
+    return typeof v === 'number' ? Math.round(v) : null;
+  }
+  // Trả [{ ch, sc }] cho 1 câu đã chấm, hoặc null nếu không có dữ liệu per-âm.
+  function _syllables(a) {
+    var sc = a && a.score;
+    var raw = sc && sc.raw;
+    var words = raw && (raw.words || raw.details);
+    if (!Array.isArray(words) || !words.length) return null;
+    var out = [];
+    words.forEach(function (w) {
+      var ws = _sylScore(w);
+      var chars = w.chars; // chỉ dùng khi item con là hanzi (không phải phoneme/pinyin)
+      var hasCh = Array.isArray(chars) && chars.length &&
+                  (chars[0].char || chars[0].word || chars[0].text);
+      if (hasCh) {
+        chars.forEach(function (c) {
+          var cs = _sylScore(c); if (cs == null) cs = ws;
+          out.push({ ch: c.char || c.word || c.text || '', sc: cs });
+        });
+      } else {
+        var txt = String(w.word || w.text || w.char || '');
+        Array.prototype.forEach.call(txt, function (ch) { out.push({ ch: ch, sc: ws }); });
+      }
+    });
+    return out.length ? out : null;
+  }
+  function _heatmapHtml(sylls) {
+    return sylls.map(function (s) {
+      if (_isPunct(s.ch)) return '<span class="hskk-syl">' + _esc(s.ch) + '</span>';
+      var cls = s.sc == null ? '' : s.sc < 60 ? ' hskk-syl-low' : s.sc < 80 ? ' hskk-syl-mid' : ' hskk-syl-good';
+      var title = s.sc == null ? '' : ' title="' + s.sc + '"';
+      return '<span class="hskk-syl' + cls + '"' + title + '>' + _esc(s.ch) + '</span>';
+    }).join('');
+  }
+
   function _renderResult(scored) {
     _show($('hskkResult'), true);
 
@@ -725,6 +774,19 @@ var HSKK = (function () {
     } else {
       if (verdict) verdict.textContent = overall >= 80 ? 'Rất tốt! 🎉' : overall >= 60 ? 'Đạt — tiếp tục luyện 👍' : 'Cần luyện thêm 💪';
       if (sub) sub.textContent = modeLabel + 'Đã chấm ' + scored + '/' + gradableTotal + ' câu có chấm AI · điểm đạt HSKK thường ~60/100.';
+    }
+
+    // Pill đạt/chưa đạt (mốc 60/100)
+    var pill = $('hskkPassPill');
+    if (pill) {
+      if (overall == null) {
+        pill.style.display = 'none';
+      } else {
+        var passed = overall >= 60;
+        pill.textContent = passed ? '✓ Đạt · ≥ 60/100' : '✗ Chưa đạt · < 60/100';
+        pill.className = 'hskk-pass-pill ' + (passed ? 'hskk-pass-yes' : 'hskk-pass-no');
+        pill.style.display = '';
+      }
     }
 
     // Breakdown phát âm / trôi chảy
@@ -766,7 +828,42 @@ var HSKK = (function () {
       }).join('') + (practiceCount ? '<div class="hskk-practice-note">' + _esc('Phần trả lời mở sẽ có chấm AI khi mở tính năng nói tự do.') + '</div>' : '');
     }
 
-    // Chi tiết từng câu
+    // ── Điểm yếu: gom âm/chữ Phần 1 < 60 → cross-link Shadowing ───────────
+    var weakMap = {};
+    _answers.forEach(function (a) {
+      if (!a) return;
+      var cfg = QTYPE[a.type];
+      if (!cfg || !cfg.grade) return;
+      var sylls = _syllables(a);
+      if (!sylls) return;
+      sylls.forEach(function (s) {
+        if (s.sc != null && s.sc < 60 && s.ch && !_isPunct(s.ch)) {
+          if (!(s.ch in weakMap) || s.sc < weakMap[s.ch]) weakMap[s.ch] = s.sc;
+        }
+      });
+    });
+    var weakChars = Object.keys(weakMap).sort(function (x, y) { return weakMap[x] - weakMap[y]; }).slice(0, 14);
+    var weakEl = $('hskkWeak');
+    if (weakEl) {
+      if (weakChars.length) {
+        weakEl.innerHTML =
+          '<div class="hskk-weak-head">🎯 Điểm yếu cần luyện</div>' +
+          '<p class="hskk-weak-desc">Các âm/chữ dưới đây bạn phát âm còn yếu (dưới 60 điểm). Luyện Shadowing để nói chuẩn hơn:</p>' +
+          '<div class="hskk-weak-chips">' + weakChars.map(function (ch) {
+            return '<span class="hskk-weak-chip">' + _esc(ch) + '<i>' + weakMap[ch] + '</i></span>';
+          }).join('') + '</div>' +
+          '<button class="hskk-btn hskk-weak-btn" id="hskkWeakShadow">🎧 Luyện Shadowing các âm này →</button>';
+        weakEl.style.display = '';
+        var sb = $('hskkWeakShadow');
+        if (sb) sb.onclick = function () { if (window.Router) Router.navigateTo('speaking'); };
+      } else {
+        weakEl.innerHTML = '';
+        weakEl.style.display = 'none';
+      }
+    }
+
+    // Chi tiết từng câu (Phần 1: heatmap per-âm · phần nói tự do: nghe lại + đáp án mẫu)
+    var anyHeat = false;
     var dl = $('hskkDetailList');
     if (dl) {
       dl.innerHTML = _answers.map(function (a, i) {
@@ -779,24 +876,48 @@ var HSKK = (function () {
         var scoreText = practice ? 'Luyện tập' : (ov == null ? '—' : ov);
         var status = practice ? '<div class="hskk-d-status">' + _esc('Đã ghi âm · luyện tập (chưa chấm tự động)') + '</div>' : '';
         var tip = _tip(a);
-        var audio = a.url ? '<button class="hskk-d-replay" data-url="' + _esc(a.url) + '">▶ Nghe lại</button>' : '';
-        var zhLine = (a.type === 'picture') ? (a.q.topic || a.q.topicVi || '看图说话') : a.q.zh;
-        var pyLine = (a.type === 'picture') ? (a.q.topicVi || '') : (a.q.py || '');
+        var audio = a.url ? '<button class="hskk-d-replay" data-url="' + _esc(a.url) + '">▶ Nghe lại ghi âm</button>' : '';
+
+        // Dòng đề / nội dung
+        var zhBlock;
+        if (a.type === 'picture') {
+          zhBlock = '<div class="hskk-d-zh">' + _esc(a.q.topic || '看图说话') + '</div>' +
+                    (a.q.topicVi ? '<div class="hskk-d-py">' + _esc(a.q.topicVi) + '</div>' : '');
+        } else {
+          var sylls = (cfg && cfg.grade) ? _syllables(a) : null;
+          var zhHtml;
+          if (sylls) { zhHtml = _heatmapHtml(sylls); anyHeat = true; }
+          else { zhHtml = _esc(a.q.zh || ''); }
+          zhBlock = '<div class="hskk-d-zh">' + zhHtml + '</div>' +
+                    (a.q.py ? '<div class="hskk-d-py">' + _esc(a.q.py) + '</div>' : '');
+        }
+
+        // Đáp án mẫu / gợi ý cho phần nói tự do
+        var sample = '';
+        if (practice) {
+          var bits = [];
+          if (a.type === 'respond' && a.q.vi) bits.push('<b>Câu hỏi:</b> ' + _esc(a.q.vi));
+          if (a.q.outline && a.q.outline.length) bits.push('<b>Dàn ý:</b> ' + _esc(a.q.outline.join(' → ')));
+          if (a.q.keywords && a.q.keywords.length) bits.push('<b>Từ khóa:</b> ' + a.q.keywords.map(function (k) { return _esc(k.h); }).join(' · '));
+          if (a.q.sampleAnswer) bits.push('<b>Đáp án mẫu:</b> ' + _esc(a.q.sampleAnswer));
+          else if (a.q.hint) bits.push('<b>Gợi ý:</b> ' + _esc(a.q.hint));
+          if (bits.length) sample = '<div class="hskk-d-sample">' + bits.join('<br>') + '</div>';
+        }
+
         return '<div class="hskk-d-item">' +
           '<div class="hskk-d-head"><span class="hskk-d-num">' + (i + 1) + '</span>' +
           '<span class="hskk-d-type">' + _esc(cfg.partVi) + '</span>' +
           '<span class="hskk-d-score' + cls + '">' + _esc(scoreText) + '</span></div>' +
-          status +
-          '<div class="hskk-d-zh">' + _esc(zhLine) + '</div>' +
-          '<div class="hskk-d-py">' + _esc(pyLine) + '</div>' +
+          status + zhBlock +
           (tip ? '<div class="hskk-d-tip">' + _esc(tip) + '</div>' : '') +
-          audio +
+          sample + audio +
           '</div>';
       }).join('');
       dl.querySelectorAll('.hskk-d-replay').forEach(function (b) {
         b.onclick = function () { try { new Audio(b.getAttribute('data-url')).play(); } catch (e) {} };
       });
     }
+    _show($('hskkHeatLegend'), anyHeat);
 
     // Lưu lịch sử (chỉ thi thật, không lưu phiên luyện từng phần)
     if (!_practiceMode && overall != null) {
@@ -873,7 +994,35 @@ var HSKK = (function () {
     }).join('');
   }
 
-  return { init: init };
+  // ── DEV/QA ONLY — render màn kết quả với dữ liệu mẫu (per-âm heatmap +
+  //    phần nói tự do). KHÔNG gọi mạng, KHÔNG trừ credit. Dùng để xem nhanh
+  //    layout báo cáo: gọi `HSKK._previewResult()` trong console / Playwright.
+  function _previewResult() {
+    _level = 'so-cap'; _data = HSKK_SOCAP; _practiceMode = false;
+    var mkWords = function (zh, lo) {
+      return Array.prototype.map.call(zh.replace(/[，。！？、]/g, ''), function (ch, k) {
+        var base = (k === lo) ? 48 : 70 + ((ch.charCodeAt(0) + k * 7) % 30);
+        return { word: ch, scores: { overall: base, pronunciation: base } };
+      });
+    };
+    _exam = [];
+    _answers = [
+      { type: 'repeat', q: HSKK_SOCAP.part1[0], url: '',
+        score: { overall: 82, pronunciation: 80, fluency: 85, integrity: 88,
+                 raw: { words: mkWords(HSKK_SOCAP.part1[0].zh, 2) } } },
+      { type: 'repeat', q: HSKK_SOCAP.part1[1], url: '',
+        score: { overall: 58, pronunciation: 54, fluency: 62, integrity: 60,
+                 raw: { words: mkWords(HSKK_SOCAP.part1[1].zh, 1) } } },
+      { type: 'respond', q: HSKK_SOCAP.part2[0], url: '', practice: true },
+      { type: 'open', q: HSKK_SOCAP.part3[0], url: '', practice: true }
+    ];
+    _show($('hskkIntro'), false);
+    _show($('hskkExam'), false);
+    _show($('hskkGrading'), false);
+    _renderResult(1);
+  }
+
+  return { init: init, _previewResult: _previewResult };
 }());
 
 if (typeof window !== 'undefined') window.HSKK = HSKK;

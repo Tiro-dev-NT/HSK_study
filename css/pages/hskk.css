@@ -484,3 +484,90 @@
   .hskk-q-images { flex-direction: column; align-items: center; }
   .hskk-q-img { width: 100%; max-width: 420px; flex: none; }
 }
+
+/* ══════════════ BÁO CÁO NÂNG: pill đạt · heatmap · điểm yếu ══════════════ */
+
+/* Pill đạt / chưa đạt cạnh điểm tổng */
+.hskk-pass-pill {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 99px;
+  padding: 3px 12px;
+  margin-bottom: 6px;
+}
+.hskk-pass-yes { color: var(--success); background: var(--success-bg); }
+.hskk-pass-no  { color: var(--danger);  background: var(--danger-bg); }
+
+/* Heatmap per-âm (Phần 1) trong chi tiết câu */
+.hskk-syl {
+  display: inline-block;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.7;
+  padding: 0 1px;
+  border-radius: 4px;
+}
+.hskk-syl-good { color: var(--success); }
+.hskk-syl-mid  { color: var(--warning); }
+.hskk-syl-low  {
+  color: var(--danger);
+  background: var(--danger-bg);
+  font-weight: 800;
+}
+.hskk-d-item .hskk-d-zh { line-height: 1.7; }
+
+/* Chú thích màu heatmap */
+.hskk-heat-legend {
+  font-size: 0.78rem;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.hskk-heat-legend .hskk-syl { font-size: 0.85rem; padding: 0 4px; }
+
+/* Khối đáp án mẫu / gợi ý cho phần nói tự do */
+.hskk-d-sample {
+  margin-top: 8px;
+  font-size: 0.84rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  line-height: 1.6;
+}
+.hskk-d-sample b { color: var(--text2); font-weight: 700; }
+
+/* Card điểm yếu → Shadowing */
+.hskk-weak {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.hskk-weak-head { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.hskk-weak-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.5; margin: 0 0 12px; }
+.hskk-weak-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.hskk-weak-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--surface, var(--card-bg));
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  padding: 4px 9px;
+  font-size: 1.1rem; font-weight: 700; color: var(--danger);
+}
+.hskk-weak-chip i {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text2);
+  background: var(--bg);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+.hskk-weak-btn { background: var(--primary); color: var(--fg-inv); }
+.hskk-weak-btn:hover { filter: brightness(1.07); }

@@ -206,6 +206,7 @@
         </div>
         <div class="hskk-score-meta">
           <div class="hskk-score-verdict" id="hskkScoreVerdict">—</div>
+          <span class="hskk-pass-pill" id="hskkPassPill" style="display:none"></span>
           <p class="hskk-score-sub" id="hskkScoreSub"></p>
         </div>
       </div>
@@ -214,7 +215,16 @@
 
       <div class="hskk-part-scores" id="hskkPartScores"></div>
 
+      <!-- Điểm yếu → cross-link Shadowing -->
+      <div class="hskk-weak" id="hskkWeak" style="display:none"></div>
+
       <h3 class="hskk-detail-title">Chi tiết từng câu</h3>
+      <div class="hskk-heat-legend" id="hskkHeatLegend" style="display:none">
+        Màu chữ Phần 1 = điểm phát âm từng âm:
+        <span class="hskk-syl hskk-syl-good">tốt</span>
+        <span class="hskk-syl hskk-syl-mid">khá</span>
+        <span class="hskk-syl hskk-syl-low">yếu</span>
+      </div>
       <div class="hskk-detail-list" id="hskkDetailList"></div>
 
       <div class="hskk-result-actions">

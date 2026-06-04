@@ -244,11 +244,20 @@ var RightSidebar = {
     var section = document.getElementById('rsCtxSection');
     if (!section) return;
     var html = '';
-    if (page === 'learn') {
+    // Học hub + các trang học (input)
+    if (page === 'learn' || page === 'handout' || page === 'grammar' ||
+        page === 'reading' || page === 'topics' || page === 'ban-do-hsk') {
       html = RightSidebar._ctxLearn();
-    } else if (page === 'practice' || page === 'quiz') {
+    // Luyện tập (output, đo skill)
+    } else if (page === 'practice' || page === 'quiz' || page === 'mock-exam' ||
+               page === 'hskk' || page === 'speaking' || page === 'writing' ||
+               page === 'games') {
       html = RightSidebar._ctxPractice();
-    } else if (page === 'dictionary' || page === 'tools') {
+    // Từ điển → từ vừa tra gần đây
+    } else if (page === 'dictionary') {
+      html = RightSidebar._ctxDictionary();
+    // Công cụ khác → phím tắt
+    } else if (page === 'tools' || page === 'text-analyzer' || page === 'tutor') {
       html = RightSidebar._ctxTools();
     }
     if (!html) {
@@ -261,13 +270,20 @@ var RightSidebar = {
   },
 
   _ctxLearn: function() {
+    var streak = parseInt(localStorage.getItem('hsk_streak') || '0');
+    var streakHtml = streak > 0
+      ? '<div class="rs-ctx-streak">🔥 Chuỗi <strong>' + streak + '</strong> ngày — học hôm nay để giữ lửa!</div>'
+      : '<div class="rs-ctx-streak">🔥 Học 1 bài hôm nay để bắt đầu chuỗi!</div>';
     var lastId = localStorage.getItem('hsk_last_deck_id') || 'sys_hsk1';
     var deck = (typeof decks !== 'undefined') ? decks[lastId] : null;
-    if (!deck) return '';
+    if (!deck) {
+      return '<div class="rs-section-title">📚 Tiếp tục học</div>' + streakHtml +
+        '<button class="rs-ctx-btn" onclick="Router.navigateTo(\'learn\')">Chọn bộ thẻ →</button>';
+    }
     var prog = (typeof getDeckProgress === 'function') ? getDeckProgress(deck) : { pct: 0, dueCount: 0 };
     var pct  = prog.pct || 0;
     var due  = prog.dueCount || 0;
-    return '<div class="rs-section-title">📚 Bộ thẻ gần đây</div>' +
+    return '<div class="rs-section-title">📚 Tiếp tục học</div>' +
       '<div class="rs-ctx-deck-card">' +
         '<div class="rs-ctx-deck-icon" style="background:' + (deck.color || '#DC2626') + '">' + (deck.icon || '📕') + '</div>' +
         '<div class="rs-ctx-deck-info">' +
@@ -276,7 +292,31 @@ var RightSidebar = {
           '<div class="rs-ctx-meta">' + pct + '% · ' + due + ' cần ôn</div>' +
         '</div>' +
       '</div>' +
-      '<button class="rs-ctx-btn" onclick="learnHubOpenDeck && learnHubOpenDeck(\'' + lastId + '\')">▶ Học tiếp →</button>';
+      '<button class="rs-ctx-btn" onclick="learnHubOpenDeck && learnHubOpenDeck(\'' + lastId + '\')">▶ Học tiếp →</button>' +
+      streakHtml;
+  },
+
+  _ctxDictionary: function() {
+    var recent = [];
+    try { recent = JSON.parse(localStorage.getItem('hsk_dict_recent') || '[]'); } catch(e) {}
+    if (!recent.length) {
+      return '<div class="rs-section-title">🔍 Từ vừa tra</div>' +
+        '<div class="rs-ctx-empty">Chưa có từ nào. Gõ vào ô tìm kiếm để bắt đầu tra cứu.</div>';
+    }
+    var chips = recent.slice(0, 8).map(function(q) {
+      var safe = String(q).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+      var disp = String(q).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return '<button class="rs-ctx-word-chip" onclick="RightSidebar.dictLookup(\'' + safe + '\')">' + disp + '</button>';
+    }).join('');
+    return '<div class="rs-section-title">🔍 Từ vừa tra gần đây</div>' +
+      '<div class="rs-ctx-word-chips">' + chips + '</div>';
+  },
+
+  dictLookup: function(q) {
+    if (typeof Dictionary === 'undefined') return;
+    var inp = document.getElementById('dictSearch');
+    if (inp) inp.value = q;
+    if (Dictionary.searchDict) Dictionary.searchDict(q);
   },
 
   _ctxPractice: function() {

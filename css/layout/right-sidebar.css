@@ -154,6 +154,31 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
+/* learn ctx: streak nudge */
+.rs-ctx-streak {
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--surface2);
+  border-radius: 7px;
+  padding: 8px 10px;
+  line-height: 1.4;
+}
+.rs-ctx-streak strong { color: var(--primary); font-size: 14px; }
+/* dictionary ctx: recent word chips */
+.rs-ctx-empty { font-size: 12px; color: var(--text3); line-height: 1.45; }
+.rs-ctx-word-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rs-ctx-word-chip {
+  font-family: var(--font-hanzi, 'Noto Sans SC', sans-serif);
+  font-size: 15px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.rs-ctx-word-chip:hover { border-color: var(--primary); color: var(--primary); }
 
 /* ── E4: SRS toggle group in settings ────────────────── */
 .toggle-group { display: flex; gap: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }

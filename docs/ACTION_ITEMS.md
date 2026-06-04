@@ -114,7 +114,9 @@
 | Gamification | ✅ | ✅ + games |
 
 **Khoảng trống nên học từ SuperChinese (ứng viên roadmap):**
-- ☐ **AI Teacher chat (Phase R.2)** — hỏi-đáp ngữ pháp/giải thích bằng AI hội thoại. Hạ tầng `ai-proxy` đã có → thêm task `tutor_chat` (Lane 2 DeepSeek). Đây là thứ SuperChinese có mà app CHƯA.
+- ☑ **AI Teacher chat (Phase R.2) BUILD DONE 2026-06-04** (commit `39ed730`, chưa push) — "Gia sư AI" `/tutor`: chat hỏi-đáp tiếng Trung, giải thích tiếng Việt + Hán/pinyin. `js/tutor.js`+`pages/tutor.html`+`css/pages/tutor.css`, route `js/router.js`, card ở `tools.html` ("Hỗ trợ AI"). Server: task `tutor_chat` trong `ai-proxy` (multi-turn, cap 8 lượt, `TUTOR_SYS` chống injection, Lane2 DeepSeek **flash**, 1cr/tin nhắn). Client `ai-client.js v1.1` gửi `messages[]`. Pro-gate + handleBlock soft + escapeHtml XSS. Lịch sử local `tutor_chat_history_v1`.
+  - ⚠️ **VIỆC USER (bắt buộc):** `supabase functions deploy ai-proxy` (DEEPSEEK_API_KEY đã set). `ai-proxy/index.ts` gitignored nhưng ĐÃ có thay đổi trên filesystem repo chính → deploy đủ. **Deploy XONG rồi mới push frontend** (tránh /tutor live trước khi backend có task).
+  - 📌 Verify sau deploy: hỏi "Phân biệt 二/两" → trả lời VN+Hán+pinyin, credit −1; multi-turn giữ ngữ cảnh; lạc đề/chính trị → từ chối; Free→gate; XSS-safe.
 - ☐ Nội dung động/animated — chi phí cao, visual-novel Mai hiện đủ tốt → **không gấp**.
 
 **App ĐANG VƯỢT** (giữ + dùng để marketing): Việt-first · HSKK exam · Writing Tutor · SpeechSuper thật · HSK 3.0 full · giá indie.

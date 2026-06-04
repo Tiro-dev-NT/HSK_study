@@ -49,6 +49,13 @@ var Tutor = (function () {
         });
   }
 
+  // Render markdown đơn giản cho response AI (chỉ dùng cho assistant bubble)
+  function _mdToHtml(escaped) {
+    return escaped
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // **bold**
+      .replace(/\n/g, '<br>');
+  }
+
   // ── Render ─────────────────────────────────────────────────────────
   function _renderMessages() {
     var el = document.getElementById('tutorMessages');
@@ -66,8 +73,10 @@ var Tutor = (function () {
 
     var html = '';
     _history.forEach(function (msg) {
-      var cls = msg.role === 'user' ? 'tutor-msg--user' : 'tutor-msg--ai';
-      var safe = _esc(msg.content).replace(/\n/g, '<br>');
+      var cls  = msg.role === 'user' ? 'tutor-msg--user' : 'tutor-msg--ai';
+      var safe = msg.role === 'assistant'
+        ? _mdToHtml(_esc(msg.content))
+        : _esc(msg.content).replace(/\n/g, '<br>');
       html += '<div class="tutor-msg ' + cls + '">' +
               '<div class="tutor-msg-bubble">' + safe + '</div></div>';
     });
@@ -83,7 +92,7 @@ var Tutor = (function () {
     if (w) w.remove();
 
     var cls   = role === 'user' ? 'tutor-msg--user' : 'tutor-msg--ai';
-    var safe  = _esc(content).replace(/\n/g, '<br>');
+    var safe  = role === 'assistant' ? _mdToHtml(_esc(content)) : _esc(content).replace(/\n/g, '<br>');
     var div   = document.createElement('div');
     div.className = 'tutor-msg ' + cls;
     div.innerHTML = '<div class="tutor-msg-bubble">' + safe + '</div>';

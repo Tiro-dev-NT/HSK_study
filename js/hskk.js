@@ -248,6 +248,17 @@ var HSKK = (function () {
       if (!pro) { Monetization.showGate('HSKK Thi thử nói'); return; }
     }
 
+    // 2b. Cảnh báo credit TRƯỚC khi vào thi — chỉ Phần 1 (repeat) chấm AI;
+    //     phần nói tự do (grade:false) KHÔNG trừ. Tránh sốc vì chấm = trừ thật.
+    var examPlan = (_data.meta && _data.meta.plan) || {};
+    var gradedN  = examPlan.repeat || 0;
+    if (gradedN > 0) {
+      var totalCr = gradedN * CREDIT_PER_Q;
+      if (!confirm('Bài thi chấm AI Phần 1 (' + gradedN + ' câu) — tốn tối đa ' +
+        totalCr + ' AI Credit (' + CREDIT_PER_Q + ' credit/câu). ' +
+        'Các phần nói tự do KHÔNG tốn credit. Bắt đầu thi?')) return;
+    }
+
     // 3. Mic
     try {
       _stream = await navigator.mediaDevices.getUserMedia({ audio: true });

@@ -11,6 +11,7 @@ var Router = (function() {
   var _cache = {};       // { pageName: htmlString }
   var _current = null;
   var _pending = false;  // prevent concurrent navigations
+  var _queued = null;    // {page,pushState} requested while a nav was in-flight (P1-2)
 
   // ── Route map: URL path → page name ─────────────────
   var _routes = {
@@ -257,23 +258,42 @@ var Router = (function() {
 
   // ── Core navigation ──────────────────────────────────
   function _navigateTo(page, pushState) {
-    if (_pending) return;
+    // A nav is already in flight: remember the latest request and run it when
+    // the current one settles, instead of silently dropping the click (P1-2).
+    if (_pending) { _queued = { page: page, pushState: pushState }; return; }
     page = page || 'home';
     if (page.charAt(0) === '/') page = page.slice(1) || 'home';
     _pending = true;
     var content = document.getElementById('content');
 
+    // Persist the outgoing scroll position into the CURRENT history entry so we
+    // can restore it if the user comes Back here later (P1-1). Only meaningful
+    // for forward navigations (pushState) — a popstate is itself a restore.
+    if (pushState !== false) {
+      try {
+        var _outState = history.state || {};
+        _outState._scroll = window.scrollY || window.pageYOffset || 0;
+        history.replaceState(_outState, '');
+      } catch (e) {}
+    }
+
     _fetchFragment(page)
       .then(function(html) {
         if (content) content.innerHTML = html;
+        // Push the new history entry BEFORE running page init. Pages like
+        // Course/Handout call history.replaceState (to add ?id=) inside init;
+        // pushing first means that replaceState refines THIS new entry instead
+        // of clobbering the previous page's entry — fixes Back going nowhere
+        // (UX_AUDIT P0-1). Pages read their id from _pendingId, not the URL,
+        // so the transient param-less URL is safe.
+        if (pushState !== false) {
+          var path = page === 'home' ? '/' : '/' + page;
+          history.pushState({ page: page }, '', path);
+        }
         try {
           if (_initMap[page]) _initMap[page]();
         } catch(e) {
           console.error('[Router] initPageModule ' + page + ' failed:', e);
-        }
-        if (pushState !== false) {
-          var path = page === 'home' ? '/' : '/' + page;
-          history.pushState({ page: page }, '', path);
         }
         _updateNav(page);
         _current = page;
@@ -281,7 +301,13 @@ var Router = (function() {
           try { RightSidebar.onNavigate(page); } catch(e) {}
         }
         if (typeof window.updateMascot === 'function') window.updateMascot(page);
-        window.scrollTo(0, 0);
+        // Forward nav → top of page. Back/forward → restore saved scroll (P1-1).
+        if (pushState !== false) {
+          window.scrollTo(0, 0);
+        } else {
+          var _sc = (history.state && history.state._scroll) || 0;
+          requestAnimationFrame(function() { window.scrollTo(0, _sc); });
+        }
       })
       .catch(function(err) {
         console.error('[Router] fetch failed for ' + page + ':', err);
@@ -295,7 +321,14 @@ var Router = (function() {
             '</div></section>';
         }
       })
-      .then(function() { _pending = false; });
+      .then(function() {
+        _pending = false;
+        // Run the most recent nav that arrived while we were busy (P1-2).
+        if (_queued) {
+          var q = _queued; _queued = null;
+          _navigateTo(q.page, q.pushState);
+        }
+      });
   }
 
   // ── Public API ───────────────────────────────────────

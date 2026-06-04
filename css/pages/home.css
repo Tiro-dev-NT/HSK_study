@@ -2,6 +2,38 @@
    HOME PAGE v2 — Smart Hub Tổng quan
    ══════════════════════════════════════════════════ */
 
+/* ── Word Journey widget (token-based so it survives dark mode) ── */
+.word-journey-widget {
+  margin: 16px 0;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.word-journey-widget .wj-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--text); margin-bottom: 12px;
+}
+.word-journey-widget .wj-stages {
+  display: flex; gap: 8px; margin-bottom: 10px;
+}
+.word-journey-widget .wj-stage {
+  flex: 1 1 0;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2px; min-width: 0; text-align: center;
+}
+.word-journey-widget .wj-emoji { font-size: 20px; line-height: 1; }
+.word-journey-widget .wj-count {
+  font-size: 15px; font-weight: 700; color: var(--text);
+}
+.word-journey-widget .wj-label {
+  font-size: 10px; color: var(--text2); line-height: 1.2;
+}
+.word-journey-widget .wj-bar {
+  height: 8px; background: var(--border);
+  border-radius: 4px; overflow: hidden; display: flex;
+}
+
 /* ── Greeting ── */
 .home-greeting { margin-bottom: 24px; }
 .home-greeting-row { display: flex; align-items: center; gap: 14px; }

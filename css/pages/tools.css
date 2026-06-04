@@ -33,6 +33,13 @@
 @media (min-width: 860px) {
   .tools-grid { grid-template-columns: repeat(3, 1fr); }
 }
+/* AI section has a single highlighted card — let it span the full row at every
+   breakpoint instead of shrinking to 1/3 width with text wrapping vertically
+   (UX_AUDIT P2-1 / DESIGN_REVIEW #3). */
+.tools-grid--ai { grid-template-columns: 1fr; }
+@media (min-width: 860px) {
+  .tools-grid--ai { grid-template-columns: 1fr; }
+}
 
 /* ── Tool card ── */
 .tool-card {

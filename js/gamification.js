@@ -200,8 +200,13 @@ var Gamification = {
       const barEl = document.getElementById('journeyBar');
       if (stagesEl && total > 0) {
         const icons = ['🌱','👀','🧠','💪','🔥'];
+        const labels = ['Mới gặp','Đang học','Đang nhớ','Gần thuộc','Thuộc rồi'];
         stagesEl.innerHTML = stages.map(function(count, i) {
-          return '<span title="' + ['Mới gặp','Đang học','Đang nhớ','Gần thuộc','Thuộc rồi'][i] + ': ' + count + ' từ">' + icons[i] + ' ' + count + '</span>';
+          return '<span class="wj-stage" title="' + labels[i] + ': ' + count + ' từ">' +
+            '<span class="wj-emoji">' + icons[i] + '</span>' +
+            '<span class="wj-count">' + count + '</span>' +
+            '<span class="wj-label">' + labels[i] + '</span>' +
+          '</span>';
         }).join('');
       }
       if (barEl && total > 0) {

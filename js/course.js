@@ -635,6 +635,17 @@ var Course = {
       return '<span class="cs-vocab-chip">' + w + '</span>';
     }).join('');
 
+    // Hero backdrop: reuse the lesson's first scene so the intro feels like
+    // the same world as the dialogue (no flat gradient / empty side bands).
+    var heroStep = null, heroText = '';
+    var allSteps = l.steps || [];
+    for (var hi = 0; hi < allSteps.length; hi++) {
+      if (allSteps[hi] && (allSteps[hi].bg || allSteps[hi].scene)) {
+        heroStep = allSteps[hi]; heroText = allSteps[hi].scene || ''; break;
+      }
+    }
+    var heroBg = Course._sceneBg(heroStep, heroText);
+
     // Phase 1 (A5) — Card ôn pinyin, CHỈ ở bài đầu khoá HSK 1
     var pinyinCard = '';
     if (l.id === 1 && Course._levelOf(l.id) === 1) {
@@ -672,7 +683,7 @@ var Course = {
         '<span class="cs-lesson-num">Bài ' + l.id + '</span>' +
       '</div>' +
       '<div class="cs-intro">' +
-        '<div class="cs-intro-scene">' +
+        '<div class="cs-intro-scene" style="background-image:url(\'' + heroBg + '\')">' +
           '<img src="' + Course._maiImg('happy') + '" alt="Mai" class="cs-mai-img" onerror="this.src=\'assets/icon-soft.webp\'">' +
         '</div>' +
         '<h2 class="cs-intro-title">' + l.title + '</h2>' +
@@ -735,58 +746,14 @@ var Course = {
   },
 
   // ── PHASE: dialogue ──────────────────────────────────
+  // Single renderer: everything goes through the visual-novel stage.
+  // Steps without a `cast` array (legacy HSK1 data) derive it from `speaker`
+  // at runtime — no need to edit the 154 lesson data files.
   _renderDialogue: function() {
     var l     = Course.lesson;
-    var steps = l.steps;
-    var s     = steps[Course.step];
+    var s     = l.steps[Course.step];
     if (!s || s.type !== 'dialogue') { Course.phase = 'vocab'; Course.render(); return; }
-
-    // Dispatch to visual-novel renderer when step has cast data
-    if (s.cast && s.cast.length) {
-      Course._renderDialogueVN();
-      return;
-    }
-
-    // ── Legacy single-Mai renderer (steps without cast field) ──
-    var dialogueSteps = steps.filter(function(x) { return x.type === 'dialogue'; }).length;
-    var dialogueDone  = steps.slice(0, Course.step + 1).filter(function(x) { return x.type === 'dialogue'; }).length;
-    var pct           = Math.round((dialogueDone / (dialogueSteps || 1)) * 50);
-
-    var isMai    = (s.speaker === 'mai');
-    var expr     = isMai ? s.expression : null;
-    var sceneClass = isMai ? '' : (s.speaker === 'laoli' || s.speaker === 'xiaomei') ? ' cs-scene--teacher' : ' cs-scene--class';
-    var dotsHTML = isMai
-      ? '<div class="cs-speaking-dots"><span></span><span></span><span></span></div>'
-      : '';
-
-    Course._getEl().innerHTML =
-      '<div class="cs-header">' +
-        '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
-        '<span class="cs-lesson-num">Bài ' + l.id + ': ' + l.title + '</span>' +
-        '<div class="cs-progress-wrap"><div class="cs-progress-bar" style="width:' + pct + '%"></div></div>' +
-      '</div>' +
-      '<div class="cs-scene' + sceneClass + '" id="cs-scene-wrap">' +
-        '<img src="' + Course._maiImg(expr) + '" alt="Mai" class="cs-mai-scene" id="cs-mai-img" onerror="this.src=\'assets/icon-soft.webp\'">' +
-        dotsHTML +
-      '</div>' +
-      '<div class="cs-dialogue-card" id="cs-dlg-card">' +
-        '<div class="cs-speaker">' + Course._speakerLabel(s.speaker) + '</div>' +
-        '<div class="cs-text-zh">' + s.text + '</div>' +
-        '<div class="cs-text-py">' + s.pinyin + '</div>' +
-        '<div class="cs-text-vn">' + s.meaning + '</div>' +
-      '</div>' +
-      '<div class="cs-controls">' +
-        '<button class="cs-btn-icon" id="cs-tts-btn" onclick="Course._tts(\'' + s.text.replace(/'/g, "\\'") + '\')" title="Nghe">🔊</button>' +
-        '<button class="cs-btn-secondary" onclick="Course.prev()" ' + (Course.step === 0 ? 'disabled' : '') + '>◄ Trước</button>' +
-        '<button class="cs-btn-primary" onclick="Course.next()">Tiếp ►</button>' +
-      '</div>';
-
-    requestAnimationFrame(function() {
-      var mai = document.getElementById('cs-mai-img');
-      var dlg = document.getElementById('cs-dlg-card');
-      if (mai) { mai.classList.add('cs-mai-enter'); }
-      if (dlg) { dlg.classList.add('cs-enter'); }
-    });
+    Course._renderDialogueVN();
   },
 
   // ── PHASE: dialogue — Visual Novel renderer ───────────
@@ -817,7 +784,10 @@ var Course = {
     if (isNarrator) {
       castHTML = '<div class="cs-vn-narrator-card">' + (s.text || '') + '</div>';
     } else {
-      var castKeys = (s.cast || []).slice().sort(function(a, b) {
+      // Derive cast from speaker for legacy steps that have no `cast` array,
+      // so they render on the VN stage too (a single actor on the scene).
+      var castSrc = (s.cast && s.cast.length) ? s.cast : (s.speaker ? [s.speaker] : []);
+      var castKeys = castSrc.slice().sort(function(a, b) {
         return CAST_ORDER.indexOf(a) - CAST_ORDER.indexOf(b);
       });
       castHTML = castKeys.map(function(k) {
@@ -1723,28 +1693,6 @@ var Course = {
       });
     });
     saveSRS();
-  },
-
-  // ── TTS ──────────────────────────────────────────────
-  _tts: function(text) {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    var utt  = new SpeechSynthesisUtterance(text);
-    utt.lang = 'zh-CN';
-    utt.rate = 0.85;
-
-    // Speaking animation on Mai
-    var mai = document.getElementById('cs-mai-img');
-    var btn = document.getElementById('cs-tts-btn');
-    if (mai) { mai.classList.add('cs-mai-speaking'); mai.classList.remove('cs-mai-enter'); }
-    if (btn) { btn.textContent = '🔉'; btn.style.opacity = '0.7'; }
-
-    utt.onend = utt.onerror = function() {
-      if (mai) { mai.classList.remove('cs-mai-speaking'); }
-      if (btn) { btn.textContent = '🔊'; btn.style.opacity = ''; }
-    };
-
-    window.speechSynthesis.speak(utt);
   },
 
   // ── Difficulty ───────────────────────────────────────

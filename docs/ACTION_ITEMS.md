@@ -47,6 +47,12 @@
 > Push `5aef5b7..1b22057` → origin/main → Cloudflare. Đã verify gộp + `node --check`.
 > Gồm: bài tập chấm thật + SRS + explain · vocab EN · objectives + grammarNotes (QA pass) · cross-link pinyin · HSKK luyện từng phần · prep ảnh+đề HSKK 中级.
 
+### 📌 Trạng thái cuối session 2026-06-04
+> **Đã live/push:** giáo trình HSK1+2 (objectives/grammarNotes/EN/QA) · bài tập chấm-thật+SRS · HSKK Sơ cấp luyện-từng-phần · 6 icon UI · Shadowing toggle pinyin (#1) + **tap-lookup (#2)** · **Gia sư AI R.2** (`/tutor`).
+> **HSKK 中级:** 8 đề ảnh QA-pass + WebP sẵn (`assets/hskk/zhongji/`), prompt 25/25 đề, **chờ session build wire**.
+> ⚠️ **Gia sư AI cần `supabase functions deploy ai-proxy`** để chat chạy thật (frontend đã push).
+> **Đang chạy song song (chờ branch+hash để merge):** HSKK 中级 build · HSK 3 giáo trình.
+
 ### 🔜 Việc tiếp theo (xếp ROI) — chưa làm
 1. **Rải A1+A2+A3 qua HSK 2/3/4** (`course-hsk2/3/4.js`): objectives + grammarNotes + vocab EN → toàn khóa đạt chuẩn.
    - ☑ **HSK 2 DONE 2026-06-03** (merge `89f5187`, `course-hsk2.js?v=1.2`): 754/754 vocab EN, 41/41 bài objectives + grammarNotes (137 ví dụ). QA fix Bài 48 `虽然…所以`→`虽然…但是` ở thoại+checkpoint+workbook (commit `e92aaf2`). node load 41 ✅.

@@ -49,17 +49,18 @@
 
 ### 📌 Trạng thái cuối session 2026-06-04
 > **Đã live/push:** giáo trình HSK1+2 (objectives/grammarNotes/EN/QA) · bài tập chấm-thật+SRS · HSKK Sơ cấp luyện-từng-phần · 6 icon UI · Shadowing toggle pinyin (#1) + **tap-lookup (#2)** · **Gia sư AI R.2** (`/tutor`).
-> **HSKK 中级:** 8 đề ảnh QA-pass + WebP sẵn (`assets/hskk/zhongji/`), prompt 25/25 đề, **chờ session build wire**.
+> ☑ **HSKK 中级 DONE 2026-06-04** (push `e528f28`) — đủ 25/25 đề 看图说话, part2 6→25, engine/HTML đã wire sẵn. Practice-no-grade (chờ SpeechSuper spontaneous).
 > ☑ **Gia sư AI R.2 FULL OPERATIONAL 2026-06-04** — ai-proxy đã deploy + frontend live → chat chạy thật.
-> **Đang chạy song song (chờ branch+hash để merge):** HSKK 中级 build · HSK 3 giáo trình.
+> ☑ **Push gọn 2 fix tồn (2026-06-04):** tutor render **bold** (`25a516a`) + modal pro-gate-overlay (`5227e19`).
+> **Handoff đã soạn (session sau làm):** HSK 3 giáo trình → `docs/plans/hsk3-course-handoff.md` · Bài tập nghe listen/dictation → `docs/plans/course-listen-dictation-handoff.md`.
 
 ### 🔜 Việc tiếp theo (xếp ROI) — chưa làm
 1. **Rải A1+A2+A3 qua HSK 2/3/4** (`course-hsk2/3/4.js`): objectives + grammarNotes + vocab EN → toàn khóa đạt chuẩn.
    - ☑ **HSK 2 DONE 2026-06-03** (merge `89f5187`, `course-hsk2.js?v=1.2`): 754/754 vocab EN, 41/41 bài objectives + grammarNotes (137 ví dụ). QA fix Bài 48 `虽然…所以`→`虽然…但是` ở thoại+checkpoint+workbook (commit `e92aaf2`). node load 41 ✅.
-   - ☐ **HSK 3** (50 bài, `course-hsk3.js`) — lặp prompt Việc 1 đổi file. ☐ **HSK 4** (33 bài, `course-hsk4.js`).
+   - ☐ **HSK 3** (50 bài, `course-hsk3.js`) — ⭐ **prompt handoff đầy đủ: `docs/plans/hsk3-course-handoff.md`** (verify 2026-06-04: objectives 0/50, grammarNotes 0/50, vocab thiếu `e`). ☐ **HSK 4** (33 bài, `course-hsk4.js`).
    - 📌 Bài học QA: lesson tự sinh có thể chứa lỗi cặp liên từ (虽然…但是, 因为…所以, 不但…而且) lẫn lộn ở **thoại/checkpoint/workbook** chứ không chỉ grammarNotes → QA HSK 3/4 phải soi cả 3 nơi, không chỉ grammarNotes.
-2. **B-P2 Bài tập NGHE** (`listen` + `dictation`) — khoảng trống bài tập còn lại (giáo trình ~60% nghe). TB · dùng TTS sẵn.
-3. **HSKK 中级 build** — ☑ **8 đề ảnh QA-pass + WebP DONE 2026-06-04** (`assets/hskk/zhongji/` 16 file: kt_01/02/05/07/08/11/19/20; kt_05+07 đã regen fix continuity). Prompt **25/25 đề soạn sẵn** (`content/.../kt_XX.md`; 17 đề 🆕 TODO chờ gen). **Prompt session build đã soạn** (wire `zhong-ji.js` + QTYPE `picture` + UI 2 tranh + mở khoá card 中级). → **CHỜ giao session build** (đủ 8 đề cho MVP). Sau build: gen tiếp 17 đề → push thêm vào `part2`.
+2. **B-P2 Bài tập NGHE** (`listen` + `dictation`) — khoảng trống bài tập còn lại (giáo trình ~60% nghe). TB · dùng TTS sẵn. ⭐ **prompt handoff đầy đủ (đụng renderer course.js + data): `docs/plans/course-listen-dictation-handoff.md`**.
+3. ☑ **HSKK 中级 build DONE 2026-06-04** (push `e528f28`, `zhong-ji.js?v=1.1`) — đủ **25/25 đề** 看图说话 (50 WebP `kt_01..kt_25`), `HSKK_ZHONGJI.part2` mở rộng 6→25 (mỗi đề keywords/outline/sampleAnswer HSK1-4, trung tính). Engine+HTML đã wire sẵn từ trước (QTYPE `picture`, `hskkQImages`, card 中级 active, plan rút 2 đề/lần thi). Verify: node OK · 0 ảnh thiếu · browser part2=25, ảnh 200, 0 lỗi console. 📌 Chấm tự do vẫn practice-no-grade tới khi account có `speak.eval.pro.cn`.
 4. **A4 roleplay/shadow + sửa UX `order`** (click-to-append). TB.
 5. **A2 follow-up**: POS (CC-CEDICT/tay) + 6 cụm chưa có EN (中国人…). Thấp–TB.
 - **Quyết định treo:** xoá nhánh/worktree `compassionate-elgamal-c3ffe2` (474 từ HSK 2.0, KHÔNG merge; origin PUBLIC → chờ user OK).

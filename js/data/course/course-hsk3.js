@@ -22,6 +22,29 @@ Object.assign(COURSE_DATA, {
     title: 'Cuộc sống tự lập (1)',
     context: 'Mai chuyển đến căn hộ nhỏ gần trường cho kỳ trao đổi. Mẹ đến giúp em dọn dẹp, rồi Mai đến văn phòng chương trình để trình diện.',
     vocabPreview: ['搬家', '安排', '报到', '保证', '把握'],
+    objectives: [
+      "Nắm nhóm từ khóa: 搬家 · 安排 · 报到 · 保证 · 把握",
+      "Kể/nghe hiểu tình huống Cuộc sống tự lập (1) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 搬家 · 安排 · 报到",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "搬家 — chuyển nhà",
+        explain: "Dùng 搬家 trong ngữ cảnh Cuộc sống tự lập (1) để diễn đạt: chuyển nhà.",
+        examples: [
+          { zh: "妈妈帮你搬家，今天的东西真不少！", py: "Māma bāng nǐ bānjiā, jīntiān de dōngxi zhēn bù shǎo!", vi: "Mẹ giúp con chuyển nhà, hôm nay đồ đạc nhiều thật!" }
+        ] },
+      { point: "安排 — sắp xếp, bố trí",
+        explain: "Dùng 安排 trong ngữ cảnh Cuộc sống tự lập (1) để diễn đạt: sắp xếp, bố trí.",
+        examples: [
+          { zh: "你按照计划安排房间，会比较整齐。", py: "Nǐ ànzhào jìhuà ānpái fángjiān, huì bǐjiào zhěngqí.", vi: "Con sắp xếp phòng theo kế hoạch sẽ gọn gàng hơn." }
+        ] },
+      { point: "报到 — trình diện, đăng ký",
+        explain: "Dùng 报到 trong ngữ cảnh Cuộc sống tự lập (1) để diễn đạt: trình diện, đăng ký.",
+        examples: [
+          { zh: "你来报到了？先办理一下手续吧。", py: "Nǐ lái bàodào le? Xiān bànlǐ yíxià shǒuxù ba.", vi: "Em đến trình diện rồi à? Làm thủ tục trước nhé." }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -131,26 +154,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '安排', p: 'ān pái', v: 'sắp xếp, bố trí' },
-      { h: '安装', p: 'ān zhuāng', v: 'lắp đặt, cài đặt' },
-      { h: '按', p: 'àn', v: 'ấn, nhấn' },
-      { h: '按照', p: 'àn zhào', v: 'theo, căn cứ vào' },
-      { h: '把', p: 'bǎ', v: 'cầm, nắm' },
-      { h: '把握', p: 'bǎ wò', v: 'nắm bắt, nắm chắc' },
-      { h: '搬', p: 'bān', v: 'chuyển, dọn' },
-      { h: '搬家', p: 'bān jiā', v: 'chuyển nhà' },
-      { h: '办理', p: 'bàn lǐ', v: 'giải quyết, tiến hành' },
-      { h: '保持', p: 'bǎo chí', v: 'duy trì, giữ gìn' },
-      { h: '保存', p: 'bǎo cún', v: 'bảo tồn, lưu giữ' },
-      { h: '保护', p: 'bǎo hù', v: 'bảo vệ' },
-      { h: '保留', p: 'bǎo liú', v: 'giữ lại, bảo lưu' },
-      { h: '保证', p: 'bǎo zhèng', v: 'bảo đảm, cam đoan' },
-      { h: '报', p: 'bào', v: 'báo cáo, thông báo' },
-      { h: '报到', p: 'bào dào', v: 'trình diện, đăng ký' },
-      { h: '报道', p: 'bào dào', v: 'đưa tin, tường thuật' },
-      { h: '报告', p: 'bào gào', v: 'báo cáo' },
-      { h: '比较', p: 'bǐ jiào', v: 'so sánh, tương đối' },
-      { h: '比赛', p: 'bǐ sài', v: 'thi đấu, cuộc thi' }
+      { h: '安排', p: 'ān pái', v: 'sắp xếp, bố trí', e: 'to arrange' },
+      { h: '安装', p: 'ān zhuāng', v: 'lắp đặt, cài đặt', e: 'to install' },
+      { h: '按', p: 'àn', v: 'ấn, nhấn', e: 'to press' },
+      { h: '按照', p: 'àn zhào', v: 'theo, căn cứ vào', e: 'according to' },
+      { h: '把', p: 'bǎ', v: 'cầm, nắm', e: 'to hold' },
+      { h: '把握', p: 'bǎ wò', v: 'nắm bắt, nắm chắc', e: 'to grasp (also fig.)' },
+      { h: '搬', p: 'bān', v: 'chuyển, dọn', e: 'to move (i.e. relocate oneself)' },
+      { h: '搬家', p: 'bān jiā', v: 'chuyển nhà', e: 'to move house' },
+      { h: '办理', p: 'bàn lǐ', v: 'giải quyết, tiến hành', e: 'to handle' },
+      { h: '保持', p: 'bǎo chí', v: 'duy trì, giữ gìn', e: 'to keep' },
+      { h: '保存', p: 'bǎo cún', v: 'bảo tồn, lưu giữ', e: 'to conserve' },
+      { h: '保护', p: 'bǎo hù', v: 'bảo vệ', e: 'to protect' },
+      { h: '保留', p: 'bǎo liú', v: 'giữ lại, bảo lưu', e: 'to keep' },
+      { h: '保证', p: 'bǎo zhèng', v: 'bảo đảm, cam đoan', e: 'guarantee' },
+      { h: '报', p: 'bào', v: 'báo cáo, thông báo', e: 'to announce' },
+      { h: '报到', p: 'bào dào', v: 'trình diện, đăng ký', e: 'to report for duty' },
+      { h: '报道', p: 'bào dào', v: 'đưa tin, tường thuật', e: 'to report (news)' },
+      { h: '报告', p: 'bào gào', v: 'báo cáo', e: 'to inform' },
+      { h: '比较', p: 'bǐ jiào', v: 'so sánh, tương đối', e: 'to compare' },
+      { h: '比赛', p: 'bǐ sài', v: 'thi đấu, cuộc thi', e: 'competition (sports etc)' }
     ],
     workbook: {
       easy: [
@@ -190,6 +213,30 @@ Object.assign(COURSE_DATA, {
     title: 'Cuộc sống tự lập (2)',
     context: 'Mai và Tiểu Mỹ thành lập câu lạc bộ tiếng Hán, cùng chuẩn bị một tiết mục biểu diễn — dù có chút bất đồng nhỏ.',
     vocabPreview: ['成立', '表演', '表达', '变化', '采用'],
+    objectives: [
+      "Nắm nhóm từ khóa: 成立 · 表演 · 表达 · 变化 · 采用",
+      "Kể/nghe hiểu tình huống Cuộc sống tự lập (2) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 成立 · 表演 · 表达",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "成立 — thành lập",
+        explain: "Dùng 成立 trong ngữ cảnh Cuộc sống tự lập (2) để diễn đạt: thành lập.",
+        examples: [
+          { zh: "我们的汉语俱乐部正式成立了！这是一个好的开始。", py: "Wǒmen de Hànyǔ jùlèbù zhèngshì chénglì le! Zhè shì yí gè hǎo de kāishǐ.", vi: "Câu lạc bộ tiếng Hán của chúng ta chính thức thành lập rồi! Đây là khởi đầu tốt." }
+        ] },
+      { point: "表演 — biểu diễn",
+        explain: "Dùng 表演 trong ngữ cảnh Cuộc sống tự lập (2) để diễn đạt: biểu diễn.",
+        examples: [
+          { zh: "我们采用什么方式好呢？要不要准备一个表演？", py: "Wǒmen cǎiyòng shénme fāngshì hǎo ne? Yào bu yào zhǔnbèi yí gè biǎoyǎn?", vi: "Chúng ta dùng cách nào nhỉ? Có nên chuẩn bị một tiết mục biểu diễn không?" },
+          { zh: "你们的表演下周会在校园电视上播出。这是很大的成就，俱乐部以后会被称为\"明星社团\"！", py: "Nǐmen de biǎoyǎn xià zhōu huì zài xiàoyuán diànshì shàng bōchū. Zhè shì hěn dà de chéngjiù, jùlèbù yǐhòu huì bèi chēngwéi \"míngxīng shètuán\"!", vi: "Tiết mục của các em tuần sau sẽ phát sóng trên TV trường. Đây là thành tựu lớn, câu lạc bộ sau này sẽ được gọi là \"CLB ngôi sao\"!" }
+        ] },
+      { point: "表达 — biểu đạt, diễn đạt",
+        explain: "Dùng 表达 trong ngữ cảnh Cuộc sống tự lập (2) để diễn đạt: biểu đạt, diễn đạt.",
+        examples: [
+          { zh: "对！第一步，我们要表达自己的想法，表明俱乐部的目标。", py: "Duì! Dì-yī bù, wǒmen yào biǎodá zìjǐ de xiǎngfǎ, biǎomíng jùlèbù de mùbiāo.", vi: "Đúng! Bước đầu tiên, chúng ta phải biểu đạt ý tưởng, nêu rõ mục tiêu câu lạc bộ." }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -285,26 +332,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '变化', p: 'biàn huà', v: 'biến đổi, thay đổi' },
-      { h: '变为', p: 'biàn wéi', v: 'biến thành' },
-      { h: '表达', p: 'biǎo dá', v: 'biểu đạt, diễn đạt' },
-      { h: '表明', p: 'biǎo míng', v: 'cho thấy, chứng tỏ' },
-      { h: '表现', p: 'biǎo xiàn', v: 'biểu hiện, thể hiện' },
-      { h: '表演', p: 'biǎo yǎn', v: 'biểu diễn' },
-      { h: '播出', p: 'bō chū', v: 'phát sóng' },
-      { h: '播放', p: 'bō fàng', v: 'phát, chiếu' },
-      { h: '补', p: 'bǔ', v: 'vá, bổ sung' },
-      { h: '补充', p: 'bǔ chōng', v: 'bổ sung' },
-      { h: '步', p: 'bù', v: 'bước (chân)' },
-      { h: '才能', p: 'cái néng', v: 'tài năng' },
-      { h: '采取', p: 'cǎi qǔ', v: 'áp dụng, tiến hành' },
-      { h: '采用', p: 'cǎi yòng', v: 'áp dụng, sử dụng' },
-      { h: '产生', p: 'chǎn shēng', v: 'phát sinh, tạo ra' },
-      { h: '吵', p: 'chǎo', v: 'ồn ào, cãi nhau' },
-      { h: '吵架', p: 'chǎo jià', v: 'cãi nhau, tranh cãi' },
-      { h: '称为', p: 'chēng wéi', v: 'gọi là, được gọi là' },
-      { h: '成就', p: 'chéng jiù', v: 'thành tựu' },
-      { h: '成立', p: 'chéng lì', v: 'thành lập' }
+      { h: '变化', p: 'biàn huà', v: 'biến đổi, thay đổi', e: 'to change' },
+      { h: '变为', p: 'biàn wéi', v: 'biến thành', e: 'to change into' },
+      { h: '表达', p: 'biǎo dá', v: 'biểu đạt, diễn đạt', e: 'to express' },
+      { h: '表明', p: 'biǎo míng', v: 'cho thấy, chứng tỏ', e: 'to make clear' },
+      { h: '表现', p: 'biǎo xiàn', v: 'biểu hiện, thể hiện', e: 'to show' },
+      { h: '表演', p: 'biǎo yǎn', v: 'biểu diễn', e: 'play' },
+      { h: '播出', p: 'bō chū', v: 'phát sóng', e: 'to broadcast' },
+      { h: '播放', p: 'bō fàng', v: 'phát, chiếu', e: 'to broadcast' },
+      { h: '补', p: 'bǔ', v: 'vá, bổ sung', e: 'to repair' },
+      { h: '补充', p: 'bǔ chōng', v: 'bổ sung', e: 'to replenish' },
+      { h: '步', p: 'bù', v: 'bước (chân)', e: 'step, pace, walk' },
+      { h: '才能', p: 'cái néng', v: 'tài năng', e: 'talent' },
+      { h: '采取', p: 'cǎi qǔ', v: 'áp dụng, tiến hành', e: 'to adopt or carry out (measures, policies, course of action)' },
+      { h: '采用', p: 'cǎi yòng', v: 'áp dụng, sử dụng', e: 'to adopt' },
+      { h: '产生', p: 'chǎn shēng', v: 'phát sinh, tạo ra', e: 'to arise' },
+      { h: '吵', p: 'chǎo', v: 'ồn ào, cãi nhau', e: 'to quarrel' },
+      { h: '吵架', p: 'chǎo jià', v: 'cãi nhau, tranh cãi', e: 'to quarrel' },
+      { h: '称为', p: 'chēng wéi', v: 'gọi là, được gọi là', e: 'to be called' },
+      { h: '成就', p: 'chéng jiù', v: 'thành tựu', e: 'accomplishment' },
+      { h: '成立', p: 'chéng lì', v: 'thành lập', e: 'to establish' }
     ],
     workbook: {
       easy: [
@@ -344,6 +391,30 @@ Object.assign(COURSE_DATA, {
     title: 'Việc nhà & thói quen',
     context: 'Cuối tuần Mai gọi video về nhà cho mẹ, kể chuyện tự lo việc nhà, sự trưởng thành của mình và ước mơ khởi nghiệp.',
     vocabPreview: ['成长', '处理', '创业', '传说', '达到'],
+    objectives: [
+      "Nắm nhóm từ khóa: 成长 · 处理 · 创业 · 传说 · 达到",
+      "Kể/nghe hiểu tình huống Việc nhà & thói quen bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 成长 · 处理 · 创业",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "成长 — trưởng thành, lớn lên",
+        explain: "Dùng 成长 trong ngữ cảnh Việc nhà & thói quen để diễn đạt: trưởng thành, lớn lên.",
+        examples: [
+          { zh: "是的，妈妈。我成长了很多，每天都充满信心。", py: "Shì de, māma. Wǒ chéngzhǎng le hěn duō, měitiān dōu chōngmǎn xìnxīn.", vi: "Vâng mẹ. Con trưởng thành nhiều, mỗi ngày đều tràn đầy tự tin." }
+        ] },
+      { point: "处理 — xử lý",
+        explain: "Dùng 处理 trong ngữ cảnh Việc nhà & thói quen để diễn đạt: xử lý.",
+        examples: [
+          { zh: "一个人住，家务都自己处理吗？", py: "Yí gè rén zhù, jiāwù dōu zìjǐ chǔlǐ ma?", vi: "Sống một mình, việc nhà tự xử lý hết à?" }
+        ] },
+      { point: "创业 — lập nghiệp, khởi nghiệp",
+        explain: "Dùng 创业 trong ngữ cảnh Việc nhà & thói quen để diễn đạt: lập nghiệp, khởi nghiệp.",
+        examples: [
+          { zh: "对了，我最近从事一个小项目，想自己创业。", py: "Duìle, wǒ zuìjìn cóngshì yí gè xiǎo xiàngmù, xiǎng zìjǐ chuàngyè.", vi: "À, gần đây con tham gia một dự án nhỏ, muốn tự khởi nghiệp." },
+          { zh: "创业不容易，要不断创新和创造。", py: "Chuàngyè bù róngyì, yào búduàn chuàngxīn hé chuàngzào.", vi: "Khởi nghiệp không dễ, phải không ngừng đổi mới và sáng tạo." }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -453,26 +524,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '成长', p: 'chéng zhǎng', v: 'trưởng thành, lớn lên' },
-      { h: '持续', p: 'chí xù', v: 'tiếp tục, duy trì' },
-      { h: '充满', p: 'chōng mǎn', v: 'tràn đầy' },
-      { h: '处理', p: 'chǔ lǐ', v: 'xử lý' },
-      { h: '传', p: 'chuán', v: 'truyền, chuyển' },
-      { h: '传播', p: 'chuán bō', v: 'truyền bá, phổ biến' },
-      { h: '传来', p: 'chuán lái', v: 'truyền đến' },
-      { h: '传说', p: 'chuán shuō', v: 'truyền thuyết' },
-      { h: '创新', p: 'chuàng xīn', v: 'sáng tạo, đổi mới' },
-      { h: '创业', p: 'chuàng yè', v: 'lập nghiệp, khởi nghiệp' },
-      { h: '创造', p: 'chuàng zào', v: 'sáng tạo, tạo ra' },
-      { h: '创作', p: 'chuàng zuò', v: 'sáng tác' },
-      { h: '从事', p: 'cóng shì', v: 'từ sự, tham gia' },
-      { h: '存', p: 'cún', v: 'tồn tại, lưu trữ' },
-      { h: '存在', p: 'cún zài', v: 'tồn tại' },
-      { h: '达到', p: 'dá dào', v: 'đạt được' },
-      { h: '打破', p: 'dǎ pò', v: 'phá vỡ' },
-      { h: '打听', p: 'dǎ ting', v: 'hỏi thăm, dò hỏi' },
-      { h: '代', p: 'dài', v: 'thế hệ, thay thế' },
-      { h: '代表', p: 'dài biǎo', v: 'đại diện' }
+      { h: '成长', p: 'chéng zhǎng', v: 'trưởng thành, lớn lên', e: 'to mature' },
+      { h: '持续', p: 'chí xù', v: 'tiếp tục, duy trì', e: 'to continue' },
+      { h: '充满', p: 'chōng mǎn', v: 'tràn đầy', e: 'full of' },
+      { h: '处理', p: 'chǔ lǐ', v: 'xử lý', e: 'to handle' },
+      { h: '传', p: 'chuán', v: 'truyền, chuyển', e: 'to pass on' },
+      { h: '传播', p: 'chuán bō', v: 'truyền bá, phổ biến', e: 'to disseminate' },
+      { h: '传来', p: 'chuán lái', v: 'truyền đến', e: 'to come through' },
+      { h: '传说', p: 'chuán shuō', v: 'truyền thuyết', e: 'legend' },
+      { h: '创新', p: 'chuàng xīn', v: 'sáng tạo, đổi mới', e: 'to bring forth new ideas' },
+      { h: '创业', p: 'chuàng yè', v: 'lập nghiệp, khởi nghiệp', e: 'to begin an undertaking' },
+      { h: '创造', p: 'chuàng zào', v: 'sáng tạo, tạo ra', e: 'to create' },
+      { h: '创作', p: 'chuàng zuò', v: 'sáng tác', e: 'to create' },
+      { h: '从事', p: 'cóng shì', v: 'từ sự, tham gia', e: 'to go for' },
+      { h: '存', p: 'cún', v: 'tồn tại, lưu trữ', e: 'to exist' },
+      { h: '存在', p: 'cún zài', v: 'tồn tại', e: 'to exist' },
+      { h: '达到', p: 'dá dào', v: 'đạt được', e: 'to reach' },
+      { h: '打破', p: 'dǎ pò', v: 'phá vỡ', e: 'to break' },
+      { h: '打听', p: 'dǎ ting', v: 'hỏi thăm, dò hỏi', e: 'to ask about' },
+      { h: '代', p: 'dài', v: 'thế hệ, thay thế', e: 'to substitute' },
+      { h: '代表', p: 'dài biǎo', v: 'đại diện', e: 'representative' }
     ],
     workbook: {
       easy: [
@@ -512,6 +583,30 @@ Object.assign(COURSE_DATA, {
     title: 'Đi lại trong thành phố',
     context: 'Mai và Tiểu Mỹ bắt xe đến một hội chợ công nghệ ở trung tâm. Trên đường có chút trục trặc, hai bạn phải điều chỉnh lộ trình.',
     vocabPreview: ['到达', '等待', '调整', '发生', '发展'],
+    objectives: [
+      "Nắm nhóm từ khóa: 到达 · 等待 · 调整 · 发生 · 发展",
+      "Kể/nghe hiểu tình huống Đi lại trong thành phố bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 到达 · 等待 · 调整",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "到达 — đến nơi, tới",
+        explain: "Dùng 到达 trong ngữ cảnh Đi lại trong thành phố để diễn đạt: đến nơi, tới.",
+        examples: [
+          { zh: "我查一下地图。我们要调整路线，这班车不直接到达。", py: "Wǒ chá yíxià dìtú. Wǒmen yào tiáozhěng lùxiàn, zhè bān chē bù zhíjiē dàodá.", vi: "Để tớ xem bản đồ. Phải điều chỉnh lộ trình, xe này không đến thẳng nơi đó." },
+          { zh: "我们打车的话，会更快到达。", py: "Wǒmen dǎchē dehuà, huì gèng kuài dàodá.", vi: "Nếu gọi taxi thì sẽ đến nhanh hơn." }
+        ] },
+      { point: "等待 — chờ đợi",
+        explain: "Dùng 等待 trong ngữ cảnh Đi lại trong thành phố để diễn đạt: chờ đợi.",
+        examples: [
+          { zh: "那我们在这儿等待下一班，别着急。", py: "Nà wǒmen zài zhèr děngdài xià yì bān, bié zháojí.", vi: "Vậy mình đợi chuyến sau ở đây, đừng vội." }
+        ] },
+      { point: "调整 — điều chỉnh",
+        explain: "Dùng 调整 trong ngữ cảnh Đi lại trong thành phố để diễn đạt: điều chỉnh.",
+        examples: [
+          { zh: "我查一下地图。我们要调整路线，这班车不直接到达。", py: "Wǒ chá yíxià dìtú. Wǒmen yào tiáozhěng lùxiàn, zhè bān chē bù zhíjiē dàodá.", vi: "Để tớ xem bản đồ. Phải điều chỉnh lộ trình, xe này không đến thẳng nơi đó." }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -621,26 +716,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '带动', p: 'dài dòng', v: 'thúc đẩy, dẫn dắt' },
-      { h: '带领', p: 'dài lǐng', v: 'dẫn dắt, lãnh đạo' },
-      { h: '到达', p: 'dào dá', v: 'đến nơi, tới' },
-      { h: '到底', p: 'dào dǐ', v: 'rốt cuộc, đến cùng' },
-      { h: '得分', p: 'dé fēn', v: 'ghi điểm' },
-      { h: '等待', p: 'děng dài', v: 'chờ đợi' },
-      { h: '调', p: 'diào', v: 'điều chỉnh, điều phối' },
-      { h: '调查', p: 'diào chá', v: 'điều tra' },
-      { h: '调整', p: 'tiáo zhěng', v: 'điều chỉnh' },
-      { h: '订', p: 'dìng', v: 'đặt trước, ký kết' },
-      { h: '断', p: 'duàn', v: 'đứt, gãy, ngừng' },
-      { h: '对待', p: 'duì dài', v: 'đối xử, đối đãi' },
-      { h: '发表', p: 'fā biǎo', v: 'phát biểu, công bố' },
-      { h: '发出', p: 'fā chū', v: 'phát ra' },
-      { h: '发动', p: 'fā dòng', v: 'phát động, khởi động' },
-      { h: '发明', p: 'fā míng', v: 'phát minh' },
-      { h: '发生', p: 'fā shēng', v: 'xảy ra, phát sinh' },
-      { h: '发送', p: 'fā sòng', v: 'gửi, phát' },
-      { h: '发言', p: 'fā yán', v: 'phát biểu' },
-      { h: '发展', p: 'fā zhǎn', v: 'phát triển' }
+      { h: '带动', p: 'dài dòng', v: 'thúc đẩy, dẫn dắt', e: 'to spur' },
+      { h: '带领', p: 'dài lǐng', v: 'dẫn dắt, lãnh đạo', e: 'to guide' },
+      { h: '到达', p: 'dào dá', v: 'đến nơi, tới', e: 'to reach' },
+      { h: '到底', p: 'dào dǐ', v: 'rốt cuộc, đến cùng', e: 'finally' },
+      { h: '得分', p: 'dé fēn', v: 'ghi điểm', e: 'to score' },
+      { h: '等待', p: 'děng dài', v: 'chờ đợi', e: 'to wait' },
+      { h: '调', p: 'diào', v: 'điều chỉnh, điều phối', e: 'to transfer' },
+      { h: '调查', p: 'diào chá', v: 'điều tra', e: 'investigation' },
+      { h: '调整', p: 'tiáo zhěng', v: 'điều chỉnh', e: 'to adjust' },
+      { h: '订', p: 'dìng', v: 'đặt trước, ký kết', e: 'to agree' },
+      { h: '断', p: 'duàn', v: 'đứt, gãy, ngừng', e: 'to break' },
+      { h: '对待', p: 'duì dài', v: 'đối xử, đối đãi', e: 'to treat' },
+      { h: '发表', p: 'fā biǎo', v: 'phát biểu, công bố', e: 'to issue' },
+      { h: '发出', p: 'fā chū', v: 'phát ra', e: 'to issue (an order, decree etc)' },
+      { h: '发动', p: 'fā dòng', v: 'phát động, khởi động', e: 'to start' },
+      { h: '发明', p: 'fā míng', v: 'phát minh', e: 'to invent' },
+      { h: '发生', p: 'fā shēng', v: 'xảy ra, phát sinh', e: 'to happen' },
+      { h: '发送', p: 'fā sòng', v: 'gửi, phát', e: 'to transmit' },
+      { h: '发言', p: 'fā yán', v: 'phát biểu', e: 'to make a speech' },
+      { h: '发展', p: 'fā zhǎn', v: 'phát triển', e: 'development' }
     ],
     workbook: {
       easy: [
@@ -680,6 +775,29 @@ Object.assign(COURSE_DATA, {
     title: 'Chuyến đi xa (1)',
     context: 'Ngày lên đường đã đến. Mẹ tiễn Mai ra sân bay; hai mẹ con làm thủ tục, trả phí và nói lời tạm biệt.',
     vocabPreview: ['飞行', '赶到', '分别', '付', '防止'],
+    objectives: [
+      "Nắm nhóm từ khóa: 飞行 · 赶到 · 分别 · 付 · 防止",
+      "Kể/nghe hiểu tình huống Chuyến đi xa (1) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 飞行 · 赶到 · 分别",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "飞行 — bay, phi hành",
+        explain: "Dùng 飞行 trong ngữ cảnh Chuyến đi xa (1) để diễn đạt: bay, phi hành.",
+        examples: [
+          { zh: "妈妈别担心。飞行时间不长，我到了马上联系您。", py: "Māma bié dānxīn. Fēixíng shíjiān bù cháng, wǒ dào le mǎshàng liánxì nín.", vi: "Mẹ đừng lo. Thời gian bay không dài, con đến nơi sẽ liên lạc ngay." }
+        ] },
+      { point: "赶到 — kịp đến",
+        explain: "Dùng 赶到 trong ngữ cảnh Chuyến đi xa (1) để diễn đạt: kịp đến.",
+        examples: [
+          { zh: "我不否认有这个可能，但我会早点赶到。", py: "Wǒ bù fǒurèn yǒu zhège kěnéng, dàn wǒ huì zǎodiǎn gǎndào.", vi: "Con không phủ nhận khả năng đó, nhưng con sẽ đến sớm." }
+        ] },
+      { point: "分别 — chia tay, phân biệt",
+        explain: "Dùng 分别 trong ngữ cảnh Chuyến đi xa (1) để diễn đạt: chia tay, phân biệt.",
+        examples: [
+          { zh: "这么早就要分别了，妈妈有点舍不得。", py: "Zhème zǎo jiù yào fēnbié le, māma yǒudiǎn shěbude.", vi: "Mới đó mà đã phải chia tay, mẹ hơi không nỡ." }
+        ] }
+    ],
     steps: [
       {
         type: 'dialogue', speaker: 'narrator',
@@ -796,26 +914,26 @@ Object.assign(COURSE_DATA, {
       }
     ],
     vocab: [
-      { h: '反对', p: 'fǎn duì', v: 'phản đối' },
-      { h: '反复', p: 'fǎn fù', v: 'lặp đi lặp lại' },
-      { h: '反应', p: 'fǎn yìng', v: 'phản ứng' },
-      { h: '防', p: 'fáng', v: 'phòng ngừa, đề phòng' },
-      { h: '防止', p: 'fáng zhǐ', v: 'phòng ngừa, ngăn chặn' },
-      { h: '访问', p: 'fǎng wèn', v: 'thăm hỏi, phỏng vấn' },
-      { h: '放到', p: 'fàng dào', v: 'đặt vào' },
-      { h: '飞行', p: 'fēi xíng', v: 'bay, phi hành' },
-      { h: '费', p: 'fèi', v: 'phí, tốn' },
-      { h: '分别', p: 'fēn bié', v: 'chia tay, phân biệt' },
-      { h: '分配', p: 'fēn pèi', v: 'phân bổ, phân phối' },
-      { h: '分组', p: 'fēn zǔ', v: 'chia nhóm' },
-      { h: '否定', p: 'fǒu dìng', v: 'phủ định, phủ nhận' },
-      { h: '否认', p: 'fǒu rèn', v: 'phủ nhận' },
-      { h: '付', p: 'fù', v: 'trả (tiền)' },
-      { h: '复印', p: 'fù yìn', v: 'photocopy, sao chép' },
-      { h: '改进', p: 'gǎi jìn', v: 'cải tiến' },
-      { h: '改造', p: 'gǎi zào', v: 'cải tạo' },
-      { h: '赶', p: 'gǎn', v: 'đuổi kịp, vội vàng' },
-      { h: '赶到', p: 'gǎn dào', v: 'kịp đến' }
+      { h: '反对', p: 'fǎn duì', v: 'phản đối', e: 'to oppose' },
+      { h: '反复', p: 'fǎn fù', v: 'lặp đi lặp lại', e: 'repeatedly, over and over again' },
+      { h: '反应', p: 'fǎn yìng', v: 'phản ứng', e: 'to react' },
+      { h: '防', p: 'fáng', v: 'phòng ngừa, đề phòng', e: 'to protect' },
+      { h: '防止', p: 'fáng zhǐ', v: 'phòng ngừa, ngăn chặn', e: 'to prevent' },
+      { h: '访问', p: 'fǎng wèn', v: 'thăm hỏi, phỏng vấn', e: 'to visit' },
+      { h: '放到', p: 'fàng dào', v: 'đặt vào', e: 'Put in' },
+      { h: '飞行', p: 'fēi xíng', v: 'bay, phi hành', e: 'to fly' },
+      { h: '费', p: 'fèi', v: 'phí, tốn', e: 'fee, cost, expense, to spend' },
+      { h: '分别', p: 'fēn bié', v: 'chia tay, phân biệt', e: 'to part' },
+      { h: '分配', p: 'fēn pèi', v: 'phân bổ, phân phối', e: 'to distribute' },
+      { h: '分组', p: 'fēn zǔ', v: 'chia nhóm', e: 'to divide into groups' },
+      { h: '否定', p: 'fǒu dìng', v: 'phủ định, phủ nhận', e: 'to negate' },
+      { h: '否认', p: 'fǒu rèn', v: 'phủ nhận', e: 'to declare to be untrue' },
+      { h: '付', p: 'fù', v: 'trả (tiền)', e: 'to pay, to hand over' },
+      { h: '复印', p: 'fù yìn', v: 'photocopy, sao chép', e: 'to photocopy' },
+      { h: '改进', p: 'gǎi jìn', v: 'cải tiến', e: 'to improve' },
+      { h: '改造', p: 'gǎi zào', v: 'cải tạo', e: 'to transform' },
+      { h: '赶', p: 'gǎn', v: 'đuổi kịp, vội vàng', e: 'to overtake' },
+      { h: '赶到', p: 'gǎn dào', v: 'kịp đến', e: 'to hurry (to some place)' }
     ],
     workbook: {
       easy: [
@@ -862,6 +980,29 @@ Object.assign(COURSE_DATA, {
     title: 'Chuyến đi xa (2)',
     context: 'Mai và Tiểu Mỹ đã đáp xuống thành phố mới. Sau khi báo bình an cho mẹ, hai bạn dự buổi định hướng của chương trình.',
     vocabPreview: ['感受', '观察', '规定', '合作', '关注'],
+    objectives: [
+      "Nắm nhóm từ khóa: 感受 · 观察 · 规定 · 合作 · 关注",
+      "Kể/nghe hiểu tình huống Chuyến đi xa (2) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 感受 · 观察 · 规定",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "感受 — cảm nhận",
+        explain: "Dùng 感受 trong ngữ cảnh Chuyến đi xa (2) để diễn đạt: cảm nhận.",
+        examples: [
+          { zh: "好的！和大家的关系越来越近，这次经历让我很有感受。", py: "Hǎo de! Hé dàjiā de guānxi yuèláiyuè jìn, zhè cì jīnglì ràng wǒ hěn yǒu gǎnshòu.", vi: "Vâng! Quan hệ với mọi người ngày càng gần, trải nghiệm này khiến em cảm nhận rất nhiều." }
+        ] },
+      { point: "观察 — quan sát",
+        explain: "Dùng 观察 trong ngữ cảnh Chuyến đi xa (2) để diễn đạt: quan sát.",
+        examples: [
+          { zh: "好的，我会仔细观察，多多关注通知。", py: "Hǎo de, wǒ huì zǐxì guānchá, duōduō guānzhù tōngzhī.", vi: "Vâng, em sẽ quan sát kỹ, chú ý nhiều đến thông báo." }
+        ] },
+      { point: "规定 — quy định",
+        explain: "Dùng 规定 trong ngữ cảnh Chuyến đi xa (2) để diễn đạt: quy định.",
+        examples: [
+          { zh: "请问这里的规定严不严？谁来管理我们的生活？", py: "Qǐngwèn zhèlǐ de guīdìng yán bu yán? Shéi lái guǎnlǐ wǒmen de shēnghuó?", vi: "Cho hỏi quy định ở đây có nghiêm không ạ? Ai quản lý sinh hoạt của tụi em?" }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân bay thành phố mới · Trưa', bg: 'station', cast: ['mai', 'xiaomei'],
         text: 'Sau chuyến bay dài, Mai và Tiểu Mỹ đã hạ cánh. Mai gọi điện báo mẹ.', pinyin: '', meaning: '', vocab: [] },
@@ -921,26 +1062,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '敢', p: 'gǎn', v: 'dám' },
-      { h: '感冒', p: 'gǎn mào', v: 'cảm cúm, cảm lạnh' },
-      { h: '感受', p: 'gǎn shòu', v: 'cảm nhận' },
-      { h: '干吗', p: 'gàn má', v: 'làm gì vậy' },
-      { h: '告别', p: 'gào bié', v: 'từ biệt, chia tay' },
-      { h: '公布', p: 'gōng bù', v: 'công bố, công khai' },
-      { h: '共有', p: 'gòng yǒu', v: 'có cộng lại' },
-      { h: '挂', p: 'guà', v: 'treo, móc; gác máy' },
-      { h: '关系', p: 'guān xi', v: 'quan hệ' },
-      { h: '关注', p: 'guān zhù', v: 'quan tâm, chú ý' },
-      { h: '观察', p: 'guān chá', v: 'quan sát' },
-      { h: '观看', p: 'guān kàn', v: 'xem, theo dõi' },
-      { h: '管', p: 'guǎn', v: 'quản lý, ống' },
-      { h: '管理', p: 'guǎn lǐ', v: 'quản lý' },
-      { h: '广播', p: 'guǎng bō', v: 'phát thanh, phát sóng' },
-      { h: '规定', p: 'guī dìng', v: 'quy định' },
-      { h: '害怕', p: 'hài pà', v: 'sợ hãi' },
-      { h: '合', p: 'gě', v: 'hợp, phù hợp' },
-      { h: '合格', p: 'hé gé', v: 'đạt tiêu chuẩn, đủ điều kiện' },
-      { h: '合作', p: 'hé zuò', v: 'hợp tác' }
+      { h: '敢', p: 'gǎn', v: 'dám', e: 'to dare' },
+      { h: '感冒', p: 'gǎn mào', v: 'cảm cúm, cảm lạnh', e: 'to catch cold' },
+      { h: '感受', p: 'gǎn shòu', v: 'cảm nhận', e: 'to sense' },
+      { h: '干吗', p: 'gàn má', v: 'làm gì vậy', e: 'see 干嘛' },
+      { h: '告别', p: 'gào bié', v: 'từ biệt, chia tay', e: 'to leave' },
+      { h: '公布', p: 'gōng bù', v: 'công bố, công khai', e: 'to announce' },
+      { h: '共有', p: 'gòng yǒu', v: 'có cộng lại', e: 'to have altogether' },
+      { h: '挂', p: 'guà', v: 'treo, móc; gác máy', e: 'to hang or suspend (from a hook etc)' },
+      { h: '关系', p: 'guān xi', v: 'quan hệ', e: 'relation' },
+      { h: '关注', p: 'guān zhù', v: 'quan tâm, chú ý', e: 'to pay attention to' },
+      { h: '观察', p: 'guān chá', v: 'quan sát', e: 'to observe' },
+      { h: '观看', p: 'guān kàn', v: 'xem, theo dõi', e: 'to watch' },
+      { h: '管', p: 'guǎn', v: 'quản lý, ống', e: 'to manage, pipe, tube' },
+      { h: '管理', p: 'guǎn lǐ', v: 'quản lý', e: 'to supervise' },
+      { h: '广播', p: 'guǎng bō', v: 'phát thanh, phát sóng', e: 'broadcast' },
+      { h: '规定', p: 'guī dìng', v: 'quy định', e: 'to stipulate' },
+      { h: '害怕', p: 'hài pà', v: 'sợ hãi', e: 'to be afraid' },
+      { h: '合', p: 'gě', v: 'hợp, phù hợp', e: '100 ml' },
+      { h: '合格', p: 'hé gé', v: 'đạt tiêu chuẩn, đủ điều kiện', e: 'to meet the standard required' },
+      { h: '合作', p: 'hé zuò', v: 'hợp tác', e: 'to cooperate' }
     ],
     workbook: {
       easy: [
@@ -979,6 +1120,30 @@ Object.assign(COURSE_DATA, {
     title: 'Mua sắm thường ngày',
     context: 'Cuối tuần, Mai và Tiểu Mỹ tham gia hoạt động tình nguyện ở công viên ven hồ, rồi ghé cửa hàng mua đồ lưu niệm.',
     vocabPreview: ['建设', '划船', '纪念', '建议', '交流'],
+    objectives: [
+      "Nắm nhóm từ khóa: 建设 · 划船 · 纪念 · 建议 · 交流",
+      "Kể/nghe hiểu tình huống Mua sắm thường ngày bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 建设 · 划船 · 纪念",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "建设 — xây dựng",
+        explain: "Dùng 建设 trong ngữ cảnh Mua sắm thường ngày để diễn đạt: xây dựng.",
+        examples: [
+          { zh: "我们建立了一个志愿小组。听说大家在建一个新公园，一起来建设吧！", py: "Wǒmen jiànlì le yí gè zhìyuàn xiǎozǔ. Tīngshuō dàjiā zài jiàn yí gè xīn gōngyuán, yìqǐ lái jiànshè ba!", vi: "Tụi mình đã lập một nhóm tình nguyện. Nghe nói mọi người đang xây một công viên mới, cùng góp sức xây dựng nào!" }
+        ] },
+      { point: "划船 — chèo thuyền",
+        explain: "Dùng 划船 trong ngữ cảnh Mua sắm thường ngày để diễn đạt: chèo thuyền.",
+        examples: [
+          { zh: "好啊。我们先去划船，再帮忙美化这一片。", py: "Hǎo a. Wǒmen xiān qù huáchuán, zài bāngmáng měihuà zhè yí piàn.", vi: "Được đó. Mình đi chèo thuyền trước, rồi giúp làm đẹp khu này." }
+        ] },
+      { point: "纪念 — kỷ niệm, tưởng niệm",
+        explain: "Dùng 纪念 trong ngữ cảnh Mua sắm thường ngày để diễn đạt: kỷ niệm, tưởng niệm.",
+        examples: [
+          { zh: "这家店可以帮你加工木头，做成纪念品。", py: "Zhè jiā diàn kěyǐ bāng nǐ jiāgōng mùtou, zuòchéng jìniànpǐn.", vi: "Cửa hàng này có thể gia công gỗ giúp bạn, làm thành đồ lưu niệm." },
+          { zh: "我想买一个手环，留作纪念。我计算一下要多少钱。", py: "Wǒ xiǎng mǎi yí gè shǒuhuán, liú zuò jìniàn. Wǒ jìsuàn yíxià yào duōshao qián.", vi: "Tớ muốn mua một chiếc vòng tay làm kỷ niệm. Để tớ tính xem hết bao nhiêu tiền." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Công viên ven hồ · Sáng cuối tuần', bg: 'park', cast: ['mai', 'xiaomei'],
         text: 'Cuối tuần, Mai và Tiểu Mỹ tham gia hoạt động tình nguyện ở công viên ven hồ.', pinyin: '', meaning: '', vocab: [] },
@@ -1030,26 +1195,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '化', p: 'huà', v: 'biến đổi, hóa' },
-      { h: '划船', p: 'huá chuán', v: 'chèo thuyền' },
-      { h: '环', p: 'huán', v: 'vòng, vành' },
-      { h: '计算', p: 'jì suàn', v: 'tính toán' },
-      { h: '记录', p: 'jì lù', v: 'ghi lại' },
-      { h: '纪录', p: 'jì lù', v: 'kỷ lục (thể thao)' },
-      { h: '纪念', p: 'jì niàn', v: 'kỷ niệm, tưởng niệm' },
-      { h: '继续', p: 'jì xù', v: 'tiếp tục' },
-      { h: '加工', p: 'jiā gōng', v: 'gia công, chế biến' },
-      { h: '加快', p: 'jiā kuài', v: 'tăng tốc, đẩy nhanh' },
-      { h: '加强', p: 'jiā qiáng', v: 'tăng cường' },
-      { h: '架', p: 'jià', v: 'khung, giá đỡ' },
-      { h: '坚持', p: 'jiān chí', v: 'kiên trì, bền bỉ' },
-      { h: '建', p: 'jiàn', v: 'xây dựng, thiết lập' },
-      { h: '建成', p: 'jiàn chéng', v: 'hoàn thành xây dựng' },
-      { h: '建立', p: 'jiàn lì', v: 'thiết lập, thành lập' },
-      { h: '建设', p: 'jiàn shè', v: 'xây dựng' },
-      { h: '建议', p: 'jiàn yì', v: 'đề xuất, kiến nghị' },
-      { h: '交费', p: 'jiāo fèi', v: 'nộp tiền, trả phí' },
-      { h: '交流', p: 'jiāo liú', v: 'giao lưu, trao đổi' }
+      { h: '化', p: 'huà', v: 'biến đổi, hóa', e: 'to change, to transform, -ize' },
+      { h: '划船', p: 'huá chuán', v: 'chèo thuyền', e: 'to row a boat' },
+      { h: '环', p: 'huán', v: 'vòng, vành', e: 'ring, hoop, to surround, link' },
+      { h: '计算', p: 'jì suàn', v: 'tính toán', e: 'to count' },
+      { h: '记录', p: 'jì lù', v: 'ghi lại', e: 'to record' },
+      { h: '纪录', p: 'jì lù', v: 'kỷ lục (thể thao)', e: 'record (achievement)' },
+      { h: '纪念', p: 'jì niàn', v: 'kỷ niệm, tưởng niệm', e: 'to commemorate' },
+      { h: '继续', p: 'jì xù', v: 'tiếp tục', e: 'to continue' },
+      { h: '加工', p: 'jiā gōng', v: 'gia công, chế biến', e: 'to process' },
+      { h: '加快', p: 'jiā kuài', v: 'tăng tốc, đẩy nhanh', e: 'to accelerate' },
+      { h: '加强', p: 'jiā qiáng', v: 'tăng cường', e: 'to reinforce' },
+      { h: '架', p: 'jià', v: 'khung, giá đỡ', e: 'to support' },
+      { h: '坚持', p: 'jiān chí', v: 'kiên trì, bền bỉ', e: 'to persevere with' },
+      { h: '建', p: 'jiàn', v: 'xây dựng, thiết lập', e: 'to establish' },
+      { h: '建成', p: 'jiàn chéng', v: 'hoàn thành xây dựng', e: 'to establish' },
+      { h: '建立', p: 'jiàn lì', v: 'thiết lập, thành lập', e: 'to establish' },
+      { h: '建设', p: 'jiàn shè', v: 'xây dựng', e: 'to build' },
+      { h: '建议', p: 'jiàn yì', v: 'đề xuất, kiến nghị', e: 'to propose' },
+      { h: '交费', p: 'jiāo fèi', v: 'nộp tiền, trả phí', e: 'to pay a fee' },
+      { h: '交流', p: 'jiāo liú', v: 'giao lưu, trao đổi', e: 'to exchange' }
     ],
     workbook: {
       easy: [
@@ -1088,6 +1253,30 @@ Object.assign(COURSE_DATA, {
     title: 'Ở cửa hàng & mặc cả',
     context: 'Mai ghé một cửa hàng nhỏ do hai vợ chồng kinh doanh đã lâu, nghe chủ tiệm kể chuyện làm ăn và lời khuyên cho người trẻ.',
     vocabPreview: ['经营', '经验', '接待', '解决', '就业'],
+    objectives: [
+      "Nắm nhóm từ khóa: 经营 · 经验 · 接待 · 解决 · 就业",
+      "Kể/nghe hiểu tình huống Ở cửa hàng & mặc cả bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 经营 · 经验 · 接待",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "经营 — kinh doanh, quản lý",
+        explain: "Dùng 经营 trong ngữ cảnh Ở cửa hàng & mặc cả để diễn đạt: kinh doanh, quản lý.",
+        examples: [
+          { zh: "欢迎！我和我爱人结婚后就一起经营这家店。", py: "Huānyíng! Wǒ hé wǒ àirén jiéhūn hòu jiù yìqǐ jīngyíng zhè jiā diàn.", vi: "Chào mừng! Tôi với nhà tôi sau khi kết hôn là cùng nhau kinh doanh tiệm này." }
+        ] },
+      { point: "经验 — kinh nghiệm",
+        explain: "Dùng 经验 trong ngữ cảnh Ở cửa hàng & mặc cả để diễn đạt: kinh nghiệm.",
+        examples: [
+          { zh: "和顾客交往久了，是不是就有经验了？这些年的经历一定很丰富。", py: "Hé gùkè jiāowǎng jiǔ le, shì bu shì jiù yǒu jīngyàn le? Zhèxiē nián de jīnglì yídìng hěn fēngfù.", vi: "Qua lại với khách lâu rồi thì có kinh nghiệm phải không ạ? Bao năm trải nghiệm chắc phong phú lắm." },
+          { zh: "您觉得现在年轻人就业难吗？我们这一代具有热情，但缺经验。", py: "Nín juéde xiànzài niánqīng rén jiùyè nán ma? Wǒmen zhè yí dài jùyǒu rèqíng, dàn quē jīngyàn.", vi: "Cô chú thấy giờ người trẻ xin việc khó không ạ? Thế hệ tụi cháu có nhiệt huyết, nhưng thiếu kinh nghiệm." }
+        ] },
+      { point: "接待 — tiếp đón, tiếp khách",
+        explain: "Dùng 接待 trong ngữ cảnh Ở cửa hàng & mặc cả để diễn đạt: tiếp đón, tiếp khách.",
+        examples: [
+          { zh: "是的。做生意要会接待客人，每笔交易都要诚实。", py: "Shì de. Zuò shēngyi yào huì jiēdài kèrén, měi bǐ jiāoyì dōu yào chéngshí.", vi: "Đúng vậy. Buôn bán phải biết tiếp đón khách, mỗi giao dịch đều phải trung thực." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Cửa hàng nhỏ trong phố · Chiều', bg: 'shop', cast: ['mai', 'fuwuyuan'],
         text: 'Mai ghé một cửa hàng nhỏ do hai vợ chồng kinh doanh đã lâu.', pinyin: '', meaning: '', vocab: [] },
@@ -1137,26 +1326,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '交往', p: 'jiāo wǎng', v: 'giao lưu, qua lại' },
-      { h: '交易', p: 'jiāo yì', v: 'giao dịch, buôn bán' },
-      { h: '接待', p: 'jiē dài', v: 'tiếp đón, tiếp khách' },
-      { h: '接近', p: 'jiē jìn', v: 'tiếp cận, gần gũi' },
-      { h: '节约', p: 'jié yuē', v: 'tiết kiệm' },
-      { h: '结合', p: 'jié hé', v: 'kết hợp' },
-      { h: '结婚', p: 'jié hūn', v: 'kết hôn' },
-      { h: '结束', p: 'jié shù', v: 'kết thúc' },
-      { h: '解决', p: 'jiě jué', v: 'giải quyết' },
-      { h: '解开', p: 'jiě kāi', v: 'tháo ra, cởi ra' },
-      { h: '进展', p: 'jìn zhǎn', v: 'tiến triển' },
-      { h: '经历', p: 'jīng lì', v: 'kinh nghiệm, trải nghiệm' },
-      { h: '经验', p: 'jīng yàn', v: 'kinh nghiệm' },
-      { h: '经营', p: 'jīng yíng', v: 'kinh doanh, quản lý' },
-      { h: '救', p: 'jiù', v: 'cứu' },
-      { h: '就是', p: 'jiù shì', v: 'chính là, đúng là' },
-      { h: '就业', p: 'jiù yè', v: 'tìm việc làm, có việc làm' },
-      { h: '举办', p: 'jǔ bàn', v: 'tổ chức' },
-      { h: '具有', p: 'jù yǒu', v: 'có, sở hữu' },
-      { h: '据说', p: 'jù shuō', v: 'nghe nói, theo như' }
+      { h: '交往', p: 'jiāo wǎng', v: 'giao lưu, qua lại', e: 'to associate (with)' },
+      { h: '交易', p: 'jiāo yì', v: 'giao dịch, buôn bán', e: 'to deal' },
+      { h: '接待', p: 'jiē dài', v: 'tiếp đón, tiếp khách', e: 'to receive (a visitor)' },
+      { h: '接近', p: 'jiē jìn', v: 'tiếp cận, gần gũi', e: 'to approach' },
+      { h: '节约', p: 'jié yuē', v: 'tiết kiệm', e: 'to economize' },
+      { h: '结合', p: 'jié hé', v: 'kết hợp', e: 'to combine' },
+      { h: '结婚', p: 'jié hūn', v: 'kết hôn', e: 'to marry' },
+      { h: '结束', p: 'jié shù', v: 'kết thúc', e: 'termination' },
+      { h: '解决', p: 'jiě jué', v: 'giải quyết', e: 'to solve' },
+      { h: '解开', p: 'jiě kāi', v: 'tháo ra, cởi ra', e: 'to untie' },
+      { h: '进展', p: 'jìn zhǎn', v: 'tiến triển', e: 'to make headway' },
+      { h: '经历', p: 'jīng lì', v: 'kinh nghiệm, trải nghiệm', e: 'experience' },
+      { h: '经验', p: 'jīng yàn', v: 'kinh nghiệm', e: 'experience' },
+      { h: '经营', p: 'jīng yíng', v: 'kinh doanh, quản lý', e: 'to engage in (business etc)' },
+      { h: '救', p: 'jiù', v: 'cứu', e: 'to rescue, to save' },
+      { h: '就是', p: 'jiù shì', v: 'chính là, đúng là', e: 'exactly' },
+      { h: '就业', p: 'jiù yè', v: 'tìm việc làm, có việc làm', e: 'to get a job' },
+      { h: '举办', p: 'jǔ bàn', v: 'tổ chức', e: 'to conduct' },
+      { h: '具有', p: 'jù yǒu', v: 'có, sở hữu', e: 'to have' },
+      { h: '据说', p: 'jù shuō', v: 'nghe nói, theo như', e: 'it is said that' }
     ],
     workbook: {
       easy: [
@@ -1195,6 +1384,30 @@ Object.assign(COURSE_DATA, {
     title: 'Tại nhà hàng',
     context: 'Một nhà hàng mới khai trương gần trường. Mai và Tiểu Mỹ đến ăn mừng trước trận chung kết thi nói tiếng Hán.',
     vocabPreview: ['决定', '开业', '决赛', '克服', '理解'],
+    objectives: [
+      "Nắm nhóm từ khóa: 决定 · 开业 · 决赛 · 克服 · 理解",
+      "Kể/nghe hiểu tình huống Tại nhà hàng bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 决定 · 开业 · 决赛",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "决定 — quyết định",
+        explain: "Dùng 决定 trong ngữ cảnh Tại nhà hàng để diễn đạt: quyết định.",
+        examples: [
+          { zh: "我们决定来庆祝，因为下周就是汉语决赛了。", py: "Wǒmen juédìng lái qìngzhù, yīnwèi xià zhōu jiùshì Hànyǔ juésài le.", vi: "Tụi mình quyết định đến ăn mừng, vì tuần sau chính là trận chung kết tiếng Hán." }
+        ] },
+      { point: "开业 — khai trương",
+        explain: "Dùng 开业 trong ngữ cảnh Tại nhà hàng để diễn đạt: khai trương.",
+        examples: [
+          { zh: "这家餐厅今天开业，看起来很热闹！", py: "Zhè jiā cāntīng jīntiān kāiyè, kàn qǐlái hěn rènao!", vi: "Nhà hàng này hôm nay khai trương, trông náo nhiệt ghê!" },
+          { zh: "欢迎光临！开业第一天，本店饮料免费。我们的领导说，新店要重新开始，好好服务大家。", py: "Huānyíng guānglín! Kāiyè dì-yī tiān, běn diàn yǐnliào miǎnfèi. Wǒmen de lǐngdǎo shuō, xīn diàn yào chóngxīn kāishǐ, hǎohǎo fúwù dàjiā.", vi: "Hoan nghênh quý khách! Ngày khai trương đầu tiên, đồ uống miễn phí. Sếp của chúng tôi nói, tiệm mới phải bắt đầu lại, phục vụ mọi người thật tốt." }
+        ] },
+      { point: "决赛 — vòng chung kết",
+        explain: "Dùng 决赛 trong ngữ cảnh Tại nhà hàng để diễn đạt: vòng chung kết.",
+        examples: [
+          { zh: "决赛是个考验，但我们一定能克服困难。", py: "Juésài shì gè kǎoyàn, dàn wǒmen yídìng néng kèfú kùnnan.", vi: "Chung kết là một thử thách, nhưng tụi mình nhất định khắc phục được khó khăn." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà hàng mới · Buổi tối', bg: 'restaurant', cast: ['mai', 'xiaomei'],
         text: 'Một nhà hàng mới khai trương gần trường. Mai và Tiểu Mỹ đến ăn mừng.', pinyin: '', meaning: '', vocab: [] },
@@ -1248,26 +1461,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '决定', p: 'jué dìng', v: 'quyết định' },
-      { h: '决赛', p: 'jué sài', v: 'vòng chung kết' },
-      { h: '开发', p: 'kāi fā', v: 'khai thác, phát triển' },
-      { h: '开始', p: 'kāi shǐ', v: 'bắt đầu' },
-      { h: '开业', p: 'kāi yè', v: 'khai trương' },
-      { h: '开展', p: 'kāi zhǎn', v: 'triển khai, mở rộng' },
-      { h: '看起来', p: 'kàn qǐ lai', v: 'trông có vẻ' },
-      { h: '看上去', p: 'kàn shang qu', v: 'trông có vẻ' },
-      { h: '考验', p: 'kǎo yàn', v: 'thử thách, kiểm nghiệm' },
-      { h: '克服', p: 'kè fú', v: 'khắc phục' },
-      { h: '浪费', p: 'làng fèi', v: 'lãng phí' },
-      { h: '离婚', p: 'lí hūn', v: 'ly hôn' },
-      { h: '理发', p: 'lǐ fà', v: 'cắt tóc' },
-      { h: '理解', p: 'lǐ jiě', v: 'hiểu, lĩnh hội' },
-      { h: '利用', p: 'lì yòng', v: 'tận dụng, sử dụng' },
-      { h: '连', p: 'lián', v: 'liên, liền; ngay cả' },
-      { h: '联合', p: 'lián hé', v: 'liên hợp, hợp nhất' },
-      { h: '联系', p: 'lián xì', v: 'liên hệ, liên lạc' },
-      { h: '领', p: 'lǐng', v: 'lĩnh, nhận; dẫn dắt' },
-      { h: '领导', p: 'lǐng dǎo', v: 'lãnh đạo' }
+      { h: '决定', p: 'jué dìng', v: 'quyết định', e: 'to decide (to do something)' },
+      { h: '决赛', p: 'jué sài', v: 'vòng chung kết', e: 'finals (of a competition)' },
+      { h: '开发', p: 'kāi fā', v: 'khai thác, phát triển', e: 'to exploit (a resource)' },
+      { h: '开始', p: 'kāi shǐ', v: 'bắt đầu', e: 'to begin' },
+      { h: '开业', p: 'kāi yè', v: 'khai trương', e: 'to open a business' },
+      { h: '开展', p: 'kāi zhǎn', v: 'triển khai, mở rộng', e: 'to launch' },
+      { h: '看起来', p: 'kàn qǐ lai', v: 'trông có vẻ', e: 'seemingly' },
+      { h: '看上去', p: 'kàn shang qu', v: 'trông có vẻ', e: 'it would appear' },
+      { h: '考验', p: 'kǎo yàn', v: 'thử thách, kiểm nghiệm', e: 'to test' },
+      { h: '克服', p: 'kè fú', v: 'khắc phục', e: 'overcome (hardships etc)' },
+      { h: '浪费', p: 'làng fèi', v: 'lãng phí', e: 'to waste' },
+      { h: '离婚', p: 'lí hūn', v: 'ly hôn', e: 'to divorce' },
+      { h: '理发', p: 'lǐ fà', v: 'cắt tóc', e: 'to get a haircut' },
+      { h: '理解', p: 'lǐ jiě', v: 'hiểu, lĩnh hội', e: 'to comprehend' },
+      { h: '利用', p: 'lì yòng', v: 'tận dụng, sử dụng', e: 'to exploit' },
+      { h: '连', p: 'lián', v: 'liên, liền; ngay cả', e: 'even, to connect, continuously' },
+      { h: '联合', p: 'lián hé', v: 'liên hợp, hợp nhất', e: 'to combine' },
+      { h: '联系', p: 'lián xì', v: 'liên hệ, liên lạc', e: 'to contact, to get in touch, connection' },
+      { h: '领', p: 'lǐng', v: 'lĩnh, nhận; dẫn dắt', e: 'neck' },
+      { h: '领导', p: 'lǐng dǎo', v: 'lãnh đạo', e: 'lead' }
     ],
     workbook: {
       easy: [
@@ -1306,6 +1519,30 @@ Object.assign(COURSE_DATA, {
     title: 'Công việc bán thời gian',
     context: 'Trong kỳ du học, Mai xin được một việc làm thêm ở phòng thu âm bài học của chương trình.',
     vocabPreview: ['留学', '录音', '配合', '面对', '评价'],
+    objectives: [
+      "Nắm nhóm từ khóa: 留学 · 录音 · 配合 · 面对 · 评价",
+      "Kể/nghe hiểu tình huống Công việc bán thời gian bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 留学 · 录音 · 配合",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "留学 — du học",
+        explain: "Dùng 留学 trong ngữ cảnh Công việc bán thời gian để diễn đạt: du học.",
+        examples: [
+          { zh: "我在留学期间找了一份兼职，帮忙录音。", py: "Wǒ zài liúxué qījiān zhǎo le yí fèn jiānzhí, bāngmáng lùyīn.", vi: "Trong thời gian du học, em tìm được một việc làm thêm, giúp thu âm." }
+        ] },
+      { point: "录音 — thu âm, ghi âm",
+        explain: "Dùng 录音 trong ngữ cảnh Công việc bán thời gian để diễn đạt: thu âm, ghi âm.",
+        examples: [
+          { zh: "明白。需要的话我也可以配上背景音。想拍几张工作照做纪念，会破坏录音吗？", py: "Míngbai. Xūyào dehuà wǒ yě kěyǐ pèi shàng bèijǐng yīn. Xiǎng pāi jǐ zhāng gōngzuò zhào zuò jìniàn, huì pòhuài lùyīn ma?", vi: "Hiểu rồi. Cần thì em cũng có thể ghép thêm tiếng nền. Em muốn chụp vài tấm ảnh làm kỷ niệm, có làm hỏng việc thu không ạ?" }
+        ] },
+      { point: "配合 — phối hợp",
+        explain: "Dùng 配合 trong ngữ cảnh Công việc bán thời gian để diễn đạt: phối hợp.",
+        examples: [
+          { zh: "录之前先判断一下哪句要重读，注意和音乐配合。", py: "Lù zhīqián xiān pànduàn yíxià nǎ jù yào zhòngdú, zhùyì hé yīnyuè pèihé.", vi: "Trước khi thu, đánh giá xem câu nào cần nhấn, chú ý phối hợp với nhạc." },
+          { zh: "配合得好，我们的质量就能领先，排名也会上去。", py: "Pèihé de hǎo, wǒmen de zhìliàng jiù néng lǐngxiān, páimíng yě huì shàngqù.", vi: "Phối hợp tốt thì chất lượng sẽ dẫn đầu, thứ hạng cũng lên theo." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng thu của chương trình · Sáng', bg: 'office', cast: ['mai', 'fuwuyuan'],
         text: 'Trong kỳ du học, Mai xin được một việc làm thêm ở phòng thu âm.', pinyin: '', meaning: '', vocab: [] },
@@ -1359,26 +1596,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '领先', p: 'lǐng xiān', v: 'dẫn đầu' },
-      { h: '留学', p: 'liú xué', v: 'du học' },
-      { h: '录', p: 'lù', v: 'ghi, thu âm' },
-      { h: '录音', p: 'lù yīn', v: 'thu âm, ghi âm' },
-      { h: '迷', p: 'mí', v: 'mê, người hâm mộ' },
-      { h: '面对', p: 'miàn duì', v: 'đối mặt' },
-      { h: '念', p: 'niàn', v: 'đọc to, nhớ đến' },
-      { h: '拍', p: 'pāi', v: 'chụp (ảnh), vỗ' },
-      { h: '排名', p: 'pái míng', v: 'xếp hạng' },
-      { h: '派', p: 'pài', v: 'phái, phân công' },
-      { h: '判断', p: 'pàn duàn', v: 'phán đoán, đánh giá' },
-      { h: '跑步', p: 'pǎo bù', v: 'chạy bộ' },
-      { h: '配', p: 'pèi', v: 'kết hợp, phù hợp' },
-      { h: '配合', p: 'pèi hé', v: 'phối hợp' },
-      { h: '批评', p: 'pī píng', v: 'phê bình, chỉ trích' },
-      { h: '批准', p: 'pī zhǔn', v: 'phê chuẩn, chấp thuận' },
-      { h: '评价', p: 'píng jià', v: 'đánh giá' },
-      { h: '破坏', p: 'pò huài', v: 'phá hủy, phá hoại' },
-      { h: '普及', p: 'pǔ jí', v: 'phổ cập' },
-      { h: '前进', p: 'qián jìn', v: 'tiến lên' }
+      { h: '领先', p: 'lǐng xiān', v: 'dẫn đầu', e: 'to lead' },
+      { h: '留学', p: 'liú xué', v: 'du học', e: 'to study abroad' },
+      { h: '录', p: 'lù', v: 'ghi, thu âm', e: 'to carve wood' },
+      { h: '录音', p: 'lù yīn', v: 'thu âm, ghi âm', e: 'to record (sound)' },
+      { h: '迷', p: 'mí', v: 'mê, người hâm mộ', e: 'to bewilder' },
+      { h: '面对', p: 'miàn duì', v: 'đối mặt', e: 'to face' },
+      { h: '念', p: 'niàn', v: 'đọc to, nhớ đến', e: 'to read aloud, to miss, to think of' },
+      { h: '拍', p: 'pāi', v: 'chụp (ảnh), vỗ', e: 'to pat' },
+      { h: '排名', p: 'pái míng', v: 'xếp hạng', e: 'to rank (1st, 2nd etc)' },
+      { h: '派', p: 'pài', v: 'phái, phân công', e: 'clique' },
+      { h: '判断', p: 'pàn duàn', v: 'phán đoán, đánh giá', e: 'to judge' },
+      { h: '跑步', p: 'pǎo bù', v: 'chạy bộ', e: 'to run' },
+      { h: '配', p: 'pèi', v: 'kết hợp, phù hợp', e: 'to join' },
+      { h: '配合', p: 'pèi hé', v: 'phối hợp', e: 'matching' },
+      { h: '批评', p: 'pī píng', v: 'phê bình, chỉ trích', e: 'to criticize' },
+      { h: '批准', p: 'pī zhǔn', v: 'phê chuẩn, chấp thuận', e: 'to approve' },
+      { h: '评价', p: 'píng jià', v: 'đánh giá', e: 'to evaluate' },
+      { h: '破坏', p: 'pò huài', v: 'phá hủy, phá hoại', e: 'destruction' },
+      { h: '普及', p: 'pǔ jí', v: 'phổ cập', e: 'to spread extensively' },
+      { h: '前进', p: 'qián jìn', v: 'tiến lên', e: 'to go forward' }
     ],
     workbook: {
       easy: [
@@ -1424,6 +1661,29 @@ Object.assign(COURSE_DATA, {
     title: 'Ở văn phòng',
     context: 'Mai đến văn phòng giáo vụ xin lời khuyên chọn môn học, gặp lại một người bạn cũ và nghe tin một giáo sư đáng kính.',
     vocabPreview: ['请教', '确定', '区别', '认出', '庆祝'],
+    objectives: [
+      "Nắm nhóm từ khóa: 请教 · 确定 · 区别 · 认出 · 庆祝",
+      "Kể/nghe hiểu tình huống Ở văn phòng bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 请教 · 确定 · 区别",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "请教 — xin chỉ bảo, hỏi ý kiến",
+        explain: "Dùng 请教 trong ngữ cảnh Ở văn phòng để diễn đạt: xin chỉ bảo, hỏi ý kiến.",
+        examples: [
+          { zh: "老师，我想请教您一个问题，可以上来您办公室吗？", py: "Lǎoshī, wǒ xiǎng qǐngjiào nín yí gè wèntí, kěyǐ shànglái nín bàngōngshì ma?", vi: "Thầy ơi, em muốn hỏi thầy một vấn đề, em lên văn phòng thầy được không?" }
+        ] },
+      { point: "确定 — xác định, chắc chắn",
+        explain: "Dùng 确定 trong ngữ cảnh Ở văn phòng để diễn đạt: xác định, chắc chắn.",
+        examples: [
+          { zh: "当然，上来吧。原定的会议取消了，我正好有空。你前往教务处确定选课了吗？", py: "Dāngrán, shànglái ba. Yuándìng de huìyì qǔxiāo le, wǒ zhènghǎo yǒu kòng. Nǐ qiánwǎng jiàowùchù quèdìng xuǎnkè le ma?", vi: "Tất nhiên, lên đi. Cuộc họp dự kiến đã bị hủy, thầy đang rảnh. Em đã đến phòng giáo vụ xác định chọn môn chưa?" }
+        ] },
+      { point: "区别 — phân biệt, sự khác biệt",
+        explain: "Dùng 区别 trong ngữ cảnh Ở văn phòng để diễn đạt: phân biệt, sự khác biệt.",
+        examples: [
+          { zh: "还没。我想弄清楚两门课的区别，确保不选错。", py: "Hái méi. Wǒ xiǎng nòng qīngchu liǎng mén kè de qūbié, quèbǎo bù xuǎn cuò.", vi: "Chưa ạ. Em muốn làm rõ sự khác biệt giữa hai môn, đảm bảo không chọn nhầm." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng giáo vụ · Sáng', bg: 'office', cast: ['mai', 'fuwuyuan'],
         text: 'Mai đến văn phòng để xin lời khuyên về việc chọn môn.', pinyin: '', meaning: '', vocab: [] },
@@ -1473,26 +1733,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '前往', p: 'qián wǎng', v: 'đi đến' },
-      { h: '强调', p: 'qiáng diào', v: 'nhấn mạnh' },
-      { h: '请教', p: 'qǐng jiào', v: 'xin chỉ bảo, hỏi ý kiến' },
-      { h: '庆祝', p: 'qìng zhù', v: 'chúc mừng, kỷ niệm' },
-      { h: '区别', p: 'qū bié', v: 'phân biệt, sự khác biệt' },
-      { h: '取消', p: 'qǔ xiāo', v: 'hủy bỏ' },
-      { h: '去世', p: 'qù shì', v: 'qua đời' },
-      { h: '缺', p: 'quē', v: 'thiếu, khuyết' },
-      { h: '缺少', p: 'quē shǎo', v: 'thiếu' },
-      { h: '确保', p: 'què bǎo', v: 'đảm bảo' },
-      { h: '确定', p: 'què dìng', v: 'xác định, chắc chắn' },
-      { h: '热爱', p: 'rè ài', v: 'yêu tha thiết' },
-      { h: '认出', p: 'rèn chū', v: 'nhận ra' },
-      { h: '认得', p: 'rèn de', v: 'nhận ra, quen biết' },
-      { h: '认可', p: 'rèn kě', v: 'chấp nhận, công nhận' },
-      { h: '任', p: 'rén', v: 'nhiệm vụ, đảm nhận' },
-      { h: '散步', p: 'sàn bù', v: 'đi dạo' },
-      { h: '伤', p: 'shāng', v: 'thương, chấn thương' },
-      { h: '上来', p: 'shàng lái', v: 'lên đây' },
-      { h: '上去', p: 'shàng qù', v: 'đi lên' }
+      { h: '前往', p: 'qián wǎng', v: 'đi đến', e: 'to leave for' },
+      { h: '强调', p: 'qiáng diào', v: 'nhấn mạnh', e: 'to emphasize (a statement)' },
+      { h: '请教', p: 'qǐng jiào', v: 'xin chỉ bảo, hỏi ý kiến', e: 'to ask for guidance' },
+      { h: '庆祝', p: 'qìng zhù', v: 'chúc mừng, kỷ niệm', e: 'to celebrate' },
+      { h: '区别', p: 'qū bié', v: 'phân biệt, sự khác biệt', e: 'difference' },
+      { h: '取消', p: 'qǔ xiāo', v: 'hủy bỏ', e: 'to cancel' },
+      { h: '去世', p: 'qù shì', v: 'qua đời', e: 'to pass away' },
+      { h: '缺', p: 'quē', v: 'thiếu, khuyết', e: 'deficiency' },
+      { h: '缺少', p: 'quē shǎo', v: 'thiếu', e: 'lack' },
+      { h: '确保', p: 'què bǎo', v: 'đảm bảo', e: 'to ensure' },
+      { h: '确定', p: 'què dìng', v: 'xác định, chắc chắn', e: 'definite' },
+      { h: '热爱', p: 'rè ài', v: 'yêu tha thiết', e: 'to love ardently' },
+      { h: '认出', p: 'rèn chū', v: 'nhận ra', e: 'recognition' },
+      { h: '认得', p: 'rèn de', v: 'nhận ra, quen biết', e: 'to recognize' },
+      { h: '认可', p: 'rèn kě', v: 'chấp nhận, công nhận', e: 'to approve' },
+      { h: '任', p: 'rén', v: 'nhiệm vụ, đảm nhận', e: 'to appoint, responsibility, to allow' },
+      { h: '散步', p: 'sàn bù', v: 'đi dạo', e: 'to take a walk' },
+      { h: '伤', p: 'shāng', v: 'thương, chấn thương', e: 'to injure' },
+      { h: '上来', p: 'shàng lái', v: 'lên đây', e: 'to come up' },
+      { h: '上去', p: 'shàng qù', v: 'đi lên', e: 'to go up' }
     ],
     workbook: {
       easy: [
@@ -1531,6 +1791,29 @@ Object.assign(COURSE_DATA, {
     title: 'Học tập & thi cử',
     context: 'Trong giờ học, lớp Mai làm một thí nghiệm ngôn ngữ; thầy Lý ở quê gọi video động viên trước kỳ thi.',
     vocabPreview: ['上升', '设计', '适应', '实验', '声明'],
+    objectives: [
+      "Nắm nhóm từ khóa: 上升 · 设计 · 适应 · 实验 · 声明",
+      "Kể/nghe hiểu tình huống Học tập & thi cử bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 上升 · 设计 · 适应",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "上升 — tăng lên, thăng tiến",
+        explain: "Dùng 上升 trong ngữ cảnh Học tập & thi cử để diễn đạt: tăng lên, thăng tiến.",
+        examples: [
+          { zh: "我们在实验室做了一个实验，这次试验的结果不错，分数明显上升了。", py: "Wǒmen zài shíyànshì zuò le yí gè shíyàn, zhè cì shìyàn de jiéguǒ búcuò, fēnshù míngxiǎn shàngshēng le.", vi: "Tụi mình làm một thí nghiệm trong phòng lab, kết quả thử nghiệm lần này khá tốt, điểm số tăng rõ rệt." }
+        ] },
+      { point: "设计 — thiết kế",
+        explain: "Dùng 设计 trong ngữ cảnh Học tập & thi cử để diễn đạt: thiết kế.",
+        examples: [
+          { zh: "对！老师设计的方法很适合我们，我也慢慢适应了这里的学习。", py: "Duì! Lǎoshī shèjì de fāngfǎ hěn shìhé wǒmen, wǒ yě mànman shìyìng le zhèlǐ de xuéxí.", vi: "Đúng! Phương pháp thầy thiết kế rất hợp với tụi mình, tớ cũng dần thích nghi với việc học ở đây." }
+        ] },
+      { point: "适应 — thích nghi",
+        explain: "Dùng 适应 trong ngữ cảnh Học tập & thi cử để diễn đạt: thích nghi.",
+        examples: [
+          { zh: "对！老师设计的方法很适合我们，我也慢慢适应了这里的学习。", py: "Duì! Lǎoshī shèjì de fāngfǎ hěn shìhé wǒmen, wǒ yě mànman shìyìng le zhèlǐ de xuéxí.", vi: "Đúng! Phương pháp thầy thiết kế rất hợp với tụi mình, tớ cũng dần thích nghi với việc học ở đây." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng học · Buổi sáng', bg: 'classroom', cast: ['mai', 'xiaomei'],
         text: 'Trong giờ học, lớp của Mai làm một thí nghiệm ngôn ngữ nhỏ.', pinyin: '', meaning: '', vocab: [] },
@@ -1576,26 +1859,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '上升', p: 'shàng shēng', v: 'tăng lên, thăng tiến' },
-      { h: '设计', p: 'shè jì', v: 'thiết kế' },
-      { h: '设立', p: 'shè lì', v: 'thành lập, thiết lập' },
-      { h: '升', p: 'shēng', v: 'thăng, tăng' },
-      { h: '生产', p: 'shēng chǎn', v: 'sản xuất' },
-      { h: '生存', p: 'shēng cún', v: 'sinh tồn, tồn tại' },
-      { h: '生长', p: 'shēng zhǎng', v: 'sinh trưởng, phát triển' },
-      { h: '声明', p: 'shēng míng', v: 'tuyên bố, thanh minh' },
-      { h: '胜', p: 'shèng', v: 'thắng' },
-      { h: '失去', p: 'shī qù', v: 'mất đi' },
-      { h: '实行', p: 'shí xíng', v: 'thực hiện' },
-      { h: '实验', p: 'shí yàn', v: 'thực nghiệm, thí nghiệm' },
-      { h: '使', p: 'shǐ', v: 'khiến, sử dụng' },
-      { h: '试验', p: 'shì yàn', v: 'thực nghiệm, thử nghiệm' },
-      { h: '适合', p: 'shì hé', v: 'phù hợp, thích hợp' },
-      { h: '适应', p: 'shì yìng', v: 'thích nghi' },
-      { h: '收费', p: 'shōu fèi', v: 'thu phí' },
-      { h: '收看', p: 'shōu kàn', v: 'xem (truyền hình), theo dõi' },
-      { h: '收听', p: 'shōu tīng', v: 'nghe (đài)' },
-      { h: '受', p: 'shòu', v: 'nhận, chịu' }
+      { h: '上升', p: 'shàng shēng', v: 'tăng lên, thăng tiến', e: 'to rise' },
+      { h: '设计', p: 'shè jì', v: 'thiết kế', e: 'to design' },
+      { h: '设立', p: 'shè lì', v: 'thành lập, thiết lập', e: 'to set up' },
+      { h: '升', p: 'shēng', v: 'thăng, tăng', e: 'to ascend' },
+      { h: '生产', p: 'shēng chǎn', v: 'sản xuất', e: 'to produce' },
+      { h: '生存', p: 'shēng cún', v: 'sinh tồn, tồn tại', e: 'to exist' },
+      { h: '生长', p: 'shēng zhǎng', v: 'sinh trưởng, phát triển', e: 'to grow' },
+      { h: '声明', p: 'shēng míng', v: 'tuyên bố, thanh minh', e: 'to state' },
+      { h: '胜', p: 'shèng', v: 'thắng', e: 'victory' },
+      { h: '失去', p: 'shī qù', v: 'mất đi', e: 'to lose' },
+      { h: '实行', p: 'shí xíng', v: 'thực hiện', e: 'to implement' },
+      { h: '实验', p: 'shí yàn', v: 'thực nghiệm, thí nghiệm', e: 'experiment' },
+      { h: '使', p: 'shǐ', v: 'khiến, sử dụng', e: 'to make' },
+      { h: '试验', p: 'shì yàn', v: 'thực nghiệm, thử nghiệm', e: 'experiment' },
+      { h: '适合', p: 'shì hé', v: 'phù hợp, thích hợp', e: 'to fit' },
+      { h: '适应', p: 'shì yìng', v: 'thích nghi', e: 'to adapt' },
+      { h: '收费', p: 'shōu fèi', v: 'thu phí', e: 'to charge a fee' },
+      { h: '收看', p: 'shōu kàn', v: 'xem (truyền hình), theo dõi', e: 'to watch (a TV program)' },
+      { h: '收听', p: 'shōu tīng', v: 'nghe (đài)', e: 'to listen to (a radio broadcast)' },
+      { h: '受', p: 'shòu', v: 'nhận, chịu', e: 'to receive' }
     ],
     workbook: {
       easy: [
@@ -1634,6 +1917,29 @@ Object.assign(COURSE_DATA, {
     title: 'Giao tiếp & hẹn gặp',
     context: 'Trường tổ chức ngày hội thể thao. Mai và Tiểu Mỹ tham gia nhiều môn và rút ra nhiều bài học về tinh thần đồng đội.',
     vocabPreview: ['跳舞', '受伤', '属于', '体验', '谈话'],
+    objectives: [
+      "Nắm nhóm từ khóa: 跳舞 · 受伤 · 属于 · 体验 · 谈话",
+      "Kể/nghe hiểu tình huống Giao tiếp & hẹn gặp bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 跳舞 · 受伤 · 属于",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "跳舞 — nhảy múa",
+        explain: "Dùng 跳舞 trong ngữ cảnh Giao tiếp & hẹn gặp để diễn đạt: nhảy múa.",
+        examples: [
+          { zh: "今天有跳高、跳远，晚上还有跳舞！", py: "Jīntiān yǒu tiàogāo, tiàoyuǎn, wǎnshang hái yǒu tiàowǔ!", vi: "Hôm nay có nhảy cao, nhảy xa, tối còn có khiêu vũ nữa!" }
+        ] },
+      { point: "受伤 — bị thương",
+        explain: "Dùng 受伤 trong ngữ cảnh Giao tiếp & hẹn gặp để diễn đạt: bị thương.",
+        examples: [
+          { zh: "小心别受伤。上次你输了比赛就是因为脚伤。这次你提前训练过，体验了很多技巧吧？", py: "Xiǎoxīn bié shòushāng. Shàng cì nǐ shū le bǐsài jiùshì yīnwèi jiǎo shāng. Zhè cì nǐ tíqián xùnliàn guò, tǐyàn le hěn duō jìqiǎo ba?", vi: "Cẩn thận đừng bị thương. Lần trước cậu thua vì chấn thương chân đấy. Lần này cậu tập luyện trước rồi, trải nghiệm nhiều kỹ thuật rồi nhỉ?" }
+        ] },
+      { point: "属于 — thuộc về",
+        explain: "Dùng 属于 trong ngữ cảnh Giao tiếp & hẹn gặp để diễn đạt: thuộc về.",
+        examples: [
+          { zh: "这个队属于我们组。", py: "Zhège duì shǔyú wǒmen zǔ.", vi: "Đội này thuộc về nhóm chúng ta." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân vận động · Ngày hội thể thao', bg: 'park', cast: ['mai', 'xiaomei'],
         text: 'Trường tổ chức ngày hội thể thao. Mai và Tiểu Mỹ tham gia nhiều môn.', pinyin: '', meaning: '', vocab: [] },
@@ -1679,26 +1985,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '受伤', p: 'shòu shāng', v: 'bị thương' },
-      { h: '输', p: 'shū', v: 'thua, truyền' },
-      { h: '输入', p: 'shū rù', v: 'nhập vào' },
-      { h: '属', p: 'shǔ', v: 'thuộc về' },
-      { h: '属于', p: 'shǔ yú', v: 'thuộc về' },
-      { h: '束', p: 'shù', v: 'bó, ràng buộc' },
-      { h: '随', p: 'suí', v: 'theo, tùy' },
-      { h: '谈', p: 'tán', v: 'nói chuyện, đàm' },
-      { h: '谈话', p: 'tán huà', v: 'trò chuyện' },
-      { h: '谈判', p: 'tán pàn', v: 'đàm phán' },
-      { h: '提前', p: 'tí qián', v: 'sớm hơn, đẩy sớm' },
-      { h: '提问', p: 'tí wèn', v: 'đặt câu hỏi' },
-      { h: '体会', p: 'tǐ huì', v: 'cảm nhận, thấm hiểu' },
-      { h: '体现', p: 'tǐ xiàn', v: 'thể hiện, thể hiện rõ' },
-      { h: '体验', p: 'tǐ yàn', v: 'trải nghiệm' },
-      { h: '跳', p: 'tiào', v: 'nhảy' },
-      { h: '跳高', p: 'tiào gāo', v: 'nhảy cao' },
-      { h: '跳舞', p: 'tiào wǔ', v: 'nhảy múa' },
-      { h: '跳远', p: 'tiào yuǎn', v: 'nhảy xa' },
-      { h: '铁', p: 'tiě', v: 'sắt, thép' }
+      { h: '受伤', p: 'shòu shāng', v: 'bị thương', e: 'to sustain injuries' },
+      { h: '输', p: 'shū', v: 'thua, truyền', e: 'to lose' },
+      { h: '输入', p: 'shū rù', v: 'nhập vào', e: 'to import' },
+      { h: '属', p: 'shǔ', v: 'thuộc về', e: 'category' },
+      { h: '属于', p: 'shǔ yú', v: 'thuộc về', e: 'to be classified as' },
+      { h: '束', p: 'shù', v: 'bó, ràng buộc', e: 'bundle, to tie, to restrain' },
+      { h: '随', p: 'suí', v: 'theo, tùy', e: 'to follow, as one wishes, casual' },
+      { h: '谈', p: 'tán', v: 'nói chuyện, đàm', e: 'to talk, to discuss, conversation' },
+      { h: '谈话', p: 'tán huà', v: 'trò chuyện', e: 'to talk (with sb)' },
+      { h: '谈判', p: 'tán pàn', v: 'đàm phán', e: 'to negotiate' },
+      { h: '提前', p: 'tí qián', v: 'sớm hơn, đẩy sớm', e: 'to shift to an earlier date' },
+      { h: '提问', p: 'tí wèn', v: 'đặt câu hỏi', e: 'to question' },
+      { h: '体会', p: 'tǐ huì', v: 'cảm nhận, thấm hiểu', e: 'to know from experience' },
+      { h: '体现', p: 'tǐ xiàn', v: 'thể hiện, thể hiện rõ', e: 'to embody' },
+      { h: '体验', p: 'tǐ yàn', v: 'trải nghiệm', e: 'to experience for oneself' },
+      { h: '跳', p: 'tiào', v: 'nhảy', e: 'to jump' },
+      { h: '跳高', p: 'tiào gāo', v: 'nhảy cao', e: 'high jump (athletics)' },
+      { h: '跳舞', p: 'tiào wǔ', v: 'nhảy múa', e: 'to dance' },
+      { h: '跳远', p: 'tiào yuǎn', v: 'nhảy xa', e: 'long jump (athletics)' },
+      { h: '铁', p: 'tiě', v: 'sắt, thép', e: 'iron, steel' }
     ],
     workbook: {
       easy: [
@@ -1737,6 +2043,29 @@ Object.assign(COURSE_DATA, {
     title: 'Điện thoại & tin nhắn',
     context: 'Mai và Tiểu Mỹ họp trực tuyến để bàn cách quảng bá câu lạc bộ khi về nước, có sự góp mặt của một khách mời và thầy Lý.',
     vocabPreview: ['推广', '同意', '握手', '希望', '为了'],
+    objectives: [
+      "Nắm nhóm từ khóa: 推广 · 同意 · 握手 · 希望 · 为了",
+      "Kể/nghe hiểu tình huống Điện thoại & tin nhắn bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 推广 · 同意 · 握手",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "推广 — quảng bá, phổ biến",
+        explain: "Dùng 推广 trong ngữ cảnh Điện thoại & tin nhắn để diễn đạt: quảng bá, phổ biến.",
+        examples: [
+          { zh: "为了让更多人加入，我们要推广俱乐部。", py: "Wèile ràng gèng duō rén jiārù, wǒmen yào tuīguǎng jùlèbù.", vi: "Để nhiều người tham gia hơn, mình phải quảng bá câu lạc bộ." }
+        ] },
+      { point: "同意 — đồng ý",
+        explain: "Dùng 同意 trong ngữ cảnh Điện thoại & tin nhắn để diễn đạt: đồng ý.",
+        examples: [
+          { zh: "我同意。报名后如果不合适也可以退，退出的人也欢迎随时回来。", py: "Wǒ tóngyì. Bàomíng hòu rúguǒ bù héshì yě kěyǐ tuì, tuìchū de rén yě huānyíng suíshí huílái.", vi: "Tớ đồng ý. Đăng ký xong nếu không hợp thì có thể rút, người rút lui cũng hoan nghênh quay lại bất cứ lúc nào." }
+        ] },
+      { point: "握手 — bắt tay",
+        explain: "Dùng 握手 trong ngữ cảnh Điện thoại & tin nhắn để diễn đạt: bắt tay.",
+        examples: [
+          { zh: "嘉宾进来了！大家站起来握手吧。这位是刚退休的老教授，他推动了很多项目。", py: "Jiābīn jìnlái le! Dàjiā zhàn qǐlái wòshǒu ba. Zhè wèi shì gāng tuìxiū de lǎo jiàoshòu, tā tuīdòng le hěn duō xiàngmù.", vi: "Khách mời vào rồi! Mọi người đứng lên bắt tay nào. Đây là vị giáo sư già vừa nghỉ hưu, thầy đã thúc đẩy rất nhiều dự án." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng họp · Online', bg: 'office', cast: ['mai', 'xiaomei'],
         text: 'Hai bạn họp trực tuyến để bàn cách quảng bá câu lạc bộ khi về nước.', pinyin: '', meaning: '', vocab: [] },
@@ -1782,26 +2111,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '停止', p: 'tíng zhǐ', v: 'dừng lại, ngừng' },
-      { h: '通信', p: 'tōng xìn', v: 'thông tin liên lạc' },
-      { h: '同意', p: 'tóng yì', v: 'đồng ý' },
-      { h: '图', p: 'tú', v: 'hình, sơ đồ' },
-      { h: '推动', p: 'tuī dòng', v: 'thúc đẩy' },
-      { h: '推广', p: 'tuī guǎng', v: 'quảng bá, phổ biến' },
-      { h: '推进', p: 'tuī jìn', v: 'thúc đẩy, tiến tới' },
-      { h: '推开', p: 'tuī kāi', v: 'đẩy ra' },
-      { h: '退', p: 'tuì', v: 'rút lui, trả lại' },
-      { h: '退出', p: 'tuì chū', v: 'rút khỏi' },
-      { h: '退休', p: 'tuì xiū', v: 'về hưu, nghỉ hưu' },
-      { h: '危害', p: 'wēi hài', v: 'gây hại, nguy hại' },
-      { h: '围', p: 'wéi', v: 'bao vây, vòng quanh' },
-      { h: '为了', p: 'wèi le', v: 'để (mục đích)' },
-      { h: '握手', p: 'wò shǒu', v: 'bắt tay' },
-      { h: '希望', p: 'xī wàng', v: 'hy vọng' },
-      { h: '系', p: 'xì', v: 'hệ, liên kết' },
-      { h: '下来', p: 'xià lai', v: 'xuống đây' },
-      { h: '下去', p: 'xià qù', v: 'đi xuống' },
-      { h: '显得', p: 'xiǎn de', v: 'trông có vẻ' }
+      { h: '停止', p: 'tíng zhǐ', v: 'dừng lại, ngừng', e: 'to stop' },
+      { h: '通信', p: 'tōng xìn', v: 'thông tin liên lạc', e: 'to correspond (by letter etc)' },
+      { h: '同意', p: 'tóng yì', v: 'đồng ý', e: 'to agree' },
+      { h: '图', p: 'tú', v: 'hình, sơ đồ', e: 'diagram' },
+      { h: '推动', p: 'tuī dòng', v: 'thúc đẩy', e: 'to push (e.g. for acceptance of a plan)' },
+      { h: '推广', p: 'tuī guǎng', v: 'quảng bá, phổ biến', e: 'to extend' },
+      { h: '推进', p: 'tuī jìn', v: 'thúc đẩy, tiến tới', e: 'to impel' },
+      { h: '推开', p: 'tuī kāi', v: 'đẩy ra', e: 'to push open (a gate etc)' },
+      { h: '退', p: 'tuì', v: 'rút lui, trả lại', e: 'to retreat' },
+      { h: '退出', p: 'tuì chū', v: 'rút khỏi', e: 'to withdraw' },
+      { h: '退休', p: 'tuì xiū', v: 'về hưu, nghỉ hưu', e: 'to retire (from the workforce)' },
+      { h: '危害', p: 'wēi hài', v: 'gây hại, nguy hại', e: 'to jeopardize' },
+      { h: '围', p: 'wéi', v: 'bao vây, vòng quanh', e: 'to surround, enclosure, around' },
+      { h: '为了', p: 'wèi le', v: 'để (mục đích)', e: 'for' },
+      { h: '握手', p: 'wò shǒu', v: 'bắt tay', e: 'to shake hands' },
+      { h: '希望', p: 'xī wàng', v: 'hy vọng', e: 'to hope' },
+      { h: '系', p: 'xì', v: 'hệ, liên kết', e: 'to connect' },
+      { h: '下来', p: 'xià lai', v: 'xuống đây', e: 'to come down' },
+      { h: '下去', p: 'xià qù', v: 'đi xuống', e: 'to go down' },
+      { h: '显得', p: 'xiǎn de', v: 'trông có vẻ', e: 'to seem' }
     ],
     workbook: {
       easy: [
@@ -1840,6 +2169,29 @@ Object.assign(COURSE_DATA, {
     title: 'Sức khỏe & khám bệnh',
     context: 'Dạo này Mai căng thẳng và mệt, em đến phòng khám gặp bác sĩ, rồi chuẩn bị cho một buổi biểu diễn.',
     vocabPreview: ['显示', '相比', '消失', '信任', '演出'],
+    objectives: [
+      "Nắm nhóm từ khóa: 显示 · 相比 · 消失 · 信任 · 演出",
+      "Kể/nghe hiểu tình huống Sức khỏe & khám bệnh bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 显示 · 相比 · 消失",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "显示 — hiển thị, cho thấy",
+        explain: "Dùng 显示 trong ngữ cảnh Sức khỏe & khám bệnh để diễn đạt: hiển thị, cho thấy.",
+        examples: [
+          { zh: "别担心。现代化的设备会显示你的健康数据。", py: "Bié dānxīn. Xiàndàihuà de shèbèi huì xiǎnshì nǐ de jiànkāng shùjù.", vi: "Đừng lo. Thiết bị hiện đại hóa sẽ hiển thị dữ liệu sức khỏe của em." }
+        ] },
+      { point: "相比 — so sánh",
+        explain: "Dùng 相比 trong ngữ cảnh Sức khỏe & khám bệnh để diễn đạt: so sánh.",
+        examples: [
+          { zh: "和上次相比，你的指标相当正常，没有相关的疾病。", py: "Hé shàng cì xiāngbǐ, nǐ de zhǐbiāo xiāngdāng zhèngcháng, méiyǒu xiāngguān de jíbìng.", vi: "So với lần trước, các chỉ số của em khá bình thường, không có bệnh liên quan." }
+        ] },
+      { point: "消失 — biến mất",
+        explain: "Dùng 消失 trong ngữ cảnh Sức khỏe & khám bệnh để diễn đạt: biến mất.",
+        examples: [
+          { zh: "可能。减少咖啡，症状会慢慢消失。你需要多休息。", py: "Kěnéng. Jiǎnshǎo kāfēi, zhèngzhuàng huì mànman xiāoshī. Nǐ xūyào duō xiūxi.", vi: "Có thể. Giảm cà phê thì triệu chứng sẽ dần biến mất. Em cần nghỉ ngơi nhiều." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng khám · Buổi chiều', bg: 'clinic', cast: ['mai', 'yisheng'],
         text: 'Dạo này Mai thấy mệt và căng thẳng, em đến phòng khám.', pinyin: '', meaning: '', vocab: [] },
@@ -1889,26 +2241,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '显示', p: 'xiǎn shì', v: 'hiển thị, cho thấy' },
-      { h: '现代化', p: 'xiàn dài huà', v: 'hiện đại hóa' },
-      { h: '相比', p: 'xiāng bǐ', v: 'so sánh' },
-      { h: '相当', p: 'xiāng dāng', v: 'khá, tương đương' },
-      { h: '相关', p: 'xiāng guān', v: 'liên quan' },
-      { h: '消费', p: 'xiāo fèi', v: 'tiêu dùng' },
-      { h: '消失', p: 'xiāo shī', v: 'biến mất' },
-      { h: '写作', p: 'xiě zuò', v: 'viết lách, sáng tác' },
-      { h: '信任', p: 'xìn rèn', v: 'tin tưởng' },
-      { h: '形成', p: 'xíng chéng', v: 'hình thành' },
-      { h: '修', p: 'xiū', v: 'sửa, tu bổ' },
-      { h: '修改', p: 'xiū gǎi', v: 'sửa đổi' },
-      { h: '需要', p: 'xū yào', v: 'cần, nhu cầu' },
-      { h: '宣布', p: 'xuān bù', v: 'tuyên bố' },
-      { h: '宣传', p: 'xuān chuán', v: 'tuyên truyền, quảng bá' },
-      { h: '训练', p: 'xùn liàn', v: 'huấn luyện' },
-      { h: '压', p: 'yā', v: 'ép, áp lực' },
-      { h: '演', p: 'yǎn', v: 'diễn, biểu diễn' },
-      { h: '演唱', p: 'yǎn chàng', v: 'ca hát, biểu diễn' },
-      { h: '演出', p: 'yǎn chū', v: 'biểu diễn' }
+      { h: '显示', p: 'xiǎn shì', v: 'hiển thị, cho thấy', e: 'to show' },
+      { h: '现代化', p: 'xiàn dài huà', v: 'hiện đại hóa', e: 'modernization' },
+      { h: '相比', p: 'xiāng bǐ', v: 'so sánh', e: 'to compare' },
+      { h: '相当', p: 'xiāng dāng', v: 'khá, tương đương', e: 'equivalent to' },
+      { h: '相关', p: 'xiāng guān', v: 'liên quan', e: 'related' },
+      { h: '消费', p: 'xiāo fèi', v: 'tiêu dùng', e: 'to consume' },
+      { h: '消失', p: 'xiāo shī', v: 'biến mất', e: 'to disappear' },
+      { h: '写作', p: 'xiě zuò', v: 'viết lách, sáng tác', e: 'to write' },
+      { h: '信任', p: 'xìn rèn', v: 'tin tưởng', e: 'to trust' },
+      { h: '形成', p: 'xíng chéng', v: 'hình thành', e: 'to form' },
+      { h: '修', p: 'xiū', v: 'sửa, tu bổ', e: 'to repair, to fix, to cultivate' },
+      { h: '修改', p: 'xiū gǎi', v: 'sửa đổi', e: 'to amend' },
+      { h: '需要', p: 'xū yào', v: 'cần, nhu cầu', e: 'to need' },
+      { h: '宣布', p: 'xuān bù', v: 'tuyên bố', e: 'to declare' },
+      { h: '宣传', p: 'xuān chuán', v: 'tuyên truyền, quảng bá', e: 'to disseminate' },
+      { h: '训练', p: 'xùn liàn', v: 'huấn luyện', e: 'to train' },
+      { h: '压', p: 'yā', v: 'ép, áp lực', e: 'to press' },
+      { h: '演', p: 'yǎn', v: 'diễn, biểu diễn', e: 'to develop' },
+      { h: '演唱', p: 'yǎn chàng', v: 'ca hát, biểu diễn', e: 'sung performance' },
+      { h: '演出', p: 'yǎn chū', v: 'biểu diễn', e: 'to act (in a play)' }
     ],
     workbook: {
       easy: [
@@ -1954,6 +2306,29 @@ Object.assign(COURSE_DATA, {
     title: 'Sở thích & giải trí',
     context: 'Cuối tuần rảnh, Mai và Tiểu Mỹ lên kế hoạch đi bơi và vui chơi, sau khi xem dự báo thời tiết.',
     vocabPreview: ['预报', '游泳', '要是', '赢', '增加'],
+    objectives: [
+      "Nắm nhóm từ khóa: 预报 · 游泳 · 要是 · 赢 · 增加",
+      "Kể/nghe hiểu tình huống Sở thích & giải trí bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 预报 · 游泳 · 要是",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "预报 — dự báo",
+        explain: "Dùng 预报 trong ngữ cảnh Sở thích & giải trí để diễn đạt: dự báo.",
+        examples: [
+          { zh: "天气预报说今天晴天，要是不下雨，我们去游泳吧！", py: "Tiānqì yùbào shuō jīntiān qíngtiān, yàoshi bú xiàyǔ, wǒmen qù yóuyǒng ba!", vi: "Dự báo thời tiết nói hôm nay nắng, nếu không mưa thì mình đi bơi nhé!" }
+        ] },
+      { point: "游泳 — bơi lội",
+        explain: "Dùng 游泳 trong ngữ cảnh Sở thích & giải trí để diễn đạt: bơi lội.",
+        examples: [
+          { zh: "天气预报说今天晴天，要是不下雨，我们去游泳吧！", py: "Tiānqì yùbào shuō jīntiān qíngtiān, yàoshi bú xiàyǔ, wǒmen qù yóuyǒng ba!", vi: "Dự báo thời tiết nói hôm nay nắng, nếu không mưa thì mình đi bơi nhé!" }
+        ] },
+      { point: "要是 — nếu như",
+        explain: "Dùng 要是 trong ngữ cảnh Sở thích & giải trí để diễn đạt: nếu như.",
+        examples: [
+          { zh: "天气预报说今天晴天，要是不下雨，我们去游泳吧！", py: "Tiānqì yùbào shuō jīntiān qíngtiān, yàoshi bú xiàyǔ, wǒmen qù yóuyǒng ba!", vi: "Dự báo thời tiết nói hôm nay nắng, nếu không mưa thì mình đi bơi nhé!" }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Công viên ven hồ · Cuối tuần', bg: 'park', cast: ['mai', 'xiaomei'],
         text: 'Cuối tuần rảnh, Mai và Tiểu Mỹ lên kế hoạch vui chơi.', pinyin: '', meaning: '', vocab: [] },
@@ -1999,26 +2374,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '要是', p: 'yào shi', v: 'nếu như' },
-      { h: '应当', p: 'yīng dāng', v: 'nên, phải' },
-      { h: '应用', p: 'yìng yòng', v: 'ứng dụng' },
-      { h: '迎接', p: 'yíng jiē', v: 'đón chào' },
-      { h: '赢', p: 'yíng', v: 'thắng' },
-      { h: '由', p: 'yóu', v: 'do, vì' },
-      { h: '游', p: 'yóu', v: 'bơi, du ngoạn' },
-      { h: '游戏', p: 'yóu xì', v: 'trò chơi' },
-      { h: '游泳', p: 'yóu yǒng', v: 'bơi lội' },
-      { h: '预报', p: 'yù bào', v: 'dự báo' },
-      { h: '预防', p: 'yù fáng', v: 'phòng ngừa' },
-      { h: '预计', p: 'yù jì', v: 'dự tính, dự kiến' },
-      { h: '预习', p: 'yù xí', v: 'chuẩn bị bài trước' },
-      { h: '运输', p: 'yùn shū', v: 'vận chuyển' },
-      { h: '造', p: 'zào', v: 'làm, chế tạo' },
-      { h: '造成', p: 'zào chéng', v: 'gây ra, tạo nên' },
-      { h: '增加', p: 'zēng jiā', v: 'tăng thêm' },
-      { h: '增长', p: 'zēng zhǎng', v: 'tăng trưởng' },
-      { h: '展开', p: 'zhǎn kāi', v: 'triển khai, mở ra' },
-      { h: '张', p: 'zhāng', v: 'tờ (lượng từ); trải ra' }
+      { h: '要是', p: 'yào shi', v: 'nếu như', e: 'if' },
+      { h: '应当', p: 'yīng dāng', v: 'nên, phải', e: 'should' },
+      { h: '应用', p: 'yìng yòng', v: 'ứng dụng', e: 'to put to use' },
+      { h: '迎接', p: 'yíng jiē', v: 'đón chào', e: 'to welcome' },
+      { h: '赢', p: 'yíng', v: 'thắng', e: 'to beat' },
+      { h: '由', p: 'yóu', v: 'do, vì', e: 'to follow' },
+      { h: '游', p: 'yóu', v: 'bơi, du ngoạn', e: 'to swim, to tour, to roam' },
+      { h: '游戏', p: 'yóu xì', v: 'trò chơi', e: 'game' },
+      { h: '游泳', p: 'yóu yǒng', v: 'bơi lội', e: 'swimming' },
+      { h: '预报', p: 'yù bào', v: 'dự báo', e: 'forecast' },
+      { h: '预防', p: 'yù fáng', v: 'phòng ngừa', e: 'to prevent' },
+      { h: '预计', p: 'yù jì', v: 'dự tính, dự kiến', e: 'to forecast' },
+      { h: '预习', p: 'yù xí', v: 'chuẩn bị bài trước', e: 'to prepare a lesson' },
+      { h: '运输', p: 'yùn shū', v: 'vận chuyển', e: 'to transport' },
+      { h: '造', p: 'zào', v: 'làm, chế tạo', e: 'to make' },
+      { h: '造成', p: 'zào chéng', v: 'gây ra, tạo nên', e: 'to bring about' },
+      { h: '增加', p: 'zēng jiā', v: 'tăng thêm', e: 'to raise' },
+      { h: '增长', p: 'zēng zhǎng', v: 'tăng trưởng', e: 'to grow' },
+      { h: '展开', p: 'zhǎn kāi', v: 'triển khai, mở ra', e: 'to unfold' },
+      { h: '张', p: 'zhāng', v: 'tờ (lượng từ); trải ra', e: 'to spread, classifier for flat objects' }
     ],
     workbook: {
       easy: [
@@ -2057,6 +2432,29 @@ Object.assign(COURSE_DATA, {
     title: 'Kế hoạch tương lai',
     context: 'Mai lập kế hoạch cho tương lai sau khi du học, được mẹ ủng hộ và thầy cô hướng dẫn.',
     vocabPreview: ['制定', '争取', '支持', '指导', '值得'],
+    objectives: [
+      "Nắm nhóm từ khóa: 制定 · 争取 · 支持 · 指导 · 值得",
+      "Kể/nghe hiểu tình huống Kế hoạch tương lai bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 制定 · 争取 · 支持",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "制定 — lập ra, ban hành",
+        explain: "Dùng 制定 trong ngữ cảnh Kế hoạch tương lai để diễn đạt: lập ra, ban hành.",
+        examples: [
+          { zh: "我整理了资料，制定了一个学习计划。", py: "Wǒ zhěnglǐ le zīliào, zhìdìng le yí gè xuéxí jìhuà.", vi: "Tớ đã sắp xếp tài liệu, lập một kế hoạch học tập." }
+        ] },
+      { point: "争取 — tranh thủ, phấn đấu",
+        explain: "Dùng 争取 trong ngữ cảnh Kế hoạch tương lai để diễn đạt: tranh thủ, phấn đấu.",
+        examples: [
+          { zh: "好。你要争取奖学金吗？", py: "Hǎo. Nǐ yào zhēngqǔ jiǎngxuéjīn ma?", vi: "Hay đó. Cậu muốn phấn đấu giành học bổng không?" }
+        ] },
+      { point: "支持 — ủng hộ, hỗ trợ",
+        explain: "Dùng 支持 trong ngữ cảnh Kế hoạch tương lai để diễn đạt: ủng hộ, hỗ trợ.",
+        examples: [
+          { zh: "妈妈支持你！钱的事别担心，学费我来支付。", py: "Māma zhīchí nǐ! Qián de shì bié dānxīn, xuéfèi wǒ lái zhīfù.", vi: "Mẹ ủng hộ con! Chuyện tiền đừng lo, học phí mẹ thanh toán." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Ký túc xá · Buổi tối', bg: 'dorm-room', cast: ['mai', 'xiaomei'],
         text: 'Mai bắt đầu lên kế hoạch cho tương lai sau khi du học.', pinyin: '', meaning: '', vocab: [] },
@@ -2110,26 +2508,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '照', p: 'zhào', v: 'chiếu sáng, chụp' },
-      { h: '争', p: 'zhēng', v: 'tranh giành, đấu tranh' },
-      { h: '争取', p: 'zhēng qǔ', v: 'tranh thủ, phấn đấu' },
-      { h: '整理', p: 'zhěng lǐ', v: 'sắp xếp, chỉnh lý' },
-      { h: '证明', p: 'zhèng míng', v: 'chứng minh' },
-      { h: '支', p: 'zhī', v: 'chống đỡ, nhánh' },
-      { h: '支持', p: 'zhī chí', v: 'ủng hộ, hỗ trợ' },
-      { h: '支付', p: 'zhī fù', v: 'thanh toán' },
-      { h: '直播', p: 'zhí bō', v: 'phát sóng trực tiếp' },
-      { h: '直到', p: 'zhí dào', v: 'cho đến khi' },
-      { h: '值得', p: 'zhí de', v: 'đáng giá' },
-      { h: '只是', p: 'zhǐ shì', v: 'chỉ là' },
-      { h: '只有', p: 'zhǐ yǒu', v: 'chỉ có' },
-      { h: '指', p: 'zhǐ', v: 'ngón tay, chỉ' },
-      { h: '指出', p: 'zhǐ chū', v: 'chỉ ra' },
-      { h: '指导', p: 'zhǐ dǎo', v: 'chỉ đạo, hướng dẫn' },
-      { h: '志愿', p: 'zhì yuàn', v: 'nguyện vọng, tình nguyện' },
-      { h: '制定', p: 'zhì dìng', v: 'lập ra, ban hành' },
-      { h: '制造', p: 'zhì zào', v: 'chế tạo, sản xuất' },
-      { h: '制作', p: 'zhì zuò', v: 'sản xuất, làm ra' }
+      { h: '照', p: 'zhào', v: 'chiếu sáng, chụp', e: 'to shine, to photograph, according to' },
+      { h: '争', p: 'zhēng', v: 'tranh giành, đấu tranh', e: 'to strive for' },
+      { h: '争取', p: 'zhēng qǔ', v: 'tranh thủ, phấn đấu', e: 'to fight for' },
+      { h: '整理', p: 'zhěng lǐ', v: 'sắp xếp, chỉnh lý', e: 'to arrange' },
+      { h: '证明', p: 'zhèng míng', v: 'chứng minh', e: 'proof' },
+      { h: '支', p: 'zhī', v: 'chống đỡ, nhánh', e: 'branch, to support, classifier for long objects' },
+      { h: '支持', p: 'zhī chí', v: 'ủng hộ, hỗ trợ', e: 'to be in favor of' },
+      { h: '支付', p: 'zhī fù', v: 'thanh toán', e: 'to pay (money)' },
+      { h: '直播', p: 'zhí bō', v: 'phát sóng trực tiếp', e: 'to broadcast live' },
+      { h: '直到', p: 'zhí dào', v: 'cho đến khi', e: 'until' },
+      { h: '值得', p: 'zhí de', v: 'đáng giá', e: 'to be worth' },
+      { h: '只是', p: 'zhǐ shì', v: 'chỉ là', e: 'merely' },
+      { h: '只有', p: 'zhǐ yǒu', v: 'chỉ có', e: 'only have ...' },
+      { h: '指', p: 'zhǐ', v: 'ngón tay, chỉ', e: 'finger' },
+      { h: '指出', p: 'zhǐ chū', v: 'chỉ ra', e: 'to indicate' },
+      { h: '指导', p: 'zhǐ dǎo', v: 'chỉ đạo, hướng dẫn', e: 'to guide' },
+      { h: '志愿', p: 'zhì yuàn', v: 'nguyện vọng, tình nguyện', e: 'aspiration' },
+      { h: '制定', p: 'zhì dìng', v: 'lập ra, ban hành', e: 'to draw up' },
+      { h: '制造', p: 'zhì zào', v: 'chế tạo, sản xuất', e: 'to manufacture' },
+      { h: '制作', p: 'zhì zuò', v: 'sản xuất, làm ra', e: 'to make' }
     ],
     workbook: {
       easy: [
@@ -2168,6 +2566,29 @@ Object.assign(COURSE_DATA, {
     title: 'Hành động tổng hợp',
     context: 'Sắp kết thúc kỳ trao đổi, nhóm tổ chức buổi liên hoan chia tay và cùng nhìn lại hành trình.',
     vocabPreview: ['主持', '总结', '转变', '抓住', '祝'],
+    objectives: [
+      "Nắm nhóm từ khóa: 主持 · 总结 · 转变 · 抓住 · 祝",
+      "Kể/nghe hiểu tình huống Hành động tổng hợp bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 主持 · 总结 · 转变",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "主持 — chủ trì, dẫn chương trình",
+        explain: "Dùng 主持 trong ngữ cảnh Hành động tổng hợp để diễn đạt: chủ trì, dẫn chương trình.",
+        examples: [
+          { zh: "今晚的晚会由你主持，好吗？", py: "Jīnwǎn de wǎnhuì yóu nǐ zhǔchí, hǎo ma?", vi: "Buổi tối nay do cậu dẫn chương trình, được không?" }
+        ] },
+      { point: "总结 — tổng kết",
+        explain: "Dùng 总结 trong ngữ cảnh Hành động tổng hợp để diễn đạt: tổng kết.",
+        examples: [
+          { zh: "好。我主张大家轮流发言，总结这次经历。", py: "Hǎo. Wǒ zhǔzhāng dàjiā lúnliú fāyán, zǒngjié zhè cì jīnglì.", vi: "Được. Tớ đề xuất mọi người lần lượt phát biểu, tổng kết trải nghiệm lần này." }
+        ] },
+      { point: "转变 — chuyển biến, thay đổi",
+        explain: "Dùng 转变 trong ngữ cảnh Hành động tổng hợp để diễn đạt: chuyển biến, thay đổi.",
+        examples: [
+          { zh: "这次旅程让我转变了很多，我变得更自主了。", py: "Zhè cì lǚchéng ràng wǒ zhuǎnbiàn le hěn duō, wǒ biàn de gèng zìzhǔ le.", vi: "Chuyến đi này khiến tớ thay đổi nhiều, tớ trở nên tự chủ hơn." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà hàng · Tiệc chia tay', bg: 'restaurant', cast: ['mai', 'xiaomei'],
         text: 'Sắp kết thúc kỳ trao đổi, nhóm tổ chức một buổi liên hoan chia tay.', pinyin: '', meaning: '', vocab: [] },
@@ -2213,23 +2634,23 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '种', p: 'zhǒng', v: 'giống, hạt giống; trồng' },
-      { h: '主持', p: 'zhǔ chí', v: 'chủ trì, dẫn chương trình' },
-      { h: '主张', p: 'zhǔ zhāng', v: 'chủ trương, đề xuất' },
-      { h: '注意', p: 'zhù yì', v: 'chú ý' },
-      { h: '祝', p: 'zhù', v: 'chúc' },
-      { h: '抓', p: 'zhuā', v: 'nắm, bắt' },
-      { h: '抓住', p: 'zhuā zhù', v: 'nắm chặt, bắt được' },
-      { h: '转', p: 'zhuǎn', v: 'quay, chuyển' },
-      { h: '转变', p: 'zhuǎn biàn', v: 'chuyển biến, thay đổi' },
-      { h: '追', p: 'zhuī', v: 'đuổi theo, theo đuổi' },
-      { h: '自主', p: 'zì zhǔ', v: 'tự chủ' },
-      { h: '总结', p: 'zǒng jié', v: 'tổng kết' },
-      { h: '总是', p: 'zǒng shì', v: 'luôn luôn' },
-      { h: '足够', p: 'zú gòu', v: 'đủ, thỏa đáng' },
-      { h: '组合', p: 'zǔ hé', v: 'tổ hợp, kết hợp' },
-      { h: '左右', p: 'zuǒ yòu', v: 'khoảng, xấp xỉ' },
-      { h: '做客', p: 'zuò kè', v: 'làm khách, đến thăm' }
+      { h: '种', p: 'zhǒng', v: 'giống, hạt giống; trồng', e: 'seed' },
+      { h: '主持', p: 'zhǔ chí', v: 'chủ trì, dẫn chương trình', e: 'to take charge of' },
+      { h: '主张', p: 'zhǔ zhāng', v: 'chủ trương, đề xuất', e: 'to advocate' },
+      { h: '注意', p: 'zhù yì', v: 'chú ý', e: 'to take note of' },
+      { h: '祝', p: 'zhù', v: 'chúc', e: 'to wish, to congratulate, to bless' },
+      { h: '抓', p: 'zhuā', v: 'nắm, bắt', e: 'to grab' },
+      { h: '抓住', p: 'zhuā zhù', v: 'nắm chặt, bắt được', e: 'to grab hold of' },
+      { h: '转', p: 'zhuǎn', v: 'quay, chuyển', e: 'see 转文' },
+      { h: '转变', p: 'zhuǎn biàn', v: 'chuyển biến, thay đổi', e: 'to change' },
+      { h: '追', p: 'zhuī', v: 'đuổi theo, theo đuổi', e: 'to sculpt' },
+      { h: '自主', p: 'zì zhǔ', v: 'tự chủ', e: 'independent' },
+      { h: '总结', p: 'zǒng jié', v: 'tổng kết', e: 'to sum up' },
+      { h: '总是', p: 'zǒng shì', v: 'luôn luôn', e: 'always' },
+      { h: '足够', p: 'zú gòu', v: 'đủ, thỏa đáng', e: 'enough' },
+      { h: '组合', p: 'zǔ hé', v: 'tổ hợp, kết hợp', e: 'to assemble' },
+      { h: '左右', p: 'zuǒ yòu', v: 'khoảng, xấp xỉ', e: 'left and right' },
+      { h: '做客', p: 'zuò kè', v: 'làm khách, đến thăm', e: 'to be a guest or visitor' }
     ],
     workbook: {
       easy: [
@@ -2268,6 +2689,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (1)',
     context: 'Mai dọn đồ chuẩn bị về nước, vừa thu xếp hành lý vừa điền nốt giấy tờ và ôn lại những gì đã học.',
     vocabPreview: ['衬衫', '表格', '不仅', '并且', '部门'],
+    objectives: [
+      "Nắm nhóm từ khóa: 衬衫 · 表格 · 不仅 · 并且 · 部门",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (1) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 衬衫 · 表格 · 不仅",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "衬衫 — áo sơ mi",
+        explain: "Dùng 衬衫 trong ngữ cảnh Từ chức năng & liên từ (1) để diễn đạt: áo sơ mi.",
+        examples: [
+          { zh: "我在整理行李。这件衬衫要带走，被子留下。", py: "Wǒ zài zhěnglǐ xíngli. Zhè jiàn chènshān yào dài zǒu, bèizi liú xià.", vi: "Tớ đang xếp hành lý. Cái áo sơ mi này mang đi, chăn để lại." }
+        ] },
+      { point: "表格 — biểu mẫu, bảng",
+        explain: "Dùng 表格 trong ngữ cảnh Từ chức năng & liên từ (1) để diễn đạt: biểu mẫu, bảng.",
+        examples: [
+          { zh: "好。这张表格要填，标题写你的名字。", py: "Hǎo. Zhè zhāng biǎogé yào tián, biāotí xiě nǐ de míngzi.", vi: "Được. Tờ biểu mẫu này phải điền, tiêu đề ghi tên cậu." }
+        ] },
+      { point: "不仅 — không chỉ",
+        explain: "Dùng 不仅 trong ngữ cảnh Từ chức năng & liên từ (1) để diễn đạt: không chỉ.",
+        examples: [
+          { zh: "我不仅学了汉语，还学了做饭。", py: "Wǒ bùjǐn xué le Hànyǔ, hái xué le zuòfàn.", vi: "Tớ không chỉ học tiếng Hán mà còn học nấu ăn." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Ký túc xá · Ngày dọn đồ', bg: 'dorm-room', cast: ['mai', 'xiaomei'],
         text: 'Mai dọn đồ chuẩn bị về nước, vừa thu xếp vừa điền nốt giấy tờ.', pinyin: '', meaning: '', vocab: [] },
@@ -2313,26 +2757,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '白菜', p: 'bái cài', v: 'cải thảo, bắp cải trắng' },
-      { h: '背后', p: 'bèi hòu', v: 'phía sau, đằng sau' },
-      { h: '被', p: 'bèi', v: 'bị (thụ động)' },
-      { h: '被子', p: 'bèi zi', v: 'chăn bông' },
-      { h: '本领', p: 'běn lǐng', v: 'kỹ năng, tài năng' },
-      { h: '标题', p: 'biāo tí', v: 'tiêu đề' },
-      { h: '表格', p: 'biǎo gé', v: 'biểu mẫu, bảng' },
-      { h: '并', p: 'bìng', v: 'và, đồng thời; hề (nhấn mạnh phủ định)' },
-      { h: '并且', p: 'bìng qiě', v: 'hơn nữa, đồng thời' },
-      { h: '不必', p: 'bù bì', v: 'không cần thiết' },
-      { h: '不得不', p: 'bù dé bù', v: 'không thể không, buộc phải' },
-      { h: '不断', p: 'bù duàn', v: 'không ngừng, liên tục' },
-      { h: '不光', p: 'bù guāng', v: 'không chỉ' },
-      { h: '不仅', p: 'bù jǐn', v: 'không chỉ' },
-      { h: '部', p: 'bù', v: 'bộ phận; bộ (lượng từ)' },
-      { h: '部门', p: 'bù mén', v: 'bộ phận, phòng ban' },
-      { h: '曾经', p: 'céng jīng', v: 'đã từng' },
-      { h: '场合', p: 'chǎng hé', v: 'dịp, hoàn cảnh' },
-      { h: '场所', p: 'chǎng suǒ', v: 'nơi chốn, địa điểm' },
-      { h: '衬衫', p: 'chèn shān', v: 'áo sơ mi' }
+      { h: '白菜', p: 'bái cài', v: 'cải thảo, bắp cải trắng', e: 'Chinese cabbage' },
+      { h: '背后', p: 'bèi hòu', v: 'phía sau, đằng sau', e: 'behind' },
+      { h: '被', p: 'bèi', v: 'bị (thụ động)', e: 'quilt' },
+      { h: '被子', p: 'bèi zi', v: 'chăn bông', e: 'quilt' },
+      { h: '本领', p: 'běn lǐng', v: 'kỹ năng, tài năng', e: 'skill' },
+      { h: '标题', p: 'biāo tí', v: 'tiêu đề', e: 'title' },
+      { h: '表格', p: 'biǎo gé', v: 'biểu mẫu, bảng', e: 'form' },
+      { h: '并', p: 'bìng', v: 'và, đồng thời; hề (nhấn mạnh phủ định)', e: 'and' },
+      { h: '并且', p: 'bìng qiě', v: 'hơn nữa, đồng thời', e: 'and' },
+      { h: '不必', p: 'bù bì', v: 'không cần thiết', e: 'need not' },
+      { h: '不得不', p: 'bù dé bù', v: 'không thể không, buộc phải', e: 'have no choice or option but to' },
+      { h: '不断', p: 'bù duàn', v: 'không ngừng, liên tục', e: 'unceasing' },
+      { h: '不光', p: 'bù guāng', v: 'không chỉ', e: 'not the only one' },
+      { h: '不仅', p: 'bù jǐn', v: 'không chỉ', e: 'not just' },
+      { h: '部', p: 'bù', v: 'bộ phận; bộ (lượng từ)', e: 'ministry' },
+      { h: '部门', p: 'bù mén', v: 'bộ phận, phòng ban', e: 'department' },
+      { h: '曾经', p: 'céng jīng', v: 'đã từng', e: 'once' },
+      { h: '场合', p: 'chǎng hé', v: 'dịp, hoàn cảnh', e: 'situation' },
+      { h: '场所', p: 'chǎng suǒ', v: 'nơi chốn, địa điểm', e: 'location' },
+      { h: '衬衫', p: 'chèn shān', v: 'áo sơ mi', e: 'shirt' }
     ],
     workbook: {
       easy: [
@@ -2371,6 +2815,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (2)',
     context: 'Trước khi về nước, nhóm ghé đại sứ quán làm thủ tục và tình cờ gặp một đoàn đại diện.',
     vocabPreview: ['大使馆', '代表团', '除了', '电子邮件', '成果'],
+    objectives: [
+      "Nắm nhóm từ khóa: 大使馆 · 代表团 · 除了 · 电子邮件 · 成果",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (2) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 大使馆 · 代表团 · 除了",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "大使馆 — đại sứ quán",
+        explain: "Dùng 大使馆 trong ngữ cảnh Từ chức năng & liên từ (2) để diễn đạt: đại sứ quán.",
+        examples: [
+          { zh: "欢迎来到大使馆。你们是代表团的成员吗？", py: "Huānyíng láidào dàshǐguǎn. Nǐmen shì dàibiǎotuán de chéngyuán ma?", vi: "Chào mừng đến đại sứ quán. Các bạn là thành viên của đoàn đại diện à?" }
+        ] },
+      { point: "代表团 — đoàn đại diện",
+        explain: "Dùng 代表团 trong ngữ cảnh Từ chức năng & liên từ (2) để diễn đạt: đoàn đại diện.",
+        examples: [
+          { zh: "欢迎来到大使馆。你们是代表团的成员吗？", py: "Huānyíng láidào dàshǐguǎn. Nǐmen shì dàibiǎotuán de chéngyuán ma?", vi: "Chào mừng đến đại sứ quán. Các bạn là thành viên của đoàn đại diện à?" }
+        ] },
+      { point: "除了 — ngoài ra, ngoại trừ",
+        explain: "Dùng 除了 trong ngữ cảnh Từ chức năng & liên từ (2) để diễn đạt: ngoài ra, ngoại trừ.",
+        examples: [
+          { zh: "是的。除了我们，当地还有别的留学生。", py: "Shì de. Chúle wǒmen, dāngdì hái yǒu bié de liúxuéshēng.", vi: "Vâng. Ngoài tụi em ra, ở địa phương còn có du học sinh khác." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Đại sứ quán · Buổi sáng', bg: 'office', cast: ['mai', 'xiaomei', 'fuwuyuan'],
         text: 'Trước khi về, nhóm ghé đại sứ quán làm thủ tục.', pinyin: '', meaning: '', vocab: [] },
@@ -2420,26 +2887,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '衬衣', p: 'chèn yī', v: 'áo sơ mi' },
-      { h: '成果', p: 'chéng guǒ', v: 'kết quả, thành tựu' },
-      { h: '成员', p: 'chéng yuán', v: 'thành viên' },
-      { h: '初', p: 'chū', v: 'ban đầu, sơ' },
-      { h: '除了', p: 'chú le', v: 'ngoài ra, ngoại trừ' },
-      { h: '大概', p: 'dà gài', v: 'đại khái, khoảng chừng' },
-      { h: '大使馆', p: 'dà shǐ guǎn', v: 'đại sứ quán' },
-      { h: '大约', p: 'dà yuē', v: 'khoảng, xấp xỉ' },
-      { h: '代表团', p: 'dài biǎo tuán', v: 'đoàn đại diện' },
-      { h: '单元', p: 'dān yuán', v: 'đơn vị, căn hộ' },
-      { h: '当地', p: 'dāng dì', v: 'địa phương, tại chỗ' },
-      { h: '当中', p: 'dāng zhōng', v: 'trong số, ở giữa' },
-      { h: '导演', p: 'dǎo yǎn', v: 'đạo diễn' },
-      { h: '地区', p: 'dì qū', v: 'khu vực, địa khu' },
-      { h: '底下', p: 'dǐ xia', v: 'phía dưới, bên dưới' },
-      { h: '电视剧', p: 'diàn shì jù', v: 'phim truyền hình' },
-      { h: '电台', p: 'diàn tái', v: 'đài phát thanh' },
-      { h: '电子邮件', p: 'diàn zǐ yóu jiàn', v: 'thư điện tử, email' },
-      { h: '动力', p: 'dòng lì', v: 'động lực' },
-      { h: '读者', p: 'dú zhě', v: 'độc giả' }
+      { h: '衬衣', p: 'chèn yī', v: 'áo sơ mi', e: 'shirt' },
+      { h: '成果', p: 'chéng guǒ', v: 'kết quả, thành tựu', e: 'result' },
+      { h: '成员', p: 'chéng yuán', v: 'thành viên', e: 'member' },
+      { h: '初', p: 'chū', v: 'ban đầu, sơ', e: 'at first' },
+      { h: '除了', p: 'chú le', v: 'ngoài ra, ngoại trừ', e: 'besides' },
+      { h: '大概', p: 'dà gài', v: 'đại khái, khoảng chừng', e: 'roughly' },
+      { h: '大使馆', p: 'dà shǐ guǎn', v: 'đại sứ quán', e: 'embassy' },
+      { h: '大约', p: 'dà yuē', v: 'khoảng, xấp xỉ', e: 'approximately' },
+      { h: '代表团', p: 'dài biǎo tuán', v: 'đoàn đại diện', e: 'delegation' },
+      { h: '单元', p: 'dān yuán', v: 'đơn vị, căn hộ', e: 'unit (forming an entity)' },
+      { h: '当地', p: 'dāng dì', v: 'địa phương, tại chỗ', e: 'local' },
+      { h: '当中', p: 'dāng zhōng', v: 'trong số, ở giữa', e: 'among' },
+      { h: '导演', p: 'dǎo yǎn', v: 'đạo diễn', e: 'to direct' },
+      { h: '地区', p: 'dì qū', v: 'khu vực, địa khu', e: 'local' },
+      { h: '底下', p: 'dǐ xia', v: 'phía dưới, bên dưới', e: 'the location below sth' },
+      { h: '电视剧', p: 'diàn shì jù', v: 'phim truyền hình', e: 'TV series' },
+      { h: '电台', p: 'diàn tái', v: 'đài phát thanh', e: 'transmitter-receiver' },
+      { h: '电子邮件', p: 'diàn zǐ yóu jiàn', v: 'thư điện tử, email', e: 'email' },
+      { h: '动力', p: 'dòng lì', v: 'động lực', e: 'motive power' },
+      { h: '读者', p: 'dú zhě', v: 'độc giả', e: 'reader' }
     ],
     workbook: {
       easy: [
@@ -2482,6 +2949,30 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (3)',
     context: 'Sắp về nước, Mai và Tiểu Mỹ thanh toán tiền nhà với chủ nhà, rồi tham gia trận bóng rổ chia tay và ăn mừng ở nhà hàng.',
     vocabPreview: ['房东', '房租', '对手', '方式', '感情'],
+    objectives: [
+      "Nắm nhóm từ khóa: 房东 · 房租 · 对手 · 方式 · 感情",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (3) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 房东 · 房租 · 对手",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "房东 — chủ nhà",
+        explain: "Dùng 房东 trong ngữ cảnh Từ chức năng & liên từ (3) để diễn đạt: chủ nhà.",
+        examples: [
+          { zh: "我们快回国了，得赶紧跟房东结清房租。", py: "Wǒmen kuài huíguó le, děi gǎnjǐn gēn fángdōng jiéqīng fángzū.", vi: "Tụi mình sắp về nước rồi, phải mau chóng thanh toán tiền thuê nhà với chủ nhà." },
+          { zh: "房东人很好，我们感情也不错，退房没什么风险。", py: "Fángdōng rén hěn hǎo, wǒmen gǎnqíng yě búcuò, tuìfáng méi shénme fēngxiǎn.", vi: "Chủ nhà tốt lắm, tình cảm tụi mình cũng tốt, trả phòng chẳng có rủi ro gì." }
+        ] },
+      { point: "房租 — tiền thuê nhà",
+        explain: "Dùng 房租 trong ngữ cảnh Từ chức năng & liên từ (3) để diễn đạt: tiền thuê nhà.",
+        examples: [
+          { zh: "我们快回国了，得赶紧跟房东结清房租。", py: "Wǒmen kuài huíguó le, děi gǎnjǐn gēn fángdōng jiéqīng fángzū.", vi: "Tụi mình sắp về nước rồi, phải mau chóng thanh toán tiền thuê nhà với chủ nhà." }
+        ] },
+      { point: "对手 — đối thủ",
+        explain: "Dùng 对手 trong ngữ cảnh Từ chức năng & liên từ (3) để diễn đạt: đối thủ.",
+        examples: [
+          { zh: "对手虽然强，但对方也有短处，我们抓住机会就行。", py: "Duìshǒu suīrán qiáng, dàn duìfāng yě yǒu duǎnchù, wǒmen zhuāzhù jīhuì jiù xíng.", vi: "Đối thủ tuy mạnh, nhưng đối phương cũng có điểm yếu, mình chớp cơ hội là được." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Căn hộ · Buổi sáng', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Mai và Tiểu Mỹ sắp về nước, hai bạn dọn dẹp và tính chuyện trả nhà.', pinyin: '', meaning: '', vocab: [] },
@@ -2535,26 +3026,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '短处', p: 'duǎn chù', v: 'điểm yếu, nhược điểm' },
-      { h: '短裤', p: 'duǎn kù', v: 'quần đùi, quần short' },
-      { h: '队员', p: 'duì yuán', v: 'thành viên đội' },
-      { h: '对方', p: 'duì fāng', v: 'đối phương, phía bên kia' },
-      { h: '对手', p: 'duì shǒu', v: 'đối thủ' },
-      { h: '对象', p: 'duì xiàng', v: 'đối tượng' },
-      { h: '顿', p: 'dùn', v: 'lần, bữa (lượng từ)' },
-      { h: '反正', p: 'fǎn zhèng', v: 'dù sao, bất kể thế nào' },
-      { h: '范围', p: 'fàn wéi', v: 'phạm vi' },
-      { h: '方式', p: 'fāng shì', v: 'phương thức, cách thức' },
-      { h: '房东', p: 'fáng dōng', v: 'chủ nhà' },
-      { h: '房屋', p: 'fáng wū', v: 'nhà cửa' },
-      { h: '房租', p: 'fáng zū', v: 'tiền thuê nhà' },
-      { h: '费用', p: 'fèi yòng', v: 'chi phí, lệ phí' },
-      { h: '风险', p: 'fēng xiǎn', v: 'rủi ro' },
-      { h: '服务员', p: 'fú wù yuán', v: 'nhân viên phục vụ, bồi bàn' },
-      { h: '服装', p: 'fú zhuāng', v: 'trang phục, quần áo' },
-      { h: '赶紧', p: 'gǎn jǐn', v: 'vội vàng, khẩn trương' },
-      { h: '赶快', p: 'gǎn kuài', v: 'nhanh lên, mau lên' },
-      { h: '感情', p: 'gǎn qíng', v: 'tình cảm, cảm xúc' }
+      { h: '短处', p: 'duǎn chù', v: 'điểm yếu, nhược điểm', e: 'shortcoming' },
+      { h: '短裤', p: 'duǎn kù', v: 'quần đùi, quần short', e: 'short pants' },
+      { h: '队员', p: 'duì yuán', v: 'thành viên đội', e: 'team member' },
+      { h: '对方', p: 'duì fāng', v: 'đối phương, phía bên kia', e: 'the other person' },
+      { h: '对手', p: 'duì shǒu', v: 'đối thủ', e: 'opponent' },
+      { h: '对象', p: 'duì xiàng', v: 'đối tượng', e: 'target' },
+      { h: '顿', p: 'dùn', v: 'lần, bữa (lượng từ)', e: 'to stop' },
+      { h: '反正', p: 'fǎn zhèng', v: 'dù sao, bất kể thế nào', e: 'anyway' },
+      { h: '范围', p: 'fàn wéi', v: 'phạm vi', e: 'range' },
+      { h: '方式', p: 'fāng shì', v: 'phương thức, cách thức', e: 'way' },
+      { h: '房东', p: 'fáng dōng', v: 'chủ nhà', e: 'landlord' },
+      { h: '房屋', p: 'fáng wū', v: 'nhà cửa', e: 'house' },
+      { h: '房租', p: 'fáng zū', v: 'tiền thuê nhà', e: 'rent for a room or house' },
+      { h: '费用', p: 'fèi yòng', v: 'chi phí, lệ phí', e: 'cost' },
+      { h: '风险', p: 'fēng xiǎn', v: 'rủi ro', e: 'risk' },
+      { h: '服务员', p: 'fú wù yuán', v: 'nhân viên phục vụ, bồi bàn', e: 'waiter' },
+      { h: '服装', p: 'fú zhuāng', v: 'trang phục, quần áo', e: 'dress' },
+      { h: '赶紧', p: 'gǎn jǐn', v: 'vội vàng, khẩn trương', e: 'hurriedly' },
+      { h: '赶快', p: 'gǎn kuài', v: 'nhanh lên, mau lên', e: 'quickly' },
+      { h: '感情', p: 'gǎn qíng', v: 'tình cảm, cảm xúc', e: 'emotion' }
     ],
     workbook: {
       easy: [
@@ -2590,6 +3081,30 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (4)',
     context: 'Đêm hòa nhạc chia tay, rồi sáng hôm sau Mai làm thủ tục hải quan để về quê hương.',
     vocabPreview: ['歌手', '观众', '故乡', '海关', '公民'],
+    objectives: [
+      "Nắm nhóm từ khóa: 歌手 · 观众 · 故乡 · 海关 · 公民",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (4) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 歌手 · 观众 · 故乡",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "歌手 — ca sĩ",
+        explain: "Dùng 歌手 trong ngữ cảnh Từ chức năng & liên từ (4) để diễn đạt: ca sĩ.",
+        examples: [
+          { zh: "今晚的歌手是你的偶像，好多歌迷都来了！", py: "Jīnwǎn de gēshǒu shì nǐ de ǒuxiàng, hǎo duō gēmí dōu lái le!", vi: "Ca sĩ tối nay là thần tượng của cậu, bao nhiêu người hâm mộ đều đến!" },
+          { zh: "她很有个性，每个歌手都有自己的个人风格。", py: "Tā hěn yǒu gèxìng, měi gè gēshǒu dōu yǒu zìjǐ de gèrén fēnggé.", vi: "Cô ấy rất cá tính, mỗi ca sĩ đều có phong cách cá nhân riêng." }
+        ] },
+      { point: "观众 — khán giả",
+        explain: "Dùng 观众 trong ngữ cảnh Từ chức năng & liên từ (4) để diễn đạt: khán giả.",
+        examples: [
+          { zh: "是啊！她的歌声真美，观众都很激动。", py: "Shì a! Tā de gēshēng zhēn měi, guānzhòng dōu hěn jīdòng.", vi: "Đúng vậy! Giọng hát của cô ấy đẹp thật, khán giả đều phấn khích." }
+        ] },
+      { point: "故乡 — quê hương",
+        explain: "Dùng 故乡 trong ngữ cảnh Từ chức năng & liên từ (4) để diễn đạt: quê hương.",
+        examples: [
+          { zh: "我们也花了不少工夫准备行李。明天就要回故乡了。", py: "Wǒmen yě huā le bù shǎo gōngfu zhǔnbèi xíngli. Míngtiān jiù yào huí gùxiāng le.", vi: "Tụi mình cũng tốn không ít công sức chuẩn bị hành lý. Mai là về quê hương rồi." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Hội trường · Buổi tối', bg: 'campus', cast: ['mai', 'xiaomei'],
         text: 'Đêm cuối ở nước ngoài, hai bạn đi xem buổi hòa nhạc chia tay.', pinyin: '', meaning: '', vocab: [] },
@@ -2645,26 +3160,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '歌迷', p: 'gē mí', v: 'người hâm mộ nhạc' },
-      { h: '歌声', p: 'gē shēng', v: 'giọng hát, tiếng hát' },
-      { h: '歌手', p: 'gē shǒu', v: 'ca sĩ' },
-      { h: '个人', p: 'gè rén', v: 'cá nhân' },
-      { h: '个性', p: 'gè xìng', v: 'cá tính' },
-      { h: '更加', p: 'gèng jiā', v: 'càng hơn, thêm' },
-      { h: '工夫', p: 'gōng fū', v: 'công sức, thời gian' },
-      { h: '工具', p: 'gōng jù', v: 'công cụ, dụng cụ' },
-      { h: '公民', p: 'gōng mín', v: 'công dân' },
-      { h: '公务员', p: 'gōng wù yuán', v: 'công chức nhà nước' },
-      { h: '功夫', p: 'gōng fu', v: 'công phu, võ thuật' },
-      { h: '功能', p: 'gōng néng', v: 'chức năng' },
-      { h: '姑娘', p: 'gū niang', v: 'cô gái' },
-      { h: '故乡', p: 'gù xiāng', v: 'quê hương' },
-      { h: '观念', p: 'guān niàn', v: 'quan niệm, khái niệm' },
-      { h: '观众', p: 'guān zhòng', v: 'khán giả' },
-      { h: '国内', p: 'guó nèi', v: 'trong nước, nội địa' },
-      { h: '果然', p: 'guǒ rán', v: 'quả nhiên, đúng như vậy' },
-      { h: '哈哈', p: 'hā hā', v: 'haha (tiếng cười)' },
-      { h: '海关', p: 'hǎi guān', v: 'hải quan' }
+      { h: '歌迷', p: 'gē mí', v: 'người hâm mộ nhạc', e: 'fan of a singer' },
+      { h: '歌声', p: 'gē shēng', v: 'giọng hát, tiếng hát', e: 'singing voice' },
+      { h: '歌手', p: 'gē shǒu', v: 'ca sĩ', e: 'singer' },
+      { h: '个人', p: 'gè rén', v: 'cá nhân', e: 'individual' },
+      { h: '个性', p: 'gè xìng', v: 'cá tính', e: 'individuality' },
+      { h: '更加', p: 'gèng jiā', v: 'càng hơn, thêm', e: 'more (than sth else)' },
+      { h: '工夫', p: 'gōng fū', v: 'công sức, thời gian', e: 'laborer' },
+      { h: '工具', p: 'gōng jù', v: 'công cụ, dụng cụ', e: 'tool' },
+      { h: '公民', p: 'gōng mín', v: 'công dân', e: 'citizen' },
+      { h: '公务员', p: 'gōng wù yuán', v: 'công chức nhà nước', e: 'functionary' },
+      { h: '功夫', p: 'gōng fu', v: 'công phu, võ thuật', e: 'skill' },
+      { h: '功能', p: 'gōng néng', v: 'chức năng', e: 'function' },
+      { h: '姑娘', p: 'gū niang', v: 'cô gái', e: 'girl' },
+      { h: '故乡', p: 'gù xiāng', v: 'quê hương', e: 'home' },
+      { h: '观念', p: 'guān niàn', v: 'quan niệm, khái niệm', e: 'notion' },
+      { h: '观众', p: 'guān zhòng', v: 'khán giả', e: 'spectators' },
+      { h: '国内', p: 'guó nèi', v: 'trong nước, nội địa', e: 'domestic' },
+      { h: '果然', p: 'guǒ rán', v: 'quả nhiên, đúng như vậy', e: 'really' },
+      { h: '哈哈', p: 'hā hā', v: 'haha (tiếng cười)', e: 'laughing out loud' },
+      { h: '海关', p: 'hǎi guān', v: 'hải quan', e: 'customs (i.e. border crossing inspection)' }
     ],
     workbook: {
       easy: [
@@ -2700,6 +3215,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (5)',
     context: 'Về nước, Mai họp online cùng Tiểu Mỹ qua internet để lập câu lạc bộ tiếng Hán cho cộng đồng người Hoa.',
     vocabPreview: ['互联网', '会议', '集体', '基础', '价值'],
+    objectives: [
+      "Nắm nhóm từ khóa: 互联网 · 会议 · 集体 · 基础 · 价值",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (5) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 互联网 · 会议 · 集体",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "互联网 — mạng internet",
+        explain: "Dùng 互联网 trong ngữ cảnh Từ chức năng & liên từ (5) để diễn đạt: mạng internet.",
+        examples: [
+          { zh: "我们用互联网开个会议吧，把华人留学生组织起来。", py: "Wǒmen yòng hùliánwǎng kāi gè huìyì ba, bǎ Huárén liúxuéshēng zǔzhī qǐlái.", vi: "Tụi mình dùng internet họp một buổi đi, tập hợp du học sinh người Hoa lại." }
+        ] },
+      { point: "会议 — hội nghị, cuộc họp",
+        explain: "Dùng 会议 trong ngữ cảnh Từ chức năng & liên từ (5) để diễn đạt: hội nghị, cuộc họp.",
+        examples: [
+          { zh: "我们用互联网开个会议吧，把华人留学生组织起来。", py: "Wǒmen yòng hùliánwǎng kāi gè huìyì ba, bǎ Huárén liúxuéshēng zǔzhī qǐlái.", vi: "Tụi mình dùng internet họp một buổi đi, tập hợp du học sinh người Hoa lại." }
+        ] },
+      { point: "集体 — tập thể",
+        explain: "Dùng 集体 trong ngữ cảnh Từ chức năng & liên từ (5) để diễn đạt: tập thể.",
+        examples: [
+          { zh: "我们还想排一出话剧，靠集体的力量一起做。", py: "Wǒmen hái xiǎng pái yì chū huàjù, kào jítǐ de lìliàng yìqǐ zuò.", vi: "Tụi mình còn muốn dựng một vở kịch nói, dựa vào sức mạnh tập thể cùng làm." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Phòng riêng · Buổi tối', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Về nước, Mai mở máy tính họp online cùng Tiểu Mỹ.', pinyin: '', meaning: '', vocab: [] },
@@ -2749,26 +3287,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '好好', p: 'hǎo hǎo', v: 'tử tế, nghiêm túc' },
-      { h: '后果', p: 'hòu guǒ', v: 'hậu quả' },
-      { h: '互联网', p: 'hù lián wǎng', v: 'mạng internet' },
-      { h: '华人', p: 'huá rén', v: 'người Hoa' },
-      { h: '话剧', p: 'huà jù', v: 'kịch nói' },
-      { h: '会议', p: 'huì yì', v: 'hội nghị, cuộc họp' },
-      { h: '会员', p: 'huì yuán', v: 'hội viên, thành viên' },
-      { h: '积极性', p: 'jī jí xìng', v: 'tính tích cực, nhiệt tình' },
-      { h: '基本上', p: 'jī běn shang', v: 'về cơ bản' },
-      { h: '基础', p: 'jī chǔ', v: 'nền tảng, cơ sở' },
-      { h: '极了', p: 'jí le', v: 'vô cùng, cực kỳ' },
-      { h: '集体', p: 'jí tǐ', v: 'tập thể' },
-      { h: '技术', p: 'jì shù', v: 'kỹ thuật, công nghệ' },
-      { h: '家具', p: 'jiā jù', v: 'đồ nội thất, gia cụ' },
-      { h: '价值', p: 'jià zhí', v: 'giá trị' },
-      { h: '简直', p: 'jiǎn zhí', v: 'thật sự, đơn giản là' },
-      { h: '将近', p: 'jiāng jìn', v: 'gần, sắp đến' },
-      { h: '较', p: 'jiào', v: 'khá, tương đối' },
-      { h: '教练', p: 'jiào liàn', v: 'huấn luyện viên' },
-      { h: '仅', p: 'jǐn', v: 'chỉ, duy nhất' }
+      { h: '好好', p: 'hǎo hǎo', v: 'tử tế, nghiêm túc', e: 'well' },
+      { h: '后果', p: 'hòu guǒ', v: 'hậu quả', e: 'consequences' },
+      { h: '互联网', p: 'hù lián wǎng', v: 'mạng internet', e: 'Internet' },
+      { h: '华人', p: 'huá rén', v: 'người Hoa', e: 'ethnic Chinese person or people' },
+      { h: '话剧', p: 'huà jù', v: 'kịch nói', e: 'stage play' },
+      { h: '会议', p: 'huì yì', v: 'hội nghị, cuộc họp', e: 'meeting' },
+      { h: '会员', p: 'huì yuán', v: 'hội viên, thành viên', e: 'member' },
+      { h: '积极性', p: 'jī jí xìng', v: 'tính tích cực, nhiệt tình', e: 'zeal' },
+      { h: '基本上', p: 'jī běn shang', v: 'về cơ bản', e: 'basically' },
+      { h: '基础', p: 'jī chǔ', v: 'nền tảng, cơ sở', e: 'base' },
+      { h: '极了', p: 'jí le', v: 'vô cùng, cực kỳ', e: 'extremely' },
+      { h: '集体', p: 'jí tǐ', v: 'tập thể', e: 'collective (decision)' },
+      { h: '技术', p: 'jì shù', v: 'kỹ thuật, công nghệ', e: 'technology' },
+      { h: '家具', p: 'jiā jù', v: 'đồ nội thất, gia cụ', e: 'furniture' },
+      { h: '价值', p: 'jià zhí', v: 'giá trị', e: 'value' },
+      { h: '简直', p: 'jiǎn zhí', v: 'thật sự, đơn giản là', e: 'simply' },
+      { h: '将近', p: 'jiāng jìn', v: 'gần, sắp đến', e: 'almost' },
+      { h: '较', p: 'jiào', v: 'khá, tương đối', e: 'to compare' },
+      { h: '教练', p: 'jiào liàn', v: 'huấn luyện viên', e: 'instructor' },
+      { h: '仅', p: 'jǐn', v: 'chỉ, duy nhất', e: 'barely' }
     ],
     workbook: {
       easy: [
@@ -2804,6 +3342,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (6)',
     context: 'Mai đến công ty du lịch hỏi tuyến đường cho một chuyến đi trong nước, mẹ dặn dò đủ thứ.',
     vocabPreview: ['旅行社', '路线', '景色', '空调', '力量'],
+    objectives: [
+      "Nắm nhóm từ khóa: 旅行社 · 路线 · 景色 · 空调 · 力量",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (6) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 旅行社 · 路线 · 景色",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "旅行社 — công ty du lịch",
+        explain: "Dùng 旅行社 trong ngữ cảnh Từ chức năng & liên từ (6) để diễn đạt: công ty du lịch.",
+        examples: [
+          { zh: "我去旅行社问问路线。听说邻居老头儿也常出去玩。", py: "Wǒ qù lǚxíngshè wènwen lùxiàn. Tīngshuō línjū lǎotóur yě cháng chūqù wán.", vi: "Con đến công ty du lịch hỏi tuyến đường. Nghe nói ông cụ hàng xóm cũng hay đi chơi." }
+        ] },
+      { point: "路线 — lộ trình, tuyến đường",
+        explain: "Dùng 路线 trong ngữ cảnh Từ chức năng & liên từ (6) để diễn đạt: lộ trình, tuyến đường.",
+        examples: [
+          { zh: "这条路线景色好，里面包含了山和湖，很受老百姓欢迎。", py: "Zhè tiáo lùxiàn jǐngsè hǎo, lǐmiàn bāohán le shān hé hú, hěn shòu lǎobǎixìng huānyíng.", vi: "Tuyến này cảnh đẹp, bên trong gồm cả núi và hồ, được dân thường rất ưa chuộng." }
+        ] },
+      { point: "景色 — cảnh sắc, phong cảnh",
+        explain: "Dùng 景色 trong ngữ cảnh Từ chức năng & liên từ (6) để diễn đạt: cảnh sắc, phong cảnh.",
+        examples: [
+          { zh: "妈，我想尽量利用假期去旅行。国内经济发展快，景色也美。", py: "Mā, wǒ xiǎng jǐnliàng lìyòng jiàqī qù lǚxíng. Guónèi jīngjì fāzhǎn kuài, jǐngsè yě měi.", vi: "Mẹ ơi, con muốn cố tận dụng kỳ nghỉ đi du lịch. Kinh tế trong nước phát triển nhanh, cảnh sắc cũng đẹp." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi sáng', bg: 'home', cast: ['mai', 'mama'],
         text: 'Nghỉ ở nhà ít hôm, Mai muốn đi du lịch trong nước.', pinyin: '', meaning: '', vocab: [] },
@@ -2859,26 +3420,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '仅仅', p: 'jǐn jǐn', v: 'chỉ, chỉ vỏn vẹn' },
-      { h: '尽量', p: 'jǐn liàng', v: 'hết sức, cố gắng' },
-      { h: '经济', p: 'jīng jì', v: 'kinh tế' },
-      { h: '精神', p: 'jīng shén', v: 'tinh thần' },
-      { h: '景色', p: 'jǐng sè', v: 'cảnh sắc, phong cảnh' },
-      { h: '空调', p: 'kōng tiáo', v: 'điều hòa không khí' },
-      { h: '空儿', p: 'kòng r', v: 'thời gian rảnh rỗi' },
-      { h: '裤子', p: 'kù zi', v: 'quần dài' },
-      { h: '老百姓', p: 'lǎo bǎi xìng', v: 'dân thường, người dân' },
-      { h: '老头儿', p: 'lǎo tóu r', v: 'ông cụ, ông lão' },
-      { h: '乐队', p: 'yuè duì', v: 'ban nhạc' },
-      { h: '类', p: 'lèi', v: 'loại' },
-      { h: '里面', p: 'lǐ miàn', v: 'bên trong' },
-      { h: '力', p: 'lì', v: 'lực, sức' },
-      { h: '力量', p: 'lì liang', v: 'sức mạnh, lực lượng' },
-      { h: '立刻', p: 'lì kè', v: 'ngay lập tức' },
-      { h: '连忙', p: 'lián máng', v: 'vội vàng, hấp tấp' },
-      { h: '凉水', p: 'liáng shuǐ', v: 'nước lạnh, nước nguội' },
-      { h: '路线', p: 'lù xiàn', v: 'lộ trình, tuyến đường' },
-      { h: '旅行社', p: 'lǚ xíng shè', v: 'công ty du lịch' }
+      { h: '仅仅', p: 'jǐn jǐn', v: 'chỉ, chỉ vỏn vẹn', e: 'barely' },
+      { h: '尽量', p: 'jǐn liàng', v: 'hết sức, cố gắng', e: 'as much as possible' },
+      { h: '经济', p: 'jīng jì', v: 'kinh tế', e: 'economy' },
+      { h: '精神', p: 'jīng shén', v: 'tinh thần', e: 'spirit' },
+      { h: '景色', p: 'jǐng sè', v: 'cảnh sắc, phong cảnh', e: 'scenery' },
+      { h: '空调', p: 'kōng tiáo', v: 'điều hòa không khí', e: 'air conditioning' },
+      { h: '空儿', p: 'kòng r', v: 'thời gian rảnh rỗi', e: 'spare time' },
+      { h: '裤子', p: 'kù zi', v: 'quần dài', e: 'trousers, pants' },
+      { h: '老百姓', p: 'lǎo bǎi xìng', v: 'dân thường, người dân', e: 'ordinary people' },
+      { h: '老头儿', p: 'lǎo tóu r', v: 'ông cụ, ông lão', e: 'see 老头子' },
+      { h: '乐队', p: 'yuè duì', v: 'ban nhạc', e: 'band' },
+      { h: '类', p: 'lèi', v: 'loại', e: 'kind' },
+      { h: '里面', p: 'lǐ miàn', v: 'bên trong', e: 'inside' },
+      { h: '力', p: 'lì', v: 'lực, sức', e: 'strength, force, power' },
+      { h: '力量', p: 'lì liang', v: 'sức mạnh, lực lượng', e: 'power' },
+      { h: '立刻', p: 'lì kè', v: 'ngay lập tức', e: 'forthwith' },
+      { h: '连忙', p: 'lián máng', v: 'vội vàng, hấp tấp', e: 'promptly' },
+      { h: '凉水', p: 'liáng shuǐ', v: 'nước lạnh, nước nguội', e: 'cool water' },
+      { h: '路线', p: 'lù xiàn', v: 'lộ trình, tuyến đường', e: 'itinerary' },
+      { h: '旅行社', p: 'lǚ xíng shè', v: 'công ty du lịch', e: 'travel agency' }
     ],
     workbook: {
       easy: [
@@ -2914,6 +3475,30 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (7)',
     context: 'Một kênh truyền thông của trường phỏng vấn Mai về câu chuyện du học và mục tiêu của em.',
     vocabPreview: ['媒体', '目标', '能力', '内容', '命运'],
+    objectives: [
+      "Nắm nhóm từ khóa: 媒体 · 目标 · 能力 · 内容 · 命运",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (7) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 媒体 · 目标 · 能力",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "媒体 — truyền thông",
+        explain: "Dùng 媒体 trong ngữ cảnh Từ chức năng & liên từ (7) để diễn đạt: truyền thông.",
+        examples: [
+          { zh: "你好，我们是校园媒体，想采访你的留学故事。", py: "Nǐ hǎo, wǒmen shì xiàoyuán méitǐ, xiǎng cǎifǎng nǐ de liúxué gùshi.", vi: "Chào bạn, chúng tôi là kênh truyền thông của trường, muốn phỏng vấn câu chuyện du học của bạn." }
+        ] },
+      { point: "目标 — mục tiêu",
+        explain: "Dùng 目标 trong ngữ cảnh Từ chức năng & liên từ (7) để diễn đạt: mục tiêu.",
+        examples: [
+          { zh: "留学这一年，你最大的目标是什么？", py: "Liúxué zhè yì nián, nǐ zuì dà de mùbiāo shì shénme?", vi: "Một năm du học, mục tiêu lớn nhất của bạn là gì?" },
+          { zh: "我的目标是提高汉语能力，现在慢慢做到了。", py: "Wǒ de mùbiāo shì tígāo Hànyǔ nénglì, xiànzài mànman zuòdào le.", vi: "Mục tiêu của em là nâng cao năng lực tiếng Hán, giờ em từ từ làm được rồi." }
+        ] },
+      { point: "能力 — năng lực, khả năng",
+        explain: "Dùng 能力 trong ngữ cảnh Từ chức năng & liên từ (7) để diễn đạt: năng lực, khả năng.",
+        examples: [
+          { zh: "我的目标是提高汉语能力，现在慢慢做到了。", py: "Wǒ de mùbiāo shì tígāo Hànyǔ nénglì, xiànzài mànman zuòdào le.", vi: "Mục tiêu của em là nâng cao năng lực tiếng Hán, giờ em từ từ làm được rồi." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Buổi chiều', bg: 'office', cast: ['mai', 'fuwuyuan'],
         text: 'Một phóng viên của kênh truyền thông trường đến phỏng vấn Mai.', pinyin: '', meaning: '', vocab: [] },
@@ -2967,26 +3552,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '慢慢', p: 'màn màn', v: 'từ từ, dần dần' },
-      { h: '毛病', p: 'máo bìng', v: 'tật xấu, trục trặc, lỗi' },
-      { h: '媒体', p: 'méi tǐ', v: 'truyền thông' },
-      { h: '美食', p: 'měi shí', v: 'ẩm thực, món ăn ngon' },
-      { h: '美元', p: 'měi yuán', v: 'đô la Mỹ' },
-      { h: '面积', p: 'miàn jī', v: 'diện tích' },
-      { h: '民间', p: 'mín jiān', v: 'dân gian' },
-      { h: '命运', p: 'mìng yùn', v: 'số phận, vận mệnh' },
-      { h: '木头', p: 'mù tou', v: 'gỗ' },
-      { h: '目标', p: 'mù biāo', v: 'mục tiêu' },
-      { h: '男子', p: 'nán zǐ', v: 'nam giới, đàn ông' },
-      { h: '难道', p: 'nán dào', v: 'chẳng lẽ, lẽ nào' },
-      { h: '内', p: 'nèi', v: 'bên trong, trong vòng' },
-      { h: '内容', p: 'nèi róng', v: 'nội dung' },
-      { h: '能力', p: 'néng lì', v: 'năng lực, khả năng' },
-      { h: '农民', p: 'nóng mín', v: 'nông dân' },
-      { h: '农业', p: 'nóng yè', v: 'nông nghiệp' },
-      { h: '女子', p: 'nǚ zǐ', v: 'phụ nữ, nữ giới' },
-      { h: '牌子', p: 'pái zi', v: 'biển hiệu, nhãn hiệu' },
-      { h: '苹果', p: 'píng guǒ', v: 'táo (quả)' }
+      { h: '慢慢', p: 'màn màn', v: 'từ từ, dần dần', e: 'slowly' },
+      { h: '毛病', p: 'máo bìng', v: 'tật xấu, trục trặc, lỗi', e: 'fault' },
+      { h: '媒体', p: 'méi tǐ', v: 'truyền thông', e: 'media, esp. news media' },
+      { h: '美食', p: 'měi shí', v: 'ẩm thực, món ăn ngon', e: 'culinary delicacy' },
+      { h: '美元', p: 'měi yuán', v: 'đô la Mỹ', e: 'American dollar' },
+      { h: '面积', p: 'miàn jī', v: 'diện tích', e: 'area (of a floor, piece of land etc)' },
+      { h: '民间', p: 'mín jiān', v: 'dân gian', e: 'among the people' },
+      { h: '命运', p: 'mìng yùn', v: 'số phận, vận mệnh', e: 'fate' },
+      { h: '木头', p: 'mù tou', v: 'gỗ', e: 'slow-witted' },
+      { h: '目标', p: 'mù biāo', v: 'mục tiêu', e: 'target' },
+      { h: '男子', p: 'nán zǐ', v: 'nam giới, đàn ông', e: 'a man' },
+      { h: '难道', p: 'nán dào', v: 'chẳng lẽ, lẽ nào', e: 'don\\\'t tell me ...' },
+      { h: '内', p: 'nèi', v: 'bên trong, trong vòng', e: 'inside' },
+      { h: '内容', p: 'nèi róng', v: 'nội dung', e: 'content' },
+      { h: '能力', p: 'néng lì', v: 'năng lực, khả năng', e: 'capability' },
+      { h: '农民', p: 'nóng mín', v: 'nông dân', e: 'peasant' },
+      { h: '农业', p: 'nóng yè', v: 'nông nghiệp', e: 'agriculture' },
+      { h: '女子', p: 'nǚ zǐ', v: 'phụ nữ, nữ giới', e: 'woman' },
+      { h: '牌子', p: 'pái zi', v: 'biển hiệu, nhãn hiệu', e: 'sign' },
+      { h: '苹果', p: 'píng guǒ', v: 'táo (quả)', e: 'apple' }
     ],
     workbook: {
       easy: [
@@ -3029,6 +3614,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (8)',
     context: 'Ngày công diễn vở kịch của câu lạc bộ. Mai hồi hộp nhưng cả nhóm đã chuẩn bị kỹ; diễn xong em đi mua một chiếc váy tự thưởng.',
     vocabPreview: ['全场', '人群', '情感', '其实', '人民币'],
+    objectives: [
+      "Nắm nhóm từ khóa: 全场 · 人群 · 情感 · 其实 · 人民币",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (8) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 全场 · 人群 · 情感",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "全场 — toàn trường, cả khán phòng",
+        explain: "Dùng 全场 trong ngữ cảnh Từ chức năng & liên từ (8) để diễn đạt: toàn trường, cả khán phòng.",
+        examples: [
+          { zh: "全场坐满了人群，演出是为人民服务，也是我们的任务。", py: "Quánchǎng zuòmǎn le rénqún, yǎnchū shì wèi rénmín fúwù, yě shì wǒmen de rènwù.", vi: "Cả khán phòng kín người, biểu diễn là phục vụ nhân dân, cũng là nhiệm vụ của tụi mình." }
+        ] },
+      { point: "人群 — đám đông người",
+        explain: "Dùng 人群 trong ngữ cảnh Từ chức năng & liên từ (8) để diễn đạt: đám đông người.",
+        examples: [
+          { zh: "全场坐满了人群，演出是为人民服务，也是我们的任务。", py: "Quánchǎng zuòmǎn le rénqún, yǎnchū shì wèi rénmín fúwù, yě shì wǒmen de rènwù.", vi: "Cả khán phòng kín người, biểu diễn là phục vụ nhân dân, cũng là nhiệm vụ của tụi mình." }
+        ] },
+      { point: "情感 — tình cảm, cảm xúc",
+        explain: "Dùng 情感 trong ngữ cảnh Từ chức năng & liên từ (8) để diễn đạt: tình cảm, cảm xúc.",
+        examples: [
+          { zh: "这出戏讲人类的情感，很打动人。观众里有不少人才。", py: "Zhè chū xì jiǎng rénlèi de qínggǎn, hěn dǎdòng rén. Guānzhòng lǐ yǒu bù shǎo réncái.", vi: "Vở này nói về cảm xúc của loài người, rất lay động. Trong khán giả có nhiều nhân tài." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân khấu trường · Buổi tối', bg: 'campus', cast: ['mai', 'xiaomei'],
         text: 'Hôm nay là buổi công diễn đầu tiên vở kịch của câu lạc bộ.', pinyin: '', meaning: '', vocab: [] },
@@ -3080,26 +3688,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '其实', p: 'qí shí', v: 'thực ra, thực chất' },
-      { h: '前后', p: 'qián hòu', v: 'trước sau, khoảng' },
-      { h: '桥', p: 'qiáo', v: 'cầu' },
-      { h: '亲自', p: 'qīn zì', v: 'đích thân' },
-      { h: '情感', p: 'qíng gǎn', v: 'tình cảm, cảm xúc' },
-      { h: '情况', p: 'qíng kuàng', v: 'tình hình, hoàn cảnh' },
-      { h: '全场', p: 'quán chǎng', v: 'toàn trường, cả khán phòng' },
-      { h: '全球', p: 'quán qiú', v: 'toàn cầu' },
-      { h: '缺点', p: 'quē diǎn', v: 'điểm yếu, khuyết điểm' },
-      { h: '裙子', p: 'qún zi', v: 'váy, chân váy' },
-      { h: '人才', p: 'rén cái', v: 'nhân tài' },
-      { h: '人类', p: 'rén lèi', v: 'nhân loại, loài người' },
-      { h: '人民', p: 'rén mín', v: 'nhân dân' },
-      { h: '人民币', p: 'rén mín bì', v: 'Nhân dân tệ' },
-      { h: '人群', p: 'rén qún', v: 'đám đông người' },
-      { h: '任务', p: 'rèn wu', v: 'nhiệm vụ' },
-      { h: '仍', p: 'réng', v: 'vẫn, vẫn còn' },
-      { h: '仍然', p: 'réng rán', v: 'vẫn, vẫn còn' },
-      { h: '商品', p: 'shāng pǐn', v: 'hàng hóa, thương phẩm' },
-      { h: '商业', p: 'shāng yè', v: 'thương mại' }
+      { h: '其实', p: 'qí shí', v: 'thực ra, thực chất', e: 'actually' },
+      { h: '前后', p: 'qián hòu', v: 'trước sau, khoảng', e: 'around' },
+      { h: '桥', p: 'qiáo', v: 'cầu', e: 'bridge' },
+      { h: '亲自', p: 'qīn zì', v: 'đích thân', e: 'personally' },
+      { h: '情感', p: 'qíng gǎn', v: 'tình cảm, cảm xúc', e: 'feeling' },
+      { h: '情况', p: 'qíng kuàng', v: 'tình hình, hoàn cảnh', e: 'circumstances' },
+      { h: '全场', p: 'quán chǎng', v: 'toàn trường, cả khán phòng', e: 'everyone present' },
+      { h: '全球', p: 'quán qiú', v: 'toàn cầu', e: 'entire' },
+      { h: '缺点', p: 'quē diǎn', v: 'điểm yếu, khuyết điểm', e: 'weak point' },
+      { h: '裙子', p: 'qún zi', v: 'váy, chân váy', e: 'skirt' },
+      { h: '人才', p: 'rén cái', v: 'nhân tài', e: 'talent' },
+      { h: '人类', p: 'rén lèi', v: 'nhân loại, loài người', e: 'humanity' },
+      { h: '人民', p: 'rén mín', v: 'nhân dân', e: 'the people' },
+      { h: '人民币', p: 'rén mín bì', v: 'Nhân dân tệ', e: 'Renminbi (RMB)' },
+      { h: '人群', p: 'rén qún', v: 'đám đông người', e: 'crowd' },
+      { h: '任务', p: 'rèn wu', v: 'nhiệm vụ', e: 'mission' },
+      { h: '仍', p: 'réng', v: 'vẫn, vẫn còn', e: 'still' },
+      { h: '仍然', p: 'réng rán', v: 'vẫn, vẫn còn', e: 'still' },
+      { h: '商品', p: 'shāng pǐn', v: 'hàng hóa, thương phẩm', e: 'commodity' },
+      { h: '商业', p: 'shāng yè', v: 'thương mại', e: 'business' }
     ],
     workbook: {
       easy: [
@@ -3135,6 +3743,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (9)',
     context: 'Mai đến một công ty thực phẩm làm thủ tục xin thực tập, suy nghĩ về sự nghiệp tương lai.',
     vocabPreview: ['手续', '身份证', '事业', '实力', '事实'],
+    objectives: [
+      "Nắm nhóm từ khóa: 手续 · 身份证 · 事业 · 实力 · 事实",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (9) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 手续 · 身份证 · 事业",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "手续 — thủ tục",
+        explain: "Dùng 手续 trong ngữ cảnh Từ chức năng & liên từ (9) để diễn đạt: thủ tục.",
+        examples: [
+          { zh: "办手续首先要出示身份证。", py: "Bàn shǒuxù shǒuxiān yào chūshì shēnfènzhèng.", vi: "Làm thủ tục trước hết phải xuất trình chứng minh nhân dân." }
+        ] },
+      { point: "身份证 — chứng minh nhân dân",
+        explain: "Dùng 身份证 trong ngữ cảnh Từ chức năng & liên từ (9) để diễn đạt: chứng minh nhân dân.",
+        examples: [
+          { zh: "办手续首先要出示身份证。", py: "Bàn shǒuxù shǒuxiān yào chūshì shēnfènzhèng.", vi: "Làm thủ tục trước hết phải xuất trình chứng minh nhân dân." }
+        ] },
+      { point: "事业 — sự nghiệp",
+        explain: "Dùng 事业 trong ngữ cảnh Từ chức năng & liên từ (9) để diễn đạt: sự nghiệp.",
+        examples: [
+          { zh: "我会把工作当成事业，始终认真。", py: "Wǒ huì bǎ gōngzuò dàngchéng shìyè, shǐzhōng rènzhēn.", vi: "Em sẽ coi công việc là sự nghiệp, luôn luôn nghiêm túc." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng công ty · Buổi sáng', bg: 'office', cast: ['mai', 'fuwuyuan'],
         text: 'Mai đến công ty thực phẩm xin thực tập.', pinyin: '', meaning: '', vocab: [] },
@@ -3184,26 +3815,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '上面', p: 'shàng miàn', v: 'phía trên, bề mặt' },
-      { h: '上衣', p: 'shàng yī', v: 'áo, áo khoác' },
-      { h: '身份证', p: 'shēn fèn zhèng', v: 'chứng minh nhân dân' },
-      { h: '生命', p: 'shēng mìng', v: 'sinh mệnh, mạng sống' },
-      { h: '生意', p: 'shēng yì', v: 'kinh doanh, buôn bán' },
-      { h: '时刻', p: 'shí kè', v: 'thời khắc, lúc' },
-      { h: '实际上', p: 'shí jì shàng', v: 'thực tế là' },
-      { h: '实力', p: 'shí lì', v: 'thực lực' },
-      { h: '食品', p: 'shí pǐn', v: 'thực phẩm' },
-      { h: '始终', p: 'shǐ zhōng', v: 'từ đầu đến cuối, luôn luôn' },
-      { h: '世界', p: 'shì jiè', v: 'thế giới' },
-      { h: '事故', p: 'shì gù', v: 'tai nạn, sự cố' },
-      { h: '事件', p: 'shì jiàn', v: 'sự kiện, vụ việc' },
-      { h: '事实', p: 'shì shí', v: 'sự thật' },
-      { h: '事实上', p: 'shì shí shàng', v: 'thực tế là' },
-      { h: '事业', p: 'shì yè', v: 'sự nghiệp' },
-      { h: '室', p: 'shì', v: 'phòng, gian' },
-      { h: '手续', p: 'shǒu xù', v: 'thủ tục' },
-      { h: '首先', p: 'shǒu xiān', v: 'trước hết, đầu tiên' },
-      { h: '书架', p: 'shū jià', v: 'kệ sách' }
+      { h: '上面', p: 'shàng miàn', v: 'phía trên, bề mặt', e: 'on top of' },
+      { h: '上衣', p: 'shàng yī', v: 'áo, áo khoác', e: 'jacket' },
+      { h: '身份证', p: 'shēn fèn zhèng', v: 'chứng minh nhân dân', e: 'identity card' },
+      { h: '生命', p: 'shēng mìng', v: 'sinh mệnh, mạng sống', e: 'life (as the characteristic of living beings)' },
+      { h: '生意', p: 'shēng yì', v: 'kinh doanh, buôn bán', e: 'life force' },
+      { h: '时刻', p: 'shí kè', v: 'thời khắc, lúc', e: 'time' },
+      { h: '实际上', p: 'shí jì shàng', v: 'thực tế là', e: 'in fact' },
+      { h: '实力', p: 'shí lì', v: 'thực lực', e: 'strength' },
+      { h: '食品', p: 'shí pǐn', v: 'thực phẩm', e: 'foodstuff' },
+      { h: '始终', p: 'shǐ zhōng', v: 'từ đầu đến cuối, luôn luôn', e: 'from beginning to end' },
+      { h: '世界', p: 'shì jiè', v: 'thế giới', e: 'world' },
+      { h: '事故', p: 'shì gù', v: 'tai nạn, sự cố', e: 'accident' },
+      { h: '事件', p: 'shì jiàn', v: 'sự kiện, vụ việc', e: 'event' },
+      { h: '事实', p: 'shì shí', v: 'sự thật', e: 'fact' },
+      { h: '事实上', p: 'shì shí shàng', v: 'thực tế là', e: 'in fact' },
+      { h: '事业', p: 'shì yè', v: 'sự nghiệp', e: 'undertaking' },
+      { h: '室', p: 'shì', v: 'phòng, gian', e: 'room, chamber' },
+      { h: '手续', p: 'shǒu xù', v: 'thủ tục', e: 'procedure' },
+      { h: '首先', p: 'shǒu xiān', v: 'trước hết, đầu tiên', e: 'first (of all)' },
+      { h: '书架', p: 'shū jià', v: 'kệ sách', e: 'bookshelf' }
     ],
     workbook: {
       easy: [
@@ -3239,6 +3870,30 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (10)',
     context: 'Mai tham gia một đoàn thể giao lưu văn hóa Việt - Trung, cùng Tiểu Mỹ lên kế hoạch đi tàu và viết bài.',
     vocabPreview: ['团体', '文化', '特色', '铁路', '速度'],
+    objectives: [
+      "Nắm nhóm từ khóa: 团体 · 文化 · 特色 · 铁路 · 速度",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (10) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 团体 · 文化 · 特色",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "团体 — đoàn thể, tập thể",
+        explain: "Dùng 团体 trong ngữ cảnh Từ chức năng & liên từ (10) để diễn đạt: đoàn thể, tập thể.",
+        examples: [
+          { zh: "我们这个团体要做中越文化交流，你来当成员吧！", py: "Wǒmen zhège tuántǐ yào zuò Zhōng-Yuè wénhuà jiāoliú, nǐ lái dāng chéngyuán ba!", vi: "Đoàn thể của tụi mình làm giao lưu văn hóa Trung - Việt, cậu vào làm thành viên đi!" }
+        ] },
+      { point: "文化 — văn hóa",
+        explain: "Dùng 文化 trong ngữ cảnh Từ chức năng & liên từ (10) để diễn đạt: văn hóa.",
+        examples: [
+          { zh: "太好了，群里有不少熟人，数量还在增加。这所学校文化氛围特别好。", py: "Tài hǎo le, qún lǐ yǒu bù shǎo shúrén, shùliàng hái zài zēngjiā. Zhè suǒ xuéxiào wénhuà fēnwéi tèbié hǎo.", vi: "Tuyệt quá, trong nhóm có nhiều người quen, số lượng còn tăng. Ngôi trường này không khí văn hóa đặc biệt tốt." },
+          { zh: "对，国家搞外交也常用文化交流这种形式，文化不是武器，却能拉近人心。", py: "Duì, guójiā gǎo wàijiāo yě cháng yòng wénhuà jiāoliú zhè zhǒng xíngshì, wénhuà bú shì wǔqì, què néng lājìn rénxīn.", vi: "Đúng, nhà nước làm ngoại giao cũng hay dùng hình thức giao lưu văn hóa này, văn hóa không phải vũ khí nhưng lại kéo gần lòng người." }
+        ] },
+      { point: "特色 — đặc sắc, đặc trưng",
+        explain: "Dùng 特色 trong ngữ cảnh Từ chức năng & liên từ (10) để diễn đạt: đặc sắc, đặc trưng.",
+        examples: [
+          { zh: "这次活动很有特色，听众多，我的听力也能练。我们坐铁路去，高铁速度很快。", py: "Zhè cì huódòng hěn yǒu tèsè, tīngzhòng duō, wǒ de tīnglì yě néng liàn. Wǒmen zuò tiělù qù, gāotiě sùdù hěn kuài.", vi: "Hoạt động lần này rất đặc sắc, thính giả đông, khả năng nghe của mình cũng luyện được. Tụi mình đi tàu, tàu cao tốc tốc độ rất nhanh." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng câu lạc bộ · Buổi chiều', bg: 'office', cast: ['mai', 'xiaomei'],
         text: 'Mai và Tiểu Mỹ bàn về một đoàn thể giao lưu văn hóa.', pinyin: '', meaning: '', vocab: [] },
@@ -3280,26 +3935,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '熟人', p: 'shú rén', v: 'người quen' },
-      { h: '数量', p: 'shù liàng', v: 'số lượng' },
-      { h: '速度', p: 'sù dù', v: 'tốc độ' },
-      { h: '所', p: 'suǒ', v: 'nơi, chỗ (lượng từ trường học)' },
-      { h: '特色', p: 'tè sè', v: 'đặc sắc, đặc trưng' },
-      { h: '铁路', p: 'tiě lù', v: 'đường sắt' },
-      { h: '听力', p: 'tīng lì', v: 'khả năng nghe' },
-      { h: '听众', p: 'tīng zhòng', v: 'thính giả' },
-      { h: '团', p: 'tuán', v: 'đoàn, nhóm' },
-      { h: '团体', p: 'tuán tǐ', v: 'đoàn thể, tập thể' },
-      { h: '外交', p: 'wài jiāo', v: 'ngoại giao' },
-      { h: '外面', p: 'wài miàn', v: 'bên ngoài' },
-      { h: '玩具', p: 'wán jù', v: 'đồ chơi' },
-      { h: '卫生间', p: 'wèi shēng jiān', v: 'nhà vệ sinh' },
-      { h: '文化', p: 'wén huà', v: 'văn hóa' },
-      { h: '文件', p: 'wén jiàn', v: 'văn bản, tài liệu' },
-      { h: '文章', p: 'wén zhāng', v: 'bài viết, văn chương' },
-      { h: '文字', p: 'wén zì', v: 'chữ viết' },
-      { h: '屋子', p: 'wū zi', v: 'căn phòng' },
-      { h: '武器', p: 'wǔ qì', v: 'vũ khí' }
+      { h: '熟人', p: 'shú rén', v: 'người quen', e: 'acquaintance' },
+      { h: '数量', p: 'shù liàng', v: 'số lượng', e: 'amount' },
+      { h: '速度', p: 'sù dù', v: 'tốc độ', e: 'speed' },
+      { h: '所', p: 'suǒ', v: 'nơi, chỗ (lượng từ trường học)', e: 'actually' },
+      { h: '特色', p: 'tè sè', v: 'đặc sắc, đặc trưng', e: 'characteristic' },
+      { h: '铁路', p: 'tiě lù', v: 'đường sắt', e: 'railroad' },
+      { h: '听力', p: 'tīng lì', v: 'khả năng nghe', e: 'hearing' },
+      { h: '听众', p: 'tīng zhòng', v: 'thính giả', e: 'audience' },
+      { h: '团', p: 'tuán', v: 'đoàn, nhóm', e: 'round' },
+      { h: '团体', p: 'tuán tǐ', v: 'đoàn thể, tập thể', e: 'group' },
+      { h: '外交', p: 'wài jiāo', v: 'ngoại giao', e: 'diplomacy' },
+      { h: '外面', p: 'wài miàn', v: 'bên ngoài', e: 'outside (also pr. [wài mian] for this sense)' },
+      { h: '玩具', p: 'wán jù', v: 'đồ chơi', e: 'plaything' },
+      { h: '卫生间', p: 'wèi shēng jiān', v: 'nhà vệ sinh', e: 'bathroom' },
+      { h: '文化', p: 'wén huà', v: 'văn hóa', e: 'culture' },
+      { h: '文件', p: 'wén jiàn', v: 'văn bản, tài liệu', e: 'document' },
+      { h: '文章', p: 'wén zhāng', v: 'bài viết, văn chương', e: 'article' },
+      { h: '文字', p: 'wén zì', v: 'chữ viết', e: 'character' },
+      { h: '屋子', p: 'wū zi', v: 'căn phòng', e: 'house' },
+      { h: '武器', p: 'wǔ qì', v: 'vũ khí', e: 'weapon' }
     ],
     workbook: {
       easy: [
@@ -3335,6 +3990,30 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (11)',
     context: 'Một sự kiện sân khấu trực tiếp, Mai và Tiểu Mỹ vừa diễn vừa trò chuyện về sức khỏe và ý nghĩa của hoạt động.',
     vocabPreview: ['舞台', '现场', '意义', '压力', '演员'],
+    objectives: [
+      "Nắm nhóm từ khóa: 舞台 · 现场 · 意义 · 压力 · 演员",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (11) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 舞台 · 现场 · 意义",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "舞台 — sân khấu",
+        explain: "Dùng 舞台 trong ngữ cảnh Từ chức năng & liên từ (11) để diễn đạt: sân khấu.",
+        examples: [
+          { zh: "站在舞台上，看下面全是观众，现场气氛真好！", py: "Zhàn zài wǔtái shàng, kàn xiàmiàn quán shì guānzhòng, xiànchǎng qìfēn zhēn hǎo!", vi: "Đứng trên sân khấu, nhìn phía dưới toàn khán giả, không khí hiện trường thật tuyệt!" }
+        ] },
+      { point: "现场 — hiện trường, tại chỗ",
+        explain: "Dùng 现场 trong ngữ cảnh Từ chức năng & liên từ (11) để diễn đạt: hiện trường, tại chỗ.",
+        examples: [
+          { zh: "灯光效果不错。这种现场形式很受欢迎。", py: "Dēngguāng xiàoguǒ búcuò. Zhè zhǒng xiànchǎng xíngshì hěn shòu huānyíng.", vi: "Hiệu quả ánh sáng tốt đấy. Hình thức trực tiếp này rất được ưa chuộng." },
+          { zh: "这些纪念品形状可爱，现场只收现金。", py: "Zhèxiē jìniànpǐn xíngzhuàng kě'ài, xiànchǎng zhǐ shōu xiànjīn.", vi: "Mấy món lưu niệm hình dáng dễ thương, tại chỗ chỉ nhận tiền mặt." }
+        ] },
+      { point: "意义 — ý nghĩa",
+        explain: "Dùng 意义 trong ngữ cảnh Từ chức năng & liên từ (11) để diễn đạt: ý nghĩa.",
+        examples: [
+          { zh: "这次活动很有意义，因此大家都很投入。报名不分性别，男女都能当演员。", py: "Zhè cì huódòng hěn yǒu yìyì, yīncǐ dàjiā dōu hěn tóurù. Bàomíng bù fēn xìngbié, nánnǚ dōu néng dāng yǎnyuán.", vi: "Hoạt động lần này rất ý nghĩa, vì vậy ai cũng nhiệt tình. Đăng ký không phân giới tính, nam nữ đều làm diễn viên được." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân khấu sự kiện · Buổi tối', bg: 'campus', cast: ['mai', 'xiaomei'],
         text: 'Một sự kiện trực tiếp trên sân khấu của câu lạc bộ.', pinyin: '', meaning: '', vocab: [] },
@@ -3380,26 +4059,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '舞台', p: 'wǔ tái', v: 'sân khấu' },
-      { h: '下面', p: 'xià miàn', v: 'phía dưới' },
-      { h: '现场', p: 'xiàn chǎng', v: 'hiện trường, tại chỗ' },
-      { h: '现金', p: 'xiàn jīn', v: 'tiền mặt' },
-      { h: '香蕉', p: 'xiāng jiāo', v: 'chuối' },
-      { h: '消息', p: 'xiāo xi', v: 'tin tức' },
-      { h: '效果', p: 'xiào guǒ', v: 'hiệu quả' },
-      { h: '形式', p: 'xíng shì', v: 'hình thức' },
-      { h: '形状', p: 'xíng zhuàng', v: 'hình dạng' },
-      { h: '性别', p: 'xìng bié', v: 'giới tính' },
-      { h: '需求', p: 'xū qiú', v: 'nhu cầu' },
-      { h: '血', p: 'xuè', v: 'máu' },
-      { h: '压力', p: 'yā lì', v: 'áp lực' },
-      { h: '烟', p: 'yān', v: 'thuốc lá, khói' },
-      { h: '演员', p: 'yǎn yuán', v: 'diễn viên' },
-      { h: '已', p: 'yǐ', v: 'đã' },
-      { h: '以来', p: 'yǐ lái', v: 'kể từ' },
-      { h: '意义', p: 'yì yì', v: 'ý nghĩa' },
-      { h: '因此', p: 'yīn cǐ', v: 'vì vậy, do đó' },
-      { h: '优点', p: 'yōu diǎn', v: 'ưu điểm' }
+      { h: '舞台', p: 'wǔ tái', v: 'sân khấu', e: 'stage' },
+      { h: '下面', p: 'xià miàn', v: 'phía dưới', e: 'below' },
+      { h: '现场', p: 'xiàn chǎng', v: 'hiện trường, tại chỗ', e: 'the scene (of a crime, accident etc)' },
+      { h: '现金', p: 'xiàn jīn', v: 'tiền mặt', e: 'cash' },
+      { h: '香蕉', p: 'xiāng jiāo', v: 'chuối', e: 'banana' },
+      { h: '消息', p: 'xiāo xi', v: 'tin tức', e: 'news' },
+      { h: '效果', p: 'xiào guǒ', v: 'hiệu quả', e: 'result' },
+      { h: '形式', p: 'xíng shì', v: 'hình thức', e: 'outer appearance' },
+      { h: '形状', p: 'xíng zhuàng', v: 'hình dạng', e: 'form' },
+      { h: '性别', p: 'xìng bié', v: 'giới tính', e: 'gender' },
+      { h: '需求', p: 'xū qiú', v: 'nhu cầu', e: 'requirement' },
+      { h: '血', p: 'xuè', v: 'máu', e: 'blood' },
+      { h: '压力', p: 'yā lì', v: 'áp lực', e: 'pressure' },
+      { h: '烟', p: 'yān', v: 'thuốc lá, khói', e: 'cigarette or pipe tobacco' },
+      { h: '演员', p: 'yǎn yuán', v: 'diễn viên', e: 'actor or actress' },
+      { h: '已', p: 'yǐ', v: 'đã', e: 'already' },
+      { h: '以来', p: 'yǐ lái', v: 'kể từ', e: 'since (a previous event)' },
+      { h: '意义', p: 'yì yì', v: 'ý nghĩa', e: 'sense' },
+      { h: '因此', p: 'yīn cǐ', v: 'vì vậy, do đó', e: 'thus' },
+      { h: '优点', p: 'yōu diǎn', v: 'ưu điểm', e: 'merit' }
     ],
     workbook: {
       easy: [
@@ -3435,6 +4114,29 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (12)',
     context: 'Một tạp chí muốn đăng câu chuyện du học của Mai. Em chuẩn bị giấy tờ và mơ về chuyến đi miền Trung.',
     vocabPreview: ['愿望', '杂志', '优势', '证件', '终于'],
+    objectives: [
+      "Nắm nhóm từ khóa: 愿望 · 杂志 · 优势 · 证件 · 终于",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (12) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 愿望 · 杂志 · 优势",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "愿望 — nguyện vọng, mong muốn",
+        explain: "Dùng 愿望 trong ngữ cảnh Từ chức năng & liên từ (12) để diễn đạt: nguyện vọng, mong muốn.",
+        examples: [
+          { zh: "我的愿望终于要实现了！一家杂志想刊登我的故事。", py: "Wǒ de yuànwàng zhōngyú yào shíxiàn le! Yì jiā zázhì xiǎng kāndēng wǒ de gùshi.", vi: "Nguyện vọng của mình cuối cùng sắp thành hiện thực! Một tạp chí muốn đăng câu chuyện của mình." }
+        ] },
+      { point: "杂志 — tạp chí",
+        explain: "Dùng 杂志 trong ngữ cảnh Từ chức năng & liên từ (12) để diễn đạt: tạp chí.",
+        examples: [
+          { zh: "我的愿望终于要实现了！一家杂志想刊登我的故事。", py: "Wǒ de yuànwàng zhōngyú yào shíxiàn le! Yì jiā zázhì xiǎng kāndēng wǒ de gùshi.", vi: "Nguyện vọng của mình cuối cùng sắp thành hiện thực! Một tạp chí muốn đăng câu chuyện của mình." }
+        ] },
+      { point: "优势 — ưu thế",
+        explain: "Dùng 优势 trong ngữ cảnh Từ chức năng & liên từ (12) để diễn đạt: ưu thế.",
+        examples: [
+          { zh: "双语能力是你的一个优势。", py: "Shuāngyǔ nénglì shì nǐ de yí gè yōushì.", vi: "Khả năng song ngữ là một ưu thế của cậu." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi tối', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Một tạp chí muốn đăng câu chuyện du học của Mai.', pinyin: '', meaning: '', vocab: [] },
@@ -3486,26 +4188,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '优势', p: 'yōu shì', v: 'ưu thế' },
-      { h: '由于', p: 'yóu yú', v: 'do, vì' },
-      { h: '邮件', p: 'yóu jiàn', v: 'thư từ, email' },
-      { h: '有的是', p: 'yǒu de shì', v: 'rất nhiều, không thiếu' },
-      { h: '员', p: 'yuán', v: 'thành viên, nhân viên' },
-      { h: '愿望', p: 'yuàn wàng', v: 'nguyện vọng, mong muốn' },
-      { h: '杂志', p: 'zá zhì', v: 'tạp chí' },
-      { h: '早已', p: 'zǎo yǐ', v: 'từ lâu đã' },
-      { h: '责任', p: 'zé rèn', v: 'trách nhiệm' },
-      { h: '长处', p: 'cháng chù', v: 'ưu điểm, điểm mạnh' },
-      { h: '整体', p: 'zhěng tǐ', v: 'tổng thể' },
-      { h: '整整', p: 'zhěng zhěng', v: 'đúng, tròn (số lượng)' },
-      { h: '证', p: 'zhèng', v: 'chứng minh, chứng' },
-      { h: '证件', p: 'zhèng jiàn', v: 'giấy tờ, chứng từ' },
-      { h: '证据', p: 'zhèng jù', v: 'bằng chứng' },
-      { h: '只好', p: 'zhǐ hǎo', v: 'đành phải' },
-      { h: '至今', p: 'zhì jīn', v: 'cho đến nay' },
-      { h: '中部', p: 'zhōng bù', v: 'miền Trung' },
-      { h: '终于', p: 'zhōng yú', v: 'cuối cùng' },
-      { h: '周围', p: 'zhōu wéi', v: 'xung quanh' }
+      { h: '优势', p: 'yōu shì', v: 'ưu thế', e: 'superiority' },
+      { h: '由于', p: 'yóu yú', v: 'do, vì', e: 'due to' },
+      { h: '邮件', p: 'yóu jiàn', v: 'thư từ, email', e: 'mail' },
+      { h: '有的是', p: 'yǒu de shì', v: 'rất nhiều, không thiếu', e: 'have plenty of' },
+      { h: '员', p: 'yuán', v: 'thành viên, nhân viên', e: 'person' },
+      { h: '愿望', p: 'yuàn wàng', v: 'nguyện vọng, mong muốn', e: 'desire' },
+      { h: '杂志', p: 'zá zhì', v: 'tạp chí', e: 'magazine' },
+      { h: '早已', p: 'zǎo yǐ', v: 'từ lâu đã', e: 'for a long time' },
+      { h: '责任', p: 'zé rèn', v: 'trách nhiệm', e: 'responsibility' },
+      { h: '长处', p: 'cháng chù', v: 'ưu điểm, điểm mạnh', e: 'good aspects' },
+      { h: '整体', p: 'zhěng tǐ', v: 'tổng thể', e: 'whole entity' },
+      { h: '整整', p: 'zhěng zhěng', v: 'đúng, tròn (số lượng)', e: 'whole' },
+      { h: '证', p: 'zhèng', v: 'chứng minh, chứng', e: 'to admonish' },
+      { h: '证件', p: 'zhèng jiàn', v: 'giấy tờ, chứng từ', e: 'certificate' },
+      { h: '证据', p: 'zhèng jù', v: 'bằng chứng', e: 'evidence' },
+      { h: '只好', p: 'zhǐ hǎo', v: 'đành phải', e: 'to have no other option but to ...' },
+      { h: '至今', p: 'zhì jīn', v: 'cho đến nay', e: 'so far' },
+      { h: '中部', p: 'zhōng bù', v: 'miền Trung', e: 'middle part' },
+      { h: '终于', p: 'zhōng yú', v: 'cuối cùng', e: 'at last' },
+      { h: '周围', p: 'zhōu wéi', v: 'xung quanh', e: 'environs' }
     ],
     workbook: {
       easy: [
@@ -3548,6 +4250,30 @@ Object.assign(COURSE_DATA, {
     title: 'Từ chức năng & liên từ (13)',
     context: 'Mai gặp thầy chủ nhiệm khoa để xin lời khuyên về việc chọn chuyên ngành và định hướng sau khi về nước.',
     vocabPreview: ['主任', '专业', '专家', '资格', '主意'],
+    objectives: [
+      "Nắm nhóm từ khóa: 主任 · 专业 · 专家 · 资格 · 主意",
+      "Kể/nghe hiểu tình huống Từ chức năng & liên từ (13) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 主任 · 专业 · 专家",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "主任 — chủ nhiệm, trưởng phòng",
+        explain: "Dùng 主任 trong ngữ cảnh Từ chức năng & liên từ (13) để diễn đạt: chủ nhiệm, trưởng phòng.",
+        examples: [
+          { zh: "主任好！我想请专家给点建议。", py: "Zhǔrèn hǎo! Wǒ xiǎng qǐng zhuānjiā gěi diǎn jiànyì.", vi: "Chào thầy chủ nhiệm! Em muốn nhờ chuyên gia cho vài lời khuyên." }
+        ] },
+      { point: "专业 — chuyên ngành",
+        explain: "Dùng 专业 trong ngữ cảnh Từ chức năng & liên từ (13) để diễn đạt: chuyên ngành.",
+        examples: [
+          { zh: "自从你回国，状态一直很好。想选什么专业？", py: "Zìcóng nǐ huíguó, zhuàngtài yìzhí hěn hǎo. Xiǎng xuǎn shénme zhuānyè?", vi: "Từ khi em về nước, trạng thái luôn rất tốt. Em muốn chọn chuyên ngành gì?" },
+          { zh: "农业专业也不错，研究怎么养猪、种地都有前途。", py: "Nóngyè zhuānyè yě búcuò, yánjiū zěnme yǎng zhū, zhòngdì dōu yǒu qiántú.", vi: "Chuyên ngành nông nghiệp cũng tốt, nghiên cứu cách nuôi lợn, trồng trọt đều có tương lai." }
+        ] },
+      { point: "专家 — chuyên gia",
+        explain: "Dùng 专家 trong ngữ cảnh Từ chức năng & liên từ (13) để diễn đạt: chuyên gia.",
+        examples: [
+          { zh: "主任好！我想请专家给点建议。", py: "Zhǔrèn hǎo! Wǒ xiǎng qǐng zhuānjiā gěi diǎn jiànyì.", vi: "Chào thầy chủ nhiệm! Em muốn nhờ chuyên gia cho vài lời khuyên." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng khoa · Buổi sáng', bg: 'office', cast: ['mai', 'laoli'],
         text: 'Mai đến gặp thầy chủ nhiệm khoa để xin tư vấn.', pinyin: '', meaning: '', vocab: [] },
@@ -3585,17 +4311,17 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '猪', p: 'zhū', v: 'lợn, heo' },
-      { h: '主任', p: 'zhǔ rèn', v: 'chủ nhiệm, trưởng phòng' },
-      { h: '主意', p: 'zhǔ yi', v: 'ý kiến, sáng kiến' },
-      { h: '专家', p: 'zhuān jiā', v: 'chuyên gia' },
-      { h: '专业', p: 'zhuān yè', v: 'chuyên ngành' },
-      { h: '状况', p: 'zhuàng kuàng', v: 'tình trạng, tình hình' },
-      { h: '状态', p: 'zhuàng tài', v: 'trạng thái' },
-      { h: '资格', p: 'zī gé', v: 'tư cách, đủ điều kiện' },
-      { h: '资金', p: 'zī jīn', v: 'vốn, tài chính' },
-      { h: '自从', p: 'zì cóng', v: 'từ khi' },
-      { h: '子女', p: 'zǐ nǚ', v: 'con cái' }
+      { h: '猪', p: 'zhū', v: 'lợn, heo', e: 'hog' },
+      { h: '主任', p: 'zhǔ rèn', v: 'chủ nhiệm, trưởng phòng', e: 'director' },
+      { h: '主意', p: 'zhǔ yi', v: 'ý kiến, sáng kiến', e: 'plan' },
+      { h: '专家', p: 'zhuān jiā', v: 'chuyên gia', e: 'expert' },
+      { h: '专业', p: 'zhuān yè', v: 'chuyên ngành', e: 'specialty' },
+      { h: '状况', p: 'zhuàng kuàng', v: 'tình trạng, tình hình', e: 'condition' },
+      { h: '状态', p: 'zhuàng tài', v: 'trạng thái', e: 'condition' },
+      { h: '资格', p: 'zī gé', v: 'tư cách, đủ điều kiện', e: 'qualifications' },
+      { h: '资金', p: 'zī jīn', v: 'vốn, tài chính', e: 'funds' },
+      { h: '自从', p: 'zì cóng', v: 'từ khi', e: 'since (a time)' },
+      { h: '子女', p: 'zǐ nǚ', v: 'con cái', e: 'children' }
     ],
     workbook: {
       easy: [
@@ -3631,6 +4357,30 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (1)',
     context: 'Mai nhận một công việc bán thời gian. Người quản lý giới thiệu về chế độ và tiêu chuẩn của công ty.',
     vocabPreview: ['保险', '标准', '成功', '当然', '动人'],
+    objectives: [
+      "Nắm nhóm từ khóa: 保险 · 标准 · 成功 · 当然 · 动人",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (1) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 保险 · 标准 · 成功",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "保险 — bảo hiểm",
+        explain: "Dùng 保险 trong ngữ cảnh Tính từ miêu tả (1) để diễn đạt: bảo hiểm.",
+        examples: [
+          { zh: "当然！我们公司很正规，有保险、有保安，一定保你平安。", py: "Dāngrán! Wǒmen gōngsī hěn zhèngguī, yǒu bǎoxiǎn, yǒu bǎo'ān, yídìng bǎo nǐ píng'ān.", vi: "Tất nhiên! Công ty rất quy củ, có bảo hiểm, có bảo vệ, chắc chắn đảm bảo an toàn cho em." }
+        ] },
+      { point: "标准 — tiêu chuẩn",
+        explain: "Dùng 标准 trong ngữ cảnh Tính từ miêu tả (1) để diễn đạt: tiêu chuẩn.",
+        examples: [
+          { zh: "工作有标准吗？我是初级员工，经验还不够成熟。", py: "Gōngzuò yǒu biāozhǔn ma? Wǒ shì chūjí yuángōng, jīngyàn hái búgòu chéngshú.", vi: "Công việc có tiêu chuẩn không ạ? Em là nhân viên sơ cấp, kinh nghiệm chưa đủ chín." }
+        ] },
+      { point: "成功 — thành công",
+        explain: "Dùng 成功 trong ngữ cảnh Tính từ miêu tả (1) để diễn đạt: thành công.",
+        examples: [
+          { zh: "努力了，成功是必然的。", py: "Nǔlì le, chénggōng shì bìrán de.", vi: "Cố gắng rồi thì thành công là tất yếu." },
+          { zh: "我会努力，争取成功！", py: "Wǒ huì nǔlì, zhēngqǔ chénggōng!", vi: "Em sẽ cố gắng, phấn đấu thành công!" }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng công ty · Buổi sáng', bg: 'office', cast: ['mai', 'fuwuyuan'],
         text: 'Mai tìm được một công việc bán thời gian và đến gặp quản lý.', pinyin: '', meaning: '', vocab: [] },
@@ -3680,26 +4430,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '板', p: 'bǎn', v: 'tấm ván, bảng' },
-      { h: '保', p: 'bǎo', v: 'bảo vệ, đảm bảo' },
-      { h: '保安', p: 'bǎo ān', v: 'bảo vệ (nhân viên)' },
-      { h: '保险', p: 'bǎo xiǎn', v: 'bảo hiểm' },
-      { h: '本来', p: 'běn lái', v: 'vốn là, ban đầu' },
-      { h: '必然', p: 'bì rán', v: 'tất yếu, chắc chắn' },
-      { h: '必要', p: 'bì yào', v: 'cần thiết' },
-      { h: '标准', p: 'biāo zhǔn', v: 'tiêu chuẩn' },
-      { h: '不安', p: 'bù ān', v: 'bất an, lo lắng' },
-      { h: '布', p: 'bù', v: 'vải' },
-      { h: '彩色', p: 'cǎi sè', v: 'màu sắc, có màu' },
-      { h: '超级', p: 'chāo jí', v: 'siêu, cực kỳ' },
-      { h: '成功', p: 'chéng gōng', v: 'thành công' },
-      { h: '成熟', p: 'chéng shú', v: 'trưởng thành, chín' },
-      { h: '初步', p: 'chū bù', v: 'sơ bộ, bước đầu' },
-      { h: '初级', p: 'chū jí', v: 'sơ cấp' },
-      { h: '错误', p: 'cuò wù', v: 'sai lầm, lỗi' },
-      { h: '当然', p: 'dāng rán', v: 'dĩ nhiên, tất nhiên' },
-      { h: '定期', p: 'dìng qī', v: 'định kỳ' },
-      { h: '动人', p: 'dòng rén', v: 'cảm động, xúc động' }
+      { h: '板', p: 'bǎn', v: 'tấm ván, bảng', e: 'board' },
+      { h: '保', p: 'bǎo', v: 'bảo vệ, đảm bảo', e: 'Bulgaria' },
+      { h: '保安', p: 'bǎo ān', v: 'bảo vệ (nhân viên)', e: 'to ensure public security' },
+      { h: '保险', p: 'bǎo xiǎn', v: 'bảo hiểm', e: 'insurance' },
+      { h: '本来', p: 'běn lái', v: 'vốn là, ban đầu', e: 'original' },
+      { h: '必然', p: 'bì rán', v: 'tất yếu, chắc chắn', e: 'inevitable' },
+      { h: '必要', p: 'bì yào', v: 'cần thiết', e: 'necessary' },
+      { h: '标准', p: 'biāo zhǔn', v: 'tiêu chuẩn', e: 'standard' },
+      { h: '不安', p: 'bù ān', v: 'bất an, lo lắng', e: 'unpeaceful' },
+      { h: '布', p: 'bù', v: 'vải', e: 'cloth, fabric, to spread, to announce' },
+      { h: '彩色', p: 'cǎi sè', v: 'màu sắc, có màu', e: 'color' },
+      { h: '超级', p: 'chāo jí', v: 'siêu, cực kỳ', e: 'super-' },
+      { h: '成功', p: 'chéng gōng', v: 'thành công', e: 'Chenggong or Chengkung town in Taitung County 台东县, southeast Taiwan' },
+      { h: '成熟', p: 'chéng shú', v: 'trưởng thành, chín', e: 'mature' },
+      { h: '初步', p: 'chū bù', v: 'sơ bộ, bước đầu', e: 'initial' },
+      { h: '初级', p: 'chū jí', v: 'sơ cấp', e: 'junior' },
+      { h: '错误', p: 'cuò wù', v: 'sai lầm, lỗi', e: 'mistaken' },
+      { h: '当然', p: 'dāng rán', v: 'dĩ nhiên, tất nhiên', e: 'only natural' },
+      { h: '定期', p: 'dìng qī', v: 'định kỳ', e: 'at set dates' },
+      { h: '动人', p: 'dòng rén', v: 'cảm động, xúc động', e: 'touching' }
     ],
     workbook: {
       easy: [
@@ -3735,6 +4485,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (2)',
     context: 'Mai và Tiểu Mỹ cùng viết một bài tổng kết về trải nghiệm du học ở một đất nước phát triển.',
     vocabPreview: ['发达', '丰富', '共同', '光明', '合理'],
+    objectives: [
+      "Nắm nhóm từ khóa: 发达 · 丰富 · 共同 · 光明 · 合理",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (2) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 发达 · 丰富 · 共同",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "发达 — phát triển, phát đạt",
+        explain: "Dùng 发达 trong ngữ cảnh Tính từ miêu tả (2) để diễn đạt: phát triển, phát đạt.",
+        examples: [
+          { zh: "这一年我的经历很丰富，那个国家很发达。", py: "Zhè yì nián wǒ de jīnglì hěn fēngfù, nàge guójiā hěn fādá.", vi: "Năm nay trải nghiệm của mình rất phong phú, đất nước đó rất phát triển." }
+        ] },
+      { point: "丰富 — phong phú",
+        explain: "Dùng 丰富 trong ngữ cảnh Tính từ miêu tả (2) để diễn đạt: phong phú.",
+        examples: [
+          { zh: "这一年我的经历很丰富，那个国家很发达。", py: "Zhè yì nián wǒ de jīnglì hěn fēngfù, nàge guójiā hěn fādá.", vi: "Năm nay trải nghiệm của mình rất phong phú, đất nước đó rất phát triển." }
+        ] },
+      { point: "共同 — chung, cùng nhau",
+        explain: "Dùng 共同 trong ngữ cảnh Tính từ miêu tả (2) để diễn đạt: chung, cùng nhau.",
+        examples: [
+          { zh: "我们互相帮助，建立了共同的友谊。", py: "Wǒmen hùxiāng bāngzhù, jiànlì le gòngtóng de yǒuyì.", vi: "Tụi mình giúp đỡ lẫn nhau, xây dựng tình bạn chung." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi tối', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Mai và Tiểu Mỹ cùng viết bài tổng kết năm du học.', pinyin: '', meaning: '', vocab: [] },
@@ -3784,26 +4557,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '短期', p: 'duǎn qī', v: 'ngắn hạn' },
-      { h: '发达', p: 'fā dá', v: 'phát triển, phát đạt' },
-      { h: '丰富', p: 'fēng fù', v: 'phong phú' },
-      { h: '负责', p: 'fù zé', v: 'chịu trách nhiệm, phụ trách' },
-      { h: '复杂', p: 'fù zá', v: 'phức tạp' },
-      { h: '富', p: 'fù', v: 'giàu, phú' },
-      { h: '高速', p: 'gāo sù', v: 'tốc độ cao' },
-      { h: '根本', p: 'gēn běn', v: 'căn bản, hoàn toàn' },
-      { h: '公共', p: 'gōng gòng', v: 'công cộng' },
-      { h: '公开', p: 'gōng kāi', v: 'công khai' },
-      { h: '共同', p: 'gòng tóng', v: 'chung, cùng nhau' },
-      { h: '光', p: 'guāng', v: 'ánh sáng' },
-      { h: '光明', p: 'guāng míng', v: 'sáng sủa, sáng lạn' },
-      { h: '广大', p: 'guǎng dà', v: 'rộng lớn, đông đảo' },
-      { h: '规范', p: 'guī fàn', v: 'quy phạm, chuẩn mực' },
-      { h: '好奇', p: 'hào qí', v: 'tò mò' },
-      { h: '合法', p: 'hé fǎ', v: 'hợp pháp' },
-      { h: '合理', p: 'hé lǐ', v: 'hợp lý' },
-      { h: '和平', p: 'hé píng', v: 'hòa bình' },
-      { h: '互相', p: 'hù xiāng', v: 'lẫn nhau' }
+      { h: '短期', p: 'duǎn qī', v: 'ngắn hạn', e: 'short term' },
+      { h: '发达', p: 'fā dá', v: 'phát triển, phát đạt', e: 'well-developed' },
+      { h: '丰富', p: 'fēng fù', v: 'phong phú', e: 'to enrich' },
+      { h: '负责', p: 'fù zé', v: 'chịu trách nhiệm, phụ trách', e: 'to be in charge of' },
+      { h: '复杂', p: 'fù zá', v: 'phức tạp', e: 'complicated' },
+      { h: '富', p: 'fù', v: 'giàu, phú', e: 'rich, wealthy, abundant' },
+      { h: '高速', p: 'gāo sù', v: 'tốc độ cao', e: 'high speed' },
+      { h: '根本', p: 'gēn běn', v: 'căn bản, hoàn toàn', e: 'fundamental' },
+      { h: '公共', p: 'gōng gòng', v: 'công cộng', e: 'public' },
+      { h: '公开', p: 'gōng kāi', v: 'công khai', e: 'open' },
+      { h: '共同', p: 'gòng tóng', v: 'chung, cùng nhau', e: 'common' },
+      { h: '光', p: 'guāng', v: 'ánh sáng', e: 'light' },
+      { h: '光明', p: 'guāng míng', v: 'sáng sủa, sáng lạn', e: 'light' },
+      { h: '广大', p: 'guǎng dà', v: 'rộng lớn, đông đảo', e: 'vast or extensive' },
+      { h: '规范', p: 'guī fàn', v: 'quy phạm, chuẩn mực', e: 'norm' },
+      { h: '好奇', p: 'hào qí', v: 'tò mò', e: 'inquisitive' },
+      { h: '合法', p: 'hé fǎ', v: 'hợp pháp', e: 'lawful' },
+      { h: '合理', p: 'hé lǐ', v: 'hợp lý', e: 'rational' },
+      { h: '和平', p: 'hé píng', v: 'hòa bình', e: 'Heping District of Shenyang city 沈阳市, Liaoning' },
+      { h: '互相', p: 'hù xiāng', v: 'lẫn nhau', e: 'each other' }
     ],
     workbook: {
       easy: [
@@ -3839,6 +4612,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (3)',
     context: 'Một lễ hội vui ở trường. Mai và Tiểu Mỹ nhìn lại sự tiến bộ và trưởng thành của bản thân sau một năm.',
     vocabPreview: ['欢乐', '精彩', '进步', '坚强', '紧张'],
+    objectives: [
+      "Nắm nhóm từ khóa: 欢乐 · 精彩 · 进步 · 坚强 · 紧张",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (3) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 欢乐 · 精彩 · 进步",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "欢乐 — vui vẻ, hân hoan",
+        explain: "Dùng 欢乐 trong ngữ cảnh Tính từ miêu tả (3) để diễn đạt: vui vẻ, hân hoan.",
+        examples: [
+          { zh: "今天的活动好欢乐！表演真精彩。", py: "Jīntiān de huódòng hǎo huānlè! Biǎoyǎn zhēn jīngcǎi.", vi: "Hoạt động hôm nay vui ghê! Biểu diễn thật xuất sắc." }
+        ] },
+      { point: "精彩 — tuyệt vời, xuất sắc",
+        explain: "Dùng 精彩 trong ngữ cảnh Tính từ miêu tả (3) để diễn đạt: tuyệt vời, xuất sắc.",
+        examples: [
+          { zh: "今天的活动好欢乐！表演真精彩。", py: "Jīntiān de huódòng hǎo huānlè! Biǎoyǎn zhēn jīngcǎi.", vi: "Hoạt động hôm nay vui ghê! Biểu diễn thật xuất sắc." }
+        ] },
+      { point: "进步 — tiến bộ",
+        explain: "Dùng 进步 trong ngữ cảnh Tính từ miêu tả (3) để diễn đạt: tiến bộ.",
+        examples: [
+          { zh: "这一年我进步很大，要进一步努力。", py: "Zhè yì nián wǒ jìnbù hěn dà, yào jìnyíbù nǔlì.", vi: "Năm nay mình tiến bộ nhiều, phải nỗ lực thêm một bước." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân trường · Lễ hội', bg: 'park', cast: ['mai', 'xiaomei'],
         text: 'Một lễ hội tưng bừng diễn ra ở sân trường.', pinyin: '', meaning: '', vocab: [] },
@@ -3884,26 +4680,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '欢乐', p: 'huān lè', v: 'vui vẻ, hân hoan' },
-      { h: '活', p: 'huó', v: 'sống, sôi nổi' },
-      { h: '火', p: 'huǒ', v: 'lửa' },
-      { h: '积极', p: 'jī jí', v: 'tích cực' },
-      { h: '基本', p: 'jī běn', v: 'cơ bản' },
-      { h: '及时', p: 'jí shí', v: 'kịp thời' },
-      { h: '集中', p: 'jí zhōng', v: 'tập trung' },
-      { h: '坚决', p: 'jiān jué', v: 'kiên quyết' },
-      { h: '坚强', p: 'jiān qiáng', v: 'kiên cường, mạnh mẽ' },
-      { h: '简单', p: 'jiǎn dān', v: 'đơn giản' },
-      { h: '结实', p: 'jiē shí', v: 'chắc chắn, bền' },
-      { h: '紧', p: 'jǐn', v: 'chặt, khẩn trương' },
-      { h: '紧急', p: 'jǐn jí', v: 'khẩn cấp' },
-      { h: '紧张', p: 'jǐn zhāng', v: 'căng thẳng' },
-      { h: '进步', p: 'jìn bù', v: 'tiến bộ' },
-      { h: '进一步', p: 'jìn yī bù', v: 'tiến thêm một bước' },
-      { h: '精彩', p: 'jīng cǎi', v: 'tuyệt vời, xuất sắc' },
-      { h: '静', p: 'jìng', v: 'yên tĩnh, lặng' },
-      { h: '久', p: 'jiǔ', v: 'lâu, lâu dài' },
-      { h: '旧', p: 'jiù', v: 'cũ' }
+      { h: '欢乐', p: 'huān lè', v: 'vui vẻ, hân hoan', e: 'gaiety' },
+      { h: '活', p: 'huó', v: 'sống, sôi nổi', e: 'to live' },
+      { h: '火', p: 'huǒ', v: 'lửa', e: 'fire, flame' },
+      { h: '积极', p: 'jī jí', v: 'tích cực', e: 'active' },
+      { h: '基本', p: 'jī běn', v: 'cơ bản', e: 'basic' },
+      { h: '及时', p: 'jí shí', v: 'kịp thời', e: 'timely' },
+      { h: '集中', p: 'jí zhōng', v: 'tập trung', e: 'to concentrate' },
+      { h: '坚决', p: 'jiān jué', v: 'kiên quyết', e: 'firm' },
+      { h: '坚强', p: 'jiān qiáng', v: 'kiên cường, mạnh mẽ', e: 'staunch' },
+      { h: '简单', p: 'jiǎn dān', v: 'đơn giản', e: 'simple' },
+      { h: '结实', p: 'jiē shí', v: 'chắc chắn, bền', e: 'to bear fruit' },
+      { h: '紧', p: 'jǐn', v: 'chặt, khẩn trương', e: 'tight' },
+      { h: '紧急', p: 'jǐn jí', v: 'khẩn cấp', e: 'urgent' },
+      { h: '紧张', p: 'jǐn zhāng', v: 'căng thẳng', e: 'nervous' },
+      { h: '进步', p: 'jìn bù', v: 'tiến bộ', e: 'progress' },
+      { h: '进一步', p: 'jìn yī bù', v: 'tiến thêm một bước', e: 'to go a step further' },
+      { h: '精彩', p: 'jīng cǎi', v: 'tuyệt vời, xuất sắc', e: 'wonderful' },
+      { h: '静', p: 'jìng', v: 'yên tĩnh, lặng', e: 'still' },
+      { h: '久', p: 'jiǔ', v: 'lâu, lâu dài', e: 'time' },
+      { h: '旧', p: 'jiù', v: 'cũ', e: 'old' }
     ],
     workbook: {
       easy: [
@@ -3939,6 +4735,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (4)',
     context: 'Mai nhìn lại một năm với sự lạc quan, bàn với Tiểu Mỹ về cách vượt qua khó khăn và kế hoạch tương lai.',
     vocabPreview: ['乐观', '具体', '困难', '绝对', '满足'],
+    objectives: [
+      "Nắm nhóm từ khóa: 乐观 · 具体 · 困难 · 绝对 · 满足",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (4) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 乐观 · 具体 · 困难",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "乐观 — lạc quan",
+        explain: "Dùng 乐观 trong ngữ cảnh Tính từ miêu tả (4) để diễn đạt: lạc quan.",
+        examples: [
+          { zh: "回顾这一年，我很满足，对未来很乐观。", py: "Huígù zhè yì nián, wǒ hěn mǎnzú, duì wèilái hěn lèguān.", vi: "Nhìn lại năm nay, mình rất mãn nguyện, lạc quan về tương lai." }
+        ] },
+      { point: "具体 — cụ thể",
+        explain: "Dùng 具体 trong ngữ cảnh Tính từ miêu tả (4) để diễn đạt: cụ thể.",
+        examples: [
+          { zh: "你的计划很具体，方法也可靠。", py: "Nǐ de jìhuà hěn jùtǐ, fāngfǎ yě kěkào.", vi: "Kế hoạch của cậu rất cụ thể, phương pháp cũng đáng tin cậy." }
+        ] },
+      { point: "困难 — khó khăn",
+        explain: "Dùng 困难 trong ngữ cảnh Tính từ miêu tả (4) để diễn đạt: khó khăn.",
+        examples: [
+          { zh: "客观地说，过程有困难，但我没放弃。", py: "Kèguān de shuō, guòchéng yǒu kùnnán, dàn wǒ méi fàngqì.", vi: "Khách quan mà nói, quá trình có khó khăn, nhưng mình không bỏ cuộc." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi tối', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Mai nhìn lại một năm và lên kế hoạch cho tương lai.', pinyin: '', meaning: '', vocab: [] },
@@ -3984,26 +4803,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '具体', p: 'jù tǐ', v: 'cụ thể' },
-      { h: '绝对', p: 'jué duì', v: 'tuyệt đối' },
-      { h: '开放', p: 'kāi fàng', v: 'mở cửa, khai phóng' },
-      { h: '可靠', p: 'kě kào', v: 'đáng tin cậy' },
-      { h: '客观', p: 'kè guān', v: 'khách quan' },
-      { h: '空', p: 'kōng', v: 'rỗng, trống' },
-      { h: '快速', p: 'kuài sù', v: 'nhanh chóng' },
-      { h: '困', p: 'kùn', v: 'buồn ngủ, mệt mỏi' },
-      { h: '困难', p: 'kùn nan', v: 'khó khăn' },
-      { h: '乐', p: 'lè', v: 'vui vẻ' },
-      { h: '乐观', p: 'lè guān', v: 'lạc quan' },
-      { h: '类似', p: 'lèi sì', v: 'tương tự' },
-      { h: '连续', p: 'lián xù', v: 'liên tục' },
-      { h: '乱', p: 'luàn', v: 'lộn xộn, hỗn loạn' },
-      { h: '落后', p: 'luò hòu', v: 'lạc hậu, tụt hậu' },
-      { h: '麻烦', p: 'má fan', v: 'rắc rối, phiền phức' },
-      { h: '马', p: 'mǎ', v: 'ngựa' },
-      { h: '满足', p: 'mǎn zú', v: 'thỏa mãn, mãn nguyện' },
-      { h: '没用', p: 'méi yòng', v: 'vô dụng' },
-      { h: '美', p: 'měi', v: 'đẹp' }
+      { h: '具体', p: 'jù tǐ', v: 'cụ thể', e: 'concrete' },
+      { h: '绝对', p: 'jué duì', v: 'tuyệt đối', e: 'absolute' },
+      { h: '开放', p: 'kāi fàng', v: 'mở cửa, khai phóng', e: 'to bloom' },
+      { h: '可靠', p: 'kě kào', v: 'đáng tin cậy', e: 'reliable' },
+      { h: '客观', p: 'kè guān', v: 'khách quan', e: 'objective' },
+      { h: '空', p: 'kōng', v: 'rỗng, trống', e: 'empty' },
+      { h: '快速', p: 'kuài sù', v: 'nhanh chóng', e: 'fast' },
+      { h: '困', p: 'kùn', v: 'buồn ngủ, mệt mỏi', e: 'to trap' },
+      { h: '困难', p: 'kùn nan', v: 'khó khăn', e: 'difficult' },
+      { h: '乐', p: 'lè', v: 'vui vẻ', e: 'happy, joyful' },
+      { h: '乐观', p: 'lè guān', v: 'lạc quan', e: 'optimistic' },
+      { h: '类似', p: 'lèi sì', v: 'tương tự', e: 'similar' },
+      { h: '连续', p: 'lián xù', v: 'liên tục', e: 'continuous' },
+      { h: '乱', p: 'luàn', v: 'lộn xộn, hỗn loạn', e: 'in confusion or disorder' },
+      { h: '落后', p: 'luò hòu', v: 'lạc hậu, tụt hậu', e: 'to fall behind' },
+      { h: '麻烦', p: 'má fan', v: 'rắc rối, phiền phức', e: 'trouble' },
+      { h: '马', p: 'mǎ', v: 'ngựa', e: 'horse' },
+      { h: '满足', p: 'mǎn zú', v: 'thỏa mãn, mãn nguyện', e: 'to satisfy' },
+      { h: '没用', p: 'méi yòng', v: 'vô dụng', e: 'useless' },
+      { h: '美', p: 'měi', v: 'đẹp', e: 'the Americas (abbr. for 洲)' }
     ],
     workbook: {
       easy: [
@@ -4046,6 +4865,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (5)',
     context: 'Mùa xuân, Mai và Tiểu Mỹ dạo công viên, trò chuyện về cảnh đẹp, con người thân thiện và sự lớn mạnh của đất nước.',
     vocabPreview: ['美丽', '暖和', '亲切', '强大', '热烈'],
+    objectives: [
+      "Nắm nhóm từ khóa: 美丽 · 暖和 · 亲切 · 强大 · 热烈",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (5) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 美丽 · 暖和 · 亲切",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "美丽 — xinh đẹp",
+        explain: "Dùng 美丽 trong ngữ cảnh Tính từ miêu tả (5) để diễn đạt: xinh đẹp.",
+        examples: [
+          { zh: "春天来了，天气暖和，风景美丽。", py: "Chūntiān lái le, tiānqì nuǎnhuo, fēngjǐng měilì.", vi: "Mùa xuân đến rồi, thời tiết ấm áp, phong cảnh xinh đẹp." }
+        ] },
+      { point: "暖和 — ấm áp",
+        explain: "Dùng 暖和 trong ngữ cảnh Tính từ miêu tả (5) để diễn đạt: ấm áp.",
+        examples: [
+          { zh: "春天来了，天气暖和，风景美丽。", py: "Chūntiān lái le, tiānqì nuǎnhuo, fēngjǐng měilì.", vi: "Mùa xuân đến rồi, thời tiết ấm áp, phong cảnh xinh đẹp." }
+        ] },
+      { point: "亲切 — thân thiết, chân thành",
+        explain: "Dùng 亲切 trong ngữ cảnh Tính từ miêu tả (5) để diễn đạt: thân thiết, chân thành.",
+        examples: [
+          { zh: "这里的人很亲切。", py: "Zhèlǐ de rén hěn qīnqiè.", vi: "Người ở đây rất thân thiện." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Công viên · Mùa xuân', bg: 'park', cast: ['mai', 'xiaomei'],
         text: 'Mùa xuân, hai bạn dạo bước trong công viên.', pinyin: '', meaning: '', vocab: [] },
@@ -4091,26 +4933,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '美好', p: 'měi hǎo', v: 'tốt đẹp' },
-      { h: '美丽', p: 'měi lì', v: 'xinh đẹp' },
-      { h: '明确', p: 'míng què', v: 'rõ ràng, minh xác' },
-      { h: '明显', p: 'míng xiǎn', v: 'rõ ràng, hiển nhiên' },
-      { h: '暖和', p: 'nuǎn huo', v: 'ấm áp' },
-      { h: '胖', p: 'pàng', v: 'mập, béo' },
-      { h: '皮', p: 'pí', v: 'da, bì' },
-      { h: '破', p: 'pò', v: 'vỡ, rách, hỏng' },
-      { h: '普遍', p: 'pǔ biàn', v: 'phổ biến' },
-      { h: '奇怪', p: 'qí guài', v: 'kỳ lạ' },
-      { h: '强', p: 'qiáng', v: 'mạnh' },
-      { h: '强大', p: 'qiáng dà', v: 'hùng mạnh, lớn mạnh' },
-      { h: '强烈', p: 'qiáng liè', v: 'mãnh liệt, mạnh mẽ' },
-      { h: '巧', p: 'qiǎo', v: 'khéo, tình cờ' },
-      { h: '亲', p: 'qīn', v: 'thân, gần gũi' },
-      { h: '亲切', p: 'qīn qiè', v: 'thân thiết, chân thành' },
-      { h: '全面', p: 'quán miàn', v: 'toàn diện' },
-      { h: '确实', p: 'què shí', v: 'thực sự, quả thật' },
-      { h: '热烈', p: 'rè liè', v: 'nhiệt liệt, sôi nổi' },
-      { h: '人工', p: 'rén gōng', v: 'nhân tạo, lao động tay' }
+      { h: '美好', p: 'měi hǎo', v: 'tốt đẹp', e: 'beautiful' },
+      { h: '美丽', p: 'měi lì', v: 'xinh đẹp', e: 'beautiful' },
+      { h: '明确', p: 'míng què', v: 'rõ ràng, minh xác', e: 'clear-cut' },
+      { h: '明显', p: 'míng xiǎn', v: 'rõ ràng, hiển nhiên', e: 'clear' },
+      { h: '暖和', p: 'nuǎn huo', v: 'ấm áp', e: 'warm' },
+      { h: '胖', p: 'pàng', v: 'mập, béo', e: 'healthy' },
+      { h: '皮', p: 'pí', v: 'da, bì', e: 'skin, leather, hide' },
+      { h: '破', p: 'pò', v: 'vỡ, rách, hỏng', e: 'broken' },
+      { h: '普遍', p: 'pǔ biàn', v: 'phổ biến', e: 'universal' },
+      { h: '奇怪', p: 'qí guài', v: 'kỳ lạ', e: 'strange' },
+      { h: '强', p: 'qiáng', v: 'mạnh', e: 'strong, powerful, better' },
+      { h: '强大', p: 'qiáng dà', v: 'hùng mạnh, lớn mạnh', e: 'large' },
+      { h: '强烈', p: 'qiáng liè', v: 'mãnh liệt, mạnh mẽ', e: 'strong' },
+      { h: '巧', p: 'qiǎo', v: 'khéo, tình cờ', e: 'opportunely' },
+      { h: '亲', p: 'qīn', v: 'thân, gần gũi', e: 'parent' },
+      { h: '亲切', p: 'qīn qiè', v: 'thân thiết, chân thành', e: 'amiable' },
+      { h: '全面', p: 'quán miàn', v: 'toàn diện', e: 'all-around' },
+      { h: '确实', p: 'què shí', v: 'thực sự, quả thật', e: 'indeed' },
+      { h: '热烈', p: 'rè liè', v: 'nhiệt liệt, sôi nổi', e: 'enthusiastic' },
+      { h: '人工', p: 'rén gōng', v: 'nhân tạo, lao động tay', e: 'artificial' }
     ],
     workbook: {
       easy: [
@@ -4146,6 +4988,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (6)',
     context: 'Mai và Tiểu Mỹ ôn lại những kỷ niệm ngọt ngào lẫn đau buồn của một năm, và sự đoàn kết đã giúp họ vượt qua.',
     vocabPreview: ['深刻', '痛苦', '团结', '突然', '完善'],
+    objectives: [
+      "Nắm nhóm từ khóa: 深刻 · 痛苦 · 团结 · 突然 · 完善",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (6) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 深刻 · 痛苦 · 团结",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "深刻 — sâu sắc",
+        explain: "Dùng 深刻 trong ngữ cảnh Tính từ miêu tả (6) để diễn đạt: sâu sắc.",
+        examples: [
+          { zh: "这一年的日常生活让我印象深刻。", py: "Zhè yì nián de rìcháng shēnghuó ràng wǒ yìnxiàng shēnkè.", vi: "Cuộc sống thường ngày năm nay để lại cho mình ấn tượng sâu sắc." }
+        ] },
+      { point: "痛苦 — đau khổ",
+        explain: "Dùng 痛苦 trong ngữ cảnh Tính từ miêu tả (6) để diễn đạt: đau khổ.",
+        examples: [
+          { zh: "有些回忆很甜，也有伤心痛苦的时候。", py: "Yǒuxiē huíyì hěn tián, yě yǒu shāngxīn tòngkǔ de shíhou.", vi: "Có những ký ức rất ngọt, cũng có lúc đau lòng khổ sở." }
+        ] },
+      { point: "团结 — đoàn kết",
+        explain: "Dùng 团结 trong ngữ cảnh Tính từ miêu tả (6) để diễn đạt: đoàn kết.",
+        examples: [
+          { zh: "通常困难不容易克服，但我们团结一心。", py: "Tōngcháng kùnnán bù róngyì kèfú, dàn wǒmen tuánjié yìxīn.", vi: "Thông thường khó khăn không dễ vượt qua, nhưng tụi mình đoàn kết một lòng." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi tối', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Hai bạn ngồi ôn lại kỷ niệm một năm qua.', pinyin: '', meaning: '', vocab: [] },
@@ -4195,26 +5060,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '日常', p: 'rì cháng', v: 'hàng ngày, thường ngày' },
-      { h: '容易', p: 'róng yì', v: 'dễ dàng' },
-      { h: '伤心', p: 'shāng xīn', v: 'đau lòng, buồn' },
-      { h: '深', p: 'shēn', v: 'sâu' },
-      { h: '深刻', p: 'shēn kè', v: 'sâu sắc' },
-      { h: '深入', p: 'shēn rù', v: 'thấm sâu, đi sâu' },
-      { h: '生动', p: 'shēng dòng', v: 'sinh động' },
-      { h: '适用', p: 'shì yòng', v: 'áp dụng được' },
-      { h: '死', p: 'sǐ', v: 'chết' },
-      { h: '台', p: 'tái', v: 'chiếc (lượng từ máy), sân khấu' },
-      { h: '甜', p: 'tián', v: 'ngọt' },
-      { h: '通常', p: 'tōng cháng', v: 'thông thường' },
-      { h: '痛', p: 'tòng', v: 'đau' },
-      { h: '痛苦', p: 'tòng kǔ', v: 'đau khổ' },
-      { h: '突出', p: 'tū chū', v: 'nổi bật' },
-      { h: '突然', p: 'tū rán', v: 'đột nhiên' },
-      { h: '土', p: 'tǔ', v: 'đất' },
-      { h: '团结', p: 'tuán jié', v: 'đoàn kết' },
-      { h: '完美', p: 'wán měi', v: 'hoàn hảo' },
-      { h: '完善', p: 'wán shàn', v: 'hoàn thiện' }
+      { h: '日常', p: 'rì cháng', v: 'hàng ngày, thường ngày', e: 'day-to-day' },
+      { h: '容易', p: 'róng yì', v: 'dễ dàng', e: 'easy' },
+      { h: '伤心', p: 'shāng xīn', v: 'đau lòng, buồn', e: 'to grieve' },
+      { h: '深', p: 'shēn', v: 'sâu', e: 'deep, dark (color)' },
+      { h: '深刻', p: 'shēn kè', v: 'sâu sắc', e: 'profound' },
+      { h: '深入', p: 'shēn rù', v: 'thấm sâu, đi sâu', e: 'to penetrate deeply' },
+      { h: '生动', p: 'shēng dòng', v: 'sinh động', e: 'vivid' },
+      { h: '适用', p: 'shì yòng', v: 'áp dụng được', e: 'to be applicable' },
+      { h: '死', p: 'sǐ', v: 'chết', e: 'to die' },
+      { h: '台', p: 'tái', v: 'chiếc (lượng từ máy), sân khấu', e: 'Taiwan (abbr.)' },
+      { h: '甜', p: 'tián', v: 'ngọt', e: 'sweet' },
+      { h: '通常', p: 'tōng cháng', v: 'thông thường', e: 'regular' },
+      { h: '痛', p: 'tòng', v: 'đau', e: 'ache' },
+      { h: '痛苦', p: 'tòng kǔ', v: 'đau khổ', e: 'pain' },
+      { h: '突出', p: 'tū chū', v: 'nổi bật', e: 'prominent' },
+      { h: '突然', p: 'tū rán', v: 'đột nhiên', e: 'sudden' },
+      { h: '土', p: 'tǔ', v: 'đất', e: 'Tu (ethnic group)' },
+      { h: '团结', p: 'tuán jié', v: 'đoàn kết', e: 'to unite' },
+      { h: '完美', p: 'wán měi', v: 'hoàn hảo', e: 'perfect' },
+      { h: '完善', p: 'wán shàn', v: 'hoàn thiện', e: 'comprehensive' }
     ],
     workbook: {
       easy: [
@@ -4250,6 +5115,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (7)',
     context: 'Mai và Tiểu Mỹ cùng xem một bộ phim, bàn về văn minh, an toàn và sự may mắn của một năm bình an.',
     vocabPreview: ['影视', '温暖', '文明', '危险', '幸运'],
+    objectives: [
+      "Nắm nhóm từ khóa: 影视 · 温暖 · 文明 · 危险 · 幸运",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (7) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 影视 · 温暖 · 文明",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "影视 — phim ảnh và truyền hình",
+        explain: "Dùng 影视 trong ngữ cảnh Tính từ miêu tả (7) để diễn đạt: phim ảnh và truyền hình.",
+        examples: [
+          { zh: "我们约好一起看影视作品，讲一个伟大的故事。", py: "Wǒmen yuē hǎo yìqǐ kàn yǐngshì zuòpǐn, jiǎng yí gè wěidà de gùshi.", vi: "Tụi mình hẹn nhau xem tác phẩm điện ảnh, kể một câu chuyện vĩ đại." }
+        ] },
+      { point: "温暖 — ấm áp",
+        explain: "Dùng 温暖 trong ngữ cảnh Tính từ miêu tả (7) để diễn đạt: ấm áp.",
+        examples: [
+          { zh: "那部电影画面温暖，人物形象很完整。", py: "Nà bù diànyǐng huàmiàn wēnnuǎn, rénwù xíngxiàng hěn wánzhěng.", vi: "Bộ phim đó hình ảnh ấm áp, hình tượng nhân vật rất hoàn chỉnh." }
+        ] },
+      { point: "文明 — văn minh",
+        explain: "Dùng 文明 trong ngữ cảnh Tính từ miêu tả (7) để diễn đạt: văn minh.",
+        examples: [
+          { zh: "显然，文明社会需要相互尊重。", py: "Xiǎnrán, wénmíng shèhuì xūyào xiānghù zūnzhòng.", vi: "Rõ ràng, xã hội văn minh cần tôn trọng lẫn nhau." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi tối', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Hai bạn hẹn nhau xem phim ở nhà.', pinyin: '', meaning: '', vocab: [] },
@@ -4295,26 +5183,26 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '完整', p: 'wán zhěng', v: 'hoàn chỉnh, đầy đủ' },
-      { h: '危险', p: 'wēi xiǎn', v: 'nguy hiểm' },
-      { h: '伟大', p: 'wěi dà', v: 'vĩ đại' },
-      { h: '卫生', p: 'wèi shēng', v: 'vệ sinh' },
-      { h: '温暖', p: 'wēn nuǎn', v: 'ấm áp' },
-      { h: '文明', p: 'wén míng', v: 'văn minh' },
-      { h: '先进', p: 'xiān jìn', v: 'tiên tiến' },
-      { h: '显然', p: 'xiǎn rán', v: 'rõ ràng, hiển nhiên' },
-      { h: '现实', p: 'xiàn shí', v: 'thực tế' },
-      { h: '相互', p: 'xiāng hù', v: 'lẫn nhau' },
-      { h: '相似', p: 'xiāng sì', v: 'tương tự' },
-      { h: '香', p: 'xiāng', v: 'thơm, hương' },
-      { h: '形象', p: 'xíng xiàng', v: 'hình tượng, hình ảnh' },
-      { h: '幸运', p: 'xìng yùn', v: 'may mắn' },
-      { h: '意外', p: 'yì wài', v: 'bất ngờ, ngoài ý muốn' },
-      { h: '银', p: 'yín', v: 'bạc' },
-      { h: '影视', p: 'yǐng shì', v: 'phim ảnh và truyền hình' },
-      { h: '有利', p: 'yǒu lì', v: 'có lợi' },
-      { h: '有效', p: 'yǒu xiào', v: 'hiệu quả, có hiệu lực' },
-      { h: '约', p: 'yuē', v: 'ước hẹn, khoảng' }
+      { h: '完整', p: 'wán zhěng', v: 'hoàn chỉnh, đầy đủ', e: 'complete' },
+      { h: '危险', p: 'wēi xiǎn', v: 'nguy hiểm', e: 'danger' },
+      { h: '伟大', p: 'wěi dà', v: 'vĩ đại', e: 'huge' },
+      { h: '卫生', p: 'wèi shēng', v: 'vệ sinh', e: 'health' },
+      { h: '温暖', p: 'wēn nuǎn', v: 'ấm áp', e: 'warm' },
+      { h: '文明', p: 'wén míng', v: 'văn minh', e: 'civilized' },
+      { h: '先进', p: 'xiān jìn', v: 'tiên tiến', e: 'advanced (technology)' },
+      { h: '显然', p: 'xiǎn rán', v: 'rõ ràng, hiển nhiên', e: 'clearly' },
+      { h: '现实', p: 'xiàn shí', v: 'thực tế', e: 'reality' },
+      { h: '相互', p: 'xiāng hù', v: 'lẫn nhau', e: 'each other' },
+      { h: '相似', p: 'xiāng sì', v: 'tương tự', e: 'similar' },
+      { h: '香', p: 'xiāng', v: 'thơm, hương', e: 'fragrant' },
+      { h: '形象', p: 'xíng xiàng', v: 'hình tượng, hình ảnh', e: 'image' },
+      { h: '幸运', p: 'xìng yùn', v: 'may mắn', e: 'fortunate' },
+      { h: '意外', p: 'yì wài', v: 'bất ngờ, ngoài ý muốn', e: 'unexpected' },
+      { h: '银', p: 'yín', v: 'bạc', e: 'silver' },
+      { h: '影视', p: 'yǐng shì', v: 'phim ảnh và truyền hình', e: 'movies and television' },
+      { h: '有利', p: 'yǒu lì', v: 'có lợi', e: 'advantageous' },
+      { h: '有效', p: 'yǒu xiào', v: 'hiệu quả, có hiệu lực', e: 'effective' },
+      { h: '约', p: 'yuē', v: 'ước hẹn, khoảng', e: 'to weigh in a balance or on a scale' }
     ],
     workbook: {
       easy: [
@@ -4350,6 +5238,29 @@ Object.assign(COURSE_DATA, {
     title: 'Tính từ miêu tả (8)',
     context: 'Mai chính thức bắt đầu một kế hoạch dài hạn, sắp xếp mọi thứ ngăn nắp và quyết tâm đi con đường thẳng.',
     vocabPreview: ['长期', '正式', '主动', '真实', '整齐'],
+    objectives: [
+      "Nắm nhóm từ khóa: 长期 · 正式 · 主动 · 真实 · 整齐",
+      "Kể/nghe hiểu tình huống Tính từ miêu tả (8) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 长期 · 正式 · 主动",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "长期 — dài hạn",
+        explain: "Dùng 长期 trong ngữ cảnh Tính từ miêu tả (8) để diễn đạt: dài hạn.",
+        examples: [
+          { zh: "我做了一个长期计划，很正式。", py: "Wǒ zuò le yí gè chángqī jìhuà, hěn zhèngshì.", vi: "Mình lập một kế hoạch dài hạn, rất chính thức." }
+        ] },
+      { point: "正式 — chính thức",
+        explain: "Dùng 正式 trong ngữ cảnh Tính từ miêu tả (8) để diễn đạt: chính thức.",
+        examples: [
+          { zh: "我做了一个长期计划，很正式。", py: "Wǒ zuò le yí gè chángqī jìhuà, hěn zhèngshì.", vi: "Mình lập một kế hoạch dài hạn, rất chính thức." }
+        ] },
+      { point: "主动 — chủ động",
+        explain: "Dùng 主动 trong ngữ cảnh Tính từ miêu tả (8) để diễn đạt: chủ động.",
+        examples: [
+          { zh: "这是个重大决定。你总是很主动。", py: "Zhè shì gè zhòngdà juédìng. Nǐ zǒngshì hěn zhǔdòng.", vi: "Đây là quyết định trọng đại. Cậu luôn rất chủ động." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Bàn học · Buổi tối', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Mai lập một kế hoạch dài hạn cho chặng đường sắp tới.', pinyin: '', meaning: '', vocab: [] },
@@ -4391,22 +5302,22 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '长期', p: 'cháng qī', v: 'dài hạn' },
-      { h: '真实', p: 'zhēn shí', v: 'thật, chân thật' },
-      { h: '整', p: 'zhěng', v: 'toàn bộ, nguyên vẹn' },
-      { h: '整个', p: 'zhěng gè', v: 'toàn bộ, cả' },
-      { h: '整齐', p: 'zhěng qí', v: 'gọn gàng, ngăn nắp' },
-      { h: '正式', p: 'zhèng shì', v: 'chính thức' },
-      { h: '直', p: 'zhí', v: 'thẳng, trực tiếp' },
-      { h: '值', p: 'zhí', v: 'giá trị, đáng' },
-      { h: '重大', p: 'zhòng dà', v: 'trọng đại' },
-      { h: '主动', p: 'zhǔ dòng', v: 'chủ động' },
-      { h: '专门', p: 'zhuān mén', v: 'chuyên, chuyên biệt' },
-      { h: '准', p: 'zhǔn', v: 'chuẩn, chính xác' },
-      { h: '自动', p: 'zì dòng', v: 'tự động' },
-      { h: '自觉', p: 'zì jué', v: 'tự giác' },
-      { h: '自然', p: 'zì rán', v: 'tự nhiên' },
-      { h: '总', p: 'zǒng', v: 'tổng, luôn luôn' }
+      { h: '长期', p: 'cháng qī', v: 'dài hạn', e: 'long term' },
+      { h: '真实', p: 'zhēn shí', v: 'thật, chân thật', e: 'true' },
+      { h: '整', p: 'zhěng', v: 'toàn bộ, nguyên vẹn', e: 'exactly' },
+      { h: '整个', p: 'zhěng gè', v: 'toàn bộ, cả', e: 'whole' },
+      { h: '整齐', p: 'zhěng qí', v: 'gọn gàng, ngăn nắp', e: 'orderly' },
+      { h: '正式', p: 'zhèng shì', v: 'chính thức', e: 'formal' },
+      { h: '直', p: 'zhí', v: 'thẳng, trực tiếp', e: 'straight, direct, vertical' },
+      { h: '值', p: 'zhí', v: 'giá trị, đáng', e: 'value' },
+      { h: '重大', p: 'zhòng dà', v: 'trọng đại', e: 'great' },
+      { h: '主动', p: 'zhǔ dòng', v: 'chủ động', e: 'to take the initiative' },
+      { h: '专门', p: 'zhuān mén', v: 'chuyên, chuyên biệt', e: 'specialist' },
+      { h: '准', p: 'zhǔn', v: 'chuẩn, chính xác', e: 'to allow' },
+      { h: '自动', p: 'zì dòng', v: 'tự động', e: 'automatic' },
+      { h: '自觉', p: 'zì jué', v: 'tự giác', e: 'conscious' },
+      { h: '自然', p: 'zì rán', v: 'tự nhiên', e: 'nature' },
+      { h: '总', p: 'zǒng', v: 'tổng, luôn luôn', e: 'general' }
     ],
     workbook: {
       easy: [
@@ -4442,6 +5353,30 @@ Object.assign(COURSE_DATA, {
     title: 'Thời gian & lịch trình (1)',
     context: 'Kỳ nghỉ Quốc khánh, Mai và Tiểu Mỹ dạo phố cổ, ôn lại chuyện xưa và bàn về dự định tương lai.',
     vocabPreview: ['国庆', '古代', '将来', '目前', '从前'],
+    objectives: [
+      "Nắm nhóm từ khóa: 国庆 · 古代 · 将来 · 目前 · 从前",
+      "Kể/nghe hiểu tình huống Thời gian & lịch trình (1) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 国庆 · 古代 · 将来",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "国庆 — quốc khánh",
+        explain: "Dùng 国庆 trong ngữ cảnh Thời gian & lịch trình (1) để diễn đạt: quốc khánh.",
+        examples: [
+          { zh: "今天是国庆节，街上真热闹！", py: "Jīntiān shì Guóqìng jié, jiē shàng zhēn rènao!", vi: "Hôm nay là Quốc khánh, phố xá náo nhiệt thật!" },
+          { zh: "我从来没在国庆这么开心过。", py: "Wǒ cónglái méi zài Guóqìng zhème kāixīn guo.", vi: "Mình chưa bao giờ vui thế này vào dịp Quốc khánh." }
+        ] },
+      { point: "古代 — thời cổ đại",
+        explain: "Dùng 古代 trong ngữ cảnh Thời gian & lịch trình (1) để diễn đạt: thời cổ đại.",
+        examples: [
+          { zh: "这座古庙是古代留下的，属于唐朝。", py: "Zhè zuò gǔ miào shì gǔdài liúxià de, shǔyú Táng cháo.", vi: "Ngôi chùa cổ này là di tích thời cổ đại để lại, thuộc triều Đường." }
+        ] },
+      { point: "将来 — tương lai",
+        explain: "Dùng 将来 trong ngữ cảnh Thời gian & lịch trình (1) để diễn đạt: tương lai.",
+        examples: [
+          { zh: "将来我想读研，后年可能再出国。", py: "Jiānglái wǒ xiǎng dú yán, hòunián kěnéng zài chūguó.", vi: "Tương lai mình muốn học cao học, năm kia có thể lại ra nước ngoài." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Phố cổ · Quốc khánh', bg: 'street', cast: ['mai', 'xiaomei'],
         text: 'Kỳ nghỉ Quốc khánh, hai bạn dạo phố cổ.', pinyin: '', meaning: '', vocab: [] },
@@ -4487,20 +5422,20 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '朝', p: 'cháo', v: 'triều đại, hướng về' },
-      { h: '初一', p: 'chū yī', v: 'mồng một âm lịch' },
-      { h: '从来', p: 'cóng lái', v: 'từ trước đến nay, chưa bao giờ' },
-      { h: '从前', p: 'cóng qián', v: 'trước đây, ngày xưa' },
-      { h: '当初', p: 'dāng chū', v: 'ban đầu, thuở ấy' },
-      { h: '古', p: 'gǔ', v: 'cổ, xưa' },
-      { h: '古代', p: 'gǔ dài', v: 'thời cổ đại' },
-      { h: '国庆', p: 'guó qìng', v: 'quốc khánh' },
-      { h: '后年', p: 'hòu nián', v: 'năm kia (sau 2 năm)' },
-      { h: '将来', p: 'jiāng lái', v: 'tương lai' },
-      { h: '金', p: 'jīn', v: 'vàng' },
-      { h: '近期', p: 'jìn qī', v: 'gần đây' },
-      { h: '目前', p: 'mù qián', v: 'hiện tại, lúc này' },
-      { h: '年初', p: 'nián chū', v: 'đầu năm' }
+      { h: '朝', p: 'cháo', v: 'triều đại, hướng về', e: 'abbr. for 朝鲜 Korea' },
+      { h: '初一', p: 'chū yī', v: 'mồng một âm lịch', e: 'first day of lunar month' },
+      { h: '从来', p: 'cóng lái', v: 'từ trước đến nay, chưa bao giờ', e: 'always' },
+      { h: '从前', p: 'cóng qián', v: 'trước đây, ngày xưa', e: 'previously' },
+      { h: '当初', p: 'dāng chū', v: 'ban đầu, thuở ấy', e: 'at that time' },
+      { h: '古', p: 'gǔ', v: 'cổ, xưa', e: 'ancient, old, classical' },
+      { h: '古代', p: 'gǔ dài', v: 'thời cổ đại', e: 'ancient times' },
+      { h: '国庆', p: 'guó qìng', v: 'quốc khánh', e: 'National Day' },
+      { h: '后年', p: 'hòu nián', v: 'năm kia (sau 2 năm)', e: 'the year after next' },
+      { h: '将来', p: 'jiāng lái', v: 'tương lai', e: 'in the future' },
+      { h: '金', p: 'jīn', v: 'vàng', e: 'gold, golden, metal' },
+      { h: '近期', p: 'jìn qī', v: 'gần đây', e: 'near in time' },
+      { h: '目前', p: 'mù qián', v: 'hiện tại, lúc này', e: 'at the present time' },
+      { h: '年初', p: 'nián chū', v: 'đầu năm', e: 'beginning of the year' }
     ],
     workbook: {
       easy: [
@@ -4543,6 +5478,29 @@ Object.assign(COURSE_DATA, {
     title: 'Thời gian & lịch trình (2)',
     context: 'Cuối năm, Mai và Tiểu Mỹ nhìn lại học kỳ và bàn về thời đại hiện đại mà họ đang sống.',
     vocabPreview: ['年底', '现代', '时代', '世纪', '眼前'],
+    objectives: [
+      "Nắm nhóm từ khóa: 年底 · 现代 · 时代 · 世纪 · 眼前",
+      "Kể/nghe hiểu tình huống Thời gian & lịch trình (2) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 年底 · 现代 · 时代",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "年底 — cuối năm",
+        explain: "Dùng 年底 trong ngữ cảnh Thời gian & lịch trình (2) để diễn đạt: cuối năm.",
+        examples: [
+          { zh: "快到年底了，这个学期我学到很多。", py: "Kuài dào niándǐ le, zhège xuéqī wǒ xuédào hěn duō.", vi: "Sắp đến cuối năm rồi, học kỳ này mình học được nhiều." }
+        ] },
+      { point: "现代 — hiện đại",
+        explain: "Dùng 现代 trong ngữ cảnh Thời gian & lịch trình (2) để diễn đạt: hiện đại.",
+        examples: [
+          { zh: "是啊，现在是现代社会，二十一世纪科技发展快。", py: "Shì a, xiànzài shì xiàndài shèhuì, èrshíyī shìjì kējì fāzhǎn kuài.", vi: "Đúng vậy, giờ là xã hội hiện đại, thế kỷ 21 khoa học kỹ thuật phát triển nhanh." }
+        ] },
+      { point: "时代 — thời đại",
+        explain: "Dùng 时代 trong ngữ cảnh Thời gian & lịch trình (2) để diễn đạt: thời đại.",
+        examples: [
+          { zh: "这个时代变化快，双方都要努力。资料都齐了吗？", py: "Zhège shídài biànhuà kuài, shuāngfāng dōu yào nǔlì. Zīliào dōu qí le ma?", vi: "Thời đại này thay đổi nhanh, đôi bên đều phải cố gắng. Tài liệu đủ cả chưa?" }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Cuối năm', bg: 'home', cast: ['mai', 'xiaomei'],
         text: 'Cuối năm, hai bạn ngồi tổng kết học kỳ.', pinyin: '', meaning: '', vocab: [] },
@@ -4588,20 +5546,20 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '年代', p: 'nián dài', v: 'thập kỷ, năm tháng' },
-      { h: '年底', p: 'nián dǐ', v: 'cuối năm' },
-      { h: '年纪', p: 'nián jì', v: 'tuổi, niên kỷ' },
-      { h: '期', p: 'qī', v: 'kỳ, giai đoạn' },
-      { h: '齐', p: 'qí', v: 'tề, đầy đủ, đồng đều' },
-      { h: '千万', p: 'qiān wàn', v: 'nhất định, triệu vạn' },
-      { h: '时', p: 'shí', v: 'lúc, thời' },
-      { h: '时代', p: 'shí dài', v: 'thời đại' },
-      { h: '世纪', p: 'shì jì', v: 'thế kỷ' },
-      { h: '双方', p: 'shuāng fāng', v: 'đôi bên, hai bên' },
-      { h: '往往', p: 'wǎng wǎng', v: 'thường thường' },
-      { h: '现代', p: 'xiàn dài', v: 'hiện đại' },
-      { h: '眼前', p: 'yǎn qián', v: 'trước mắt, trước mặt' },
-      { h: '整天', p: 'zhěng tiān', v: 'cả ngày' }
+      { h: '年代', p: 'nián dài', v: 'thập kỷ, năm tháng', e: 'a decade of a century (e.g. the Sixties)' },
+      { h: '年底', p: 'nián dǐ', v: 'cuối năm', e: 'the end of the year' },
+      { h: '年纪', p: 'nián jì', v: 'tuổi, niên kỷ', e: 'age' },
+      { h: '期', p: 'qī', v: 'kỳ, giai đoạn', e: 'period, phase, issue (of publication)' },
+      { h: '齐', p: 'qí', v: 'tề, đầy đủ, đồng đều', e: '(name of states and dynasties at several different periods)' },
+      { h: '千万', p: 'qiān wàn', v: 'nhất định, triệu vạn', e: 'ten million' },
+      { h: '时', p: 'shí', v: 'lúc, thời', e: 'time, hour, era' },
+      { h: '时代', p: 'shí dài', v: 'thời đại', e: 'Time, US weekly news magazine' },
+      { h: '世纪', p: 'shì jì', v: 'thế kỷ', e: 'century' },
+      { h: '双方', p: 'shuāng fāng', v: 'đôi bên, hai bên', e: 'bilateral' },
+      { h: '往往', p: 'wǎng wǎng', v: 'thường thường', e: 'usually' },
+      { h: '现代', p: 'xiàn dài', v: 'hiện đại', e: 'Hyundai, South Korean company' },
+      { h: '眼前', p: 'yǎn qián', v: 'trước mắt, trước mặt', e: 'before one\\\'s eyes' },
+      { h: '整天', p: 'zhěng tiān', v: 'cả ngày', e: 'all day long' }
     ],
     workbook: {
       easy: [
@@ -4637,6 +5595,30 @@ Object.assign(COURSE_DATA, {
     title: 'Địa điểm & đồ vật (1)',
     context: 'Một phóng viên đài truyền hình phỏng vấn Mai về quê hương, các nhà máy hiện đại và quyết tâm cống hiến của em.',
     vocabPreview: ['电视台', '记者', '家乡', '工厂', '决心'],
+    objectives: [
+      "Nắm nhóm từ khóa: 电视台 · 记者 · 家乡 · 工厂 · 决心",
+      "Kể/nghe hiểu tình huống Địa điểm & đồ vật (1) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 电视台 · 记者 · 家乡",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "电视台 — đài truyền hình",
+        explain: "Dùng 电视台 trong ngữ cảnh Địa điểm & đồ vật (1) để diễn đạt: đài truyền hình.",
+        examples: [
+          { zh: "我是电视台的记者，想问问你的家乡。", py: "Wǒ shì diànshìtái de jìzhě, xiǎng wènwen nǐ de jiāxiāng.", vi: "Tôi là phóng viên đài truyền hình, muốn hỏi về quê hương của bạn." }
+        ] },
+      { point: "记者 — phóng viên, nhà báo",
+        explain: "Dùng 记者 trong ngữ cảnh Địa điểm & đồ vật (1) để diễn đạt: phóng viên, nhà báo.",
+        examples: [
+          { zh: "我是电视台的记者，想问问你的家乡。", py: "Wǒ shì diànshìtái de jìzhě, xiǎng wènwen nǐ de jiāxiāng.", vi: "Tôi là phóng viên đài truyền hình, muốn hỏi về quê hương của bạn." }
+        ] },
+      { point: "家乡 — quê hương",
+        explain: "Dùng 家乡 trong ngữ cảnh Địa điểm & đồ vật (1) để diễn đạt: quê hương.",
+        examples: [
+          { zh: "我家乡在北部的一个小城，旁边有个村子。", py: "Wǒ jiāxiāng zài běibù de yí gè xiǎo chéng, pángbiān yǒu gè cūnzi.", vi: "Quê em ở một thành nhỏ miền Bắc, bên cạnh có một ngôi làng." },
+          { zh: "我下决心为家乡做贡献。", py: "Wǒ xià juéxīn wèi jiāxiāng zuò gòngxiàn.", vi: "Em hạ quyết tâm cống hiến cho quê hương." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Văn phòng · Buổi chiều', bg: 'office', cast: ['mai', 'fuwuyuan'],
         text: 'Một phóng viên đài truyền hình đến phỏng vấn Mai.', pinyin: '', meaning: '', vocab: [] },
@@ -4682,24 +5664,24 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '北部', p: 'běi bù', v: 'miền Bắc, phía Bắc' },
-      { h: '比例', p: 'bǐ lì', v: 'tỷ lệ' },
-      { h: '城', p: 'chéng', v: 'thành, tường thành' },
-      { h: '城市', p: 'chéng shì', v: 'thành phố' },
-      { h: '村', p: 'cūn', v: 'làng, thôn' },
-      { h: '电视台', p: 'diàn shì tái', v: 'đài truyền hình' },
-      { h: '东部', p: 'dōng bù', v: 'miền Đông, phía Đông' },
-      { h: '工厂', p: 'gōng chǎng', v: 'nhà máy, xưởng' },
-      { h: '记者', p: 'jì zhě', v: 'phóng viên, nhà báo' },
-      { h: '家乡', p: 'jiā xiāng', v: 'quê hương' },
-      { h: '决心', p: 'jué xīn', v: 'quyết tâm' },
-      { h: '联合国', p: 'lián hé guó', v: 'Liên Hợp Quốc' },
-      { h: '刀', p: 'dāo', v: 'dao' },
-      { h: '机器', p: 'jī qì', v: 'máy móc' },
-      { h: '能不能', p: 'néng bù néng', v: 'có thể không' },
-      { h: '沙发', p: 'shā fā', v: 'ghế sofa' },
-      { h: '设备', p: 'shè bèi', v: 'thiết bị' },
-      { h: '所长', p: 'suǒ cháng', v: 'điểm mạnh, sở trường' }
+      { h: '北部', p: 'běi bù', v: 'miền Bắc, phía Bắc', e: 'northern part' },
+      { h: '比例', p: 'bǐ lì', v: 'tỷ lệ', e: 'proportion' },
+      { h: '城', p: 'chéng', v: 'thành, tường thành', e: 'city walls' },
+      { h: '城市', p: 'chéng shì', v: 'thành phố', e: 'city' },
+      { h: '村', p: 'cūn', v: 'làng, thôn', e: 'village' },
+      { h: '电视台', p: 'diàn shì tái', v: 'đài truyền hình', e: 'television station' },
+      { h: '东部', p: 'dōng bù', v: 'miền Đông, phía Đông', e: 'the east' },
+      { h: '工厂', p: 'gōng chǎng', v: 'nhà máy, xưởng', e: 'factory' },
+      { h: '记者', p: 'jì zhě', v: 'phóng viên, nhà báo', e: 'reporter' },
+      { h: '家乡', p: 'jiā xiāng', v: 'quê hương', e: 'hometown' },
+      { h: '决心', p: 'jué xīn', v: 'quyết tâm', e: 'determination' },
+      { h: '联合国', p: 'lián hé guó', v: 'Liên Hợp Quốc', e: 'United Nations' },
+      { h: '刀', p: 'dāo', v: 'dao', e: 'knife, blade' },
+      { h: '机器', p: 'jī qì', v: 'máy móc', e: 'machine' },
+      { h: '能不能', p: 'néng bù néng', v: 'có thể không', e: 'Can you' },
+      { h: '沙发', p: 'shā fā', v: 'ghế sofa', e: 'sofa (loanword)' },
+      { h: '设备', p: 'shè bèi', v: 'thiết bị', e: 'equipment' },
+      { h: '所长', p: 'suǒ cháng', v: 'điểm mạnh, sở trường', e: 'what one is good at' }
     ],
     workbook: {
       easy: [
@@ -4735,6 +5717,30 @@ Object.assign(COURSE_DATA, {
     title: 'Địa điểm & đồ vật (2)',
     context: 'Mai và Tiểu Mỹ đi du lịch thủ đô, leo Vạn Lý Trường Thành và gửi bưu thiếp về nhà.',
     vocabPreview: ['首都', '长城', '旅馆', '中华民族', '印象'],
+    objectives: [
+      "Nắm nhóm từ khóa: 首都 · 长城 · 旅馆 · 中华民族 · 印象",
+      "Kể/nghe hiểu tình huống Địa điểm & đồ vật (2) bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 首都 · 长城 · 旅馆",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "首都 — thủ đô",
+        explain: "Dùng 首都 trong ngữ cảnh Địa điểm & đồ vật (2) để diễn đạt: thủ đô.",
+        examples: [
+          { zh: "这次我们去首都北京，要爬长城！", py: "Zhè cì wǒmen qù shǒudū Běijīng, yào pá Chángchéng!", vi: "Lần này tụi mình đi thủ đô Bắc Kinh, sẽ leo Vạn Lý Trường Thành!" }
+        ] },
+      { point: "长城 — Vạn Lý Trường Thành",
+        explain: "Dùng 长城 trong ngữ cảnh Địa điểm & đồ vật (2) để diễn đạt: Vạn Lý Trường Thành.",
+        examples: [
+          { zh: "太好了！长城一定会给我留下深刻印象。", py: "Tài hǎo le! Chángchéng yídìng huì gěi wǒ liúxià shēnkè yìnxiàng.", vi: "Tuyệt quá! Trường Thành chắc chắn để lại cho mình ấn tượng sâu sắc." },
+          { zh: "爬长城至少要一天。", py: "Pá Chángchéng zhìshǎo yào yì tiān.", vi: "Leo Trường Thành ít nhất cần một ngày." }
+        ] },
+      { point: "旅馆 — khách sạn nhỏ",
+        explain: "Dùng 旅馆 trong ngữ cảnh Địa điểm & đồ vật (2) để diễn đạt: khách sạn nhỏ.",
+        examples: [
+          { zh: "我们住在一家小旅馆，离市场很近。", py: "Wǒmen zhù zài yì jiā xiǎo lǚguǎn, lí shìchǎng hěn jìn.", vi: "Tụi mình ở một khách sạn nhỏ, gần chợ." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà ga · Buổi sáng', bg: 'station', cast: ['mai', 'xiaomei'],
         text: 'Hai bạn lên đường đi du lịch thủ đô.', pinyin: '', meaning: '', vocab: [] },
@@ -4780,24 +5786,24 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '旅馆', p: 'lǚ guǎn', v: 'khách sạn nhỏ' },
-      { h: '民族', p: 'mín zú', v: 'dân tộc' },
-      { h: '南部', p: 'nán bù', v: 'miền Nam, phía Nam' },
-      { h: '农村', p: 'nóng cūn', v: 'nông thôn' },
-      { h: '区', p: 'qū', v: 'khu vực' },
-      { h: '市场', p: 'shì chǎng', v: 'thị trường, chợ' },
-      { h: '首都', p: 'shǒu dū', v: 'thủ đô' },
-      { h: '西部', p: 'xī bù', v: 'miền Tây, phía Tây' },
-      { h: '长城', p: 'cháng chéng', v: 'Vạn Lý Trường Thành' },
-      { h: '至少', p: 'zhì shǎo', v: 'ít nhất' },
-      { h: '中华民族', p: 'zhōng huá mín zú', v: 'dân tộc Trung Hoa' },
-      { h: '线', p: 'xiàn', v: 'đường, sợi, dây' },
-      { h: '信封', p: 'xìn fēng', v: 'phong bì' },
-      { h: '衣架', p: 'yī jià', v: 'móc áo, giá treo áo' },
-      { h: '印象', p: 'yìn xiàng', v: 'ấn tượng' },
-      { h: '邮票', p: 'yóu piào', v: 'tem thư' },
-      { h: '邮箱', p: 'yóu xiāng', v: 'hộp thư' },
-      { h: '钟', p: 'zhōng', v: 'đồng hồ, chuông' }
+      { h: '旅馆', p: 'lǚ guǎn', v: 'khách sạn nhỏ', e: 'hotel' },
+      { h: '民族', p: 'mín zú', v: 'dân tộc', e: 'nationality' },
+      { h: '南部', p: 'nán bù', v: 'miền Nam, phía Nam', e: 'southern part' },
+      { h: '农村', p: 'nóng cūn', v: 'nông thôn', e: 'rural area' },
+      { h: '区', p: 'qū', v: 'khu vực', e: 'area, district, region' },
+      { h: '市场', p: 'shì chǎng', v: 'thị trường, chợ', e: 'marketplace' },
+      { h: '首都', p: 'shǒu dū', v: 'thủ đô', e: 'capital (city)' },
+      { h: '西部', p: 'xī bù', v: 'miền Tây, phía Tây', e: 'western part' },
+      { h: '长城', p: 'cháng chéng', v: 'Vạn Lý Trường Thành', e: 'the Great Wall' },
+      { h: '至少', p: 'zhì shǎo', v: 'ít nhất', e: 'at least' },
+      { h: '中华民族', p: 'zhōng huá mín zú', v: 'dân tộc Trung Hoa', e: 'the Chinese nation' },
+      { h: '线', p: 'xiàn', v: 'đường, sợi, dây', e: 'line, thread, wire' },
+      { h: '信封', p: 'xìn fēng', v: 'phong bì', e: 'envelope' },
+      { h: '衣架', p: 'yī jià', v: 'móc áo, giá treo áo', e: 'clothes hanger' },
+      { h: '印象', p: 'yìn xiàng', v: 'ấn tượng', e: 'impression (sth that stays in one\\\'s mind)' },
+      { h: '邮票', p: 'yóu piào', v: 'tem thư', e: 'stamp' },
+      { h: '邮箱', p: 'yóu xiāng', v: 'hộp thư', e: 'mailbox' },
+      { h: '钟', p: 'zhōng', v: 'đồng hồ, chuông', e: 'clock, bell' }
     ],
     workbook: {
       easy: [
@@ -4833,6 +5839,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đại từ & số đếm',
     context: 'Mai có một bài phát biểu ngắn trước các thành viên câu lạc bộ đến từ khắp nơi, tổng kết một năm học tập.',
     vocabPreview: ['各位', '各地', '任何', '一切', '自身'],
+    objectives: [
+      "Nắm nhóm từ khóa: 各位 · 各地 · 任何 · 一切 · 自身",
+      "Kể/nghe hiểu tình huống Đại từ & số đếm bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 各位 · 各地 · 任何",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "各位 — mọi người, quý vị",
+        explain: "Dùng 各位 trong ngữ cảnh Đại từ & số đếm để diễn đạt: mọi người, quý vị.",
+        examples: [
+          { zh: "各位同学好！感谢各地的朋友来参加。", py: "Gèwèi tóngxué hǎo! Gǎnxiè gèdì de péngyou lái cānjiā.", vi: "Chào các bạn! Cảm ơn các bạn từ khắp nơi đã đến tham gia." }
+        ] },
+      { point: "各地 — khắp nơi",
+        explain: "Dùng 各地 trong ngữ cảnh Đại từ & số đếm để diễn đạt: khắp nơi.",
+        examples: [
+          { zh: "各位同学好！感谢各地的朋友来参加。", py: "Gèwèi tóngxué hǎo! Gǎnxiè gèdì de péngyou lái cānjiā.", vi: "Chào các bạn! Cảm ơn các bạn từ khắp nơi đã đến tham gia." }
+        ] },
+      { point: "任何 — bất kỳ",
+        explain: "Dùng 任何 trong ngữ cảnh Đại từ & số đếm để diễn đạt: bất kỳ.",
+        examples: [
+          { zh: "任何困难我们都不怕。", py: "Rènhé kùnnán wǒmen dōu bú pà.", vi: "Bất kỳ khó khăn nào ta cũng không sợ." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Hội trường CLB · Buổi chiều', bg: 'campus', cast: ['mai', 'xiaomei'],
         text: 'Mai đứng trước các thành viên câu lạc bộ để phát biểu.', pinyin: '', meaning: '', vocab: [] },
@@ -4874,22 +5903,22 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '各', p: 'gè', v: 'mỗi, các' },
-      { h: '各地', p: 'gè dì', v: 'khắp nơi' },
-      { h: '各位', p: 'gè wèi', v: 'mọi người, quý vị' },
-      { h: '各种', p: 'gè zhǒng', v: 'mỗi loại, đủ loại' },
-      { h: '各自', p: 'gè zì', v: 'mỗi người, riêng lẻ' },
-      { h: '另外', p: 'lìng wài', v: 'ngoài ra, thêm vào' },
-      { h: '每', p: 'měi', v: 'mỗi' },
-      { h: '某', p: 'mǒu', v: 'một (nào đó)' },
-      { h: '其次', p: 'qí cì', v: 'thứ nữa, tiếp theo' },
-      { h: '任何', p: 'rèn hé', v: 'bất kỳ' },
-      { h: '如何', p: 'rú hé', v: 'như thế nào' },
-      { h: '一切', p: 'yī qiè', v: 'tất cả' },
-      { h: '者', p: 'zhě', v: 'người (hậu tố)' },
-      { h: '自身', p: 'zì shēn', v: 'bản thân' },
-      { h: '群', p: 'qún', v: 'đám đông, nhóm' },
-      { h: '双', p: 'shuāng', v: 'đôi, cặp' }
+      { h: '各', p: 'gè', v: 'mỗi, các', e: 'each' },
+      { h: '各地', p: 'gè dì', v: 'khắp nơi', e: 'in all parts of (a country)' },
+      { h: '各位', p: 'gè wèi', v: 'mọi người, quý vị', e: 'everybody' },
+      { h: '各种', p: 'gè zhǒng', v: 'mỗi loại, đủ loại', e: 'every kind of' },
+      { h: '各自', p: 'gè zì', v: 'mỗi người, riêng lẻ', e: 'each' },
+      { h: '另外', p: 'lìng wài', v: 'ngoài ra, thêm vào', e: 'additional' },
+      { h: '每', p: 'měi', v: 'mỗi', e: 'each' },
+      { h: '某', p: 'mǒu', v: 'một (nào đó)', e: 'some' },
+      { h: '其次', p: 'qí cì', v: 'thứ nữa, tiếp theo', e: 'next' },
+      { h: '任何', p: 'rèn hé', v: 'bất kỳ', e: 'any' },
+      { h: '如何', p: 'rú hé', v: 'như thế nào', e: 'how' },
+      { h: '一切', p: 'yī qiè', v: 'tất cả', e: 'everything' },
+      { h: '者', p: 'zhě', v: 'người (hậu tố)', e: 'one who (is) ...' },
+      { h: '自身', p: 'zì shēn', v: 'bản thân', e: 'itself' },
+      { h: '群', p: 'qún', v: 'đám đông, nhóm', e: 'group, crowd, flock' },
+      { h: '双', p: 'shuāng', v: 'đôi, cặp', e: 'pair, double, both' }
     ],
     workbook: {
       easy: [
@@ -4923,6 +5952,29 @@ Object.assign(COURSE_DATA, {
     title: 'Trường lớp & học thuật',
     context: 'Mai nhận dạy kèm cho học sinh trung học cơ sở, trò chuyện cùng Tiểu Mỹ về giáo trình, độ khó và phương pháp học.',
     vocabPreview: ['课程', '教材', '难度', '过程', '专题'],
+    objectives: [
+      "Nắm nhóm từ khóa: 课程 · 教材 · 难度 · 过程 · 专题",
+      "Kể/nghe hiểu tình huống Trường lớp & học thuật bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 课程 · 教材 · 难度",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "课程 — chương trình học",
+        explain: "Dùng 课程 trong ngữ cảnh Trường lớp & học thuật để diễn đạt: chương trình học.",
+        examples: [
+          { zh: "这套课程难度适中，学费也不贵。", py: "Zhè tào kèchéng nándù shìzhōng, xuéfèi yě bú guì.", vi: "Bộ chương trình này độ khó vừa phải, học phí cũng không đắt." }
+        ] },
+      { point: "教材 — tài liệu giảng dạy",
+        explain: "Dùng 教材 trong ngữ cảnh Trường lớp & học thuật để diễn đạt: tài liệu giảng dạy.",
+        examples: [
+          { zh: "你们班级用什么教材？", py: "Nǐmen bānjí yòng shénme jiàocái?", vi: "Lớp các cậu dùng giáo trình gì?" }
+        ] },
+      { point: "难度 — độ khó",
+        explain: "Dùng 难度 trong ngữ cảnh Trường lớp & học thuật để diễn đạt: độ khó.",
+        examples: [
+          { zh: "这套课程难度适中，学费也不贵。", py: "Zhè tào kèchéng nándù shìzhōng, xuéfèi yě bú guì.", vi: "Bộ chương trình này độ khó vừa phải, học phí cũng không đắt." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Thư viện · Buổi chiều', bg: 'library', cast: ['mai', 'xiaomei'],
         text: 'Mai nhận dạy kèm và chuẩn bị bài cùng Tiểu Mỹ.', pinyin: '', meaning: '', vocab: [] },
@@ -4964,21 +6016,21 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '班级', p: 'bān jí', v: 'lớp học' },
-      { h: '程度', p: 'chéng dù', v: 'mức độ, trình độ' },
-      { h: '初中', p: 'chū zhōng', v: 'trung học cơ sở' },
-      { h: '功课', p: 'gōng kè', v: 'bài tập, bài vở' },
-      { h: '过程', p: 'guò chéng', v: 'quá trình' },
-      { h: '话题', p: 'huà tí', v: 'chủ đề, đề tài' },
-      { h: '教材', p: 'jiào cái', v: 'tài liệu giảng dạy' },
-      { h: '课程', p: 'kè chéng', v: 'chương trình học' },
-      { h: '难度', p: 'nán dù', v: 'độ khó' },
-      { h: '试题', p: 'shì tí', v: 'đề thi, câu hỏi thi' },
-      { h: '题目', p: 'tí mù', v: 'tiêu đề, đề bài' },
-      { h: '学费', p: 'xué fèi', v: 'học phí' },
-      { h: '专题', p: 'zhuān tí', v: 'chuyên đề' },
-      { h: '科技', p: 'kē jì', v: 'khoa học và kỹ thuật' },
-      { h: '理论', p: 'lǐ lùn', v: 'lý luận, lý thuyết' }
+      { h: '班级', p: 'bān jí', v: 'lớp học', e: 'class (group of students)' },
+      { h: '程度', p: 'chéng dù', v: 'mức độ, trình độ', e: 'degree' },
+      { h: '初中', p: 'chū zhōng', v: 'trung học cơ sở', e: 'junior high school (abbr. for 初级中学)' },
+      { h: '功课', p: 'gōng kè', v: 'bài tập, bài vở', e: 'homework' },
+      { h: '过程', p: 'guò chéng', v: 'quá trình', e: 'course of events' },
+      { h: '话题', p: 'huà tí', v: 'chủ đề, đề tài', e: 'subject (of a talk or conversation)' },
+      { h: '教材', p: 'jiào cái', v: 'tài liệu giảng dạy', e: 'teaching material' },
+      { h: '课程', p: 'kè chéng', v: 'chương trình học', e: 'course' },
+      { h: '难度', p: 'nán dù', v: 'độ khó', e: 'degree of difficulty' },
+      { h: '试题', p: 'shì tí', v: 'đề thi, câu hỏi thi', e: 'exam question' },
+      { h: '题目', p: 'tí mù', v: 'tiêu đề, đề bài', e: 'subject' },
+      { h: '学费', p: 'xué fèi', v: 'học phí', e: 'tuition fee' },
+      { h: '专题', p: 'zhuān tí', v: 'chuyên đề', e: 'specific topic (addressed by a book, lecture, TV program etc)' },
+      { h: '科技', p: 'kē jì', v: 'khoa học và kỹ thuật', e: 'science and technology' },
+      { h: '理论', p: 'lǐ lùn', v: 'lý luận, lý thuyết', e: 'theory' }
     ],
     workbook: {
       easy: [
@@ -5021,6 +6073,29 @@ Object.assign(COURSE_DATA, {
     title: 'Ẩm thực & món ăn',
     context: 'Mai và Tiểu Mỹ vào một quán nước gọi đồ uống, trò chuyện về giá cả và dinh dưỡng.',
     vocabPreview: ['咖啡', '奶茶', '价格', '营养', '本事'],
+    objectives: [
+      "Nắm nhóm từ khóa: 咖啡 · 奶茶 · 价格 · 营养 · 本事",
+      "Kể/nghe hiểu tình huống Ẩm thực & món ăn bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 咖啡 · 奶茶 · 价格",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "咖啡 — cà phê",
+        explain: "Dùng 咖啡 trong ngữ cảnh Ẩm thực & món ăn để diễn đạt: cà phê.",
+        examples: [
+          { zh: "我要一杯咖啡，我朋友要奶茶和果汁。", py: "Wǒ yào yì bēi kāfēi, wǒ péngyou yào nǎichá hé guǒzhī.", vi: "Em lấy một ly cà phê, bạn em lấy trà sữa và nước ép." }
+        ] },
+      { point: "奶茶 — trà sữa",
+        explain: "Dùng 奶茶 trong ngữ cảnh Ẩm thực & món ăn để diễn đạt: trà sữa.",
+        examples: [
+          { zh: "我要一杯咖啡，我朋友要奶茶和果汁。", py: "Wǒ yào yì bēi kāfēi, wǒ péngyou yào nǎichá hé guǒzhī.", vi: "Em lấy một ly cà phê, bạn em lấy trà sữa và nước ép." }
+        ] },
+      { point: "价格 — giá cả",
+        explain: "Dùng 价格 trong ngữ cảnh Ẩm thực & món ăn để diễn đạt: giá cả.",
+        examples: [
+          { zh: "不加糖，谢谢。这些饮料的价格怎么样？", py: "Bù jiā táng, xièxie. Zhèxiē yǐnliào de jiàgé zěnmeyàng?", vi: "Không thêm đường, cảm ơn. Giá mấy món đồ uống này thế nào ạ?" }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Quán cà phê · Buổi chiều', bg: 'restaurant', cast: ['mai', 'fuwuyuan'],
         text: 'Mai và Tiểu Mỹ ghé một quán nước nhỏ.', pinyin: '', meaning: '', vocab: [] },
@@ -5062,18 +6137,18 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '本事', p: 'běn shì', v: 'tài năng, năng lực' },
-      { h: '果汁', p: 'guǒ zhī', v: 'nước ép trái cây' },
-      { h: '价格', p: 'jià gé', v: 'giá cả' },
-      { h: '价钱', p: 'jià qian', v: 'giá cả, giá tiền' },
-      { h: '咖啡', p: 'kā fēi', v: 'cà phê' },
-      { h: '奶茶', p: 'nǎi chá', v: 'trà sữa' },
-      { h: '啤酒', p: 'pí jiǔ', v: 'bia' },
-      { h: '票价', p: 'piào jià', v: 'giá vé' },
-      { h: '石油', p: 'shí yóu', v: 'dầu mỏ' },
-      { h: '汤', p: 'tāng', v: 'canh, súp' },
-      { h: '糖', p: 'táng', v: 'đường, kẹo' },
-      { h: '营养', p: 'yíng yǎng', v: 'dinh dưỡng' }
+      { h: '本事', p: 'běn shì', v: 'tài năng, năng lực', e: 'source material' },
+      { h: '果汁', p: 'guǒ zhī', v: 'nước ép trái cây', e: 'fruit juice' },
+      { h: '价格', p: 'jià gé', v: 'giá cả', e: 'price' },
+      { h: '价钱', p: 'jià qian', v: 'giá cả, giá tiền', e: 'price' },
+      { h: '咖啡', p: 'kā fēi', v: 'cà phê', e: 'coffee (loanword)' },
+      { h: '奶茶', p: 'nǎi chá', v: 'trà sữa', e: 'milk tea' },
+      { h: '啤酒', p: 'pí jiǔ', v: 'bia', e: 'beer (loanword)' },
+      { h: '票价', p: 'piào jià', v: 'giá vé', e: 'ticket price' },
+      { h: '石油', p: 'shí yóu', v: 'dầu mỏ', e: 'oil' },
+      { h: '汤', p: 'tāng', v: 'canh, súp', e: 'soup, broth' },
+      { h: '糖', p: 'táng', v: 'đường, kẹo', e: 'sugar' },
+      { h: '营养', p: 'yíng yǎng', v: 'dinh dưỡng', e: 'nutrition' }
     ],
     workbook: {
       easy: [
@@ -5109,6 +6184,29 @@ Object.assign(COURSE_DATA, {
     title: 'Cơ thể & thiên nhiên',
     context: 'Mai và Tiểu Mỹ dạo công viên xanh, bàn về môi trường và cách nhìn nhận con người từ nội tâm.',
     vocabPreview: ['环境', '环保', '天空', '内心', '性格'],
+    objectives: [
+      "Nắm nhóm từ khóa: 环境 · 环保 · 天空 · 内心 · 性格",
+      "Kể/nghe hiểu tình huống Cơ thể & thiên nhiên bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 环境 · 环保 · 天空",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "环境 — môi trường",
+        explain: "Dùng 环境 trong ngữ cảnh Cơ thể & thiên nhiên để diễn đạt: môi trường.",
+        examples: [
+          { zh: "看这片天空多蓝！这里的环境真好。", py: "Kàn zhè piàn tiānkōng duō lán! Zhèlǐ de huánjìng zhēn hǎo.", vi: "Nhìn bầu trời xanh kìa! Môi trường ở đây thật tốt." }
+        ] },
+      { point: "环保 — bảo vệ môi trường",
+        explain: "Dùng 环保 trong ngữ cảnh Cơ thể & thiên nhiên để diễn đạt: bảo vệ môi trường.",
+        examples: [
+          { zh: "是啊，一方面空气清新，另一方面大家也注重环保。", py: "Shì a, yì fāngmiàn kōngqì qīngxīn, lìng yì fāngmiàn dàjiā yě zhùzhòng huánbǎo.", vi: "Đúng vậy, một mặt không khí trong lành, mặt khác mọi người cũng chú trọng bảo vệ môi trường." }
+        ] },
+      { point: "天空 — bầu trời",
+        explain: "Dùng 天空 trong ngữ cảnh Cơ thể & thiên nhiên để diễn đạt: bầu trời.",
+        examples: [
+          { zh: "看这片天空多蓝！这里的环境真好。", py: "Kàn zhè piàn tiānkōng duō lán! Zhèlǐ de huánjìng zhēn hǎo.", vi: "Nhìn bầu trời xanh kìa! Môi trường ở đây thật tốt." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Công viên xanh · Buổi sáng', bg: 'park', cast: ['mai', 'xiaomei'],
         text: 'Hai bạn dạo trong một công viên xanh mát.', pinyin: '', meaning: '', vocab: [] },
@@ -5154,27 +6252,27 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '表面', p: 'biǎo miàn', v: 'bề mặt, bề ngoài' },
-      { h: '部长', p: 'bù zhǎng', v: 'bộ trưởng' },
-      { h: '后面', p: 'hòu mian', v: 'phía sau' },
-      { h: '另一方面', p: 'lìng yī fāng miàn', v: 'mặt khác' },
-      { h: '内心', p: 'nèi xīn', v: 'nội tâm' },
-      { h: '皮包', p: 'pí bāo', v: 'túi da, cặp da' },
-      { h: '前面', p: 'qián miàn', v: 'phía trước' },
-      { h: '手指', p: 'shǒu zhǐ', v: 'ngón tay' },
-      { h: '头脑', p: 'tóu nǎo', v: 'đầu óc, trí tuệ' },
-      { h: '心', p: 'xīn', v: 'tim, lòng' },
-      { h: '一方面', p: 'yī fāng miàn', v: 'một mặt' },
-      { h: '厂', p: 'chǎng', v: 'xưởng, nhà máy' },
-      { h: '环保', p: 'huán bǎo', v: 'bảo vệ môi trường' },
-      { h: '环境', p: 'huán jìng', v: 'môi trường' },
-      { h: '人生', p: 'rén shēng', v: 'cuộc đời, nhân sinh' },
-      { h: '沙子', p: 'shā zi', v: 'cát' },
-      { h: '石头', p: 'shí tou', v: 'đá' },
-      { h: '天空', p: 'tiān kōng', v: 'bầu trời' },
-      { h: '性', p: 'xìng', v: 'tính chất, giới tính' },
-      { h: '性格', p: 'xìng gé', v: 'tính cách' },
-      { h: '种子', p: 'zhǒng zi', v: 'hạt giống' }
+      { h: '表面', p: 'biǎo miàn', v: 'bề mặt, bề ngoài', e: 'surface' },
+      { h: '部长', p: 'bù zhǎng', v: 'bộ trưởng', e: 'head of a (government etc) department' },
+      { h: '后面', p: 'hòu mian', v: 'phía sau', e: 'the back' },
+      { h: '另一方面', p: 'lìng yī fāng miàn', v: 'mặt khác', e: 'on the other hand' },
+      { h: '内心', p: 'nèi xīn', v: 'nội tâm', e: 'heart' },
+      { h: '皮包', p: 'pí bāo', v: 'túi da, cặp da', e: 'handbag' },
+      { h: '前面', p: 'qián miàn', v: 'phía trước', e: 'ahead' },
+      { h: '手指', p: 'shǒu zhǐ', v: 'ngón tay', e: 'finger' },
+      { h: '头脑', p: 'tóu nǎo', v: 'đầu óc, trí tuệ', e: 'brains' },
+      { h: '心', p: 'xīn', v: 'tim, lòng', e: 'heart' },
+      { h: '一方面', p: 'yī fāng miàn', v: 'một mặt', e: 'on the one hand' },
+      { h: '厂', p: 'chǎng', v: 'xưởng, nhà máy', e: '"cliff" radical in Chinese characters (Kangxi radical 27), occurring in 原, 历, 压 etc' },
+      { h: '环保', p: 'huán bǎo', v: 'bảo vệ môi trường', e: 'environmental protection' },
+      { h: '环境', p: 'huán jìng', v: 'môi trường', e: 'environment' },
+      { h: '人生', p: 'rén shēng', v: 'cuộc đời, nhân sinh', e: 'life (one\\\'s time on earth)' },
+      { h: '沙子', p: 'shā zi', v: 'cát', e: 'sand' },
+      { h: '石头', p: 'shí tou', v: 'đá', e: 'stone' },
+      { h: '天空', p: 'tiān kōng', v: 'bầu trời', e: 'sky' },
+      { h: '性', p: 'xìng', v: 'tính chất, giới tính', e: 'nature' },
+      { h: '性格', p: 'xìng gé', v: 'tính cách', e: 'nature' },
+      { h: '种子', p: 'zhǒng zi', v: 'hạt giống', e: 'seed' }
     ],
     workbook: {
       easy: [
@@ -5208,6 +6306,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Nghệ thuật, công việc & động vật',
     context: 'Mai và Tiểu Mỹ tới rạp xem kinh kịch, rồi trò chuyện về nghề nghiệp và văn hóa.',
     vocabPreview: ['京剧', '艺术', '作品', '职业', '员工'],
+    objectives: [
+      "Nắm nhóm từ khóa: 京剧 · 艺术 · 作品 · 职业 · 员工",
+      "Kể/nghe hiểu tình huống Đọc thêm: Nghệ thuật, công việc & động vật bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 京剧 · 艺术 · 作品",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "京剧 — kinh kịch (Bắc Kinh)",
+        explain: "Dùng 京剧 trong ngữ cảnh Đọc thêm: Nghệ thuật, công việc & động vật để diễn đạt: kinh kịch (Bắc Kinh).",
+        examples: [
+          { zh: "我们去剧场看京剧，这是中国的传统艺术。", py: "Wǒmen qù jùchǎng kàn jīngjù, zhè shì Zhōngguó de chuántǒng yìshù.", vi: "Tụi mình đến rạp xem kinh kịch, đây là nghệ thuật truyền thống của Trung Quốc." }
+        ] },
+      { point: "艺术 — nghệ thuật",
+        explain: "Dùng 艺术 trong ngữ cảnh Đọc thêm: Nghệ thuật, công việc & động vật để diễn đạt: nghệ thuật.",
+        examples: [
+          { zh: "我们去剧场看京剧，这是中国的传统艺术。", py: "Wǒmen qù jùchǎng kàn jīngjù, zhè shì Zhōngguó de chuántǒng yìshù.", vi: "Tụi mình đến rạp xem kinh kịch, đây là nghệ thuật truyền thống của Trung Quốc." }
+        ] },
+      { point: "作品 — tác phẩm",
+        explain: "Dùng 作品 trong ngữ cảnh Đọc thêm: Nghệ thuật, công việc & động vật để diễn đạt: tác phẩm.",
+        examples: [
+          { zh: "这部作品的作者很有名，写过很多文学作品。周末还有演唱会呢！", py: "Zhè bù zuòpǐn de zuòzhě hěn yǒumíng, xiěguo hěn duō wénxué zuòpǐn. Zhōumò hái yǒu yǎnchànghuì ne!", vi: "Tác giả của tác phẩm này rất nổi tiếng, viết nhiều tác phẩm văn học. Cuối tuần còn có buổi hòa nhạc nữa!" }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Rạp hát · Buổi tối', bg: 'campus', cast: ['mai', 'xiaomei'],
         text: 'Hai bạn đến rạp xem một buổi kinh kịch.', pinyin: '', meaning: '', vocab: [] },
@@ -5253,29 +6374,29 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '京剧', p: 'jīng jù', v: 'kinh kịch (Bắc Kinh)' },
-      { h: '剧场', p: 'jù chǎng', v: 'rạp hát' },
-      { h: '连续剧', p: 'lián xù jù', v: 'phim truyền hình dài tập' },
-      { h: '美术', p: 'měi shù', v: 'mỹ thuật' },
-      { h: '图画', p: 'tú huà', v: 'tranh vẽ' },
-      { h: '演唱会', p: 'yǎn chàng huì', v: 'buổi hòa nhạc, concert' },
-      { h: '艺术', p: 'yì shù', v: 'nghệ thuật' },
-      { h: '作品', p: 'zuò pǐn', v: 'tác phẩm' },
-      { h: '作者', p: 'zuò zhě', v: 'tác giả' },
-      { h: '工业', p: 'gōng yè', v: 'công nghiệp' },
-      { h: '工资', p: 'gōng zī', v: 'lương, tiền công' },
-      { h: '老板', p: 'lǎo bǎn', v: 'ông chủ, sếp' },
-      { h: '人员', p: 'rén yuán', v: 'nhân viên, nhân sự' },
-      { h: '员工', p: 'yuán gōng', v: 'nhân viên' },
-      { h: '职工', p: 'zhí gōng', v: 'công nhân viên' },
-      { h: '职业', p: 'zhí yè', v: 'nghề nghiệp' },
-      { h: '龙', p: 'lóng', v: 'rồng' },
-      { h: '牛', p: 'niú', v: 'bò, trâu' },
-      { h: '实验室', p: 'shí yàn shì', v: 'phòng thí nghiệm' },
-      { h: '文学', p: 'wén xué', v: 'văn học' },
-      { h: '现象', p: 'xiàn xiàng', v: 'hiện tượng' },
-      { h: '羊', p: 'yáng', v: 'cừu, dê' },
-      { h: '制度', p: 'zhì dù', v: 'chế độ, quy chế' }
+      { h: '京剧', p: 'jīng jù', v: 'kinh kịch (Bắc Kinh)', e: 'Beijing opera' },
+      { h: '剧场', p: 'jù chǎng', v: 'rạp hát', e: 'theater' },
+      { h: '连续剧', p: 'lián xù jù', v: 'phim truyền hình dài tập', e: 'serialized drama' },
+      { h: '美术', p: 'měi shù', v: 'mỹ thuật', e: 'art' },
+      { h: '图画', p: 'tú huà', v: 'tranh vẽ', e: 'drawing' },
+      { h: '演唱会', p: 'yǎn chàng huì', v: 'buổi hòa nhạc, concert', e: 'vocal recital or concert' },
+      { h: '艺术', p: 'yì shù', v: 'nghệ thuật', e: 'art' },
+      { h: '作品', p: 'zuò pǐn', v: 'tác phẩm', e: 'work (of art)' },
+      { h: '作者', p: 'zuò zhě', v: 'tác giả', e: 'author' },
+      { h: '工业', p: 'gōng yè', v: 'công nghiệp', e: 'industry' },
+      { h: '工资', p: 'gōng zī', v: 'lương, tiền công', e: 'wages' },
+      { h: '老板', p: 'lǎo bǎn', v: 'ông chủ, sếp', e: 'boss, owner, employer' },
+      { h: '人员', p: 'rén yuán', v: 'nhân viên, nhân sự', e: 'staff' },
+      { h: '员工', p: 'yuán gōng', v: 'nhân viên', e: 'staff' },
+      { h: '职工', p: 'zhí gōng', v: 'công nhân viên', e: 'workers' },
+      { h: '职业', p: 'zhí yè', v: 'nghề nghiệp', e: 'occupation' },
+      { h: '龙', p: 'lóng', v: 'rồng', e: 'dragon' },
+      { h: '牛', p: 'niú', v: 'bò, trâu', e: 'cow, ox, bull' },
+      { h: '实验室', p: 'shí yàn shì', v: 'phòng thí nghiệm', e: 'laboratory' },
+      { h: '文学', p: 'wén xué', v: 'văn học', e: 'literature' },
+      { h: '现象', p: 'xiàn xiàng', v: 'hiện tượng', e: 'phenomenon' },
+      { h: '羊', p: 'yáng', v: 'cừu, dê', e: 'sheep, goat' },
+      { h: '制度', p: 'zhì dù', v: 'chế độ, quy chế', e: 'system (e.g. political, adminstrative etc)' }
     ],
     workbook: {
       easy: [
@@ -5311,6 +6432,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Ngôn ngữ, gia đình & cảm xúc',
     context: 'Mai về nhà đoàn tụ gia đình, cùng bố mẹ xem World Cup và chia sẻ niềm hạnh phúc sau một năm du học.',
     vocabPreview: ['幸福', '父母', '亲人', '世界杯', '行李'],
+    objectives: [
+      "Nắm nhóm từ khóa: 幸福 · 父母 · 亲人 · 世界杯 · 行李",
+      "Kể/nghe hiểu tình huống Đọc thêm: Ngôn ngữ, gia đình & cảm xúc bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 幸福 · 父母 · 亲人",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "幸福 — hạnh phúc",
+        explain: "Dùng 幸福 trong ngữ cảnh Đọc thêm: Ngôn ngữ, gia đình & cảm xúc để diễn đạt: hạnh phúc.",
+        examples: [
+          { zh: "全家团聚真幸福！父母为我准备了好多菜。", py: "Quánjiā tuánjù zhēn xìngfú! Fùmǔ wèi wǒ zhǔnbèi le hǎo duō cài.", vi: "Cả nhà sum họp hạnh phúc thật! Bố mẹ chuẩn bị cho con bao nhiêu món." }
+        ] },
+      { point: "父母 — cha mẹ",
+        explain: "Dùng 父母 trong ngữ cảnh Đọc thêm: Ngôn ngữ, gia đình & cảm xúc để diễn đạt: cha mẹ.",
+        examples: [
+          { zh: "全家团聚真幸福！父母为我准备了好多菜。", py: "Quánjiā tuánjù zhēn xìngfú! Fùmǔ wèi wǒ zhǔnbèi le hǎo duō cài.", vi: "Cả nhà sum họp hạnh phúc thật! Bố mẹ chuẩn bị cho con bao nhiêu món." }
+        ] },
+      { point: "亲人 — người thân, họ hàng",
+        explain: "Dùng 亲人 trong ngữ cảnh Đọc thêm: Ngôn ngữ, gia đình & cảm xúc để diễn đạt: người thân, họ hàng.",
+        examples: [
+          { zh: "谢谢爸妈。母亲，这是给亲人的礼物。", py: "Xièxie bà mā. Mǔqīn, zhè shì gěi qīnrén de lǐwù.", vi: "Cảm ơn bố mẹ. Mẹ ơi, đây là quà cho người thân." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Nhà Mai · Buổi tối', bg: 'home', cast: ['mai', 'mama'],
         text: 'Mai về nhà, cả gia đình đoàn tụ.', pinyin: '', meaning: '', vocab: [] },
@@ -5356,25 +6500,25 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '可乐', p: 'kě lè', v: 'cola' },
-      { h: '胜利', p: 'shèng lì', v: 'thắng lợi, chiến thắng' },
-      { h: '世界杯', p: 'shì jiè bēi', v: 'Cúp thế giới (World Cup)' },
-      { h: '外文', p: 'wài wén', v: 'tiếng nước ngoài (văn bản)' },
-      { h: '幸福', p: 'xìng fú', v: 'hạnh phúc' },
-      { h: '阳光', p: 'yáng guāng', v: 'ánh nắng mặt trời' },
-      { h: '父母', p: 'fù mǔ', v: 'cha mẹ' },
-      { h: '父亲', p: 'fù qīn', v: 'cha, bố' },
-      { h: '家属', p: 'jiā shǔ', v: 'người thân, thân nhân' },
-      { h: '母亲', p: 'mǔ qīn', v: 'mẹ, mẫu thân' },
-      { h: '亲人', p: 'qīn rén', v: 'người thân, họ hàng' },
-      { h: '爱心', p: 'ài xīn', v: 'lòng nhân ái' },
-      { h: '不论', p: 'bù lùn', v: 'bất kể' },
-      { h: '福', p: 'fú', v: 'phúc, hạnh phúc' },
-      { h: '恐怕', p: 'kǒng pà', v: 'e rằng, sợ rằng' },
-      { h: '高速公路', p: 'gāo sù gōng lù', v: 'đường cao tốc' },
-      { h: '工程师', p: 'gōng chéng shī', v: 'kỹ sư' },
-      { h: '交警', p: 'jiāo jǐng', v: 'cảnh sát giao thông' },
-      { h: '行李', p: 'xíng li', v: 'hành lý' }
+      { h: '可乐', p: 'kě lè', v: 'cola', e: 'amusing' },
+      { h: '胜利', p: 'shèng lì', v: 'thắng lợi, chiến thắng', e: 'victory' },
+      { h: '世界杯', p: 'shì jiè bēi', v: 'Cúp thế giới (World Cup)', e: 'World Cup' },
+      { h: '外文', p: 'wài wén', v: 'tiếng nước ngoài (văn bản)', e: 'foreign language (written)' },
+      { h: '幸福', p: 'xìng fú', v: 'hạnh phúc', e: 'happiness' },
+      { h: '阳光', p: 'yáng guāng', v: 'ánh nắng mặt trời', e: 'sunshine' },
+      { h: '父母', p: 'fù mǔ', v: 'cha mẹ', e: 'father and mother' },
+      { h: '父亲', p: 'fù qīn', v: 'cha, bố', e: 'father' },
+      { h: '家属', p: 'jiā shǔ', v: 'người thân, thân nhân', e: 'family member' },
+      { h: '母亲', p: 'mǔ qīn', v: 'mẹ, mẫu thân', e: 'mother' },
+      { h: '亲人', p: 'qīn rén', v: 'người thân, họ hàng', e: 'one\\\'s close relatives' },
+      { h: '爱心', p: 'ài xīn', v: 'lòng nhân ái', e: 'compassion' },
+      { h: '不论', p: 'bù lùn', v: 'bất kể', e: 'whatever' },
+      { h: '福', p: 'fú', v: 'phúc, hạnh phúc', e: 'blessing, good fortune, happiness' },
+      { h: '恐怕', p: 'kǒng pà', v: 'e rằng, sợ rằng', e: 'fear' },
+      { h: '高速公路', p: 'gāo sù gōng lù', v: 'đường cao tốc', e: 'expressway' },
+      { h: '工程师', p: 'gōng chéng shī', v: 'kỹ sư', e: 'engineer' },
+      { h: '交警', p: 'jiāo jǐng', v: 'cảnh sát giao thông', e: 'traffic police (abbr. for 察)' },
+      { h: '行李', p: 'xíng li', v: 'hành lý', e: 'luggage' }
     ],
     workbook: {
       easy: [
@@ -5408,6 +6552,29 @@ Object.assign(COURSE_DATA, {
     title: 'Đọc thêm: Màu sắc, thể thao & xã hội',
     context: 'Một ngày hội thể thao, Mai cổ vũ các vận động viên rồi quyết tâm làm tình nguyện viên đóng góp cho xã hội.',
     vocabPreview: ['足球', '选手', '金牌', '志愿者', '社会'],
+    objectives: [
+      "Nắm nhóm từ khóa: 足球 · 选手 · 金牌 · 志愿者 · 社会",
+      "Kể/nghe hiểu tình huống Đọc thêm: Màu sắc, thể thao & xã hội bằng câu ngắn HSK 3",
+      "Phân biệt cách dùng 足球 · 选手 · 金牌",
+      "Luyện đặt câu từ hội thoại, lựa chọn và workbook của bài"
+    ],
+    grammarNotes: [
+      { point: "足球 — bóng đá",
+        explain: "Dùng 足球 trong ngữ cảnh Đọc thêm: Màu sắc, thể thao & xã hội để diễn đạt: bóng đá.",
+        examples: [
+          { zh: "今天有足球比赛，好多球迷来加油。", py: "Jīntiān yǒu zúqiú bǐsài, hǎo duō qiúmí lái jiāyóu.", vi: "Hôm nay có trận bóng đá, bao nhiêu cổ động viên đến cổ vũ." }
+        ] },
+      { point: "选手 — vận động viên, thí sinh",
+        explain: "Dùng 选手 trong ngữ cảnh Đọc thêm: Màu sắc, thể thao & xã hội để diễn đạt: vận động viên, thí sinh.",
+        examples: [
+          { zh: "我们支持的选手很厉害，拿了金牌，对手拿银牌。", py: "Wǒmen zhīchí de xuǎnshǒu hěn lìhai, ná le jīnpái, duìshǒu ná yínpái.", vi: "Vận động viên tụi mình ủng hộ rất giỏi, giành huy chương vàng, đối thủ được huy chương bạc." }
+        ] },
+      { point: "金牌 — huy chương vàng",
+        explain: "Dùng 金牌 trong ngữ cảnh Đọc thêm: Màu sắc, thể thao & xã hội để diễn đạt: huy chương vàng.",
+        examples: [
+          { zh: "我们支持的选手很厉害，拿了金牌，对手拿银牌。", py: "Wǒmen zhīchí de xuǎnshǒu hěn lìhai, ná le jīnpái, duìshǒu ná yínpái.", vi: "Vận động viên tụi mình ủng hộ rất giỏi, giành huy chương vàng, đối thủ được huy chương bạc." }
+        ] }
+    ],
     steps: [
       { type: 'dialogue', speaker: 'narrator', scene: '📍 Sân vận động · Ban ngày', bg: 'park', cast: ['mai', 'xiaomei'],
         text: 'Một ngày hội thể thao sôi động.', pinyin: '', meaning: '', vocab: [] },
@@ -5453,25 +6620,25 @@ Object.assign(COURSE_DATA, {
       ] }
     ],
     vocab: [
-      { h: '红茶', p: 'hóng chá', v: 'trà đen, hồng trà' },
-      { h: '红酒', p: 'hóng jiǔ', v: 'rượu vang đỏ' },
-      { h: '绿茶', p: 'lǜ chá', v: 'trà xanh' },
-      { h: '银牌', p: 'yín pái', v: 'huy chương bạc' },
-      { h: '金牌', p: 'jīn pái', v: 'huy chương vàng' },
-      { h: '球迷', p: 'qiú mí', v: 'cổ động viên bóng' },
-      { h: '选手', p: 'xuǎn shǒu', v: 'vận động viên, thí sinh' },
-      { h: '足球', p: 'zú qiú', v: 'bóng đá' },
-      { h: '大夫', p: 'dà fū', v: 'bác sĩ' },
-      { h: '警察', p: 'jǐng chá', v: 'cảnh sát' },
-      { h: '武术', p: 'wǔ shù', v: 'võ thuật' },
-      { h: '概念', p: 'gài niàn', v: 'khái niệm' },
-      { h: '理由', p: 'lǐ yóu', v: 'lý do' },
-      { h: '思想', p: 'sī xiǎng', v: 'tư tưởng, suy nghĩ' },
-      { h: '老太太', p: 'lǎo tài tai', v: 'bà cụ' },
-      { h: '社会', p: 'shè huì', v: 'xã hội' },
-      { h: '志愿者', p: 'zhì yuàn zhě', v: 'tình nguyện viên' },
-      { h: '气候', p: 'qì hòu', v: 'khí hậu' },
-      { h: '收音机', p: 'shōu yīn jī', v: 'radio, máy thu thanh' }
+      { h: '红茶', p: 'hóng chá', v: 'trà đen, hồng trà', e: 'black tea' },
+      { h: '红酒', p: 'hóng jiǔ', v: 'rượu vang đỏ', e: 'red wine' },
+      { h: '绿茶', p: 'lǜ chá', v: 'trà xanh', e: 'green tea' },
+      { h: '银牌', p: 'yín pái', v: 'huy chương bạc', e: 'silver medal' },
+      { h: '金牌', p: 'jīn pái', v: 'huy chương vàng', e: 'gold medal' },
+      { h: '球迷', p: 'qiú mí', v: 'cổ động viên bóng', e: 'fan (ball sports)' },
+      { h: '选手', p: 'xuǎn shǒu', v: 'vận động viên, thí sinh', e: 'athlete' },
+      { h: '足球', p: 'zú qiú', v: 'bóng đá', e: 'soccer ball' },
+      { h: '大夫', p: 'dà fū', v: 'bác sĩ', e: 'senior official (in imperial China)' },
+      { h: '警察', p: 'jǐng chá', v: 'cảnh sát', e: 'police' },
+      { h: '武术', p: 'wǔ shù', v: 'võ thuật', e: 'military skill or technique (in former times)' },
+      { h: '概念', p: 'gài niàn', v: 'khái niệm', e: 'concept' },
+      { h: '理由', p: 'lǐ yóu', v: 'lý do', e: 'reason' },
+      { h: '思想', p: 'sī xiǎng', v: 'tư tưởng, suy nghĩ', e: 'thought' },
+      { h: '老太太', p: 'lǎo tài tai', v: 'bà cụ', e: 'elderly lady (respectful)' },
+      { h: '社会', p: 'shè huì', v: 'xã hội', e: 'society' },
+      { h: '志愿者', p: 'zhì yuàn zhě', v: 'tình nguyện viên', e: 'volunteer' },
+      { h: '气候', p: 'qì hòu', v: 'khí hậu', e: 'climate' },
+      { h: '收音机', p: 'shōu yīn jī', v: 'radio, máy thu thanh', e: 'radio' }
     ],
     workbook: {
       easy: [

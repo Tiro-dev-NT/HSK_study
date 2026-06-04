@@ -83,6 +83,8 @@ var Course = {
   _selectedLevel:    null,   // tab cấp HSK đang xem ở renderList (null = auto)
   _showPinyin:       true,   // VN pinyin toggle (persists across steps)
   _showVi:           true,   // VN nghĩa-Việt toggle (persists across steps)
+  _restoring:        false,  // true khi popstate đang khôi phục → KHÔNG push history (P0-2)
+  _restoreTo:        null,   // {phase,step} cần khôi phục khi vào lại bài từ trang khác (P0-2)
 
   // ── Entry point ─────────────────────────────────────
   init: function() {
@@ -98,7 +100,20 @@ var Course = {
       Course._renderDebtWarning(id);
       return;
     }
+    // Re-entering a specific in-lesson state via Back/Forward from another page
+    // (router set _restoreTo from the history entry). Capture & clear before
+    // loadLesson so a deferred Pro-gate doesn't leak it. (P0-2)
+    var restoreTo = Course._restoreTo;
+    Course._restoreTo = null;
     Course.loadLesson(id);
+    if (restoreTo && Course.lesson) {
+      Course._restoring = true;
+      Course.phase = restoreTo.phase || Course.phase;
+      Course.step  = (restoreTo.step != null) ? restoreTo.step : Course.step;
+      Course._restoring = false;
+      try { history.replaceState({ page: 'course', id: id, phase: Course.phase, step: Course.step }, '', '/course?id=' + id); } catch (e) {}
+      Course.render();
+    }
   },
 
   // Cấp HSK của 1 bài (bài HSK 1 cũ không có field level → mặc định 1)
@@ -485,16 +500,18 @@ var Course = {
     Course.workbookAnswers   = {};
     Course.workbookScore     = 0;
     Course._srsAdded  = false;
+    Course._completeRewarded = false;   // XP/quest granted once per lesson (P0-2: render complete có thể chạy lại khi Back/Forward)
     Course.lesson     = (typeof COURSE_DATA !== 'undefined') ? COURSE_DATA[id] : null;
 
     if (!Course.lesson) {
       Course._renderComingSoon(id);
       return;
     }
-    // Sync URL so refresh / bookmark / "Bài tiếp theo" resume the right lesson.
-    // replaceState (not push) → no extra history entry, matches old in-place behavior.
-    try { history.replaceState({ page: 'course', id: id }, '', '/course?id=' + id); } catch (e) {}
     Course._loadProgress();
+    // Sync URL so refresh / bookmark / "Bài tiếp theo" resume the right lesson.
+    // replaceState (not push) → no extra history entry. Carry phase/step so Back
+    // into this entry restores the exact in-lesson position (P0-2).
+    try { history.replaceState({ page: 'course', id: id, phase: Course.phase, step: Course.step }, '', '/course?id=' + id); } catch (e) {}
     Course.render();
   },
 
@@ -554,15 +571,48 @@ var Course = {
   },
 
   prev: function() {
+    // Each forward step pushed a history entry (see _pushHistory), so going back
+    // = browser Back. Delegate so the in-app ◄ Trước and the hardware/Back button
+    // stay in sync — popstate restores the previous in-lesson state (P0-2).
+    // (◄ is disabled at step 0, so this only fires when an in-lesson entry exists.)
+    if (history.state && history.state.page === 'course' && Course.phase !== 'intro') {
+      history.back();
+      return;
+    }
+    // Fallback (no history entry to pop): original in-place behavior.
     if ((Course.phase === 'dialogue' || Course.phase === 'choice') && Course.step > 0) {
       Course.step--;
-      // Skip back over checkpoints and choices
       var s = Course.lesson.steps[Course.step];
       if (s && (s.type === 'checkpoint' || s.type === 'choice')) Course.step--;
       if (Course.step < 0) Course.step = 0;
       Course.phase = 'dialogue';
       Course.render();
     }
+  },
+
+  // ── Intra-lesson history (P0-2) ─────────────────────
+  // Forward moves push an entry so browser Back steps within the lesson instead
+  // of jumping out to the Học tab. Called from _saveProgress (= forward only).
+  _pushHistory: function() {
+    if (Course._restoring) return;          // popstate restore must not push
+    if (!Course.lessonId) return;
+    try {
+      history.pushState(
+        { page: 'course', id: Course.lessonId, phase: Course.phase, step: Course.step },
+        '', '/course?id=' + Course.lessonId
+      );
+    } catch (e) {}
+  },
+
+  // Called by Router on popstate to a course entry of the SAME lesson already on
+  // screen → set phase/step + re-render in place (no refetch / re-init). (P0-2)
+  restore: function(st) {
+    if (!st) return;
+    Course._restoring = true;
+    Course.phase = st.phase || 'intro';
+    Course.step  = (st.step != null) ? st.step : 0;
+    Course._restoring = false;
+    Course.render();
   },
 
   // ── Speaker label ────────────────────────────────────
@@ -1304,7 +1354,9 @@ var Course = {
 
     Course._getEl().innerHTML =
       '<div class="cs-header">' +
-        '<button class="cs-back" onclick="Course._goBack()">← Quay lại</button>' +
+        // Fix B (P0-2): quay lại NỘI DUNG BÀI (vocab/hội thoại) thay vì thoát ra
+        // trang Học — Course.prev() đồng bộ history.back nên khớp với nút Back.
+        '<button class="cs-back" onclick="Course.prev()">◄ Xem lại bài</button>' +
         '<span class="cs-lesson-num">Bài tập — Bài ' + l.id + '</span>' +
         '<div class="cs-progress-wrap"><div class="cs-progress-bar" style="width:80%"></div></div>' +
       '</div>' +
@@ -1581,10 +1633,13 @@ var Course = {
     var xpGain = 50 + (Course.workbookScore >= 90 ? 20 : 0);
 
     Course._addVocabToSRS();
-    if (typeof Gamification !== 'undefined') Gamification.addXP(xpGain);
-
-    // Track quest progress
-    if (typeof Quests !== 'undefined') Quests.incrementMetric('mai_lessons', 1);
+    // Grant XP + quest credit only once per lesson — re-rendering the complete
+    // screen (Back/Forward into this step) must not re-award (P0-2).
+    if (!Course._completeRewarded) {
+      Course._completeRewarded = true;
+      if (typeof Gamification !== 'undefined') Gamification.addXP(xpGain);
+      if (typeof Quests !== 'undefined') Quests.incrementMetric('mai_lessons', 1);
+    }
 
     var nextId = l.id + 1;
     var hasNext = typeof COURSE_DATA !== 'undefined' && !!COURSE_DATA[nextId];
@@ -1752,6 +1807,9 @@ var Course = {
       completed:  Course.phase === 'complete'
     };
     localStorage.setItem(key, JSON.stringify(all));
+    // _saveProgress is called at exactly the forward phase/step transitions →
+    // push a history entry so Back steps within the lesson (P0-2).
+    Course._pushHistory();
   },
 
   _loadProgress: function() {

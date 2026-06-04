@@ -382,8 +382,23 @@ var Router = (function() {
 
       // Browser back/forward
       window.addEventListener('popstate', function(e) {
-        var page = (e.state && e.state.page)
-          ? e.state.page
+        var st = e.state;
+        // Intra-lesson Back/Forward: the course page is already on screen for the
+        // same lesson → restore phase/step in place, no refetch/re-init (P0-2).
+        if (st && st.page === 'course' && st.phase && typeof Course !== 'undefined' &&
+            _current === 'course' && Course.lessonId === st.id &&
+            document.getElementById('csCoursePage')) {
+          Course.restore(st);
+          return;
+        }
+        // Re-entering a specific lesson state from another page → load the course
+        // fragment, then Course.init applies _restoreTo to land on the right step.
+        if (st && st.page === 'course' && st.phase) {
+          Course._pendingId = st.id;
+          Course._restoreTo = { phase: st.phase, step: st.step };
+        }
+        var page = (st && st.page)
+          ? st.page
           : _pageFromPath(window.location.pathname);
         _navigateTo(page, false);
       });

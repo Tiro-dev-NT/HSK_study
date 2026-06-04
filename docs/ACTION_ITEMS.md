@@ -1,5 +1,23 @@
 # Action Items
 
+## 🟢 Session 2026-06-04 — Onboarding + đẩy luyện tập theo mốc + siết Pro-gate + Admin realtime
+
+**✅ Đã xong (push main):**
+- **AppGuide** (`js/app-guide.js` + `css/components/app-guide.css`): guide "Cách dùng app" + onboarding lần đầu (mở lại ở Tôi›Cài đặt). Key `hsk_guide_seen`. Commit `cb40eab`.
+- **Nudge mốc output** lên "Hôm nay": `Course.pendingMilestones()` + learn-hub `_lhRenderMilestone` → ải chương/trùm cấp đã mở → click vào thẳng mini-mock; đạt là tắt. Commit `b9faa67`.
+- **Fix 2 bug Pro-gate:** `Quests._isPremium` (so sánh Promise `===true` → luôn false; đổi `isProSync`); `grammar.js`+`reading.js` dùng async `isPro()` khi cache chưa warm → hết khóa nhầm Pro. Commit `ab47646`.
+- **Siết free:** Tra từ điển 50 lượt/ngày (Pro 200) qua `Monetization.checkDailyQuota` ở `Dictionary.openModal`; Thi thử HSK free 1 lượt/ngày (MIỄN ải/trùm quick-mode). Keys `gate_quota_dict_lookup`, `gate_daily_mock_exam`. Commit `bbc6831`.
+- **Đang online (realtime)** (`js/presence.js`): Supabase Realtime Presence đếm cả khách CHƯA đăng nhập → Admin KPI "Đang online" (tách đăng nhập/khách). Key `hsk_client_id`. Kill-switch `ENABLED` đầu file. Commit `399b812`.
+- **"Truy cập cuối" thật** (last_active_at): `Auth._touchLastActive()` gọi RPC throttle 1h + đổi nhãn cột Admin. Key `hsk_last_active_touch`. Commit `36d2029`.
+
+**🔴 CẦN USER LÀM (Supabase, thủ công):**
+- ☐ **Chạy `sql/v19_last_active.sql`** (gitignored — repo PUBLIC) trên Supabase SQL Editor → bảng `user_activity` + RLS + RPC `touch_last_active()` + `admin_list_users` đọc `COALESCE(last_active_at, last_sign_in_at)`. Trước khi chạy: cột "Truy cập cuối" = last login, RPC 404 (đã nuốt, app không lỗi).
+
+**📌 Quyết định còn treo:**
+- ☐ **#2 Course Truyện Mai HSK 3:** đang khóa Pro (`course.js` `level>=3`) trong khi vocab HSK 3 free + onboarding ghi "HSK 1–3 free" → LỆCH. Cần chốt: để Pro hay đổi `level>=4` (= `PRO_LEVEL_MIN`).
+
+---
+
 ## 🟢 Session 2026-06-03 — Writing Tutor nâng cấp + Admin credit + dọn repo
 
 **✅ VIỆC SUPABASE — ĐÃ LÀM HẾT (user xác nhận 2026-06-03):**

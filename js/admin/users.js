@@ -118,7 +118,7 @@ var AdminUsers = (function() {
       '<thead><tr>' +
         '<th><input type="checkbox" id="chkAll"></th>' +
         '<th>Tên · Email</th><th>Tier</th><th>Streak</th>' +
-        '<th>Last active</th><th>XP</th><th>Tokens</th>' +
+        '<th>Truy cập cuối</th><th>XP</th><th>Tokens</th>' +
         '<th>Hết hạn</th><th>Joined</th><th></th>' +
       '</tr></thead><tbody>' + rows + '</tbody></table>';
 

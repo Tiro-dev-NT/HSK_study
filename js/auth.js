@@ -200,6 +200,21 @@ var Auth = {
         if (typeof Gamification !== 'undefined') Gamification.buildLevelGrid();
       });
     }
+    // Ghi "lần truy cập web gần nhất" cho Admin (throttle 1 lần/giờ)
+    Auth._touchLastActive();
+  },
+
+  // RPC touch_last_active() — cập nhật mốc truy cập thật (mỗi lần mở web),
+  // throttle 1 lần/giờ để tránh ghi mỗi reload. Lỗi → bỏ qua im lặng.
+  _touchLastActive: function() {
+    try {
+      var KEY = 'hsk_last_active_touch';
+      var now = Date.now();
+      var last = parseInt(localStorage.getItem(KEY) || '0', 10);
+      if (now - last < 3600000) return;        // < 1 giờ → skip
+      localStorage.setItem(KEY, String(now));
+      if (window.SB && SB.rpc) SB.rpc('touch_last_active').then(function() {}, function() {});
+    } catch (e) {}
   },
 
   _onSignOut: function() {

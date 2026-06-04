@@ -27,9 +27,14 @@ var HSKK = (function () {
   var QTYPE = {
     repeat:  { prep: 3,  ans: 10, coreType: 'sent.eval.cn', useRef: true,  grade: true,  part: '第一部分', partVi: 'Nghe & lặp lại', desc: 'Nghe câu rồi lặp lại y nguyên.' },
     respond: { prep: 4,  ans: 15, coreType: 'speak.eval.pro.cn', useRef: false, grade: false, part: '第二部分', partVi: 'Nghe & trả lời', desc: 'Nghe câu hỏi rồi trả lời ngắn gọn.' },
-    open:    { prep: 12, ans: 60, coreType: 'speak.eval.pro.cn', useRef: false, grade: false, part: '第三部分', partVi: 'Trả lời câu hỏi', desc: 'Đọc đề, chuẩn bị rồi nói một đoạn ngắn.' }
+    open:    { prep: 12, ans: 60, coreType: 'speak.eval.pro.cn', useRef: false, grade: false, part: '第三部分', partVi: 'Trả lời câu hỏi', desc: 'Đọc đề, chuẩn bị rồi nói một đoạn ngắn.' },
+    // 中级 第二部分 看图说话 — xem 2 tranh rồi kể thành đoạn. grade:false vì
+    // account CHƯA có spontaneous (speak.eval.pro.cn). Khi có thì bật grade.
+    picture: { prep: 60, ans: 120, coreType: 'speak.eval.pro.cn', useRef: false, grade: false, part: '第二部分', partVi: 'Nhìn tranh nói', desc: 'Xem 2 tranh rồi kể / miêu tả thành đoạn.' }
   };
 
+  var _data = (typeof HSKK_SOCAP !== 'undefined') ? HSKK_SOCAP : null; // dataset đang dùng
+  var _level = 'so-cap';  // 'so-cap' | 'zhong'
   var _exam = null;       // [{ q, type, cfg }]
   var _idx = 0;
   var _answers = [];      // [{ blob, url, type, q, score }]
@@ -83,6 +88,8 @@ var HSKK = (function () {
     _renderHistory();
     var startBtn = $('hskkStartBtn');
     if (startBtn) startBtn.onclick = _onStart;
+    var startZBtn = $('hskkStartZhongBtn');
+    if (startZBtn) startZBtn.onclick = _onStartZhong;
     var mic = $('hskkMicCheck');
     if (mic) mic.onclick = _micCheck;
     var retry = $('hskkRetryBtn');
@@ -207,6 +214,7 @@ var HSKK = (function () {
     _idx = 0;
     _answers = [];
     _running = true;
+    _data = HSKK_SOCAP; _level = 'so-cap';
     _practiceMode = true;
     _practicePartType = partType;
 
@@ -219,7 +227,16 @@ var HSKK = (function () {
   }
 
   // ═══════════ BẮT ĐẦU THI ═══════════
-  async function _onStart() {
+  function _onStart() { _startExam(HSKK_SOCAP, 'so-cap'); }
+  function _onStartZhong() {
+    if (typeof HSKK_ZHONGJI === 'undefined') { _toast('Chưa tải được dữ liệu HSKK Trung cấp.'); return; }
+    _startExam(HSKK_ZHONGJI, 'zhong');
+  }
+
+  async function _startExam(data, level) {
+    _data = data; _level = level;
+    _practiceMode = false; _practicePartType = '';
+
     // 1. Đăng nhập
     var token = await _token();
     if (!token) { _toast('Đăng nhập để dùng HSKK Thi thử nói nhé.'); return; }
@@ -251,7 +268,7 @@ var HSKK = (function () {
     _show($('hskkExam'), true);
 
     // 5. Đồng hồ tổng
-    _totalLeft = (HSKK_SOCAP.meta.durationSec || 17 * 60);
+    _totalLeft = (_data.meta.durationSec || 17 * 60);
     _updateTotal();
     _totalTimer = setInterval(function () {
       _totalLeft--;
@@ -262,12 +279,15 @@ var HSKK = (function () {
     _enterQuestion(0);
   }
 
+  // Rút đề theo plan của dataset hiện tại. part2 chứa respond (so-cap) HOẶC
+  // picture (zhong) — chọn type theo key plan tương ứng để tránh nhầm.
   function _buildExam() {
-    var plan = HSKK_SOCAP.meta.plan || { repeat: 15, respond: 10, open: 2 };
+    var plan = (_data && _data.meta && _data.meta.plan) || { repeat: 15, respond: 10, open: 2 };
     var list = [];
-    list = list.concat(_pick(HSKK_SOCAP.part1, plan.repeat).map(function (q) { return { q: q, type: 'repeat' }; }));
-    list = list.concat(_pick(HSKK_SOCAP.part2, plan.respond).map(function (q) { return { q: q, type: 'respond' }; }));
-    list = list.concat(_pick(HSKK_SOCAP.part3, plan.open).map(function (q) { return { q: q, type: 'open' }; }));
+    if (plan.repeat) list = list.concat(_pick(_data.part1, plan.repeat).map(function (q) { return { q: q, type: 'repeat' }; }));
+    if (plan.respond) list = list.concat(_pick(_data.part2, plan.respond).map(function (q) { return { q: q, type: 'respond' }; }));
+    if (plan.picture) list = list.concat(_pick(_data.part2, plan.picture).map(function (q) { return { q: q, type: 'picture' }; }));
+    if (plan.open) list = list.concat(_pick(_data.part3, plan.open).map(function (q) { return { q: q, type: 'open' }; }));
     return list;
   }
   function _pick(arr, n) {
@@ -321,15 +341,41 @@ var HSKK = (function () {
     _show($('hskkTotalTimer'), !_practiceMode);
 
     // Reset vùng câu hỏi
-    var showText = (item.type === 'open'); // phần 3 in đề; phần 1/2 chỉ nghe
+    var isPicture = (item.type === 'picture');         // 中级 Phần 2 — xem tranh nói
+    var showText = (item.type === 'open');             // phần 3 in đề; phần 1/2 chỉ nghe
     $('hskkQText').textContent = showText ? q.zh : '';
     $('hskkQText').style.display = showText ? '' : 'none';
     $('hskkQPy').textContent = showText ? (q.py || '') : '';
     $('hskkQPy').style.display = showText ? '' : 'none';
     $('hskkQVi').textContent = '';
     $('hskkQVi').style.display = 'none';
-    $('hskkQHint').textContent = (showText && q.hint) ? ('💡 ' + q.hint) : '';
-    $('hskkQHint').style.display = (showText && q.hint) ? '' : 'none';
+
+    // Khối 2 tranh (chỉ type picture)
+    var imgWrap = $('hskkQImages');
+    if (imgWrap) {
+      if (isPicture && q.imgs && q.imgs.length) {
+        imgWrap.innerHTML = q.imgs.map(function (src, k) {
+          return '<img class="hskk-q-img" src="/' + _esc(src) + '" alt="Tranh ' + (k + 1) + '" loading="lazy">';
+        }).join('');
+        _show(imgWrap, true);
+      } else {
+        imgWrap.innerHTML = '';
+        _show(imgWrap, false);
+      }
+    }
+
+    // Gợi ý: picture → dàn ý + từ khóa; open → hint
+    var hintEl = $('hskkQHint');
+    if (isPicture) {
+      var bits = [];
+      if (q.outline && q.outline.length) bits.push('📝 ' + _esc(q.outline.join(' → ')));
+      if (q.keywords && q.keywords.length) bits.push('🔑 ' + q.keywords.map(function (k) { return _esc(k.h); }).join(' · '));
+      hintEl.innerHTML = bits.join('<br>');
+      hintEl.style.display = bits.length ? '' : 'none';
+    } else {
+      hintEl.textContent = (showText && q.hint) ? ('💡 ' + q.hint) : '';
+      hintEl.style.display = (showText && q.hint) ? '' : 'none';
+    }
 
     // Controls reset
     _show($('hskkRecBtn'), false);
@@ -340,13 +386,19 @@ var HSKK = (function () {
     _show($('hskkWave'), false);
 
     // Nút nghe đề (phát lại đề lần nữa CHỈ trong lúc chuẩn bị — sau khi ghi âm thì khóa)
+    // 看图说话 không có audio nghe → ẩn nút, không auto-play TTS.
     var playBtn = $('hskkPlayBtn');
-    playBtn.disabled = false;
-    playBtn.onclick = function () { _speak(q.zh); };
+    if (isPicture) {
+      _show(playBtn, false);
+    } else {
+      _show(playBtn, true);
+      playBtn.disabled = false;
+      playBtn.onclick = function () { _speak(q.zh); };
+    }
 
-    // Tự phát đề 1 lần, rồi vào pha chuẩn bị
-    _speak(q.zh);
-    _phase('Chuẩn bị…', cfg.prep, function () { _startRecording(item, cfg); });
+    // Tự phát đề 1 lần (trừ picture), rồi vào pha chuẩn bị
+    if (!isPicture) _speak(q.zh);
+    _phase(isPicture ? 'Xem tranh, chuẩn bị…' : 'Chuẩn bị…', cfg.prep, function () { _startRecording(item, cfg); });
   }
 
   // Đếm ngược 1 pha (chuẩn bị / trả lời). onEnd gọi khi hết giờ.
@@ -402,9 +454,19 @@ var HSKK = (function () {
 
     // Lộ đáp án/đề để học viên tự đối chiếu
     var q = item.q;
-    $('hskkQText').textContent = q.zh; $('hskkQText').style.display = '';
-    $('hskkQPy').textContent = q.py || ''; $('hskkQPy').style.display = '';
-    $('hskkQVi').textContent = q.vi || ''; $('hskkQVi').style.display = q.vi ? '' : 'none';
+    if (item.type === 'picture') {
+      // Giữ 2 tranh; hiện đáp án mẫu trong khối gợi ý để tự so sánh.
+      $('hskkQText').style.display = 'none';
+      $('hskkQPy').style.display = 'none';
+      $('hskkQVi').style.display = 'none';
+      var hintEl = $('hskkQHint');
+      hintEl.innerHTML = q.sampleAnswer ? ('<b>Đáp án mẫu:</b> ' + _esc(q.sampleAnswer)) : '';
+      hintEl.style.display = q.sampleAnswer ? '' : 'none';
+    } else {
+      $('hskkQText').textContent = q.zh; $('hskkQText').style.display = '';
+      $('hskkQPy').textContent = q.py || ''; $('hskkQPy').style.display = '';
+      $('hskkQVi').textContent = q.vi || ''; $('hskkQVi').style.display = q.vi ? '' : 'none';
+    }
 
     _show($('hskkPhase'), false);
 
@@ -639,9 +701,10 @@ var HSKK = (function () {
       circle.style.setProperty('--hskk-pct', overall == null ? 0 : (overall / 100).toFixed(3));
     }
     var verdict = $('hskkScoreVerdict'), sub = $('hskkScoreSub');
+    var levelName = (_data && _data.meta && _data.meta.name) || 'HSKK';
     var modeLabel = _practiceMode
       ? ('Luyện ' + (QTYPE[_practicePartType] ? QTYPE[_practicePartType].part + ' · ' + QTYPE[_practicePartType].partVi : '') + ' · ')
-      : '';
+      : (levelName + ' · ');
     if (overall == null) {
       if (verdict) verdict.textContent = practiceCount ? 'Đã ghi âm phần luyện tập' : 'Chưa chấm được câu nào';
       if (sub) sub.textContent = modeLabel + (practiceCount
@@ -668,12 +731,18 @@ var HSKK = (function () {
       }).join('');
     }
 
-    // Điểm theo phần
-    var parts = [
-      { label: '第一部分 · Nghe & lặp lại', type: 'repeat' },
-      { label: '第二部分 · Nghe & trả lời', type: 'respond' },
-      { label: '第三部分 · Trả lời câu hỏi', type: 'open' }
-    ];
+    // Điểm theo phần (cấu trúc khác nhau giữa Sơ cấp và Trung cấp)
+    var parts = (_level === 'zhong')
+      ? [
+          { label: '第一部分 · Nghe & lặp lại', type: 'repeat' },
+          { label: '第二部分 · Nhìn tranh nói', type: 'picture' },
+          { label: '第三部分 · Trả lời câu hỏi', type: 'open' }
+        ]
+      : [
+          { label: '第一部分 · Nghe & lặp lại', type: 'repeat' },
+          { label: '第二部分 · Nghe & trả lời', type: 'respond' },
+          { label: '第三部分 · Trả lời câu hỏi', type: 'open' }
+        ];
     var ps = $('hskkPartScores');
     if (ps) {
       ps.innerHTML = parts.map(function (p) {
@@ -699,13 +768,15 @@ var HSKK = (function () {
         var status = practice ? '<div class="hskk-d-status">' + _esc('Đã ghi âm · luyện tập (chưa chấm tự động)') + '</div>' : '';
         var tip = _tip(a);
         var audio = a.url ? '<button class="hskk-d-replay" data-url="' + _esc(a.url) + '">▶ Nghe lại</button>' : '';
+        var zhLine = (a.type === 'picture') ? (a.q.topic || a.q.topicVi || '看图说话') : a.q.zh;
+        var pyLine = (a.type === 'picture') ? (a.q.topicVi || '') : (a.q.py || '');
         return '<div class="hskk-d-item">' +
           '<div class="hskk-d-head"><span class="hskk-d-num">' + (i + 1) + '</span>' +
           '<span class="hskk-d-type">' + _esc(cfg.partVi) + '</span>' +
           '<span class="hskk-d-score' + cls + '">' + _esc(scoreText) + '</span></div>' +
           status +
-          '<div class="hskk-d-zh">' + _esc(a.q.zh) + '</div>' +
-          '<div class="hskk-d-py">' + _esc(a.q.py || '') + '</div>' +
+          '<div class="hskk-d-zh">' + _esc(zhLine) + '</div>' +
+          '<div class="hskk-d-py">' + _esc(pyLine) + '</div>' +
           (tip ? '<div class="hskk-d-tip">' + _esc(tip) + '</div>' : '') +
           audio +
           '</div>';
@@ -718,7 +789,7 @@ var HSKK = (function () {
     // Lưu lịch sử (chỉ thi thật, không lưu phiên luyện từng phần)
     if (!_practiceMode && overall != null) {
       _saveHistory({
-        ts: Date.now(), level: 'so-cap', overall: overall,
+        ts: Date.now(), level: _level, overall: overall,
         pron: _avg(pron), flu: _avg(flu), scored: scored, total: _exam.length
       });
     }
@@ -783,8 +854,9 @@ var HSKK = (function () {
     list.innerHTML = arr.map(function (h) {
       var d = new Date(h.ts); var dd = d.getDate() + '/' + (d.getMonth() + 1);
       var cls = h.overall >= 80 ? ' hskk-h-good' : h.overall >= 60 ? ' hskk-h-mid' : ' hskk-h-low';
+      var lvName = h.level === 'zhong' ? 'HSKK Trung cấp' : 'HSKK Sơ cấp';
       return '<div class="hskk-h-item"><span class="hskk-h-score' + cls + '">' + h.overall + '</span>' +
-        '<div class="hskk-h-body"><span class="hskk-h-lv">HSKK Sơ cấp</span>' +
+        '<div class="hskk-h-body"><span class="hskk-h-lv">' + lvName + '</span>' +
         '<span class="hskk-h-meta">Phát âm ' + (h.pron == null ? '—' : h.pron) + ' · Trôi chảy ' + (h.flu == null ? '—' : h.flu) + ' · ' + dd + '</span></div></div>';
     }).join('');
   }

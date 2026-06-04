@@ -762,6 +762,32 @@
 }
 .cs-wb-submit { width: 100%; padding: 13px; font-size: 16px; margin-top: 16px; }
 
+/* ── Listen / Dictation (bài tập NGHE) ───────────────── */
+.cs-ex-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-soft, rgba(220,38,38,0.08));
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.15s, transform 0.1s;
+}
+.cs-ex-play:hover { background: var(--primary); color: #fff; }
+.cs-ex-play:active { transform: scale(0.97); }
+.cs-listen-reveal {
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--fg);
+}
+.cs-listen-hanzi { font-size: 18px; }
+.cs-listen-py { font-size: 13px; font-weight: 600; color: var(--fg-3); }
+
 /* ── Complete screen ─────────────────────────────────── */
 .cs-complete {
   padding: 40px 24px 100px;

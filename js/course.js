@@ -952,11 +952,22 @@ var Course = {
   _vnSpeakCur: function() {
     var w = Course._vnCurWord;
     if (!w || !w.h) return;
-    if (typeof Dictionary !== 'undefined' && Dictionary.playTTS) { Dictionary.playTTS(w.h); return; }
+    Course._speakZh(w.h);
+  },
+
+  // ── TTS helper dùng chung (workbook nghe + popup từ) ──
+  // Ưu tiên Dictionary.playTTS; fallback Web Speech zh-CN rate 0.85.
+  _speakZh: function(text) {
+    if (!text) return;
+    if (typeof Dictionary !== 'undefined' && Dictionary.playTTS) { Dictionary.playTTS(text); return; }
     if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(w.h);
+      var u = new SpeechSynthesisUtterance(text);
       u.lang = 'zh-CN'; u.rate = 0.85;
+      var vs = window.speechSynthesis.getVoices().filter(function(v) {
+        return /zh|Chinese/i.test((v.lang || '') + ' ' + (v.name || ''));
+      });
+      if (vs.length) u.voice = vs[0];
       window.speechSynthesis.speak(u);
     }
   },
@@ -1095,13 +1106,7 @@ var Course = {
     if (idx === correctIdx) {
       Course.checkpointAnswers[stateKey + '_solved'] = true;
       // Play TTS for correct answer
-      var opt = s.options[idx];
-      if (opt.text && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-        var u = new SpeechSynthesisUtterance(opt.text);
-        u.lang = 'zh-CN'; u.rate = 0.85;
-        window.speechSynthesis.speak(u);
-      }
+      Course._speakZh(s.options[idx].text);
     } else {
       // Mark this option as wrong, allow retry on others
       if (!Course.checkpointAnswers[stateKey + '_wrong']) {
@@ -1377,6 +1382,54 @@ var Course = {
       '</div>';
     }
 
+    if (ex.type === 'listen') {
+      var lopts = ex.options.map(function(opt) {
+        var state = '';
+        if (answered !== undefined) {
+          if (opt === ex.answer) state = ' cs-opt-correct';
+          else if (opt === answered) state = ' cs-opt-wrong';
+        }
+        var disabled = answered !== undefined ? 'disabled' : '';
+        return '<button class="cs-opt cs-opt-sm' + state + '" ' + disabled + ' onclick="Course._answerWorkbook(' + ei + ',\'' + opt.replace(/'/g, "\\'") + '\')">' + opt + '</button>';
+      }).join('');
+      // Ẩn chữ Hán đáp án cho tới khi trả lời; sau đó lộ chữ + pinyin để đối chiếu.
+      var lreveal = '';
+      if (answered !== undefined) {
+        lreveal = '<div class="cs-listen-reveal">' +
+          '<span class="cs-listen-hanzi">' + ex.answer + '</span>' +
+          (ex.py ? ' <span class="cs-listen-py">' + ex.py + '</span>' : '') +
+        '</div>';
+      }
+      return '<div class="cs-exercise cs-listen">' +
+        '<div class="cs-ex-num">' + (ei + 1) + '</div>' +
+        '<div class="cs-ex-label">Nghe rồi chọn đáp án đúng:</div>' +
+        '<button class="cs-ex-play" onclick="Course._speakZh(\'' + ex.audio.replace(/'/g, "\\'") + '\')">🔊 Nghe</button>' +
+        '<div class="cs-opts">' + lopts + '</div>' +
+        lreveal +
+        explainHTML +
+      '</div>';
+    }
+
+    if (ex.type === 'dictation') {
+      var dchecked = answered !== undefined;
+      var dictOk   = dchecked && Course._isExCorrect(ex, answered);
+      var dresult  = '';
+      if (dchecked) {
+        dresult = dictOk
+          ? '<div class="cs-translate-ans cs-correct">✓ Chính xác</div>'
+          : '<div class="cs-translate-ans cs-wrong">✗ Đáp án: <strong>' + ex.answer + '</strong>' + (ex.py ? ' <span class="cs-listen-py">' + ex.py + '</span>' : '') + '</div>';
+      }
+      return '<div class="cs-exercise cs-dictation">' +
+        '<div class="cs-ex-num">' + (ei + 1) + '</div>' +
+        '<div class="cs-ex-label">Nghe rồi gõ lại chữ Hán (听写):</div>' +
+        '<button class="cs-ex-play" onclick="Course._speakZh(\'' + ex.audio.replace(/'/g, "\\'") + '\')">🔊 Nghe</button>' +
+        (ex.hint ? '<div class="cs-ex-prompt">' + ex.hint + '</div>' : '') +
+        '<input class="cs-translate-input" id="csDictInput' + ei + '" placeholder="Gõ chữ Hán bạn nghe được..." ' + (dchecked ? 'disabled value="' + (answered || '').replace(/"/g, '&quot;') + '"' : '') + '>' +
+        (dchecked ? dresult : '<button class="cs-btn-sm" onclick="Course._submitDictation(' + ei + ')">Kiểm tra</button>') +
+        explainHTML +
+      '</div>';
+    }
+
     return '';
   },
 
@@ -1426,6 +1479,16 @@ var Course = {
     Course._rerenderWorkbook();
   },
 
+  _submitDictation: function(ei) {
+    var input = document.getElementById('csDictInput' + ei);
+    var val   = input ? input.value.trim() : '';
+    var stored = val || '(bỏ trống)';
+    Course.workbookAnswers[ei] = stored;
+    var wbD = Course.lesson.workbook[Course.difficulty] || [];
+    if (wbD[ei] && !Course._isExCorrect(wbD[ei], stored)) Course._pushWrongToSRS(wbD[ei]);
+    Course._rerenderWorkbook();
+  },
+
   // Normalize Chinese answer: strip whitespace + punctuation for comparison
   _normalizeZh: function(s) {
     return String(s == null ? '' : s).replace(/[\s。，？！、,.?!；：;:]/g, '');
@@ -1435,7 +1498,8 @@ var Course = {
   _isExCorrect: function(ex, ans) {
     if (ans === undefined || ans === null || ans === '(bỏ trống)') return false;
     if (ex.type === 'fill') return ans === ex.answer;
-    // order + translate: tolerant compare (ignore spaces/punctuation)
+    if (ex.type === 'listen') return ans === ex.answer;
+    // order + translate + dictation: tolerant compare (ignore spaces/punctuation)
     return Course._normalizeZh(ans) === Course._normalizeZh(ex.answer);
   },
 

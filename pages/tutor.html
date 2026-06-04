@@ -1,0 +1,53 @@
+<section class="page active">
+<div class="tutor-page">
+
+  <div class="tutor-header">
+    <div class="tutor-header-left">
+      <h1 class="tutor-title">💬 Gia sư AI</h1>
+      <span class="tutor-cost-badge">🔮 1 credit / tin nhắn</span>
+    </div>
+    <button class="tutor-clear-btn" id="tutorClearBtn">🗑 Xoá hội thoại</button>
+  </div>
+
+  <div class="tutor-messages" id="tutorMessages" aria-live="polite" aria-label="Hội thoại với gia sư AI">
+    <div class="tutor-msg tutor-msg--ai" id="tutorWelcome">
+      <div class="tutor-msg-bubble">
+        Xin chào! Mình là gia sư tiếng Trung của bạn 🐉<br>
+        Hãy hỏi mình về ngữ pháp, từ vựng, cách dùng từ, hay bất cứ điều gì về tiếng Trung nhé!
+      </div>
+    </div>
+  </div>
+
+  <div class="tutor-suggestions" id="tutorSuggestions" aria-label="Câu gợi ý nhanh">
+    <button class="tutor-chip" data-msg="了 dùng khi nào?">了 dùng khi nào?</button>
+    <button class="tutor-chip" data-msg="Phân biệt 还 và 也">Phân biệt 还 và 也</button>
+    <button class="tutor-chip" data-msg="Phân biệt 二 và 两">Phân biệt 二 và 两</button>
+    <button class="tutor-chip" data-msg="Sửa câu giúp mình: 我昨天很高兴去了公园。">📝 Sửa câu giúp mình</button>
+  </div>
+
+  <div class="tutor-typing" id="tutorTyping" aria-live="polite" aria-label="Gia sư đang soạn">
+    <div class="tutor-typing-dot"></div>
+    <div class="tutor-typing-dot"></div>
+    <div class="tutor-typing-dot"></div>
+    <span class="tutor-typing-label">Gia sư đang soạn…</span>
+  </div>
+
+  <div class="tutor-compose">
+    <div class="tutor-compose-row">
+      <textarea
+        class="tutor-input" id="tutorInput" rows="2"
+        placeholder="Hỏi về ngữ pháp, từ vựng, cách dùng từ…"
+        maxlength="500" autocomplete="off" spellcheck="false"
+        aria-label="Nhập câu hỏi"></textarea>
+      <button class="tutor-send-btn" id="tutorSendBtn" title="Gửi (Ctrl+Enter)" aria-label="Gửi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="tutor-compose-hint">Ctrl+Enter để gửi &nbsp;·&nbsp; 1 AI Credit / tin nhắn · Pro</div>
+  </div>
+
+</div>
+</section>

@@ -67,6 +67,7 @@
   <link rel="stylesheet" href="css/pages/mock-exam.css?v=1.0" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="css/pages/text-analyzer.css?v=1.0" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="css/pages/writing.css?v=1.3" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="css/pages/tutor.css?v=1.0" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="css/pages/leaderboard.css?v=1.1" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="css/pages/admin.css?v=2.0" media="print" onload="this.media='all'"/>
   <!-- Features: cross-cutting concerns -->
@@ -670,6 +671,7 @@
   <script src="js/hskk.js?v=1.7"></script>
   <script src="js/data/speaking/shadowing.js?v=1.0"></script>
   <script src="js/speaking.js?v=1.2"></script>
+  <script src="js/tutor.js?v=1.0"></script>
   <script src="js/cookie-consent.js?v=1.1"></script>
   <script src="js/cmd-palette.js?v=1.0"></script>
   <script src="js/presence.js?v=1.0"></script>
@@ -681,7 +683,7 @@
   <script src="js/auth.js?v=4.2"></script>
   <script src="js/leaderboard.js?v=1.1"></script>
   <script src="js/monetization.js?v=1.1"></script>
-  <script src="js/ai-client.js?v=1.0"></script>
+  <script src="js/ai-client.js?v=1.1"></script>
   <!-- HSK version switch DEPRECATED 2026-05-27 -->
   <!-- <script src="js/hsk-version.js?v=1.3"></script> -->
   <script src="js/admin/_components.js?v=1.0"></script>
@@ -1020,7 +1022,8 @@
         'translate':     'Dịch + phân tích — học từ ngữ cảnh thật! 🔄',
         'ocr':           'Chụp là tra được — tiện nhất khi ra ngoài! 📷',
         'text-analyzer': 'Dán bất kỳ văn bản — biết ngay mình cần học gì! 🔍',
-        'typing':        'Gõ nhanh = tư duy tiếng Trung nhanh hơn! ⌨️'
+        'typing':        'Gõ nhanh = tư duy tiếng Trung nhanh hơn! ⌨️',
+        'tutor':         'Gia sư AI — hỏi bất cứ điều gì về tiếng Trung! 💬'
       };
       el.textContent = msgs[page] || 'Học tốt nhé! 🐉';
     };

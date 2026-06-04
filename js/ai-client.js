@@ -52,10 +52,11 @@ var AIClient = (function () {
           'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify({
-          task:   task,
-          prompt: opts.prompt || '',
-          system: opts.system || undefined,
-          deep:   opts.deep === true ? true : undefined
+          task:     task,
+          prompt:   opts.prompt   || '',
+          system:   opts.system   || undefined,
+          deep:     opts.deep === true ? true : undefined,
+          messages: opts.messages || undefined,
         }),
         signal: ctrl.signal
       });

@@ -73,7 +73,8 @@ var Router = (function() {
     '/course':          'course',
     '/handout':         'handout',
     '/references':      'references',
-    '/mock-exam':       'mock-exam'
+    '/mock-exam':       'mock-exam',
+    '/tutor':           'tutor',
   };
 
   // ── Module init map: called after fragment is injected ──
@@ -217,7 +218,10 @@ var Router = (function() {
     'references':   function() {},
     'mock-exam':    function() {
       if (typeof MockExam !== 'undefined') MockExam.init();
-    }
+    },
+    'tutor':        function() {
+      if (typeof Tutor !== 'undefined') Tutor.init();
+    },
   };
 
   // ── Fetch fragment from server (or memory cache) ─────

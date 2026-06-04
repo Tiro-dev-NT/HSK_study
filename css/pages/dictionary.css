@@ -24,7 +24,7 @@
   align-items: start;
 }
 @media (min-width: 1024px) {
-  .dict-layout { grid-template-columns: 1fr 260px; }
+  .dict-layout { grid-template-columns: minmax(0, 1fr) 320px; }
 }
 
 /* ── Search bar ── */
@@ -258,6 +258,148 @@
   top: 80px;
 }
 @media (max-width: 1023px) { .dict-aside { display: none; } }
+
+.dict-aside-stats { display: flex; flex-direction: column; gap: 14px; }
+/* Khi mở chi tiết 1 từ → ẩn stats, dock chi tiết chiếm cột phải */
+.dict-aside.has-detail .dict-aside-stats { display: none; }
+
+/* ── Word detail dock (use-case b: click từ trong Từ điển) ── */
+.dict-detail {
+  flex-direction: column;
+  gap: 14px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow-3);
+}
+.dict-detail:not([hidden]) { display: flex; }
+
+.dd-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.dd-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--primary);
+  border-radius: 6px;
+  padding: 3px 10px;
+  letter-spacing: .03em;
+}
+.dd-badge-v3 { background: var(--thuy-luc); }
+.dd-close {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: .15s;
+}
+.dd-close:hover { background: var(--hover); color: var(--text); border-color: var(--primary); }
+
+.dd-hero { text-align: center; padding: 6px 0 2px; }
+.dd-hanzi {
+  font-family: var(--font-hanzi);
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--text);
+}
+.dd-pinyin {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 4px;
+}
+.dd-tts {
+  margin-top: 12px;
+  padding: 8px 18px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: .18s;
+}
+.dd-tts:hover { background: var(--primary); color: #fff; }
+
+.dd-meanings { display: flex; flex-direction: column; gap: 8px; }
+.dd-meaning-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.dd-meaning-row strong { font-weight: 600; }
+.dd-meaning-row > span:last-child { color: var(--text2); }
+.dd-lang {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  margin-top: 1px;
+}
+.dd-lang-vi { background: var(--primary-soft); color: var(--primary); }
+.dd-lang-en { background: var(--info-bg); color: var(--info); }
+
+.dd-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text3);
+  margin-top: 2px;
+}
+.dd-example {
+  position: relative;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 40px 12px 12px;
+}
+.dd-ex-tts {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  transition: .15s;
+}
+.dd-ex-tts:hover { border-color: var(--primary); }
+.dd-ex-zh { font-family: var(--font-hanzi); font-size: 16px; color: var(--text); line-height: 1.5; }
+.dd-ex-py { font-size: 12px; color: var(--accent); margin-top: 3px; }
+.dd-ex-vi { font-size: 13px; color: var(--text2); margin-top: 3px; }
+.dd-ex-en { font-size: 12px; color: var(--text3); margin-top: 2px; font-style: italic; }
+
+.dd-foot { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+.dd-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: .18s;
+}
+.dd-btn-primary { background: var(--primary); color: #fff; border: none; }
+.dd-btn-primary:hover { background: var(--chau-hong-2); }
+.dd-btn-ghost { background: var(--surface); color: var(--text2); border: 1.5px solid var(--border); }
+.dd-btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
 
 .dict-aside-card {
   background: var(--surface);

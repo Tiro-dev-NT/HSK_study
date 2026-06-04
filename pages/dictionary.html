@@ -48,13 +48,19 @@
           </div>
 
           <!-- Results area -->
-          <div class="dict-results" id="dictResults" data-lookup="true">
+          <div class="dict-results" id="dictResults">
             <p class="hint" data-vi="Nhập từ để tìm kiếm..." data-en="Type to search...">Nhập từ để tìm kiếm...</p>
           </div>
         </div>
 
         <!-- ── Right panel (desktop ≥1024px) ── -->
         <aside class="dict-aside" id="dictAside">
+
+          <!-- Word detail dock (shown on click; built by Dictionary.showDetail) -->
+          <div class="dict-detail" id="dictDetail" aria-live="polite" hidden></div>
+
+          <!-- Stats cards (hidden while a word detail is open) -->
+          <div class="dict-aside-stats" id="dictAsideStats">
 
           <!-- Vocab progress card -->
           <div class="dict-aside-card">
@@ -86,6 +92,7 @@
             <a class="dac-link" data-page="my-vocab" href="#" onclick="Router.navigateTo('my-vocab');return false;">Quản lý bộ thẻ →</a>
           </div>
 
+          </div><!-- /.dict-aside-stats -->
         </aside>
       </div>
 

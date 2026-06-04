@@ -140,7 +140,9 @@ var LookupPanel = {
   },
 
   _ignoreTarget: function(target) {
-    return !!(target && target.closest && target.closest('button, a, input, textarea, select, [contenteditable="true"], .lp-panel'));
+    // #page-dictionary có panel chi tiết RỘNG riêng (Dictionary.showDetail) → để Từ điển
+    // tự xử lý click/hover, không bật floating hover panel (vốn chỉ dành cho đọc nội dung).
+    return !!(target && target.closest && target.closest('button, a, input, textarea, select, [contenteditable="true"], .lp-panel, #page-dictionary'));
   },
 
   _charAtPoint: function(x, y) {

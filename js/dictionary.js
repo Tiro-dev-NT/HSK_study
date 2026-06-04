@@ -237,7 +237,7 @@ var Dictionary = {
     }).join('');
     container.querySelectorAll('.dict-card').forEach(function(card, i) {
       card.addEventListener('click', function(e) {
-        if (!e.target.classList.contains('quick-add')) Dictionary.openModal(words[i]);
+        if (!e.target.classList.contains('quick-add')) Dictionary.showDetail(words[i]);
       });
     });
     container.querySelectorAll('.quick-add').forEach(function(btn, i) {
@@ -248,10 +248,102 @@ var Dictionary = {
     });
   },
 
-  // ── Modal ──────────────────────────────────────────
-  openModal: function(word) {
-    // Quota tra cứu: free 50/ngày, Pro 200/ngày (matrix). Vượt → gate Pro.
+  _isDesktop: function() {
+    return window.matchMedia('(min-width: 1024px)').matches;
+  },
+
+  // ── Detail dock (desktop) — panel chi tiết RỘNG, dock phải, không đè sidebar/search.
+  //    Use-case (b): click 1 từ TRONG trang Từ điển. Hover-lookup (a) vẫn là LookupPanel nổi.
+  showDetail: function(word) {
+    if (!word) return;
+    // Mobile (<1024px): không có cột phải → dùng lại modal toàn màn hình.
+    if (!Dictionary._isDesktop()) { Dictionary.openModal(word); return; }
+    var panel = document.getElementById('dictDetail');
+    var aside = document.getElementById('dictAside');
+    if (!panel) { Dictionary.openModal(word); return; }
+    // Quota tra cứu: free 50/ngày, Pro 200/ngày. Vượt → gate Pro, không mở.
     if (typeof Monetization !== 'undefined' && Monetization.checkDailyQuota &&
+        !Monetization.checkDailyQuota('dict_lookup', 50, 200, 'Tra từ điển')) {
+      return;
+    }
+    Dictionary._addToRecent(word.h);
+    AppState.currentWord = word;
+    currentWord = word; // compat alias
+    panel.innerHTML = Dictionary._detailHTML(word);
+    panel.hidden = false;
+    if (aside) aside.classList.add('has-detail');
+    Dictionary._bindDetail(word);
+    setTimeout(function() { Dictionary.playTTS(word.h); }, 150);
+  },
+
+  hideDetail: function() {
+    var panel = document.getElementById('dictDetail');
+    var aside = document.getElementById('dictAside');
+    if (panel) { panel.hidden = true; panel.innerHTML = ''; }
+    if (aside) aside.classList.remove('has-detail');
+    AppState.currentWord = null;
+    currentWord = null;
+  },
+
+  _detailHTML: function(word) {
+    var esc = function(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+    var ver   = word.ver || AppState.version || 3;
+    var badge = 'HSK ' + (ver === 3 ? '3.0 L' : '2.0 L') + word.level;
+    var ex    = word.ex;
+    var exHtml = '';
+    if (ex) {
+      exHtml =
+        '<div class="dd-section-title">Ví dụ câu</div>' +
+        '<div class="dd-example">' +
+          '<button class="dd-ex-tts" data-dd-tts="' + esc(ex.zh || word.h) + '" title="Nghe câu">🔊</button>' +
+          '<p class="dd-ex-zh">' + esc(ex.zh) + '</p>' +
+          (ex.py ? '<p class="dd-ex-py">' + esc(ex.py) + '</p>' : '') +
+          (ex.vi ? '<p class="dd-ex-vi">' + esc(ex.vi) + '</p>' : '') +
+          (ex.en ? '<p class="dd-ex-en">' + esc(ex.en) + '</p>' : '') +
+        '</div>';
+    }
+    return '' +
+      '<div class="dd-head">' +
+        '<span class="dd-badge dd-badge-v' + ver + '">' + esc(badge) + '</span>' +
+        '<button class="dd-close" data-dd-close aria-label="Đóng">✕</button>' +
+      '</div>' +
+      '<div class="dd-hero">' +
+        '<div class="dd-hanzi">' + esc(word.h) + '</div>' +
+        '<div class="dd-pinyin">' + esc(word.p) + '</div>' +
+        '<button class="dd-tts" data-dd-tts="' + esc(word.h) + '">🔊 Nghe phát âm</button>' +
+      '</div>' +
+      '<div class="dd-meanings">' +
+        '<div class="dd-meaning-row"><span class="dd-lang dd-lang-vi">VI</span><strong>' + esc(word.v || '—') + '</strong></div>' +
+        '<div class="dd-meaning-row"><span class="dd-lang dd-lang-en">EN</span><span>' + esc(word.e || '—') + '</span></div>' +
+      '</div>' +
+      exHtml +
+      '<div class="dd-foot">' +
+        '<button class="dd-btn dd-btn-primary" data-dd-add>➕ Thêm vào bộ thẻ</button>' +
+        '<button class="dd-btn dd-btn-ghost" data-dd-more>✍️ Nét chữ &amp; chi tiết</button>' +
+      '</div>';
+  },
+
+  _bindDetail: function(word) {
+    var panel = document.getElementById('dictDetail');
+    if (!panel) return;
+    var closeBtn = panel.querySelector('[data-dd-close]');
+    if (closeBtn) closeBtn.addEventListener('click', Dictionary.hideDetail);
+    panel.querySelectorAll('[data-dd-tts]').forEach(function(btn) {
+      btn.addEventListener('click', function() { Dictionary.playTTS(btn.getAttribute('data-dd-tts') || word.h); });
+    });
+    var addBtn = panel.querySelector('[data-dd-add]');
+    if (addBtn) addBtn.addEventListener('click', function() {
+      if (typeof openAddToDeckPopup === 'function') openAddToDeckPopup(word);
+    });
+    var moreBtn = panel.querySelector('[data-dd-more]');
+    // "Nét chữ & chi tiết" mở modal đầy đủ (HanziWriter) — không tính quota lần 2.
+    if (moreBtn) moreBtn.addEventListener('click', function() { Dictionary.openModal(word, true); });
+  },
+
+  // ── Modal ──────────────────────────────────────────
+  openModal: function(word, skipQuota) {
+    // Quota tra cứu: free 50/ngày, Pro 200/ngày (matrix). Vượt → gate Pro.
+    if (!skipQuota && typeof Monetization !== 'undefined' && Monetization.checkDailyQuota &&
         !Monetization.checkDailyQuota('dict_lookup', 50, 200, 'Tra từ điển')) {
       return;
     }

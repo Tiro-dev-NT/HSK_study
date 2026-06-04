@@ -16,12 +16,114 @@ var Speaking = (function () {
   var _analyser = null;
   var _waveRAF = 0;
   var _busy = false;
+  var _lookupPopup = null;
 
   function $(id) { return document.getElementById(id); }
   function _esc(s) { return (typeof escapeHtml === 'function') ? escapeHtml(s) : String(s == null ? '' : s); }
   function _toast(s) { if (typeof showToast === 'function') showToast(s); }
   function _show(el, on) { if (el) el.style.display = on ? '' : 'none'; }
   function _speechFn() { return (typeof SB_URL !== 'undefined' && SB_URL ? SB_URL : '') + '/functions/v1/speech-proxy'; }
+
+  function _wrapHanzi(text) {
+    if (!text) return '';
+    var out = '';
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      var code = ch.charCodeAt(0);
+      var isHz = (code >= 0x4E00 && code <= 0x9FFF) || (code >= 0x3400 && code <= 0x4DBF) || (code >= 0x20000 && code <= 0x2A6DF);
+      if (isHz) {
+        out += '<span class="sp-hz" data-ch="' + _esc(ch) + '">' + _esc(ch) + '</span>';
+      } else {
+        out += _esc(ch);
+      }
+    }
+    return out;
+  }
+
+  function _closeLookup() {
+    if (_lookupPopup && _lookupPopup.parentNode) {
+      _lookupPopup.parentNode.removeChild(_lookupPopup);
+    }
+    _lookupPopup = null;
+  }
+
+  function _resolveWord(ch, nextCh) {
+    var all = (typeof getAllWordsBothVersions === 'function') ? getAllWordsBothVersions() : [];
+    if (!all.length) return null;
+    if (nextCh) {
+      var compound = ch + nextCh;
+      var match2 = all.find(function (w) { return w.h === compound; });
+      if (match2) return match2;
+    }
+    var match1 = all.find(function (w) { return w.h === ch; });
+    if (match1) return match1;
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].h && all[i].h.indexOf(ch) === 0) return all[i];
+    }
+    return null;
+  }
+
+  function _showLookup(ch, target) {
+    _closeLookup();
+    var spans = document.querySelectorAll('.sp-hz');
+    var idx = -1;
+    for (var i = 0; i < spans.length; i++) {
+      if (spans[i] === target) { idx = i; break; }
+    }
+    var nextCh = (idx >= 0 && idx < spans.length - 1) ? spans[idx + 1].getAttribute('data-ch') : null;
+    var word = _resolveWord(ch, nextCh);
+    if (!word) {
+      _toast('Chưa có trong từ điển');
+      return;
+    }
+    var popup = document.createElement('div');
+    popup.className = 'sp-lookup';
+    popup.innerHTML =
+      '<button class="sp-lookup-close">✕</button>' +
+      '<div class="sp-lookup-py">' + _esc(word.p || '') + '</div>' +
+      '<div class="sp-lookup-vi">' + _esc(word.v || '') + '</div>' +
+      '<div class="sp-lookup-actions">' +
+      '<button class="sp-lookup-btn sp-lookup-tts" data-text="' + _esc(word.h) + '">🔊</button>' +
+      '<button class="sp-lookup-btn sp-lookup-srs" data-word="' + _esc(word.h) + '">📚 Lưu SRS</button>' +
+      '</div>';
+    document.body.appendChild(popup);
+    _lookupPopup = popup;
+    var rect = target.getBoundingClientRect();
+    var top = rect.bottom + 8;
+    var left = rect.left + rect.width / 2 - popup.offsetWidth / 2;
+    if (top + popup.offsetHeight > window.innerHeight - 20) {
+      top = rect.top - popup.offsetHeight - 8;
+    }
+    if (left < 10) left = 10;
+    if (left + popup.offsetWidth > window.innerWidth - 10) {
+      left = window.innerWidth - popup.offsetWidth - 10;
+    }
+    popup.style.top = top + 'px';
+    popup.style.left = left + 'px';
+    popup.querySelector('.sp-lookup-close').onclick = _closeLookup;
+    popup.querySelector('.sp-lookup-tts').onclick = function () {
+      var txt = this.getAttribute('data-text');
+      if (typeof Dictionary !== 'undefined' && Dictionary.playTTS) Dictionary.playTTS(txt);
+    };
+    popup.querySelector('.sp-lookup-srs').onclick = function () {
+      var h = this.getAttribute('data-word');
+      if (typeof updateSRSCard === 'function') {
+        updateSRSCard(h, 0, { source: 'speaking' });
+        _toast('Đã thêm vào ôn tập');
+      }
+    };
+    setTimeout(function () {
+      document.addEventListener('click', _onDocClick);
+    }, 0);
+  }
+
+  function _onDocClick(e) {
+    if (!_lookupPopup) return;
+    if (!_lookupPopup.contains(e.target) && !e.target.classList.contains('sp-hz')) {
+      _closeLookup();
+      document.removeEventListener('click', _onDocClick);
+    }
+  }
 
   function _updatePinyinToggle() {
     var btn = $('spPinyinToggle');
@@ -166,6 +268,7 @@ var Speaking = (function () {
     var line = _line();
     if (!line) return;
     _cleanupRecording();
+    _closeLookup();
     _show($('spResult'), false);
     _show($('spGrading'), false);
 
@@ -173,7 +276,7 @@ var Speaking = (function () {
     $('spPracticeMeta').textContent = _set.title + ' · Câu ' + (_idx + 1) + '/' + total;
     $('spProgressFill').style.width = (((_idx + 1) / total) * 100) + '%';
     $('spLineLabel').textContent = _set.focus + ' · HSK ' + _set.level;
-    $('spLineHanzi').textContent = line.h;
+    $('spLineHanzi').innerHTML = _wrapHanzi(line.h);
     var pyEl = $('spLinePinyin');
     pyEl.textContent = line.p;
     pyEl.style.display = _showPinyin ? '' : 'none';
@@ -187,6 +290,14 @@ var Speaking = (function () {
     $('spScoreBtn').onclick = _scoreCurrent;
     $('spPrevBtn').disabled = _idx <= 0;
     $('spPrevBtn').onclick = function () { if (_idx > 0) { _idx--; _renderLine(); } };
+
+    document.querySelectorAll('.sp-hz').forEach(function (span) {
+      span.onclick = function (e) {
+        e.stopPropagation();
+        var ch = this.getAttribute('data-ch');
+        _showLookup(ch, this);
+      };
+    });
     $('spNextBtn').textContent = _idx >= total - 1 ? 'Hoàn thành ✓' : 'Câu tiếp →';
     $('spNextBtn').onclick = function () {
       if (_idx >= total - 1) _backToSets();

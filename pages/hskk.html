@@ -47,22 +47,23 @@
           </div>
         </div>
 
-        <!-- Trung cấp -->
-        <div class="hskk-card">
+        <!-- Trung cấp — ACTIVE -->
+        <div class="hskk-card hskk-card--active">
           <div class="hskk-card-icon">
             <img src="/assets/hskk/trung-cap.webp" alt="HSKK Trung cấp" width="80" height="80" onerror="this.style.display='none'">
           </div>
           <div class="hskk-card-body">
             <div class="hskk-level-badge hskk-level-badge--trung">Trung cấp</div>
             <h2 class="hskk-card-title">HSKK Trung cấp</h2>
-            <p class="hskk-card-desc">~900 từ HSK 1–4. Đọc hội thoại, trả lời câu hỏi mở, nói theo chủ đề.</p>
+            <p class="hskk-card-desc">~900 từ HSK 1–4. Nghe & lặp lại, nhìn tranh nói chuyện, trả lời câu hỏi nêu ý kiến.</p>
             <div class="hskk-card-meta">
               <span class="hskk-meta-item">⏱ 21 phút</span>
               <span class="hskk-meta-item">3 phần</span>
             </div>
           </div>
           <div class="hskk-card-cta">
-            <button class="hskk-btn hskk-btn--locked" disabled>Sắp ra mắt</button>
+            <button class="hskk-btn hskk-btn--start" id="hskkStartZhongBtn">Bắt đầu thi →</button>
+            <div class="hskk-cost-note hskk-cost-note--card">Phần 1 chấm AI (1 credit/câu) · Phần 2 nhìn tranh &amp; Phần 3 luyện ghi âm, miễn phí.</div>
           </div>
         </div>
 
@@ -153,6 +154,8 @@
           <button class="hskk-play-btn" id="hskkPlayBtn" title="Nghe đề">
             <span class="hskk-play-ico">🔊</span> Nghe đề
           </button>
+          <!-- 中级 Phần 2 看图说话: 2 tranh cạnh nhau (ẩn ở các phần khác) -->
+          <div class="hskk-q-images" id="hskkQImages" style="display:none"></div>
           <!-- Phần 3: hiện chữ + pinyin để đọc; phần 1/2 ẩn chữ tới khi đáp xong -->
           <div class="hskk-q-text" id="hskkQText"></div>
           <div class="hskk-q-py" id="hskkQPy"></div>

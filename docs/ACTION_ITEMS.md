@@ -50,7 +50,7 @@
 ### 📌 Trạng thái cuối session 2026-06-04
 > **Đã live/push:** giáo trình HSK1+2 (objectives/grammarNotes/EN/QA) · bài tập chấm-thật+SRS · HSKK Sơ cấp luyện-từng-phần · 6 icon UI · Shadowing toggle pinyin (#1) + **tap-lookup (#2)** · **Gia sư AI R.2** (`/tutor`).
 > **HSKK 中级:** 8 đề ảnh QA-pass + WebP sẵn (`assets/hskk/zhongji/`), prompt 25/25 đề, **chờ session build wire**.
-> ⚠️ **Gia sư AI cần `supabase functions deploy ai-proxy`** để chat chạy thật (frontend đã push).
+> ☑ **Gia sư AI R.2 FULL OPERATIONAL 2026-06-04** — ai-proxy đã deploy + frontend live → chat chạy thật.
 > **Đang chạy song song (chờ branch+hash để merge):** HSKK 中级 build · HSK 3 giáo trình.
 
 ### 🔜 Việc tiếp theo (xếp ROI) — chưa làm
@@ -121,7 +121,7 @@
 
 **Khoảng trống nên học từ SuperChinese (ứng viên roadmap):**
 - ☑ **AI Teacher chat (Phase R.2) BUILD DONE 2026-06-04** (commit `39ed730`, chưa push) — "Gia sư AI" `/tutor`: chat hỏi-đáp tiếng Trung, giải thích tiếng Việt + Hán/pinyin. `js/tutor.js`+`pages/tutor.html`+`css/pages/tutor.css`, route `js/router.js`, card ở `tools.html` ("Hỗ trợ AI"). Server: task `tutor_chat` trong `ai-proxy` (multi-turn, cap 8 lượt, `TUTOR_SYS` chống injection, Lane2 DeepSeek **flash**, 1cr/tin nhắn). Client `ai-client.js v1.1` gửi `messages[]`. Pro-gate + handleBlock soft + escapeHtml XSS. Lịch sử local `tutor_chat_history_v1`.
-  - ⚠️ **VIỆC USER (bắt buộc):** `supabase functions deploy ai-proxy` (DEEPSEEK_API_KEY đã set). `ai-proxy/index.ts` gitignored nhưng ĐÃ có thay đổi trên filesystem repo chính → deploy đủ. **Deploy XONG rồi mới push frontend** (tránh /tutor live trước khi backend có task).
+  - ☑ **DEPLOY DONE 2026-06-04** — user đã `supabase functions deploy ai-proxy` (task `tutor_chat` live) + frontend đã push (`3cfb60a`). → **Gia sư AI R.2 FULL OPERATIONAL.** 📌 User nên chạy checklist verify (hỏi 二/两, multi-turn, lạc đề từ chối, Free→gate, XSS).
   - 📌 Verify sau deploy: hỏi "Phân biệt 二/两" → trả lời VN+Hán+pinyin, credit −1; multi-turn giữ ngữ cảnh; lạc đề/chính trị → từ chối; Free→gate; XSS-safe.
 - ☐ Nội dung động/animated — chi phí cao, visual-novel Mai hiện đủ tốt → **không gấp**.
 

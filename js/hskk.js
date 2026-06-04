@@ -46,6 +46,7 @@ var HSKK = (function () {
   var _totalTimer = null, _phaseTimer = null;
   var _totalLeft = 0;
   var _running = false;
+  var CREDIT_PER_Q = 5;        // credit trừ / câu chấm AI — ĐỒNG BỘ với speech-proxy hskk_score.credit
   var _practiceMode = false;
   var _practicePartType = '';
 
@@ -145,7 +146,7 @@ var HSKK = (function () {
     if (creditEl) {
       if (partType === 'repeat') {
         creditEl.style.display = '';
-        creditEl.innerHTML = '⚠️ Phần 1 dùng AI chấm — tốn <b>1 AI Credit / câu</b>. Chọn số câu để xem tổng.';
+        creditEl.innerHTML = '⚠️ Phần 1 dùng AI chấm — tốn <b>' + CREDIT_PER_Q + ' AI Credit / câu</b>. Chọn số câu để xem tổng.';
       } else {
         creditEl.style.display = 'none';
       }
@@ -167,17 +168,17 @@ var HSKK = (function () {
 
       btn.onclick = function () {
         if (partType === 'repeat') {
-          if (!confirm('Phần 1 sẽ tốn tối đa ' + n + ' AI Credit (1 credit/câu). Tiếp tục?')) return;
+          if (!confirm('Phần 1 sẽ tốn tối đa ' + (n * CREDIT_PER_Q) + ' AI Credit (' + CREDIT_PER_Q + ' credit/câu). Tiếp tục?')) return;
         }
         _doPractice(partType, n);
       };
 
       if (partType === 'repeat' && creditEl) {
         btn.onmouseenter = function () {
-          creditEl.innerHTML = '⚠️ Chọn <b>' + n + ' câu</b> = tốn tối đa <b>' + n + ' AI Credit</b>';
+          creditEl.innerHTML = '⚠️ Chọn <b>' + n + ' câu</b> = tốn tối đa <b>' + (n * CREDIT_PER_Q) + ' AI Credit</b>';
         };
         btn.onmouseleave = function () {
-          creditEl.innerHTML = '⚠️ Phần 1 dùng AI chấm — tốn <b>1 AI Credit / câu</b>. Chọn số câu để xem tổng.';
+          creditEl.innerHTML = '⚠️ Phần 1 dùng AI chấm — tốn <b>' + CREDIT_PER_Q + ' AI Credit / câu</b>. Chọn số câu để xem tổng.';
         };
       }
     });

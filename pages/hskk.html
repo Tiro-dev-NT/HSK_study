@@ -10,7 +10,31 @@
         <p class="hskk-desc">Thi thử HSKK theo đúng format kỳ thi. Hiện AI chấm Phần 1 nghe & lặp lại; Phần 2/3 dùng để luyện nói tự do và nghe lại.</p>
       </div>
 
-      <div class="hskk-grid">
+      <!-- Hub 4-khối — điều hướng nhanh -->
+      <div class="hskk-hub" id="hskkHub">
+        <button class="hskk-hub-block" id="hskkHubExam">
+          <span class="hskk-hub-ico">📝</span>
+          <span class="hskk-hub-name">Thi thử</span>
+          <span class="hskk-hub-sub">Đề đầy đủ theo format</span>
+        </button>
+        <button class="hskk-hub-block" id="hskkHubPractice">
+          <span class="hskk-hub-ico">🎯</span>
+          <span class="hskk-hub-name">Luyện từng phần</span>
+          <span class="hskk-hub-sub">Chọn phần &amp; số câu</span>
+        </button>
+        <button class="hskk-hub-block" id="hskkHubProgress">
+          <span class="hskk-hub-ico">📈</span>
+          <span class="hskk-hub-name">Lịch sử &amp; tiến bộ</span>
+          <span class="hskk-hub-sub">Điểm &amp; mức sẵn sàng</span>
+        </button>
+        <button class="hskk-hub-block" id="hskkHubFormat">
+          <span class="hskk-hub-ico">📖</span>
+          <span class="hskk-hub-name">Định dạng đề</span>
+          <span class="hskk-hub-sub">Cấu trúc &amp; cách tính điểm</span>
+        </button>
+      </div>
+
+      <div class="hskk-grid" id="hskkGrid">
 
         <!-- Sơ cấp — ACTIVE -->
         <div class="hskk-card hskk-card--active">
@@ -29,7 +53,7 @@
           </div>
           <div class="hskk-card-cta">
             <button class="hskk-btn hskk-btn--start" id="hskkStartBtn">Bắt đầu thi →</button>
-            <div class="hskk-practice-divider">hoặc luyện từng phần</div>
+            <div class="hskk-practice-divider" id="hskkPracticeAnchor">hoặc luyện từng phần</div>
             <div class="hskk-practice-row">
               <button class="hskk-btn hskk-btn--practice" id="hskkPracticeP1">
                 <span class="hskk-prac-main">Phần 1 · Nghe &amp; lặp lại</span>
@@ -108,7 +132,10 @@
 
       <!-- Lịch sử -->
       <div class="hskk-history" id="hskkHistoryWrap" style="display:none">
-        <h3 class="hskk-history-title">📈 Lần thi gần đây</h3>
+        <div class="hskk-history-head">
+          <h3 class="hskk-history-title">📈 Lần thi gần đây</h3>
+          <button class="hskk-history-seeall" id="hskkHistorySeeAll">Lịch sử &amp; tiến bộ →</button>
+        </div>
         <div id="hskkHistoryList" class="hskk-history-list"></div>
       </div>
 
@@ -230,6 +257,95 @@
       <div class="hskk-result-actions">
         <button class="hskk-btn hskk-btn--start" id="hskkRetryBtn">Thi lại</button>
         <button class="cs-btn-back" onclick="Router.navigateTo('practice')">← Luyện tập</button>
+      </div>
+    </div>
+
+    <!-- ═══════════ MÀN LỊCH SỬ & TIẾN BỘ ═══════════ -->
+    <div id="hskkProgress" class="hskk-progress" style="display:none">
+      <div class="hskk-sub-head">
+        <button class="cs-btn-back" id="hskkProgBack">← Quay lại</button>
+        <h2 class="hskk-sub-title">📈 Lịch sử &amp; tiến bộ</h2>
+      </div>
+
+      <!-- Mức sẵn sàng /cấp -->
+      <div class="hskk-ready-grid" id="hskkReadyGrid"></div>
+
+      <!-- Biểu đồ điểm theo thời gian -->
+      <div class="hskk-chart-card">
+        <div class="hskk-chart-head">
+          <h3 class="hskk-chart-title">Điểm theo thời gian</h3>
+          <div class="hskk-chart-filter" id="hskkChartFilter">
+            <button class="hskk-filter-pill is-active" data-flt="all">Tất cả</button>
+            <button class="hskk-filter-pill" data-flt="so-cap">Sơ cấp</button>
+            <button class="hskk-filter-pill" data-flt="zhong">Trung cấp</button>
+          </div>
+        </div>
+        <div class="hskk-chart-wrap" id="hskkChartWrap"></div>
+        <div class="hskk-chart-legend">
+          <span class="hskk-cl"><i class="hskk-cl-dot hskk-chart-good"></i>≥ 80</span>
+          <span class="hskk-cl"><i class="hskk-cl-dot hskk-chart-mid"></i>60–79</span>
+          <span class="hskk-cl"><i class="hskk-cl-dot hskk-chart-low"></i>&lt; 60</span>
+          <span class="hskk-cl"><i class="hskk-cl-line"></i>mốc đạt 60</span>
+        </div>
+      </div>
+
+      <!-- Danh sách lần thi -->
+      <div class="hskk-prog-list-card">
+        <h3 class="hskk-chart-title">Các lần thi</h3>
+        <div id="hskkProgList" class="hskk-history-list"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ MÀN ĐỊNH DẠNG ĐỀ ═══════════ -->
+    <div id="hskkFormat" class="hskk-format" style="display:none">
+      <div class="hskk-sub-head">
+        <button class="cs-btn-back" id="hskkFormatBack">← Quay lại</button>
+        <h2 class="hskk-sub-title">📖 Định dạng đề HSKK</h2>
+      </div>
+
+      <p class="hskk-fmt-intro">HSKK (汉语水平口语考试) là kỳ thi <b>nói</b>, thi qua ghi âm. Cả 3 cấp đều có 3 phần, đề chỉ phát <b>một lần</b>, có thời gian chuẩn bị và trả lời giới hạn cho mỗi câu. Điểm tối đa <b>100</b>, mốc <b>đạt 60</b>.</p>
+
+      <div class="hskk-fmt-card">
+        <div class="hskk-fmt-lv hskk-level-badge--so">HSKK Sơ cấp · 初级 · ~17 phút</div>
+        <table class="hskk-fmt-table">
+          <tr><th>Phần</th><th>Dạng</th><th>Số câu</th></tr>
+          <tr><td>第一部分</td><td>Nghe & lặp lại câu (听后重复)</td><td>15</td></tr>
+          <tr><td>第二部分</td><td>Nghe câu hỏi & trả lời (听后说)</td><td>10</td></tr>
+          <tr><td>第三部分</td><td>Đọc đề & nói một đoạn (回答问题)</td><td>2</td></tr>
+        </table>
+        <p class="hskk-fmt-note">Trong app: Phần 1 được AI chấm phát âm (5 credit/câu). Phần 2–3 để luyện ghi âm & nghe lại.</p>
+      </div>
+
+      <div class="hskk-fmt-card">
+        <div class="hskk-fmt-lv hskk-level-badge--trung">HSKK Trung cấp · 中级 · ~21 phút</div>
+        <table class="hskk-fmt-table">
+          <tr><th>Phần</th><th>Dạng</th><th>Số câu</th></tr>
+          <tr><td>第一部分</td><td>Nghe & lặp lại câu dài (听后重复)</td><td>10</td></tr>
+          <tr><td>第二部分</td><td>Xem 2 tranh & kể/miêu tả (看图说话)</td><td>2</td></tr>
+          <tr><td>第三部分</td><td>Đọc đề & nêu ý kiến (回答问题)</td><td>2</td></tr>
+        </table>
+        <p class="hskk-fmt-note">Trong app: Phần 1 được AI chấm phát âm. Phần 2 (nhìn tranh) & Phần 3 để luyện ghi âm, có dàn ý + đáp án mẫu để tự đối chiếu.</p>
+      </div>
+
+      <div class="hskk-fmt-card">
+        <div class="hskk-fmt-lv hskk-level-badge--cao">HSKK Cao cấp · 高级 · ~24 phút</div>
+        <table class="hskk-fmt-table">
+          <tr><th>Phần</th><th>Dạng</th><th>Số câu</th></tr>
+          <tr><td>第一部分</td><td>Nghe & kể lại (听后复述)</td><td>3</td></tr>
+          <tr><td>第二部分</td><td>Đọc to đoạn văn (朗读)</td><td>1</td></tr>
+          <tr><td>第三部分</td><td>Trả lời câu hỏi nêu quan điểm (回答问题)</td><td>2</td></tr>
+        </table>
+        <p class="hskk-fmt-note">Sắp ra mắt trong app.</p>
+      </div>
+
+      <div class="hskk-fmt-tips">
+        <h3 class="hskk-fmt-tips-title">💡 Mẹo làm bài</h3>
+        <ul>
+          <li>Nói rõ ràng, tự nhiên — chú ý <b>thanh điệu</b> và nhịp câu.</li>
+          <li>Tận dụng thời gian chuẩn bị để dựng nhanh dàn ý cho phần nói tự do.</li>
+          <li>Nếu quên, cứ nói tiếp — <b>trôi chảy</b> được tính điểm, đừng dừng quá lâu.</li>
+          <li>Luyện Phần 1 thường xuyên để cải thiện điểm phát âm tổng thể.</li>
+        </ul>
       </div>
     </div>
 

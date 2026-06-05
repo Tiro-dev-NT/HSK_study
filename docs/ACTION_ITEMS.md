@@ -1,5 +1,22 @@
 # Action Items
 
+## 🟡 Session 2026-06-04 — AI Credit pricing + HSKK (TODO, chưa làm)
+
+> Bối cảnh: rà giá vốn Speaking/HSKK vs credit trừ. Chi tiết giá: `docs/AI_API_SETUP.md`.
+
+- ☑ **Recalibrate credit trừ DONE (code) 2026-06-05 — ⚠️ chờ DEPLOY + verify:** giá đã **server-side 5cr/câu** rồi: `speech-proxy/index.ts:40` `TASKS.hskk_score={credit:5,cost:150}`, consume gọi `def.credit` (client chỉ gửi `task` string, KHÔNG gửi amount). `hskk.js` `CREDIT_PER_Q=5`. → "đang trừ 1cr" là **stale HOẶC bản live chưa deploy**. **USER VERIFY:** SQL `select amount from ai_credit_ledger where task_type='hskk_score' order by created_at desc limit 5;` → `-5` = live đúng; `-1` = cần `supabase functions deploy speech-proxy`. (Hoặc F12 Network `credit_used`.)
+  - ☑ **Pro-gate SERVER-SIDE (anti-F12) DONE 2026-06-05:** trước đây speech-proxy chỉ check JWT → free user F12 đốt allowance/welcome-gift vào chấm speech. Nay query `user_subscriptions` (RLS row của user) trước consume; không Pro → `402 pro_required`. Client hskk.js/speaking.js bắt `pro_required`→`Monetization.showGate`. **KHÔNG cần SQL mới** (đọc qua RLS) — chỉ **`supabase functions deploy speech-proxy`**. `hskk.js?v=2.2`+`speaking.js?v=1.4`.
+  - ☑ **Cap câu/ngày = KHÔNG cần code:** chốt 40 câu/ngày = đúng trần credit Pro 200 ÷ 5; `consume_ai_credit` (`daily_cap_exceeded`) đã enforce. Không thêm counter riêng.
+  - ☑ **Welcome-gift điều tra 2026-06-05 — KHÔNG lỗ cục, giữ nguyên:** daily-cap áp **cả** purchased/gift (đếm tổng credit/ngày trước khi tách bucket) → 1000cr không drain 1 lượt (≥5 ngày). Worst-case 100%→speech: chi phí gift chỉ **1.2–4% doanh thu** mọi tier (Monthly 3k/4% … Lifetime 30k/1.2%). Đòn bẩy thật nếu siết = recurring allowance, KHÔNG phải gift.
+  - ☐ **Còn lại:** ai-proxy (text task) chưa rà lại; cập nhật `AI_CREDIT_PRICING`/`PRODUCT_TIER_MATRIX` ghi rõ speech Pro-only + 5cr/câu.
+- ☐ **UX cảnh báo trừ credit TRƯỚC khi chấm/thi:** hiện chỉ "Luyện từng phần Phần 1" có confirm. Cần: trước khi "ấn Kiểm tra/Nộp bài" ở **thi thật** → hiện rõ "Bài này chấm AI, sẽ tốn ~N credit" + confirm. (Vì chấm = trừ luôn, server-side.)
+- ☐ **Mở rộng kho đề HSKK (random-draw đã có, thiếu BANK):** `_buildExam` đã rút ngẫu nhiên theo `plan`, nhưng pool mỏng → thi lại gặp lại đề.
+  - Sơ cấp: part1 20 (rút 15) · part2 14 (rút 10) · part3 6 (rút 2) → **~1.3 đề thực, quá mỏng** → cần thêm.
+  - Trung cấp: part1 16 (rút 10) mỏng · **part2 看图说话 25 đề (rút 2) = rất tốt** · part3 6 (rút 2) mỏng.
+  - → Ưu tiên thêm câu: Sơ cấp cả 3 phần; Trung cấp part1 (repeat) + part3 (open).
+- ☐ **Bật chấm tự do HSKK** (Phần 2/3 + 看图说话, hiện `grade:false`): điều kiện = (1) SpeechSuper account mở `speak.eval.pro.cn`; (2) lật `grade:true` trong `js/hskk.js`; (3) set credit ~25cr. Tới khi đủ 3 điều kiện → giữ practice-no-grade.
+- ☑ **Nâng màn báo cáo HSKK (plan D) — DONE 2026-06-04:** pill Đạt/Chưa (mốc 60) + **heatmap per-âm** Phần 1 (đọc `score.raw.words`, chữ đỏ = <60) + chú thích màu · phần nói tự do hiện **đáp án mẫu/dàn ý/từ khóa/gợi ý** + nghe lại · card **"Điểm yếu cần luyện"** gom âm <60 → nút **Luyện Shadowing** (`Router.navigateTo('speaking')`). KHÔNG đổi luồng chấm/credit. `js/hskk.js?v=2.0` + `css/pages/hskk.css?v=2.4`. Verify Playwright light/dark/mobile 390px, 0 console error (hook QA `HSKK._previewResult`).
+
 ## 🟢 Session 2026-06-04 — Onboarding + đẩy luyện tập theo mốc + siết Pro-gate + Admin realtime
 
 **✅ Đã xong (push main):**
@@ -12,6 +29,7 @@
 
 **🔴 CẦN USER LÀM (Supabase, thủ công):**
 - ☐ **Chạy `sql/v19_last_active.sql`** (gitignored — repo PUBLIC) trên Supabase SQL Editor → bảng `user_activity` + RLS + RPC `touch_last_active()` + `admin_list_users` đọc `COALESCE(last_active_at, last_sign_in_at)`. Trước khi chạy: cột "Truy cập cuối" = last login, RPC 404 (đã nuốt, app không lỗi).
+- ☑ **Chạy `sql/v20_honor_purchases_grant_fix.sql`** (DONE 2026-06-04, user xác nhận) → fix 403 khi /profile query `user_honor_purchases` (UX_AUDIT P2-2). Root cause: policy RLS `honor_self_select` đã có nhưng bảng thiếu `GRANT SELECT TO authenticated` → PostgREST kiểm GRANT trước RLS → 403. Đã `GRANT SELECT` + revoke ghi từ client → outfit Honor sync đúng từ server.
 
 **📌 Quyết định còn treo:**
 - ☐ **#2 Course Truyện Mai HSK 3:** đang khóa Pro (`course.js` `level>=3`) trong khi vocab HSK 3 free + onboarding ghi "HSK 1–3 free" → LỆCH. Cần chốt: để Pro hay đổi `level>=4` (= `PRO_LEVEL_MIN`).

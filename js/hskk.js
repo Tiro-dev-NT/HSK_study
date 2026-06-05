@@ -49,6 +49,7 @@ var HSKK = (function () {
   var CREDIT_PER_Q = 5;        // credit trừ / câu chấm AI — ĐỒNG BỘ với speech-proxy hskk_score.credit
   var _practiceMode = false;
   var _practicePartType = '';
+  var _progressFilter = 'all';  // 'all' | 'so-cap' | 'zhong' — lọc biểu đồ tiến bộ
 
   // ── Helpers ────────────────────────────────────────────────────────────
   function $(id) { return document.getElementById(id); }
@@ -113,6 +114,67 @@ var HSKK = (function () {
       _show($('hskkPracticeSetup'), false);
       _show($('hskkIntro'), true);
     };
+
+    // Hub 4-khối — Thi thử / Luyện từng phần scroll tới card; Lịch sử / Định dạng mở màn riêng
+    var hubExam = $('hskkHubExam');
+    if (hubExam) hubExam.onclick = function () { _scrollTo($('hskkGrid')); };
+    var hubPrac = $('hskkHubPractice');
+    if (hubPrac) hubPrac.onclick = function () { _scrollTo($('hskkPracticeAnchor')); };
+    var hubProg = $('hskkHubProgress');
+    if (hubProg) hubProg.onclick = _openProgress;
+    var hubFmt = $('hskkHubFormat');
+    if (hubFmt) hubFmt.onclick = _openFormat;
+
+    // Back buttons của 2 màn mới
+    var progBack = $('hskkProgBack');
+    if (progBack) progBack.onclick = _backToIntro;
+    var fmtBack = $('hskkFormatBack');
+    if (fmtBack) fmtBack.onclick = _backToIntro;
+    var progSeeAll = $('hskkHistorySeeAll');
+    if (progSeeAll) progSeeAll.onclick = _openProgress;
+
+    // Lọc biểu đồ theo cấp
+    var fltWrap = $('hskkChartFilter');
+    if (fltWrap) {
+      fltWrap.querySelectorAll('[data-flt]').forEach(function (b) {
+        b.onclick = function () {
+          _progressFilter = b.getAttribute('data-flt');
+          fltWrap.querySelectorAll('[data-flt]').forEach(function (x) {
+            x.classList.toggle('is-active', x === b);
+          });
+          _renderChart();
+          _renderProgList();
+        };
+      });
+    }
+  }
+
+  function _scrollTo(el) {
+    if (el && el.scrollIntoView) try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+  }
+
+  // ── Màn Lịch sử & tiến bộ / Định dạng (mở từ Hub) ──────────────────────
+  function _openProgress() {
+    _show($('hskkIntro'), false);
+    _show($('hskkFormat'), false);
+    _show($('hskkProgress'), true);
+    _renderReady();
+    _renderChart();
+    _renderProgList();
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+  function _openFormat() {
+    _show($('hskkIntro'), false);
+    _show($('hskkProgress'), false);
+    _show($('hskkFormat'), true);
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+  function _backToIntro() {
+    _show($('hskkProgress'), false);
+    _show($('hskkFormat'), false);
+    _show($('hskkIntro'), true);
+    _renderHistory();
+    try { window.scrollTo(0, 0); } catch (e) {}
   }
 
   // ── Kiểm tra micro ───────────────────────────────────────────────────
@@ -581,6 +643,11 @@ var HSKK = (function () {
       });
       if (r && r.ok && r.score) { ans.score = r.score; scored++; }
       else if (r && !r.ok) {
+        // Server chặn free (anti-F12) → mở gate Pro, dừng chấm tiếp
+        if (r.reason === 'pro_required') {
+          if (window.Monetization && Monetization.showGate) Monetization.showGate('HSKK chấm nói');
+          break;
+        }
         // Hết credit / chặn mềm → dừng chấm tiếp, vẫn hiện phần đã chấm
         if (r.reason === 'insufficient_credit' || r.reason === 'daily_cap_exceeded' || r.reason === 'not_logged_in') {
           if (window.AIClient && AIClient.handleBlock) AIClient.handleBlock(r);
@@ -923,7 +990,8 @@ var HSKK = (function () {
     if (!_practiceMode && overall != null) {
       _saveHistory({
         ts: Date.now(), level: _level, overall: overall,
-        pron: _avg(pron), flu: _avg(flu), scored: scored, total: _exam.length
+        pron: _avg(pron), flu: _avg(flu), scored: scored, total: _exam.length,
+        perPart: _perPartScores()
       });
     }
 
@@ -961,6 +1029,8 @@ var HSKK = (function () {
     _show($('hskkGrading'), false);
     _show($('hskkResult'), false);
     _show($('hskkPracticeSetup'), false);
+    _show($('hskkProgress'), false);
+    _show($('hskkFormat'), false);
     _show($('hskkIntro'), true);
     _renderHistory();
     try { window.scrollTo(0, 0); } catch (e) {}
@@ -971,27 +1041,154 @@ var HSKK = (function () {
   }
 
   // ── Lịch sử ─────────────────────────────────────────────────────────
+  // Mở rộng key sẵn có `hskk_history_v1`: giữ nguyên ts/overall/pron/flu (tương
+  // thích bản cũ), THÊM perPart {repeat,respond,picture,open} điểm theo phần.
   function _saveHistory(e) {
-    var arr = _loadHistory(); arr.unshift(e); arr = arr.slice(0, 8);
+    var arr = _loadHistory(); arr.unshift(e); arr = arr.slice(0, 40);
     try { localStorage.setItem(HIST_KEY, JSON.stringify(arr)); } catch (x) {}
   }
   function _loadHistory() {
     try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch (e) { return []; }
   }
+  // Điểm trung bình theo từng phần của lần thi vừa xong (null nếu phần không chấm AI).
+  function _perPartScores() {
+    var pp = {};
+    ['repeat', 'respond', 'picture', 'open'].forEach(function (t) {
+      var ans = _answers.filter(function (a) { return a && a.type === t; });
+      if (!ans.length) return;
+      var cfg = QTYPE[t];
+      pp[t] = (cfg && cfg.grade)
+        ? _avg(ans.map(function (a) { return a.score ? a.score.overall : null; }))
+        : null;
+    });
+    return pp;
+  }
+
+  function _lvName(level) { return level === 'zhong' ? 'HSKK Trung cấp' : 'HSKK Sơ cấp'; }
+
+  // Một dòng lịch sử (dùng chung intro preview + màn tiến bộ)
+  function _historyItemHtml(h) {
+    var d = new Date(h.ts);
+    var dd = d.getDate() + '/' + (d.getMonth() + 1);
+    var cls = h.overall >= 80 ? ' hskk-h-good' : h.overall >= 60 ? ' hskk-h-mid' : ' hskk-h-low';
+    var pp = '';
+    if (h.perPart) {
+      var map = { repeat: 'P1', respond: 'P2', picture: 'P2', open: 'P3' };
+      var bits = [];
+      Object.keys(h.perPart).forEach(function (t) {
+        var v = h.perPart[t];
+        bits.push(map[t] + ' ' + (v == null ? '–' : v));
+      });
+      if (bits.length) pp = ' · ' + bits.join(' · ');
+    }
+    return '<div class="hskk-h-item"><span class="hskk-h-score' + cls + '">' + h.overall + '</span>' +
+      '<div class="hskk-h-body"><span class="hskk-h-lv">' + _esc(_lvName(h.level)) + '</span>' +
+      '<span class="hskk-h-meta">Phát âm ' + (h.pron == null ? '—' : h.pron) +
+      ' · Trôi chảy ' + (h.flu == null ? '—' : h.flu) + pp + ' · ' + dd + '</span></div></div>';
+  }
+
+  // Intro preview — 5 lần gần nhất
   function _renderHistory() {
     var wrap = $('hskkHistoryWrap'), list = $('hskkHistoryList');
     if (!wrap || !list) return;
     var arr = _loadHistory();
     if (!arr.length) { wrap.style.display = 'none'; return; }
     wrap.style.display = '';
-    list.innerHTML = arr.map(function (h) {
-      var d = new Date(h.ts); var dd = d.getDate() + '/' + (d.getMonth() + 1);
-      var cls = h.overall >= 80 ? ' hskk-h-good' : h.overall >= 60 ? ' hskk-h-mid' : ' hskk-h-low';
-      var lvName = h.level === 'zhong' ? 'HSKK Trung cấp' : 'HSKK Sơ cấp';
-      return '<div class="hskk-h-item"><span class="hskk-h-score' + cls + '">' + h.overall + '</span>' +
-        '<div class="hskk-h-body"><span class="hskk-h-lv">' + lvName + '</span>' +
-        '<span class="hskk-h-meta">Phát âm ' + (h.pron == null ? '—' : h.pron) + ' · Trôi chảy ' + (h.flu == null ? '—' : h.flu) + ' · ' + dd + '</span></div></div>';
+    list.innerHTML = arr.slice(0, 5).map(_historyItemHtml).join('');
+  }
+
+  // ── Mức sẵn sàng /cấp = trung bình 3 lần thi gần nhất của cấp đó ─────────
+  function _readiness(level) {
+    var arr = _loadHistory().filter(function (h) { return h.level === level && typeof h.overall === 'number'; });
+    if (!arr.length) return null;
+    var recent = arr.slice(0, 3);            // newest-first → 3 lần gần nhất
+    var avg = _avg(recent.map(function (h) { return h.overall; }));
+    var label, cls;
+    if (avg >= 75) { label = 'Đạt'; cls = 'good'; }
+    else if (avg >= 60) { label = 'Gần đạt'; cls = 'mid'; }
+    else { label = 'Cần luyện thêm'; cls = 'low'; }
+    return { score: avg, label: label, cls: cls, used: recent.length, total: arr.length };
+  }
+
+  function _renderReady() {
+    var grid = $('hskkReadyGrid');
+    if (!grid) return;
+    grid.innerHTML = ['so-cap', 'zhong'].map(function (lv) {
+      var r = _readiness(lv);
+      if (!r) {
+        return '<div class="hskk-ready-card"><div class="hskk-ready-lv">' + _esc(_lvName(lv)) + '</div>' +
+          '<div class="hskk-ready-empty">Chưa có dữ liệu — thi thử để đo mức sẵn sàng.</div></div>';
+      }
+      return '<div class="hskk-ready-card">' +
+        '<div class="hskk-ready-lv">' + _esc(_lvName(lv)) + '</div>' +
+        '<div class="hskk-ready-row">' +
+          '<div class="hskk-ready-num hskk-ready-' + r.cls + '">' + r.score + '<small>/100</small></div>' +
+          '<span class="hskk-ready-label hskk-ready-' + r.cls + '">' + r.label + '</span>' +
+        '</div>' +
+        '<div class="hskk-ready-bar"><div class="hskk-ready-fill hskk-ready-' + r.cls + '" style="width:' + r.score + '%"></div>' +
+          '<div class="hskk-ready-mark" title="Mốc đạt 60"></div></div>' +
+        '<div class="hskk-ready-meta">Ước lượng từ ' + r.used + ' lần gần nhất · vạch = mốc đạt 60</div>' +
+      '</div>';
     }).join('');
+  }
+
+  // ── Biểu đồ điểm theo thời gian (SVG thuần, không thư viện) ──────────────
+  function _chartHtml(entries) {
+    if (!entries.length) {
+      return '<div class="hskk-chart-empty">Chưa có lần thi nào ở mục này. Hoàn thành một bài thi để xem biểu đồ tiến bộ.</div>';
+    }
+    var W = 320, H = 150, padL = 26, padR = 10, padT = 12, padB = 22;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var n = entries.length;
+    function X(i) { return padL + (n === 1 ? plotW / 2 : plotW * i / (n - 1)); }
+    function Y(v) { return padT + plotH * (1 - v / 100); }
+
+    var svg = '<svg class="hskk-chart" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Biểu đồ điểm HSKK theo thời gian">';
+    // Lưới ngang + nhãn 0/60/100
+    [0, 60, 100].forEach(function (g) {
+      var gy = Y(g);
+      var pass = (g === 60);
+      svg += '<line class="hskk-chart-grid' + (pass ? ' hskk-chart-pass' : '') + '" x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '"/>';
+      svg += '<text class="hskk-chart-axis" x="' + (padL - 4) + '" y="' + (gy + 3) + '" text-anchor="end">' + g + '</text>';
+    });
+    // Đường nối
+    var pts = entries.map(function (h, i) { return X(i) + ',' + Y(h.overall); }).join(' ');
+    if (n > 1) svg += '<polyline class="hskk-chart-line" points="' + pts + '"/>';
+    // Điểm chấm
+    entries.forEach(function (h, i) {
+      var c = h.overall >= 80 ? 'good' : h.overall >= 60 ? 'mid' : 'low';
+      var d = new Date(h.ts);
+      svg += '<circle class="hskk-chart-dot hskk-chart-' + c + '" cx="' + X(i) + '" cy="' + Y(h.overall) + '" r="3.2">' +
+        '<title>' + h.overall + '/100 · ' + _esc(_lvName(h.level)) + ' · ' + d.getDate() + '/' + (d.getMonth() + 1) + '</title></circle>';
+    });
+    // Nhãn ngày đầu/cuối
+    var f = entries[0], l = entries[n - 1];
+    function dlbl(h) { var d = new Date(h.ts); return d.getDate() + '/' + (d.getMonth() + 1); }
+    svg += '<text class="hskk-chart-axis" x="' + padL + '" y="' + (H - 6) + '" text-anchor="start">' + dlbl(f) + '</text>';
+    if (n > 1) svg += '<text class="hskk-chart-axis" x="' + (W - padR) + '" y="' + (H - 6) + '" text-anchor="end">' + dlbl(l) + '</text>';
+    svg += '</svg>';
+    return svg;
+  }
+
+  function _renderChart() {
+    var wrap = $('hskkChartWrap');
+    if (!wrap) return;
+    var arr = _loadHistory().filter(function (h) {
+      return typeof h.overall === 'number' && (_progressFilter === 'all' || h.level === _progressFilter);
+    });
+    arr = arr.slice().reverse();   // oldest → newest cho trục thời gian
+    wrap.innerHTML = _chartHtml(arr);
+  }
+
+  function _renderProgList() {
+    var list = $('hskkProgList');
+    if (!list) return;
+    var arr = _loadHistory().filter(function (h) {
+      return _progressFilter === 'all' || h.level === _progressFilter;
+    });
+    list.innerHTML = arr.length
+      ? arr.slice(0, 20).map(_historyItemHtml).join('')
+      : '<div class="hskk-chart-empty">Chưa có lần thi nào ở mục này.</div>';
   }
 
   // ── DEV/QA ONLY — render màn kết quả với dữ liệu mẫu (per-âm heatmap +

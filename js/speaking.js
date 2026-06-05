@@ -503,6 +503,11 @@ var Speaking = (function () {
   }
 
   function _handleScoreError(r) {
+    if (r && r.reason === 'pro_required') {
+      // Server chặn free (anti-F12); cache Pro client có thể vừa hết hạn giữa phiên.
+      if (window.Monetization && Monetization.showGate) Monetization.showGate('Luyện phát âm Shadowing');
+      return;
+    }
     if (r && (r.reason === 'insufficient_credit' || r.reason === 'daily_cap_exceeded' || r.reason === 'not_logged_in')) {
       if (window.AIClient && AIClient.handleBlock) AIClient.handleBlock(r);
       return;

@@ -36,7 +36,7 @@ var AdminOverview = (function() {
     _setDelta('kpiDAUDelta', s.dau_delta, '%');
     _set('kpiRevMonth', Admin.fmtVND(s.revenue_month));
     _setDelta('kpiRevDelta', s.revenue_mom, '%');
-    _set('kpiRetention', (s.retention_d7 || '—') + '%');
+    _set('kpiRetention', s.retention_d7 == null ? '—' : s.retention_d7 + '%');
     _setDelta('kpiRetDelta', s.retention_delta, '%');
 
     var pro   = s.pro_active || 0;

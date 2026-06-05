@@ -742,23 +742,34 @@ var Profile = (function() {
   return {
 
     setup: function() {
-      var snap = _snapshot();
-      _renderHeader(snap);
-      _renderStats(snap);
-      _renderBands(snap);
-      _renderXpChart(snap);
-      _renderAchvPreview(snap);
-      _renderBadgeGrid(snap);
-      _renderSettings(snap);
-      _renderOutfitSection();
-      _renderAccountSettings();
-      _syncHonorOutfits();
-      _renderSocial();
+      var _render = function() {
+        var snap = _snapshot();
+        _renderHeader(snap);
+        _renderStats(snap);
+        _renderBands(snap);
+        _renderXpChart(snap);
+        _renderAchvPreview(snap);
+        _renderBadgeGrid(snap);
+        _renderSettings(snap);
+        _renderOutfitSection();
+        _renderAccountSettings();
+        _syncHonorOutfits();
+        _renderSocial();
 
-      // Wire tab clicks
-      document.querySelectorAll('.prof-tab').forEach(function(btn) {
-        btn.addEventListener('click', function() { Profile.switchTab(btn.dataset.tab); });
-      });
+        // Wire tab clicks
+        document.querySelectorAll('.prof-tab').forEach(function(btn) {
+          btn.addEventListener('click', function() { Profile.switchTab(btn.dataset.tab); });
+        });
+      };
+
+      // Ép đọc lại trạng thái Pro từ DB trước khi render (tránh hiện Free do
+      // cache nguội hoặc vừa được admin cấp Pro). resetCache + isPro() warm lại.
+      if (typeof Monetization !== 'undefined' && Monetization.isPro) {
+        if (Monetization.resetCache) Monetization.resetCache();
+        Monetization.isPro().then(_render).catch(_render);
+      } else {
+        _render();
+      }
     },
 
     switchTab: switchTab,

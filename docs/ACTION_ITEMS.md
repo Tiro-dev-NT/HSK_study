@@ -1,5 +1,16 @@
 # Action Items
 
+## 🟢 Session 2026-06-05 (b) — Dọn ví dụ rác từ điển + empty-state + 2 bug UI
+
+- ☑ **Gỡ ~1.001 ví dụ `ex` rác** (vi===en / zh=`headword。`) khỏi HSK 3.0 (lvl1-6) — còn **10.455 ví dụ thật (91,3%)**, vi===en=0. `scripts/gen-dict-examples.js` thêm lệnh `purge` + siết `validItem` (chặn fabricate/gloss→vi → không tái diễn).
+- ☑ **Modal từ điển empty-state** (Prompt 2): ô ví dụ luôn hiện; chưa có ex → "Ví dụ đang được bổ sung ✍️", `min-height` giữ modal không co nhỏ. `dictionary.js?v=3.4` · `word-detail.css?v=2.2`.
+- ☑ **Bug icon người (topbar):** đã login → vào tab Tôi (`/profile`) thay vì mở lại đăng nhập (rõ nhất mobile). `index.html`.
+- ☑ **Bug Pro không hiện ở tab Tôi:** `Profile.setup()` `resetCache()` + `await isPro()` trước render → đọc lại DB. `profile.js?v=1.4`. ⚠️ Nếu row `user_subscriptions` thiếu `status='active'`/`expires_at` thì là lỗi DATA, cần sửa đường cấp Pro của admin (xem BUG_REPORT).
+- ☐ **CÒN LẠI (fix session):** regen câu THẬT cho ~1.001 từ vừa bị gỡ ex (chạy `node scripts/gen-dict-examples.js ai <lvl>` với validItem mới) · nâng grammarNotes HSK 4 thành ngữ pháp thật (xem BUG/prompt tổng hợp).
+- 📌 **Admin token/AI credit:** ĐÃ xem được — token ở cột bảng user + chi tiết; AI Credit ở panel chi tiết (click ⋯). Muốn AI Credit thành cột riêng → thêm sau.
+
+---
+
 ## 🟢 Session 2026-06-05 — SEO từ điển tĩnh (acquisition)
 
 > Điểm mù = acquisition. Đòn bẩy: từ điển Hán-Việt intent search cao, đối thủ quốc tế yếu tiếng Việt. SPA → Google index kém → pre-render tĩnh.

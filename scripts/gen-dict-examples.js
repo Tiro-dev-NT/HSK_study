@@ -14,10 +14,16 @@
  * lose paid output. BOM + CRLF are preserved; new `ex` uses single quotes like
  * the surrounding data, with proper JS-string escaping.
  *
+ * NO FALLBACK / NO FABRICATION: an `ex` is written ONLY when the AI returns a
+ * genuinely valid example (see validItem). If the AI can't produce one, the word
+ * is LEFT WITHOUT ex (the UI shows an empty-state). We never synthesize a fake
+ * sentence like `headword。` and never copy the English gloss into `vi`.
+ *
  * Usage:
  *   node scripts/gen-dict-examples.js stats
  *   node scripts/gen-dict-examples.js free [level]
- *   node scripts/gen-dict-examples.js ai <level> [--limit=N] [--batch=20] [--provider=deepseek|openrouter] [--dry]
+ *   node scripts/gen-dict-examples.js ai <level> [--limit=N] [--batch=20] [--provider=deepseek|openrouter] [--model=ID] [--dry]
+ *   node scripts/gen-dict-examples.js purge          ← strip garbage ex where ex.vi === ex.en (then re-run `ai`)
  */
 
 const fs = require('fs');
@@ -143,7 +149,7 @@ function pickProvider(arg) {
     return { name: 'openrouter', url: 'https://openrouter.ai/api/v1/chat/completions',
              model: 'deepseek/deepseek-chat', key: process.env.OPENROUTER_API_KEY };
   return { name: 'deepseek', url: 'https://api.deepseek.com/chat/completions',
-           model: 'deepseek-chat', key: process.env.DEEPSEEK_API_KEY };
+           model: 'deepseek-v4-pro', key: process.env.DEEPSEEK_API_KEY };
 }
 
 const SYS_PROMPT =
@@ -182,14 +188,28 @@ async function callAI(provider, words) {
   return items;
 }
 
+// A valid example must be a REAL sentence — never a fabricated `headword。` and
+// never an English gloss copied into `vi`. Reject the known garbage signatures.
 function validItem(it, h) {
-  return it && it.zh && it.py && it.vi && it.en &&
-         typeof it.zh === 'string' && it.zh.includes(h);
+  if (!it || typeof it.zh !== 'string' || typeof it.py !== 'string' ||
+      typeof it.vi !== 'string' || typeof it.en !== 'string') return false;
+  const zh = it.zh.trim(), py = it.py.trim(), vi = it.vi.trim(), en = it.en.trim();
+  if (!zh || !py || !vi || !en) return false;
+  if (!zh.includes(h)) return false;
+  // zh must add real context beyond the headword itself (not `杯子。`)
+  const zhCore = zh.replace(/[\s。.!?！？，,、；;：:。""''「」…—·～~（）()]/g, '');
+  if (zhCore.length <= h.length) return false;
+  // py must actually carry tone diacritics (a transliterated sentence, not bare letters)
+  if (!/[āáǎàēéěèīíǐìōóǒòūúǔùǘǚǜüńňǹ]/i.test(py)) return false;
+  // vi must be a Vietnamese translation, NOT the English gloss copied verbatim
+  if (vi === en) return false;
+  return true;
 }
 
 async function cmdAI(level, opts) {
   if (!level) { console.error('Usage: ai <level>'); process.exit(1); }
   const provider = pickProvider(opts.provider);
+  if (opts.model) provider.model = opts.model; // allow explicit model override
   if (!provider.key) {
     console.error('\nMISSING API KEY. Set one of:\n  $env:DEEPSEEK_API_KEY="sk-..."   (PowerShell)\n  $env:OPENROUTER_API_KEY="sk-or-..."\nthen rerun. Nothing was changed.');
     process.exit(2);
@@ -227,12 +247,20 @@ async function cmdAI(level, opts) {
         else await new Promise(r => setTimeout(r, 1500 * attempt));
       }
     }
+    // Index returned items by headword. The model sometimes echoes "行 (háng)"
+    // into `h`, so normalize by taking the leading token before any space/paren.
     const byH = {};
-    for (const it of items) if (it && it.h) byH[it.h] = it;
+    for (const it of items) if (it && it.h) {
+      const key = String(it.h).trim().split(/[\s(（]/)[0];
+      if (key && !byH[key]) byH[key] = it;
+    }
     let ok = 0, bad = 0;
-    for (const w of batch) {
-      const it = byH[w.h];
-      if (validItem(it, w.h)) { cache[w.h] = { zh: it.zh, py: it.py, vi: it.vi, en: it.en }; ok++; }
+    for (let bi = 0; bi < batch.length; bi++) {
+      const w = batch[bi];
+      // positional fallback when the model returns items in order but with dirty `h`
+      let it = byH[w.h];
+      if (!validItem(it, w.h) && items[bi] && validItem(items[bi], w.h)) it = items[bi];
+      if (validItem(it, w.h)) { cache[w.h] = { zh: it.zh.trim(), py: it.py.trim(), vi: it.vi.trim(), en: it.en.trim() }; ok++; }
       else bad++;
     }
     saveCache(cache);
@@ -242,6 +270,34 @@ async function cmdAI(level, opts) {
   }
   const r = applyToFile(level, h => cache[h] || null);
   console.log(`L${level} AI pass done. File total filled this run section: ${r.filled} (cumulative ex now in file).`);
+}
+
+// ───────────────────────── purge garbage (ex.vi === ex.en) ──────────────────
+// Removes the bad `ex` blocks written by an earlier fallback so `ai` can refill
+// them. Matches the whole `, ex:{…}` segment (single-level braces only).
+function cmdPurge() {
+  const EX_BLOCK = /,\s*ex:\{[^{}]*\}/;
+  const VI_RE = /\bvi:\s*'((?:[^'\\]|\\.)*)'/;
+  const EN_RE = /\ben:\s*'((?:[^'\\]|\\.)*)'/;
+  let grand = 0;
+  for (let l = 1; l <= 9; l++) {
+    const file = path.join(V3_DIR, 'hsk3_lvl' + l + '.js');
+    const lines = fs.readFileSync(file, 'utf8').split('\n');
+    let removed = 0;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (!WORD_LINE.test(line) || !HAS_EX.test(line)) continue;
+      const vi = line.match(VI_RE), en = line.match(EN_RE);
+      if (vi && en && vi[1] === en[1]) {
+        const stripped = line.replace(EX_BLOCK, '');
+        if (stripped !== line && !HAS_EX.test(stripped)) { lines[i] = stripped; removed++; }
+      }
+    }
+    if (removed > 0) fs.writeFileSync(file, lines.join('\n'));
+    grand += removed;
+    console.log(`L${l}: purged ${removed} garbage ex (vi===en)`);
+  }
+  console.log(`PURGE done: ${grand} garbage ex removed → now empty, ready for \`ai\` regen.`);
 }
 
 // ───────────────────────── main ─────────────────────────────────────────────
@@ -257,11 +313,13 @@ async function cmdAI(level, opts) {
     limit: flags.limit ? Number(flags.limit) : 0,
     batch: flags.batch ? Number(flags.batch) : 20,
     provider: flags.provider,
+    model: flags.model,
     dry: !!flags.dry
   };
 
   if (cmd === 'stats') return cmdStats();
   if (cmd === 'free') return cmdFree(positional[0]);
+  if (cmd === 'purge') return cmdPurge();
   if (cmd === 'ai') return cmdAI(positional[0], opts);
-  console.log('Commands:\n  stats\n  free [level]\n  ai <level> [--limit=N] [--batch=20] [--provider=deepseek|openrouter] [--dry]');
+  console.log('Commands:\n  stats\n  free [level]\n  purge\n  ai <level> [--limit=N] [--batch=20] [--provider=deepseek|openrouter] [--model=ID] [--dry]');
 })().catch(e => { console.error(e); process.exit(1); });

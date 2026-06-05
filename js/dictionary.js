@@ -361,15 +361,22 @@ var Dictionary = {
     document.getElementById('modalVi').textContent = word.v;
     document.getElementById('modalEn').textContent = word.e;
 
+    // Ô "Ví dụ" LUÔN hiển thị (giữ modal cân đối). Chưa có ex → empty-state nhẹ nhàng.
     const exBox = document.getElementById('modalExample');
+    const exCard = exBox.querySelector('.wd-example-card');
+    exBox.style.display = 'block';
     if (word.ex) {
-      exBox.style.display = 'block';
+      if (exCard) exCard.classList.remove('wd-example-card--empty');
       document.getElementById('exZh').textContent = word.ex.zh;
       document.getElementById('exPy').textContent = word.ex.py;
       document.getElementById('exVi').textContent = word.ex.vi;
       document.getElementById('exEn').textContent = word.ex.en;
     } else {
-      exBox.style.display = 'none';
+      if (exCard) exCard.classList.add('wd-example-card--empty');
+      document.getElementById('exZh').textContent = 'Ví dụ đang được bổ sung ✍️';
+      document.getElementById('exPy').textContent = '';
+      document.getElementById('exVi').textContent = '';
+      document.getElementById('exEn').textContent = '';
     }
     document.getElementById('addToVault').textContent = '➕ Thêm vào bộ thẻ';
     document.getElementById('modalOverlay').classList.add('open');

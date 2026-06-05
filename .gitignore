@@ -71,6 +71,8 @@ supabase/
 # (2026-06-01) Tránh phình repo (676 file HSK1+2, sẽ lên 100MB+ với HSK3-9).
 # Gen bằng scripts/mai-tts-gen.py → upload R2 bằng rclone (xem ACTION_ITEMS.md).
 assets/mai/audio/
+# Audio TTS pre-gen từ điển/pinyin (gen-tts-audio.py → R2 tts/word/). Phục vụ từ R2.
+assets/tts/audio/
 
 # Temp word lists
 _hsk*_existing.txt

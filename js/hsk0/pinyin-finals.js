@@ -197,6 +197,8 @@ var HSK0Finals = (function() {
 
   // ── TTS ───────────────────────────────────────────────
   function speak(text) {
+    // Audio-first (R2 mp3) → fallback Web Speech, qua TTSAudio.
+    if (typeof TTSAudio !== 'undefined') { TTSAudio.speak(text, { rate: 0.75, force: true }); return; }
     if (!window.speechSynthesis) {
       _toast('Cần Chrome/Edge để nghe TTS');
       return;

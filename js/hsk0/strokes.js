@@ -209,6 +209,7 @@ var HSK0Strokes = (function() {
   }
 
   function speak(text) {
+    if (typeof TTSAudio !== 'undefined') { TTSAudio.speak(text, { rate: 0.8, force: true }); return; }
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(text);

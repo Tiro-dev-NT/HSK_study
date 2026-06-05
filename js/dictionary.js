@@ -510,6 +510,9 @@ var Dictionary = {
   },
 
   playTTS: function(text) {
+    // Audio-first (R2 mp3 pre-gen) → fallback Web Speech, qua TTSAudio.
+    if (typeof TTSAudio !== 'undefined') { TTSAudio.speak(text, { rate: 0.9 }); return; }
+    // Fallback nếu tts-audio.js chưa load: Web Speech thuần (hành vi cũ).
     if (typeof appSettings !== 'undefined' && appSettings.autoTTS === false) return;
     var synth = window.speechSynthesis;
     if (!synth) return;

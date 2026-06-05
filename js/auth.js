@@ -82,6 +82,18 @@ var Auth = {
 
   // ── Init (call on app startup) ─────────────────────
   init: function() {
+    // Bắt mã mời từ URL (?ref=CODE) NGAY — trước khi OAuth/login dọn query params.
+    // Lưu localStorage; sau lần đăng nhập đầu sẽ gọi claim_referral.
+    try {
+      var ref = new URLSearchParams(window.location.search).get('ref');
+      if (ref) {
+        ref = ref.trim().toUpperCase();
+        if (/^[A-Z0-9]{6,12}$/.test(ref) && !localStorage.getItem('hsk_pending_ref')) {
+          localStorage.setItem('hsk_pending_ref', ref);
+        }
+      }
+    } catch (e) {}
+
     if (!SB) return;
 
     // Restore from cache immediately — no network call, no flash of "logged out".
@@ -202,6 +214,27 @@ var Auth = {
     }
     // Ghi "lần truy cập web gần nhất" cho Admin (throttle 1 lần/giờ)
     Auth._touchLastActive();
+    // Nếu vào qua link mời (?ref) → ghi nhận referral sau khi đã đăng nhập.
+    Auth._claimPendingReferral();
+  },
+
+  // RPC claim_referral() — ghi nhận mã mời đã lưu (server tự gate account_age,
+  // already_referred, ip-hash). Xoá cờ khi xử lý xong (kể cả mã không hợp lệ) để
+  // không thử lại mãi. Lỗi mạng → giữ cờ, thử lại lần mở sau.
+  _claimPendingReferral: function() {
+    try {
+      var code = localStorage.getItem('hsk_pending_ref');
+      if (!code || !window.SB || !SB.rpc) return;
+      SB.rpc('claim_referral', { p_code: code }).then(function(res) {
+        var d = res && res.data;
+        if (res.error) return; // lỗi mạng/tạm thời → giữ cờ, thử lại sau
+        // ok hoặc lỗi nghiệp vụ (invalid/already/too_old) → đều dừng thử lại
+        localStorage.removeItem('hsk_pending_ref');
+        if (d && d.ok && typeof showToast === 'function') {
+          showToast('🎁 Đã ghi nhận lời mời! Học đủ 7 ngày để cả hai nhận 500🪙.');
+        }
+      }, function() { /* lỗi mạng → giữ cờ */ });
+    } catch (e) {}
   },
 
   // RPC touch_last_active() — cập nhật mốc truy cập thật (mỗi lần mở web),

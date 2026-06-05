@@ -49,6 +49,10 @@ var Profile = (function() {
     { id:'honor-11', month:11, name:'Tháng 11 — Tuyết Nhân',  file:'11-thang-11-tuyet-nhan.webp' },
     { id:'honor-12', month:12, name:'Tháng 12 — Đại Lễ',      file:'12-thang-12-dai-le.webp' },
   ];
+  // Outfit "Xã hội" — mở bằng cách mời bạn học thật ≥7 ngày (KHÔNG bán token).
+  var SOCIAL_OUTFITS = [
+    { id:'social-dai-su', name:'Đại Sứ Hanzi', file:'01-dai-su.webp' },
+  ];
 
   // ── Band config (v2.0 vs v3.0) ───────────────────────
   var BANDS_V2 = [
@@ -364,17 +368,20 @@ var Profile = (function() {
     if (activeId) {
       var fa = WAVE_A_OUTFITS.find(function(o) { return o.id === activeId; });
       var fh = HONOR_OUTFITS.find(function(o) { return o.id === activeId; });
+      var fs = SOCIAL_OUTFITS.find(function(o) { return o.id === activeId; });
       if (fa) { previewSrc = 'assets/outfits/basic/' + fa.file; previewName = fa.name; }
       if (fh) { previewSrc = 'assets/outfits/honor/' + fh.file; previewName = fh.name; }
+      if (fs) { previewSrc = 'assets/outfits/social/' + fs.file; previewName = fs.name; }
     }
 
-    function _outfitCard(o, srcBase, isHonor) {
+    function _outfitCard(o, srcBase, isHonor, isSocial) {
       var isWearing = activeId === o.id;
       var isOwned;
       if (isHonor) {
         var key = new Date().getFullYear() + '-' + String(o.month).padStart(2, '0');
         isOwned = honorMonths.includes(key);
       } else {
+        // Social dùng chung kho hsk_user_outfits (mở khi referral 'rewarded').
         isOwned = ownedWaveA.includes(o.id);
       }
       var chip;
@@ -382,6 +389,8 @@ var Profile = (function() {
         chip = '<span class="prof-outfit-chip wearing">✅ Đang mặc</span>';
       } else if (isOwned) {
         chip = '<button class="prof-outfit-wear-btn" onclick="Profile.wearOutfit(\'' + o.id + '\')">Mặc</button>';
+      } else if (isSocial) {
+        chip = '<button class="prof-outfit-buy-btn" onclick="Profile.switchTab(\'social\')">🔒 Mời bạn</button>';
       } else if (isHonor) {
         chip = '<span class="prof-outfit-chip honor-lock">🔒 T' + o.month + '</span>';
       } else {
@@ -399,6 +408,9 @@ var Profile = (function() {
     var honorHtml = HONOR_OUTFITS.map(function(o) {
       return _outfitCard(o, 'assets/outfits/honor/', true);
     }).join('');
+    var socialHtml = SOCIAL_OUTFITS.map(function(o) {
+      return _outfitCard(o, 'assets/outfits/social/', false, true);
+    }).join('');
 
     wrap.innerHTML =
       '<div class="prof-outfit-header">' +
@@ -415,6 +427,8 @@ var Profile = (function() {
           '<div class="prof-outfit-grid">' + waveAHtml + '</div>' +
           '<div class="prof-outfit-sublabel" style="margin-top:var(--s-4)">Hộp Ân Cần — Theo tháng</div>' +
           '<div class="prof-outfit-grid">' + honorHtml + '</div>' +
+          '<div class="prof-outfit-sublabel" style="margin-top:var(--s-4)">Xã hội — Mở bằng cách mời bạn</div>' +
+          '<div class="prof-outfit-grid">' + socialHtml + '</div>' +
         '</div>' +
       '</div>';
   }
@@ -473,6 +487,245 @@ var Profile = (function() {
     _profileToast('Đã xác nhận độ tuổi.', 'success');
   }
 
+  // ══ Social: Mời bạn (referral) + Bạn học (friends) ════════════════════
+  function _esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  // Mở outfit "Đại Sứ" khi đã có ≥1 referral 'rewarded' (cosmetic client-side).
+  function _unlockSocialOutfit(id) {
+    var owned = JSON.parse(localStorage.getItem('hsk_user_outfits') || '[]');
+    if (owned.includes(id)) return;
+    owned.push(id);
+    localStorage.setItem('hsk_user_outfits', JSON.stringify(owned));
+    _profileToast('🎉 Mở khóa trang phục "Đại Sứ Hanzi"! Vào Thành tích để mặc.', 'success');
+    _renderOutfitSection();
+  }
+
+  function _statusBadge(it) {
+    if (it.status === 'rewarded') return '<span class="prof-soc-badge ok">✅ +500🪙</span>';
+    if (it.status === 'rejected') return '<span class="prof-soc-badge no">✕ Không đủ ĐK</span>';
+    var days = Math.min(it.active_days || 0, 7);
+    return '<span class="prof-soc-badge wait">⏳ ' + days + '/7 ngày học</span>';
+  }
+
+  function _renderReferral(d) {
+    var wrap = document.getElementById('profReferralCard');
+    if (!wrap) return;
+    var code = d.code || '…';
+    var link = window.location.origin + '/?ref=' + encodeURIComponent(d.code || '');
+    var invited = d.invited || [];
+    if (invited.some(function(i) { return i.status === 'rewarded'; })) {
+      _unlockSocialOutfit('social-dai-su');
+    }
+    var quotaLeft = (typeof d.monthly_quota_left === 'number') ? d.monthly_quota_left : 3;
+
+    var listHtml = invited.length
+      ? invited.map(function(it) {
+          return '<div class="prof-soc-row">' +
+                 '<span class="prof-soc-name">' + _esc(it.name) + '</span>' +
+                 _statusBadge(it) + '</div>';
+        }).join('')
+      : '<div class="prof-soc-empty">Chưa mời ai. Gửi mã cho bạn bè nhé!</div>';
+
+    wrap.innerHTML =
+      '<h3 class="prof-card-title">🎁 Mời bạn — cả hai +500🪙</h3>' +
+      '<p class="prof-card-sub">Bạn được mời phải <strong>học thật ≥7 ngày</strong> thì cả hai mới nhận thưởng. ' +
+        'Mời đủ sẽ mở khóa trang phục <strong>Đại Sứ Hanzi</strong>.</p>' +
+      '<div class="prof-soc-code-box">' +
+        '<div class="prof-soc-code" id="profRefCode">' + _esc(code) + '</div>' +
+        '<button class="prof-soc-btn" onclick="Profile.copyReferral()">📋 Chép mã</button>' +
+        '<button class="prof-soc-btn" onclick="Profile.copyReferral(true)">🔗 Chép link</button>' +
+      '</div>' +
+      '<div class="prof-soc-meta">Tháng này còn nhận thưởng cho <strong>' + quotaLeft + '</strong> lượt mời.</div>' +
+      '<div class="prof-soc-list-head"><span>Đã mời (' + invited.length + ')</span>' +
+        '<button class="prof-link-btn" onclick="Profile.refreshReferral()">↻ Cập nhật</button></div>' +
+      '<div class="prof-soc-list">' + listHtml + '</div>' +
+      '<details class="prof-soc-claim"><summary>Bạn được ai đó mời? Nhập mã</summary>' +
+        '<div class="prof-soc-add">' +
+          '<input id="profClaimInput" class="prof-soc-input" maxlength="12" placeholder="VD: A1B2C3D" />' +
+          '<button class="prof-soc-btn" onclick="Profile.claimCode()">Xác nhận</button>' +
+        '</div>' +
+        '<div class="prof-soc-hint">Chỉ áp dụng cho tài khoản mới (≤3 ngày) và chưa từng được mời.</div>' +
+      '</details>';
+    wrap.dataset.code = d.code || '';
+    wrap.dataset.link = link;
+  }
+
+  function _nudgeText(f) {
+    if (f.nudge === 'so_close') return '🔥 Sắp chạm mốc — đừng để lỡ hôm nay!';
+    if (f.friend_streak > 0)    return '🤝 Cùng học ' + f.friend_streak + ' ngày liên tiếp';
+    return 'Cùng học hôm nay để bắt đầu chuỗi chung';
+  }
+
+  function _renderFriends(d) {
+    var wrap = document.getElementById('profFriendsCard');
+    if (!wrap) return;
+    var friends  = d.friends  || [];
+    var incoming = d.incoming || [];
+    var outgoing = d.outgoing || [];
+
+    var incomingHtml = incoming.map(function(it) {
+      return '<div class="prof-soc-row">' +
+             '<span class="prof-soc-name">' + _esc(it.name) + '</span>' +
+             '<span class="prof-soc-actions">' +
+               '<button class="prof-soc-btn sm" onclick="Profile.respondFriend(' + it.id + ',true)">Chấp nhận</button>' +
+               '<button class="prof-soc-btn sm ghost" onclick="Profile.respondFriend(' + it.id + ',false)">Từ chối</button>' +
+             '</span></div>';
+    }).join('');
+
+    var friendsHtml = friends.length
+      ? friends.map(function(f) {
+          var dot = f.active_today ? '<span class="prof-soc-dot on" title="Đã học hôm nay"></span>'
+                                   : '<span class="prof-soc-dot" title="Chưa học hôm nay"></span>';
+          var rm = f.pair_id
+            ? '<button class="prof-soc-x" title="Xoá bạn" onclick="Profile.removeFriend(' + f.pair_id + ')">✕</button>'
+            : '';
+          return '<div class="prof-soc-friend">' +
+                 '<div class="prof-soc-friend-top">' + dot +
+                   '<span class="prof-soc-name">' + _esc(f.name) + '</span>' +
+                   '<span class="prof-soc-streak">🔥 ' + (f.current_streak || 0) + '</span>' + rm +
+                 '</div>' +
+                 '<div class="prof-soc-nudge">' + _nudgeText(f) + '</div>' +
+                 '</div>';
+        }).join('')
+      : '<div class="prof-soc-empty">Chưa có bạn học. Thêm bạn bằng mã mời của họ.</div>';
+
+    wrap.innerHTML =
+      '<h3 class="prof-card-title">🤝 Bạn học</h3>' +
+      '<p class="prof-card-sub">Thêm bạn bằng <strong>mã mời</strong> của họ. Hai bạn thấy chuỗi ngày học của nhau và cùng giữ streak chung.</p>' +
+      '<div class="prof-soc-add">' +
+        '<input id="profFriendInput" class="prof-soc-input" maxlength="12" placeholder="Mã mời của bạn ấy" />' +
+        '<button class="prof-soc-btn" onclick="Profile.addFriend()">+ Kết bạn</button>' +
+      '</div>' +
+      (incoming.length ? '<div class="prof-soc-list-head"><span>Lời mời đến (' + incoming.length + ')</span></div>' + incomingHtml : '') +
+      (outgoing.length ? '<div class="prof-soc-meta">Đang chờ ' + outgoing.length + ' lời mời bạn gửi.</div>' : '') +
+      '<div class="prof-soc-list-head"><span>Bạn học (' + friends.length + ')</span></div>' +
+      '<div class="prof-soc-friends">' + friendsHtml + '</div>';
+  }
+
+  function _renderSocial() {
+    var refWrap = document.getElementById('profReferralCard');
+    var frWrap  = document.getElementById('profFriendsCard');
+    if (!refWrap && !frWrap) return;
+    if (!window.SB || !SB.rpc || !(window.Auth && Auth.user)) {
+      if (refWrap) refWrap.innerHTML = '<div class="prof-soc-empty">Đăng nhập để mời bạn và xem bạn học.</div>';
+      if (frWrap)  frWrap.innerHTML  = '';
+      return;
+    }
+    SB.rpc('get_my_referral').then(function(res) {
+      var d = (res && res.data) || {};
+      if (!d.code) {
+        SB.rpc('get_or_create_referral_code').then(function(r2) {
+          var c = (r2 && r2.data && r2.data.code) || '';
+          d.code = c; _renderReferral(d);
+        }, function() { _renderReferral(d); });
+      } else {
+        _renderReferral(d);
+      }
+    }, function() {
+      if (refWrap) refWrap.innerHTML = '<div class="prof-soc-empty">Không tải được. Thử lại sau.</div>';
+    });
+    SB.rpc('get_friends_overview').then(function(res) {
+      _renderFriends((res && res.data) || {});
+    }, function() {
+      if (frWrap) frWrap.innerHTML = '<div class="prof-soc-empty">Không tải được danh sách bạn.</div>';
+    });
+  }
+
+  function _copyReferral(asLink) {
+    var wrap = document.getElementById('profReferralCard');
+    if (!wrap) return;
+    var txt = asLink ? wrap.dataset.link : wrap.dataset.code;
+    if (!txt) { _profileToast('Chưa có mã, thử lại sau', 'error'); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function() {
+        _profileToast(asLink ? 'Đã chép link mời!' : 'Đã chép mã mời!', 'success');
+      }, function() { _profileToast('Không chép được, copy thủ công: ' + txt, 'error'); });
+    } else {
+      _profileToast('Mã của bạn: ' + txt, 'info');
+    }
+  }
+
+  function _claimCode() {
+    var el = document.getElementById('profClaimInput');
+    var code = (el && el.value || '').trim().toUpperCase();
+    if (!code) { _profileToast('Nhập mã trước', 'error'); return; }
+    SB.rpc('claim_referral', { p_code: code }).then(function(res) {
+      var d = res && res.data;
+      if (res.error || !d || !d.ok) {
+        _profileToast(_referralErr((d && d.error) || (res.error && res.error.message)), 'error');
+        return;
+      }
+      _profileToast('Đã ghi nhận! Học đủ 7 ngày để cả hai nhận 500🪙.', 'success');
+      _renderSocial();
+    });
+  }
+
+  function _addFriend() {
+    var el = document.getElementById('profFriendInput');
+    var code = (el && el.value || '').trim().toUpperCase();
+    if (!code) { _profileToast('Nhập mã của bạn ấy', 'error'); return; }
+    SB.rpc('send_friend_request', { p_code: code }).then(function(res) {
+      var d = res && res.data;
+      if (res.error || !d || !d.ok) {
+        _profileToast(_friendErr((d && d.error) || (res.error && res.error.message)), 'error');
+        return;
+      }
+      _profileToast('Đã gửi lời mời kết bạn!', 'success');
+      if (el) el.value = '';
+      _renderSocial();
+    });
+  }
+
+  function _respondFriend(id, accept) {
+    SB.rpc('respond_friend_request', { p_id: id, p_accept: !!accept }).then(function(res) {
+      var d = res && res.data;
+      if (res.error || !d || !d.ok) { _profileToast('Không thực hiện được, thử lại', 'error'); return; }
+      _profileToast(accept ? 'Đã kết bạn!' : 'Đã từ chối.', accept ? 'success' : 'info');
+      _renderSocial();
+    });
+  }
+
+  function _refreshReferral() {
+    SB.rpc('refresh_my_referrals').then(function() { _renderSocial(); },
+      function() { _profileToast('Không cập nhật được, thử lại', 'error'); });
+  }
+
+  function _removeFriend(pairId) {
+    if (!confirm('Xoá bạn học này? Chuỗi chung sẽ không còn hiển thị.')) return;
+    SB.rpc('remove_friend', { p_id: pairId, p_block: false }).then(function(res) {
+      var d = res && res.data;
+      if (res.error || !d || !d.ok) { _profileToast('Không xoá được, thử lại', 'error'); return; }
+      _profileToast('Đã xoá bạn học.', 'info');
+      _renderSocial();
+    });
+  }
+
+  function _referralErr(code) {
+    var map = {
+      account_too_old: 'Tài khoản đã quá 3 ngày — mã mời chỉ dành cho tài khoản mới.',
+      already_referred: 'Bạn đã từng nhận mã mời rồi.',
+      invalid_code: 'Mã không đúng. Kiểm tra lại nhé.',
+      self_referral: 'Không thể tự mời chính mình 🙂',
+      unauthorized: 'Cần đăng nhập trước.'
+    };
+    return map[code] || 'Không xác nhận được mã.';
+  }
+  function _friendErr(code) {
+    var map = {
+      invalid_code: 'Mã không đúng.',
+      self: 'Đó là mã của chính bạn 🙂',
+      already_friends: 'Hai bạn đã là bạn học rồi.',
+      already_pending: 'Lời mời đang chờ phản hồi.',
+      blocked: 'Không thể kết bạn với người này.',
+      unauthorized: 'Cần đăng nhập trước.'
+    };
+    return map[code] || 'Không gửi được lời mời.';
+  }
+
   // ── Tab switching ─────────────────────────────────────
   function switchTab(tabId) {
     document.querySelectorAll('.prof-tab').forEach(function(btn) {
@@ -482,6 +735,7 @@ var Profile = (function() {
       panel.classList.toggle('active', panel.id === 'profPanel-' + tabId);
     });
     if (tabId === 'upgrade') { Router.navigateTo('pricing'); }
+    if (tabId === 'social')  { _renderSocial(); }
   }
 
   // ── Public API ────────────────────────────────────────
@@ -499,6 +753,7 @@ var Profile = (function() {
       _renderOutfitSection();
       _renderAccountSettings();
       _syncHonorOutfits();
+      _renderSocial();
 
       // Wire tab clicks
       document.querySelectorAll('.prof-tab').forEach(function(btn) {
@@ -512,6 +767,15 @@ var Profile = (function() {
 
     wearOutfit:  function(id)        { _wearOutfit(id); },
     buyOutfit:   function(id, cost)  { _buyWaveAOutfit(id, cost); },
+
+    // Social: Mời bạn + Bạn học
+    copyReferral:   function(asLink) { _copyReferral(asLink); },
+    claimCode:      function()       { _claimCode(); },
+    refreshReferral:function()       { _refreshReferral(); },
+    addFriend:      function()       { _addFriend(); },
+    respondFriend:  function(id, ok) { _respondFriend(id, ok); },
+    removeFriend:   function(pairId) { _removeFriend(pairId); },
+
     cancelSub:   function()          { _cancelSubscription(); },
     deleteAcct:  function()          { _deleteAccount(); },
     confirmAge:  function()          { _confirmAgeGate(); },

@@ -622,6 +622,140 @@
   color: var(--text2);
 }
 
+/* ══════════════════════════════════════════════════════════
+   Social: Mời bạn (referral) + Bạn học (friends)
+   ══════════════════════════════════════════════════════════ */
+.prof-soc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4);
+}
+@media (max-width: 760px) {
+  .prof-soc-grid { grid-template-columns: 1fr; }
+}
+.prof-soc-card { padding: var(--s-5); }
+.prof-soc-empty {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: var(--s-4) 0;
+  text-align: center;
+}
+
+/* Mã mời */
+.prof-soc-code-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  margin: var(--s-3) 0;
+}
+.prof-soc-code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--chau-hong);
+  background: var(--primary-soft);
+  border: 1px dashed var(--chau-hong);
+  border-radius: var(--radius);
+  padding: var(--s-2) var(--s-4);
+}
+.prof-soc-btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.prof-soc-btn:hover { border-color: var(--chau-hong); }
+.prof-soc-btn.sm { padding: 5px 11px; font-size: 12px; }
+.prof-soc-btn.ghost { color: var(--text2); }
+.prof-soc-meta { font-size: 13px; color: var(--text2); margin: var(--s-2) 0; }
+
+.prof-soc-list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--s-4);
+  margin-bottom: var(--s-2);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text2);
+}
+.prof-soc-list, .prof-soc-friends { display: flex; flex-direction: column; gap: var(--s-2); }
+.prof-soc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  background: var(--surface-3);
+  border-radius: 10px;
+}
+.prof-soc-name { font-weight: 600; color: var(--text); font-size: 14px; }
+.prof-soc-actions { display: flex; gap: 6px; }
+
+.prof-soc-badge { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.prof-soc-badge.ok   { background: rgba(16,185,129,.14); color: var(--thuy-luc); }
+.prof-soc-badge.wait { background: rgba(245,158,11,.14); color: var(--hoang-kim); }
+.prof-soc-badge.no   { background: rgba(107,114,128,.14); color: var(--text-muted); }
+
+/* Thêm bạn / nhập mã */
+.prof-soc-add { display: flex; gap: var(--s-2); margin: var(--s-3) 0 var(--s-2); }
+.prof-soc-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.prof-soc-input:focus { outline: none; border-color: var(--chau-hong); }
+.prof-soc-hint { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.prof-soc-claim { margin-top: var(--s-4); }
+.prof-soc-claim summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text2);
+  font-weight: 600;
+  user-select: none;
+}
+
+/* Friend cards */
+.prof-soc-friend {
+  padding: var(--s-3);
+  background: var(--surface-3);
+  border-radius: 12px;
+}
+.prof-soc-friend-top { display: flex; align-items: center; gap: var(--s-2); }
+.prof-soc-streak { margin-left: auto; font-weight: 700; font-size: 14px; color: var(--hoang-kim); }
+.prof-soc-x {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+.prof-soc-x:hover { color: var(--chau-hong); background: var(--primary-soft); }
+.prof-soc-nudge { font-size: 12.5px; color: var(--text2); margin-top: 6px; }
+.prof-soc-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--border-2, #D6D3D1);
+  flex: 0 0 auto;
+}
+.prof-soc-dot.on { background: var(--thuy-luc); box-shadow: 0 0 0 3px rgba(16,185,129,.18); }
+
 /* ── Settings extras ── */
 .prof-setting-divider {
   padding: var(--s-3) 0 var(--s-1);

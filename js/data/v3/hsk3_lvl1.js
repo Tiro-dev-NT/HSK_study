@@ -99,7 +99,7 @@ HSK3_DATA[1] = [
   {h:'多少', p:'duō shǎo', v:'bao nhiêu', e:'number', t:'numbers', ex:{zh:'这里有多少个学生？',py:'Zhèlǐ yǒu duōshao ge xuésheng?',vi:'Ở đây có bao nhiêu học sinh?',en:'How many students are here?'}},
   {h:'饿', p:'è', v:'đói', e:'to be hungry', t:'emotions', ex:{zh:'饿。',py:'è.',vi:'to be hungry.',en:'to be hungry.'}},
   {h:'儿子', p:'ér zi', v:'con trai, quý tử', e:'son', t:'family', ex:{zh:'他有一个儿子。',py:'Tā yǒu yī ge érzi.',vi:'Anh ấy có một đứa con trai.',en:'He has a son.'}},
-  {h:'二', p:'èr', v:'số hai, đôi', e:'two', t:'numbers', ex:{zh:'他有两个孩子。',py:'Tā yǒu liǎng ge háizi.',vi:'Anh ấy có hai đứa con.',en:'He has two children.'}},
+  {h:'二', p:'èr', v:'số hai, đôi', e:'two', t:'numbers', ex:{zh:'二加二等于四。',py:'Èr jiā èr děngyú sì.',vi:'Hai cộng hai bằng bốn.',en:'Two plus two equals four.'}},
   {h:'饭', p:'fàn', v:'cơm', e:'cooked rice', t:'food', ex:{zh:'我吃米饭。',py:'Wǒ chī mǐfàn.',vi:'Tôi ăn cơm.',en:'I eat rice.'}},
   {h:'饭店', p:'fàn diàn', v:'nhà hàng', e:'restaurant', t:'places', ex:{zh:'我们去那家饭店吃饭吧。',py:'Wǒmen qù nà jiā fàndiàn chīfàn ba.',vi:'Chúng ta đến nhà hàng kia ăn cơm nhé.',en:'Let\'s go eat at that restaurant.'}},
   {h:'房间', p:'fáng jiān', v:'phòng', e:'room', t:'places', ex:{zh:'我的房间又干净又整齐。',py:'Wǒ de fángjiān yòu gānjìng yòu zhěngqí.',vi:'Phòng của tôi vừa sạch vừa gọn gàng.',en:'My room is clean and tidy.'}},

@@ -289,7 +289,7 @@ HSK3_DATA[4] = [
   {h:'抽奖', p:'chōujiǎng', v:'bốc thăm trúng thưởng', e:'to draw a prize, a lottery, a raffle', t:'general', ex:{zh:'他在抽奖中得到了一个礼物。',py:'Tā zài chōujiǎng zhōng dédào le yī gè lǐwù.',vi:'Anh ấy đã nhận được một món quà trong buổi bốc thăm trúng thưởng.',en:'He got a gift in the lucky draw.'}},
   {h:'出售', p:'chūshòu', v:'bán ra, chào bán', e:'offer for sale, sell', t:'general', ex:{zh:'这家店出售水果。',py:'Zhè jiā diàn chūshòu shuǐguǒ.',vi:'Cửa hàng này bán trái cây.',en:'This shop sells fruit.'}},
   {h:'处于', p:'chǔyú', v:'đang ở (trạng thái), đang trong', e:'go, be in, be (in a certain condition)', t:'general', ex:{zh:'他现在处于困难中。',py:'Tā xiànzài chǔyú kùnnan zhōng.',vi:'Anh ấy hiện đang ở trong hoàn cảnh khó khăn.',en:'He is currently in difficulty.'}},
-  {h:'处', p:'chù', v:'nơi, chỗ, xử lý', e:'m.[general]', t:'general'},
+  {h:'处', p:'chù', v:'nơi, chỗ, xử lý', e:'m.[general]', t:'general', ex:{zh:'这个公园是个好去处。',py:'Zhège gōngyuán shì ge hǎo qùchù.',vi:'Công viên này là một nơi tốt để đi.',en:'This park is a good place to go.'}},
   {h:'穿上', p:'chuānshang', v:'mặc vào, đi vào', e:'assume, wear, put_on, slip, enclothe, put on', t:'objects', ex:{zh:'今天很冷，请穿上外套。',py:'Jīntiān hěn lěng, qǐng chuānshang wàitào.',vi:'Hôm nay rất lạnh, hãy mặc áo khoác vào.',en:'It\'s very cold today, please put on a coat.'}},
   {h:'窗台', p:'chuāngtái', v:'bệ cửa sổ', e:'window sill, window ledge', t:'weather', ex:{zh:'猫喜欢坐在窗台上。',py:'Māo xǐhuān zuò zài chuāngtái shang.',vi:'Mèo thích ngồi trên bệ cửa sổ.',en:'The cat likes to sit on the windowsill.'}},
   {h:'窗子', p:'chuāngzi', v:'cửa sổ', e:'window', t:'weather', ex:{zh:'请打开窗子。',py:'Qǐng dǎkāi chuāngzi.',vi:'Hãy mở cửa sổ.',en:'Please open the window.'}},
@@ -620,5 +620,5 @@ HSK3_DATA[4] = [
   {h:'自', p:'zì', v:'từ, tự mình', e:'from, since', t:'general', ex:{zh:'我自中国来。',py:'Wǒ zì Zhōngguó lái.',vi:'Tôi đến từ Trung Quốc.',en:'I come from China.'}},
   {h:'嘴巴', p:'zuǐba', v:'miệng, mồm', e:'jaw, cheeks, kisser, mouth', t:'body', ex:{zh:'他的嘴巴很小。',py:'Tā de zuǐba hěn xiǎo.',vi:'Miệng của anh ấy rất nhỏ.',en:'His mouth is very small.'}},
   {h:'作出', p:'zuòchū', v:'đưa ra, làm ra (quyết định/đóng góp)', e:'make (decision/etc.)', t:'general', ex:{zh:'他作出了一个决定。',py:'Tā zuòchū le yī gè juédìng.',vi:'Anh ấy đã đưa ra một quyết định.',en:'He made a decision.'}},
-  {h:'做梦', p:'zuòmèng', v:'nằm mơ, mơ giấc', e:'to dream, to have a dream, fig. illusion, fantasy, pipe dream', t:'general'},
+  {h:'做梦', p:'zuòmèng', v:'nằm mơ, mơ giấc', e:'to dream, to have a dream, fig. illusion, fantasy, pipe dream', t:'general', ex:{zh:'我昨晚做梦梦到自己在飞。',py:'Wǒ zuówǎn zuòmèng mèng dào zìjǐ zài fēi.',vi:'Tối qua tôi mơ thấy mình đang bay.',en:'I dreamed last night that I was flying.'}},
 ];

@@ -751,7 +751,7 @@ HSK3_DATA[2] = [
   {h:'做法', p:'zuò fǎ', v:'cách làm', e:'way of handling sth', t:'body', ex:{zh:'这个做法很简单。',py:'Zhège zuòfǎ hěn jiǎndān.',vi:'Cách làm này rất đơn giản.',en:'This method is very simple.'}},
   {h:'做饭', p:'zuò fàn', v:'nấu cơm, nấu ăn', e:'to prepare a meal', t:'actions', ex:{zh:'妈妈在做饭。',py:'Māma zài zuò fàn.',vi:'Mẹ đang nấu cơm.',en:'Mom is cooking.'}},
   {h:'表示', p:'biǎoshì', v:'biểu thị, bày tỏ', e:'to express, to indicate, to show', t:'general', ex:{zh:'他点头表示同意。',py:'Tā diǎntóu biǎoshì tóngyì.',vi:'Anh ấy gật đầu biểu thị đồng ý.',en:'He nodded to indicate agreement.'}},
-  {h:'称1', p:'chēng', v:'xưng là, gọi là', e:'to call, to address as, to name', t:'general'},
-  {h:'面1', p:'miàn', v:'bề mặt, phía', e:'surface, side, face, aspect', t:'body'},
-  {h:'面2', p:'miàn', v:'mì sợi, bột mì', e:'noodles, flour, dough', t:'food'},
+  {h:'称1', p:'chēng', v:'xưng là, gọi là', e:'to call, to address as, to name', t:'general', ex:{zh:'大家都称他为老师。',py:'Dàjiā dōu chēng tā wéi lǎoshī.',vi:'Mọi người đều gọi anh ấy là thầy giáo.',en:'Everyone calls him teacher.'}},
+  {h:'面1', p:'miàn', v:'bề mặt, phía', e:'surface, side, face, aspect', t:'body', ex:{zh:'这本书的封面很漂亮。',py:'Zhè běn shū de fēngmiàn hěn piàoliang.',vi:'Bìa của cuốn sách này rất đẹp.',en:'The cover of this book is very beautiful.'}},
+  {h:'面2', p:'miàn', v:'mì sợi, bột mì', e:'noodles, flour, dough', t:'food', ex:{zh:'我喜欢吃牛肉面。',py:'Wǒ xǐhuān chī niúròu miàn.',vi:'Tôi thích ăn mì bò.',en:'I like eating beef noodles.'}},
 ];

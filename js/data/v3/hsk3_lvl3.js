@@ -137,7 +137,7 @@ HSK3_DATA[3] = [
   {h:'到达', p:'dào dá', v:'đến nơi, tới', e:'to reach', t:'actions', ex:{zh:'我们准时到达车站。',py:'Wǒ men zhǔn shí dào dá chē zhàn.',vi:'Chúng tôi đến ga đúng giờ.',en:'We arrived at the station on time.'}},
   {h:'到底', p:'dào dǐ', v:'rốt cuộc, đến cùng', e:'finally', t:'actions', ex:{zh:'到底。',py:'dào dǐ.',vi:'finally.',en:'finally.'}},
   {h:'地区', p:'dì qū', v:'khu vực, địa khu', e:'local', t:'general', ex:{zh:'这个地区气候比较干燥。',py:'Zhège dìqū qìhòu bǐjiào gānzào.',vi:'Khu vực này khí hậu tương đối khô.',en:'The climate in this region is relatively dry.'}},
-  {h:'得分', p:'dé fēn', v:'ghi điểm', e:'to score', t:'actions'},
+  {h:'得分', p:'dé fēn', v:'ghi điểm', e:'to score', t:'actions', ex:{zh:'他在比赛中得分最高。',py:'Tā zài bǐsài zhōng défēn zuì gāo.',vi:'Cậu ấy ghi điểm cao nhất trong trận đấu.',en:'He scored the highest in the match.'}},
   {h:'等待', p:'děng dài', v:'chờ đợi', e:'to wait', t:'actions', ex:{zh:'等待。',py:'děng dài.',vi:'to wait; to wait for.',en:'to wait; to wait for.'}},
   {h:'底下', p:'dǐ xia', v:'phía dưới, bên dưới', e:'the location below sth', t:'general', ex:{zh:'桌子底下有只猫。',py:'Zhuō zi dǐ xia yǒu zhī māo.',vi:'Phía dưới bàn có một con mèo.',en:'There is a cat under the table.'}},
   {h:'电视剧', p:'diàn shì jù', v:'phim truyền hình', e:'TV series', t:'general', ex:{zh:'我喜欢看电视剧。',py:'Wǒ xǐ huan kàn diàn shì jù.',vi:'Tôi thích xem phim truyền hình.',en:'I like watching TV dramas.'}},

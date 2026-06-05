@@ -9,7 +9,7 @@
 
 **🔴 CẦN USER LÀM:**
 - ☐ **Push `main` → Cloudflare deploy.** ⚠️ `main` đang ahead origin **5 commit** (gồm cả north-star của session khác: admin retention/marketing/hskk) — push = deploy luôn cả cụm đó. Review trước khi push.
-- ☐ **Submit `https://hanzigenz.com/sitemap.xml`** lên Search Console (site đã verify) sau khi deploy.
+- ☑ **Submit `https://hanzigenz.com/sitemap.xml`** lên Search Console DONE 2026-06-05 — Status **Success**, **1.569 discovered pages**. Index sẽ tăng dần (theo dõi Pages → Indexing).
 
 **📌 Phase 2 (treo, có điều kiện) — mở rộng ~10k từ ghép:**
 - ☐ Bỏ filter `Array.from(w.h).length===1` trong generator, NHƯNG chỉ khi: (a) lọc trang có `ex` (tránh thin-content/soft-404), (b) theo đợt cấp thấp trước (crawl budget), (c) chuyển **build-at-deploy** (gitignore `tu-dien/` + CF build command) vì +~80MB, (d) link tới chữ đơn cấu thành. → Đợi chữ đơn index ổn (vài tuần) rồi làm.

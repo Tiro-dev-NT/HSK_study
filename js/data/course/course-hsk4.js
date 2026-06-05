@@ -31,20 +31,22 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "按时 — đúng giờ",
-        explain: "Dùng 按时 trong ngữ cảnh Kỳ thực tập bắt đầu (1) để diễn đạt: đúng giờ.",
+      { point: '不管…都… — bất kể… đều…',
+        explain: 'Cấu trúc \'不管...都...\' dùng để diễn tả ý \'bất kể tình huống nào, kết quả vẫn không thay đổi\'. \'不管\' đứng đầu câu hoặc sau chủ ngữ, theo sau là câu hỏi, còn \'都\' đứng sau chủ ngữ chính.',
         examples: [
-          { zh: "谢谢老师！我一定按时上班，做个诚实的人。", py: "Xièxie lǎoshī! Wǒ yídìng ànshí shàngbān, zuò ge chéngshí de rén.", vi: "Cảm ơn thầy! Em nhất định sẽ đi làm đúng giờ, làm một người trung thực." }
+          { zh: '欢迎你！不管遇到什么问题，都可以来问我。', py: 'Huānyíng nǐ! Bùguǎn yùdào shénme wèntí, dōu kěyǐ lái wèn wǒ.', vi: 'Chào mừng em! Bất kể gặp vấn đề gì, đều có thể đến hỏi thầy.' }
         ] },
-      { point: "诚实 — trung thực",
-        explain: "Dùng 诚实 trong ngữ cảnh Kỳ thực tập bắt đầu (1) để diễn đạt: trung thực.",
+      { point: '结果补语 — bổ ngữ kết quả (V + 错/干净...)',
+        explain: 'Bổ ngữ kết quả đặt sau động từ để chỉ kết quả của hành động. Thường dùng với các tính từ như \'错\' (sai), \'干净\' (sạch), \'完\' (xong), \'好\' (tốt) để nhấn mạnh kết quả cụ thể.',
         examples: [
-          { zh: "谢谢老师！我一定按时上班，做个诚实的人。", py: "Xièxie lǎoshī! Wǒ yídìng ànshí shàngbān, zuò ge chéngshí de rén.", vi: "Cảm ơn thầy! Em nhất định sẽ đi làm đúng giờ, làm một người trung thực." }
+          { zh: '这个答案你猜错了，不过别担心。', py: 'Zhège dá\'àn nǐ cāi cuò le, búguò bié dānxīn.', vi: 'Đáp án này em đoán sai rồi, nhưng đừng lo.' },
+          { zh: '没关系，你不笨，只是第一天还不熟。擦干净重写就好。', py: 'Méiguānxi, nǐ bù bèn, zhǐshì dì-yī tiān hái bù shú. Cā gānjìng chóng xiě jiù hǎo.', vi: 'Không sao, em không ngốc, chỉ là ngày đầu chưa quen. Lau sạch viết lại là được.' }
         ] },
-      { point: "材料 — nguyên liệu",
-        explain: "Dùng 材料 trong ngữ cảnh Kỳ thực tập bắt đầu (1) để diễn đạt: nguyên liệu.",
+      { point: '一定 — nhất định, chắc chắn (phó từ)',
+        explain: 'Phó từ 一定 đặt trước động từ để biểu thị ý chí kiên quyết hoặc sự chắc chắn/bắt buộc (nhất định sẽ…), không tự làm vị ngữ như động từ.',
         examples: [
-          { zh: "好。这些是今天的材料，字有点暗，你慢慢看。", py: "Hǎo. Zhèxiē shì jīntiān de cáiliào, zì yǒudiǎn àn, nǐ mànman kàn.", vi: "Tốt. Đây là tài liệu hôm nay, chữ hơi mờ, em cứ xem từ từ." }
+          { zh: '谢谢老师！我一定按时上班，做个诚实的人。', py: 'Xièxie lǎoshī! Wǒ yídìng ànshí shàngbān, zuò ge chéngshí de rén.', vi: 'Cảm ơn thầy! Em nhất định sẽ đi làm đúng giờ, làm một người trung thực.' },
+          { zh: '抱歉，我太粗心了，下次一定认真检查。', py: 'Bàoqiàn, wǒ tài cūxīn le, xiàcì yídìng rènzhēn jiǎnchá.', vi: 'Xin lỗi, em quá bất cẩn, lần sau nhất định sẽ kiểm tra cẩn thận.' }
         ] }
     ],
     steps: [
@@ -200,20 +202,21 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "导游 — hướng dẫn viên du lịch",
-        explain: "Dùng 导游 trong ngữ cảnh Kỳ thực tập bắt đầu (2) để diễn đạt: hướng dẫn viên du lịch.",
+      { point: '一边…一边… — vừa... vừa...',
+        explain: 'Dùng để diễn tả hai hành động diễn ra đồng thời. Động từ đặt sau 一边, có thể dùng cho một hoặc hai chủ ngữ.',
         examples: [
-          { zh: "这次活动的关键，是让儿童玩得开心。你来当导游，好吗？", py: "Zhè cì huódòng de guānjiàn, shì ràng értóng wán de kāixīn. Nǐ lái dāng dǎoyóu, hǎo ma?", vi: "Điều then chốt của hoạt động lần này là để các em nhỏ chơi vui. Em làm hướng dẫn viên nhé?" }
+          { zh: '这里的风景真美，而孩子们更可爱，大家一边走一边逛。', py: 'Zhèlǐ de fēngjǐng zhēn měi, ér háizimen gèng kě\'ài, dàjiā yìbiān zǒu yìbiān guàng.', vi: 'Phong cảnh ở đây thật đẹp, mà bọn trẻ còn đáng yêu hơn, mọi người vừa đi vừa dạo.' }
         ] },
-      { point: "儿童 — trẻ em",
-        explain: "Dùng 儿童 trong ngữ cảnh Kỳ thực tập bắt đầu (2) để diễn đạt: trẻ em.",
+      { point: 'V + 得 + Adj — bổ ngữ trình độ',
+        explain: 'Cấu trúc này dùng để miêu tả mức độ hoặc kết quả của hành động. Tính từ sau 得 bổ nghĩa cho động từ, nhấn mạnh trạng thái đạt được.',
         examples: [
-          { zh: "这次活动的关键，是让儿童玩得开心。你来当导游，好吗？", py: "Zhè cì huódòng de guānjiàn, shì ràng értóng wán de kāixīn. Nǐ lái dāng dǎoyóu, hǎo ma?", vi: "Điều then chốt của hoạt động lần này là để các em nhỏ chơi vui. Em làm hướng dẫn viên nhé?" }
+          { zh: '这次活动的关键，是让儿童玩得开心。你来当导游，好吗？', py: 'Zhè cì huódòng de guānjiàn, shì ràng értóng wán de kāixīn. Nǐ lái dāng dǎoyóu, hǎo ma?', vi: 'Điều then chốt của hoạt động lần này là để các em nhỏ chơi vui. Em làm hướng dẫn viên nhé?' }
         ] },
-      { point: "鼓励 — khuyến khích",
-        explain: "Dùng 鼓励 trong ngữ cảnh Kỳ thực tập bắt đầu (2) để diễn đạt: khuyến khích.",
+      { point: 'V + 好 — kết quả bổ ngữ (làm tốt/xong)',
+        explain: 'Bổ ngữ kết quả 好 đặt sau động từ để chỉ hành động hoàn thành với kết quả tốt hoặc đúng yêu cầu. Dạng phủ định thêm 没 trước động từ.',
         examples: [
-          { zh: "别放弃！我鼓励你试一试，你的计划很符合要求。", py: "Bié fàngqì! Wǒ gǔlì nǐ shì yi shì, nǐ de jìhuà hěn fúhé yāoqiú.", vi: "Đừng bỏ cuộc! Thầy động viên em thử xem, kế hoạch của em rất hợp yêu cầu." }
+          { zh: '地址我发给你。记得带好名单，否则孩子丢了就麻烦了。', py: 'Dìzhǐ wǒ fā gěi nǐ. Jìde dài hǎo míngdān, fǒuzé háizi diū le jiù máfan le.', vi: 'Địa chỉ thầy gửi cho em. Nhớ mang theo danh sách, nếu không trẻ lạc thì phiền lắm.' },
+          { zh: '真对不起，是我没看好，我向您道歉。', py: 'Zhēn duìbuqǐ, shì wǒ méi kàn hǎo, wǒ xiàng nín dàoqiàn.', vi: 'Thật xin lỗi, là tôi không trông kỹ, tôi xin lỗi anh/chị.' }
         ] }
     ],
     steps: [
@@ -354,20 +357,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "奖金 — tiền thưởng",
-        explain: "Dùng 奖金 trong ngữ cảnh Làm quen công ty để diễn đạt: tiền thưởng.",
+      { point: '被 — câu bị động',
+        explain: 'Dùng để biểu đạt hành động bị động, nhấn mạnh đối tượng chịu tác động. Cấu trúc: Chủ ngữ + 被 (+ Tân ngữ tác nhân) + Động từ + thành phần khác.',
         examples: [
-          { zh: "公司每月有奖金，做得好就能获得奖励。", py: "Gōngsī měi yuè yǒu jiǎngjīn, zuò de hǎo jiù néng huòdé jiǎnglì.", vi: "Công ty mỗi tháng có tiền thưởng, làm tốt thì sẽ nhận được phần thưởng." }
+          { zh: '这是员工手册，很厚，里面写了哪些事被禁止。', py: 'Zhè shì yuángōng shǒucè, hěn hòu, lǐmiàn xiě le nǎxiē shì bèi jìnzhǐ.', vi: 'Đây là sổ tay nhân viên, rất dày, bên trong ghi những việc bị cấm.' }
         ] },
-      { point: "获得 — đạt được",
-        explain: "Dùng 获得 trong ngữ cảnh Làm quen công ty để diễn đạt: đạt được.",
+      { point: '得 (bổ ngữ trình độ) — V + 得 + Adj',
+        explain: 'Diễn tả mức độ hoặc kết quả của hành động. Dùng sau động từ để đánh giá hành động đó thực hiện như thế nào.',
         examples: [
-          { zh: "公司每月有奖金，做得好就能获得奖励。", py: "Gōngsī měi yuè yǒu jiǎngjīn, zuò de hǎo jiù néng huòdé jiǎnglì.", vi: "Công ty mỗi tháng có tiền thưởng, làm tốt thì sẽ nhận được phần thưởng." }
+          { zh: '公司每月有奖金，做得好就能获得奖励。', py: 'Gōngsī měi yuè yǒu jiǎngjīn, zuò de hǎo jiù néng huòdé jiǎnglì.', vi: 'Công ty mỗi tháng có tiền thưởng, làm tốt thì sẽ nhận được phần thưởng.' }
         ] },
-      { point: "竞争 — cạnh tranh",
-        explain: "Dùng 竞争 trong ngữ cảnh Làm quen công ty để diễn đạt: cạnh tranh.",
+      { point: '着 (trạng thái) — diễn tả trạng thái kéo dài',
+        explain: 'Đứng sau động từ chỉ tư thế (ngồi, đứng, nằm…) để diễn tả trạng thái tiếp diễn của hành động.',
         examples: [
-          { zh: "同事们都很活泼，尽管竞争激烈，大家还是互相帮助。", py: "Tóngshìmen dōu hěn huópo, jǐnguǎn jìngzhēng jīliè, dàjiā háishì hùxiāng bāngzhù.", vi: "Các đồng nghiệp đều rất hoạt bát, mặc dù cạnh tranh gay gắt, mọi người vẫn giúp đỡ nhau." }
+          { zh: '整天坐着，我得减肥了！', py: 'Zhěng tiān zuòzhe, wǒ děi jiǎnféi le!', vi: 'Ngồi cả ngày, tớ phải giảm cân thôi!' }
         ] }
     ],
     steps: [
@@ -508,20 +511,22 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "扩大 — mở rộng",
-        explain: "Dùng 扩大 trong ngữ cảnh Họp nhóm đầu tiên để diễn đạt: mở rộng.",
+      { point: '把 câu — cấu trúc 把 + tân ngữ + động từ + …',
+        explain: 'Dùng để nhấn mạnh hành động tác động lên đối tượng, khiến nó thay đổi vị trí hoặc trạng thái. Thường có thành phần bổ sung sau động từ.',
         examples: [
-          { zh: "今天我们俩组开会，讨论怎么扩大这个项目。", py: "Jīntiān wǒmen liǎ zǔ kāihuì, tǎolùn zěnme kuòdà zhège xiàngmù.", vi: "Hôm nay hai nhóm chúng ta họp, bàn cách mở rộng dự án này." }
+          { zh: '我请了一位律师帮我们看合同。记得把废纸扔进垃圾桶。', py: 'Wǒ qǐng le yí wèi lǜshī bāng wǒmen kàn hétong. Jìde bǎ fèizhǐ rēng jìn lājītǒng.', vi: 'Thầy đã mời một luật sư giúp xem hợp đồng. Nhớ vứt giấy vụn vào thùng rác nhé.' }
         ] },
-      { point: "拒绝 — từ chối",
-        explain: "Dùng 拒绝 trong ngữ cảnh Họp nhóm đầu tiên để diễn đạt: từ chối.",
+      { point: '被 câu — cấu trúc bị động với 被',
+        explain: 'Biểu thị hành động bị tác động bởi một đối tượng khác. Chủ ngữ chịu tác động, sau 被 có thể thêm tân ngữ chỉ tác nhân, rồi đến động từ.',
         examples: [
-          { zh: "那个被拒绝的同事好可怜，他差点流泪。", py: "Nàge bèi jùjué de tóngshì hǎo kělián, tā chàdiǎn liúlèi.", vi: "Đồng nghiệp bị từ chối ấy thật đáng thương, anh ấy suýt rơi nước mắt." }
+          { zh: '真可惜，这个计划被拒绝了。', py: 'Zhēn kěxī, zhège jìhuà bèi jùjué le.', vi: 'Thật đáng tiếc, kế hoạch này bị từ chối rồi.' },
+          { zh: '那个被拒绝的同事好可怜，他差点流泪。', py: 'Nàge bèi jùjué de tóngshì hǎo kělián, tā chàdiǎn liúlèi.', vi: 'Đồng nghiệp bị từ chối ấy thật đáng thương, anh ấy suýt rơi nước mắt.' }
         ] },
-      { point: "肯定 — chắc chắn",
-        explain: "Dùng 肯定 trong ngữ cảnh Họp nhóm đầu tiên để diễn đạt: chắc chắn.",
+      { point: '可能补语 — V + 得/不 + kết quả (ví dụ: 来得及/来不及)',
+        explain: 'Bổ ngữ khả năng diễn tả khả năng thành công hay không. Dùng 得 trong câu khẳng định, 不 trong phủ định, thường gặp với các động từ kết quả.',
         examples: [
-          { zh: "我肯定支持！不过时间很紧，怕来不及。", py: "Wǒ kěndìng zhīchí! Búguò shíjiān hěn jǐn, pà láibují.", vi: "Tớ chắc chắn ủng hộ! Nhưng thời gian gấp, sợ không kịp." }
+          { zh: '我肯定支持！不过时间很紧，怕来不及。', py: 'Wǒ kěndìng zhīchí! Búguò shíjiān hěn jǐn, pà láibují.', vi: 'Tớ chắc chắn ủng hộ! Nhưng thời gian gấp, sợ không kịp.' },
+          { zh: '现在开始还来得及，别马虎，也别偷懒。', py: 'Xiànzài kāishǐ hái láidejí, bié mǎhu, yě bié tōulǎn.', vi: 'Bây giờ bắt đầu vẫn kịp, đừng cẩu thả, cũng đừng lười.' }
         ] }
     ],
     steps: [
@@ -670,20 +675,22 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "申请 — nộp đơn",
-        explain: "Dùng 申请 trong ngữ cảnh Nhận nhiệm vụ để diễn đạt: nộp đơn.",
+      { point: '把 (câu chữ “把”) — S + 把 + O + V + thành phần khác',
+        explain: 'Dùng để nhấn mạnh sự tác động, xử lý của chủ ngữ lên tân ngữ, khiến tân ngữ thay đổi trạng thái hoặc vị trí. Thường đi kèm bổ ngữ kết quả hoặc các thành phần khác.',
         examples: [
-          { zh: "有个学生要申请签证，你帮他准备材料，好吗？", py: "Yǒu ge xuésheng yào shēnqǐng qiānzhèng, nǐ bāng tā zhǔnbèi cáiliào, hǎo ma?", vi: "Có một học viên cần xin visa, em giúp bạn ấy chuẩn bị hồ sơ nhé?" }
+          { zh: '没问题！需要把这些文件排列好吗？', py: 'Méi wèntí! Xūyào bǎ zhèxiē wénjiàn páiliè hǎo ma?', vi: 'Không vấn đề gì! Có cần sắp xếp các giấy tờ này lại không ạ?' },
+          { zh: '沙发有点软，但还能用。下班我去逛逛热闹的夜市，把今天的事写进日记。', py: 'Shāfā yǒudiǎn ruǎn, dàn hái néng yòng. Xiàbān wǒ qù guàngguàng rènao de yèshì, bǎ jīntiān de shì xiě jìn rìjì.', vi: 'Ghế sô-pha hơi mềm nhưng vẫn dùng được. Tan làm tôi đi dạo chợ đêm nhộn nhịp, ghi chuyện hôm nay vào nhật ký.' }
         ] },
-      { point: "签证 — thị thực",
-        explain: "Dùng 签证 trong ngữ cảnh Nhận nhiệm vụ để diễn đạt: thị thực.",
+      { point: '是…的 — nhấn mạnh thông tin (thời gian, nơi chốn, cách thức, tính chất)',
+        explain: 'Cấu trúc dùng để nhấn mạnh một đặc điểm, tính chất của sự việc. \'是\' đặt trước phần muốn nhấn mạnh, \'的\' đứng cuối câu. Thường dùng khi miêu tả hoặc khẳng định một sự thật.',
         examples: [
-          { zh: "有个学生要申请签证，你帮他准备材料，好吗？", py: "Yǒu ge xuésheng yào shēnqǐng qiānzhèng, nǐ bāng tā zhǔnbèi cáiliào, hǎo ma?", vi: "Có một học viên cần xin visa, em giúp bạn ấy chuẩn bị hồ sơ nhé?" }
+          { zh: '对。这项服务对学生是免费的。', py: 'Duì. Zhè xiàng fúwù duì xuésheng shì miǎnfèi de.', vi: 'Đúng. Dịch vụ này miễn phí cho học viên.' }
         ] },
-      { point: "失望 — thất vọng",
-        explain: "Dùng 失望 trong ngữ cảnh Nhận nhiệm vụ để diễn đạt: thất vọng.",
+      { point: '别/不要 — câu cấm đoán / mệnh lệnh phủ định',
+        explain: 'Dùng để khuyên nhủ, ngăn cản ai đó không làm việc gì. \'别\' thường dùng trong khẩu ngữ, \'不要\' trang trọng hơn một chút. Cả hai đều đứng trước động từ.',
         examples: [
-          { zh: "别急。第一次难免会失败，别失望。", py: "Bié jí. Dì-yī cì nánmiǎn huì shībài, bié shīwàng.", vi: "Đừng vội. Lần đầu khó tránh thất bại, đừng thất vọng." }
+          { zh: '别急。第一次难免会失败，别失望。', py: 'Bié jí. Dì-yī cì nánmiǎn huì shībài, bié shīwàng.', vi: 'Đừng vội. Lần đầu khó tránh thất bại, đừng thất vọng.' },
+          { zh: '别发脾气。他可能只是穷，怕花钱。', py: 'Bié fā píqi. Tā kěnéng zhǐshì qióng, pà huā qián.', vi: 'Đừng nổi nóng. Có thể bạn ấy chỉ nghèo, sợ tốn tiền.' }
         ] }
     ],
     steps: [
@@ -825,20 +832,16 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "顺便 — tiện thể",
-        explain: "Dùng 顺便 trong ngữ cảnh Giải quyết vấn đề (1) để diễn đạt: tiện thể.",
+      { point: '把 + O + V + 到 (把字句) — dùng \'把\' để nêu bật đối tượng chịu tác động',
+        explain: 'Câu chữ \'把\' đặt tân ngữ trước động từ, nhấn mạnh sự tác động lên đối tượng. Thường dùng khi động từ có bổ ngữ chỉ kết quả hoặc hướng.',
         examples: [
-          { zh: "我去超市一趟，顺便买点西红柿。", py: "Wǒ qù chāoshì yí tàng, shùnbiàn mǎi diǎn xīhóngshì.", vi: "Tôi đi siêu thị một chuyến, tiện thể mua ít cà chua." }
+          { zh: '帮我收拾一下桌子，把箱子抬到那边。', py: 'Bāng wǒ shōushi yíxià zhuōzi, bǎ xiāngzi tái dào nàbiān.', vi: 'Giúp thầy dọn cái bàn một chút, khiêng cái thùng sang bên kia.' }
         ] },
-      { point: "收拾 — dọn dẹp",
-        explain: "Dùng 收拾 trong ngữ cảnh Giải quyết vấn đề (1) để diễn đạt: dọn dẹp.",
+      { point: 'V + 好/完 (结果补语) — bổ ngữ kết quả chỉ hành động hoàn thành hoặc đạt yêu cầu',
+        explain: 'Bổ ngữ kết quả đứng sau động từ diễn tả kết quả. \'V+好\' làm xong và tốt; \'V+完\' làm xong, kết thúc.',
         examples: [
-          { zh: "帮我收拾一下桌子，把箱子抬到那边。", py: "Bāng wǒ shōushi yíxià zhuōzi, bǎ xiāngzi tái dào nàbiān.", vi: "Giúp thầy dọn cái bàn một chút, khiêng cái thùng sang bên kia." }
-        ] },
-      { point: "污染 — ô nhiễm",
-        explain: "Dùng 污染 trong ngữ cảnh Giải quyết vấn đề (1) để diễn đạt: ô nhiễm.",
-        examples: [
-          { zh: "我最讨厌污染。这条新闻很吸引人，正好讲减少污染。", py: "Wǒ zuì tǎoyàn wūrǎn. Zhè tiáo xīnwén hěn xīyǐn rén, zhènghǎo jiǎng jiǎnshǎo wūrǎn.", vi: "Em ghét nhất ô nhiễm. Bản tin này rất thu hút, vừa hay nói về giảm ô nhiễm." }
+          { zh: '这位售货员很熟悉商品，货架也按顺序排好了。', py: 'Zhè wèi shòuhuòyuán hěn shúxī shāngpǐn, huòjià yě àn shùnxù pái hǎo le.', vi: 'Nhân viên bán hàng này rất thông thạo hàng hóa, kệ hàng cũng được xếp theo thứ tự.' },
+          { zh: '好。搬完我有点累，想躺一会儿。', py: 'Hǎo. Bān wán wǒ yǒudiǎn lèi, xiǎng tǎng yíhuìr.', vi: 'Vâng. Khiêng xong em hơi mệt, muốn nằm một lát.' }
         ] }
     ],
     steps: [
@@ -974,20 +977,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "邀请 — mời",
-        explain: "Dùng 邀请 trong ngữ cảnh Giải quyết vấn đề (2) để diễn đạt: mời.",
+      { point: '结果补语 (V + 到) — động từ + 到 (kết quả)',
+        explain: 'Cấu trúc V + 到 dùng để chỉ kết quả của hành động, thường mang ý đạt được mục tiêu hoặc thành công sau quá trình. \'到\' đứng sau động từ như một bổ ngữ kết quả.',
         examples: [
-          { zh: "中心邀请你参加亚洲文化活动，内容很有趣。", py: "Zhōngxīn yāoqǐng nǐ cānjiā Yàzhōu wénhuà huódòng, nèiróng hěn yǒuqù.", vi: "Trung tâm mời em tham gia hoạt động văn hóa châu Á, nội dung rất thú vị." }
-        ] },
-      { point: "亚洲 — châu Á",
-        explain: "Dùng 亚洲 trong ngữ cảnh Giải quyết vấn đề (2) để diễn đạt: châu Á.",
-        examples: [
-          { zh: "中心邀请你参加亚洲文化活动，内容很有趣。", py: "Zhōngxīn yāoqǐng nǐ cānjiā Yàzhōu wénhuà huódòng, nèiróng hěn yǒuqù.", vi: "Trung tâm mời em tham gia hoạt động văn hóa châu Á, nội dung rất thú vị." }
-        ] },
-      { point: "严格 — nghiêm khắc",
-        explain: "Dùng 严格 trong ngữ cảnh Giải quyết vấn đề (2) để diễn đạt: nghiêm khắc.",
-        examples: [
-          { zh: "不过名额有限制，要求很严格。", py: "Búguò míng'é yǒu xiànzhì, yāoqiú hěn yángé.", vi: "Nhưng số lượng có hạn chế, yêu cầu rất nghiêm khắc." }
+          { zh: '我找了半天，终于找到钥匙，松了口气。', py: 'Wǒ zhǎo le bàntiān, zhōngyú zhǎodào yàoshi, sōng le kǒuqì.', vi: 'Tôi tìm cả buổi, cuối cùng cũng thấy chìa khóa, thở phào nhẹ nhõm.' }
         ] }
     ],
     steps: [
@@ -1133,20 +1126,15 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "组织 — tổ chức",
-        explain: "Dùng 组织 trong ngữ cảnh Giao tiếp nơi làm việc để diễn đạt: tổ chức.",
+      { point: 'V + 得 + adj (bổ ngữ trình độ) — ... đến mức ...',
+        explain: 'Cấu trúc V + 得 + tính từ dùng để miêu tả kết quả hoặc mức độ của hành động, trả lời câu hỏi \'như thế nào\'.',
         examples: [
-          { zh: "中心允许你组织一次活动，增进同事感情。", py: "Zhōngxīn yǔnxǔ nǐ zǔzhī yí cì huódòng, zēngjìn tóngshì gǎnqíng.", vi: "Trung tâm cho phép em tổ chức một hoạt động, gắn kết tình cảm đồng nghiệp." }
+          { zh: '场地有点窄，但大家玩得很开心。', py: 'Chǎngdì yǒudiǎn zhǎi, dàn dàjiā wán de hěn kāixīn.', vi: 'Sân hơi hẹp, nhưng mọi người chơi rất vui.' }
         ] },
-      { point: "尊重 — tôn trọng",
-        explain: "Dùng 尊重 trong ngữ cảnh Giao tiếp nơi làm việc để diễn đạt: tôn trọng.",
+      { point: 'V + 到 (kết quả bổ ngữ) — đạt được kết quả',
+        explain: 'Kết quả bổ ngữ V+到 biểu thị hành động thành công, đạt được mục tiêu hoặc kết quả mong muốn.',
         examples: [
-          { zh: "好主意。与同事相处要互相尊重。", py: "Hǎo zhǔyi. Yǔ tóngshì xiāngchǔ yào hùxiāng zūnzhòng.", vi: "Ý hay. Tiếp xúc với đồng nghiệp phải tôn trọng lẫn nhau." }
-        ] },
-      { point: "羽毛球 — cầu lông",
-        explain: "Dùng 羽毛球 trong ngữ cảnh Giao tiếp nơi làm việc để diễn đạt: cầu lông.",
-        examples: [
-          { zh: "太好了！我想组织打羽毛球，大家会很愉快。", py: "Tài hǎo le! Wǒ xiǎng zǔzhī dǎ yǔmáoqiú, dàjiā huì hěn yúkuài.", vi: "Tuyệt quá! Em muốn tổ chức chơi cầu lông, mọi người sẽ rất vui." }
+          { zh: '我不小心撞到了球网，于是大家都笑了。', py: 'Wǒ bù xiǎoxīn zhuàng dào le qiúwǎng, yúshì dàjiā dōu xiào le.', vi: 'Tôi vô ý đâm vào lưới, thế là mọi người đều cười.' }
         ] }
     ],
     steps: [
@@ -1299,20 +1287,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "测试 — kiểm tra",
-        explain: "Dùng 测试 trong ngữ cảnh Áp lực và động viên để diễn đạt: kiểm tra.",
+      { point: '被 câu — bị (mẫu câu bị động)',
+        explain: 'Cấu trúc: Chủ ngữ + 被 + (tân ngữ gây hành động) + Động từ. Thường dùng để diễn đạt ý bị tác động, không mong muốn. \'被迫\' là dạng rút gọn từ \'被逼迫\', nghĩa là bị ép buộc, mất chủ động.',
         examples: [
-          { zh: "下周有个测试，我担心自己会败。", py: "Xià zhōu yǒu ge cèshì, wǒ dānxīn zìjǐ huì bài.", vi: "Tuần sau có bài kiểm tra, em lo mình sẽ thất bại." }
+          { zh: '我不想被迫放弃，我要靠诚信做事。', py: 'Wǒ bù xiǎng bèipò fàngqì, wǒ yào kào chéngxìn zuòshì.', vi: 'Em không muốn bị ép phải bỏ cuộc, em muốn dựa vào chữ tín mà làm việc.' }
         ] },
-      { point: "诚信 — chữ tín",
-        explain: "Dùng 诚信 trong ngữ cảnh Áp lực và động viên để diễn đạt: chữ tín.",
+      { point: '过 — kinh nghiệm (từng trải qua)',
+        explain: 'Thêm \'过\' sau động từ để nhấn mạnh rằng hành động đã từng xảy ra trong quá khứ, dùng khi nói về trải nghiệm. \'克服过\' nghĩa là \'đã từng vượt qua\'.',
         examples: [
-          { zh: "我不想被迫放弃，我要靠诚信做事。", py: "Wǒ bù xiǎng bèipò fàngqì, wǒ yào kào chéngxìn zuòshì.", vi: "Em không muốn bị ép phải bỏ cuộc, em muốn dựa vào chữ tín mà làm việc." }
+          { zh: '失败也别太放在心上，要学会不在乎别人的眼光。你曾经克服过更难的事。', py: 'Shībài yě bié tài fàng zài xīn shàng, yào xuéhuì búzàihu biérén de yǎnguāng. Nǐ céngjīng kèfú guo gèng nán de shì.', vi: 'Thất bại cũng đừng để bụng quá, phải học cách không bận tâm ánh mắt người khác. Em từng vượt qua việc khó hơn mà.' }
         ] },
-      { point: "充电 — sạc pin",
-        explain: "Dùng 充电 trong ngữ cảnh Áp lực và động viên để diễn đạt: sạc pin.",
+      { point: '结果补语 — V + 会 (kết quả biết làm)',
+        explain: 'Sau động từ thêm \'会\' làm bổ ngữ chỉ kết quả, biểu thị rằng hành động dẫn đến việc \'biết, hiểu, có khả năng\'. \'学会\' nghĩa là học cho đến khi biết làm. Các dạng khác: V+完 (làm xong), V+好 (làm tốt).',
         examples: [
-          { zh: "对。累了就去充电休息，别抄写别人的答案。", py: "Duì. Lèi le jiù qù chōngdiàn xiūxi, bié chāoxiě biérén de dá'àn.", vi: "Đúng. Mệt thì đi \"sạc pin\" nghỉ ngơi, đừng chép bài người khác." }
+          { zh: '失败也别太放在心上，要学会不在乎别人的眼光。你曾经克服过更难的事。', py: 'Shībài yě bié tài fàng zài xīn shàng, yào xuéhuì búzàihu biérén de yǎnguāng. Nǐ céngjīng kèfú guo gèng nán de shì.', vi: 'Thất bại cũng đừng để bụng quá, phải học cách không bận tâm ánh mắt người khác. Em từng vượt qua việc khó hơn mà.' }
         ] }
     ],
     steps: [
@@ -1443,20 +1431,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "大规模 — quy mô lớn",
-        explain: "Dùng 大规模 trong ngữ cảnh Dự án chung (1) để diễn đạt: quy mô lớn.",
+      { point: '把字句 — Chủ ngữ + 把 + tân ngữ + động từ + thành phần khác',
+        explain: 'Dùng để nhấn mạnh sự tác động của chủ ngữ lên tân ngữ, thường đi kèm với bổ ngữ kết quả hoặc phương hướng.',
         examples: [
-          { zh: "这次是大规模的项目，我们处于关键阶段。", py: "Zhè cì shì dà guīmó de xiàngmù, wǒmen chǔyú guānjiàn jiēduàn.", vi: "Lần này là dự án quy mô lớn, chúng ta đang ở giai đoạn then chốt." }
+          { zh: '把此事记下来，每人填一张单。', py: 'Bǎ cǐ shì jì xiàlái, měi rén tián yì zhāng dān.', vi: 'Ghi việc này lại, mỗi người điền một tờ đơn.' }
         ] },
-      { point: "处于 — đang ở (trạng thái)",
-        explain: "Dùng 处于 trong ngữ cảnh Dự án chung (1) để diễn đạt: đang ở (trạng thái).",
+      { point: '被字句 — Chủ ngữ + 被 (+ tác nhân) + động từ + thành phần khác',
+        explain: 'Biểu thị nghĩa bị động, nhấn mạnh đối tượng chịu tác động của hành động. Tác nhân có thể lược bỏ nếu không rõ hoặc không quan trọng.',
         examples: [
-          { zh: "这次是大规模的项目，我们处于关键阶段。", py: "Zhè cì shì dà guīmó de xiàngmù, wǒmen chǔyú guānjiàn jiēduàn.", vi: "Lần này là dự án quy mô lớn, chúng ta đang ở giai đoạn then chốt." }
+          { zh: '路上堵车，我被堵了很久，有点烦。', py: 'Lùshang dǔchē, wǒ bèi dǔ le hěn jiǔ, yǒudiǎn fán.', vi: 'Trên đường kẹt xe, tôi bị tắc rất lâu, hơi bực.' }
         ] },
-      { point: "多样 — đa dạng",
-        explain: "Dùng 多样 trong ngữ cảnh Dự án chung (1) để diễn đạt: đa dạng.",
+      { point: 'Kết quả bổ ngữ \'V + 好\' — Động từ + 好 (hình thái bổ ngữ kết quả)',
+        explain: 'Bổ ngữ \'好\' đứng sau động từ, diễn tả hành động đã hoàn thành và đạt kết quả như mong muốn hoặc làm một cách gọn gàng, đầy đủ.',
         examples: [
-          { zh: "我们要打败竞争对手，方案要多样。", py: "Wǒmen yào dǎbài jìngzhēng duìshǒu, fāng'àn yào duōyàng.", vi: "Chúng ta phải đánh bại đối thủ, phương án phải đa dạng." }
+          { zh: '我独自打扫了会议室，摆好纯净水。', py: 'Wǒ dúzì dǎsǎo le huìyìshì, bǎi hǎo chúnjìngshuǐ.', vi: 'Tôi một mình dọn dẹp phòng họp, bày sẵn nước tinh khiết.' }
         ] }
     ],
     steps: [
@@ -1588,20 +1576,15 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "感兴趣 — cảm thấy hứng thú",
-        explain: "Dùng 感兴趣 trong ngữ cảnh Dự án chung (2) để diễn đạt: cảm thấy hứng thú.",
+      { point: '结果补语 (V + 结果) — bổ ngữ kết quả',
+        explain: 'Động từ kết hợp với thành phần chỉ kết quả để diễn tả kết quả của hành động. Thành phần kết quả thường là tính từ hoặc động từ.',
         examples: [
-          { zh: "我对这个关于饮料的项目很感兴趣。", py: "Wǒ duì zhège guānyú yǐnliào de xiàngmù hěn gǎn xìngqù.", vi: "Em rất hứng thú với dự án về đồ uống này." }
+          { zh: '仓库又寒冷又黑暗，我几乎冻僵了。', py: 'Cāngkù yòu hánlěng yòu hēi\'àn, wǒ jīhū dòngjiāng le.', vi: 'Nhà kho vừa lạnh giá vừa tối tăm, tôi gần như cóng cả người.' }
         ] },
-      { point: "根据 — dựa theo",
-        explain: "Dùng 根据 trong ngữ cảnh Dự án chung (2) để diễn đạt: dựa theo.",
+      { point: '别/不要 — cấm đoán',
+        explain: 'Dùng trước động từ để đưa ra mệnh lệnh phủ định, khuyên bảo ai đó không nên làm gì.',
         examples: [
-          { zh: "根据数据，这种饮料含有维生素，含量很高。", py: "Gēnjù shùjù, zhè zhǒng yǐnliào hányǒu wéishēngsù, hánliàng hěn gāo.", vi: "Dựa theo dữ liệu, loại đồ uống này chứa vitamin, hàm lượng rất cao." }
-        ] },
-      { point: "含有 — chứa có",
-        explain: "Dùng 含有 trong ngữ cảnh Dự án chung (2) để diễn đạt: chứa có.",
-        examples: [
-          { zh: "根据数据，这种饮料含有维生素，含量很高。", py: "Gēnjù shùjù, zhè zhǒng yǐnliào hányǒu wéishēngsù, hánliàng hěn gāo.", vi: "Dựa theo dữ liệu, loại đồ uống này chứa vitamin, hàm lượng rất cao." }
+          { zh: '每户家庭都收到样品。这种瓜含糖，种的时候别用太多肥。', py: 'Měi hù jiātíng dōu shōudào yàngpǐn. Zhè zhǒng guā hán táng, zhòng de shíhou bié yòng tài duō féi.', vi: 'Mỗi hộ gia đình đều nhận được mẫu thử. Loại dưa này có đường, khi trồng đừng dùng quá nhiều phân.' }
         ] }
     ],
     steps: [
@@ -1733,20 +1716,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "扩展 — mở rộng",
-        explain: "Dùng 扩展 trong ngữ cảnh Thuyết trình trước nhóm để diễn đạt: mở rộng.",
+      { point: '把 câu — 把 + Tân ngữ + Động từ + Thành phần khác',
+        explain: 'Câu chữ \'把\' dùng để nhấn mạnh cách xử lý hoặc kết quả đối với một đối tượng xác định. Trong câu, \'把这几点列入计划\' có nghĩa là \'đưa những điểm này vào kế hoạch\'. Vị trí: trạng ngữ (nếu có) + 把 + tân ngữ + động từ + thành phần khác (bổ ngữ, 了, tân ngữ gián tiếp).',
         examples: [
-          { zh: "这个城市历史悠久，前景宽广，我们要扩展市场。", py: "Zhège chéngshì lìshǐ yōujiǔ, qiánjǐng kuānguǎng, wǒmen yào kuòzhǎn shìchǎng.", vi: "Thành phố này lịch sử lâu đời, triển vọng rộng mở, chúng ta cần mở rộng thị trường." }
+          { zh: '很好。把这几点列入计划，列为重点，一项一项列出来。', py: 'Hěn hǎo. Bǎ zhè jǐ diǎn lièrù jìhuà, lièwéi zhòngdiǎn, yí xiàng yí xiàng liè chūlái.', vi: 'Tốt lắm. Đưa mấy điểm này vào kế hoạch, xếp làm trọng điểm, liệt kê ra từng mục một.' }
         ] },
-      { point: "历史 — lịch sử",
-        explain: "Dùng 历史 trong ngữ cảnh Thuyết trình trước nhóm để diễn đạt: lịch sử.",
+      { point: '越来越… — càng ngày càng…',
+        explain: 'Cấu trúc \'越来越 + Tính từ/Động từ\' diễn tả sự thay đổi tăng dần theo thời gian. \'越来越多\' nghĩa là \'càng ngày càng nhiều\'. Đây là mẫu câu phổ biến dùng với tính từ hoặc động từ chỉ mức độ.',
         examples: [
-          { zh: "这个城市历史悠久，前景宽广，我们要扩展市场。", py: "Zhège chéngshì lìshǐ yōujiǔ, qiánjǐng kuānguǎng, wǒmen yào kuòzhǎn shìchǎng.", vi: "Thành phố này lịch sử lâu đời, triển vọng rộng mở, chúng ta cần mở rộng thị trường." }
+          { zh: '越来越多客户加入，产品要经过检测，质量不能降。', py: 'Yuèláiyuè duō kèhù jiārù, chǎnpǐn yào jīngguò jiǎncè, zhìliàng bùnéng jiàng.', vi: 'Ngày càng nhiều khách hàng tham gia, sản phẩm phải qua kiểm định, chất lượng không được giảm.' }
         ] },
-      { point: "加入 — tham gia",
-        explain: "Dùng 加入 trong ngữ cảnh Thuyết trình trước nhóm để diễn đạt: tham gia.",
+      { point: '可能补语 V + 不 + 了 — không thể (làm được)...',
+        explain: 'Bổ ngữ khả năng dạng phủ định \'V + 不 + 了\' biểu thị không có khả năng thực hiện hoặc không thể hoàn thành hành động. \'离不开\' có nghĩa là \'không thể thiếu, không thể tách rời\'. Cấu trúc: Động từ + 不 + 了.',
         examples: [
-          { zh: "越来越多客户加入，产品要经过检测，质量不能降。", py: "Yuèláiyuè duō kèhù jiārù, chǎnpǐn yào jīngguò jiǎncè, zhìliàng bùnéng jiàng.", vi: "Ngày càng nhiều khách hàng tham gia, sản phẩm phải qua kiểm định, chất lượng không được giảm." }
+          { zh: '项目的成功离不开大家的努力。', py: 'Xiàngmù de chénggōng líbukāi dàjiā de nǔlì.', vi: 'Thành công của dự án không thể tách rời nỗ lực của mọi người.' }
         ] }
     ],
     steps: [
@@ -1880,20 +1863,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "面试 — phỏng vấn (tuyển dụng)",
-        explain: "Dùng 面试 trong ngữ cảnh Phản hồi và sửa sai để diễn đạt: phỏng vấn (tuyển dụng).",
+      { point: '着 (trạng thái)',
+        explain: 'Trợ từ 着 đặt sau động từ biểu thị trạng thái hoặc hành động đang tiếp diễn. Thường dùng để miêu tả một tình huống đang tồn tại.',
         examples: [
-          { zh: "期中过了，期末快到了。公司内部有个面试机会。", py: "Qīzhōng guò le, qīmò kuài dào le. Gōngsī nèibù yǒu ge miànshì jīhuì.", vi: "Giữa kỳ qua rồi, cuối kỳ sắp tới. Trong nội bộ công ty có một cơ hội phỏng vấn." }
+          { zh: '面试在一个宁静的房间，开着暖气，一位男士问我问题。', py: 'Miànshì zài yí ge níngjìng de fángjiān, kāizhe nuǎnqì, yí wèi nánshì wèn wǒ wèntí.', vi: 'Buổi phỏng vấn ở một căn phòng yên tĩnh, bật lò sưởi, một quý ông hỏi tôi các câu hỏi.' }
         ] },
-      { point: "期末 — cuối kỳ",
-        explain: "Dùng 期末 trong ngữ cảnh Phản hồi và sửa sai để diễn đạt: cuối kỳ.",
+      { point: '结果补语 (V+完/好/错/懂…)',
+        explain: 'Bổ ngữ kết quả như 到 đặt sau động từ để diễn tả kết quả của hành động. \'V + 到\' thường chỉ sự đạt được hoặc có được.',
         examples: [
-          { zh: "期中过了，期末快到了。公司内部有个面试机会。", py: "Qīzhōng guò le, qīmò kuài dào le. Gōngsī nèibù yǒu ge miànshì jīhuì.", vi: "Giữa kỳ qua rồi, cuối kỳ sắp tới. Trong nội bộ công ty có một cơ hội phỏng vấn." }
+          { zh: '月末公司发美金奖金，我梦见自己拿到了。这段时间日程很密，但很充实。', py: 'Yuèmò gōngsī fā měijīn jiǎngjīn, wǒ mèngjiàn zìjǐ ná dào le. Zhè duàn shíjiān rìchéng hěn mì, dàn hěn chōngshí.', vi: 'Cuối tháng công ty phát thưởng bằng đô la Mỹ, tôi mơ thấy mình nhận được. Dạo này lịch khá dày, nhưng rất sung túc.' }
         ] },
-      { point: "内部 — nội bộ",
-        explain: "Dùng 内部 trong ngữ cảnh Phản hồi và sửa sai để diễn đạt: nội bộ.",
+      { point: '别/不要 (cấm đoán)',
+        explain: 'Từ 别 đặt trước động từ để đưa ra mệnh lệnh phủ định, mang ý \'đừng\'. Thể hiện sự cấm đoán hoặc khuyên can.',
         examples: [
-          { zh: "期中过了，期末快到了。公司内部有个面试机会。", py: "Qīzhōng guò le, qīmò kuài dào le. Gōngsī nèibù yǒu ge miànshì jīhuì.", vi: "Giữa kỳ qua rồi, cuối kỳ sắp tới. Trong nội bộ công ty có một cơ hội phỏng vấn." }
+          { zh: '别闹了，我们一起拍照吧。', py: 'Bié nào le, wǒmen yìqǐ pāizhào ba.', vi: 'Đừng làm ồn nữa, chúng ta chụp ảnh chung đi.' }
         ] }
     ],
     steps: [
@@ -2020,20 +2003,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "率先 — đi đầu",
-        explain: "Dùng 率先 trong ngữ cảnh Cân bằng học và làm để diễn đạt: đi đầu.",
+      { point: '别/不要 — cấm đoán: đừng',
+        explain: 'Cấu trúc \'别 + Động từ\' dùng để ngăn cản hoặc khuyên bảo người khác không nên làm gì. \'别\' đứng trước động từ, mang sắc thái thân mật, thường dùng trong khẩu ngữ.',
         examples: [
-          { zh: "实习和学习要平衡，我率先报名了志愿活动。", py: "Shíxí hé xuéxí yào pínghéng, wǒ shuàixiān bàomíng le zhìyuàn huódòng.", vi: "Thực tập và học hành phải cân bằng, tớ đi đầu đăng ký hoạt động tình nguyện." }
-        ] },
-      { point: "食堂 — nhà ăn",
-        explain: "Dùng 食堂 trong ngữ cảnh Cân bằng học và làm để diễn đạt: nhà ăn.",
-        examples: [
-          { zh: "我们去食堂喝点汽水、酸奶，顺便聊聊。", py: "Wǒmen qù shítáng hē diǎn qìshuǐ, suānnǎi, shùnbiàn liáoliáo.", vi: "Tụi mình ra căng-tin uống chút nước ngọt, sữa chua, tiện thể nói chuyện." }
-        ] },
-      { point: "穷人 — người nghèo",
-        explain: "Dùng 穷人 trong ngữ cảnh Cân bằng học và làm để diễn đạt: người nghèo.",
-        examples: [
-          { zh: "活动是帮助穷人，送他们日用品，别用太多塑料。", py: "Huódòng shì bāngzhù qióngrén, sòng tāmen rìyòngpǐn, bié yòng tài duō sùliào.", vi: "Hoạt động là giúp người nghèo, tặng họ đồ dùng, đừng dùng quá nhiều nhựa." }
+          { zh: '活动是帮助穷人，送他们日用品，别用太多塑料。', py: 'Huódòng shì bāngzhù qióngrén, sòng tāmen rìyòngpǐn, bié yòng tài duō sùliào.', vi: 'Hoạt động là giúp người nghèo, tặng họ đồ dùng, đừng dùng quá nhiều nhựa.' }
         ] }
     ],
     steps: [
@@ -2165,20 +2138,22 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "通知书 — giấy thông báo",
-        explain: "Dùng 通知书 trong ngữ cảnh Quyết định quan trọng để diễn đạt: giấy thông báo.",
+      { point: '让/叫/使 câu khiến — khiến/để/cho (cấu trúc cầu khiến)',
+        explain: 'Dùng \'让\' để diễn đạt \'khiến cho, để cho ai làm gì\'. Chủ ngữ (người/sự việc) + 让 + tân ngữ (người) + động từ/cụm động từ.',
         examples: [
-          { zh: "我收到一封通知书，让我做一个重要决定。", py: "Wǒ shōudào yì fēng tōngzhīshū, ràng wǒ zuò yí ge zhòngyào juédìng.", vi: "Tôi nhận được một giấy thông báo, khiến tôi phải đưa ra quyết định quan trọng." }
+          { zh: '我收到一封通知书，让我做一个重要决定。', py: 'Wǒ shōudào yì fēng tōngzhīshū, ràng wǒ zuò yí ge zhòngyào juédìng.', vi: 'Tôi nhận được một giấy thông báo, khiến tôi phải đưa ra quyết định quan trọng.' },
+          { zh: '这让我想起童年，我们一起吃西瓜、挑选玩具的日子。', py: 'Zhè ràng wǒ xiǎngqǐ tóngnián, wǒmen yìqǐ chī xīguā, tiāoxuǎn wánjù de rìzi.', vi: 'Điều này khiến tớ nhớ tuổi thơ, những ngày cùng ăn dưa hấu, chọn đồ chơi.' }
         ] },
-      { point: "无法 — không thể",
-        explain: "Dùng 无法 trong ngữ cảnh Quyết định quan trọng để diễn đạt: không thể.",
+      { point: '别/不要 (cấm đoán) — đừng/không được (mệnh lệnh phủ định)',
+        explain: '\'别\' đứng trước động từ để ra mệnh lệnh phủ định, yêu cầu ai đó không làm việc gì. Thường dùng trong văn nói.',
         examples: [
-          { zh: "我投入了很多努力，无法马上放弃。", py: "Wǒ tóurù le hěn duō nǔlì, wúfǎ mǎshàng fàngqì.", vi: "Em đã đầu tư rất nhiều công sức, không thể từ bỏ ngay được." }
+          { zh: '别急着投，先停下想清楚。这关系到你的未来，机会无限。', py: 'Bié jízhe tóu, xiān tíngxià xiǎng qīngchu. Zhè guānxì dào nǐ de wèilái, jīhuì wúxiàn.', vi: 'Đừng vội nộp, dừng lại nghĩ cho rõ. Việc này liên quan đến tương lai của em, cơ hội vô hạn.' },
+          { zh: '请别吸烟，会让空气质量下降。', py: 'Qǐng bié xīyān, huì ràng kōngqì zhìliàng xiàjiàng.', vi: 'Xin đừng hút thuốc, sẽ làm chất lượng không khí giảm xuống.' }
         ] },
-      { point: "投入 — đầu tư vào",
-        explain: "Dùng 投入 trong ngữ cảnh Quyết định quan trọng để diễn đạt: đầu tư vào.",
+      { point: '把/被 câu — câu chữ \'把\' (đem, làm gì với tân ngữ)',
+        explain: 'Câu chữ \'把\' nhấn mạnh sự tác động của chủ ngữ lên tân ngữ. Cấu trúc: Chủ ngữ + 把 + tân ngữ + động từ + thành phần bổ ngữ.',
         examples: [
-          { zh: "我投入了很多努力，无法马上放弃。", py: "Wǒ tóurù le hěn duō nǔlì, wúfǎ mǎshàng fàngqì.", vi: "Em đã đầu tư rất nhiều công sức, không thể từ bỏ ngay được." }
+          { zh: '工作途中要看外汇行情，王经理会教你。把网址贴在电脑上。', py: 'Gōngzuò túzhōng yào kàn wàihuì hángqíng, Wáng jīnglǐ huì jiāo nǐ. Bǎ wǎngzhǐ tiē zài diànnǎo shàng.', vi: 'Trong quá trình làm việc cần xem tỷ giá ngoại hối, giám đốc Vương sẽ dạy em. Dán địa chỉ web lên máy tính.' }
         ] }
     ],
     steps: [
@@ -2312,20 +2287,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "选择 — lựa chọn",
-        explain: "Dùng 选择 trong ngữ cảnh Trưởng thành hơn để diễn đạt: lựa chọn.",
+      { point: '虽然…但是…',
+        explain: 'Cấu trúc \'虽然 A, 但是 B\' diễn tả sự nhượng bộ: mặc dù A nhưng B. \'虽然\' có thể đứng trước hoặc sau chủ ngữ, \'但是\' thường dẫn mệnh đề chính, nhấn mạnh kết quả trái ngược với điều kiện A.',
         examples: [
-          { zh: "你成长了不少。一般来说，年轻人要学会选择。", py: "Nǐ chéngzhǎng le bù shǎo. Yìbān láishuō, niánqīngrén yào xuéhuì xuǎnzé.", vi: "Em trưởng thành nhiều rồi. Nói chung, người trẻ phải học cách lựa chọn." }
+          { zh: '我们引进了先进设备，资源虽然有限，但成果在预期以内。', py: 'Wǒmen yǐnjìn le xiānjìn shèbèi, zīyuán suīrán yǒuxiàn, dàn chéngguǒ zài yùqī yǐnèi.', vi: 'Chúng tôi nhập thiết bị tiên tiến, tuy nguồn lực có hạn, nhưng thành quả nằm trong dự kiến.' }
         ] },
-      { point: "相片 — ảnh",
-        explain: "Dùng 相片 trong ngữ cảnh Trưởng thành hơn để diễn đạt: ảnh.",
+      { point: '让 câu khiến',
+        explain: 'Dùng \'让\' + tân ngữ + động từ để diễn tả ý \'khiến/để cho ai đó làm gì\'. Chủ ngữ thường là sự việc hoặc người tác động, khiến tân ngữ thực hiện hành động.',
         examples: [
-          { zh: "我整理行李箱，看到一些旧相片，想起这段日子。", py: "Wǒ zhěnglǐ xínglǐ xiāng, kàndào yìxiē jiù xiàngpiàn, xiǎngqǐ zhè duàn rìzi.", vi: "Tôi sắp xếp vali, thấy mấy tấm ảnh cũ, nhớ lại quãng thời gian này." }
+          { zh: '这次经历在我眼里很珍贵，让我流下眼泪。', py: 'Zhè cì jīnglì zài wǒ yǎn lǐ hěn zhēnguì, ràng wǒ liú xià yǎnlèi.', vi: 'Trải nghiệm này trong mắt em rất quý giá, khiến em rơi nước mắt.' }
         ] },
-      { point: "优良 — ưu tú",
-        explain: "Dùng 优良 trong ngữ cảnh Trưởng thành hơn để diễn đạt: ưu tú.",
+      { point: '过 (kinh nghiệm)',
+        explain: 'Động từ + \'过\' biểu thị từng trải qua hoặc có kinh nghiệm về một hành động trong quá khứ, không nhấn mạnh thời điểm cụ thể. Thường dùng để hỏi hoặc kể về trải nghiệm.',
         examples: [
-          { zh: "公司研制了新型产品，型号很多，质量优良。", py: "Gōngsī yánzhì le xīn xíng chǎnpǐn, xínghào hěn duō, zhìliàng yōuliáng.", vi: "Công ty đã nghiên cứu chế tạo sản phẩm kiểu mới, có nhiều model, chất lượng ưu việt." }
+          { zh: '我参加过亚运会的志愿活动，一直引以为荣。', py: 'Wǒ cānjiā guo Yàyùnhuì de zhìyuàn huódòng, yìzhí yǐn yǐ wéi róng.', vi: 'Tôi từng tham gia hoạt động tình nguyện ở ASIAD, luôn lấy đó làm tự hào.' }
         ] }
     ],
     steps: [
@@ -2452,20 +2427,11 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "战胜 — chiến thắng",
-        explain: "Dùng 战胜 trong ngữ cảnh Nhìn lại chặng đường để diễn đạt: chiến thắng.",
+      { point: '让/叫/使 câu khiến — A + 让/叫/使 + B + Động từ/Cụm động từ (khiến/làm cho/bảo ai làm gì)',
+        explain: 'Cấu trúc cầu khiến dùng \'让\' (cho, để, khiến) diễn tả chủ thể A khiến cho B thực hiện hành động hoặc ở vào trạng thái nào đó. \'让\' mang sắc thái nhẹ nhàng, thể hiện sự cho phép hoặc tác động gián tiếp.',
         examples: [
-          { zh: "实习快结束了。回想之前，你战胜了很多困难。", py: "Shíxí kuài jiéshù le. Huíxiǎng zhīqián, nǐ zhànshèng le hěn duō kùnnán.", vi: "Kỳ thực tập sắp kết thúc. Nhìn lại trước đó, em đã chiến thắng rất nhiều khó khăn." }
-        ] },
-      { point: "之前 — trước đó",
-        explain: "Dùng 之前 trong ngữ cảnh Nhìn lại chặng đường để diễn đạt: trước đó.",
-        examples: [
-          { zh: "实习快结束了。回想之前，你战胜了很多困难。", py: "Shíxí kuài jiéshù le. Huíxiǎng zhīqián, nǐ zhànshèng le hěn duō kùnnán.", vi: "Kỳ thực tập sắp kết thúc. Nhìn lại trước đó, em đã chiến thắng rất nhiều khó khăn." }
-        ] },
-      { point: "作出 — đưa ra",
-        explain: "Dùng 作出 trong ngữ cảnh Nhìn lại chặng đường để diễn đạt: đưa ra.",
-        examples: [
-          { zh: "这段日子让我成长，我自己作出了重要决定。晚上我做了个好梦，梦见未来的自己。明天，新的挑战在等我。", py: "Zhè duàn rìzi ràng wǒ chéngzhǎng, wǒ zìjǐ zuòchū le zhòngyào juédìng. Wǎnshang wǒ zuò le ge hǎo mèng, mèngjiàn wèilái de zìjǐ. Míngtiān, xīn de tiǎozhàn zài děng wǒ.", vi: "Quãng thời gian này giúp tôi trưởng thành, tự mình đưa ra quyết định quan trọng. Tối đó tôi mơ một giấc đẹp, mơ thấy chính mình trong tương lai. Ngày mai, thử thách mới đang đợi tôi." }
+          { zh: '我要战胜自己，让梦想成真。', py: 'Wǒ yào zhànshèng zìjǐ, ràng mèngxiǎng chéngzhēn.', vi: 'Tôi sẽ chiến thắng chính mình, biến giấc mơ thành hiện thực.' },
+          { zh: '这段日子让我成长，我自己作出了重要决定。晚上我做了个好梦，梦见未来的自己。明天，新的挑战在等我。', py: 'Zhè duàn rìzi ràng wǒ chéngzhǎng, wǒ zìjǐ zuòchū le zhòngyào juédìng. Wǎnshang wǒ zuò le ge hǎo mèng, mèngjiàn wèilái de zìjǐ. Míngtiān, xīn de tiǎozhàn zài děng wǒ.', vi: 'Quãng thời gian này giúp tôi trưởng thành, tự mình đưa ra quyết định quan trọng. Tối đó tôi mơ một giấc đẹp, mơ thấy chính mình trong tương lai. Ngày mai, thử thách mới đang đợi tôi.' }
         ] }
     ],
     steps: [
@@ -2589,20 +2555,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "航班 — chuyến bay",
-        explain: "Dùng 航班 trong ngữ cảnh Đồ dùng & thiết bị (1) để diễn đạt: chuyến bay.",
+      { point: '无论/不管…都… — Bất luận… đều…',
+        explain: 'Dùng để nhấn mạnh rằng dù trong hoàn cảnh nào thì kết quả vẫn không thay đổi. Thường đi kèm với từ nghi vấn như "多", "什么" hoặc cấu trúc "A不A".',
         examples: [
-          { zh: "实习结束了，我订了回家的航班，心情很轻松。", py: "Shíxí jiéshù le, wǒ dìng le huí jiā de hángbān, xīnqíng hěn qīngsōng.", vi: "Thực tập xong rồi, tớ đặt vé chuyến bay về nhà, tâm trạng rất thoải mái." }
+          { zh: '无论多忙，我都想和好友聊天。', py: 'Wúlùn duō máng, wǒ dōu xiǎng hé hǎoyǒu liáotiān.', vi: 'Dù bận đến đâu, tớ cũng muốn trò chuyện với bạn thân.' }
         ] },
-      { point: "轻松 — thoải mái",
-        explain: "Dùng 轻松 trong ngữ cảnh Đồ dùng & thiết bị (1) để diễn đạt: thoải mái.",
+      { point: 'A + 让 + B + V (cấu khiến) — A bảo/khiến/để B làm gì',
+        explain: 'Biểu thị ý sai khiến, nhờ vả hoặc cho phép. Chủ thể A tác động khiến B thực hiện hành động V.',
         examples: [
-          { zh: "实习结束了，我订了回家的航班，心情很轻松。", py: "Shíxí jiéshù le, wǒ dìng le huí jiā de hángbān, xīnqíng hěn qīngsōng.", vi: "Thực tập xong rồi, tớ đặt vé chuyến bay về nhà, tâm trạng rất thoải mái." }
+          { zh: '对了，老师让我写报告，反映实习的情况。', py: 'Duìle, lǎoshī ràng wǒ xiě bàogào, fǎnyìng shíxí de qíngkuàng.', vi: 'À đúng rồi, thầy bảo tớ viết báo cáo, phản ánh tình hình thực tập.' }
         ] },
-      { point: "聊天 — trò chuyện",
-        explain: "Dùng 聊天 trong ngữ cảnh Đồ dùng & thiết bị (1) để diễn đạt: trò chuyện.",
+      { point: '别/不要 + V (cấm đoán) — Đừng...',
+        explain: 'Dùng để khuyên nhủ hoặc ngăn cấm ai đó không làm gì. "别" thường dùng trong khẩu ngữ, mang sắc thái nhẹ nhàng hoặc ra lệnh.',
         examples: [
-          { zh: "无论多忙，我都想和好友聊天。", py: "Wúlùn duō máng, wǒ dōu xiǎng hé hǎoyǒu liáotiān.", vi: "Dù bận đến đâu, tớ cũng muốn trò chuyện với bạn thân." }
+          { zh: '谢谢！毛巾、镜子放盒子里，别用太多塑料袋。', py: 'Xièxie! Máojīn, jìngzi fàng hézi lǐ, bié yòng tài duō sùliàodài.', vi: 'Cảm ơn! Khăn mặt, gương để vào hộp, đừng dùng nhiều túi ni lông.' }
         ] }
     ],
     steps: [
@@ -2729,20 +2695,21 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "闹钟 — đồng hồ báo thức",
-        explain: "Dùng 闹钟 trong ngữ cảnh Đồ dùng & thiết bị (2) để diễn đạt: đồng hồ báo thức.",
+      { point: '结果补语 (V + 好/干净/稳/上…) — bổ ngữ kết quả',
+        explain: 'Kết quả bổ ngữ đặt sau động từ để chỉ kết quả của hành động. Ví dụ: \'穿上\' (mặc lên), \'戴好\' (đeo kỹ), \'站稳\' (đứng vững), \'刷干净\' (chà sạch). Cấu trúc thường dùng để miêu tả hành động đạt được một trạng thái cụ thể.',
         examples: [
-          { zh: "闹钟响了，我醒来，外面下雨，得带伞。", py: "Nàozhōng xiǎng le, wǒ xǐnglái, wàimiàn xià yǔ, děi dài sǎn.", vi: "Đồng hồ báo thức kêu, tôi tỉnh dậy, ngoài trời mưa, phải mang ô." }
+          { zh: '谢谢。我穿上外套，戴好眼镜。', py: 'Xièxie. Wǒ chuānshang wàitào, dài hǎo yǎnjìng.', vi: 'Cảm ơn. Tôi mặc áo khoác, đeo kính cho ngay ngắn.' },
+          { zh: '行李有点重，我没法儿一个人提，不过无所谓，慢慢来。鞋上有泥，用刷子刷干净。', py: 'Xíngli yǒudiǎn zhòng, wǒ méifǎr yí ge rén tí, búguò wúsuǒwèi, mànman lái. Xié shàng yǒu ní, yòng shuāzi shuā gānjìng.', vi: 'Hành lý hơi nặng, tôi không thể một mình xách, nhưng không sao, từ từ. Giày dính bùn, dùng bàn chải chải sạch.' }
         ] },
-      { point: "伞 — ô",
-        explain: "Dùng 伞 trong ngữ cảnh Đồ dùng & thiết bị (2) để diễn đạt: ô.",
+      { point: '着 (trạng thái) — trợ từ chỉ trạng thái tiếp diễn',
+        explain: 'Trợ từ \'着\' đặt sau động từ để diễn tả trạng thái kéo dài của sự việc. Ví dụ: \'挂着牌子\' (biển hiệu đang được treo).',
         examples: [
-          { zh: "闹钟响了，我醒来，外面下雨，得带伞。", py: "Nàozhōng xiǎng le, wǒ xǐnglái, wàimiàn xià yǔ, děi dài sǎn.", vi: "Đồng hồ báo thức kêu, tôi tỉnh dậy, ngoài trời mưa, phải mang ô." }
+          { zh: '这家小型咖啡店的盘子很细，门口挂着牌子，用纸吸管。', py: 'Zhè jiā xiǎoxíng kāfēidiàn de pánzi hěn xì, ménkǒu guàzhe páizi, yòng zhǐ xīguǎn.', vi: 'Quán cà phê nhỏ này có những cái đĩa mỏng, ngoài cửa treo bảng, dùng ống hút giấy.' }
         ] },
-      { point: "在于 — ở chỗ",
-        explain: "Dùng 在于 trong ngữ cảnh Đồ dùng & thiết bị (2) để diễn đạt: ở chỗ.",
+      { point: '别/不要 (cấm đoán) — đừng/không nên',
+        explain: 'Từ \'别\' hoặc \'不要\' được đặt trước động từ để đưa ra lời khuyên ngăn hoặc cấm đoán ai đó làm việc gì. Ví dụ: \'别轻易放弃\' (đừng dễ dàng từ bỏ).',
         examples: [
-          { zh: "成功在于坚持，别轻易放弃。", py: "Chénggōng zàiyú jiānchí, bié qīngyì fàngqì.", vi: "Thành công nằm ở sự kiên trì, đừng dễ dàng bỏ cuộc." }
+          { zh: '成功在于坚持，别轻易放弃。', py: 'Chénggōng zàiyú jiānchí, bié qīngyì fàngqì.', vi: 'Thành công nằm ở sự kiên trì, đừng dễ dàng bỏ cuộc.' }
         ] }
     ],
     steps: [
@@ -2863,20 +2830,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "百货 — bách hóa",
-        explain: "Dùng 百货 trong ngữ cảnh Cơ thể & cảm giác (1) để diễn đạt: bách hóa.",
+      { point: '着 (trạng thái) — động từ + 着 chỉ trạng thái đang tiếp diễn',
+        explain: 'Được dùng sau động từ để biểu thị trạng thái đang duy trì hoặc tiếp diễn của hành động, thường không mang ý nghĩa chủ động.',
         examples: [
-          { zh: "回家前我去百货商店办事，正好有促销。", py: "Huí jiā qián wǒ qù bǎihuò shāngdiàn bànshì, zhènghǎo yǒu cùxiāo.", vi: "Trước khi về nhà tôi đến trung tâm bách hóa lo việc, vừa hay có khuyến mãi." }
+          { zh: '那个店员真帅，戴着耳机。货架后头有二手书，价格便宜。', py: 'Nàge diànyuán zhēn shuài, dàizhe ěrjī. Huòjià hòutou yǒu èrshǒu shū, jiàgé piányi.', vi: 'Nhân viên kia đẹp trai ghê, đeo tai nghe. Sau kệ hàng có sách cũ, giá rẻ.' }
         ] },
-      { point: "促销 — khuyến mãi",
-        explain: "Dùng 促销 trong ngữ cảnh Cơ thể & cảm giác (1) để diễn đạt: khuyến mãi.",
+      { point: '得 (bổ ngữ trình độ) — V + 得 + tính từ/cụm tính từ',
+        explain: 'Cấu trúc này dùng để mô tả mức độ, kết quả của hành động. Phần sau \'得\' là bổ ngữ chỉ mức độ, trả lời câu hỏi \'như thế nào\'.',
         examples: [
-          { zh: "回家前我去百货商店办事，正好有促销。", py: "Huí jiā qián wǒ qù bǎihuò shāngdiàn bànshì, zhènghǎo yǒu cùxiāo.", vi: "Trước khi về nhà tôi đến trung tâm bách hóa lo việc, vừa hay có khuyến mãi." }
+          { zh: '停车场在地面，一辆车在倒车。公交上扶手摆动，门口有位保安像个兵，站得很直。', py: 'Tíngchēchǎng zài dìmiàn, yí liàng chē zài dàochē. Gōngjiāo shàng fúshǒu bǎidòng, ménkǒu yǒu wèi bǎo\'ān xiàng ge bīng, zhàn de hěn zhí.', vi: 'Bãi xe ở mặt đất, một chiếc xe đang lùi. Trên xe buýt tay vịn đung đưa; ở cửa có anh bảo vệ như người lính, đứng rất thẳng.' }
         ] },
-      { point: "皮肤 — da (người)",
-        explain: "Dùng 皮肤 trong ngữ cảnh Cơ thể & cảm giác (1) để diễn đạt: da (người).",
+      { point: '虽然…却… — tuy… nhưng… (dạng giản lược của 虽然…但是/却)',
+        explain: '\'虽然\' (hoặc \'虽\') dẫn mệnh đề nhượng bộ, \'却\' dùng ở mệnh đề chính để biểu thị sự tương phản, nhấn mạnh điều ngược với mong đợi.',
         examples: [
-          { zh: "我买了牙膏，皮肤干，也买了护肤品。", py: "Wǒ mǎi le yágāo, pífū gān, yě mǎi le hùfūpǐn.", vi: "Tôi mua kem đánh răng, da khô nên mua cả mỹ phẩm dưỡng da." }
+          { zh: '价格虽贵，我却没有动摇。', py: 'Jiàgé suī guì, wǒ què méiyǒu dòngyáo.', vi: 'Tuy giá đắt, nhưng tôi không dao động.' }
         ] }
     ],
     steps: [
@@ -3005,20 +2972,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "快递 — chuyển phát nhanh",
-        explain: "Dùng 快递 trong ngữ cảnh Cơ thể & cảm giác (2) để diễn đạt: chuyển phát nhanh.",
+      { point: '着 (trạng thái) — trợ từ động thái biểu thị trạng thái tiếp diễn',
+        explain: 'Đặt sau động từ để diễn tả trạng thái hoặc kết quả của hành động đang được duy trì, thường dùng trong câu miêu tả.',
         examples: [
-          { zh: "我收到一个快递，手里拿着箱子。", py: "Wǒ shōudào yí ge kuàidì, shǒu lǐ názhe xiāngzi.", vi: "Tôi nhận một bưu kiện, trên tay cầm cái thùng." }
+          { zh: '我收到一个快递，手里拿着箱子。', py: 'Wǒ shōudào yí ge kuàidì, shǒu lǐ názhe xiāngzi.', vi: 'Tôi nhận một bưu kiện, trên tay cầm cái thùng.' }
         ] },
-      { point: "轮椅 — xe lăn",
-        explain: "Dùng 轮椅 trong ngữ cảnh Cơ thể & cảm giác (2) để diễn đạt: xe lăn.",
+      { point: 'V + 完 (kết quả bổ ngữ) — làm xong',
+        explain: 'Kết hợp động từ với \'完\' diễn tả hành động đã hoàn thành, nhấn mạnh kết quả kết thúc.',
         examples: [
-          { zh: "前头有位坐轮椅的老人，我们帮他吧。", py: "Qiántou yǒu wèi zuò lúnyǐ de lǎorén, wǒmen bāng tā ba.", vi: "Phía trước có một cụ già ngồi xe lăn, mình giúp cụ nhé." }
+          { zh: '好。帮完之后，我们继续逛。', py: 'Hǎo. Bāng wán zhīhòu, wǒmen jìxù guàng.', vi: 'Được. Giúp xong rồi, mình tiếp tục đi dạo.' }
         ] },
-      { point: "刷牙 — đánh răng",
-        explain: "Dùng 刷牙 trong ngữ cảnh Cơ thể & cảm giác (2) để diễn đạt: đánh răng.",
+      { point: '让 (câu khiến) — khiến, để cho',
+        explain: 'Dùng \'让\' để biểu thị sai khiến hoặc tác động khiến đối tượng thực hiện hành động hoặc có trạng thái mới. Cấu trúc: A + 让 + B + Động từ/Tính từ.',
         examples: [
-          { zh: "早上我刷牙，用新牙刷，张开嘴巴。我牙有点不舒服，得看牙医。", py: "Zǎoshang wǒ shuā yá, yòng xīn yáshuā, zhāngkāi zuǐba. Wǒ yá yǒudiǎn bù shūfu, děi kàn yáyī.", vi: "Sáng tôi đánh răng, dùng bàn chải mới, há miệng ra. Răng tôi hơi khó chịu, phải đi khám nha." }
+          { zh: '我戴上帽子，挑了件衣服。运动让我的胸部和背更有力。', py: 'Wǒ dài shàng màozi, tiāo le jiàn yīfu. Yùndòng ràng wǒ de xiōngbù hé bèi gèng yǒulì.', vi: 'Tôi đội mũ, chọn một bộ đồ. Vận động khiến ngực và lưng tôi khỏe hơn.' }
         ] }
     ],
     steps: [
@@ -3143,20 +3110,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "尝 — nếm",
-        explain: "Dùng 尝 trong ngữ cảnh Ẩm thực & mời khách để diễn đạt: nếm.",
+      { point: 'V + 多 (kết quả bổ ngữ) — thêm quá nhiều, làm quá mức',
+        explain: 'Động từ + 多 biểu thị kết quả của hành động là quá mức. Thường dùng kèm 了 để chỉ sự thay đổi hoặc hoàn thành. 多 đóng vai trò bổ ngữ kết quả, cho biết hành động dẫn đến dư thừa.',
         examples: [
-          { zh: "妈妈烧了一桌菜，你尝尝。", py: "Māma shāo le yì zhuō cài, nǐ chángchang.", vi: "Mẹ nấu cả mâm cơm, con nếm thử đi." }
-        ] },
-      { point: "套餐 — suất ăn",
-        explain: "Dùng 套餐 trong ngữ cảnh Ẩm thực & mời khách để diễn đạt: suất ăn.",
-        examples: [
-          { zh: "我们点了一个套餐，很划算。最近我胖了，要注意体重。", py: "Wǒmen diǎn le yí ge tàocān, hěn huásuàn. Zuìjìn wǒ pàng le, yào zhùyì tǐzhòng.", vi: "Bọn tớ gọi một suất combo, rất hời. Dạo này tớ mập lên, phải để ý cân nặng." }
-        ] },
-      { point: "兴趣 — hứng thú",
-        explain: "Dùng 兴趣 trong ngữ cảnh Ẩm thực & mời khách để diễn đạt: hứng thú.",
-        examples: [
-          { zh: "我对做菜很有兴趣，还想学编中国结。", py: "Wǒ duì zuò cài hěn yǒu xìngqù, hái xiǎng xué biān Zhōngguó jié.", vi: "Con rất thích nấu ăn, còn muốn học thắt nút Trung Hoa." }
+          { zh: '这道菜有点辣，那道有点咸，可能加多了盐。', py: 'Zhè dào cài yǒudiǎn là, nà dào yǒudiǎn xián, kěnéng jiā duō le yán.', vi: 'Món này hơi cay, món kia hơi mặn, chắc cho nhiều muối quá.' }
         ] }
     ],
     steps: [
@@ -3293,20 +3250,21 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "暑假 — kỳ nghỉ hè",
-        explain: "Dùng 暑假 trong ngữ cảnh Thời gian & lịch trình để diễn đạt: kỳ nghỉ hè.",
+      { point: '不管…都… — bất kể… đều…',
+        explain: 'Cấu trúc \'不管…都…\' dùng để diễn tả \'dù có thế nào đi nữa cũng…\'. \'不管\' đứng trước một câu hỏi hoặc các lựa chọn, \'都\' đứng trước vế kết quả.',
         examples: [
-          { zh: "放暑假了！我想趁暑假积累经验。", py: "Fàng shǔjià le! Wǒ xiǎng chèn shǔjià jīlěi jīngyàn.", vi: "Nghỉ hè rồi! Con muốn nhân kỳ nghỉ hè tích lũy kinh nghiệm." }
+          { zh: '不管你多大年龄，都是我的孩子。来，妈妈给你买了巧克力。哎呀，时间过得真快！', py: 'Bùguǎn nǐ duō dà niánlíng, dōu shì wǒ de háizi. Lái, māma gěi nǐ mǎi le qiǎokèlì. Āiyā, shíjiān guò de zhēn kuài!', vi: 'Bất kể con bao nhiêu tuổi, vẫn là con của mẹ. Lại đây, mẹ mua sô-cô-la cho con. Ôi chao, thời gian trôi nhanh thật!' }
         ] },
-      { point: "积累 — tích lũy",
-        explain: "Dùng 积累 trong ngữ cảnh Thời gian & lịch trình để diễn đạt: tích lũy.",
+      { point: '别/不要 (cấm đoán) — đừng/không được',
+        explain: '\'别\' hoặc \'不要\' đặt trước động từ để đưa ra lời khuyên ngăn cấm hoặc yêu cầu ai đó không làm gì.',
         examples: [
-          { zh: "放暑假了！我想趁暑假积累经验。", py: "Fàng shǔjià le! Wǒ xiǎng chèn shǔjià jīlěi jīngyàn.", vi: "Nghỉ hè rồi! Con muốn nhân kỳ nghỉ hè tích lũy kinh nghiệm." }
+          { zh: '寒假和暑假都别忘了回家。你下个月走还是上个月就定了？', py: 'Hánjià hé shǔjià dōu bié wàng le huí jiā. Nǐ xià ge yuè zǒu háishì shàng ge yuè jiù dìng le?', vi: 'Nghỉ đông và nghỉ hè đều đừng quên về nhà. Con đi tháng sau hay tháng trước đã định rồi?' },
+          { zh: '上个月我刚结束实习，这个月底再决定，别迟到误了报名。', py: 'Shàng ge yuè wǒ gāng jiéshù shíxí, zhège yuèdǐ zài juédìng, bié chídào wù le bàomíng.', vi: 'Tháng trước con vừa xong thực tập, cuối tháng này quyết định, đừng trễ lỡ mất đăng ký.' }
         ] },
-      { point: "季节 — mùa",
-        explain: "Dùng 季节 trong ngữ cảnh Thời gian & lịch trình để diễn đạt: mùa.",
+      { point: '得 (bổ ngữ trình độ) — đến mức...',
+        explain: '\'V + 得 + adj\' dùng để miêu tả mức độ của hành động. \'得\' là bổ ngữ trình độ cho biết hành động (V) dẫn đến trạng thái (adj) như thế nào.',
         examples: [
-          { zh: "一年四个季节，我最喜欢春季和秋季。夏季太热，冬季太冷。", py: "Yì nián sì ge jìjié, wǒ zuì xǐhuan chūnjì hé qiūjì. Xiàjì tài rè, dōngjì tài lěng.", vi: "Một năm bốn mùa, tớ thích nhất mùa xuân và mùa thu. Mùa hè quá nóng, mùa đông quá lạnh." }
+          { zh: '不管你多大年龄，都是我的孩子。来，妈妈给你买了巧克力。哎呀，时间过得真快！', py: 'Bùguǎn nǐ duō dà niánlíng, dōu shì wǒ de háizi. Lái, māma gěi nǐ mǎi le qiǎokèlì. Āiyā, shíjiān guò de zhēn kuài!', vi: 'Bất kể con bao nhiêu tuổi, vẫn là con của mẹ. Lại đây, mẹ mua sô-cô-la cho con. Ôi chao, thời gian trôi nhanh thật!' }
         ] }
     ],
     steps: [
@@ -3429,20 +3387,15 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "兴奋 — hứng khởi",
-        explain: "Dùng 兴奋 trong ngữ cảnh Cảm xúc & suy nghĩ để diễn đạt: hứng khởi.",
+      { point: '别/不要 — cấm đoán, khuyên đừng làm gì',
+        explain: 'Dùng trước động từ để ngăn cấm hoặc khuyên ai không nên làm việc gì. \'别\' thường dùng trong khẩu ngữ, \'不要\' trang trọng hơn.',
         examples: [
-          { zh: "实习结束我很兴奋，但也有点烦恼，不知道下一步怎么走。", py: "Shíxí jiéshù wǒ hěn xīngfèn, dàn yě yǒudiǎn fánnǎo, bù zhīdào xià yí bù zěnme zǒu.", vi: "Xong thực tập con rất phấn khích, nhưng cũng hơi phiền lòng, không biết bước tiếp theo thế nào." }
+          { zh: '别着急，也别担心，冷静考虑一下。', py: 'Bié zháojí, yě bié dānxīn, lěngjìng kǎolǜ yíxià.', vi: 'Đừng sốt ruột, cũng đừng lo, bình tĩnh suy nghĩ một chút.' }
         ] },
-      { point: "冷静 — bình tĩnh",
-        explain: "Dùng 冷静 trong ngữ cảnh Cảm xúc & suy nghĩ để diễn đạt: bình tĩnh.",
+      { point: '可能补语 V + 不 + 好 — không thể làm tốt',
+        explain: 'Dạng phủ định của bổ ngữ khả năng, diễn tả không có khả năng đạt được kết quả. Ở đây \'做不好\' nghĩa là không thể làm tốt.',
         examples: [
-          { zh: "别着急，也别担心，冷静考虑一下。", py: "Bié zháojí, yě bié dānxīn, lěngjìng kǎolǜ yíxià.", vi: "Đừng sốt ruột, cũng đừng lo, bình tĩnh suy nghĩ một chút." }
-        ] },
-      { point: "误会 — hiểu lầm",
-        explain: "Dùng 误会 trong ngữ cảnh Cảm xúc & suy nghĩ để diễn đạt: hiểu lầm.",
-        examples: [
-          { zh: "我有点害羞，怕做不好。之前和小美有个误会，我很后悔。", py: "Wǒ yǒudiǎn hàixiū, pà zuò bù hǎo. Zhīqián hé Xiǎoměi yǒu ge wùhuì, wǒ hěn hòuhuǐ.", vi: "Con hơi ngại, sợ làm không tốt. Trước đó với Tiểu Mỹ có hiểu lầm, con rất hối hận." }
+          { zh: '我有点害羞，怕做不好。之前和小美有个误会，我很后悔。', py: 'Wǒ yǒudiǎn hàixiū, pà zuò bù hǎo. Zhīqián hé Xiǎoměi yǒu ge wùhuì, wǒ hěn hòuhuǐ.', vi: 'Con hơi ngại, sợ làm không tốt. Trước đó với Tiểu Mỹ có hiểu lầm, con rất hối hận.' }
         ] }
     ],
     steps: [
@@ -3560,20 +3513,15 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "研究生 — học viên cao học",
-        explain: "Dùng 研究生 trong ngữ cảnh Học thuật & ngôn ngữ để diễn đạt: học viên cao học.",
+      { point: '结果补语：V + 在',
+        explain: 'Động từ + \'在\' + địa điểm: biểu thị thông qua động tác khiến sự vật tồn tại ở một nơi nào đó. \'在\' là bổ ngữ kết quả, đứng ngay sau động từ.',
         examples: [
-          { zh: "一位教授说你适合读研究生，将来可以考硕士。", py: "Yí wèi jiàoshòu shuō nǐ shìhé dú yánjiūshēng, jiānglái kěyǐ kǎo shuòshì.", vi: "Một giáo sư nói em hợp học cao học, sau này có thể thi thạc sĩ." }
+          { zh: '我的文章登在报纸上了。', py: 'Wǒ de wénzhāng dēng zài bàozhǐ shàng le.', vi: 'Bài viết của tôi được đăng lên báo.' }
         ] },
-      { point: "硕士 — thạc sĩ",
-        explain: "Dùng 硕士 trong ngữ cảnh Học thuật & ngôn ngữ để diễn đạt: thạc sĩ.",
+      { point: '趋向补语：V + 出来',
+        explain: 'Động từ + \'出来\': biểu thị hướng của hành động từ trong ra ngoài hoặc sự xuất hiện của kết quả. \'出来\' là bổ ngữ xu hướng, khi có tân ngữ, tân ngữ thường đặt giữa \'出\' và \'来\'.',
         examples: [
-          { zh: "一位教授说你适合读研究生，将来可以考硕士。", py: "Yí wèi jiàoshòu shuō nǐ shìhé dú yánjiūshēng, jiānglái kěyǐ kǎo shuòshì.", vi: "Một giáo sư nói em hợp học cao học, sau này có thể thi thạc sĩ." }
-        ] },
-      { point: "语法 — ngữ pháp",
-        explain: "Dùng 语法 trong ngữ cảnh Học thuật & ngôn ngữ để diễn đạt: ngữ pháp.",
-        examples: [
-          { zh: "作为毕业生，你的语法和口语都进步了。", py: "Zuòwéi bìyèshēng, nǐ de yǔfǎ hé kǒuyǔ dōu jìnbù le.", vi: "Là một sinh viên tốt nghiệp, ngữ pháp và khẩu ngữ của em đều tiến bộ." }
+          { zh: '我刷了一遍课文。比赛的比分出来了，我们赢了，这是大众都关心的事。', py: 'Wǒ shuā le yí biàn kèwén. Bǐsài de bǐfēn chūlái le, wǒmen yíng le, zhè shì dàzhòng dōu guānxīn de shì.', vi: 'Tôi lướt lại bài khóa một lượt. Tỉ số trận đấu có rồi, chúng tôi thắng, đây là chuyện mà đại chúng đều quan tâm.' }
         ] }
     ],
     steps: [
@@ -3693,20 +3641,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "亲戚 — họ hàng",
-        explain: "Dùng 亲戚 trong ngữ cảnh Gia đình & người thân để diễn đạt: họ hàng.",
+      { point: '把 câu',
+        explain: 'Cấu trúc 把 dùng để nhấn mạnh hành động tác động lên tân ngữ và kết quả/vị trí của nó. Cấu trúc: Chủ ngữ + 把 + Tân ngữ + Động từ + Thành phần bổ sung (ở đây là 在 + nơi chốn).',
         examples: [
-          { zh: "今天亲戚们上门，阿姨、大姐都来了。", py: "Jīntiān qīnqi men shàngmén, āyí, dàjiě dōu lái le.", vi: "Hôm nay họ hàng đến nhà, dì và chị cả đều đến." }
-        ] },
-      { point: "阿姨 — dì",
-        explain: "Dùng 阿姨 trong ngữ cảnh Gia đình & người thân để diễn đạt: dì.",
-        examples: [
-          { zh: "今天亲戚们上门，阿姨、大姐都来了。", py: "Jīntiān qīnqi men shàngmén, āyí, dàjiě dōu lái le.", vi: "Hôm nay họ hàng đến nhà, dì và chị cả đều đến." }
-        ] },
-      { point: "夫妻 — vợ chồng",
-        explain: "Dùng 夫妻 trong ngữ cảnh Gia đình & người thân để diễn đạt: vợ chồng.",
-        examples: [
-          { zh: "隔壁那对夫妻也来了吗？", py: "Gébì nà duì fūqī yě lái le ma?", vi: "Cặp vợ chồng nhà bên cũng đến à?" }
+          { zh: '请把亲戚的名字写在括号里。', py: 'Qǐng bǎ qīnqi de míngzi xiě zài kuòhào lǐ.', vi: 'Hãy viết tên người thân vào trong ngoặc.' }
         ] }
     ],
     steps: [
@@ -3820,20 +3758,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "招聘 — tuyển dụng",
-        explain: "Dùng 招聘 trong ngữ cảnh Công việc & nơi chốn để diễn đạt: tuyển dụng.",
+      { point: '结果补语: V + 到',
+        explain: 'Động từ kết hợp với \'到\' để chỉ kết quả đạt được của hành động. \'到\' nhấn mạnh hành động đã đạt tới mục tiêu, thường dùng sau động từ tri giác như \'看\' (nhìn thấy), \'听\' (nghe thấy).',
         examples: [
-          { zh: "公司在招聘，我想申请，能赚点钱。", py: "Gōngsī zài zhāopìn, wǒ xiǎng shēnqǐng, néng zhuàn diǎn qián.", vi: "Công ty đang tuyển dụng, em muốn ứng tuyển, kiếm chút tiền." }
-        ] },
-      { point: "加班 — làm thêm giờ",
-        explain: "Dùng 加班 trong ngữ cảnh Công việc & nơi chốn để diễn đạt: làm thêm giờ.",
-        examples: [
-          { zh: "商务工作常常加班，但能赢得经验。", py: "Shāngwù gōngzuò chángcháng jiābān, dàn néng yíngdé jīngyàn.", vi: "Công việc thương mại thường phải tăng ca, nhưng giành được kinh nghiệm." }
-        ] },
-      { point: "市区 — khu trung tâm",
-        explain: "Dùng 市区 trong ngữ cảnh Công việc & nơi chốn để diễn đạt: khu trung tâm.",
-        examples: [
-          { zh: "市区那栋大楼晚上灯光很美，街道也热闹，居民很多。", py: "Shìqū nà dòng dàlóu wǎnshang dēngguāng hěn měi, jiēdào yě rènao, jūmín hěn duō.", vi: "Tòa cao ốc ở khu trung tâm buổi tối ánh đèn rất đẹp, đường phố cũng nhộn nhịp, cư dân đông." }
+          { zh: '我们一共购买了三本书。路过加油站，看到花园里开花了，真美。', py: 'Wǒmen yígòng gòumǎi le sān běn shū. Lùguò jiāyóuzhàn, kàndào huāyuán lǐ kāihuā le, zhēn měi.', vi: 'Bọn tớ mua tổng cộng ba cuốn sách. Đi ngang trạm xăng, thấy trong vườn hoa nở, đẹp thật.' }
         ] }
     ],
     steps: [
@@ -3963,20 +3891,15 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "打针 — tiêm (mũi tiêm)",
-        explain: "Dùng 打针 trong ngữ cảnh Sức khỏe & đi lại để diễn đạt: tiêm (mũi tiêm).",
+      { point: '别/不要 (cấm đoán) — cấu trúc: 别/不要 + Động từ',
+        explain: 'Dùng để khuyên ngăn hoặc cấm đoán ai đó không làm gì. \'别\' mang sắc thái khẩu ngữ, thường dùng trong giao tiếp hàng ngày.',
         examples: [
-          { zh: "护士先给你打针，用一根针就好。别担心，这个病好治，要有耐心。", py: "Hùshi xiān gěi nǐ dǎzhēn, yòng yì gēn zhēn jiù hǎo. Bié dānxīn, zhège bìng hǎo zhì, yào yǒu nàixīn.", vi: "Y tá tiêm cho cháu trước, dùng một mũi kim là được. Đừng lo, bệnh này dễ chữa, phải kiên nhẫn." }
+          { zh: '护士先给你打针，用一根针就好。别担心，这个病好治，要有耐心。', py: 'Hùshi xiān gěi nǐ dǎzhēn, yòng yì gēn zhēn jiù hǎo. Bié dānxīn, zhège bìng hǎo zhì, yào yǒu nàixīn.', vi: 'Y tá tiêm cho cháu trước, dùng một mũi kim là được. Đừng lo, bệnh này dễ chữa, phải kiên nhẫn.' }
         ] },
-      { point: "护士 — y tá",
-        explain: "Dùng 护士 trong ngữ cảnh Sức khỏe & đi lại để diễn đạt: y tá.",
+      { point: '结果补语 (V + 到) — làm được, đạt kết quả',
+        explain: 'Động từ + \'到\' biểu thị kết quả thành công của hành động, nhấn mạnh rằng hành động đã đạt được mục đích hoặc có kết quả mong muốn.',
         examples: [
-          { zh: "护士先给你打针，用一根针就好。别担心，这个病好治，要有耐心。", py: "Hùshi xiān gěi nǐ dǎzhēn, yòng yì gēn zhēn jiù hǎo. Bié dānxīn, zhège bìng hǎo zhì, yào yǒu nàixīn.", vi: "Y tá tiêm cho cháu trước, dùng một mũi kim là được. Đừng lo, bệnh này dễ chữa, phải kiên nhẫn." }
-        ] },
-      { point: "耐心 — nhẫn nại",
-        explain: "Dùng 耐心 trong ngữ cảnh Sức khỏe & đi lại để diễn đạt: nhẫn nại.",
-        examples: [
-          { zh: "护士先给你打针，用一根针就好。别担心，这个病好治，要有耐心。", py: "Hùshi xiān gěi nǐ dǎzhēn, yòng yì gēn zhēn jiù hǎo. Bié dānxīn, zhège bìng hǎo zhì, yào yǒu nàixīn.", vi: "Y tá tiêm cho cháu trước, dùng một mũi kim là được. Đừng lo, bệnh này dễ chữa, phải kiên nhẫn." }
+          { zh: '我拿到了奖学金，可以继续读书。', py: 'Wǒ ná dào le jiǎngxuéjīn, kěyǐ jìxù dú shū.', vi: 'Tôi giành được học bổng, có thể học tiếp.' }
         ] }
     ],
     steps: [
@@ -4096,20 +4019,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "森林 — rừng",
-        explain: "Dùng 森林 trong ngữ cảnh Đọc thêm: Thiên nhiên (1) để diễn đạt: rừng.",
+      { point: '得 (bổ ngữ trình độ) — trợ từ kết nối trình độ',
+        explain: 'Đặt sau động từ hoặc tính từ để nối với một mệnh đề mô tả mức độ hoặc kết quả, diễn tả trạng thái đạt đến mức nào đó.',
         examples: [
-          { zh: "公园里有一片森林，很多植物。", py: "Gōngyuán lǐ yǒu yí piàn sēnlín, hěn duō zhíwù.", vi: "Trong công viên có một khu rừng, rất nhiều cây cối." }
-        ] },
-      { point: "植物 — thực vật",
-        explain: "Dùng 植物 trong ngữ cảnh Đọc thêm: Thiên nhiên (1) để diễn đạt: thực vật.",
-        examples: [
-          { zh: "公园里有一片森林，很多植物。", py: "Gōngyuán lǐ yǒu yí piàn sēnlín, hěn duō zhíwù.", vi: "Trong công viên có một khu rừng, rất nhiều cây cối." }
-        ] },
-      { point: "海洋 — đại dương",
-        explain: "Dùng 海洋 trong ngữ cảnh Đọc thêm: Thiên nhiên (1) để diễn đạt: đại dương.",
-        examples: [
-          { zh: "长江是中国最长的江，最后流入海洋。", py: "Chángjiāng shì Zhōngguó zuì cháng de jiāng, zuìhòu liú rù hǎiyáng.", vi: "Trường Giang là con sông dài nhất Trung Quốc, cuối cùng đổ ra đại dương." }
+          { zh: '张爷爷的孙子在树林里玩，远处动物园里有狮子，他累得睡着了。', py: 'Zhāng yéye de sūnzi zài shùlín lǐ wán, yuǎnchù dòngwùyuán lǐ yǒu shīzi, tā lèi de shuìzháo le.', vi: 'Cháu trai của ông Trương chơi trong rừng nhỏ, đằng xa sở thú có sư tử, cậu bé mệt đến ngủ thiếp đi.' }
         ] }
     ],
     steps: [
@@ -4228,20 +4141,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "鲜花 — hoa tươi",
-        explain: "Dùng 鲜花 trong ngữ cảnh Đọc thêm: Thiên nhiên & thời tiết để diễn đạt: hoa tươi.",
+      { point: '着 (trạng thái) — V + 着',
+        explain: 'Đặt sau động từ để biểu thị trạng thái tiếp diễn của hành động hoặc kết quả, thường dùng trong câu miêu tả khung cảnh.',
         examples: [
-          { zh: "窗台上摆着鲜花，我在窗子边种植小植物。", py: "Chuāngtái shàng bǎizhe xiānhuā, wǒ zài chuāngzi biān zhòngzhí xiǎo zhíwù.", vi: "Trên bệ cửa sổ bày hoa tươi, tôi trồng cây nhỏ bên cửa sổ." }
-        ] },
-      { point: "种植 — trồng trọt",
-        explain: "Dùng 种植 trong ngữ cảnh Đọc thêm: Thiên nhiên & thời tiết để diễn đạt: trồng trọt.",
-        examples: [
-          { zh: "窗台上摆着鲜花，我在窗子边种植小植物。", py: "Chuāngtái shàng bǎizhe xiānhuā, wǒ zài chuāngzi biān zhòngzhí xiǎo zhíwù.", vi: "Trên bệ cửa sổ bày hoa tươi, tôi trồng cây nhỏ bên cửa sổ." }
-        ] },
-      { point: "干燥 — khô ráo",
-        explain: "Dùng 干燥 trong ngữ cảnh Đọc thêm: Thiên nhiên & thời tiết để diễn đạt: khô ráo.",
-        examples: [
-          { zh: "冬天又冷又干燥，到处是冰和冰雪。", py: "Dōngtiān yòu lěng yòu gānzào, dàochù shì bīng hé bīngxuě.", vi: "Mùa đông vừa lạnh vừa khô, khắp nơi là băng và băng tuyết." }
+          { zh: '窗台上摆着鲜花，我在窗子边种植小植物。', py: 'Chuāngtái shàng bǎizhe xiānhuā, wǒ zài chuāngzi biān zhòngzhí xiǎo zhíwù.', vi: 'Trên bệ cửa sổ bày hoa tươi, tôi trồng cây nhỏ bên cửa sổ.' }
         ] }
     ],
     steps: [
@@ -4366,20 +4269,22 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "猴子 — con khỉ",
-        explain: "Dùng 猴子 trong ngữ cảnh Đọc thêm: Thế giới động vật (1) để diễn đạt: con khỉ.",
+      { point: '得 (bổ ngữ trình độ) — V + 得 + Adj',
+        explain: 'Cấu trúc Động từ + 得 + Tính từ/Cụm tính từ dùng để diễn tả mức độ hoặc kết quả của hành động, trả lời câu hỏi \'như thế nào\'. Thường có phó từ như 很, 太 để nhấn mạnh.',
         examples: [
-          { zh: "动物园里有猴子和老虎，孩子们打扮得很可爱。", py: "Dòngwùyuán lǐ yǒu hóuzi hé lǎohǔ, háizimen dǎban de hěn kě'ài.", vi: "Sở thú có khỉ và hổ, bọn trẻ ăn mặc rất đáng yêu." }
+          { zh: '动物园里有猴子和老虎，孩子们打扮得很可爱。', py: 'Dòngwùyuán lǐ yǒu hóuzi hé lǎohǔ, háizimen dǎban de hěn kě\'ài.', vi: 'Sở thú có khỉ và hổ, bọn trẻ ăn mặc rất đáng yêu.' },
+          { zh: '老虎吼得太大声，我受不了。', py: 'Lǎohǔ hǒu de tài dàshēng, wǒ shòu bù liǎo.', vi: 'Hổ gầm to quá, tớ chịu không nổi.' }
         ] },
-      { point: "老虎 — hổ",
-        explain: "Dùng 老虎 trong ngữ cảnh Đọc thêm: Thế giới động vật (1) để diễn đạt: hổ.",
+      { point: '可能补语 — V + 不 + 了',
+        explain: 'Cấu trúc \'Động từ + 不 + 了\' biểu thị khả năng không thể hoàn thành hành động hoặc không thể chịu đựng nổi, nhấn mạnh giới hạn của chủ thể.',
         examples: [
-          { zh: "动物园里有猴子和老虎，孩子们打扮得很可爱。", py: "Dòngwùyuán lǐ yǒu hóuzi hé lǎohǔ, háizimen dǎban de hěn kě'ài.", vi: "Sở thú có khỉ và hổ, bọn trẻ ăn mặc rất đáng yêu." }
+          { zh: '老虎吼得太大声，我受不了。', py: 'Lǎohǔ hǒu de tài dàshēng, wǒ shòu bù liǎo.', vi: 'Hổ gầm to quá, tớ chịu không nổi.' }
         ] },
-      { point: "锻炼 — luyện tập",
-        explain: "Dùng 锻炼 trong ngữ cảnh Đọc thêm: Thế giới động vật (1) để diễn đạt: luyện tập.",
+      { point: '把字句 (Câu chữ 把) — Chủ ngữ + 把 + Tân ngữ + Động từ + (thành phần khác)',
+        explain: 'Câu chữ 把 dùng để nhấn mạnh sự xử lý của chủ ngữ làm thay đổi trạng thái hoặc vị trí của đối tượng. Động từ thường đi kèm bổ ngữ chỉ kết quả hoặc phương hướng.',
         examples: [
-          { zh: "弟弟发烧了，不是感冒，而是吃坏了肚子。表姐是法官，平时坚持锻炼。", py: "Dìdi fāshāo le, bú shì gǎnmào, érshì chī huài le dùzi. Biǎojiě shì fǎguān, píngshí jiānchí duànliàn.", vi: "Em trai bị sốt, không phải cảm, mà là ăn hỏng bụng. Chị họ là thẩm phán, bình thường luôn duy trì tập luyện." }
+          { zh: '隔着玻璃看更安全，玻璃把我们和老虎隔开。', py: 'Gézhe bōli kàn gèng ānquán, bōli bǎ wǒmen hé lǎohǔ gékāi.', vi: 'Nhìn qua kính an toàn hơn, kính ngăn cách chúng ta với hổ.' },
+          { zh: '回家把水果放冰箱，发现一只虫子，箱子有点沉。', py: 'Huí jiā bǎ shuǐguǒ fàng bīngxiāng, fāxiàn yì zhī chóngzi, xiāngzi yǒudiǎn chén.', vi: 'Về nhà cho trái cây vào tủ lạnh, phát hiện một con sâu, cái thùng hơi nặng.' }
         ] }
     ],
     steps: [
@@ -4489,20 +4394,20 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "降温 — hạ nhiệt độ",
-        explain: "Dùng 降温 trong ngữ cảnh Đọc thêm: Thế giới động vật (2) để diễn đạt: hạ nhiệt độ.",
+      { point: '把字句 — câu chữ “把”',
+        explain: 'Cấu trúc “把” dùng để nhấn mạnh sự tác động lên đối tượng, thường có dạng: Chủ ngữ + 把 + Tân ngữ + Động từ + (thành phần khác). Hành động gây ra sự thay đổi hoặc kết quả đối với đối tượng.',
         examples: [
-          { zh: "天气降温了，奶奶去乡下疗养。", py: "Tiānqì jiàngwēn le, nǎinai qù xiāngxià liáoyǎng.", vi: "Thời tiết hạ nhiệt, bà về quê dưỡng bệnh." }
+          { zh: '房间在装修，把两个区域隔开了。', py: 'Fángjiān zài zhuāngxiū, bǎ liǎng ge qūyù gékāi le.', vi: 'Căn phòng đang sửa nội thất, ngăn cách hai khu vực ra.' }
         ] },
-      { point: "疗养 — dưỡng bệnh",
-        explain: "Dùng 疗养 trong ngữ cảnh Đọc thêm: Thế giới động vật (2) để diễn đạt: dưỡng bệnh.",
+      { point: '既…又… — vừa… vừa… (đã… lại…)',
+        explain: 'Cấu trúc “既…又…” dùng để nối hai tính chất hoặc hành động cùng tồn tại, nhấn mạnh cả hai đều đúng. Thường đi với tính từ hoặc cụm động từ.',
         examples: [
-          { zh: "天气降温了，奶奶去乡下疗养。", py: "Tiānqì jiàngwēn le, nǎinai qù xiāngxià liáoyǎng.", vi: "Thời tiết hạ nhiệt, bà về quê dưỡng bệnh." }
+          { zh: '医生说这种药物既安全又有效。', py: 'Yīshēng shuō zhè zhǒng yàowù jì ānquán yòu yǒuxiào.', vi: 'Bác sĩ nói loại thuốc này vừa an toàn vừa hiệu quả.' }
         ] },
-      { point: "了解 — hiểu rõ",
-        explain: "Dùng 了解 trong ngữ cảnh Đọc thêm: Thế giới động vật (2) để diễn đạt: hiểu rõ.",
+      { point: '趋向补语 (V + 进来/进去 等) — bổ ngữ xu hướng',
+        explain: 'Bổ ngữ xu hướng mô tả hướng của hành động, như “进来” (vào trong - hướng về phía người nói). Trong câu, “照进来” là “chiếu vào trong”.',
         examples: [
-          { zh: "我了解到各个地方的风俗都不同，很有意思。", py: "Wǒ liǎojiě dào gègè dìfang de fēngsú dōu bù tóng, hěn yǒuyìsi.", vi: "Tôi tìm hiểu được phong tục từng nơi đều khác nhau, rất thú vị." }
+          { zh: '早上做体操，呼吸新鲜空气，阳光透过窗户照进来。', py: 'Zǎoshang zuò tǐcāo, hūxī xīnxiān kōngqì, yángguāng tòuguò chuānghu zhào jìnlái.', vi: 'Buổi sáng tập thể dục, hít thở không khí trong lành, ánh nắng xuyên qua cửa sổ rọi vào.' }
         ] }
     ],
     steps: [
@@ -4617,20 +4522,10 @@ Object.assign(COURSE_DATA, {
       "Luyện vận dụng từ mới qua hội thoại, checkpoint và workbook của bài"
     ],
     grammarNotes: [
-      { point: "运动会 — hội thao",
-        explain: "Dùng 运动会 trong ngữ cảnh Đọc thêm: Con số, xã hội & sở thích để diễn đạt: hội thao.",
+      { point: '把 câu — S + 把 + O + V — nhấn mạnh đối tượng chịu tác động',
+        explain: 'Câu chữ 把 đưa tân ngữ lên trước động từ để nhấn mạnh hành động tác động lên đối tượng, thường dùng khi có sự xử lý hoặc thay đổi trạng thái.',
         examples: [
-          { zh: "学校开运动会，运动员们打乒乓球、登山。", py: "Xuéxiào kāi yùndònghuì, yùndòngyuán men dǎ pīngpāngqiú, dēngshān.", vi: "Trường tổ chức hội thao, các vận động viên chơi bóng bàn, leo núi." }
-        ] },
-      { point: "运动员 — vận động viên",
-        explain: "Dùng 运动员 trong ngữ cảnh Đọc thêm: Con số, xã hội & sở thích để diễn đạt: vận động viên.",
-        examples: [
-          { zh: "学校开运动会，运动员们打乒乓球、登山。", py: "Xuéxiào kāi yùndònghuì, yùndòngyuán men dǎ pīngpāngqiú, dēngshān.", vi: "Trường tổ chức hội thao, các vận động viên chơi bóng bàn, leo núi." }
-        ] },
-      { point: "外交官 — nhà ngoại giao",
-        explain: "Dùng 外交官 trong ngữ cảnh Đọc thêm: Con số, xã hội & sở thích để diễn đạt: nhà ngoại giao.",
-        examples: [
-          { zh: "我梦想当外交官，懂法律，也了解各国文化。", py: "Wǒ mèngxiǎng dāng wàijiāoguān, dǒng fǎlǜ, yě liǎojiě gè guó wénhuà.", vi: "Em mơ ước làm nhà ngoại giao, hiểu pháp luật, cũng am hiểu văn hóa các nước." }
+          { zh: '这台机器构造复杂，把零件移一移就好。红色是我最爱的颜色之一，我反对浪费。HSK 4 结束了，下一站，HSK 5！', py: 'Zhè tái jīqì gòuzào fùzá, bǎ língjiàn yí yi yí jiù hǎo. Hóngsè shì wǒ zuì ài de yánsè zhī yī, wǒ fǎnduì làngfèi. HSK 4 jiéshù le, xià yí zhàn, HSK 5!', vi: 'Máy này cấu tạo phức tạp, dịch linh kiện một chút là được. Màu đỏ là một trong những màu tôi thích nhất, tôi phản đối lãng phí. HSK 4 kết thúc rồi, chặng tiếp theo, HSK 5!' }
         ] }
     ],
     steps: [

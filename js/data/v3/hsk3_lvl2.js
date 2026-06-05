@@ -169,7 +169,7 @@ HSK3_DATA[2] = [
   {h:'感动', p:'gǎn dòng', v:'cảm động', e:'to move (sb)', t:'adjectives', ex:{zh:'这个故事很感动。',py:'Zhège gùshì hěn gǎndòng.',vi:'Câu chuyện này rất cảm động.',en:'This story is very touching.'}},
   {h:'感觉', p:'gǎn jué', v:'cảm giác', e:'feeling', t:'actions', ex:{zh:'我感觉今天天气特别好。',py:'Wǒ gǎnjué jīntiān tiānqì tèbié hǎo.',vi:'Tôi cảm thấy thời tiết hôm nay đặc biệt tốt.',en:'I feel that the weather today is especially nice.'}},
   {h:'感谢', p:'gǎn xiè', v:'cảm ơn, biết ơn', e:'thanks', t:'actions', ex:{zh:'我感谢你的帮助。',py:'Wǒ gǎnxiè nǐ de bāngzhù.',vi:'Tôi cảm ơn sự giúp đỡ của bạn.',en:'I thank you for your help.'}},
-  {h:'干杯', p:'gān bēi', v:'cạn ly, chúc mừng', e:'to drink a toast', t:'actions'},
+  {h:'干杯', p:'gān bēi', v:'cạn ly, chúc mừng', e:'to drink a toast', t:'actions', ex:{zh:'我们一起干杯吧！',py:'Wǒmen yīqǐ gānbēi ba!',vi:'Chúng ta cùng cạn ly nào!',en:'Let\'s toast together!'}},
   {h:'干活儿', p:'gàn huó r', v:'làm việc', e:'erhua variant of 干活', t:'actions', ex:{zh:'他在干活儿。',py:'Tā zài gànhuór.',vi:'Anh ấy đang làm việc.',en:'He is working.'}},
   {h:'刚', p:'gāng', v:'vừa mới; cứng', e:'hard', t:'general', ex:{zh:'我刚吃完饭。',py:'Wǒ gāng chī wán fàn.',vi:'Tôi vừa mới ăn cơm xong.',en:'I just finished eating.'}},
   {h:'刚才', p:'gāng cái', v:'vừa rồi, lúc nãy', e:'just now', t:'time', ex:{zh:'刚才我见到他。',py:'Gāngcái wǒ jiàndào tā.',vi:'Lúc nãy tôi gặp anh ấy.',en:'I saw him just now.'}},

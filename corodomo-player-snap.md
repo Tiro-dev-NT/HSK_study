@@ -1,0 +1,923 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - link [ref=e6] [cursor=pointer]:
+            - /url: /videos
+            - img [ref=e7]
+          - img [ref=e33] [cursor=pointer]
+        - generic [ref=e36]:
+          - generic [ref=e38] [cursor=pointer]:
+            - img [ref=e40]
+            - paragraph [ref=e42]: Th5
+          - separator [ref=e43]
+        - generic [ref=e44]:
+          - generic [ref=e46] [cursor=pointer]:
+            - img [ref=e48]
+            - paragraph [ref=e57]: zh
+          - separator [ref=e58]
+        - link [ref=e60] [cursor=pointer]:
+          - /url: /videos/dashboard
+          - img [ref=e62]
+        - link [ref=e66] [cursor=pointer]:
+          - /url: /videos
+          - img [ref=e68]
+        - link [ref=e73] [cursor=pointer]:
+          - /url: /videos/my-videos
+          - img [ref=e75]
+        - link [ref=e78] [cursor=pointer]:
+          - /url: /videos/courses
+          - img [ref=e80]
+        - link [ref=e85] [cursor=pointer]:
+          - /url: /videos/vocabulary
+          - img [ref=e87]
+      - button [ref=e90] [cursor=pointer]:
+        - img [ref=e91]
+    - button "Tra cứu từ vựng" [ref=e98] [cursor=pointer]:
+      - img "Tra cứu từ vựng" [ref=e99]
+    - generic [ref=e102]:
+      - generic [ref=e104]:
+        - generic [ref=e105] [cursor=pointer]:
+          - img [ref=e110]
+          - paragraph [ref=e113]: Shadowing
+        - generic [ref=e114] [cursor=pointer]:
+          - img [ref=e117]
+          - paragraph [ref=e120]: Phát âm
+        - generic [ref=e121] [cursor=pointer]:
+          - img [ref=e124]
+          - paragraph [ref=e127]: Chép chính tả
+        - generic [ref=e128] [cursor=pointer]:
+          - img [ref=e131]
+          - paragraph [ref=e137]: Tóm tắt
+      - generic [ref=e140]:
+        - generic [ref=e142]:
+          - generic [ref=e143]:
+            - region "Video Player" [ref=e151] [cursor=pointer]:
+              - iframe [ref=e152]:
+                - generic [active] [ref=f15e1]:
+                  - generic "Trình phát video YouTube" [ref=f15e3]
+                  - generic [ref=f15e5]:
+                    - generic:
+                      - generic:
+                        - button "Phát video" [ref=f15e10] [cursor=pointer]:
+                          - generic [ref=f15e13]:
+                            - img
+                        - button "Ẩn các nút điều khiển trình phát" [ref=f15e14] [cursor=pointer]
+                        - generic [ref=f15e16]:
+                          - generic [ref=f15e21]:
+                            - generic [ref=f15e22]:
+                              - link "HSK 1–2 | 我的⼀天 My Daily Routine | Learn Everyday Chinese through Real Conversations" [ref=f15e23] [cursor=pointer]:
+                                - /url: https://www.youtube.com/watch?v=MYQrQvbR8Vk
+                              - link "Chinese Daily Podcast" [ref=f15e24] [cursor=pointer]:
+                                - /url: /channel/UCyYT-HdG1FXua6_vwyXNqhg
+                                - generic [ref=f15e25]: Chinese Daily Podcast
+                            - generic [ref=f15e26]:
+                              - button "thumbnail-image" [ref=f15e27] [cursor=pointer]:
+                                - img "thumbnail-image" [ref=f15e28]
+                              - generic [ref=f15e29]:
+                                - generic [ref=f15e30]:
+                                  - generic: Chinese Daily Podcast
+                                  - generic: 196 N người đăng ký
+                                - generic [ref=f15e38]:
+                                  - generic [ref=f15e39]:
+                                    - generic:
+                                      - generic:
+                                        - img
+                                    - button "Đăng ký" [ref=f15e42] [cursor=pointer]:
+                                      - generic [ref=f15e43]: Đăng ký
+                                  - generic:
+                                    - generic:
+                                      - img
+                          - generic [ref=f15e47]:
+                            - generic [ref=f15e48]:
+                              - button "Chia sẻ" [ref=f15e50] [cursor=pointer]:
+                                - generic [ref=f15e54]:
+                                  - img
+                              - button "Xem sau" [ref=f15e59] [cursor=pointer]:
+                                - generic [ref=f15e63]:
+                                  - img
+                            - link "Xem trên YouTube" [ref=f15e70] [cursor=pointer]:
+                              - /url: https://www.youtube.com/watch?v=MYQrQvbR8Vk
+                              - generic [ref=f15e73]:
+                                - text: Xem trên
+                                - img [ref=f15e75]:
+                                  - generic [ref=f15e77]:
+                                    - img
+              - text: 
+              - generic [ref=e153]:
+                - button "Play" [ref=e154]:
+                  - generic [ref=e155]:
+                    - text: 
+                    - img [ref=e156]
+                  - generic [ref=e158]: Play
+                - generic [ref=e159]:
+                  - button "Mute" [ref=e160]:
+                    - text: 
+                    - generic [ref=e161]: Mute
+                  - slider "Volume Level" [ref=e163]:
+                    - generic [ref=e164]: 
+                - generic [ref=e166]: Current Time 0:00
+                - generic [ref=e168]: /
+                - generic [ref=e169]: Duration 9:07
+                - slider "Progress Bar" [ref=e171]:
+                  - generic [ref=e172]: "Loaded: 0.00%"
+                  - text: 
+                - text:      
+                - button " Settings" [ref=e173]:
+                  - text: 
+                  - generic [ref=e174]: Settings
+                - button "Theater mode" [ref=e175]:
+                  - img [ref=e177]
+                  - generic [ref=e179]: Theater mode
+                - button "Fullscreen" [ref=e180]:
+                  - text: 
+                  - generic [ref=e181]: Fullscreen
+              - text: 
+              - generic:
+                - img "Corodomo"
+            - generic [ref=e185]:
+              - generic [ref=e186]:
+                - button "Phụ đề" [ref=e187] [cursor=pointer]:
+                  - img [ref=e188]
+                  - paragraph [ref=e192]: Phụ đề
+                - button "Bản dịch" [ref=e193] [cursor=pointer]:
+                  - img [ref=e194]
+                  - paragraph [ref=e197]: Bản dịch
+                - button "Giản thể" [ref=e198] [cursor=pointer]:
+                  - img [ref=e199]
+                  - paragraph [ref=e203]: Giản thể
+              - generic [ref=e204]:
+                - button [ref=e205] [cursor=pointer]:
+                  - img [ref=e206]
+                - button [ref=e210] [cursor=pointer]:
+                  - img [ref=e211]
+            - generic [ref=e215]:
+              - button [ref=e216] [cursor=pointer]:
+                - img [ref=e217]
+              - generic [ref=e220]:
+                - button [ref=e221] [cursor=pointer]:
+                  - img [ref=e222]
+                - button [ref=e225] [cursor=pointer]:
+                  - img [ref=e226]
+          - generic [ref=e232]:
+            - generic [ref=e234]:
+              - generic [ref=e235] [cursor=pointer]:
+                - img [ref=e237]
+                - paragraph [ref=e239]: Bình luận
+              - generic [ref=e240] [cursor=pointer]:
+                - img [ref=e241]
+                - paragraph [ref=e244]: Ghi chú
+            - generic [ref=e246]:
+              - generic [ref=e250]: Hãy là người đầu tiên nhận xét về video này
+              - generic [ref=e251]:
+                - textbox "Textarea" [ref=e255]:
+                  - /placeholder: Viết bình luận
+                - button [ref=e257] [cursor=pointer]:
+                  - img [ref=e258]
+        - generic [ref=e261]:
+          - generic [ref=e268]:
+            - generic [ref=e270]:
+              - paragraph [ref=e271]: Phụ đề
+              - generic [ref=e272]:
+                - generic "Popover" [ref=e273]:
+                  - img [ref=e275] [cursor=pointer]
+                - generic [ref=e279] [cursor=pointer]: AB
+                - img [ref=e281] [cursor=pointer]
+            - generic [ref=e285]:
+              - generic [ref=e286] [cursor=pointer]:
+                - img [ref=e289]
+                - generic [ref=e293]: 大家好！欢迎收听新一期的《每天中文》。我是李明。
+                - generic [ref=e294]:
+                  - img [ref=e296]
+                  - img [ref=e300]
+              - generic [ref=e301] [cursor=pointer]:
+                - img [ref=e304]
+                - generic [ref=e308]: 大家好！我是王雨。很高兴又和大家见面了！
+                - generic [ref=e309]:
+                  - img [ref=e311]
+                  - img [ref=e315]
+              - generic [ref=e316] [cursor=pointer]:
+                - img [ref=e319]
+                - generic [ref=e323]: 王雨，你好！
+                - generic [ref=e324]:
+                  - img [ref=e326]
+                  - img [ref=e330]
+              - generic [ref=e331] [cursor=pointer]:
+                - img [ref=e334]
+                - generic [ref=e338]: 李明，你好！
+                - generic [ref=e339]:
+                  - img [ref=e341]
+                  - img [ref=e345]
+              - generic [ref=e346] [cursor=pointer]:
+                - img [ref=e349]
+                - generic [ref=e353]: 你今天看起来很高兴，有什么好事吗？
+                - generic [ref=e354]:
+                  - img [ref=e356]
+                  - img [ref=e360]
+              - generic [ref=e361] [cursor=pointer]:
+                - img [ref=e364]
+                - generic [ref=e368]: 哈哈，没什么特别的。
+                - generic [ref=e369]:
+                  - img [ref=e371]
+                  - img [ref=e375]
+              - generic [ref=e376] [cursor=pointer]:
+                - img [ref=e379]
+                - generic [ref=e383]: 就是今天工作很顺利，所以心情不错。
+                - generic [ref=e384]:
+                  - img [ref=e386]
+                  - img [ref=e390]
+              - generic [ref=e391] [cursor=pointer]:
+                - img [ref=e394]
+                - generic [ref=e398]: 你呢？今天过得怎么样？
+                - generic [ref=e399]:
+                  - img [ref=e401]
+                  - img [ref=e405]
+              - generic [ref=e406] [cursor=pointer]:
+                - img [ref=e409]
+                - generic [ref=e413]: 我今天非常忙，感觉时间过得特别快。
+                - generic [ref=e414]:
+                  - img [ref=e416]
+                  - img [ref=e420]
+              - generic [ref=e421] [cursor=pointer]:
+                - img [ref=e424]
+                - generic [ref=e428]: 我早上出门的时候天还没很亮， 晚上下班回家天已经黑了。
+                - generic [ref=e429]:
+                  - img [ref=e431]
+                  - img [ref=e435]
+              - generic [ref=e436] [cursor=pointer]:
+                - img [ref=e439]
+                - generic [ref=e443]: 是啊，很多人的一天都是这样的。
+                - generic [ref=e444]:
+                  - img [ref=e446]
+                  - img [ref=e450]
+              - generic [ref=e451] [cursor=pointer]:
+                - img [ref=e454]
+                - generic [ref=e458]: 这让我想到，我们每天都在说“今天很忙”或者“今天很累”，
+                - generic [ref=e459]:
+                  - img [ref=e461]
+                  - img [ref=e465]
+              - generic [ref=e466] [cursor=pointer]:
+                - img [ref=e469]
+                - generic [ref=e473]: 但是我们的一天具体是什么样的呢？
+                - generic [ref=e474]:
+                  - img [ref=e476]
+                  - img [ref=e480]
+              - generic [ref=e481] [cursor=pointer]:
+                - img [ref=e484]
+                - generic [ref=e488]: 我们的听众朋友们可能也很好奇。
+                - generic [ref=e489]:
+                  - img [ref=e491]
+                  - img [ref=e495]
+              - generic [ref=e496] [cursor=pointer]:
+                - img [ref=e499]
+                - generic [ref=e503]: 嗯，这个主意不错！
+                - generic [ref=e504]:
+                  - img [ref=e506]
+                  - img [ref=e510]
+              - generic [ref=e511] [cursor=pointer]:
+                - img [ref=e514]
+                - generic [ref=e518]: 我们今天就来聊一聊“我的一天”吧！
+                - generic [ref=e519]:
+                  - img [ref=e521]
+                  - img [ref=e525]
+              - generic [ref=e526] [cursor=pointer]:
+                - img [ref=e529]
+                - generic [ref=e533]: 我们可以分享一下，我们普通的一天是怎么过的。
+                - generic [ref=e534]:
+                  - img [ref=e536]
+                  - img [ref=e540]
+              - generic [ref=e541] [cursor=pointer]:
+                - img [ref=e544]
+                - generic [ref=e548]: 好的，没问题。这样大家也可以学习一些关于日常生活的中文词语和句子。
+                - generic [ref=e549]:
+                  - img [ref=e551]
+                  - img [ref=e555]
+              - generic [ref=e556] [cursor=pointer]:
+                - img [ref=e559]
+                - generic [ref=e563]: 好，那我们从早上开始说吧。王雨，你一般早上几点起床？
+                - generic [ref=e564]:
+                  - img [ref=e566]
+                  - img [ref=e570]
+              - generic [ref=e571] [cursor=pointer]:
+                - img [ref=e574]
+                - generic [ref=e578]: 我希望我每天七点起床，但是……哈哈，我有时候会睡到七点半，甚至八点。
+                - generic [ref=e579]:
+                  - img [ref=e581]
+                  - img [ref=e585]
+              - generic [ref=e586] [cursor=pointer]:
+                - img [ref=e589]
+                - generic [ref=e593]: 我常常没有时间吃早饭。
+                - generic [ref=e594]:
+                  - img [ref=e596]
+                  - img [ref=e600]
+              - generic [ref=e601] [cursor=pointer]:
+                - img [ref=e604]
+                - generic [ref=e608]: 运动以后，身体会很舒服，一天都会有精神。
+                - generic [ref=e609]:
+                  - img [ref=e611]
+                  - img [ref=e615]
+              - generic [ref=e616] [cursor=pointer]:
+                - img [ref=e619]
+                - generic [ref=e623]: 那你自己做早饭吗？
+                - generic [ref=e624]:
+                  - img [ref=e626]
+                  - img [ref=e630]
+              - generic [ref=e631] [cursor=pointer]:
+                - img [ref=e634]
+                - generic [ref=e638]: 一般是一个鸡蛋，一杯牛奶，再加一片面包。
+                - generic [ref=e639]:
+                  - img [ref=e641]
+                  - img [ref=e645]
+              - generic [ref=e646] [cursor=pointer]:
+                - img [ref=e649]
+                - generic [ref=e653]: 准备起来很快，五分钟就好了。
+                - generic [ref=e654]:
+                  - img [ref=e656]
+                  - img [ref=e660]
+              - generic [ref=e661] [cursor=pointer]:
+                - img [ref=e664]
+                - generic [ref=e668]: 但是早上人非常多，地铁里特别挤。
+                - generic [ref=e669]:
+                  - img [ref=e671]
+                  - img [ref=e675]
+              - generic [ref=e676] [cursor=pointer]:
+                - img [ref=e679]
+                - generic [ref=e683]: 到了公司，我常常觉得已经有点累了。
+                - generic [ref=e684]:
+                  - img [ref=e686]
+                  - img [ref=e690]
+              - generic [ref=e691] [cursor=pointer]:
+                - img [ref=e694]
+                - generic [ref=e698]: 哈哈，可以理解。那我们的一天中，最长的时间可能就是在公司工作了。
+                - generic [ref=e699]:
+                  - img [ref=e701]
+                  - img [ref=e705]
+              - generic [ref=e706] [cursor=pointer]:
+                - img [ref=e709]
+                - generic [ref=e713]: 上午你一般都做什么？
+                - generic [ref=e714]:
+                  - img [ref=e716]
+                  - img [ref=e720]
+              - generic [ref=e721] [cursor=pointer]:
+                - img [ref=e724]
+                - generic [ref=e728]: 所以我到了公司，第一件事就是打开电脑，然后开始工作。
+                - generic [ref=e729]:
+                  - img [ref=e731]
+                  - img [ref=e735]
+              - generic [ref=e736] [cursor=pointer]:
+                - img [ref=e739]
+                - generic [ref=e743]: 我要看很多东西，也要写很多东西。
+                - generic [ref=e744]:
+                  - img [ref=e746]
+                  - img [ref=e750]
+              - generic [ref=e751] [cursor=pointer]:
+                - img [ref=e754]
+                - generic [ref=e758]: 有时候，还要和同事一起开会。
+                - generic [ref=e759]:
+                  - img [ref=e761]
+                  - img [ref=e765]
+              - generic [ref=e766] [cursor=pointer]:
+                - img [ref=e769]
+                - generic [ref=e773]: 时间过得很快，一转眼就到中午了。
+                - generic [ref=e774]:
+                  - img [ref=e776]
+                  - img [ref=e780]
+              - generic [ref=e781] [cursor=pointer]:
+                - img [ref=e784]
+                - generic [ref=e788]: 所以我们一般和同事们一起点外卖。
+                - generic [ref=e789]:
+                  - img [ref=e791]
+                  - img [ref=e795]
+              - generic [ref=e796] [cursor=pointer]:
+                - img [ref=e799]
+                - generic [ref=e803]: 现在用手机点外卖非常方便，想吃什么都可以。
+                - generic [ref=e804]:
+                  - img [ref=e806]
+                  - img [ref=e810]
+              - generic [ref=e811] [cursor=pointer]:
+                - img [ref=e814]
+                - generic [ref=e818]: 我们可以吃到中国菜、日本菜，还有很多别的国家的菜。
+                - generic [ref=e819]:
+                  - img [ref=e821]
+                  - img [ref=e825]
+              - generic [ref=e826] [cursor=pointer]:
+                - img [ref=e829]
+                - generic [ref=e833]: 你喜欢吃什么？
+                - generic [ref=e834]:
+                  - img [ref=e836]
+                  - img [ref=e840]
+              - generic [ref=e841] [cursor=pointer]:
+                - img [ref=e844]
+                - generic [ref=e848]: 比如西红柿炒鸡蛋，还有一个鱼。
+                - generic [ref=e849]:
+                  - img [ref=e851]
+                  - img [ref=e855]
+              - generic [ref=e856] [cursor=pointer]:
+                - img [ref=e859]
+                - generic [ref=e863]: 李明，你呢？你也点外卖吗？
+                - generic [ref=e864]:
+                  - img [ref=e866]
+                  - img [ref=e870]
+              - generic [ref=e871] [cursor=pointer]:
+                - img [ref=e874]
+                - generic [ref=e878]: 但我们公司楼下有一些小饭馆，味道很好，价格也不贵。
+                - generic [ref=e879]:
+                  - img [ref=e881]
+                  - img [ref=e885]
+              - generic [ref=e886] [cursor=pointer]:
+                - img [ref=e889]
+                - generic [ref=e893]: 所以我更喜欢和两三个同事一起去饭馆吃。
+                - generic [ref=e894]:
+                  - img [ref=e896]
+                  - img [ref=e900]
+              - generic [ref=e901] [cursor=pointer]:
+                - img [ref=e904]
+                - generic [ref=e908]: 你们一般吃多长时间？
+                - generic [ref=e909]:
+                  - img [ref=e911]
+                  - img [ref=e915]
+              - generic [ref=e916] [cursor=pointer]:
+                - img [ref=e919]
+                - generic [ref=e923]: 吃完饭，有的人会休息一会儿，有的人会喝杯咖啡，然后准备下午的工作。
+                - generic [ref=e924]:
+                  - img [ref=e926]
+                  - img [ref=e930]
+              - generic [ref=e931] [cursor=pointer]:
+                - img [ref=e934]
+                - generic [ref=e938]: 等到下午五点半、六点，终于可以下班回家了！
+                - generic [ref=e939]:
+                  - img [ref=e941]
+                  - img [ref=e945]
+              - generic [ref=e946] [cursor=pointer]:
+                - img [ref=e949]
+                - generic [ref=e953]: 回家路上我喜欢听音乐， 或者听我们的播客《每天中文》。
+                - generic [ref=e954]:
+                  - img [ref=e956]
+                  - img [ref=e960]
+              - generic [ref=e961] [cursor=pointer]:
+                - img [ref=e964]
+                - generic [ref=e968]: 我很喜欢吃妈妈做的菜。如果回家晚了，我就自己做一点简单的面条吃。
+                - generic [ref=e969]:
+                  - img [ref=e971]
+                  - img [ref=e975]
+              - generic [ref=e976] [cursor=pointer]:
+                - img [ref=e979]
+                - generic [ref=e983]: 晚饭我通常自己做， 做得比较简单，吃得少一点。
+                - generic [ref=e984]:
+                  - img [ref=e986]
+                  - img [ref=e990]
+              - generic [ref=e991] [cursor=pointer]:
+                - img [ref=e994]
+                - generic [ref=e998]: 有时候也会用微信和朋友聊聊天。
+                - generic [ref=e999]:
+                  - img [ref=e1001]
+                  - img [ref=e1005]
+              - generic [ref=e1006] [cursor=pointer]:
+                - img [ref=e1009]
+                - generic [ref=e1013]: 看书能让我学到很多新东西， 也让我的心安静下来。
+                - generic [ref=e1014]:
+                  - img [ref=e1016]
+                  - img [ref=e1020]
+              - generic [ref=e1021] [cursor=pointer]:
+                - img [ref=e1024]
+                - generic [ref=e1028]: 一般要到十一点半，有时候甚至十二点才睡觉。
+                - generic [ref=e1029]:
+                  - img [ref=e1031]
+                  - img [ref=e1035]
+              - generic [ref=e1036] [cursor=pointer]:
+                - img [ref=e1039]
+                - generic [ref=e1043]: 我会在床上听一会儿音乐， 然后十一点以前一定睡觉。
+                - generic [ref=e1044]:
+                  - img [ref=e1046]
+                  - img [ref=e1050]
+              - generic [ref=e1051] [cursor=pointer]:
+                - img [ref=e1054]
+                - generic [ref=e1058]: 好的，从明天开始，我也要十一点以前睡觉！
+                - generic [ref=e1059]:
+                  - img [ref=e1061]
+                  - img [ref=e1065]
+              - generic [ref=e1066] [cursor=pointer]:
+                - img [ref=e1069]
+                - generic [ref=e1073]: 可能是一顿好吃的午饭，可能是一段和朋友聊天的时间，也可能是一本好看的书。
+                - generic [ref=e1074]:
+                  - img [ref=e1076]
+                  - img [ref=e1080]
+              - generic [ref=e1081] [cursor=pointer]:
+                - img [ref=e1084]
+                - generic [ref=e1088]: 你早上几点起床？晚上喜欢做什么？
+                - generic [ref=e1089]:
+                  - img [ref=e1091]
+                  - img [ref=e1095]
+              - generic [ref=e1096] [cursor=pointer]:
+                - img [ref=e1099]
+                - generic [ref=e1103]: 欢迎在我们的评论区给我们留言，用中文和我们分享你的一天。
+                - generic [ref=e1104]:
+                  - img [ref=e1106]
+                  - img [ref=e1110]
+              - generic [ref=e1111] [cursor=pointer]:
+                - img [ref=e1114]
+                - generic [ref=e1118]: 嗯……这个问题有点难回答。
+                - generic [ref=e1119]:
+                  - img [ref=e1121]
+                  - img [ref=e1125]
+              - generic [ref=e1126] [cursor=pointer]:
+                - img [ref=e1129]
+                - generic [ref=e1133]: 哦？睡到八点？那上班来得及吗？
+                - generic [ref=e1134]:
+                  - img [ref=e1136]
+                  - img [ref=e1140]
+              - generic [ref=e1141] [cursor=pointer]:
+                - img [ref=e1144]
+                - generic [ref=e1148]: 所以很着急！我起床以后，要很快地洗脸、刷牙，然后找穿的衣服。
+                - generic [ref=e1149]:
+                  - img [ref=e1151]
+                  - img [ref=e1155]
+              - generic [ref=e1156] [cursor=pointer]:
+                - img [ref=e1159]
+                - generic [ref=e1163]: 不吃早饭对身体不太好啊。
+                - generic [ref=e1164]:
+                  - img [ref=e1166]
+                  - img [ref=e1170]
+              - generic [ref=e1171] [cursor=pointer]:
+                - img [ref=e1174]
+                - generic [ref=e1178]: 我知道，我知道。所以我会在去公司的路上买一点吃的，比如一个包子，或者一杯豆浆。
+                - generic [ref=e1179]:
+                  - img [ref=e1181]
+                  - img [ref=e1185]
+              - generic [ref=e1186] [cursor=pointer]:
+                - img [ref=e1189]
+                - generic [ref=e1193]: 你呢，李明？你一看就是那种起得很早的人。
+                - generic [ref=e1194]:
+                  - img [ref=e1196]
+                  - img [ref=e1200]
+              - generic [ref=e1201] [cursor=pointer]:
+                - img [ref=e1204]
+                - generic [ref=e1208]: 哈哈，你猜对了。我比较习惯早起。我一般早上六点半就起床了。
+                - generic [ref=e1209]:
+                  - img [ref=e1211]
+                  - img [ref=e1215]
+              - generic [ref=e1216] [cursor=pointer]:
+                - img [ref=e1219]
+                - generic [ref=e1223]: 六点半？那么早！起床以后你做什么？
+                - generic [ref=e1224]:
+                  - img [ref=e1226]
+                  - img [ref=e1230]
+              - generic [ref=e1231] [cursor=pointer]:
+                - img [ref=e1234]
+                - generic [ref=e1238]: 我会先喝一杯水，然后在家做一点简单的运动，大概二十分钟。
+                - generic [ref=e1239]:
+                  - img [ref=e1241]
+                  - img [ref=e1245]
+              - generic [ref=e1246] [cursor=pointer]:
+                - img [ref=e1249]
+                - generic [ref=e1253]: 哇，真健康！我很想向你学习， 但是我早上真的起不来。
+                - generic [ref=e1254]:
+                  - img [ref=e1256]
+                  - img [ref=e1260]
+              - generic [ref=e1261] [cursor=pointer]:
+                - img [ref=e1264]
+                - generic [ref=e1268]: 是的，我的早饭很简单。
+                - generic [ref=e1269]:
+                  - img [ref=e1271]
+                  - img [ref=e1275]
+              - generic [ref=e1276] [cursor=pointer]:
+                - img [ref=e1279]
+                - generic [ref=e1283]: 真好。吃完早饭，你们怎么去公司？
+                - generic [ref=e1284]:
+                  - img [ref=e1286]
+                  - img [ref=e1290]
+              - generic [ref=e1291] [cursor=pointer]:
+                - img [ref=e1294]
+                - generic [ref=e1298]: 我开车上班。我的家离公司有一点远， 开车大概要四十分钟。你呢？
+                - generic [ref=e1299]:
+                  - img [ref=e1301]
+                  - img [ref=e1305]
+              - generic [ref=e1306] [cursor=pointer]:
+                - img [ref=e1309]
+                - generic [ref=e1313]: 我坐地铁。我们家楼下就是地铁站，很方便。
+                - generic [ref=e1314]:
+                  - img [ref=e1316]
+                  - img [ref=e1320]
+              - generic [ref=e1321] [cursor=pointer]:
+                - img [ref=e1324]
+                - generic [ref=e1328]: 是的，北京的地铁，早上和晚上人都很多。 上班的路也很辛苦。
+                - generic [ref=e1329]:
+                  - img [ref=e1331]
+                  - img [ref=e1335]
+              - generic [ref=e1336] [cursor=pointer]:
+                - img [ref=e1339]
+                - generic [ref=e1343]: 对，每天早上都像一场“战斗”。
+                - generic [ref=e1344]:
+                  - img [ref=e1346]
+                  - img [ref=e1350]
+              - generic [ref=e1351] [cursor=pointer]:
+                - img [ref=e1354]
+                - generic [ref=e1358]: 我的工作需要用电脑。
+                - generic [ref=e1359]:
+                  - img [ref=e1361]
+                  - img [ref=e1365]
+              - generic [ref=e1366] [cursor=pointer]:
+                - img [ref=e1369]
+                - generic [ref=e1373]: 我的工作也差不多。大部分时间都在看电脑，回复邮件，还有打电话。
+                - generic [ref=e1374]:
+                  - img [ref=e1376]
+                  - img [ref=e1380]
+              - generic [ref=e1381] [cursor=pointer]:
+                - img [ref=e1384]
+                - generic [ref=e1388]: 对！说到中午，我最关心的问题来了：今天中午吃什么？
+                - generic [ref=e1389]:
+                  - img [ref=e1391]
+                  - img [ref=e1395]
+              - generic [ref=e1396] [cursor=pointer]:
+                - img [ref=e1399]
+                - generic [ref=e1403]: 哈哈，这是每天最重要的一个问题。你们中午怎么吃饭？是在公司吃吗？
+                - generic [ref=e1404]:
+                  - img [ref=e1406]
+                  - img [ref=e1410]
+              - generic [ref=e1411] [cursor=pointer]:
+                - img [ref=e1414]
+                - generic [ref=e1418]: 我们公司没有食堂。
+                - generic [ref=e1419]:
+                  - img [ref=e1421]
+                  - img [ref=e1425]
+              - generic [ref=e1426] [cursor=pointer]:
+                - img [ref=e1429]
+                - generic [ref=e1433]: 是的，点外卖很流行。
+                - generic [ref=e1434]:
+                  - img [ref=e1436]
+                  - img [ref=e1440]
+              - generic [ref=e1441] [cursor=pointer]:
+                - img [ref=e1444]
+                - generic [ref=e1448]: 我喜欢吃米饭和菜。
+                - generic [ref=e1449]:
+                  - img [ref=e1451]
+                  - img [ref=e1455]
+              - generic [ref=e1456] [cursor=pointer]:
+                - img [ref=e1459]
+                - generic [ref=e1463]: 我有时候点外卖。
+                - generic [ref=e1464]:
+                  - img [ref=e1466]
+                  - img [ref=e1470]
+              - generic [ref=e1471] [cursor=pointer]:
+                - img [ref=e1474]
+                - generic [ref=e1478]: 去饭馆吃也不错，可以离开办公室休息一下。
+                - generic [ref=e1479]:
+                  - img [ref=e1481]
+                  - img [ref=e1485]
+              - generic [ref=e1486] [cursor=pointer]:
+                - img [ref=e1489]
+                - generic [ref=e1493]: 我们一般十二点去吃饭，吃一个小时，一点左右回公司。
+                - generic [ref=e1494]:
+                  - img [ref=e1496]
+                  - img [ref=e1500]
+              - generic [ref=e1501] [cursor=pointer]:
+                - img [ref=e1504]
+                - generic [ref=e1508]: 我也是！我下午必须喝一杯咖啡。 不喝咖啡，我就会想睡觉。
+                - generic [ref=e1509]:
+                  - img [ref=e1511]
+                  - img [ref=e1515]
+              - generic [ref=e1516] [cursor=pointer]:
+                - img [ref=e1519]
+                - generic [ref=e1523]: 哈哈，很多人都这样。下午的工作时间和上午差不多，但是感觉会更累一点。
+                - generic [ref=e1524]:
+                  - img [ref=e1526]
+                  - img [ref=e1530]
+              - generic [ref=e1531] [cursor=pointer]:
+                - img [ref=e1534]
+                - generic [ref=e1538]: 是的！下班的时候最高兴了！
+                - generic [ref=e1539]:
+                  - img [ref=e1541]
+                  - img [ref=e1545]
+              - generic [ref=e1546] [cursor=pointer]:
+                - img [ref=e1549]
+                - generic [ref=e1553]: 下班以后，你一般做什么？是马上回家吗？
+                - generic [ref=e1554]:
+                  - img [ref=e1556]
+                  - img [ref=e1560]
+              - generic [ref=e1561] [cursor=pointer]:
+                - img [ref=e1564]
+                - generic [ref=e1568]: 嗯，大部分时候是直接回家。因为工作一天很累了，想快点回家休息。
+                - generic [ref=e1569]:
+                  - img [ref=e1571]
+                  - img [ref=e1575]
+              - generic [ref=e1576] [cursor=pointer]:
+                - img [ref=e1579]
+                - generic [ref=e1583]: 哈哈，谢谢你的支持。
+                - generic [ref=e1584]:
+                  - img [ref=e1586]
+                  - img [ref=e1590]
+              - generic [ref=e1591] [cursor=pointer]:
+                - img [ref=e1594]
+                - generic [ref=e1598]: 那你晚饭怎么解决？
+                - generic [ref=e1599]:
+                  - img [ref=e1601]
+                  - img [ref=e1605]
+              - generic [ref=e1606] [cursor=pointer]:
+                - img [ref=e1609]
+                - generic [ref=e1613]: 如果我回家早，我妈妈会做好晚饭等我。
+                - generic [ref=e1614]:
+                  - img [ref=e1616]
+                  - img [ref=e1620]
+              - generic [ref=e1621] [cursor=pointer]:
+                - img [ref=e1624]
+                - generic [ref=e1628]: 和家人一起吃晚饭，感觉真好。
+                - generic [ref=e1629]:
+                  - img [ref=e1631]
+                  - img [ref=e1635]
+              - generic [ref=e1636] [cursor=pointer]:
+                - img [ref=e1639]
+                - generic [ref=e1643]: 是啊。你呢？你下班以后做什么？
+                - generic [ref=e1644]:
+                  - img [ref=e1646]
+                  - img [ref=e1650]
+              - generic [ref=e1651] [cursor=pointer]:
+                - img [ref=e1654]
+                - generic [ref=e1658]: 我下班后，如果不累的话，有时候会去健身房运动一个小时。
+                - generic [ref=e1659]:
+                  - img [ref=e1661]
+                  - img [ref=e1665]
+              - generic [ref=e1666] [cursor=pointer]:
+                - img [ref=e1669]
+                - generic [ref=e1673]: 哇！你早上运动，晚上下班了还运动。 你太厉害了！
+                - generic [ref=e1674]:
+                  - img [ref=e1676]
+                  - img [ref=e1680]
+              - generic [ref=e1681] [cursor=pointer]:
+                - img [ref=e1684]
+                - generic [ref=e1688]: 哈哈，只是一个习惯。 运动完回家，感觉很放松。
+                - generic [ref=e1689]:
+                  - img [ref=e1691]
+                  - img [ref=e1695]
+              - generic [ref=e1696] [cursor=pointer]:
+                - img [ref=e1699]
+                - generic [ref=e1703]: 好的。那吃完晚饭，到睡觉以前，这段时间你们会做什么？
+                - generic [ref=e1704]:
+                  - img [ref=e1706]
+                  - img [ref=e1710]
+              - generic [ref=e1711] [cursor=pointer]:
+                - img [ref=e1714]
+                - generic [ref=e1718]: 这可能是我一天中最放松的时间了。
+                - generic [ref=e1719]:
+                  - img [ref=e1721]
+                  - img [ref=e1725]
+              - generic [ref=e1726] [cursor=pointer]:
+                - img [ref=e1729]
+                - generic [ref=e1733]: 当然！我会坐在沙发上，看看电视，或者用手机刷刷抖音，看看朋友们今天都做了什么。
+                - generic [ref=e1734]:
+                  - img [ref=e1736]
+                  - img [ref=e1740]
+              - generic [ref=e1741] [cursor=pointer]:
+                - img [ref=e1744]
+                - generic [ref=e1748]: 嗯，这听起来很放松。我晚上不太喜欢看手机，因为看一天电脑了，眼睛很累。我喜欢看书。
+                - generic [ref=e1749]:
+                  - img [ref=e1751]
+                  - img [ref=e1755]
+              - generic [ref=e1756] [cursor=pointer]:
+                - img [ref=e1759]
+                - generic [ref=e1763]: 看书？真是一个好习惯。你都看什么书？
+                - generic [ref=e1764]:
+                  - img [ref=e1766]
+                  - img [ref=e1770]
+              - generic [ref=e1771] [cursor=pointer]:
+                - img [ref=e1774]
+                - generic [ref=e1778]: 我看很多种书。有时候看中国的历史， 有时候也看一些小说。
+                - generic [ref=e1779]:
+                  - img [ref=e1781]
+                  - img [ref=e1785]
+              - generic [ref=e1786] [cursor=pointer]:
+                - img [ref=e1789]
+                - generic [ref=e1793]: 真不错。其实我也买了很多书， 但是很少有时间看。它们都在我的房间里睡觉呢。
+                - generic [ref=e1794]:
+                  - img [ref=e1796]
+                  - img [ref=e1800]
+              - generic [ref=e1801] [cursor=pointer]:
+                - img [ref=e1804]
+                - generic [ref=e1808]: 哈哈，可以每天看一点点，比如看十页。
+                - generic [ref=e1809]:
+                  - img [ref=e1811]
+                  - img [ref=e1815]
+              - generic [ref=e1816] [cursor=pointer]:
+                - img [ref=e1819]
+                - generic [ref=e1823]: 好了，那最后一个问题，你每天晚上几点睡觉？
+                - generic [ref=e1824]:
+                  - img [ref=e1826]
+                  - img [ref=e1830]
+              - generic [ref=e1831] [cursor=pointer]:
+                - img [ref=e1834]
+                - generic [ref=e1838]: 我总是告诉自己要早点睡。但是我常常看着电视或者玩着手机，就忘了时间。
+                - generic [ref=e1839]:
+                  - img [ref=e1841]
+                  - img [ref=e1845]
+              - generic [ref=e1846] [cursor=pointer]:
+                - img [ref=e1849]
+                - generic [ref=e1853]: 这样第二天早上会很困吧？
+                - generic [ref=e1854]:
+                  - img [ref=e1856]
+                  - img [ref=e1860]
+              - generic [ref=e1861] [cursor=pointer]:
+                - img [ref=e1864]
+                - generic [ref=e1868]: 是啊！所以我早上起不来。你肯定睡得很早吧？
+                - generic [ref=e1869]:
+                  - img [ref=e1871]
+                  - img [ref=e1875]
+              - generic [ref=e1876] [cursor=pointer]:
+                - img [ref=e1879]
+                - generic [ref=e1883]: 对，为了第二天有好的精神， 我一般十点半就准备睡觉了。
+                - generic [ref=e1884]:
+                  - img [ref=e1886]
+                  - img [ref=e1890]
+              - generic [ref=e1891] [cursor=pointer]:
+                - img [ref=e1894]
+                - generic [ref=e1898]: 哈哈，希望你能做到。
+                - generic [ref=e1899]:
+                  - img [ref=e1901]
+                  - img [ref=e1905]
+              - generic [ref=e1906] [cursor=pointer]:
+                - img [ref=e1909]
+                - generic [ref=e1913]: 好了，时间差不多了。
+                - generic [ref=e1914]:
+                  - img [ref=e1916]
+                  - img [ref=e1920]
+              - generic [ref=e1921] [cursor=pointer]:
+                - img [ref=e1924]
+                - generic [ref=e1928]: 今天我们聊了聊我们各自的一天，从早上起床，到晚上睡觉。
+                - generic [ref=e1929]:
+                  - img [ref=e1931]
+                  - img [ref=e1935]
+              - generic [ref=e1936] [cursor=pointer]:
+                - img [ref=e1939]
+                - generic [ref=e1943]: 是啊，听起来我们的一天很不一样。
+                - generic [ref=e1944]:
+                  - img [ref=e1946]
+                  - img [ref=e1950]
+              - generic [ref=e1951] [cursor=pointer]:
+                - img [ref=e1954]
+                - generic [ref=e1958]: 李明你的生活非常健康，有规律。
+                - generic [ref=e1959]:
+                  - img [ref=e1961]
+                  - img [ref=e1965]
+              - generic [ref=e1966] [cursor=pointer]:
+                - img [ref=e1969]
+                - generic [ref=e1973]: 我呢，就有一点乱，哈哈。
+                - generic [ref=e1974]:
+                  - img [ref=e1976]
+                  - img [ref=e1980]
+              - generic [ref=e1981] [cursor=pointer]:
+                - img [ref=e1984]
+                - generic [ref=e1988]: 没有没有，每个人的生活方式都不一样。
+                - generic [ref=e1989]:
+                  - img [ref=e1991]
+                  - img [ref=e1995]
+              - generic [ref=e1996] [cursor=pointer]:
+                - img [ref=e1999]
+                - generic [ref=e2003]: 重要的是， 我们能在忙碌的一天里找到自己的快乐。
+                - generic [ref=e2004]:
+                  - img [ref=e2006]
+                  - img [ref=e2010]
+              - generic [ref=e2011] [cursor=pointer]:
+                - img [ref=e2014]
+                - generic [ref=e2018]: 你说得对。听众朋友们， 你们的一天是什么样的呢？
+                - generic [ref=e2019]:
+                  - img [ref=e2021]
+                  - img [ref=e2025]
+              - generic [ref=e2026] [cursor=pointer]:
+                - img [ref=e2029]
+                - generic [ref=e2033]: 我们很期待看到你们的分享。
+                - generic [ref=e2034]:
+                  - img [ref=e2036]
+                  - img [ref=e2040]
+              - generic [ref=e2041] [cursor=pointer]:
+                - img [ref=e2044]
+                - generic [ref=e2048]: 好了，这期《每天中文》就到这里。感谢大家的收听。
+                - generic [ref=e2049]:
+                  - img [ref=e2051]
+                  - img [ref=e2055]
+              - generic [ref=e2056] [cursor=pointer]:
+                - img [ref=e2059]
+                - generic [ref=e2063]: 我们下期再见！
+                - generic [ref=e2064]:
+                  - img [ref=e2066]
+                  - img [ref=e2070]
+              - generic [ref=e2071] [cursor=pointer]:
+                - img [ref=e2074]
+                - generic [ref=e2078]: 再见！
+                - generic [ref=e2079]:
+                  - img [ref=e2081]
+                  - img [ref=e2085]
+              - generic [ref=e2086] [cursor=pointer]:
+                - img [ref=e2089]
+                - generic [ref=e2093]: 拜拜！
+                - generic [ref=e2094]:
+                  - img [ref=e2096]
+                  - img [ref=e2100]
+          - insertion [ref=e2102]:
+            - iframe [ref=e2104]:
+              - iframe [ref=f20e1]:
+                - generic [ref=f25e2]:
+                  - iframe [ref=f25e5] [cursor=pointer]:
+                    - img [ref=f33e2]
+                  - link [ref=f25e3] [cursor=pointer]:
+                    - /url: https://insight.adsrvr.org/track/clk?imp=1cb47b7b-1478-4157-8eb9-e32cc3553e77&ag=g7bd4bx&sfe=1c58a19c&sig=NkNHy87_bSN3Q-nmi1Cn21NUCPNxPSpwbDQTKO2kpqs.&crid=506zij8e&cf=9836756&fq=0&t=1&td_s=corodomo.com&rcats=&mste=&mfld=3&mssi=&mfsi=&sv=google&uhow=109&agsa=&wp=aiEhnAAAnEMB7oYrAA4U5hfFnGTAnPdaDm7h3A&rgz=11507&dt=PC&osf=Windows&os=Windows11&br=Chrome&svpid=pub-4301174410810730&rlangs=vi&mlang=&did=&rcxt=Other&tmpc=35.60000000000002&vrtd=&osi=&osv=&daid=&dnr=0&vpb=&crrelr=&npt=&cc=3~KLUv_WPYfRZoAAJVDAB0D3t7tBx4FFdBEY654yzDVT53QgdnN2JkNGJ4SPCtww01MDZ6aWo4ZWC97OUMY29yb2RvbUhNQnZhNjdPalhoWlpiTjFPQXQzV01tClZhbiBDNzEwN4LU7PqccDVaQR1iMWF8ZGFtfOTx742EoT8KMTU2N6O0zqKvrhZpaUp0Z21ncEZuUklQbEZtQVAyaFo7L2NtcHVqdzR5aTA1c2xmdWZ4b3p0ZnV6M3ik5rnavCzSGXgq58As9unCoJZNEZ252oK6k30WCgjElLOI8uV54Z3hnUgKAgOYEwCoEzzIEzzQEwD9Eylcjz-AFAGgFACwFAC4FADIFAAt_ABTD258wrrSKXJlvDrcmEMaKLkMb9yYkAAfqrwI9-oOtA66EG_G0CI_drRR21ZlrtLwDlAf5ewpRt-V3eqbCy5fa6cu-YRvPdxmtxst1OqYa3JmgheCRNajDNZAwNS-okyofBHxZ-rRYbENW_tOBJgg8y_AxUGQL5rPfhX1irHe4D7dNW1IxQ_z8SyassQ3&dur=1~KLUv_SMFoCgkYKUAAEggAigFTYUQmz4CPN6yDD6G2wAB&durs=4cpPsJ&bdc=13&testid=b1a%7Cdam%7CGoogle-ORtb-Migration&fpa=399&pcm=3&ict=Unknown&said=iiJtgmgpFnRIPlFmAP2hZQ&auct=1&tail=1&r=https://adclick.g.doubleclick.net/aclk%3Fsa%3DL%26ai%3DCEyTCnCEhasO4AquMur8P5qm4qA6-p-f2dPb-j45XwI23ARABIKGLspYBYMGt-g3IAQmoAwHIAwKqBOABT9ANaOmxEWH5v9J2n01dijVIuT3hHStTIqC8sFGSLChAUPDaxg3WCLMMQxxfph85bD-NP_BoWAjcB22Jk0PXcumf4fw1L85bT2FaTjCTXRTL9cLTGMI3yPkeKDUrSGlYx9o2EKvItEVKfdAouMnEx-vXiCbToK4qK8odCbCSzKqHeswD64lCDfYwJXT2Tnyug-KxDrGXBJ7ijH-tDk1KsWSggO9ASF5iycmEOTDKwMYMZYEWJfyRAB8cXF8FLIoWJV-eOlUfRVPCrva_VO7hityqTl-2Izqw1TcLWMSupEiABriqrqW9kOTxCaAGIagHk9ixAqgHlNixAqgHldixAqgHpr4bqAeW2BuoB6qbsQKoB_-esQKoB9-fsQKoB62-sQKoB7_TsQLYBwDSCC4IgGEQATIIioKAgICAgAg6D4BAgMCAgICAqIACqIOAEEi9_cE6WKvN2NiA7ZQD-gsCCAGADAGqDQJWTuoNEwjr_NzYgO2UAxUrhu4BHeYUDuWIDgnQFQGAFwGyFxAYDCoKMzI5NDY3ODIxN1ABqhgXCe-nxksHsM1AEgozMjk0Njc4MjE3GAE%26num%3D1%26sig%3DAOD64_2ar5YBhWxK6UhF66tw0VWFVvWZ2Q%26client%3Dca-pub-4301174410810730%26adurl%3Dhttps://m.ntesgsght.com/c/qmkxo9?campaign=thetradedesk_h72na_madhouse_all_sea_install_mobile_20251205&ad_group=g7bd4bx&ad=506zij8e&site_id=corodomo.com&sub_site_id=corodomo.com%2fvideos%2fstart%2fcmpujw4yi05slfufxoztfuz3x&sub1=google&ttd_id=1cb47b7b-1478-4157-8eb9-e32cc3553e77
+                    - img [ref=f25e4]
+  - alert [ref=e2105]

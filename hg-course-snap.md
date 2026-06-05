@@ -1,0 +1,354 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - button "‹" [ref=e3] [cursor=pointer]
+    - generic [ref=e5]: Hanzi Genz
+    - navigation [ref=e6]:
+      - generic [ref=e7]:
+        - link "Tổng quan" [ref=e8] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e9]
+          - generic [ref=e12]: Tổng quan
+        - link "Học" [ref=e13] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e14]
+          - generic [ref=e16]: Học
+        - link "Luyện tập" [ref=e17] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e18]
+          - generic [ref=e22]: Luyện tập
+        - link "Công cụ" [ref=e23] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e24]
+          - generic [ref=e26]: Công cụ
+        - link "Tôi" [ref=e27] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e28]
+          - generic [ref=e31]: Tôi
+        - link "Cộng đồng" [ref=e32] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e33]
+          - generic [ref=e38]: Cộng đồng
+      - button "Thêm ›" [ref=e39] [cursor=pointer]:
+        - img [ref=e40]
+        - generic [ref=e44]: Thêm
+        - generic [ref=e45]: ›
+      - generic:
+        - link "Góp ý" [ref=e46] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e47]
+          - generic [ref=e49]: Góp ý
+        - link "Admin" [ref=e50] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e51]
+          - generic [ref=e54]: Admin
+        - link "Cài đặt" [ref=e55] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e56]
+          - generic [ref=e59]: Cài đặt
+    - generic [ref=e61]:
+      - generic [ref=e62]: 👤
+      - generic [ref=e63]:
+        - generic [ref=e64]: Tiro
+        - generic [ref=e65]:
+          - button "🔄" [ref=e66] [cursor=pointer]
+          - button "📤" [ref=e67] [cursor=pointer]
+    - generic [ref=e68]:
+      - button "☀️" [ref=e69] [cursor=pointer]
+      - button "VI / EN" [ref=e70] [cursor=pointer]
+  - complementary [ref=e71]:
+    - button "‹" [ref=e72] [cursor=pointer]
+    - generic [ref=e73]:
+      - img "Bé Rồng" [ref=e74]
+      - paragraph [ref=e75]: Học tốt nhé! 🐉
+    - generic [ref=e76]:
+      - generic [ref=e78]:
+        - generic [ref=e79]:
+          - generic [ref=e80]: "6"
+          - generic [ref=e81]: Đã học
+        - generic [ref=e82]:
+          - generic [ref=e83]: "3"
+          - generic [ref=e84]: 🔥 Chuỗi
+        - generic [ref=e85]:
+          - generic [ref=e86]: "17"
+          - generic [ref=e87]: Cần ôn
+      - generic [ref=e88]:
+        - generic [ref=e89]:
+          - generic [ref=e90]: Token
+          - strong [ref=e91]: "100"
+        - link "⚔️ Nhiệm vụ →" [ref=e92] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - text: ⚡
+            - strong [ref=e96]: "567"
+            - text: XP
+          - generic [ref=e97]: Cấp 2
+        - generic [ref=e101]: +0 XP tuần này
+      - generic [ref=e102]:
+        - generic [ref=e103]: 7 ngày gần đây
+        - generic [ref=e104]:
+          - generic [ref=e338]:
+            - generic [ref=e339]: ○
+            - generic [ref=e340]: T6
+          - generic [ref=e341]:
+            - generic [ref=e342]: ○
+            - generic [ref=e343]: T7
+          - generic [ref=e344]:
+            - generic [ref=e345]: ○
+            - generic [ref=e346]: CN
+          - generic [ref=e347]:
+            - generic [ref=e348]: ○
+            - generic [ref=e349]: T2
+          - generic [ref=e350]:
+            - generic [ref=e351]: ○
+            - generic [ref=e352]: T3
+          - generic [ref=e353]:
+            - generic [ref=e354]: ○
+            - generic [ref=e355]: T4
+          - generic [ref=e356]:
+            - generic [ref=e357]: ○
+            - generic [ref=e358]: T5
+      - generic [ref=e126]:
+        - generic [ref=e127]: Hoạt động 12 tuần
+        - generic [ref=e128]:
+          - generic [ref=e359]:
+            - 'generic "2026-03-13: 0 XP" [ref=e360]'
+            - 'generic "2026-03-14: 0 XP" [ref=e361]'
+            - 'generic "2026-03-15: 0 XP" [ref=e362]'
+            - 'generic "2026-03-16: 0 XP" [ref=e363]'
+            - 'generic "2026-03-17: 0 XP" [ref=e364]'
+            - 'generic "2026-03-18: 0 XP" [ref=e365]'
+            - 'generic "2026-03-19: 0 XP" [ref=e366]'
+          - generic [ref=e367]:
+            - 'generic "2026-03-20: 0 XP" [ref=e368]'
+            - 'generic "2026-03-21: 0 XP" [ref=e369]'
+            - 'generic "2026-03-22: 0 XP" [ref=e370]'
+            - 'generic "2026-03-23: 0 XP" [ref=e371]'
+            - 'generic "2026-03-24: 0 XP" [ref=e372]'
+            - 'generic "2026-03-25: 0 XP" [ref=e373]'
+            - 'generic "2026-03-26: 0 XP" [ref=e374]'
+          - generic [ref=e375]:
+            - 'generic "2026-03-27: 0 XP" [ref=e376]'
+            - 'generic "2026-03-28: 0 XP" [ref=e377]'
+            - 'generic "2026-03-29: 0 XP" [ref=e378]'
+            - 'generic "2026-03-30: 0 XP" [ref=e379]'
+            - 'generic "2026-03-31: 0 XP" [ref=e380]'
+            - 'generic "2026-04-01: 0 XP" [ref=e381]'
+            - 'generic "2026-04-02: 0 XP" [ref=e382]'
+          - generic [ref=e383]:
+            - 'generic "2026-04-03: 0 XP" [ref=e384]'
+            - 'generic "2026-04-04: 0 XP" [ref=e385]'
+            - 'generic "2026-04-05: 0 XP" [ref=e386]'
+            - 'generic "2026-04-06: 0 XP" [ref=e387]'
+            - 'generic "2026-04-07: 0 XP" [ref=e388]'
+            - 'generic "2026-04-08: 0 XP" [ref=e389]'
+            - 'generic "2026-04-09: 0 XP" [ref=e390]'
+          - generic [ref=e391]:
+            - 'generic "2026-04-10: 0 XP" [ref=e392]'
+            - 'generic "2026-04-11: 0 XP" [ref=e393]'
+            - 'generic "2026-04-12: 0 XP" [ref=e394]'
+            - 'generic "2026-04-13: 0 XP" [ref=e395]'
+            - 'generic "2026-04-14: 0 XP" [ref=e396]'
+            - 'generic "2026-04-15: 0 XP" [ref=e397]'
+            - 'generic "2026-04-16: 0 XP" [ref=e398]'
+          - generic [ref=e399]:
+            - 'generic "2026-04-17: 0 XP" [ref=e400]'
+            - 'generic "2026-04-18: 0 XP" [ref=e401]'
+            - 'generic "2026-04-19: 0 XP" [ref=e402]'
+            - 'generic "2026-04-20: 0 XP" [ref=e403]'
+            - 'generic "2026-04-21: 0 XP" [ref=e404]'
+            - 'generic "2026-04-22: 0 XP" [ref=e405]'
+            - 'generic "2026-04-23: 0 XP" [ref=e406]'
+          - generic [ref=e407]:
+            - 'generic "2026-04-24: 0 XP" [ref=e408]'
+            - 'generic "2026-04-25: 0 XP" [ref=e409]'
+            - 'generic "2026-04-26: 0 XP" [ref=e410]'
+            - 'generic "2026-04-27: 0 XP" [ref=e411]'
+            - 'generic "2026-04-28: 0 XP" [ref=e412]'
+            - 'generic "2026-04-29: 0 XP" [ref=e413]'
+            - 'generic "2026-04-30: 0 XP" [ref=e414]'
+          - generic [ref=e415]:
+            - 'generic "2026-05-01: 0 XP" [ref=e416]'
+            - 'generic "2026-05-02: 0 XP" [ref=e417]'
+            - 'generic "2026-05-03: 0 XP" [ref=e418]'
+            - 'generic "2026-05-04: 0 XP" [ref=e419]'
+            - 'generic "2026-05-05: 0 XP" [ref=e420]'
+            - 'generic "2026-05-06: 0 XP" [ref=e421]'
+            - 'generic "2026-05-07: 0 XP" [ref=e422]'
+          - generic [ref=e423]:
+            - 'generic "2026-05-08: 0 XP" [ref=e424]'
+            - 'generic "2026-05-09: 20 XP" [ref=e425]'
+            - 'generic "2026-05-10: 25 XP" [ref=e426]'
+            - 'generic "2026-05-11: 0 XP" [ref=e427]'
+            - 'generic "2026-05-12: 0 XP" [ref=e428]'
+            - 'generic "2026-05-13: 0 XP" [ref=e429]'
+            - 'generic "2026-05-14: 0 XP" [ref=e430]'
+          - generic [ref=e431]:
+            - 'generic "2026-05-15: 0 XP" [ref=e432]'
+            - 'generic "2026-05-16: 0 XP" [ref=e433]'
+            - 'generic "2026-05-17: 50 XP" [ref=e434]'
+            - 'generic "2026-05-18: 0 XP" [ref=e435]'
+            - 'generic "2026-05-19: 0 XP" [ref=e436]'
+            - 'generic "2026-05-20: 0 XP" [ref=e437]'
+            - 'generic "2026-05-21: 0 XP" [ref=e438]'
+          - generic [ref=e439]:
+            - 'generic "2026-05-22: 0 XP" [ref=e440]'
+            - 'generic "2026-05-23: 0 XP" [ref=e441]'
+            - 'generic "2026-05-24: 0 XP" [ref=e442]'
+            - 'generic "2026-05-25: 0 XP" [ref=e443]'
+            - 'generic "2026-05-26: 0 XP" [ref=e444]'
+            - 'generic "2026-05-27: 0 XP" [ref=e445]'
+            - 'generic "2026-05-28: 0 XP" [ref=e446]'
+          - generic [ref=e447]:
+            - 'generic "2026-05-29: 0 XP" [ref=e448]'
+            - 'generic "2026-05-30: 0 XP" [ref=e449]'
+            - 'generic "2026-05-31: 0 XP" [ref=e450]'
+            - 'generic "2026-06-01: 0 XP" [ref=e451]'
+            - 'generic "2026-06-02: 70 XP" [ref=e452]'
+            - 'generic "2026-06-03: 0 XP" [ref=e453]'
+            - 'generic "2026-06-04: 70 XP" [ref=e454]'
+        - generic [ref=e225]:
+          - generic [ref=e226]: Ít
+          - generic [ref=e232]: Nhiều
+      - generic [ref=e233]:
+        - generic [ref=e234]: Cài đặt nhanh
+        - generic [ref=e235]:
+          - generic [ref=e236] [cursor=pointer]:
+            - generic [ref=e237]: Hiện pinyin
+            - checkbox "Hiện pinyin" [checked] [ref=e238]
+          - generic [ref=e239] [cursor=pointer]:
+            - generic [ref=e240]: Tiếng Anh
+            - checkbox "Tiếng Anh" [ref=e241]
+          - generic [ref=e242] [cursor=pointer]:
+            - generic [ref=e243]: Gợi ý
+            - combobox [ref=e244]:
+              - option "Dễ"
+              - option "Vừa" [selected]
+              - option "Khó"
+          - generic [ref=e245] [cursor=pointer]:
+            - generic [ref=e246]: Chế độ SRS
+            - combobox [ref=e247]:
+              - option "2 nút" [selected]
+              - option "4 nút"
+  - main [ref=e248]:
+    - generic [ref=e249]:
+      - generic [ref=e250] [cursor=pointer]:
+        - img [ref=e251]
+        - textbox "Tìm từ, tra nghĩa..." [ref=e254]
+        - generic [ref=e255]: /
+      - generic [ref=e256]:
+        - generic "Token của bạn" [ref=e257]: "100"
+        - generic "Chuỗi ngày học" [ref=e258]: "3"
+        - generic "AI Credit của bạn" [ref=e259] [cursor=pointer]: 4,903 cr
+      - button "👤" [ref=e260] [cursor=pointer]
+    - generic [ref=e456]:
+      - generic [ref=e457]:
+        - button "← Quay lại" [ref=e458] [cursor=pointer]
+        - generic [ref=e459]: Bài 2
+      - generic [ref=e460]:
+        - img "Mai" [ref=e462]
+        - heading "Gia đình của Mai" [level=2] [ref=e463]
+        - paragraph [ref=e464]: Sau buổi học, Mai và Tiểu Mỹ ra quán cà phê. Tiểu Mỹ tò mò về gia đình Mai, thế là hai đứa xem ảnh cả nhà.
+        - generic [ref=e465]:
+          - generic [ref=e466]: 🎯 Mục tiêu bài này
+          - list [ref=e467]:
+            - listitem [ref=e468]: Giới thiệu các thành viên gia đình (爸爸 · 妈妈 · 哥哥…)
+            - listitem [ref=e469]: Nói “có / không có” bằng 有 và 没有
+            - listitem [ref=e470]: Diễn đạt sở hữu bằng 的 (我的照片)
+            - listitem [ref=e471]: Hỏi số lượng người bằng 几 + 个
+        - generic [ref=e472]:
+          - generic [ref=e473]: Từ vựng sẽ gặp
+          - generic [ref=e474]:
+            - generic [ref=e475]: 家
+            - generic [ref=e476]: 爸爸
+            - generic [ref=e477]: 妈妈
+            - generic [ref=e478]: 有
+            - generic [ref=e479]: 的
+        - button "▶ Bắt đầu học" [ref=e480] [cursor=pointer]
+        - button "📘 Ngữ pháp bài" [ref=e481] [cursor=pointer]
+        - button "📔 Trang chép bài" [ref=e482] [cursor=pointer]
+  - generic [ref=e261]:
+    - generic [ref=e263]:
+      - generic [ref=e264]: Khám phá thêm
+      - button "✕" [ref=e265] [cursor=pointer]
+    - generic [ref=e266]:
+      - link "Luyện tập" [ref=e267] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e269]
+        - generic [ref=e273]: Luyện tập
+      - link "Công cụ" [ref=e274] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e276]
+        - generic [ref=e278]: Công cụ
+      - link "Trò chơi" [ref=e279] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e281]
+        - generic [ref=e285]: Trò chơi
+      - link "Truyện Mai" [ref=e286] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e288]
+        - generic [ref=e291]: Truyện Mai
+      - link "Khám phá" [ref=e292] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e294]
+        - generic [ref=e297]: Khám phá
+      - link "Từ điển" [ref=e298] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e300]
+        - generic [ref=e303]: Từ điển
+      - link "Ngữ pháp" [ref=e304] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e306]
+        - generic [ref=e308]: Ngữ pháp
+      - link "Đọc hiểu" [ref=e309] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e311]
+        - generic [ref=e314]: Đọc hiểu
+      - link "Nhiệm vụ" [ref=e315] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e317]
+        - generic [ref=e319]: Nhiệm vụ
+      - link "Bộ thẻ" [ref=e320] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e322]
+        - generic [ref=e326]: Bộ thẻ
+      - link "Pinyin Lab" [ref=e327] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e329]
+        - generic [ref=e332]: Pinyin Lab
+      - link "Góp ý" [ref=e333] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e335]
+        - generic [ref=e337]: Góp ý
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic: Từ điển
+        - button "Đóng":
+          - img
+      - generic:
+        - generic:
+          - generic:
+            - button "Phát âm":
+              - img
+            - button "Yêu thích" [disabled]:
+              - img
+            - button "Viết mẫu":
+              - img
+            - button "Luyện viết":
+              - img
+        - generic:
+          - generic: Nghĩa
+          - generic:
+            - generic:
+              - generic: VI
+            - generic:
+              - generic: EN
+      - generic:
+        - button "Đóng":
+          - img
+          - text: Đóng
+        - generic:
+          - button "➕ Thêm vào bộ thẻ"

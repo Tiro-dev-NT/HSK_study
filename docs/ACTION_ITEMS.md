@@ -1,5 +1,21 @@
 # Action Items
 
+## 🟢 Session 2026-06-05 — SEO từ điển tĩnh (acquisition)
+
+> Điểm mù = acquisition. Đòn bẩy: từ điển Hán-Việt intent search cao, đối thủ quốc tế yếu tiếng Việt. SPA → Google index kém → pre-render tĩnh.
+
+**✅ Đã xong (commit `main` `30461fb`):**
+- `scripts/gen-dict-pages.js` (force-add vì `scripts/` gitignored) → sinh **1.567 trang chữ đơn** `/tu-dien/<chữ>.html` + `/tu-dien/` index + `sitemap.xml` + `robots.txt`. HTML thật (verify local: Googlebot thấy nghĩa + JSON-LD; SPA `/` không đụng). Off-path, không nav tab.
+
+**🔴 CẦN USER LÀM:**
+- ☐ **Push `main` → Cloudflare deploy.** ⚠️ `main` đang ahead origin **5 commit** (gồm cả north-star của session khác: admin retention/marketing/hskk) — push = deploy luôn cả cụm đó. Review trước khi push.
+- ☐ **Submit `https://hanzigenz.com/sitemap.xml`** lên Search Console (site đã verify) sau khi deploy.
+
+**📌 Phase 2 (treo, có điều kiện) — mở rộng ~10k từ ghép:**
+- ☐ Bỏ filter `Array.from(w.h).length===1` trong generator, NHƯNG chỉ khi: (a) lọc trang có `ex` (tránh thin-content/soft-404), (b) theo đợt cấp thấp trước (crawl budget), (c) chuyển **build-at-deploy** (gitignore `tu-dien/` + CF build command) vì +~80MB, (d) link tới chữ đơn cấu thành. → Đợi chữ đơn index ổn (vài tuần) rồi làm.
+
+---
+
 ## 🟡 Session 2026-06-04 — AI Credit pricing + HSKK (TODO, chưa làm)
 
 > Bối cảnh: rà giá vốn Speaking/HSKK vs credit trừ. Chi tiết giá: `docs/AI_API_SETUP.md`.

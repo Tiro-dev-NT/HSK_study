@@ -29,7 +29,20 @@ var AdminOverview = (function() {
 
   async function _loadStats() {
     if (!window.SB) return;
-    var res = await SB.rpc('admin_dashboard_stats');
+    var res;
+    try {
+      res = await SB.rpc('admin_dashboard_stats');
+    } catch (e) {
+      console.error('[AdminOverview] admin_dashboard_stats threw:', e);
+      res = { error: e };
+    }
+    // Trước đây lỗi RPC bị nuốt im lặng → mọi KPI hiện "—" không rõ lý do.
+    // Giờ log + hiện "⚠️" để chẩn đoán được (xem Console để biết cột/RPC nào lỗi).
+    if (res.error) {
+      console.error('[AdminOverview] admin_dashboard_stats error:', res.error);
+      ['kpiDAU','kpiRevMonth','kpiRetention','kpiProRatio'].forEach(function(id){ _set(id, '⚠️'); });
+      return;
+    }
     var s = (res.data && res.data[0]) || {};
 
     _set('kpiDAU',      Admin.fmt(s.dau));

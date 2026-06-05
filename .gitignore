@@ -127,3 +127,19 @@ hanzi-genz-mockup/
 
 # Competitor notes (business intel — never public)
 topikmaster-home.md
+corodomo-*.md
+
+# Marketing / launch assets — keep local only (repo PUBLIC, giữ repo gọn)
+Huong-dan-*.docx
+beta-test-*.md
+email-gui-tester.md
+fb-cover.html
+fb-post.html
+tiktok-post.html
+tiktok-post.png
+tao-form-khao-sat.gs
+gen-docx.js
+
+# Page text snapshots + marketing screenshots (local QA / marketing only)
+hg-*.md
+hg-*.png

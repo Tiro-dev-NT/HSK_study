@@ -20,7 +20,7 @@
 
 > Bối cảnh: rà giá vốn Speaking/HSKK vs credit trừ. Chi tiết giá: `docs/AI_API_SETUP.md`.
 
-- ☑ **Recalibrate credit trừ DONE (code) 2026-06-05 — ⚠️ chờ DEPLOY + verify:** giá đã **server-side 5cr/câu** rồi: `speech-proxy/index.ts:40` `TASKS.hskk_score={credit:5,cost:150}`, consume gọi `def.credit` (client chỉ gửi `task` string, KHÔNG gửi amount). `hskk.js` `CREDIT_PER_Q=5`. → "đang trừ 1cr" là **stale HOẶC bản live chưa deploy**. **USER VERIFY:** SQL `select amount from ai_credit_ledger where task_type='hskk_score' order by created_at desc limit 5;` → `-5` = live đúng; `-1` = cần `supabase functions deploy speech-proxy`. (Hoặc F12 Network `credit_used`.)
+- ☑ **Recalibrate credit trừ DONE + DEPLOYED 2026-06-05** (user xác nhận deploy `speech-proxy`): giá **server-side 5cr/câu** live: `speech-proxy/index.ts:40` `TASKS.hskk_score={credit:5,cost:150}`, consume gọi `def.credit` (client chỉ gửi `task` string, KHÔNG gửi amount). `hskk.js` `CREDIT_PER_Q=5`. → "đang trừ 1cr" là **stale HOẶC bản live chưa deploy**. **USER VERIFY:** SQL `select amount from ai_credit_ledger where task_type='hskk_score' order by created_at desc limit 5;` → `-5` = live đúng; `-1` = cần `supabase functions deploy speech-proxy`. (Hoặc F12 Network `credit_used`.)
   - ☑ **Pro-gate SERVER-SIDE (anti-F12) DONE 2026-06-05:** trước đây speech-proxy chỉ check JWT → free user F12 đốt allowance/welcome-gift vào chấm speech. Nay query `user_subscriptions` (RLS row của user) trước consume; không Pro → `402 pro_required`. Client hskk.js/speaking.js bắt `pro_required`→`Monetization.showGate`. **KHÔNG cần SQL mới** (đọc qua RLS) — chỉ **`supabase functions deploy speech-proxy`**. `hskk.js?v=2.2`+`speaking.js?v=1.4`.
   - ☑ **Cap câu/ngày = KHÔNG cần code:** chốt 40 câu/ngày = đúng trần credit Pro 200 ÷ 5; `consume_ai_credit` (`daily_cap_exceeded`) đã enforce. Không thêm counter riêng.
   - ☑ **Welcome-gift điều tra 2026-06-05 — KHÔNG lỗ cục, giữ nguyên:** daily-cap áp **cả** purchased/gift (đếm tổng credit/ngày trước khi tách bucket) → 1000cr không drain 1 lượt (≥5 ngày). Worst-case 100%→speech: chi phí gift chỉ **1.2–4% doanh thu** mọi tier (Monthly 3k/4% … Lifetime 30k/1.2%). Đòn bẩy thật nếu siết = recurring allowance, KHÔNG phải gift.
@@ -45,7 +45,7 @@
 - **"Truy cập cuối" thật** (last_active_at): `Auth._touchLastActive()` gọi RPC throttle 1h + đổi nhãn cột Admin. Key `hsk_last_active_touch`. Commit `36d2029`.
 
 **🔴 CẦN USER LÀM (Supabase, thủ công):**
-- ☐ **Chạy `sql/v19_last_active.sql`** (gitignored — repo PUBLIC) trên Supabase SQL Editor → bảng `user_activity` + RLS + RPC `touch_last_active()` + `admin_list_users` đọc `COALESCE(last_active_at, last_sign_in_at)`. Trước khi chạy: cột "Truy cập cuối" = last login, RPC 404 (đã nuốt, app không lỗi).
+- ☑ **Chạy `sql/v19_last_active.sql`** (DONE 2026-06-05, user xác nhận) → bảng `user_activity` + RLS + RPC `touch_last_active()` + `admin_list_users` đọc `COALESCE(last_active_at, last_sign_in_at)`. Cột "Truy cập cuối" Admin giờ = last_active thật.
 - ☑ **Chạy `sql/v20_honor_purchases_grant_fix.sql`** (DONE 2026-06-04, user xác nhận) → fix 403 khi /profile query `user_honor_purchases` (UX_AUDIT P2-2). Root cause: policy RLS `honor_self_select` đã có nhưng bảng thiếu `GRANT SELECT TO authenticated` → PostgREST kiểm GRANT trước RLS → 403. Đã `GRANT SELECT` + revoke ghi từ client → outfit Honor sync đúng từ server.
 
 **📌 Quyết định còn treo:**

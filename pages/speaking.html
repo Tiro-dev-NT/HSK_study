@@ -31,13 +31,32 @@
         <div class="sp-step"><b>3</b><span>Chấm AI 1 credit/câu</span></div>
       </div>
 
-      <div class="sp-section-head">
-        <div>
-          <h2>Bộ luyện hôm nay</h2>
-          <p>10 bộ · 90 câu · HSK 1–6</p>
+      <div class="sp-library" id="spLibrary">
+        <div class="sp-lib-head">
+          <div>
+            <h2>Thư viện luyện đọc</h2>
+            <p>40 bài · 330 câu · HSK 1–6 — chọn bài theo cấp và trọng tâm</p>
+          </div>
+          <div class="sp-lib-search">
+            <span class="sp-lib-search-ic" aria-hidden="true">🔍</span>
+            <input id="spLibSearch" type="search" placeholder="Tìm bài theo tên hoặc chủ đề…" autocomplete="off" />
+          </div>
         </div>
+
+        <div class="sp-lib-filters">
+          <div class="sp-filter-group">
+            <span class="sp-filter-cap">Cấp</span>
+            <div class="sp-filter-row" id="spFilterLevel"></div>
+          </div>
+          <div class="sp-filter-group">
+            <span class="sp-filter-cap">Trọng tâm</span>
+            <div class="sp-filter-row" id="spFilterFocus"></div>
+          </div>
+        </div>
+
+        <div class="sp-set-grid" id="spSetGrid"></div>
+        <div class="sp-lib-empty" id="spLibEmpty" style="display:none">Không tìm thấy bài phù hợp. Thử bỏ bớt bộ lọc nhé.</div>
       </div>
-      <div class="sp-set-grid" id="spSetGrid"></div>
 
       <div class="sp-history" id="spHistoryWrap" style="display:none">
         <h3>Lần chấm gần đây</h3>

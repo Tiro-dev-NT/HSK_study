@@ -2,7 +2,9 @@ var Speaking = (function () {
   'use strict';
 
   var HIST_KEY = 'speaking_history_v1';
+  var PROGRESS_KEY = 'shadowing_progress_v1';
   var PINYIN_KEY = 'speaking_show_pinyin';
+  var _lib = null;
   var _showPinyin = true;
   var _set = null;
   var _idx = 0;
@@ -135,7 +137,7 @@ var Speaking = (function () {
   function init() {
     var saved = localStorage.getItem(PINYIN_KEY);
     _showPinyin = saved !== 'false';
-    _renderSets();
+    _initLibrary();
     _renderHistory();
     var first = $('spFirstSetBtn');
     if (first) first.onclick = function () {
@@ -171,24 +173,146 @@ var Speaking = (function () {
 
   function _sets() { return (window.SHADOW_DATA && SHADOW_DATA.sets) || []; }
 
-  function _renderSets() {
-    var grid = $('spSetGrid');
-    if (!grid) return;
-    var sets = _sets();
-    grid.innerHTML = sets.map(function (s, i) {
-      return '<button class="sp-set-card" data-set="' + _esc(s.id) + '">' +
-        '<span class="sp-set-num">' + String(i + 1).padStart(2, '0') + '</span>' +
-        '<span class="sp-set-body"><span class="sp-set-kicker">' +
-        '<span class="sp-focus-pill">' + _esc(s.focus) + '</span>' +
-        '<span class="sp-level-pill">HSK ' + _esc(s.level) + '</span></span>' +
-        '<h3 class="sp-set-title">' + _esc(s.title) + '</h3>' +
-        '<p class="sp-set-desc">' + _esc(s.desc) + '</p>' +
-        '<span class="sp-set-foot">' + ((s.lines || []).length) + ' câu luyện →</span></span>' +
-        '</button>';
-    }).join('');
-    grid.querySelectorAll('[data-set]').forEach(function (b) {
-      b.onclick = function () { _openSet(b.getAttribute('data-set')); };
+  // ───────────────────────────────────────────────────────────────────
+  // Library shell — render grid + filter (cấp/trọng tâm) + search từ mảng
+  // item chuẩn { id, title, level, tag, progress, ... }. Cố ý KHÔNG đụng
+  // state riêng của Shadowing → tách thành module dùng chung (HSKK / VN
+  // practice) sau này chỉ cần truyền cfg khác.
+  //   cfg: { gridEl, emptyEl, searchEl, filterEls:{level,focus},
+  //          getItems(), onPick(id), renderCard(item) }
+  // ───────────────────────────────────────────────────────────────────
+  function _buildLibrary(cfg) {
+    var state = { level: 'all', focus: 'all', q: '' };
+
+    function _distinct(items, key) {
+      var seen = {}, out = [];
+      items.forEach(function (it) {
+        var v = it[key];
+        if (v != null && v !== '' && !seen[v]) { seen[v] = 1; out.push(v); }
+      });
+      return out;
+    }
+
+    function _chips(el, values, active, fmt, onPick) {
+      if (!el) return;
+      var html = '<button class="sp-chip' + (active === 'all' ? ' sp-chip--on' : '') + '" data-v="all">Tất cả</button>';
+      html += values.map(function (v) {
+        return '<button class="sp-chip' + (String(active) === String(v) ? ' sp-chip--on' : '') +
+          '" data-v="' + _esc(v) + '">' + _esc(fmt ? fmt(v) : v) + '</button>';
+      }).join('');
+      el.innerHTML = html;
+      el.querySelectorAll('[data-v]').forEach(function (b) {
+        b.onclick = function () { onPick(b.getAttribute('data-v')); };
+      });
+    }
+
+    function _match(items) {
+      var q = state.q.trim().toLowerCase();
+      return items.filter(function (it) {
+        if (state.level !== 'all' && String(it.level) !== String(state.level)) return false;
+        if (state.focus !== 'all' && String(it.tag) !== String(state.focus)) return false;
+        if (q && (it.searchText || '').indexOf(q) < 0) return false;
+        return true;
+      });
+    }
+
+    function refresh() {
+      var items = cfg.getItems();
+      var levels = _distinct(items, 'level').sort(function (a, b) { return a - b; });
+      var focuses = _distinct(items, 'tag');
+      _chips(cfg.filterEls && cfg.filterEls.level, levels, state.level,
+        function (v) { return 'HSK ' + v; }, function (v) { state.level = v; refresh(); });
+      _chips(cfg.filterEls && cfg.filterEls.focus, focuses, state.focus,
+        null, function (v) { state.focus = v; refresh(); });
+      var shown = _match(items);
+      cfg.gridEl.innerHTML = shown.map(cfg.renderCard).join('');
+      cfg.gridEl.querySelectorAll('[data-set]').forEach(function (b) {
+        b.onclick = function () { cfg.onPick(b.getAttribute('data-set')); };
+      });
+      if (cfg.emptyEl) cfg.emptyEl.style.display = shown.length ? 'none' : '';
+    }
+
+    if (cfg.searchEl) {
+      cfg.searchEl.oninput = function () { state.q = cfg.searchEl.value || ''; refresh(); };
+    }
+    return { refresh: refresh };
+  }
+
+  // Gom focus chi tiết → nhóm lọc rộng (thanh điệu / phụ âm / nguyên âm / nhịp / chủ đề / nâng cao)
+  function _focusBucket(f) {
+    var map = {
+      'Thanh điệu': 'Thanh điệu', 'Biến điệu': 'Thanh điệu',
+      'Phụ âm đầu': 'Phụ âm', 'Âm mặt trước': 'Phụ âm', 'Âm mũi': 'Phụ âm', 'Nhi hóa': 'Phụ âm',
+      'Nguyên âm': 'Nguyên âm',
+      'Ngắt nhịp': 'Nhịp', 'Nhịp dài': 'Nhịp',
+      'Chủ đề': 'Chủ đề',
+      'HSK 6+': 'Nâng cao', 'HSK 5+': 'Nâng cao', 'HSK 6': 'Nâng cao'
+    };
+    return map[f] || f;
+  }
+
+  function _items() {
+    var prog = _loadProgress();
+    return _sets().map(function (s, i) {
+      var total = (s.lines || []).length;
+      var p = prog[s.id] || {};
+      var done = p.lines ? Object.keys(p.lines).length : 0;
+      if (done > total) done = total;
+      return {
+        id: s.id, num: i + 1, title: s.title, level: s.level,
+        focus: s.focus, tag: _focusBucket(s.focus), desc: s.desc,
+        total: total, done: done, progress: total ? done / total : 0,
+        searchText: ((s.title || '') + ' ' + (s.focus || '') + ' ' + (s.desc || '')).toLowerCase()
+      };
     });
+  }
+
+  function _card(it) {
+    var pct = Math.round(it.progress * 100);
+    var doneCls = (it.total && it.done >= it.total) ? ' sp-set-card--done' : '';
+    var foot = it.done
+      ? ('Đã luyện ' + it.done + '/' + it.total + ' câu')
+      : (it.total + ' câu luyện →');
+    return '<button class="sp-set-card' + doneCls + '" data-set="' + _esc(it.id) + '">' +
+      '<span class="sp-set-num">' + String(it.num).padStart(2, '0') + '</span>' +
+      '<span class="sp-set-body"><span class="sp-set-kicker">' +
+      '<span class="sp-focus-pill">' + _esc(it.focus) + '</span>' +
+      '<span class="sp-level-pill">HSK ' + _esc(it.level) + '</span></span>' +
+      '<h3 class="sp-set-title">' + _esc(it.title) + '</h3>' +
+      '<p class="sp-set-desc">' + _esc(it.desc) + '</p>' +
+      '<span class="sp-set-progress">' +
+      '<span class="sp-set-bar"><i style="width:' + pct + '%"></i></span>' +
+      '<span class="sp-set-prog-txt">' + _esc(foot) + '</span></span>' +
+      '</span></button>';
+  }
+
+  function _initLibrary() {
+    if (!$('spSetGrid')) return;
+    _lib = _buildLibrary({
+      gridEl: $('spSetGrid'),
+      emptyEl: $('spLibEmpty'),
+      searchEl: $('spLibSearch'),
+      filterEls: { level: $('spFilterLevel'), focus: $('spFilterFocus') },
+      getItems: _items,
+      onPick: _openSet,
+      renderCard: _card
+    });
+    _lib.refresh();
+  }
+
+  function _loadProgress() {
+    try { return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}') || {}; } catch (e) { return {}; }
+  }
+
+  function _markPracticed(setId, idx) {
+    if (!setId) return;
+    var prog = _loadProgress();
+    var p = prog[setId] || { lines: {} };
+    if (!p.lines) p.lines = {};
+    p.lines[idx] = 1;
+    p.ts = Date.now();
+    prog[setId] = p;
+    try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(prog)); } catch (e) {}
   }
 
   function _openSet(id) {
@@ -256,6 +380,7 @@ var Speaking = (function () {
     _show($('spPractice'), false);
     _show($('spIntro'), true);
     _renderHistory();
+    if (_lib) _lib.refresh();
     try { window.scrollTo(0, 0); } catch (e) {}
   }
 
@@ -542,7 +667,10 @@ var Speaking = (function () {
       '<div class="sp-feedback">' + _esc(_feedback(score, overall)) + '</div>' +
       '<div class="sp-model">Chấm bởi: ' + _esc(_modelLabel(res.model)) + ' · Task hskk_score · ' + _esc(res.credit_used || 1) + ' credit</div>' +
       '</div>';
-    if (overall != null) _saveHistory({ ts: Date.now(), set: _set.title, line: line.h, overall: overall, pron: pron, flu: flu });
+    if (overall != null) {
+      _saveHistory({ ts: Date.now(), set: _set.title, line: line.h, overall: overall, pron: pron, flu: flu });
+      _markPracticed(_set.id, _idx);
+    }
   }
 
   function _mini(label, value) {

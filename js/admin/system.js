@@ -51,20 +51,16 @@ var AdminSystem = (function() {
     var el = document.getElementById('sysSyncWindow');
     if (!el) return;
 
-    // Read from SyncWindow module if available
-    var CUTOFF = new Date('2026-06-15T00:00:00+07:00');
-    var now    = new Date();
-    var daysLeft = Math.ceil((CUTOFF - now) / 86400000);
-
-    var canSync = window.SyncWindow ? SyncWindow.canSync() : now < CUTOFF;
+    // Cutoff 15/6 đã BỎ (2026-05-20) → sync vĩnh viễn, không deadline.
+    var canSync = window.SyncWindow ? SyncWindow.canSync() : true;
     var statusIcon = canSync ? '🟢' : '🔴';
-    var statusText = canSync ? 'Sync đang hoạt động' : 'Sync đã đóng (cutoff đã qua)';
+    var statusText = canSync ? 'Sync vĩnh viễn (cutoff đã bỏ)' : 'Sync đang khoá';
 
     el.innerHTML =
       '<div class="adm-sys-row"><span class="sys-key">Trạng thái sync</span><span class="sys-val">' + statusIcon + ' ' + statusText + '</span></div>' +
-      '<div class="adm-sys-row"><span class="sys-key">Ngày cutoff</span><span class="sys-val">15/06/2026 00:00 GMT+7</span></div>' +
-      '<div class="adm-sys-row"><span class="sys-key">Còn lại</span><span class="sys-val" style="color:' + (daysLeft < 30 ? 'var(--adm-chau)' : 'var(--adm-thuy)') + '">' + (daysLeft > 0 ? daysLeft + ' ngày' : 'Đã qua cutoff') + '</span></div>' +
-      '<div style="font-size:11px;color:var(--adm-text3);padding:10px 0 4px">Sau ngày cutoff, localStorage không còn sync lên Supabase. Server-side trigger đã enforce (<code>supabase_sync_guard.sql</code>). Xem <code>js/sync-window.js</code>.</div>';
+      '<div class="adm-sys-row"><span class="sys-key">Cutoff theo ngày</span><span class="sys-val">Đã bỏ (2026-05-20)</span></div>' +
+      '<div class="adm-sys-row"><span class="sys-key">Anti-abuse</span><span class="sys-val">Caps server-side</span></div>' +
+      '<div style="font-size:11px;color:var(--adm-text3);padding:10px 0 4px">Sync local→cloud vĩnh viễn, không deadline. Anti-abuse bằng caps ở trigger (<code>supabase_sync_guard_v2.sql</code>) + <code>sanitizeMigrationData()</code> lần migrate đầu. Xem <code>js/sync-window.js</code>.</div>';
   }
 
   return { init: init };

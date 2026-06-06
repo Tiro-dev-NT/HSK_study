@@ -220,7 +220,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '请___我找一下资料。', options: ['帮助', '报名', '出发'], answer: '帮助' },
         { type: 'fill', sentence: '我们明天___去北京。', options: ['出发', '参观', '查'], answer: '出发' },
         { type: 'fill', sentence: '___，我喜欢吃苹果。', options: ['比如', '不如', '成为'], answer: '比如' },
-        { type: 'fill', sentence: '人数已经___一百了。', options: ['超过', '变成', '办'], answer: '超过' }
+        { type: 'fill', sentence: '人数已经___一百了。', options: ['超过', '变成', '办'], answer: '超过' },
+        { type: 'listen', audio: '比如说我们可以先去办公室问问', options: ['比如说我们可以先去办公室问问','好主意比如我们需要办什么手续','你听说了吗学校有一个出国的机会'], answer: '比如说我们可以先去办公室问问', py: 'Bǐrúshuō, wǒmen kěyǐ xiān qù bàngōngshì wènwen.', explain: 'Nghe 比如说 = ví dụ như.' }
       ],
       normal: [
         { type: 'fill', sentence: '我想___翻译。', options: ['成为', '变成', '参加'], answer: '成为' },
@@ -229,7 +230,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '机场的___在那边。', options: ['出口', '出国', '出发'], answer: '出口' },
         { type: 'fill', sentence: '我要___这些生词。', options: ['背', '查', '办'], answer: '背' },
         { type: 'order', words: ['报名', '想', '我', '参加'], answer: '我想报名参加' },
-        { type: 'order', words: ['帮助', '你', '我', '可以'], answer: '我可以帮助你' }
+        { type: 'order', words: ['帮助', '你', '我', '可以'], answer: '我可以帮助你' },
+        { type: 'listen', audio: '比如我们需要办什么手续', options: ['比如我们需要办什么手续','真的吗我想参加怎么报名','报名人数变成这么多了'], answer: '比如我们需要办什么手续', py: 'Bǐrú, wǒmen xūyào bàn shénme shǒuxù?', explain: 'Nghe 比如 = ví dụ.' },
+        { type: 'dictation', audio: '我想成为翻译', answer: '我想成为翻译', hint: 'Em muốn trở thành phiên dịch.', py: 'Wǒ xiǎng chéngwéi fānyì.', explain: 'Nghe viết 成为 = trở thành.' }
       ],
       hard: [
         { type: 'fill', sentence: '这个项目可以___"梦想之旅"。', options: ['称', '成', '变'], answer: '称' },
@@ -458,7 +461,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我___去旅游。', options: ['打算', '打工', '打印'], answer: '打算' },
         { type: 'fill', sentence: '请___我一杯水。', options: ['倒', '带', '吹'], answer: '倒' },
         { type: 'fill', sentence: '他___了我的请求。', options: ['答应', '打算', '出现'], answer: '答应' },
-        { type: 'fill', sentence: '风___得很大。', options: ['吹', '倒', '带'], answer: '吹' }
+        { type: 'fill', sentence: '风___得很大。', options: ['吹', '倒', '带'], answer: '吹' },
+        { type: 'listen', audio: '你们当服务员得学很多东西吧', options: ['你们当服务员得学很多东西吧','我打算去打工咖啡店需要人帮忙','真的你什么时候答应他们的'], answer: '你们当服务员得学很多东西吧', py: 'Nǐmen dāng fúwùyuán, děi xué hěn duō dōngxi ba?', explain: 'Nghe 当 = làm.' }
       ],
       normal: [
         { type: 'fill', sentence: '她是1990年___的。', options: ['出生', '出门', '出院'], answer: '出生' },
@@ -467,7 +471,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '请帮我___这份文件。', options: ['打印', '打工', '打算'], answer: '打印' },
         { type: 'fill', sentence: '我们___一个结论。', options: ['得出', '得', '等到'], answer: '得出' },
         { type: 'order', words: ['出门', '早', '今天', '你'], answer: '你今天出门早' },
-        { type: 'order', words: ['打工', '在', '我们', '这里'], answer: '我们在这里打工' }
+        { type: 'order', words: ['打工', '在', '我们', '这里'], answer: '我们在这里打工' },
+        { type: 'listen', audio: '风吹得我很冷', options: ['风吹得我很冷','一加一等于二','你打算做多久'], answer: '风吹得我很冷', py: 'Fēng chuī de wǒ hěn lěng.', explain: 'Nghe 吹 = thổi.' },
+        { type: 'dictation', audio: '一加一等于二', answer: '一加一等于二', hint: 'Một cộng một bằng hai.', py: 'Yī jiā yī děngyú èr.', explain: 'Nghe viết 等于 = bằng với.' }
       ],
       hard: [
         { type: 'fill', sentence: '___周末，我再来。', options: ['等到', '等于', '得出'], answer: '等到' },
@@ -689,7 +695,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我不___这个问题。', options: ['懂', '感觉', '放心'], answer: '懂' },
         { type: 'fill', sentence: '我___很累。', options: ['感觉', '发现', '懂得'], answer: '感觉' },
         { type: 'fill', sentence: '请___，没问题的。', options: ['放心', '放下', '分开'], answer: '放心' },
-        { type: 'fill', sentence: '他一直___。', options: ['点头', '掉', '发'], answer: '点头' }
+        { type: 'fill', sentence: '他一直___。', options: ['点头', '掉', '发'], answer: '点头' },
+        { type: 'listen', audio: '你复习得怎么样了', options: ['你复习得怎么样了','我学会了放下手机','我的笔掉了我捡起来'], answer: '你复习得怎么样了', py: 'Nǐ fùxí de zěnmeyàng le?', explain: 'Nghe 复习 = ôn tập.' }
       ],
       normal: [
         { type: 'fill', sentence: '我___了一个秘密。', options: ['发现', '感到', '懂'], answer: '发现' },
@@ -698,7 +705,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '今天气温是二十___。', options: ['度', '封', '发'], answer: '度' },
         { type: 'fill', sentence: '我们一起练习___。', options: ['对话', '对面', '服务'], answer: '对话' },
         { type: 'order', words: ['复习', '怎么样', '你', '了'], answer: '你复习得怎么样了' },
-        { type: 'order', words: ['感觉', '我', '很难', '这个'], answer: '我感觉这个很难' }
+        { type: 'order', words: ['感觉', '我', '很难', '这个'], answer: '我感觉这个很难' },
+        { type: 'listen', audio: '我的笔掉了我捡起来', options: ['我的笔掉了我捡起来','你复习得怎么样了','我学会了放下手机'], answer: '我的笔掉了我捡起来', py: 'Wǒ de bǐ diào le, wǒ jiǎn qǐlái.', explain: 'Nghe 掉 = rơi.' },
+        { type: 'dictation', audio: '我们得分开了', answer: '我们得分开了', hint: 'Chúng ta phải chia tay rồi.', py: 'Wǒmen děi fēnkāi le.', explain: 'Nghe viết 分开 = chia tay.' }
       ],
       hard: [
         { type: 'fill', sentence: '我___了一___信。', options: ['发/封', '改/度', '懂/对'], answer: '发/封' },
@@ -919,7 +928,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___你的帮助！', options: ['感谢', '欢迎', '关心'], answer: '感谢' },
         { type: 'fill', sentence: '我们一起___！', options: ['干杯', '干活儿', '关机'], answer: '干杯' },
         { type: 'fill', sentence: '___大家来！', options: ['欢迎', '感谢', '加油'], answer: '欢迎' },
-        { type: 'fill', sentence: '我很___你。', options: ['关心', '关机', '过来'], answer: '关心' }
+        { type: 'fill', sentence: '我很___你。', options: ['关心', '关机', '过来'], answer: '关心' },
+        { type: 'listen', audio: '我好像很久没见到家人了', options: ['我好像很久没见到家人了','老师过来坐我们一起干杯','真好我很关心你路上小心啊'], answer: '我好像很久没见到家人了', py: 'Wǒ hǎoxiàng hěn jiǔ méi jiàndào jiārén le.', explain: 'Nghe 好像 = hình như.' }
       ],
       normal: [
         { type: 'fill', sentence: '我打算___。', options: ['回国', '过年', '活动'], answer: '回国' },
@@ -928,7 +938,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我要___衣服。', options: ['换', '画', '喊'], answer: '换' },
         { type: 'fill', sentence: '准备得___多了。', options: ['够', '好像', '过来'], answer: '够' },
         { type: 'order', words: ['过年', '什么', '你', '计划', '有'], answer: '你过年有什么计划' },
-        { type: 'order', words: ['关心', '我', '很', '你'], answer: '我很关心你' }
+        { type: 'order', words: ['关心', '我', '很', '你'], answer: '我很关心你' },
+        { type: 'listen', audio: '老师过来坐', options: ['老师过来坐','欢迎大家来','你过年有什么计划'], answer: '老师过来坐', py: 'Lǎoshī, guòlái zuò!', explain: 'Nghe 过来 = đi lại.' },
+        { type: 'dictation', audio: '欢迎大家来', answer: '欢迎大家来', hint: 'Chào mừng mọi người đến!', py: 'Huānyíng dàjiā lái!', explain: 'Nghe viết 欢迎 = chào mừng.' }
       ],
       hard: [
         { type: 'fill', sentence: '有人在___你的名字。', options: ['喊', '画', '换'], answer: '喊' },
@@ -1135,7 +1147,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我想___。', options: ['交朋友', '交给', '接到'], answer: '交朋友' },
         { type: 'fill', sentence: '___，我们做练习。', options: ['接下来', '接受', '进入'], answer: '接下来' },
         { type: 'fill', sentence: '我___这个意见。', options: ['接受', '接到', '接着'], answer: '接受' },
-        { type: 'fill', sentence: '请___手回答。', options: ['举', '借', '交'], answer: '举' }
+        { type: 'fill', sentence: '请___手回答。', options: ['举', '借', '交'], answer: '举' },
+        { type: 'listen', audio: '接下来我要讲一个故事', options: ['接下来我要讲一个故事','老师这个方法叫作什么','我帮你交作业给老师'], answer: '接下来我要讲一个故事', py: 'Jiēxiàlái, wǒ yào jiǎng yí gè gùshi.', explain: 'Nghe 接下来 = tiếp theo.' }
       ],
       normal: [
         { type: 'fill', sentence: '这个方法___"故事教学法"。', options: ['叫作', '教学', '教育'], answer: '叫作' },
@@ -1144,7 +1157,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '请把作业___老师。', options: ['交给', '交', '借'], answer: '交给' },
         { type: 'fill', sentence: '我能___你的书吗？', options: ['借', '交', '接'], answer: '借' },
         { type: 'order', words: ['进入', '我们', '新的', '一节课'], answer: '我们进入新的一节课' },
-        { type: 'order', words: ['交朋友', '想', '你', '吗'], answer: '你想交朋友吗' }
+        { type: 'order', words: ['交朋友', '想', '你', '吗'], answer: '你想交朋友吗' },
+        { type: 'listen', audio: '这叫作故事教学法', options: ['这叫作故事教学法','我帮你交作业给老师','我接受这个方法'], answer: '这叫作故事教学法', py: 'Zhè jiàozuò “gùshi jiàoxué fǎ”.', explain: 'Nghe 叫作 = gọi là.' },
+        { type: 'dictation', audio: '你交给老师吧', answer: '你交给老师吧', hint: 'Cậu đưa cho thầy nhé.', py: 'Nǐ jiāogěi lǎoshī ba.', explain: 'Nghe viết 交给 = giao cho.' }
       ],
       hard: [
         { type: 'fill', sentence: '她___学校去上班。', options: ['经过', '进入', '进行'], answer: '经过' },
@@ -1365,7 +1380,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '请___回答问题。', options: ['举手', '举行', '开机'], answer: '举手' },
         { type: 'fill', sentence: '我___越南。', options: ['来自', '离开', '离'], answer: '来自' },
         { type: 'fill', sentence: '我需要多___。', options: ['练习', '流行', '可能'], answer: '练习' },
-        { type: 'fill', sentence: '___，每天读十分钟。', options: ['例如', '可是', '可以'], answer: '例如' }
+        { type: 'fill', sentence: '___，每天读十分钟。', options: ['例如', '可是', '可以'], answer: '例如' },
+        { type: 'listen', audio: '学校离我家很远', options: ['学校离我家很远','老师我来自越南','我需要多练习'], answer: '学校离我家很远', py: 'Xuéxiào lí wǒ jiā hěn yuǎn.', explain: 'Nghe 离 = cách.' }
       ],
       normal: [
         { type: 'fill', sentence: '学校___欢迎仪式。', options: ['举行', '举手', '开学'], answer: '举行' },
@@ -1374,7 +1390,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '现在九点一___。', options: ['刻', '卡', '靠'], answer: '刻' },
         { type: 'fill', sentence: '眼泪___下来了。', options: ['流', '练', '离'], answer: '流' },
         { type: 'order', words: ['来自', '我', '越南'], answer: '我来自越南' },
-        { type: 'order', words: ['练习', '需要', '我', '多'], answer: '我需要多练习' }
+        { type: 'order', words: ['练习', '需要', '我', '多'], answer: '我需要多练习' },
+        { type: 'listen', audio: '我来自越南', options: ['我来自越南','我需要多练习','我不想离开你'], answer: '我来自越南', py: 'Wǒ láizì Yuènán.', explain: 'Nghe 来自 = đến từ.' },
+        { type: 'dictation', audio: '我需要多练习', answer: '我需要多练习', hint: 'Tớ cần luyện tập nhiều hơn.', py: 'Wǒ xūyào duō liànxí.', explain: 'Nghe viết 练习 = luyện tập.' }
       ],
       hard: [
         { type: 'fill', sentence: '手机___住了，不能___。', options: ['卡/开机', '靠/开学', '刻/举行'], answer: '卡/开机' },
@@ -1590,7 +1608,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我不___累。', options: ['怕', '爬', '排'], answer: '怕' },
         { type: 'fill', sentence: '我们去___怎么样？', options: ['爬山', '旅行', '卖'], answer: '爬山' },
         { type: 'fill', sentence: '要___买票。', options: ['排队', '排', '碰'], answer: '排队' },
-        { type: 'fill', sentence: '你看那只___！', options: ['猫', '面', '弄'], answer: '猫' }
+        { type: 'fill', sentence: '你看那只___！', options: ['猫', '面', '弄'], answer: '猫' },
+        { type: 'listen', audio: '我们能够早点出发', options: ['我们能够早点出发','我昨天碰到它了','我拿到钱包了'], answer: '我们能够早点出发', py: 'Wǒmen nénggòu zǎodiǎn chūfā.', explain: 'Nghe 能够 = có thể.' }
       ],
       normal: [
         { type: 'fill', sentence: '我昨天___他了。', options: ['碰到', '碰', '排队'], answer: '碰到' },
@@ -1599,7 +1618,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '你对这个___吗？', options: ['满意', '能够', '留下'], answer: '满意' },
         { type: 'fill', sentence: '我们___早点出发。', options: ['能够', '满意', '怕'], answer: '能够' },
         { type: 'order', words: ['旅游', '去', '我们', '周末'], answer: '周末我们去旅游' },
-        { type: 'order', words: ['爬山', '不', '我', '怕'], answer: '我不怕爬山' }
+        { type: 'order', words: ['爬山', '不', '我', '怕'], answer: '我不怕爬山' },
+        { type: 'listen', audio: '你看那只猫', options: ['你看那只猫','吃碗面再走','我会留下来'], answer: '你看那只猫', py: 'Nǐ kàn nà zhī māo!', explain: 'Nghe 猫 = mèo.' },
+        { type: 'dictation', audio: '吃碗面再走', answer: '吃碗面再走', hint: 'Ăn bát mì rồi đi.', py: 'Chī wǎn miàn zài zǒu.', explain: 'Nghe viết 面 = mì.' }
       ],
       hard: [
         { type: 'fill', sentence: '让我___一些钱。', options: ['拿出', '拿到', '留下'], answer: '拿出' },
@@ -1820,7 +1841,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我___这是一个好机会。', options: ['认为', '请求', '让'], answer: '认为' },
         { type: 'fill', sentence: '___顺利，我可以学到很多。', options: ['如果', '认为', '商量'], answer: '如果' },
         { type: 'fill', sentence: '今天天气真___！', options: ['晴', '气', '省'], answer: '晴' },
-        { type: 'fill', sentence: '我想和你___一下。', options: ['商量', '请求', '认为'], answer: '商量' }
+        { type: 'fill', sentence: '我想和你___一下。', options: ['商量', '请求', '认为'], answer: '商量' },
+        { type: 'listen', audio: '如果顺利我可以学到很多', options: ['如果顺利我可以学到很多','我认为你应该早点准备','好对了你取得签证了吗'], answer: '如果顺利我可以学到很多', py: 'Rúguǒ shùnlì, wǒ kěyǐ xuédào hěn duō.', explain: 'Nghe 如果 = nếu.' }
       ],
       normal: [
         { type: 'fill', sentence: '我刚___老师。', options: ['碰见', '碰到', '取得'], answer: '碰见' },
@@ -1829,7 +1851,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '你___签证了吗？', options: ['取得', '取', '求'], answer: '取得' },
         { type: 'fill', sentence: '回来后___吃饭哦！', options: ['请客', '请求', '求'], answer: '请客' },
         { type: 'order', words: ['认为', '我', '好机会', '这是', '一个'], answer: '我认为这是一个好机会' },
-        { type: 'order', words: ['商量', '想', '我', '和你', '一下'], answer: '我想和你商量一下' }
+        { type: 'order', words: ['商量', '想', '我', '和你', '一下'], answer: '我想和你商量一下' },
+        { type: 'listen', audio: '飞机快要起飞了', options: ['飞机快要起飞了','让它每天吃饱','我求你一件事'], answer: '飞机快要起飞了', py: 'Fēijī kuàiyào qǐfēi le!', explain: 'Nghe 起飞 = cất cánh.' },
+        { type: 'dictation', audio: '让它每天吃饱', answer: '让它每天吃饱', hint: 'Để nó mỗi ngày ăn no.', py: 'Ràng tā měi tiān chībǎo.', explain: 'Nghe viết 让 = để.' }
       ],
       hard: [
         { type: 'fill', sentence: '我___去，大概二十分钟。', options: ['骑车', '骑', '起飞'], answer: '骑车' },
@@ -2045,7 +2069,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我___一个包裹了。', options: ['收到', '送到', '受到'], answer: '收到' },
         { type: 'fill', sentence: '这样可以___成绩。', options: ['提高', '提出', '提到'], answer: '提高' },
         { type: 'fill', sentence: '这是妈妈___我的。', options: ['送给', '送到', '收到'], answer: '送给' },
-        { type: 'fill', sentence: '我们要认真___。', options: ['听讲', '讨论', '说明'], answer: '听讲' }
+        { type: 'fill', sentence: '我们要认真___。', options: ['听讲', '讨论', '说明'], answer: '听讲' },
+        { type: 'listen', audio: '我想提出一个想法', options: ['我想提出一个想法','我收到一个包裹了','你受到大家的喜爱'], answer: '我想提出一个想法', py: 'Wǒ xiǎng tíchū yí gè xiǎngfǎ.', explain: 'Nghe 提出 = đề xuất.' }
       ],
       normal: [
         { type: 'fill', sentence: '我想___一个想法。', options: ['提出', '提到', '提高'], answer: '提出' },
@@ -2054,7 +2079,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我们可以___这个方法。', options: ['使用', '实现', '收'], answer: '使用' },
         { type: 'fill', sentence: '你___大家的喜爱。', options: ['受到', '收到', '送到'], answer: '受到' },
         { type: 'order', words: ['讨论', '我们', '一下', '来', '这个问题'], answer: '我们来讨论一下这个问题' },
-        { type: 'order', words: ['提高', '可以', '这样', '成绩', '我们的'], answer: '这样可以提高我们的成绩' }
+        { type: 'order', words: ['提高', '可以', '这样', '成绩', '我们的'], answer: '这样可以提高我们的成绩' },
+        { type: 'listen', audio: '这样可以提高我们的成绩', options: ['这样可以提高我们的成绩','我们来讨论一下这道题吧','你能说明一下吗我还不太懂'], answer: '这样可以提高我们的成绩', py: 'Zhèyàng kěyǐ tígāo wǒmen de chéngjì.', explain: 'Nghe 提高 = nâng cao.' },
+        { type: 'dictation', audio: '快递员数了数', answer: '快递员数了数', hint: 'Shipper đếm xem.', py: 'Kuàidìyuán shǔ le shǔ.', explain: 'Nghe viết 数 = đếm.' }
       ],
       hard: [
         { type: 'fill', sentence: '她的___不高。', options: ['收入', '收到', '收'], answer: '收入' },
@@ -2275,7 +2302,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我___今天有新菜。', options: ['听说', '闻', '通知'], answer: '听说' },
         { type: 'fill', sentence: '你___这里的生活了吗？', options: ['习惯', '完成', '通过'], answer: '习惯' },
         { type: 'fill', sentence: '我每天___半小时。', options: ['午睡', '午餐', '晚安'], answer: '午睡' },
-        { type: 'fill', sentence: '___，明天见！', options: ['晚安', '喂', '闻'], answer: '晚安' }
+        { type: 'fill', sentence: '___，明天见！', options: ['晚安', '喂', '闻'], answer: '晚安' },
+        { type: 'listen', audio: '我们往前走吧', options: ['我们往前走吧','我为你做这件事','我听说今天有新菜'], answer: '我们往前走吧', py: 'Wǒmen wǎng qián zǒu ba.', explain: 'Nghe 往 = về phía.' }
       ],
       normal: [
         { type: 'fill', sentence: '你___作业了吗？', options: ['完成', '完', '通过'], answer: '完成' },
@@ -2284,7 +2312,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我们___前走吧。', options: ['往', '为', '网'], answer: '往' },
         { type: 'fill', sentence: '那边有人在___。', options: ['停车', '停', '推'], answer: '停车' },
         { type: 'order', words: ['听说', '我', '有', '今天', '新菜'], answer: '我听说今天有新菜' },
-        { type: 'order', words: ['习惯', '你', '了', '这里的生活', '吗'], answer: '你习惯这里的生活了吗' }
+        { type: 'order', words: ['习惯', '你', '了', '这里的生活', '吗'], answer: '你习惯这里的生活了吗' },
+        { type: 'listen', audio: '我听说今天有新菜', options: ['我听说今天有新菜','我为你买了一本书','喂请问书店怎么走'], answer: '我听说今天有新菜', py: 'Wǒ tīngshuō jīntiān yǒu xīn cài.', explain: 'Nghe 听说 = nghe nói.' },
+        { type: 'dictation', audio: '我为你买了一本书', answer: '我为你买了一本书', hint: 'Tớ mua cho cậu một cuốn sách.', py: 'Wǒ wèi nǐ mǎi le yì běn shū.', explain: 'Nghe viết 为 = vì.' }
       ],
       hard: [
         { type: 'fill', sentence: '我___到很香。', options: ['闻', '听', '看'], answer: '闻' },
@@ -2498,7 +2528,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我___你会成功。', options: ['相信', '想到', '以为'], answer: '相信' },
         { type: 'fill', sentence: '你___多休息。', options: ['应该', '要求', '想法'], answer: '应该' },
         { type: 'fill', sentence: '___！祝你旅途愉快！', options: ['一路顺风', '下雪', '行动'], answer: '一路顺风' },
-        { type: 'fill', sentence: '我___了一只猫。', options: ['养', '选', '向'], answer: '养' }
+        { type: 'fill', sentence: '我___了一只猫。', options: ['养', '选', '向'], answer: '养' },
+        { type: 'listen', audio: '我以为你忘了', options: ['我以为你忘了','我会马上行动','你像我姐姐一样'], answer: '我以为你忘了', py: 'Wǒ yǐwéi nǐ wàng le.', explain: 'Nghe 以为 = tưởng rằng.' }
       ],
       normal: [
         { type: 'fill', sentence: '我___家人就很激动。', options: ['想到', '想起', '想法'], answer: '想到' },
@@ -2507,7 +2538,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我___你保证会注意安全。', options: ['向', '像', '信'], answer: '向' },
         { type: 'fill', sentence: '"休假"是什么___？', options: ['意思', '想法', '要求'], answer: '意思' },
         { type: 'order', words: ['相信', '我', '会', '你', '成功'], answer: '我相信你会成功' },
-        { type: 'order', words: ['应该', '你', '多', '休息'], answer: '你应该多休息' }
+        { type: 'order', words: ['应该', '你', '多', '休息'], answer: '你应该多休息' },
+        { type: 'listen', audio: '你像我姐姐一样', options: ['你像我姐姐一样','我以为你忘了','我想起来了你姓阮'], answer: '你像我姐姐一样', py: 'Nǐ xiàng wǒ jiějie yíyàng!', explain: 'Nghe 像 = giống như.' },
+        { type: 'dictation', audio: '我会马上行动', answer: '我会马上行动', hint: 'Tớ sẽ hành động ngay.', py: 'Wǒ huì mǎshàng xíngdòng.', explain: 'Nghe viết 行动 = hành động.' }
       ],
       hard: [
         { type: 'fill', sentence: '外面___了！', options: ['下雪', '洗澡', '休假'], answer: '下雪' },
@@ -2739,7 +2772,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我___帮助你。', options: ['愿意', '只能', '影响'], answer: '愿意' },
         { type: 'fill', sentence: '妈妈___我长大。', options: ['照顾', '照相', '做饭'], answer: '照顾' },
         { type: 'fill', sentence: '你会___吗？', options: ['做饭', '做到', '作业'], answer: '做饭' },
-        { type: 'fill', sentence: '我在公园___。', options: ['照相', '照顾', '住院'], answer: '照相' }
+        { type: 'fill', sentence: '我在公园___。', options: ['照相', '照顾', '住院'], answer: '照相' },
+        { type: 'listen', audio: '这个公园是由很多部分组成的', options: ['这个公园是由很多部分组成的','正是因为你帮我我才能完成','你喜欢运动吗我每天早上都跑步'], answer: '这个公园是由很多部分组成的', py: 'Zhège gōngyuán shì yóu hěn duō bùfen zǔchéng de.', explain: 'Nghe 组成 = tạo thành.' }
       ],
       normal: [
         { type: 'fill', sentence: '我___做面。', options: ['只能', '愿意', '重视'], answer: '只能' },
@@ -2748,7 +2782,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '他___病房看她。', options: ['走进', '走过', '走开'], answer: '走进' },
         { type: 'fill', sentence: '这件事___了我。', options: ['影响', '作用', '重视'], answer: '影响' },
         { type: 'order', words: ['运动', '喜欢', '你', '吗'], answer: '你喜欢运动吗' },
-        { type: 'order', words: ['照顾', '妈妈', '我', '长大'], answer: '妈妈照顾我长大' }
+        { type: 'order', words: ['照顾', '妈妈', '我', '长大'], answer: '妈妈照顾我长大' },
+        { type: 'listen', audio: '正是因为你帮我我才能完成', options: ['正是因为你帮我我才能完成','这个公园是由很多部分组成的','你喜欢运动吗我每天早上都跑步'], answer: '正是因为你帮我我才能完成', py: 'Zhèng shì yīnwèi nǐ bāng wǒ, wǒ cái néng wánchéng.', explain: 'Nghe 正是 = chính là.' },
+        { type: 'dictation', audio: '我只能做面', answer: '我只能做面', hint: 'Tớ chỉ có thể nấu mì.', py: 'Wǒ zhǐnéng zuò miàn.', explain: 'Nghe viết 只能 = chỉ có thể.' }
       ],
       hard: [
         { type: 'fill', sentence: '公园___了很大的地方。', options: ['占', '组', '装'], answer: '占' },
@@ -2964,7 +3000,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '他___学习好，而且很热心。', options: ['不但', '不过', '不太'], answer: '不但' },
         { type: 'fill', sentence: '我有___帮你。', options: ['办法', '办公室', '班长'], answer: '办法' },
         { type: 'fill', sentence: '___担心！', options: ['不要', '必须', '不但'], answer: '不要' },
-        { type: 'fill', sentence: '图书馆在第三___。', options: ['层', '边', '场'], answer: '层' }
+        { type: 'fill', sentence: '图书馆在第三___。', options: ['层', '边', '场'], answer: '层' },
+        { type: 'listen', audio: '他不但学习好而且很热心', options: ['他不但学习好而且很热心','我们必须去办公室交作业','不过我听说他很负责任'], answer: '他不但学习好而且很热心', py: 'Tā búdàn xuéxí hǎo, érqiě hěn rèxīn.', explain: 'Nghe 不但 = không những.' }
       ],
       normal: [
         { type: 'fill', sentence: '我___清楚。', options: ['不太', '不要', '不但'], answer: '不太' },
@@ -2973,7 +3010,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '这个操场___有两个足球场那么大。', options: ['差不多', '不一会儿', '部分'], answer: '差不多' },
         { type: 'fill', sentence: '一___作业做完了。', options: ['部分', '层', '边'], answer: '部分' },
         { type: 'order', words: ['必须', '我们', '去', '办公室'], answer: '我们必须去办公室' },
-        { type: 'order', words: ['不但', '他', '学习好', '而且', '很热心'], answer: '他不但学习好而且很热心' }
+        { type: 'order', words: ['不但', '他', '学习好', '而且', '很热心'], answer: '他不但学习好而且很热心' },
+        { type: 'listen', audio: '不过我听说他很负责任', options: ['不过我听说他很负责任','不要担心我有办法帮你','他不但学习好而且很热心'], answer: '不过我听说他很负责任', py: 'Búguò wǒ tīngshuō tā hěn fùzérèn.', explain: 'Nghe 不过 = nhưng mà.' },
+        { type: 'dictation', audio: '不要担心', answer: '不要担心', hint: 'Đừng lo!', py: 'Búyào dānxīn!', explain: 'Nghe viết 不要 = đừng.' }
       ],
       hard: [
         { type: 'fill', sentence: '做完了，我___能休息。', options: ['才', '就', '都'], answer: '才' },
@@ -3195,7 +3234,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___我们怎么去？', options: ['但是', '的话', '到处'], answer: '但是' },
         { type: 'fill', sentence: '我___就喜欢动物。', options: ['从小', '大部分', '到处'], answer: '从小' },
         { type: 'fill', sentence: '坐___很方便。', options: ['地铁', '道路', '店'], answer: '地铁' },
-        { type: 'fill', sentence: '你的___怎么样？', options: ['成绩', '大小', '短信'], answer: '成绩' }
+        { type: 'fill', sentence: '你的___怎么样？', options: ['成绩', '大小', '短信'], answer: '成绩' },
+        { type: 'listen', audio: '你想去的话我们现在出发', options: ['你想去的话我们现在出发','好的对了你的成绩怎么样','是啊你看那个店卖词典和书'], answer: '你想去的话我们现在出发', py: 'Nǐ xiǎng qù dehuà, wǒmen xiànzài chūfā.', explain: 'Nghe 的话 = nếu...thì.' }
       ],
       normal: [
         { type: 'fill', sentence: '你想去___，告诉我。', options: ['的话', '但是', '到处'], answer: '的话' },
@@ -3204,7 +3244,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '那个___卖词典。', options: ['店', '队', '单位'], answer: '店' },
         { type: 'fill', sentence: '我给你发___。', options: ['短信', '词典', '成绩'], answer: '短信' },
         { type: 'order', words: ['动物园', '去', '我们', '吧'], answer: '我们去动物园吧' },
-        { type: 'order', words: ['但是', '怎么', '我们', '去'], answer: '但是我们怎么去' }
+        { type: 'order', words: ['但是', '怎么', '我们', '去'], answer: '但是我们怎么去' },
+        { type: 'listen', audio: '但是我们怎么去', options: ['但是我们怎么去','我从小就喜欢动物','你想去的话告诉我'], answer: '但是我们怎么去', py: 'Dànshì wǒmen zěnme qù?', explain: 'Nghe 但是 = nhưng mà.' },
+        { type: 'dictation', audio: '你大声一点', answer: '你大声一点', hint: 'Cậu nói to lên một chút.', py: 'Nǐ dàshēng yìdiǎn.', explain: 'Nghe viết 大声 = to tiếng.' }
       ],
       hard: [
         { type: 'fill', sentence: '你___一点，我听不清。', options: ['大声', '大小', '大衣'], answer: '大声' },
@@ -3419,7 +3461,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '这幅画儿___漂亮。', options: ['更', '而且', '刚'], answer: '更' },
         { type: 'fill', sentence: '我___来的时候不知道方向。', options: ['刚', '更', '而且'], answer: '刚' },
         { type: 'fill', sentence: '我有一个好___。', options: ['方法', '方向', '广场'], answer: '方法' },
-        { type: 'fill', sentence: '他给___讲故事。', options: ['顾客', '画家', '队长'], answer: '顾客' }
+        { type: 'fill', sentence: '他给___讲故事。', options: ['顾客', '画家', '队长'], answer: '顾客' },
+        { type: 'listen', audio: '这幅画儿更漂亮', options: ['这幅画儿更漂亮','忽然下雨了','他是好人'], answer: '这幅画儿更漂亮', py: 'Zhè fú huàr gèng piàoliang!', explain: 'Nghe 画儿 = tranh.' }
       ],
       normal: [
         { type: 'fill', sentence: '那个___在画画儿。', options: ['画家', '画儿', '顾客'], answer: '画家' },
@@ -3428,7 +3471,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '运动有很多___。', options: ['好处', '好人', '好事'], answer: '好处' },
         { type: 'fill', sentence: '他是___，做了很多好事。', options: ['好人', '好处', '好事'], answer: '好人' },
         { type: 'order', words: ['而且', '广场', '这个', '真大', '很漂亮'], answer: '这个广场真大而且很漂亮' },
-        { type: 'order', words: ['更', '这幅', '画儿', '漂亮'], answer: '这幅画儿更漂亮' }
+        { type: 'order', words: ['更', '这幅', '画儿', '漂亮'], answer: '这幅画儿更漂亮' },
+        { type: 'listen', audio: '这个广场真大而且很漂亮', options: ['这个广场真大而且很漂亮','是啊忽然下雨了我们快跑','认识他是好人做了很多好事'], answer: '这个广场真大而且很漂亮', py: 'Zhège guǎngchǎng zhēn dà, érqiě hěn piàoliang.', explain: 'Nghe 而且 = mà còn.' },
+        { type: 'dictation', audio: '忽然下雨了', answer: '忽然下雨了', hint: 'Đột nhiên mưa rồi!', py: 'Hūrán xià yǔ le!', explain: 'Nghe viết 忽然 = đột nhiên.' }
       ],
       hard: [
         { type: 'fill', sentence: '我的___是帮助别人最重要。', options: ['观点', '故事', '方法'], answer: '观点' },
@@ -3643,7 +3688,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我们做饺子___买快餐？', options: ['或者', '或', '就要'], answer: '或者' },
         { type: 'fill', sentence: '今天是什么___？', options: ['节日', '节目', '级'], answer: '节日' },
         { type: 'fill', sentence: '___准备！', options: ['快点儿', '就要', '或者'], answer: '快点儿' },
-        { type: 'fill', sentence: '你有什么___？', options: ['看法', '角度', '角'], answer: '看法' }
+        { type: 'fill', sentence: '你有什么___？', options: ['看法', '角度', '角'], answer: '看法' },
+        { type: 'listen', audio: '我们做饺子或者买快餐', options: ['我们做饺子或者买快餐','你见过那个科学家吗','客人就要来了快点儿准备'], answer: '我们做饺子或者买快餐', py: 'Wǒmen zuò jiǎozi huòzhě mǎi kuàicān?', explain: 'Nghe 或者 = hoặc.' }
       ],
       normal: [
         { type: 'fill', sentence: '你___那个人吗？', options: ['见过', '看法', '交通'], answer: '见过' },
@@ -3652,7 +3698,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '你学到几___了？', options: ['级', '角', '节'], answer: '级' },
         { type: 'fill', sentence: '我们看___吧。', options: ['节目', '节日', '看法'], answer: '节目' },
         { type: 'order', words: ['就要', '客人', '来了'], answer: '客人就要来了' },
-        { type: 'order', words: ['或者', '做饺子', '我们', '买快餐'], answer: '我们做饺子或者买快餐' }
+        { type: 'order', words: ['或者', '做饺子', '我们', '买快餐'], answer: '我们做饺子或者买快餐' },
+        { type: 'listen', audio: '客人就要来了', options: ['客人就要来了','你有什么看法','这个角很漂亮'], answer: '客人就要来了', py: 'Kèrén jiùyào lái le!', explain: 'Nghe 就要 = sắp.' },
+        { type: 'dictation', audio: '你有什么看法', answer: '你有什么看法', hint: 'Cậu có ý kiến gì không?', py: 'Nǐ yǒu shénme kànfǎ?', explain: 'Nghe viết 看法 = ý kiến.' }
       ],
       hard: [
         { type: 'fill', sentence: '从这个___看，风景很美。', options: ['角度', '角', '级'], answer: '角度' },
@@ -3859,7 +3907,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我们准备___吧。', options: ['礼物', '名单', '球场'], answer: '礼物' },
         { type: 'fill', sentence: '聚会的___是什么？', options: ['目的', '人口', '难题'], answer: '目的' },
         { type: 'fill', sentence: '我先做一份___。', options: ['名单', '名称', '例子'], answer: '名单' },
-        { type: 'fill', sentence: '___都能参加。', options: ['全体', '全身', '里头'], answer: '全体' }
+        { type: 'fill', sentence: '___都能参加。', options: ['全体', '全身', '里头'], answer: '全体' },
+        { type: 'listen', audio: '目的就是让大家见面', options: ['目的就是让大家见面','活动的名称叫什么','是啊这座城市人口很多'], answer: '目的就是让大家见面', py: 'Mùdì jiùshì ràng dàjiā jiànmiàn.', explain: 'Nghe 目的 = mục đích.' }
       ],
       normal: [
         { type: 'fill', sentence: '名单___有多少人？', options: ['里头', '面前', '路边'], answer: '里头' },
@@ -3868,7 +3917,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我们请一些___来帮忙。', options: ['青年', '旅客', '礼物'], answer: '青年' },
         { type: 'fill', sentence: '___有很多旅客。', options: ['路边', '面前', '里头'], answer: '路边' },
         { type: 'order', words: ['礼物', '我们', '准备'], answer: '我们准备礼物' },
-        { type: 'order', words: ['目的', '聚会的', '是什么'], answer: '聚会的目的是什么' }
+        { type: 'order', words: ['目的', '聚会的', '是什么'], answer: '聚会的目的是什么' },
+        { type: 'listen', audio: '人数会不会太多', options: ['人数会不会太多','在大家面前讲话','活动的名称叫什么'], answer: '人数会不会太多', py: 'Rénshù huì bú huì tài duō?', explain: 'Nghe 人数 = số người.' },
+        { type: 'dictation', audio: '活动的名称叫什么', answer: '活动的名称叫什么', hint: 'Tên của hoạt động gọi là gì?', py: 'Huódòng de míngchēng jiào shénme?', explain: 'Nghe viết 名称 = tên gọi.' }
       ],
       hard: [
         { type: 'fill', sentence: '在大家___讲话是个难题。', options: ['面前', '里头', '路边'], answer: '面前' },
@@ -4061,7 +4112,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '他太太是___。', options: ['司机', '商人', '太太'], answer: '司机' },
         { type: 'fill', sentence: '他们准备了很多___。', options: ['食物', '数字', '条件'], answer: '食物' },
         { type: 'fill', sentence: '今天___也来了。', options: ['市长', '司机', '商人'], answer: '市长' },
-        { type: 'fill', sentence: '你___那位是谁？', options: ['身边', '天上', '面前'], answer: '身边' }
+        { type: 'fill', sentence: '你___那位是谁？', options: ['身边', '天上', '面前'], answer: '身边' },
+        { type: 'listen', audio: '虽然体育馆小一点但是更热闹', options: ['虽然体育馆小一点但是更热闹','数字我记下了今天来的人很多','谢谢老师您看天上的云十分漂亮'], answer: '虽然体育馆小一点但是更热闹', py: 'Suīrán tǐyùguǎn xiǎo yìdiǎn, dànshì gèng rènao.', explain: 'Nghe 体育馆 = nhà thi đấu.' }
       ],
       normal: [
         { type: 'fill', sentence: '___体育馆小一点，___更热闹。', options: ['虽然…所以', '因为…所以', '虽然…但是'], answer: '虽然…但是' },
@@ -4070,7 +4122,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '这是件大___！', options: ['事情', '数字', '声音'], answer: '事情' },
         { type: 'fill', sentence: '___的云十分漂亮。', options: ['天上', '身边', '路边'], answer: '天上' },
         { type: 'order', words: ['态度', '他的', '很好'], answer: '他的态度很好' },
-        { type: 'order', words: ['随时', '你们', '可以', '找我'], answer: '你们随时可以找我' }
+        { type: 'order', words: ['随时', '你们', '可以', '找我'], answer: '你们随时可以找我' },
+        { type: 'listen', audio: '因为人多所以很热闹', options: ['因为人多所以很热闹','天上的云十分漂亮','一共多少人给个数字吧'], answer: '因为人多所以很热闹', py: 'Yīnwèi rén duō, suǒyǐ hěn rènao.', explain: 'Nghe 所以 = cho nên.' },
+        { type: 'dictation', audio: '他的态度很好', answer: '他的态度很好', hint: 'Thái độ của anh ấy rất tốt.', py: 'Tā de tàidù hěn hǎo.', explain: 'Nghe viết 态度 = thái độ.' }
       ],
       hard: [
         { type: 'fill', sentence: '___体育场太大，我们在体育馆比较好。', options: ['虽然', '所以', '十分'], answer: '虽然' },
@@ -4263,7 +4317,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '网站上要放___和信息。', options: ['图片', '信号', '姓名'], answer: '图片' },
         { type: 'fill', sentence: '也要填___。', options: ['姓名', '心情', '行人'], answer: '姓名' },
         { type: 'fill', sentence: '我们___要做网站。', options: ['小组', '校园', '新闻'], answer: '小组' },
-        { type: 'fill', sentence: '___！这个主意不错。', options: ['挺好', '同时', '心中'], answer: '挺好' }
+        { type: 'fill', sentence: '___！这个主意不错。', options: ['挺好', '同时', '心中'], answer: '挺好' },
+        { type: 'listen', audio: '别担心要有信心', options: ['别担心要有信心','同时也要填姓名','那个行为不好'], answer: '别担心要有信心', py: 'Bié dānxīn, yào yǒu xìnxīn!', explain: 'Nghe 信心 = lòng tin.' }
       ],
       normal: [
         { type: 'fill', sentence: '这里___不好，我有点担心。', options: ['信号', '信心', '信息'], answer: '信号' },
@@ -4272,7 +4327,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '校园里___不多。', options: ['行人', '行为', '小组'], answer: '行人' },
         { type: 'fill', sentence: '我___很开心。', options: ['心中', '心情', '同时'], answer: '心中' },
         { type: 'order', words: ['网站', '做一个', '我们小组', '要'], answer: '我们小组要做一个网站' },
-        { type: 'order', words: ['信心', '要', '有'], answer: '要有信心' }
+        { type: 'order', words: ['信心', '要', '有'], answer: '要有信心' },
+        { type: 'listen', audio: '这里信号不好我有点担心', options: ['这里信号不好我有点担心','挺好网站上要放图片和信息','校园里行人不多信号好多了'], answer: '这里信号不好我有点担心', py: 'Zhèlǐ xìnhào bù hǎo, wǒ yǒudiǎn dānxīn.', explain: 'Nghe 信号 = tín hiệu.' },
+        { type: 'dictation', audio: '那个行为不好', answer: '那个行为不好', hint: 'Hành vi đó không tốt.', py: 'Nàge xíngwéi bù hǎo.', explain: 'Nghe viết 行为 = hành vi.' }
       ],
       hard: [
         { type: 'fill', sentence: '那个___不好。', options: ['行为', '行人', '笑话'], answer: '行为' },
@@ -4465,7 +4522,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '时间___快结束了。', options: ['已经', '也许', '一共'], answer: '已经' },
         { type: 'fill', sentence: '我们___在一起。', options: ['一直', '已经', '又'], answer: '一直' },
         { type: 'fill', sentence: '游客___有多少人？', options: ['一共', '一直', '也许'], answer: '一共' },
-        { type: 'fill', sentence: '这次活动很___！', options: ['有意思', '有空儿', '有一点儿'], answer: '有意思' }
+        { type: 'fill', sentence: '这次活动很___！', options: ['有意思', '有空儿', '有一点儿'], answer: '有意思' },
+        { type: 'listen', audio: '除了学生以外还有很多游客', options: ['除了学生以外还有很多游客','今天来的游客一共有多少人','这个学期已经快结束了'], answer: '除了学生以外还有很多游客', py: 'Chúle xuésheng yǐwài, hái yǒu hěn duō yóukè.', explain: 'Nghe 以外 = ngoài ra.' }
       ],
       normal: [
         { type: 'fill', sentence: '___我们一直在一起，___就少见了。', options: ['以前…以后', '因为…所以', '虽然…但是'], answer: '以前…以后' },
@@ -4474,7 +4532,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '除了学生___，还有很多游客。', options: ['以外', '以后', '以前'], answer: '以外' },
         { type: 'fill', sentence: '这部___很感人。', options: ['影片', '样子', '音节'], answer: '影片' },
         { type: 'order', words: ['已经', '学期', '这个', '快结束了'], answer: '这个学期已经快结束了' },
-        { type: 'order', words: ['又', '我们', '能见面'], answer: '我们又能见面' }
+        { type: 'order', words: ['又', '我们', '能见面'], answer: '我们又能见面' },
+        { type: 'listen', audio: '这个学期已经快结束了', options: ['这个学期已经快结束了','每个音节我都听得懂了','因为什么来了这么多人'], answer: '这个学期已经快结束了', py: 'Zhège xuéqī yǐjīng kuài jiéshù le.', explain: 'Nghe 学期 = học kỳ.' },
+        { type: 'dictation', audio: '一路平安', answer: '一路平安', hint: 'Thượng lộ bình an!', py: 'Yílù píng’ān!', explain: 'Nghe viết 一路平安 = thượng lộ bình an.' }
       ],
       hard: [
         { type: 'fill', sentence: '___这次活动很有意思！', options: ['因为', '原因', '以外'], answer: '因为' },
@@ -4665,7 +4725,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我还买了___。', options: ['早餐', '中餐', '作文'], answer: '早餐' },
         { type: 'fill', sentence: '你现在是___。', options: ['组长', '主人', '座位'], answer: '组长' },
         { type: 'fill', sentence: '今天要写___。', options: ['作文', '照片', '字典'], answer: '作文' },
-        { type: 'fill', sentence: '___！你来得真巧。', options: ['正好', '只要', '重新'], answer: '正好' }
+        { type: 'fill', sentence: '___！你来得真巧。', options: ['正好', '只要', '重新'], answer: '正好' },
+        { type: 'listen', audio: '我把这张照片放进作文里', options: ['我把这张照片放进作文里','只要努力就能做到','大家越来越听你的'], answer: '我把这张照片放进作文里', py: 'Wǒ bǎ zhè zhāng zhàopiàn fàngjìn zuòwén lǐ.', explain: 'Nghe 照片 = bức ảnh.' }
       ],
       normal: [
         { type: 'fill', sentence: '大家___听你的。', options: ['越来越', '早就', '正好'], answer: '越来越' },
@@ -4674,7 +4735,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我先用___找出几个生词。', options: ['字典', '作文', '照片'], answer: '字典' },
         { type: 'fill', sentence: '这些___不够。', options: ['座位', '住房', '主人'], answer: '座位' },
         { type: 'order', words: ['组长', '你', '是', '现在'], answer: '你现在是组长' },
-        { type: 'order', words: ['只要', '努力', '就能做到'], answer: '只要努力就能做到' }
+        { type: 'order', words: ['只要', '努力', '就能做到'], answer: '只要努力就能做到' },
+        { type: 'listen', audio: '只要努力就能做到', options: ['只要努力就能做到','大家越来越听你的','大家称她为组长'], answer: '只要努力就能做到', py: 'Zhǐyào nǔlì jiù néng zuòdào!', explain: 'Nghe 只要 = chỉ cần.' },
+        { type: 'dictation', audio: '大家越来越听你的', answer: '大家越来越听你的', hint: 'Mọi người càng ngày càng nghe cậu.', py: 'Dàjiā yuèláiyuè tīng nǐ de.', explain: 'Nghe viết 越来越 = càng ngày càng.' }
       ],
       hard: [
         { type: 'fill', sentence: '这间___的主人是谁？', options: ['住房', '中心', '座位'], answer: '住房' },
@@ -4867,7 +4930,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '又方便又___。', options: ['便宜', '安全', '高级'], answer: '便宜' },
         { type: 'fill', sentence: '环境___！', options: ['不错', '不够', '不行'], answer: '不错' },
         { type: 'fill', sentence: '离学校很近，很___。', options: ['方便', '安静', '低'], answer: '方便' },
-        { type: 'fill', sentence: '这里很___。', options: ['安全', '常见', '短'], answer: '安全' }
+        { type: 'fill', sentence: '这里很___。', options: ['安全', '常见', '短'], answer: '安全' },
+        { type: 'listen', audio: '又方便又便宜', options: ['又方便又便宜','老师多么好啊','这样吃不饱'], answer: '又方便又便宜', py: 'Yòu fāngbiàn yòu piányi.', explain: 'Nghe 便宜 = rẻ.' }
       ],
       normal: [
         { type: 'fill', sentence: '这样吃不___，分量不够。', options: ['饱', '满', '行'], answer: '饱' },
@@ -4876,7 +4940,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '价格也___。', options: ['低', '短', '饱'], answer: '低' },
         { type: 'fill', sentence: '菜单上的字很___。', options: ['短', '低', '饱'], answer: '短' },
         { type: 'order', words: ['安静', '这家店', '很'], answer: '这家店很安静' },
-        { type: 'order', words: ['方便', '又', '便宜', '又'], answer: '又方便又便宜' }
+        { type: 'order', words: ['方便', '又', '便宜', '又'], answer: '又方便又便宜' },
+        { type: 'listen', audio: '老师多么好啊', options: ['老师多么好啊','又方便又便宜','这样吃不饱'], answer: '老师多么好啊', py: 'Lǎoshī duōme hǎo a!', explain: 'Nghe 多么 = biết bao.' },
+        { type: 'dictation', audio: '这样吃不饱', answer: '这样吃不饱', hint: 'Ăn vậy không no.', py: 'Zhèyàng chībubǎo.', explain: 'Nghe viết 饱 = no.' }
       ],
       hard: [
         { type: 'fill', sentence: '我们都很___。', options: ['感动', '不满', '不行'], answer: '感动' },
@@ -5063,7 +5129,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '这样对___好。', options: ['健康', '科学', '公平'], answer: '健康' },
         { type: 'fill', sentence: '那只猫又黑又___。', options: ['可爱', '可怕', '合适'], answer: '可爱' },
         { type: 'fill', sentence: '今天我很___！', options: ['开心', '故意', '黄'], answer: '开心' },
-        { type: 'fill', sentence: '我___运动。', options: ['经常', '可怕', '假'], answer: '经常' }
+        { type: 'fill', sentence: '我___运动。', options: ['经常', '可怕', '假'], answer: '经常' },
+        { type: 'listen', audio: '这样对健康好', options: ['这样对健康好','别急慢慢来','那个电影真可怕'], answer: '这样对健康好', py: 'Zhèyàng duì jiànkāng hǎo.', explain: 'Nghe 健康 = sức khỏe.' }
       ],
       normal: [
         { type: 'fill', sentence: '别___，慢慢来。', options: ['急', '加', '拉'], answer: '急' },
@@ -5072,7 +5139,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '他不是___的。', options: ['故意', '科学', '快乐'], answer: '故意' },
         { type: 'fill', sentence: '旁边有___色的花。', options: ['红', '近', '急'], answer: '红' },
         { type: 'order', words: ['湖边', '去', '走走', '周末'], answer: '周末去湖边走走' },
-        { type: 'order', words: ['很', '我', '开心', '今天'], answer: '今天我很开心' }
+        { type: 'order', words: ['很', '我', '开心', '今天'], answer: '今天我很开心' },
+        { type: 'listen', audio: '运动对健康有很大的作用', options: ['运动对健康有很大的作用','老师他不是故意的请别生气','周末去湖边走走吧离这儿很近'], answer: '运动对健康有很大的作用', py: 'Yùndòng duì jiànkāng yǒu hěn dà de zuòyòng.', explain: 'Nghe 健康 = sức khỏe.' },
+        { type: 'dictation', audio: '别急慢慢来', answer: '别急慢慢来', hint: 'Đừng vội, từ từ thôi.', py: 'Bié jí, mànman lái.', explain: 'Nghe viết 急 = vội.' }
       ],
       hard: [
         { type: 'fill', sentence: '那个电影真___！', options: ['可怕', '可爱', '健康'], answer: '可怕' },
@@ -5258,7 +5327,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '真___！', options: ['漂亮', '难看', '难听'], answer: '漂亮' },
         { type: 'fill', sentence: '今天很___。', options: ['凉快', '难过', '满'], answer: '凉快' },
         { type: 'fill', sentence: '月亮很___。', options: ['亮', '平', '蓝'], answer: '亮' },
-        { type: 'fill', sentence: '你的中文越来越___了！', options: ['流利', '普通', '难听'], answer: '流利' }
+        { type: 'fill', sentence: '你的中文越来越___了！', options: ['流利', '普通', '难听'], answer: '流利' },
+        { type: 'listen', audio: '你的中文越来越流利了', options: ['你的中文越来越流利了','天很蓝水很绿真漂亮','这首歌太难听了'], answer: '你的中文越来越流利了', py: 'Nǐ de Zhōngwén yuèláiyuè liúlì le!', explain: 'Nghe 流利 = lưu loát.' }
       ],
       normal: [
         { type: 'fill', sentence: '我听不___。', options: ['清楚', '漂亮', '平等'], answer: '清楚' },
@@ -5267,7 +5337,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '要___学习。', options: ['努力', '难过', '清楚'], answer: '努力' },
         { type: 'fill', sentence: '人人___。', options: ['平等', '凉快', '漂亮'], answer: '平等' },
         { type: 'order', words: ['很', '天', '蓝'], answer: '天很蓝' },
-        { type: 'order', words: ['努力', '要', '学习'], answer: '要努力学习' }
+        { type: 'order', words: ['努力', '要', '学习'], answer: '要努力学习' },
+        { type: 'listen', audio: '这首歌太难听了', options: ['这首歌太难听了','你声音轻一点','天很蓝水很绿真漂亮'], answer: '这首歌太难听了', py: 'Zhè shǒu gē tài nántīng le!', explain: 'Nghe 难听 = khó nghe.' },
+        { type: 'dictation', audio: '你声音轻一点', answer: '你声音轻一点', hint: 'Cậu nói nhỏ một chút.', py: 'Nǐ shēngyīn qīng yìdiǎn.', explain: 'Nghe viết 轻 = nhẹ.' }
       ],
       hard: [
         { type: 'fill', sentence: '这首歌太___了！', options: ['难听', '难看', '难过'], answer: '难听' },
@@ -5453,7 +5525,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '要___身体。', options: ['小心', '随便', '一般'], answer: '小心' },
         { type: 'fill', sentence: '不太___。', options: ['舒服', '热情', '相同'], answer: '舒服' },
         { type: 'fill', sentence: '___人都很热情。', options: ['所有', '完全', '同样'], answer: '所有' },
-        { type: 'fill', sentence: '大家都很___。', options: ['热情', '生', '响'], answer: '热情' }
+        { type: 'fill', sentence: '大家都很___。', options: ['热情', '生', '响'], answer: '热情' },
+        { type: 'listen', audio: '这些菜是生的还是熟的', options: ['这些菜是生的还是熟的','你头疼吗要小心身体','有一点不太舒服全身都累'], answer: '这些菜是生的还是熟的', py: 'Zhèxiē cài shì shēng de háishi shú de?', explain: 'Nghe 生 = sống.' }
       ],
       normal: [
         { type: 'fill', sentence: '你___一点，别太响。', options: ['小声', '响', '熟'], answer: '小声' },
@@ -5462,7 +5535,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___身都累。', options: ['全', '通', '生'], answer: '全' },
         { type: 'fill', sentence: '事情很___。', options: ['顺利', '舒服', '小心'], answer: '顺利' },
         { type: 'order', words: ['小心', '要', '身体'], answer: '要小心身体' },
-        { type: 'order', words: ['热情', '都', '所有人', '很'], answer: '所有人都很热情' }
+        { type: 'order', words: ['热情', '都', '所有人', '很'], answer: '所有人都很热情' },
+        { type: 'listen', audio: '所有人都很热情', options: ['所有人都很热情','随便选哪个都行','你头疼吗要小心身体'], answer: '所有人都很热情', py: 'Suǒyǒu rén dōu hěn rèqíng.', explain: 'Nghe 热情 = nhiệt tình.' },
+        { type: 'dictation', audio: '你小声一点', answer: '你小声一点', hint: 'Cậu nói nhỏ một chút.', py: 'Nǐ xiǎoshēng yìdiǎn.', explain: 'Nghe viết 小声 = nói nhỏ.' }
       ],
       hard: [
         { type: 'fill', sentence: '这两个词意思___相同。', options: ['完全', '一般', '随便'], answer: '完全' },
@@ -5646,7 +5721,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '天上___很多。', options: ['云', '阴', '越'], answer: '云' },
         { type: 'fill', sentence: '这很___。', options: ['正常', '正确', '自由'], answer: '正常' },
         { type: 'fill', sentence: '我们___要带伞。', options: ['一定', '永远', '直接'], answer: '一定' },
-        { type: 'fill', sentence: '这件衣服有点___。', options: ['脏', '阴', '长'], answer: '脏' }
+        { type: 'fill', sentence: '这件衣服有点___。', options: ['脏', '阴', '长'], answer: '脏' },
+        { type: 'listen', audio: '原来你早就知道了', options: ['原来你早就知道了','你们是真正的朋友','我们一定要带伞'], answer: '原来你早就知道了', py: 'Yuánlái nǐ zǎo jiù zhīdào le!', explain: 'Nghe 原来 = thì ra.' }
       ],
       normal: [
         { type: 'fill', sentence: '这个答案___。', options: ['正确', '正常', '友好'], answer: '正确' },
@@ -5655,7 +5731,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '你们是___的朋友。', options: ['真正', '正常', '主要'], answer: '真正' },
         { type: 'fill', sentence: '要___友好。', options: ['永远', '直接', '一定'], answer: '永远' },
         { type: 'order', words: ['带伞', '要', '一定', '我们'], answer: '我们一定要带伞' },
-        { type: 'order', words: ['正确', '答案', '这个'], answer: '这个答案正确' }
+        { type: 'order', words: ['正确', '答案', '这个'], answer: '这个答案正确' },
+        { type: 'listen', audio: '我们一定要带伞', options: ['我们一定要带伞','别重复了我懂了','原来你早就知道了'], answer: '我们一定要带伞', py: 'Wǒmen yídìng yào dài sǎn.', explain: 'Nghe 一定 = nhất định.' },
+        { type: 'dictation', audio: '这个答案正确', answer: '这个答案正确', hint: 'Đáp án này chính xác.', py: 'Zhège dá’àn zhèngquè.', explain: 'Nghe viết 正确 = chính xác.' }
       ],
       hard: [
         { type: 'fill', sentence: '我___说主要的问题。', options: ['直接', '正确', '永远'], answer: '直接' },
@@ -5849,7 +5927,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___你回家吗？', options: ['春节', '冬天', '半夜'], answer: '春节' },
         { type: 'fill', sentence: '___有多长？', options: ['假期', '分钟', '千'], answer: '假期' },
         { type: 'fill', sentence: '前年___我也回了。', options: ['冬天', '春节', '平时'], answer: '冬天' },
-        { type: 'fill', sentence: '等我几___。', options: ['分钟', '千', '前年'], answer: '分钟' }
+        { type: 'fill', sentence: '等我几___。', options: ['分钟', '千', '前年'], answer: '分钟' },
+        { type: 'listen', audio: '刚才老师查过了', options: ['刚才老师查过了','今年春天才来这儿','我老是半夜还在学'], answer: '刚才老师查过了', py: 'Gāngcái lǎoshī chá guo le.', explain: 'Nghe 刚才 = vừa nãy.' }
       ],
       normal: [
         { type: 'fill', sentence: '我___到。', options: ['刚刚', '今后', '前年'], answer: '刚刚' },
@@ -5858,7 +5937,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___要多练习。', options: ['平时', '半夜', '春天'], answer: '平时' },
         { type: 'fill', sentence: '您___怎么学的？', options: ['当时', '今后', '不久'], answer: '当时' },
         { type: 'order', words: ['放假', '快要', '了'], answer: '快要放假了' },
-        { type: 'order', words: ['到', '我', '刚刚'], answer: '我刚刚到' }
+        { type: 'order', words: ['到', '我', '刚刚'], answer: '我刚刚到' },
+        { type: 'listen', audio: '我刚刚到', options: ['我刚刚到','快要放假了','假期有多长'], answer: '我刚刚到', py: 'Wǒ gānggāng dào.', explain: 'Nghe 刚刚 = vừa mới.' },
+        { type: 'dictation', audio: '快要放假了', answer: '快要放假了', hint: 'Sắp được nghỉ rồi!', py: 'Kuàiyào fàngjià le!', explain: 'Nghe viết 快要 = sắp.' }
       ],
       hard: [
         { type: 'fill', sentence: '我老是___还在学。', options: ['半夜', '冬天', '假期'], answer: '半夜' },
@@ -6051,7 +6132,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '这个___有晚会！', options: ['周末', '月份', '夜里'], answer: '周末' },
         { type: 'fill', sentence: '___的空气真好。', options: ['早晨', '夜', '中年'], answer: '早晨' },
         { type: 'fill', sentence: '___快过去，秋天到了。', options: ['夏天', '春天', '上周'], answer: '夏天' },
-        { type: 'fill', sentence: '秋天___了。', options: ['到', '万', '周'], answer: '到' }
+        { type: 'fill', sentence: '秋天___了。', options: ['到', '万', '周'], answer: '到' },
+        { type: 'listen', audio: '上周我太忙下周才有空', options: ['上周我太忙下周才有空','我夜里常常学到很晚','那时候日子很简单'], answer: '上周我太忙下周才有空', py: 'Shàng zhōu wǒ tài máng, xià zhōu cái yǒu kòng.', explain: 'Nghe 上周 = tuần trước.' }
       ],
       normal: [
         { type: 'fill', sentence: '___我太忙。', options: ['上周', '下周', '全年'], answer: '上周' },
@@ -6060,7 +6142,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '这个___有晚会。', options: ['周末', '夜里', '少年'], answer: '周末' },
         { type: 'fill', sentence: '我夜里常学到很晚，只睡___。', options: ['一点点', '全年', '月份'], answer: '一点点' },
         { type: 'order', words: ['有', '这个周末', '晚会'], answer: '这个周末有晚会' },
-        { type: 'order', words: ['秋天', '夏天', '过去', '快', '到了'], answer: '夏天快过去秋天到了' }
+        { type: 'order', words: ['秋天', '夏天', '过去', '快', '到了'], answer: '夏天快过去秋天到了' },
+        { type: 'listen', audio: '我夜里常常学到很晚', options: ['我夜里常常学到很晚','上周我太忙下周才有空','那时候日子很简单'], answer: '我夜里常常学到很晚', py: 'Wǒ yèlǐ chángcháng xuédào hěn wǎn.', explain: 'Nghe 夜里 = ban đêm.' },
+        { type: 'dictation', audio: '只学一点点', answer: '只学一点点', hint: 'Chỉ học một chút xíu thôi.', py: 'Zhǐ xué yìdiǎndiǎn.', explain: 'Nghe viết 一点点 = một chút xíu.' }
       ],
       hard: [
         { type: 'fill', sentence: '我___是个快乐的少年。', options: ['小时候', '这时候', '中年'], answer: '小时候' },
@@ -6256,7 +6340,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我们要买___东西。', options: ['不少', '该', '那么'], answer: '不少' },
         { type: 'fill', sentence: '买几___苹果？', options: ['斤', '辆', '句'], answer: '斤' },
         { type: 'fill', sentence: '还是几___？', options: ['公斤', '段', '份'], answer: '公斤' },
-        { type: 'fill', sentence: '买两___礼物。', options: ['份', '辆', '斤'], answer: '份' }
+        { type: 'fill', sentence: '买两___礼物。', options: ['份', '辆', '斤'], answer: '份' },
+        { type: 'listen', audio: '买两份礼物再买几件衣服', options: ['买两份礼物再买几件衣服','买几斤苹果还是几公斤','大家好久不见我们要买不少东西'], answer: '买两份礼物再买几件衣服', py: 'Mǎi liǎng fèn lǐwù, zài mǎi jǐ jiàn yīfu.', explain: 'Nghe 份 = phần.' }
       ],
       normal: [
         { type: 'fill', sentence: '还要___？', options: ['多久', '那么', '该'], answer: '多久' },
@@ -6265,7 +6350,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '开一___车去吧。', options: ['辆', '件', '句'], answer: '辆' },
         { type: 'fill', sentence: '___同学都来了。', options: ['大多数', '其他', '那时'], answer: '大多数' },
         { type: 'order', words: ['不少', '买', '东西', '要', '我们'], answer: '我们要买不少东西' },
-        { type: 'order', words: ['走了', '该', '我们'], answer: '我们该走了' }
+        { type: 'order', words: ['走了', '该', '我们'], answer: '我们该走了' },
+        { type: 'listen', audio: '开一辆车去吧', options: ['开一辆车去吧','别像那样浪费','我们该走了'], answer: '开一辆车去吧', py: 'Kāi yí liàng chē qù ba.', explain: 'Nghe 辆 = chiếc.' },
+        { type: 'dictation', audio: '我们该走了', answer: '我们该走了', hint: 'Chúng ta nên đi thôi.', py: 'Wǒmen gāi zǒu le.', explain: 'Nghe viết 该 = nên.' }
       ],
       hard: [
         { type: 'fill', sentence: '那时买东西不___方便。', options: ['那么', '那样', '那会儿'], answer: '那么' },
@@ -6460,7 +6547,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '写一___文章。', options: ['篇', '片', '条'], answer: '篇' },
         { type: 'fill', sentence: '有___照片。', options: ['许多', '少数', '其中'], answer: '许多' },
         { type: 'fill', sentence: '___都很美。', options: ['全部', '一部分', '为什么'], answer: '全部' },
-        { type: 'fill', sentence: '选几___照片。', options: ['片', '名', '座'], answer: '片' }
+        { type: 'fill', sentence: '选几___照片。', options: ['片', '名', '座'], answer: '片' },
+        { type: 'listen', audio: '这座楼里有十位老师三名学生', options: ['这座楼里有十位老师三名学生','咱们写一篇文章吧咱也选几片照片','这座楼里有十位老师三名学生帮忙'], answer: '这座楼里有十位老师三名学生', py: 'Zhè zuò lóu lǐ yǒu shí wèi lǎoshī, sān míng xuésheng.', explain: 'Nghe 名 = người.' }
       ],
       normal: [
         { type: 'fill', sentence: '___一部分是动物的。', options: ['其中', '全部', '什么样'], answer: '其中' },
@@ -6469,7 +6557,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___有人不喜欢动物？', options: ['为什么', '什么样', '其中'], answer: '为什么' },
         { type: 'fill', sentence: '___人喜欢黑白的。', options: ['少数', '许多', '全部'], answer: '少数' },
         { type: 'order', words: ['一起', '做吧', '咱们'], answer: '咱们一起做吧' },
-        { type: 'order', words: ['文章', '一篇', '写', '咱们'], answer: '咱们写一篇文章' }
+        { type: 'order', words: ['文章', '一篇', '写', '咱们'], answer: '咱们写一篇文章' },
+        { type: 'listen', audio: '咱们一起做吧', options: ['咱们一起做吧','它们真可爱','你想要什么样的照片'], answer: '咱们一起做吧', py: 'Zánmen yìqǐ zuò ba!', explain: 'Nghe 咱们 = chúng mình.' },
+        { type: 'dictation', audio: '它们真可爱', answer: '它们真可爱', hint: 'Chúng thật đáng yêu!', py: 'Tāmen zhēn kě\'ài!', explain: 'Nghe viết 它们 = chúng nó.' }
       ],
       hard: [
         { type: 'fill', sentence: '这座楼里有十___老师。', options: ['位', '名', '条'], answer: '位' },
@@ -6607,7 +6697,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___先想想办法。', options: ['自己', '这时', '怎样'], answer: '自己' },
         { type: 'fill', sentence: '___晚了。', options: ['这么', '这样', '怎样'], answer: '这么' },
         { type: 'fill', sentence: '___吧，我借你。', options: ['这样', '这时', '怎么办'], answer: '这样' },
-        { type: 'fill', sentence: '你觉得这个办法___？', options: ['怎样', '这么', '自己'], answer: '怎样' }
+        { type: 'fill', sentence: '你觉得这个办法___？', options: ['怎样', '这么', '自己'], answer: '怎样' },
+        { type: 'listen', audio: '我把书忘了怎么办', options: ['我把书忘了怎么办','自己先想想办法','别急自己先想想办法'], answer: '我把书忘了怎么办', py: 'Wǒ bǎ shū wàng le, zěnme bàn?', explain: 'Nghe 怎么办 = làm sao đây.' }
       ],
       normal: [
         { type: 'fill', sentence: '___才能拿到书？', options: ['怎么样', '这样', '这么'], answer: '怎么样' },
@@ -6615,7 +6706,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '要___想办法。', options: ['自己', '这么', '这时'], answer: '自己' },
         { type: 'fill', sentence: '你最近___？', options: ['怎么样', '怎么办', '这样'], answer: '怎么样' },
         { type: 'order', words: ['办', '怎么', '我'], answer: '我怎么办' },
-        { type: 'order', words: ['你', '我', '这样吧', '借'], answer: '这样吧我借你' }
+        { type: 'order', words: ['你', '我', '这样吧', '借'], answer: '这样吧我借你' },
+        { type: 'listen', audio: '你觉得这个办法怎么样', options: ['你觉得这个办法怎么样','糟糕我把书忘了怎么办','别急自己先想想办法'], answer: '你觉得这个办法怎么样', py: 'Nǐ juéde zhège bànfǎ zěnmeyàng?', explain: 'Nghe 怎么样 = thế nào.' },
+        { type: 'dictation', audio: '这样吧我借你', answer: '这样吧我借你', hint: 'Thế này nhé, tớ cho cậu mượn.', py: 'Zhèyàng ba, wǒ jiè nǐ.', explain: 'Nghe viết 这样 = thế này.' }
       ],
       hard: [
         { type: 'fill', sentence: '___晚了，怎么样才能拿到？', options: ['这么', '这样', '这时'], answer: '这么' },
@@ -6802,7 +6895,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '离___很近。', options: ['花园', '北方', '报纸'], answer: '花园' },
         { type: 'fill', sentence: '我来自___。', options: ['南方', '东方', '国际'], answer: '南方' },
         { type: 'fill', sentence: '她来自___。', options: ['北方', '南方', '东南'], answer: '北方' },
-        { type: 'fill', sentence: '这是个___城市。', options: ['国际', '公园', '超市'], answer: '国际' }
+        { type: 'fill', sentence: '这是个___城市。', options: ['国际', '公园', '超市'], answer: '国际' },
+        { type: 'listen', audio: '超市在公园东边', options: ['超市在公园东边','这个瓶子是我的','桌上有一瓶水'], answer: '超市在公园东边', py: 'Chāoshì zài gōngyuán dōngbian.', explain: 'Nghe 超市 = siêu thị.' }
       ],
       normal: [
         { type: 'fill', sentence: '太阳从___升起。', options: ['东方', '北方', '南方'], answer: '东方' },
@@ -6811,7 +6905,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '买笔记本、___和报纸。', options: ['笔', '灯', '瓶'], answer: '笔' },
         { type: 'fill', sentence: '教室的___坏了。', options: ['灯', '笔', '瓶子'], answer: '灯' },
         { type: 'order', words: ['公园', '在', '东边', '超市'], answer: '超市在公园东边' },
-        { type: 'order', words: ['北方', '她', '来自'], answer: '她来自北方' }
+        { type: 'order', words: ['北方', '她', '来自'], answer: '她来自北方' },
+        { type: 'listen', audio: '离花园很近', options: ['离花园很近','桌上有一瓶水','超市在公园东边'], answer: '离花园很近', py: 'Lí huāyuán hěn jìn.', explain: 'Nghe 花园 = vườn hoa.' },
+        { type: 'dictation', audio: '桌上有一瓶水', answer: '桌上有一瓶水', hint: 'Trên bàn có một chai nước.', py: 'Zhuō shàng yǒu yì píng shuǐ.', explain: 'Nghe viết 瓶 = chai.' }
       ],
       hard: [
         { type: 'fill', sentence: '___前有一台计算机。', options: ['黑板', '花园', '公园'], answer: '黑板' },
@@ -6997,7 +7093,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '你带___了吗？', options: ['银行卡', '洗衣机', '药水'], answer: '银行卡' },
         { type: 'fill', sentence: '这家___厅很有名。', options: ['西餐', '西方', '西北'], answer: '西餐' },
         { type: 'fill', sentence: '来自___。', options: ['西方', '全国', '银行'], answer: '西方' },
-        { type: 'fill', sentence: '我___累。', options: ['有点儿', '以上', '以下'], answer: '有点儿' }
+        { type: 'fill', sentence: '我___累。', options: ['有点儿', '以上', '以下'], answer: '有点儿' },
+        { type: 'listen', audio: '八十分以上算好六十分以下要努力', options: ['八十分以上算好六十分以下要努力','银行在停车场旁边你带银行卡了吗','带了这家西餐厅来自西方很有名'], answer: '八十分以上算好六十分以下要努力', py: 'Bāshí fēn yǐshàng suàn hǎo, liùshí fēn yǐxià yào nǔlì.', explain: 'Nghe 以上 = trở lên.' }
       ],
       normal: [
         { type: 'fill', sentence: '这座城市在全国___。', options: ['西北', '西餐', '日报'], answer: '西北' },
@@ -7006,7 +7103,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '晚上看___。', options: ['晚报', '日报', '相机'], answer: '晚报' },
         { type: 'fill', sentence: '银行在___旁边。', options: ['停车场', '银行卡', '全国'], answer: '停车场' },
         { type: 'order', words: ['停车场', '在', '银行', '旁边'], answer: '银行在停车场旁边' },
-        { type: 'order', words: ['有点儿', '我', '累'], answer: '我有点儿累' }
+        { type: 'order', words: ['有点儿', '我', '累'], answer: '我有点儿累' },
+        { type: 'listen', audio: '这座城市在全国西北', options: ['这座城市在全国西北','我每天看日报晚上看晚报','我每天看日报'], answer: '这座城市在全国西北', py: 'Zhè zuò chéngshì zài quánguó xīběi.', explain: 'Nghe 全国 = cả nước.' },
+        { type: 'dictation', audio: '我有点儿累', answer: '我有点儿累', hint: 'Tớ hơi mệt.', py: 'Wǒ yǒudiǎnr lèi.', explain: 'Nghe viết 有点儿 = hơi.' }
       ],
       hard: [
         { type: 'fill', sentence: '成绩在八十分___算好。', options: ['以上', '以下', '有点儿'], answer: '以上' },
@@ -7181,7 +7280,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '海边有___。', options: ['河', '头', '脸'], answer: '河' },
         { type: 'fill', sentence: '还有绿___。', options: ['草', '海', '腿'], answer: '草' },
         { type: 'fill', sentence: '我的___和腿都累了。', options: ['脚', '头', '表'], answer: '脚' },
-        { type: 'fill', sentence: '你___红了。', options: ['脸', '草', '河'], answer: '脸' }
+        { type: 'fill', sentence: '你___红了。', options: ['脸', '草', '河'], answer: '脸' },
+        { type: 'listen', audio: '这块表很准', options: ['这块表很准','我的脚和腿都累了','看我的手表几点了'], answer: '这块表很准', py: 'Zhè kuài biǎo hěn zhǔn.', explain: 'Nghe 表 = đồng hồ.' }
       ],
       normal: [
         { type: 'fill', sentence: '___也乱了。', options: ['头发', '手表', '球队'], answer: '头发' },
@@ -7190,7 +7290,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '这块___很准。', options: ['表', '草', '河'], answer: '表' },
         { type: 'fill', sentence: '走了好久，___都累了。', options: ['腿', '海', '门'], answer: '腿' },
         { type: 'order', words: ['看', '大海', '去', '我们'], answer: '我们去看大海' },
-        { type: 'order', words: ['累了', '我的脚', '都', '和腿'], answer: '我的脚和腿都累了' }
+        { type: 'order', words: ['累了', '我的脚', '都', '和腿'], answer: '我的脚和腿都累了' },
+        { type: 'listen', audio: '我的脚和腿都累了', options: ['我的脚和腿都累了','看我的手表几点了','家长同意我们参加球队'], answer: '我的脚和腿都累了', py: 'Wǒ de jiǎo hé tuǐ dōu lèi le.', explain: 'Nghe 脚 = bàn chân.' },
+        { type: 'dictation', audio: '看我的手表几点了', answer: '看我的手表几点了', hint: 'Xem đồng hồ của tớ, mấy giờ rồi?', py: 'Kàn wǒ de shǒubiǎo, jǐ diǎn le?', explain: 'Nghe viết 手表 = đồng hồ đeo tay.' }
       ],
       hard: [
         { type: 'fill', sentence: '___很美，地球是我们的家。', options: ['大自然', '大海', '大门'], answer: '大自然' },
@@ -7372,7 +7474,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___很大。', options: ['太阳', '椅子', '嘴'], answer: '太阳' },
         { type: 'fill', sentence: '晚上能看到___和星星。', options: ['月亮', '太阳', '面'], answer: '月亮' },
         { type: 'fill', sentence: '我___累了。', options: ['眼睛', '椅子', '街'], answer: '眼睛' },
-        { type: 'fill', sentence: '点个___吧。', options: ['外卖', '明星', '药'], answer: '外卖' }
+        { type: 'fill', sentence: '点个___吧。', options: ['外卖', '明星', '药'], answer: '外卖' },
+        { type: 'listen', audio: '晚上能看到月亮和星星', options: ['晚上能看到月亮和星星','我心里很高兴嘴上不说','今天是晴天太阳很大'], answer: '晚上能看到月亮和星星', py: 'Wǎnshang néng kàndào yuèliang hé xīngxing.', explain: 'Nghe 星星 = ngôi sao.' }
       ],
       normal: [
         { type: 'fill', sentence: '我们坐在___上。', options: ['椅子', '心里', '太阳'], answer: '椅子' },
@@ -7381,7 +7484,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '闭上___休息。', options: ['眼', '嘴', '街'], answer: '眼' },
         { type: 'fill', sentence: '能看到月亮和___。', options: ['星星', '太阳', '外卖'], answer: '星星' },
         { type: 'order', words: ['晴天', '今天', '是'], answer: '今天是晴天' },
-        { type: 'order', words: ['外卖', '个', '点', '吧'], answer: '点个外卖吧' }
+        { type: 'order', words: ['外卖', '个', '点', '吧'], answer: '点个外卖吧' },
+        { type: 'listen', audio: '我们坐在椅子上', options: ['我们坐在椅子上','街上有家店卖面','今天是晴天太阳很大'], answer: '我们坐在椅子上', py: 'Wǒmen zuò zài yǐzi shàng.', explain: 'Nghe 椅子 = cái ghế.' },
+        { type: 'dictation', audio: '街上有家店卖面', answer: '街上有家店卖面', hint: 'Trên phố có quán bán mì.', py: 'Jiē shàng yǒu jiā diàn mài miàn.', explain: 'Nghe viết 面 = mì.' }
       ],
       hard: [
         { type: 'fill', sentence: '这位___是个明星。', options: ['院长', '家长', '明星'], answer: '院长' },
@@ -7569,7 +7674,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___很长，味道也好。', options: ['菜单', '生词', '分数'], answer: '菜单' },
         { type: 'fill', sentence: '我要一碗面、一个___。', options: ['蛋', '米', '油'], answer: '蛋' },
         { type: 'fill', sentence: '少放___。', options: ['油', '蛋', '酒'], answer: '油' },
-        { type: 'fill', sentence: '没时间就吃___。', options: ['方便面', '晚餐', '米'], answer: '方便面' }
+        { type: 'fill', sentence: '没时间就吃___。', options: ['方便面', '晚餐', '米'], answer: '方便面' },
+        { type: 'listen', audio: '我要一碗面少放油', options: ['我要一碗面少放油','没时间就吃方便面','我们的教室很大'], answer: '我要一碗面少放油', py: 'Wǒ yào yì wǎn miàn, shǎo fàng yóu.', explain: 'Nghe 油 = dầu.' }
       ],
       normal: [
         { type: 'fill', sentence: '我们的___很大。', options: ['教室', '课堂', '年级'], answer: '教室' },
@@ -7578,7 +7684,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我是___，教高中。', options: ['教师', '考生', '留学生'], answer: '教师' },
         { type: 'fill', sentence: '我在三___。', options: ['年级', '科', '课堂'], answer: '年级' },
         { type: 'order', words: ['菜单', '很长', '这家饭馆的'], answer: '这家饭馆的菜单很长' },
-        { type: 'order', words: ['一碗面', '我', '要'], answer: '我要一碗面' }
+        { type: 'order', words: ['一碗面', '我', '要'], answer: '我要一碗面' },
+        { type: 'listen', audio: '没时间就吃方便面', options: ['没时间就吃方便面','我要一碗面少放油','我们的教室很大'], answer: '没时间就吃方便面', py: 'Méi shíjiān jiù chī fāngbiànmiàn.', explain: 'Nghe 方便面 = mì ăn liền.' },
+        { type: 'dictation', audio: '一碗面一个蛋', answer: '一碗面一个蛋', hint: 'Một bát mì, một quả trứng.', py: 'Yì wǎn miàn, yí gè dàn.', explain: 'Nghe viết 蛋 = trứng.' }
       ],
       hard: [
         { type: 'fill', sentence: '教高中和___。', options: ['中小学', '留学生', '考生'], answer: '中小学' },
@@ -7712,7 +7820,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '___和英语都重要。', options: ['普通话', '英文', '词语'], answer: '普通话' },
         { type: 'fill', sentence: '这个___的读音我不会。', options: ['词', '句子', '方面'], answer: '词' },
         { type: 'fill', sentence: '这个___也难。', options: ['词语', '平安', '英文'], answer: '词语' },
-        { type: 'fill', sentence: '这个词的___我不会。', options: ['读音', '词语', '句子'], answer: '读音' }
+        { type: 'fill', sentence: '这个词的___我不会。', options: ['读音', '词语', '句子'], answer: '读音' },
+        { type: 'listen', audio: '老师让我写一个句子', options: ['老师让我写一个句子','普通话和英语都重要','在发音方面要注意'], answer: '老师让我写一个句子', py: 'Lǎoshī ràng wǒ xiě yí gè jùzi.', explain: 'Nghe 句子 = câu.' }
       ],
       normal: [
         { type: 'fill', sentence: '老师让我写一个___。', options: ['句子', '读音', '语言'], answer: '句子' },
@@ -7720,7 +7829,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '普通话和___都重要。', options: ['英语', '英文', '方面'], answer: '英语' },
         { type: 'fill', sentence: '在发音___要注意。', options: ['方面', '句子', '词'], answer: '方面' },
         { type: 'order', words: ['多练', '学语言', '要'], answer: '学语言要多练' },
-        { type: 'order', words: ['一个句子', '写', '让我', '老师'], answer: '老师让我写一个句子' }
+        { type: 'order', words: ['一个句子', '写', '让我', '老师'], answer: '老师让我写一个句子' },
+        { type: 'listen', audio: '在发音方面要注意', options: ['在发音方面要注意','老师让我写一个句子','普通话和英语都重要'], answer: '在发音方面要注意', py: 'Zài fāyīn fāngmiàn yào zhùyì.', explain: 'Nghe 方面 = phương diện.' },
+        { type: 'dictation', audio: '普通话和英语都重要', answer: '普通话和英语都重要', hint: 'Tiếng phổ thông và tiếng Anh đều quan trọng.', py: 'Pǔtōnghuà hé Yīngyǔ dōu zhòngyào.', explain: 'Nghe viết 普通话 = tiếng phổ thông.' }
       ],
       hard: [
         { type: 'fill', sentence: '祝你一路___！', options: ['平安', '方面', '语言'], answer: '平安' },
@@ -7864,7 +7975,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我喜欢___和蓝色。', options: ['红色', '温度', '然后'], answer: '红色' },
         { type: 'fill', sentence: '我喜欢___和黑色。', options: ['白色', '气温', '鸟'], answer: '白色' },
         { type: 'fill', sentence: '公园里有___、鸟和鱼。', options: ['狗', '颜色', '结果'], answer: '狗' },
-        { type: 'fill', sentence: '有狗、鸟和___。', options: ['鱼', '温度', '红色'], answer: '鱼' }
+        { type: 'fill', sentence: '有狗、鸟和___。', options: ['鱼', '温度', '红色'], answer: '鱼' },
+        { type: 'listen', audio: '先看动物然后看结果', options: ['先看动物然后看结果','公园里有狗鸟和鱼','看结果谁找得多'], answer: '先看动物然后看结果', py: 'Xiān kàn dòngwù, ránhòu kàn jiéguǒ.', explain: 'Nghe 结果 = kết quả.' }
       ],
       normal: [
         { type: 'fill', sentence: '今天___很低。', options: ['气温', '颜色', '结果'], answer: '气温' },
@@ -7872,7 +7984,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '还有绿色和___。', options: ['黄色', '红色', '蓝色'], answer: '黄色' },
         { type: 'fill', sentence: '我喜欢红色和___。', options: ['蓝色', '黑色', '白色'], answer: '蓝色' },
         { type: 'order', words: ['什么', '喜欢', '你', '颜色'], answer: '你喜欢什么颜色' },
-        { type: 'order', words: ['狗', '有', '公园里', '和鱼', '鸟'], answer: '公园里有狗鸟和鱼' }
+        { type: 'order', words: ['狗', '有', '公园里', '和鱼', '鸟'], answer: '公园里有狗鸟和鱼' },
+        { type: 'listen', audio: '看结果谁找得多', options: ['看结果谁找得多','你喜欢什么颜色','公园里有狗鸟和鱼'], answer: '看结果谁找得多', py: 'Kàn jiéguǒ shéi zhǎo de duō.', explain: 'Nghe 结果 = kết quả.' },
+        { type: 'dictation', audio: '今天气温很低', answer: '今天气温很低', hint: 'Nhiệt độ (không khí) hôm nay rất thấp.', py: 'Jīntiān qìwēn hěn dī.', explain: 'Nghe viết 气温 = nhiệt độ không khí.' }
       ],
       hard: [
         { type: 'fill', sentence: '我们先看动物，___看结果。', options: ['然后', '结果', '温度'], answer: '然后' },
@@ -8017,7 +8131,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '可以坐公交车或___。', options: ['公共汽车', '网球', '同事'], answer: '公共汽车' },
         { type: 'fill', sentence: '也可以骑___。', options: ['自行车', '出租车', '船'], answer: '自行车' },
         { type: 'fill', sentence: '或者坐___。', options: ['出租车', '自行车', '篮球'], answer: '出租车' },
-        { type: 'fill', sentence: '去___馆可以坐车。', options: ['体育', '公路', '护照'], answer: '体育' }
+        { type: 'fill', sentence: '去___馆可以坐车。', options: ['体育', '公路', '护照'], answer: '体育' },
+        { type: 'listen', audio: '去体育馆可以坐公交车', options: ['去体育馆可以坐公交车','骑自行车或者坐出租车','出国坐船要带护照'], answer: '去体育馆可以坐公交车', py: 'Qù tǐyùguǎn kěyǐ zuò gōngjiāochē.', explain: 'Nghe 公交车 = xe buýt.' }
       ],
       normal: [
         { type: 'fill', sentence: '___就在公路旁边。', options: ['地铁站', '出租车', '同事'], answer: '地铁站' },
@@ -8025,7 +8140,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '路上___很多。', options: ['车辆', '网球', '排球'], answer: '车辆' },
         { type: 'fill', sentence: '出国坐船要带___。', options: ['护照', '篮球', '公路'], answer: '护照' },
         { type: 'order', words: ['自行车', '骑', '可以', '也'], answer: '也可以骑自行车' },
-        { type: 'order', words: ['船', '坐', '出国', '要带护照'], answer: '出国坐船要带护照' }
+        { type: 'order', words: ['船', '坐', '出国', '要带护照'], answer: '出国坐船要带护照' },
+        { type: 'listen', audio: '也可以骑自行车', options: ['也可以骑自行车','出国坐船要带护照','去体育馆可以坐公交车'], answer: '也可以骑自行车', py: 'Yě kěyǐ qí zìxíngchē.', explain: 'Nghe 自行车 = xe đạp.' },
+        { type: 'dictation', audio: '出国坐船要带护照', answer: '出国坐船要带护照', hint: 'Đi nước ngoài bằng tàu phải mang hộ chiếu.', py: 'Chūguó zuò chuán yào dài hùzhào.', explain: 'Nghe viết 护照 = hộ chiếu.' }
       ],
       hard: [
         { type: 'fill', sentence: '出国坐___要带护照。', options: ['船', '车辆', '公路'], answer: '船' },
@@ -8173,7 +8290,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '也喜欢音乐和___。', options: ['音乐会', '小说', '院子'], answer: '音乐会' },
         { type: 'fill', sentence: '我也喜欢___。', options: ['音乐', '阴天', '药店'], answer: '音乐' },
         { type: 'fill', sentence: '这位___是校长的爱人。', options: ['作家', '院长', '同事'], answer: '作家' },
-        { type: 'fill', sentence: '是我们___的爱人。', options: ['校长', '作家', '全家'], answer: '校长' }
+        { type: 'fill', sentence: '是我们___的爱人。', options: ['校长', '作家', '全家'], answer: '校长' },
+        { type: 'listen', audio: '这位作家是我们校长的爱人', options: ['这位作家是我们校长的爱人','今天多云明天阴天可能下雪','西医让我去药店买药片'], answer: '这位作家是我们校长的爱人', py: 'Zhè wèi zuòjiā shì wǒmen xiàozhǎng de àiren.', explain: 'Nghe 作家 = nhà văn.' }
       ],
       normal: [
         { type: 'fill', sentence: '他们___很幸福。', options: ['家庭', '院子', '音乐'], answer: '家庭' },
@@ -8182,7 +8300,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '今天___。', options: ['多云', '小说', '音乐'], answer: '多云' },
         { type: 'fill', sentence: '明天阴天，可能下___。', options: ['雪', '云', '药'], answer: '雪' },
         { type: 'order', words: ['看小说', '我', '喜欢'], answer: '我喜欢看小说' },
-        { type: 'order', words: ['很幸福', '他们', '家庭'], answer: '他们家庭很幸福' }
+        { type: 'order', words: ['很幸福', '他们', '家庭'], answer: '他们家庭很幸福' },
+        { type: 'listen', audio: '明天阴天可能下雪', options: ['明天阴天可能下雪','西医让我去药店买药片','这位作家是我们校长的爱人'], answer: '明天阴天可能下雪', py: 'Míngtiān yīntiān, kěnéng xià xuě.', explain: 'Nghe 阴天 = trời âm u.' },
+        { type: 'dictation', audio: '今天多云', answer: '今天多云', hint: 'Hôm nay nhiều mây.', py: 'Jīntiān duōyún.', explain: 'Nghe viết 多云 = nhiều mây.' }
       ],
       hard: [
         { type: 'fill', sentence: '明天___，可能下雪。', options: ['阴天', '多云', '院子'], answer: '阴天' },
@@ -8311,7 +8431,8 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '他是___。', options: ['经理', '道理', '意见'], answer: '经理' },
         { type: 'fill', sentence: '你说得有___。', options: ['道理', '公司', '经理'], answer: '道理' },
         { type: 'fill', sentence: '你有什么___？', options: ['意见', '道理', '中医'], answer: '意见' },
-        { type: 'fill', sentence: '我相信___。', options: ['中医', '公司', '经理'], answer: '中医' }
+        { type: 'fill', sentence: '我相信___。', options: ['中医', '公司', '经理'], answer: '中医' },
+        { type: 'listen', audio: '你说得有道理', options: ['你说得有道理','我同意你的意见','我相信中医'], answer: '你说得有道理', py: 'Nǐ shuō de yǒu dàolǐ.', explain: 'Nghe 道理 = lý lẽ.' }
       ],
       normal: [
         { type: 'fill', sentence: '他是公司的___。', options: ['经理', '中医', '道理'], answer: '经理' },
@@ -8319,7 +8440,9 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '他的话很有___。', options: ['道理', '意见', '经理'], answer: '道理' },
         { type: 'fill', sentence: '这家公司请了___。', options: ['中医', '经理', '意见'], answer: '中医' },
         { type: 'order', words: ['公司', '一家', '上班', '在'], answer: '在一家公司上班' },
-        { type: 'order', words: ['道理', '有', '你说得'], answer: '你说得有道理' }
+        { type: 'order', words: ['道理', '有', '你说得'], answer: '你说得有道理' },
+        { type: 'listen', audio: '我表哥在一家公司上班', options: ['我表哥在一家公司上班','你说得有道理你有什么意见','我相信中医他的话很有道理'], answer: '我表哥在一家公司上班', py: 'Wǒ biǎogē zài yì jiā gōngsī shàngbān.', explain: 'Nghe 公司 = công ty.' },
+        { type: 'dictation', audio: '我相信中医', answer: '我相信中医', hint: 'Tớ tin vào Đông y.', py: 'Wǒ xiāngxìn zhōngyī.', explain: 'Nghe viết 中医 = Đông y.' }
       ],
       hard: [
         { type: 'fill', sentence: '我相信___，他的话有道理。', options: ['中医', '公司', '意见'], answer: '中医' },

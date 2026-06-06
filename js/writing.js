@@ -1,10 +1,10 @@
 // ═══════════════════════════════════════════════════════════════════════
 // WRITING.JS — Writing Tutor (Phase S)
 // Viết đoạn văn tiếng Trung → AI chấm (DeepSeek V4, Lane 2 qua ai-proxy).
-// Task key `essay_grade` (8 credit). KHÔNG chứa API key — gọi qua AIClient.
+// Task key `essay_grade`/`essay_grade_pro` (1 credit từ 2026-06-06 — cheap-text trong pool). KHÔNG chứa API key.
 //
 // Pipeline: AIClient.call('essay_grade', { system, prompt })
-//   → ai-proxy consume_ai_credit(8) → DeepSeek → annotate_ai_ledger
+//   → ai-proxy consume_ai_credit(1) → DeepSeek → annotate_ai_ledger
 //
 // Prompt yêu cầu AI trả JSON có cấu trúc → render đẹp; fallback raw text.
 // ⚠️ System prompt CỐ Ý nhấn "kiểm tra lượng từ (量词)" để bù điểm yếu
@@ -150,7 +150,7 @@ var Writing = (function () {
     if (!topic) { topic = (TOPICS[_level] || TOPICS[1])[0]; if (topicEl) topicEl.value = topic; }
 
     if (deep && typeof confirm === 'function' &&
-        !confirm('Chấm sâu bằng AI cao cấp (Claude) tốn 38 AI Credit (so với 8 của chấm thường). Tiếp tục?')) {
+        !confirm('Chấm sâu bằng AI cao cấp (Claude) tốn 38 AI Credit (so với 1 của chấm thường). Tiếp tục?')) {
       return;
     }
     _setBusy(true);

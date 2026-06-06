@@ -59,7 +59,7 @@ window.PLAN_CATALOG = (function () {
       durationDays: 90,
       tokenBonus:  500,
       aiCreditBonus: 250,           // welcome gift 1 lần (Model C)
-      aiAllowancePerMonth: 200,     // recurring nhỏ/tháng (Model C)
+      aiAllowancePerMonth: 250,     // recurring/tháng (ladder cam kết 2026-06-06) — khớp ai_tier_recurring
       icon:        '⚡',
       colorClass:  'pc-icon-green',
       featured:    false
@@ -77,7 +77,7 @@ window.PLAN_CATALOG = (function () {
       durationDays: 180,
       tokenBonus:  800,
       aiCreditBonus: 400,           // welcome gift 1 lần (Model C)
-      aiAllowancePerMonth: 250,     // recurring nhỏ/tháng (Model C)
+      aiAllowancePerMonth: 300,     // recurring/tháng (ladder cam kết 2026-06-06) — khớp ai_tier_recurring
       icon:        '🔥',
       colorClass:  'pc-icon-orange',
       featured:    false
@@ -95,7 +95,7 @@ window.PLAN_CATALOG = (function () {
       durationDays: 365,
       tokenBonus:  1500,
       aiCreditBonus: 600,           // welcome gift 1 lần (Model C)
-      aiAllowancePerMonth: 250,     // recurring nhỏ/tháng (Model C)
+      aiAllowancePerMonth: 400,     // recurring/tháng — HERO gói năm (ladder 2026-06-06) — khớp ai_tier_recurring
       icon:        '⭐',
       colorClass:  'pc-icon-yellow',
       featured:    true,
@@ -114,7 +114,7 @@ window.PLAN_CATALOG = (function () {
       durationDays: null,
       tokenBonus:  3000,
       aiCreditBonus: 1000,          // welcome gift 1 lần (Model C)
-      aiAllowancePerMonth: 200,     // recurring nhỏ vĩnh viễn (Model C)
+      aiAllowancePerMonth: 300,     // recurring vĩnh viễn (ladder 2026-06-06, modest vì perpetual) — khớp ai_tier_recurring
       icon:        '💎',
       colorClass:  'pc-icon-purple',
       featured:    false

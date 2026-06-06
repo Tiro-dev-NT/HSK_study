@@ -84,7 +84,20 @@ def collect_texts(base_dir):
             for m in cjk.findall(txt):
                 add(m)
     n_pinyin = len(texts) - n_dict
-    print(f'Thu thập: {n_dict} từ điển HSK1-3 + {n_pinyin} cụm pinyin HSK0 mới = {len(texts)} text duy nhất')
+
+    # (c) Chữ Hán đại diện của PinyinLab (js/data/hsk0/pinyin-syllable-map.js)
+    #     — phát âm âm tiết pinyin bằng audio chữ Hán thật thay vì TTS đọc la-tinh.
+    smap = os.path.join(base_dir, 'js', 'data', 'hsk0', 'pinyin-syllable-map.js')
+    cjk = re.compile(r'[一-鿿]')
+    if os.path.isfile(smap):
+        txt = open(smap, 'r', encoding='utf-8').read()
+        # value đối tượng: chỉ lấy các chữ Hán trong phần sau dấu '=' (bỏ comment)
+        body = txt.split('=', 1)[1] if '=' in txt else txt
+        for ch in cjk.findall(body):
+            add(ch)
+    n_syl = len(texts) - n_dict - n_pinyin
+
+    print(f'Thu thập: {n_dict} từ điển HSK1-3 + {n_pinyin} cụm pinyin HSK0 + {n_syl} chữ đại diện PinyinLab = {len(texts)} text duy nhất')
     return texts
 
 async def gen_one(sem, text, out_dir, dry):

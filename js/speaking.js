@@ -665,7 +665,7 @@ var Speaking = (function () {
         return '<span class="sp-syllable ' + _esc(s.cls) + '" title="' + _esc(s.title) + '">' + _esc(s.label) + '</span>';
       }).join('') + '</div>' +
       '<div class="sp-feedback">' + _esc(_feedback(score, overall)) + '</div>' +
-      '<div class="sp-model">Chấm bởi: ' + _esc(_modelLabel(res.model)) + ' · Task hskk_score · ' + _esc(res.credit_used || 1) + ' credit</div>' +
+      '<div class="sp-model">Chấm bởi: ' + _esc(_modelLabel(res.model)) + ' · Task hskk_score · ' + _esc(res.credit_used || 5) + ' credit</div>' +
       '</div>';
     if (overall != null) {
       _saveHistory({ ts: Date.now(), set: _set.title, line: line.h, overall: overall, pron: pron, flu: flu });

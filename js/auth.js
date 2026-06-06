@@ -197,6 +197,8 @@ var Auth = {
       await Auth._handleMigration(user.id);
     }
     if (typeof Sync !== 'undefined') Sync.autoSync();
+    // Đồng bộ góp ý local chưa đẩy lên (vd góp ý gửi lúc chưa đăng nhập) → cho admin đọc.
+    if (typeof Feedback !== 'undefined') setTimeout(function() { Feedback.syncPending(); }, 1000);
     // Fetch AI credit balance (non-blocking)
     setTimeout(function() { if (typeof AICredit !== 'undefined') AICredit.fetch(); }, 800);
     // Resume pending payment flow (user clicked upgrade while not logged in)

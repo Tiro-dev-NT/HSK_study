@@ -54,6 +54,10 @@ var Feedback = {
         time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
       });
       localStorage.setItem(Feedback.STORAGE_KEY, JSON.stringify(list));
+
+      // Đồng bộ mọi góp ý chưa sync lên Supabase để admin đọc (best-effort).
+      Feedback.syncPending();
+
       document.getElementById('fbMessage').value = '';
       const ok = document.getElementById('fbSuccess');
       if (ok) {
@@ -66,6 +70,63 @@ var Feedback = {
     });
 
     Feedback.renderHistory();
+    // Mở trang góp ý → cố đồng bộ các góp ý local chưa đẩy lên (nếu đã đăng nhập).
+    Feedback.syncPending();
+  },
+
+  // Đẩy MỌI góp ý local chưa sync lên bảng `feedback` Supabase (cho admin đọc).
+  // Đánh dấu `synced=true` trên từng item để không gửi trùng. Best-effort, im lặng.
+  // Gọi khi: submit mới · mở trang góp ý · sau khi đăng nhập (auth._onSignIn).
+  _syncing: false,
+  syncPending: function() {
+    try {
+      if (Feedback._syncing) return;
+      if (!window.SB) return;
+      var user = (window.Auth && Auth.user) || (window.AppState && AppState.user);
+      if (!user || !user.id) return; // chưa đăng nhập → RLS chặn, để dành sync sau khi login
+
+      var list = JSON.parse(localStorage.getItem(Feedback.STORAGE_KEY) || '[]');
+      var pending = list.filter(function(fb) { return fb && !fb.synced; });
+      if (!pending.length) return;
+
+      var meta = user.user_metadata || {};
+      var isPro = (window.Monetization && typeof Monetization.isProSync === 'function')
+        ? Monetization.isProSync() : false;
+      var catSubject = {
+        feature: 'Đề xuất tính năng', bug: 'Báo lỗi', content: 'Góp ý nội dung',
+        ui: 'Góp ý giao diện', other: 'Góp ý khác'
+      };
+      var rows = pending.map(function(fb) {
+        return {
+          user_id:      user.id,
+          user_email:   user.email || null,
+          display_name: meta.name || meta.full_name || null,
+          subject:      catSubject[fb.category] || 'Góp ý',
+          message:      fb.message || '',
+          category:     fb.category || 'feature',
+          priority:     fb.category === 'bug' ? 'high' : 'normal',
+          rating:       fb.rating,
+          is_pro:       !!isPro,
+          created_at:   fb.id ? new Date(fb.id).toISOString() : undefined
+        };
+      });
+
+      Feedback._syncing = true;
+      SB.from('feedback').insert(rows).then(function(res) {
+        Feedback._syncing = false;
+        if (res && res.error) { console.warn('[Feedback] sync failed:', res.error.message); return; }
+        // Thành công → đánh dấu các item vừa gửi là synced rồi lưu lại.
+        var cur = JSON.parse(localStorage.getItem(Feedback.STORAGE_KEY) || '[]');
+        cur.forEach(function(fb) { if (fb && !fb.synced) fb.synced = true; });
+        localStorage.setItem(Feedback.STORAGE_KEY, JSON.stringify(cur));
+      }, function(err) {
+        Feedback._syncing = false;
+        console.warn('[Feedback] sync exception:', err);
+      });
+    } catch (e) {
+      Feedback._syncing = false;
+      console.warn('[Feedback] sync exception:', e);
+    }
   },
 
   renderHistory: function() {

@@ -179,13 +179,26 @@ var AdminContent = (function() {
     pg2.innerHTML = btns;
   }
 
+  // GRAMMAR_DATA / READINGS_DATA là object keyed theo cấp: { 1:[...], 2:[...] }
+  // Flatten thành mảng phẳng, gắn level từ key.
+  function _flattenByLevel(obj) {
+    if (!obj || typeof obj !== 'object') return [];
+    if (Array.isArray(obj)) return obj;
+    var out = [];
+    Object.keys(obj).forEach(function(lvl) {
+      var arr = obj[lvl];
+      if (!Array.isArray(arr)) return;
+      arr.forEach(function(item) { out.push(Object.assign({ level: lvl }, item)); });
+    });
+    return out;
+  }
+
   async function _loadGrammar() {
     var wrap = document.getElementById('grammarTableWrap');
     if (wrap) wrap.innerHTML = '<p class="adm-empty">Đang tải...</p>';
 
-    // Use global GRAMMAR_DATA if available
-    var data = window.GRAMMAR_DATA || (window.Grammar && Grammar._data) || [];
-    if (!Array.isArray(data)) data = [];
+    // GRAMMAR_DATA là object keyed theo cấp → flatten
+    var data = _flattenByLevel(window.GRAMMAR_DATA || (window.Grammar && Grammar._data));
 
     var countEl = document.getElementById('grammarCount');
     if (countEl) countEl.textContent = Admin.fmt(data.length) + ' patterns';
@@ -197,14 +210,17 @@ var AdminContent = (function() {
 
     var q = ((document.getElementById('grammarSearch') || {}).value || '').toLowerCase().trim();
     var filtered = q ? data.filter(function(g) {
-      return (g.pattern || '').toLowerCase().indexOf(q) !== -1 || (g.meaning || '').toLowerCase().indexOf(q) !== -1;
+      return (g.pattern || '').toLowerCase().indexOf(q) !== -1 ||
+             (g.name_vi || '').toLowerCase().indexOf(q) !== -1 ||
+             (g.name_en || '').toLowerCase().indexOf(q) !== -1;
     }) : data;
 
-    var rows = filtered.slice(0, 100).map(function(g) {
+    var rows = filtered.slice(0, 200).map(function(g) {
+      var meaning = g.name_vi || g.name_en || g.explanation_vi || '—';
       return '<tr>' +
-        '<td style="font-weight:700">' + (g.pattern || '—') + '</td>' +
-        '<td>' + (g.meaning || '—') + '</td>' +
-        '<td style="font-size:11px;color:var(--adm-text3)">' + (g.level || '—') + '</td>' +
+        '<td style="font-weight:700;font-family:\'Noto Sans SC\',sans-serif">' + (g.pattern || '—') + '</td>' +
+        '<td>' + meaning + '</td>' +
+        '<td><span class="adm-badge badge-free">Cấp ' + (g.level || '—') + '</span></td>' +
         '<td style="font-size:11px">' + ((g.examples && g.examples.length) || 0) + '</td>' +
       '</tr>';
     }).join('');
@@ -222,8 +238,8 @@ var AdminContent = (function() {
     var wrap = document.getElementById('readingTableWrap');
     if (wrap) wrap.innerHTML = '<p class="adm-empty">Đang tải...</p>';
 
-    // Use global READINGS_DATA if available
-    var data = window.READINGS_DATA || [];
+    // READINGS_DATA là object keyed theo cấp → flatten
+    var data = _flattenByLevel(window.READINGS_DATA);
     var countEl = document.getElementById('readingCount');
     if (countEl) countEl.textContent = Admin.fmt(data.length) + ' bài';
 
@@ -232,11 +248,13 @@ var AdminContent = (function() {
       return;
     }
 
-    var rows = data.slice(0, 50).map(function(r) {
+    var rows = data.slice(0, 100).map(function(r) {
+      var title   = r.title_vi || r.title_en || r.title || '—';
+      var passage = r.text || r.passage || '';
       return '<tr>' +
-        '<td style="font-weight:700">' + (r.title || '—') + '</td>' +
-        '<td>' + (r.level || '—') + '</td>' +
-        '<td style="font-size:11px;color:var(--adm-text3)">' + ((r.passage || '').slice(0, 60) + '...') + '</td>' +
+        '<td style="font-weight:700">' + title + '</td>' +
+        '<td><span class="adm-badge badge-free">Cấp ' + (r.level || '—') + '</span></td>' +
+        '<td style="font-size:11px;color:var(--adm-text3);font-family:\'Noto Sans SC\',sans-serif">' + (passage.slice(0, 50) + (passage.length > 50 ? '…' : '')) + '</td>' +
         '<td>' + ((r.questions && r.questions.length) || 0) + ' câu</td>' +
       '</tr>';
     }).join('');

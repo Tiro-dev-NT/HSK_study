@@ -172,14 +172,56 @@ var PinyinLab = {
     return s.replace(target, PinyinLab.toneMarks[target][tone - 1]);
   },
 
-  _speak: function(text) {
-    var spoken = text;
-    if (typeof Dictionary !== 'undefined' && Dictionary.playTTS) {
-      Dictionary.playTTS(spoken);
-      return;
+  // Dấu thanh → [nguyên âm gốc, số thanh] — parse pinyin tone-marked về (âm tiết, thanh)
+  _toneVowels: {
+    'ā':['a',1],'á':['a',2],'ǎ':['a',3],'à':['a',4],
+    'ē':['e',1],'é':['e',2],'ě':['e',3],'è':['e',4],
+    'ī':['i',1],'í':['i',2],'ǐ':['i',3],'ì':['i',4],
+    'ō':['o',1],'ó':['o',2],'ǒ':['o',3],'ò':['o',4],
+    'ū':['u',1],'ú':['u',2],'ǔ':['u',3],'ù':['u',4],
+    'ǖ':['ü',1],'ǘ':['ü',2],'ǚ':['ü',3],'ǜ':['ü',4]
+  },
+
+  // pinyin ("bā","lǚ","ju","wo") → { base:"ba", tone:1 } (tone=0 nếu không dấu)
+  _parsePinyin: function(text) {
+    var s = String(text || '').trim().toLowerCase().replace(/v/g, 'ü');
+    var base = '', tone = 0;
+    for (var i = 0; i < s.length; i++) {
+      var tv = PinyinLab._toneVowels[s.charAt(i)];
+      if (tv) { base += tv[0]; tone = tv[1]; } else { base += s.charAt(i); }
     }
+    return { base: base, tone: tone };
+  },
+
+  // Âm tiết pinyin → chữ Hán đại diện (đọc đúng âm đó). null nếu không có.
+  // VÌ SAO: TTS đọc chuỗi pinyin la-tinh ("bā") rất hay sai âm/thanh; phát audio
+  // chữ Hán thật (Edge TTS neural pre-gen) thì chuẩn. Map ở js/data/hsk0/pinyin-syllable-map.js.
+  _pinyinToHanzi: function(text) {
+    if (typeof PINYIN_SYLLABLE_MAP === 'undefined') return null;
+    var p = PinyinLab._parsePinyin(text);
+    var entry = PINYIN_SYLLABLE_MAP[p.base];
+    if (!entry) return null;
+    // có thanh cụ thể: thiếu chữ đúng thanh → null (KHÔNG phát sai thanh), để fallback
+    if (p.tone) return entry[p.tone] || null;
+    // không thanh (chip/cặp) → chữ citation phổ biến (key "0"), rồi thanh thấp nhất
+    if (entry['0']) return entry['0'];
+    var order = ['1', '2', '3', '4', '5'];
+    for (var i = 0; i < order.length; i++) if (entry[order[i]]) return entry[order[i]];
+    return null;
+  },
+
+  _speak: function(text) {
+    // Đã là chữ Hán → phát thẳng (audio-first). Ngược lại đổi pinyin→chữ Hán đại diện.
+    var spoken = /[一-鿿]/.test(text) ? text : (PinyinLab._pinyinToHanzi(text) || null);
+
+    if (spoken) {
+      if (typeof TTSAudio !== 'undefined') { TTSAudio.speak(spoken, { rate: 0.9 }); return; }
+      if (typeof Dictionary !== 'undefined' && Dictionary.playTTS) { Dictionary.playTTS(spoken); return; }
+    }
+
+    // Fallback: không map được → đọc chuỗi gốc bằng Web Speech (hành vi cũ, hiếm gặp).
     if ('speechSynthesis' in window) {
-      var u = new SpeechSynthesisUtterance(spoken);
+      var u = new SpeechSynthesisUtterance(text);
       u.lang = 'zh-CN';
       speechSynthesis.speak(u);
     }

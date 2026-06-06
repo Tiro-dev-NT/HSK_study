@@ -74,6 +74,11 @@ assets/mai/audio/
 # Audio TTS pre-gen từ điển/pinyin (gen-tts-audio.py → R2 tts/word/). Phục vụ từ R2.
 assets/tts/audio/
 
+# SpeechSuper QA creds (repo PUBLIC — KHÔNG commit key). Template: *.env.example
+scripts/speechsuper.env
+scripts/_pinyin_audio_qa.csv
+scripts/_pinyin_rep_chars.txt
+
 # Temp word lists
 _hsk*_existing.txt
 

@@ -1,5 +1,31 @@
 # Action Items
 
+## 🧭 Session 2026-06-06 — Strategy Council (Reader / Truyện tranh / FSRS / PWA)
+
+> Họp 6-vai soi 8 đối thủ ảnh TikTok. Chi tiết + danh mục phương án: `implementation_plan.md` §"📍 v5.0 — Strategy Council 2026-06-06". Lộ trình chốt: **A1 Reader text → A2 truyện tranh → B FSRS → D PWA** (tuần tự, không song song).
+
+**🔴 ƯU TIÊN NGAY — Phương án A (Graded Reader Việt-first) [DUYỆT]:**
+- ☐ **Điều tra Reader trước (chỉ đọc, chưa code):** đọc `js/reading.js` · `js/data/readings.js` · CSS reading. Xác định: (1) shape passage + số lượng/level (hiện ~vài chục, mỏng); (2) reader UI có tap-to-gloss/toggle pinyin chưa; (3) Pro-gate enforce client hay RPC server-side; (4) tái dùng audio Mai (`MAI_AUDIO_BASE`) cho listening-dictation được không; (5) nhân bản hạ tầng SEO `/tu-dien` → `/doc-truyen`. → Output: hiện trạng + 2-3 phương án mở rộng (schema cũ vs reader mới) + thiết kế pipeline. **Chờ duyệt rồi mới code.**
+- ☐ **Thiết kế schema bài đọc ỔN ĐỊNH ngay từ bài #1** (id, level, tiêu đề, đoạn văn, câu+gloss Hán-Việt, audio path, câu hỏi) — đổi schema khi đã có trăm bài = đau.
+- ☐ **Pipeline content gốc (C, đi kèm A):** AI-sinh → người duyệt → commit tĩnh + filter chính trị/bản quyền. Quyết nguồn sinh: (a) AI-sinh+duyệt / (b) tự viết / (c) thuê CTV. Bắt đầu ~50 bài HSK1-3 sạch.
+- ☐ **A2 Truyện tranh (pilot, sau khi A1 chứng minh đọc thật):** chữ Hán LUÔN ở text-layer (bong bóng HTML/CSS đè ảnh), KHÔNG vẽ vào ảnh. Nhân vật: nối đời Mai + Bé Rồng (tái dùng asset, nhất quán).
+  - 📌 **Test AI gen (2026-06-06):** chạy cùng prompt 4-panel quán mì trên GPT/Gemini/Claude/Nano Banana Pro. **Kết quả: 🏆 Nano Banana Pro** thắng pipeline (bong bóng trống sạch tuyệt đối, không tự nhét chữ Hán, nhân vật nhất quán nhất). GPT vẽ đẹp nhất NHƯNG tự render chữ Hán giả lên biển hiệu (bệnh phải prompt `blank signs, no signage text`). Claude flat-vector hợp UI app nhưng rồng mất nhận diện mascot.
+  - ☐ **Test consistency cảnh 2** (cùng Mai+Bé Rồng, bối cảnh khác) trên NBP + GPT → phép thử cuối chọn nhà sản xuất tranh.
+  - ☐ **Kiểm ToS license thương mại + watermark** từng model gen (app thu phí + repo PUBLIC) trước khi đăng.
+
+**🟠 QUAN TRỌNG — sau khi A có đà:**
+- ☐ **B — Nâng SRS SM-2 → FSRS-class** (`js/srs.js` đang SM-2). Điều tra: shape card `hsk_srs_v3`, đường migration SM-2(interval,ease)→FSRS(stability,difficulty) KHÔNG phá lịch ôn, nhúng port FSRS dạng vendor (KHÔNG npm), fallback. ROI: ít ôn 20-30% cho cùng mức nhớ → retention D7.
+- ☐ **D — PWA (Phase H)** — manifest + service worker + offline cache + add-to-home + push (web hiện CHƯA có manifest/SW). Mở push xong mới quay lại làm habit-loop tử tế.
+
+**🟡 ROI cao về sau:**
+- ☐ **E — Ôn-điểm-yếu** (heuristic trên lapses/wrong sẵn có, client-side, cost 0) — làm cùng B.
+- ☐ **F — Community async** (Sảnh Trà forum + peer-review bài nói/viết) — sau khi A giữ chân.
+- ☐ **Kiểm:** Duolingo có course Trung-cho-người-Việt chưa (độ bền moat).
+
+**⚫ ĐÃ PHỦ QUYẾT (đừng quay lại):** HelloTalk 1-1 chat · realtime voice đua Doubao · handwriting input+OCR (Phase U) · đua từ điển Pleco · scrape content bản quyền · notification-spam/streak-shaming.
+
+---
+
 ## 🟢 Session 2026-06-05 (b) — Dọn ví dụ rác từ điển + empty-state + 2 bug UI
 
 - ☑ **Gỡ ~1.001 ví dụ `ex` rác** (vi===en / zh=`headword。`) khỏi HSK 3.0 (lvl1-6) — còn **10.455 ví dụ thật (91,3%)**, vi===en=0. `scripts/gen-dict-examples.js` thêm lệnh `purge` + siết `validItem` (chặn fabricate/gloss→vi → không tái diễn).

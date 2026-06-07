@@ -12,7 +12,7 @@ READER_DATA[2] = [
     id: 'rd-2-001', level: 2, topic: 'hoc-tap',
     title: { vi: 'Góc học yên tĩnh', en: 'A Quiet Study Corner', zh: '安静的学习角' },
     summary_vi: 'Lan sắp xếp góc học nhỏ để ôn bài mỗi tối.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 46,
     paragraphs: [{
       sentences: [
@@ -36,7 +36,7 @@ READER_DATA[2] = [
     id: 'rd-2-002', level: 2, topic: 'mua-sam',
     title: { vi: 'Ở siêu thị', en: 'At the Supermarket', zh: '在超市' },
     summary_vi: 'Hai chị em đi siêu thị mua rau quả và học cách xem giá.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 49,
     paragraphs: [{
       sentences: [
@@ -60,7 +60,7 @@ READER_DATA[2] = [
     id: 'rd-2-003', level: 2, topic: 'thoi-tiet',
     title: { vi: 'Một ngày nhiều mây', en: 'A Cloudy Day', zh: '多云的一天' },
     summary_vi: 'Thời tiết thay đổi, Minh mang ô và vẫn đến lớp đúng giờ.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 44,
     paragraphs: [{
       sentences: [
@@ -84,7 +84,7 @@ READER_DATA[2] = [
     id: 'rd-2-004', level: 2, topic: 'suc-khoe',
     title: { vi: 'Đi khám bệnh', en: 'Seeing a Doctor', zh: '去看病' },
     summary_vi: 'Hà bị cảm nhẹ, đi khám và nghe lời bác sĩ nghỉ ngơi.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 38,
     paragraphs: [{
       sentences: [
@@ -108,7 +108,7 @@ READER_DATA[2] = [
     id: 'rd-2-005', level: 2, topic: 'du-lich',
     title: { vi: 'Tìm ga tàu điện ngầm', en: 'Finding the Subway Station', zh: '找地铁站' },
     summary_vi: 'Nam hỏi đường đến ga tàu điện ngầm và đến nơi sau mười phút.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 51,
     paragraphs: [{
       sentences: [
@@ -132,7 +132,7 @@ READER_DATA[2] = [
     id: 'rd-2-006', level: 2, topic: 'cong-viec',
     title: { vi: 'Một ngày ở văn phòng', en: 'A Day at the Office', zh: '办公室的一天' },
     summary_vi: 'Bố làm việc ở văn phòng, in tài liệu và tan làm đúng giờ.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 40,
     paragraphs: [{
       sentences: [
@@ -156,7 +156,7 @@ READER_DATA[2] = [
     id: 'rd-2-007', level: 2, topic: 'so-thich',
     title: { vi: 'Chạy bộ buổi sáng', en: 'Morning Running', zh: '早上跑步' },
     summary_vi: 'Bạn cùng lớp rủ nhau chạy bộ trong công viên để khỏe hơn.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 43,
     paragraphs: [{
       sentences: [
@@ -180,7 +180,7 @@ READER_DATA[2] = [
     id: 'rd-2-008', level: 2, topic: 'ban-be',
     title: { vi: 'Tin nhắn của lớp trưởng', en: "The Class Monitor's Message", zh: '班长的短信' },
     summary_vi: 'Lớp trưởng gửi tin nhắn nhắc cả lớp mang sách và đến sớm.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 41,
     paragraphs: [{
       sentences: [
@@ -204,7 +204,7 @@ READER_DATA[2] = [
     id: 'rd-2-009', level: 2, topic: 'gia-dinh',
     title: { vi: 'Cuối tuần ở nhà bà', en: "Weekend at Grandma's", zh: '周末去奶奶家' },
     summary_vi: 'Cả nhà đến thăm bà, ăn cơm và nghe bà kể chuyện cũ.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 51,
     paragraphs: [{
       sentences: [
@@ -228,7 +228,7 @@ READER_DATA[2] = [
     id: 'rd-2-010', level: 2, topic: 'am-thuc',
     title: { vi: 'Bữa sáng ở trường', en: 'Breakfast at School', zh: '学校的早饭' },
     summary_vi: 'Một học sinh ăn sáng ở trường, chọn bánh bao và sữa vì vừa nhanh vừa tiện.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 42,
     paragraphs: [{
       sentences: [

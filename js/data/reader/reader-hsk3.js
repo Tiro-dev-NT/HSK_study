@@ -12,7 +12,7 @@ READER_DATA[3] = [
     id: 'rd-3-001', level: 3, topic: 'hoc-tap',
     title: { vi: 'Kế hoạch ôn thi của lớp', en: "The Class Review Plan", zh: '班级的复习计划' },
     summary_vi: 'Lớp của Minh chia nhóm ôn thi, lớp trưởng sắp xếp thời gian và mọi người cùng tiến bộ.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 105,
     paragraphs: [{
       sentences: [
@@ -45,7 +45,7 @@ READER_DATA[3] = [
     id: 'rd-3-002', level: 3, topic: 'du-lich',
     title: { vi: 'Một chuyến đi cuối tuần', en: 'A Weekend Trip', zh: '一次周末旅行' },
     summary_vi: 'Hai bạn lên kế hoạch đi biển, chuẩn bị đồ và học cách thay đổi lịch khi thời tiết xấu.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 102,
     paragraphs: [{
       sentences: [
@@ -78,7 +78,7 @@ READER_DATA[3] = [
     id: 'rd-3-003', level: 3, topic: 'cong-viec',
     title: { vi: 'Ngày đầu làm thêm', en: 'First Day at a Part-Time Job', zh: '第一天打工' },
     summary_vi: 'Một sinh viên làm thêm ở quán cà phê, học cách phục vụ khách và ghi chú công việc.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 101,
     paragraphs: [{
       sentences: [
@@ -111,7 +111,7 @@ READER_DATA[3] = [
     id: 'rd-3-004', level: 3, topic: 'suc-khoe',
     title: { vi: 'Thay đổi thói quen ngủ', en: 'Changing Sleep Habits', zh: '改变睡觉习惯' },
     summary_vi: 'Một học sinh ngủ muộn vì xem điện thoại, sau đó điều chỉnh thói quen để khỏe hơn.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 118,
     paragraphs: [{
       sentences: [
@@ -144,7 +144,7 @@ READER_DATA[3] = [
     id: 'rd-3-005', level: 3, topic: 'am-thuc',
     title: { vi: 'Bữa cơm nhỏ trong ký túc xá', en: 'A Small Dorm Meal', zh: '宿舍里的小晚饭' },
     summary_vi: 'Ba bạn sinh viên cùng nấu bữa tối đơn giản, phân công việc và chia sẻ món ăn.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 111,
     paragraphs: [{
       sentences: [
@@ -177,7 +177,7 @@ READER_DATA[3] = [
     id: 'rd-3-006', level: 3, topic: 'mua-sam',
     title: { vi: 'Chiếc áo sơ mi phù hợp', en: 'The Right Shirt', zh: '合适的衬衫' },
     summary_vi: 'Một bạn chọn áo sơ mi cho buổi biểu diễn của lớp, so sánh màu sắc, kích cỡ và giá.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 87,
     paragraphs: [{
       sentences: [
@@ -210,7 +210,7 @@ READER_DATA[3] = [
     id: 'rd-3-007', level: 3, topic: 'ban-be',
     title: { vi: 'Một cuộc hẹn bị muộn', en: 'A Late Meetup', zh: '一次迟到的见面' },
     summary_vi: 'Hai người bạn hẹn gặp ở thư viện, một người đến muộn và biết cách xin lỗi, sắp xếp lại thời gian.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 109,
     paragraphs: [{
       sentences: [
@@ -243,7 +243,7 @@ READER_DATA[3] = [
     id: 'rd-3-008', level: 3, topic: 'doi-song',
     title: { vi: 'Dọn phòng vào Chủ nhật', en: 'Cleaning the Room on Sunday', zh: '星期天整理房间' },
     summary_vi: 'Một bạn dọn phòng, phân loại sách vở và phát hiện một tấm ảnh cũ của gia đình.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 122,
     paragraphs: [{
       sentences: [

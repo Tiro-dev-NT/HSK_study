@@ -18,7 +18,7 @@ READER_DATA[1] = [
     id: 'rd-1-001', level: 1, topic: 'doi-song',
     title: { vi: 'Buổi sáng của tôi', en: 'My Morning', zh: '我的早晨' },
     summary_vi: 'Một buổi sáng bình thường: thức dậy, ăn sáng và đi học.',
-    source: 'seed-handcraft', reviewed_by: '', reviewed_at: '',
+    source: 'seed-handcraft', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 26,
     paragraphs: [{
       sentences: [
@@ -41,7 +41,7 @@ READER_DATA[1] = [
     id: 'rd-1-002', level: 1, topic: 'gia-dinh',
     title: { vi: 'Gia đình tôi', en: 'My Family', zh: '我的家' },
     summary_vi: 'Giới thiệu các thành viên trong gia đình.',
-    source: 'seed-handcraft', reviewed_by: '', reviewed_at: '',
+    source: 'seed-handcraft', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 24,
     paragraphs: [{
       sentences: [
@@ -64,7 +64,7 @@ READER_DATA[1] = [
     id: 'rd-1-003', level: 1, topic: 'hoc-tap',
     title: { vi: 'Một ngày ở trường', en: 'A Day at School', zh: '在学校的一天' },
     summary_vi: 'Đi học cùng bạn, học tiếng Hán và ăn trưa.',
-    source: 'seed-handcraft', reviewed_by: '', reviewed_at: '',
+    source: 'seed-handcraft', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 28,
     paragraphs: [{
       sentences: [
@@ -87,7 +87,7 @@ READER_DATA[1] = [
     id: 'rd-1-004', level: 1, topic: 'so-thich',
     title: { vi: 'Tôi thích đọc sách', en: 'I Like Reading', zh: '我喜欢看书' },
     summary_vi: 'Cuối tuần đi nhà sách và mua sách thú vị.',
-    source: 'seed-handcraft', reviewed_by: '', reviewed_at: '',
+    source: 'seed-handcraft', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 26,
     paragraphs: [{
       sentences: [
@@ -110,7 +110,7 @@ READER_DATA[1] = [
     id: 'rd-1-005', level: 1, topic: 'doi-song',
     title: { vi: 'Con mèo nhỏ', en: 'The Little Cat', zh: '小猫' },
     summary_vi: 'Một con mèo nhỏ trong nhà, thích uống nước và ngủ trong phòng.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 27,
     paragraphs: [{
       sentences: [
@@ -133,7 +133,7 @@ READER_DATA[1] = [
     id: 'rd-1-006', level: 1, topic: 'hoc-tap',
     title: { vi: 'Học chữ Hán', en: 'Learning Hanzi', zh: '学汉字' },
     summary_vi: 'Một ngày học chữ Hán và chơi bóng cùng bạn sau giờ học.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 27,
     paragraphs: [{
       sentences: [
@@ -156,7 +156,7 @@ READER_DATA[1] = [
     id: 'rd-1-007', level: 1, topic: 'mua-sam',
     title: { vi: 'Mua táo', en: 'Buying Apples', zh: '买苹果' },
     summary_vi: 'Đi cửa hàng cùng mẹ, mua táo đỏ và mang về nhà.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 31,
     paragraphs: [{
       sentences: [
@@ -179,7 +179,7 @@ READER_DATA[1] = [
     id: 'rd-1-008', level: 1, topic: 'ban-be',
     title: { vi: 'Gọi điện cho bạn', en: 'Calling a Friend', zh: '给朋友打电话' },
     summary_vi: 'Gọi điện rủ bạn đến nhà uống trà.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 30,
     paragraphs: [{
       sentences: [
@@ -202,7 +202,7 @@ READER_DATA[1] = [
     id: 'rd-1-009', level: 1, topic: 'gia-dinh',
     title: { vi: 'Sinh nhật vui', en: 'A Happy Birthday', zh: '快乐的生日' },
     summary_vi: 'Một sinh nhật đơn giản ở nhà với mì, trái cây và gia đình.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 25,
     paragraphs: [{
       sentences: [
@@ -225,7 +225,7 @@ READER_DATA[1] = [
     id: 'rd-1-010', level: 1, topic: 'am-thuc',
     title: { vi: 'Ăn trưa ở quán', en: 'Lunch at a Restaurant', zh: '在饭店吃午饭' },
     summary_vi: 'Cả nhà đi ăn trưa, gọi cơm và món không quá cay.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 30,
     paragraphs: [{
       sentences: [
@@ -248,7 +248,7 @@ READER_DATA[1] = [
     id: 'rd-1-011', level: 1, topic: 'hoc-tap',
     title: { vi: 'Lớp học mới', en: 'A New Class', zh: '新班' },
     summary_vi: 'Vào một lớp mới, gặp cô Vương và học nói tiếng Hán.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 26,
     paragraphs: [{
       sentences: [
@@ -271,7 +271,7 @@ READER_DATA[1] = [
     id: 'rd-1-012', level: 1, topic: 'di-chuyen',
     title: { vi: 'Trên xe buýt', en: 'On the Bus', zh: '在车上' },
     summary_vi: 'Buổi sáng đi xe đến trường cùng mẹ.',
-    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-07',
     est_words: 27,
     paragraphs: [{
       sentences: [

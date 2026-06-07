@@ -210,3 +210,18 @@ Ghi chú thiết kế:
 - **Q6.** Nguồn 50 bài đầu: AI-gen+duyệt (đề xuất) / thuê CTV / tự viết — và ai là người duyệt cuối?
 - **Q7.** URL SEO `/doc-truyen/<slug>`: slug tiếng Việt (Google Việt tốt) hay id thuần?
 - **Q8.** Reader UI: nâng cấp `reading.js` tại chỗ hay tạo module `reader.js` mới trong tab Học?
+
+---
+
+## F. QUYẾT ĐỊNH (chủ dự án chốt 2026-06-07)
+
+- **Q1 ✅ B2** — schema Reader mới, tách hẳn (`js/data/reader/*` + `var READER_DATA`).
+- **Q2 ✅ Migrate chọn lọc:** chuyển **20 bài HSK 1-2** (vốn từ HSK 2.0 cấp 1-2 ≈ HSK 3.0 cấp 1-2, map an toàn) vào `READER_DATA` qua script 1 lần, đánh `source:'legacy-migrated'`, `gloss:[]` (dùng dictionary-fallback), `audio:''` (TTS), giữ `questions`, bổ sung `explain_vi` sau. **18 bài HSK 3-6 tạm gác** (map cấp không sạch → để AI-gen bài mới chuẩn cấp thay thế; giữ tham khảo).
+- **Q3 🔸 Đề xuất (chờ duyệt con số):** HSK 1-2 free toàn bộ · HSK 3-4 free **3 bài đầu/cấp** rồi Pro · HSK 5-9 Pro · tap-gloss + toggle pinyin + nghe-TTS **free mọi cấp** · trang SEO `/doc-truyen` public. Gate giữ **client-side** (chấp nhận lộ bundle). → Cần chốt: số "3 bài/cấp" và HSK 3-4 free-một-phần vs Pro-toàn-bộ.
+- **Q4 ✅ Web Speech trước, R2 sau.** Khi thu file: ưu tiên **`edge-tts`** (giọng Azure Neural, free) hoặc **tái dùng pipeline Mai** (`scripts/mai-tts-gen.py` + R2 `cdn.hanzigenz.com` + rclone) để **đồng nhất giọng toàn app**. Convention path: `reader/audio/<id>_<paragraphIdx>_<sentIdx>.mp3`. Schema đã chừa field `audio` → không đổi gì khi nâng cấp.
+- **Q5 ✅ Hai tầng:** AI sinh bài **kèm gloss curated** (tách từ + pinyin + nghĩa Việt theo cụm), người duyệt soát; bài/cụm chưa có gloss → **fallback `getAllWordsBothVersions()`** như `speaking.js`. `gloss:[]` rỗng vẫn hợp lệ → không chặn ra mắt. Gloss theo **CỤM TỪ** (vd `起床`=thức dậy), KHÔNG per-char.
+- **Q6 ✅ AI-gen + chủ dự án (Tiro) duyệt.** Người duyệt cuối = Tiro. Batch 10 bài/đợt, qua filter chính trị + cấp độ + bản quyền (mục D) trước khi commit.
+- **Q7 ✅ ID thuần** cho URL: `/doc-truyen/<id>` (vd `/doc-truyen/rd-1-001`). `id` bất biến, dùng chung cho URL + `reading_progress` + sync.
+- **Q8 ✅ Module mới** `js/reader.js` (+ `pages/reader.html` fragment, route `/reader`, entry trong hub tab **Học**) — KHÔNG sửa `reading.js` cũ. Port pattern tap-lookup từ `speaking.js`.
+
+**Việc còn treo cần duyệt:** chỉ còn Q3 (con số free/cấp). Các quyết định khác đã đủ để bắt đầu code ở session sau.

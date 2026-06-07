@@ -216,12 +216,65 @@ Ghi chú thiết kế:
 ## F. QUYẾT ĐỊNH (chủ dự án chốt 2026-06-07)
 
 - **Q1 ✅ B2** — schema Reader mới, tách hẳn (`js/data/reader/*` + `var READER_DATA`).
-- **Q2 ✅ Migrate chọn lọc:** chuyển **20 bài HSK 1-2** (vốn từ HSK 2.0 cấp 1-2 ≈ HSK 3.0 cấp 1-2, map an toàn) vào `READER_DATA` qua script 1 lần, đánh `source:'legacy-migrated'`, `gloss:[]` (dùng dictionary-fallback), `audio:''` (TTS), giữ `questions`, bổ sung `explain_vi` sau. **18 bài HSK 3-6 tạm gác** (map cấp không sạch → để AI-gen bài mới chuẩn cấp thay thế; giữ tham khảo).
-- **Q3 🔸 Đề xuất (chờ duyệt con số):** HSK 1-2 free toàn bộ · HSK 3-4 free **3 bài đầu/cấp** rồi Pro · HSK 5-9 Pro · tap-gloss + toggle pinyin + nghe-TTS **free mọi cấp** · trang SEO `/doc-truyen` public. Gate giữ **client-side** (chấp nhận lộ bundle). → Cần chốt: số "3 bài/cấp" và HSK 3-4 free-một-phần vs Pro-toàn-bộ.
+- **Q2 ✅ (REV 2026-06-07) Reader THUẦN HSK 3.0 — bỏ legacy.** App ngừng phát triển HSK 2.0 (sẽ xóa data HSK 2.0 ở task dọn riêng). `readings.js` cũ keyed 1-6 (HSK 2.0) **KHÔNG migrate vào Reader** → AI-gen mới toàn bộ theo HSK 3.0 9 cấp cho sạch. (Tùy chọn nếu muốn tiết kiệm: 20 đoạn sơ cấp — nội dung tiếng Trung vỡ lòng vốn level-agnostic — có thể **re-level thủ công về HSK 3.0 cấp 1-2** làm seed; nhưng mặc định = gen mới.)
+- **Q3 ✅ DUYỆT 2026-06-07:** HSK 1-2 free toàn bộ · HSK 3-4 free **3 bài đầu/cấp** rồi Pro · HSK 5-9 Pro · tap-gloss + toggle pinyin + nghe-TTS **free mọi cấp** · trang SEO `/doc-truyen` public. Gate **client-side**.
 - **Q4 ✅ Web Speech trước, R2 sau.** Khi thu file: ưu tiên **`edge-tts`** (giọng Azure Neural, free) hoặc **tái dùng pipeline Mai** (`scripts/mai-tts-gen.py` + R2 `cdn.hanzigenz.com` + rclone) để **đồng nhất giọng toàn app**. Convention path: `reader/audio/<id>_<paragraphIdx>_<sentIdx>.mp3`. Schema đã chừa field `audio` → không đổi gì khi nâng cấp.
-- **Q5 ✅ Hai tầng:** AI sinh bài **kèm gloss curated** (tách từ + pinyin + nghĩa Việt theo cụm), người duyệt soát; bài/cụm chưa có gloss → **fallback `getAllWordsBothVersions()`** như `speaking.js`. `gloss:[]` rỗng vẫn hợp lệ → không chặn ra mắt. Gloss theo **CỤM TỪ** (vd `起床`=thức dậy), KHÔNG per-char.
+- **Q5 ✅ DUYỆT — Hai tầng:** AI sinh bài **kèm gloss curated** (tách từ + pinyin + nghĩa Việt theo cụm), người duyệt soát; bài/cụm chưa có gloss → **fallback `getAllWordsBothVersions()`** như `speaking.js`. `gloss:[]` rỗng vẫn hợp lệ → không chặn ra mắt. Gloss theo **CỤM TỪ** (vd `起床`=thức dậy), KHÔNG per-char.
 - **Q6 ✅ AI-gen + chủ dự án (Tiro) duyệt.** Người duyệt cuối = Tiro. Batch 10 bài/đợt, qua filter chính trị + cấp độ + bản quyền (mục D) trước khi commit.
 - **Q7 ✅ ID thuần** cho URL: `/doc-truyen/<id>` (vd `/doc-truyen/rd-1-001`). `id` bất biến, dùng chung cho URL + `reading_progress` + sync.
 - **Q8 ✅ Module mới** `js/reader.js` (+ `pages/reader.html` fragment, route `/reader`, entry trong hub tab **Học**) — KHÔNG sửa `reading.js` cũ. Port pattern tap-lookup từ `speaking.js`.
 
-**Việc còn treo cần duyệt:** chỉ còn Q3 (con số free/cấp). Các quyết định khác đã đủ để bắt đầu code ở session sau.
+**Việc còn treo:** Q3 đã DUYỆT. Cần task riêng: **xóa data HSK 2.0** toàn app (cross-cutting, không thuộc branch này). Còn lại đủ để code Reader ở session sau.
+
+---
+
+## G. Audio — các cách "chuẩn hơn" để thay thế dần (tham khảo)
+
+Giai đoạn 1 dùng Web Speech (giọng máy, miễn phí, chạy ngay). Khi muốn nâng chất → **pre-gen file 1 lần rồi để R2** (egress free, phát lại không tốn thêm). Vì pre-gen là **batch 1 lần/bài** (không phải mỗi lần user nghe) nên **chi phí TTS gần như bằng 0** dù dùng dịch vụ trả phí: ~50 bài × ~100 chữ ≈ 5.000 ký tự — nằm gọn trong free-tier của mọi nhà.
+
+| Giải pháp | Chất lượng | Giá (THAM KHẢO — phải tự verify, giá đổi liên tục) | Ghi chú |
+|---|---|---|---|
+| **Web Speech API** | Thấp-TB, không đồng nhất | **Miễn phí** | Giọng của máy user; có máy không có giọng Trung → im. Dùng tạm. |
+| **edge-tts** (Python) | **Cao (Azure Neural)** | **Miễn phí, không cần key** | Dùng endpoint "Read Aloud" của trình duyệt Edge. ⚠️ Là endpoint **không chính thức** (gray-area cho thương mại quy mô lớn, có thể đổi/chặn bất kỳ lúc nào). Giọng: `zh-CN-XiaoxiaoNeural`, `zh-CN-YunxiNeural`… |
+| **Azure Speech (chính thức)** | Cao (Neural) | Free-tier ~0.5M ký tự/tháng, sau đó ~$16/1M ký tự* | Bản license hợp pháp của chính edge-tts. Ổn định, dùng thương mại OK. |
+| **Google Cloud TTS** | Cao (Neural2/WaveNet) | Free ~1M ký tự/tháng, sau đó ~$16/1M* | |
+| **Amazon Polly** | TB-Cao | Free 1M ký tự/tháng (12 tháng đầu), sau đó ~$4/1M standard, ~$16/1M neural* | Giọng `Zhiyu`. |
+| **Tái dùng pipeline Mai** | = giọng Mai hiện tại | = chi phí script Mai đang dùng | **Đồng nhất giọng toàn app** — ưu tiên nếu muốn nhất quán. |
+
+> *Số giá là **ước lượng theo trí nhớ, KHÔNG phải báo giá chính thức** — phải kiểm tra trang pricing của từng nhà trước khi quyết.
+
+**Khuyến nghị tìm hiểu thay thế dần:** Web Speech (giờ) → **edge-tts** (free, neural, thử nghiệm chất lượng) → nếu lo rủi ro endpoint không chính thức cho thương mại thì chuyển **Azure Speech chính thức** (cùng giọng, có license) hoặc **tái dùng pipeline Mai** để đồng nhất. Vì pre-gen + R2 nên chi phí mọi hướng đều rất nhỏ.
+
+---
+
+## H. Chi phí AI credit — chức năng nào user dùng TỐN credit?
+
+**AI credit = tiền thật chủ dự án trả cho API model mỗi lần user gọi** (khác chi phí tĩnh CDN/TTS). Phân biệt: chi phí **runtime** (mỗi user-action) vs chi phí **content-creation 1 lần** (chủ dự án trả khi tạo bài).
+
+### Reader (thiết kế hiện tại) — user dùng KHÔNG tốn AI credit nào ✅
+| Hành động user trong Reader | Tốn AI credit? | Vì sao |
+|---|---|---|
+| Đọc bài (text + pinyin) | ❌ Không | Nội dung **tĩnh** (bundle/CDN) |
+| Tap-to-gloss tra chữ | ❌ Không | Tra **từ điển local** (`getAllWordsBothVersions`) |
+| Nghe bài / nghe câu (TTS) | ❌ Không | Web Speech (máy user) **hoặc** file R2 pre-gen (egress free) |
+| Toggle pinyin | ❌ Không | DOM tĩnh |
+| Làm câu hỏi MCQ | ❌ Không | Chấm **client-side** (so `answer` index) |
+| Lưu từ vào SRS | ❌ Không | Local + sync thường |
+
+→ **Reader là feature "vận hành 0 đồng AI"** — đây là điểm mạnh chiến lược: khác hẳn các feature AI hiện có (Speaking/Writing/Tutor/HSKK) vốn tốn credit mỗi lần dùng. Reader có thể mở **free rộng rãi** mà không sợ đốt chi phí.
+
+### Chi phí phát sinh ở phía CHỦ DỰ ÁN (1 lần, không phải user) 🟡
+| Việc | Loại chi phí | Mức |
+|---|---|---|
+| AI-gen nội dung bài (pipeline mục D) | Token model — **1 lần/bài**, chủ dự án trả, batch | Nhỏ (vài chục bài) |
+| Pre-gen audio → R2 | TTS — **1 lần/bài** | ~0 (free-tier, xem mục G) |
+
+### ⚠️ Nếu SAU NÀY thêm tính năng AI tương tác vào Reader → MỚI tốn credit/user
+| Tính năng (tương lai, CHƯA có) | Sẽ tốn credit? |
+|---|---|
+| "AI giải thích câu này" theo yêu cầu | ✅ Có — mỗi lần bấm = 1 lần gọi model |
+| Chat hỏi đáp AI về bài đọc | ✅ Có — mỗi tin nhắn (như `tutor_chat` 1cr/msg) |
+| AI tự sinh câu hỏi/quiz on-the-fly | ✅ Có — mỗi lần sinh |
+| Chấm phát âm khi đọc to (như Speaking) | ✅ Có — qua speech-proxy (1cr/câu) |
+
+→ **Khuyến nghị:** giữ Reader bản lõi **không-AI-runtime** (free, rẻ vận hành). Các trợ lý AI ở trên nếu thêm thì **gate riêng + tính credit riêng** như các feature AI hiện hữu, KHÔNG nhét miễn phí vào lõi.

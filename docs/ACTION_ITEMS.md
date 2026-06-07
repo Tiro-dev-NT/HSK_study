@@ -12,7 +12,7 @@
 - ☐ **Kiểm mắt thường** `hanzigenz.com/reader` (build xong CHƯA test browser thật — Playwright bận lúc đó).
 
 **🟠 FOLLOW-UP A1 (theo báo cáo):**
-- ☐ **AI-gen ~50 bài HSK1-3** (pipeline §D): AI sinh + user duyệt, batch 10 bài/đợt, filter chính trị/cấp/bản quyền.
+- 🟡 **AI-gen bài đọc HSK1-3 (pipeline §D) — batch 1 DONE 2026-06-07** (`main` `86fc7b1`): +30 bài (HSK1 12 / HSK2 10 / HSK3 8), `reviewed_by:'opus-qa'` sau QA độc lập (sạch chính trị/pinyin/đúng cấp/MCQ khớp) → đã merge+deploy. `reader-hsk2.js`+`reader-hsk3.js` mới. **Còn:** ~20 bài nữa để đạt ~50 (đủ bật SEO /doc-truyen), và mở HSK4-9 nếu cần. Chủ dự án nên lướt mắt giọng văn tiếng Việt khi rảnh.
 - ☐ **SEO `/doc-truyen`** (§A.5): nhân bản `scripts/gen-dict-pages.js` → pre-render bài đọc tĩnh + **merge** sitemap (đừng ghi đè). Làm khi ≥20-30 bài.
 - ☐ **Audio chuẩn hơn** (§G): Web Speech → `edge-tts` (free, Azure Neural) hoặc pipeline Mai → R2, điền field `audio`. Pre-gen 1 lần → chi phí ~0.
 

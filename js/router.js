@@ -20,6 +20,7 @@ var Router = (function() {
     '/dictionary':     'dictionary',
     '/grammar':        'grammar',
     '/reading':        'reading',
+    '/reader':         'reader',
     '/learn':          'learn',
     '/vocab':          'learn',
     '/quiz':           'quiz',
@@ -100,6 +101,9 @@ var Router = (function() {
     },
     'reading': function() {
       if (typeof Reading !== 'undefined') Reading.setup();
+    },
+    'reader': function() {
+      if (typeof Reader !== 'undefined') Reader.init();
     },
     'learn': function() {
       if (typeof setupDecks === 'function') setupDecks();

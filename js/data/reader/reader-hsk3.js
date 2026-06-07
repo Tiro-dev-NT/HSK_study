@@ -271,5 +271,215 @@ READER_DATA[3] = [
       { q: { vi: 'Tấm ảnh được chụp ở đâu?', en: 'Where was the photo taken?' }, options: ['Công viên', 'Thư viện', 'Nhà hàng', 'Văn phòng'], answer: 0, explain_vi: '和父母在公园拍的 = chụp cùng bố mẹ ở công viên.' },
       { q: { vi: 'Tiểu Mỹ dự định tối làm gì?', en: 'What does Xiao Mei plan to do in the evening?' }, options: ['Cho mẹ xem ảnh', 'Đi mua sách', 'Học lái xe', 'Đổi phòng'], answer: 0, explain_vi: '打算晚上给妈妈看 = dự định tối cho mẹ xem.' }
     ]
+  },
+  {
+    id: 'rd-3-009', level: 3, topic: 'doi-song',
+    title: { vi: 'Chuyển nhà', en: 'Moving House', zh: '搬家' },
+    summary_vi: 'Gia đình Tiểu Lâm chuyển đến nhà mới, mọi người chia việc và cùng ăn bữa cơm đầu tiên.',
+    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    est_words: 104,
+    paragraphs: [{
+      sentences: [
+        { zh: '这个周末，小林一家要搬到新房子。', py: 'Zhège zhōumò, Xiǎo Lín yì jiā yào bān dào xīn fángzi.', vi: 'Cuối tuần này, gia đình Tiểu Lâm chuyển đến nhà mới.', audio: '',
+          gloss: [ { w: '一家', py: 'yì jiā', vi: 'cả nhà' }, { w: '搬到', py: 'bān dào', vi: 'chuyển đến' }, { w: '新房子', py: 'xīn fángzi', vi: 'nhà mới' } ] },
+        { zh: '因为东西很多，所以大家都很忙。', py: 'Yīnwèi dōngxi hěn duō, suǒyǐ dàjiā dōu hěn máng.', vi: 'Vì đồ đạc rất nhiều, nên mọi người đều rất bận.', audio: '',
+          gloss: [ { w: '因为…所以', py: 'yīnwèi…suǒyǐ', vi: 'vì…nên' }, { w: '东西', py: 'dōngxi', vi: 'đồ đạc' }, { w: '忙', py: 'máng', vi: 'bận' } ] },
+        { zh: '爸爸把大箱子搬上车，妈妈整理小东西。', py: 'Bàba bǎ dà xiāngzi bān shàng chē, māma zhěnglǐ xiǎo dōngxi.', vi: 'Bố khiêng thùng lớn lên xe, mẹ sắp xếp đồ nhỏ.', audio: '',
+          gloss: [ { w: '把', py: 'bǎ', vi: '(đem)' }, { w: '箱子', py: 'xiāngzi', vi: 'thùng/vali' }, { w: '整理', py: 'zhěnglǐ', vi: 'sắp xếp' } ] },
+        { zh: '小林负责自己的书和衣服。', py: 'Xiǎo Lín fùzé zìjǐ de shū hé yīfu.', vi: 'Tiểu Lâm phụ trách sách và quần áo của mình.', audio: '',
+          gloss: [ { w: '负责', py: 'fùzé', vi: 'phụ trách' }, { w: '自己', py: 'zìjǐ', vi: 'của mình' } ] }
+      ]
+    }, {
+      sentences: [
+        { zh: '新房子比以前的大一些，也更安静。', py: 'Xīn fángzi bǐ yǐqián de dà yìxiē, yě gèng ānjìng.', vi: 'Nhà mới to hơn nhà cũ một chút, cũng yên tĩnh hơn.', audio: '',
+          gloss: [ { w: '比', py: 'bǐ', vi: 'hơn (so sánh)' }, { w: '大一些', py: 'dà yìxiē', vi: 'to hơn một chút' }, { w: '更安静', py: 'gèng ānjìng', vi: 'yên tĩnh hơn' } ] },
+        { zh: '虽然搬家很累，但是大家都很开心。', py: 'Suīrán bānjiā hěn lèi, dànshì dàjiā dōu hěn kāixīn.', vi: 'Tuy chuyển nhà rất mệt, nhưng mọi người đều rất vui.', audio: '',
+          gloss: [ { w: '虽然…但是', py: 'suīrán…dànshì', vi: 'tuy…nhưng' }, { w: '搬家', py: 'bānjiā', vi: 'chuyển nhà' } ] },
+        { zh: '晚上，他们在新家吃了第一顿饭。', py: 'Wǎnshang, tāmen zài xīn jiā chī le dì yī dùn fàn.', vi: 'Buổi tối, họ ăn bữa cơm đầu tiên ở nhà mới.', audio: '',
+          gloss: [ { w: '第一顿饭', py: 'dì yī dùn fàn', vi: 'bữa cơm đầu tiên' } ] },
+        { zh: '小林觉得新家非常好。', py: 'Xiǎo Lín juéde xīn jiā fēicháng hǎo.', vi: 'Tiểu Lâm thấy nhà mới rất tốt.', audio: '',
+          gloss: [ { w: '觉得', py: 'juéde', vi: 'cảm thấy' }, { w: '非常', py: 'fēicháng', vi: 'rất/vô cùng' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Vì sao mọi người đều bận?', en: 'Why is everyone busy?' }, options: ['Vì đồ đạc rất nhiều', 'Vì trời mưa', 'Vì có khách', 'Vì đi học'], answer: 0, explain_vi: '因为东西很多，所以大家都很忙 = vì đồ nhiều nên ai cũng bận.' },
+      { q: { vi: 'Nhà mới thế nào so với nhà cũ?', en: 'How is the new house compared to the old one?' }, options: ['To hơn và yên tĩnh hơn', 'Nhỏ hơn', 'Xa hơn', 'Cũ hơn'], answer: 0, explain_vi: '比以前的大一些，也更安静 = to hơn và yên tĩnh hơn.' },
+      { q: { vi: 'Buổi tối họ làm gì?', en: 'What do they do in the evening?' }, options: ['Ăn bữa cơm đầu tiên ở nhà mới', 'Đi mua đồ', 'Xem tivi', 'Dọn phòng'], answer: 0, explain_vi: '吃了第一顿饭 = ăn bữa cơm đầu tiên.' }
+    ]
+  },
+  {
+    id: 'rd-3-010', level: 3, topic: 'am-thuc',
+    title: { vi: 'Học nấu món đầu tiên', en: 'Learning the First Dish', zh: '学做第一个菜' },
+    summary_vi: 'Mẹ dạy Tiểu Mỹ nấu canh trứng; tuy lần đầu hơi khó nhưng món ăn rất ngon.',
+    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    est_words: 106,
+    paragraphs: [{
+      sentences: [
+        { zh: '小美一直想自己做一个菜。', py: 'Xiǎo Měi yìzhí xiǎng zìjǐ zuò yí ge cài.', vi: 'Tiểu Mỹ luôn muốn tự nấu một món ăn.', audio: '',
+          gloss: [ { w: '一直', py: 'yìzhí', vi: 'luôn/mãi' }, { w: '自己', py: 'zìjǐ', vi: 'tự mình' }, { w: '做一个菜', py: 'zuò yí ge cài', vi: 'nấu một món' } ] },
+        { zh: '周末，妈妈决定教她做鸡蛋汤。', py: 'Zhōumò, māma juédìng jiāo tā zuò jīdàn tāng.', vi: 'Cuối tuần, mẹ quyết định dạy bạn ấy nấu canh trứng.', audio: '',
+          gloss: [ { w: '决定', py: 'juédìng', vi: 'quyết định' }, { w: '教', py: 'jiāo', vi: 'dạy' }, { w: '鸡蛋汤', py: 'jīdàn tāng', vi: 'canh trứng' } ] },
+        { zh: '妈妈说：“如果你认真学，就一定能学会。”', py: 'Māma shuō: “Rúguǒ nǐ rènzhēn xué, jiù yídìng néng xuéhuì.”', vi: 'Mẹ nói: “Nếu con học nghiêm túc, thì nhất định sẽ học được.”', audio: '',
+          gloss: [ { w: '如果…就', py: 'rúguǒ…jiù', vi: 'nếu…thì' }, { w: '认真', py: 'rènzhēn', vi: 'nghiêm túc' }, { w: '学会', py: 'xuéhuì', vi: 'học được/thành thạo' } ] },
+        { zh: '小美一边听，一边记下每一步。', py: 'Xiǎo Měi yìbiān tīng, yìbiān jì xià měi yí bù.', vi: 'Tiểu Mỹ vừa nghe, vừa ghi lại từng bước.', audio: '',
+          gloss: [ { w: '一边…一边', py: 'yìbiān…yìbiān', vi: 'vừa…vừa' }, { w: '记下', py: 'jì xià', vi: 'ghi lại' }, { w: '每一步', py: 'měi yí bù', vi: 'từng bước' } ] }
+      ]
+    }, {
+      sentences: [
+        { zh: '她先准备鸡蛋和水，再认真地做。', py: 'Tā xiān zhǔnbèi jīdàn hé shuǐ, zài rènzhēn de zuò.', vi: 'Bạn ấy chuẩn bị trứng và nước trước, rồi nghiêm túc làm.', audio: '',
+          gloss: [ { w: '准备', py: 'zhǔnbèi', vi: 'chuẩn bị' }, { w: '先…再', py: 'xiān…zài', vi: 'trước…rồi' } ] },
+        { zh: '虽然第一次有点难，但是汤做好了。', py: 'Suīrán dì yī cì yǒudiǎn nán, dànshì tāng zuò hǎo le.', vi: 'Tuy lần đầu hơi khó, nhưng canh đã nấu xong.', audio: '',
+          gloss: [ { w: '虽然…但是', py: 'suīrán…dànshì', vi: 'tuy…nhưng' }, { w: '有点难', py: 'yǒudiǎn nán', vi: 'hơi khó' }, { w: '做好了', py: 'zuò hǎo le', vi: 'làm xong rồi' } ] },
+        { zh: '爸爸吃了一口，说非常好喝。', py: 'Bàba chī le yì kǒu, shuō fēicháng hǎohē.', vi: 'Bố ăn một miếng, nói rất ngon.', audio: '',
+          gloss: [ { w: '一口', py: 'yì kǒu', vi: 'một miếng/ngụm' }, { w: '非常', py: 'fēicháng', vi: 'rất' }, { w: '好喝', py: 'hǎohē', vi: 'ngon (đồ uống/canh)' } ] },
+        { zh: '小美听了，心里非常高兴。', py: 'Xiǎo Měi tīng le, xīn lǐ fēicháng gāoxìng.', vi: 'Tiểu Mỹ nghe xong, trong lòng rất vui.', audio: '',
+          gloss: [ { w: '心里', py: 'xīn lǐ', vi: 'trong lòng' }, { w: '高兴', py: 'gāoxìng', vi: 'vui' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Mẹ dạy Tiểu Mỹ nấu món gì?', en: 'What dish does mom teach Xiao Mei?' }, options: ['Canh trứng', 'Mì', 'Cơm', 'Bánh'], answer: 0, explain_vi: '教她做鸡蛋汤 = dạy nấu canh trứng.' },
+      { q: { vi: 'Mẹ nói nếu học nghiêm túc thì sao?', en: 'What does mom say if she studies seriously?' }, options: ['Nhất định sẽ học được', 'Sẽ rất mệt', 'Không cần học', 'Phải đi học'], answer: 0, explain_vi: '如果你认真学，就一定能学会 = nếu nghiêm túc thì nhất định học được.' },
+      { q: { vi: 'Bố ăn thử thấy thế nào?', en: 'How does dad find the soup?' }, options: ['Rất ngon', 'Quá mặn', 'Không ngon', 'Quá nóng'], answer: 0, explain_vi: '说非常好喝 = nói rất ngon.' }
+    ]
+  },
+  {
+    id: 'rd-3-011', level: 3, topic: 'du-lich',
+    title: { vi: 'Đi xem biểu diễn', en: 'Watching a Performance', zh: '去看表演' },
+    summary_vi: 'Tiểu Đông cùng bạn đi xem buổi biểu diễn âm nhạc của trường và rất thích.',
+    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    est_words: 103,
+    paragraphs: [{
+      sentences: [
+        { zh: '学校这个星期有一个音乐表演。', py: 'Xuéxiào zhège xīngqī yǒu yí ge yīnyuè biǎoyǎn.', vi: 'Tuần này trường có một buổi biểu diễn âm nhạc.', audio: '',
+          gloss: [ { w: '音乐', py: 'yīnyuè', vi: 'âm nhạc' }, { w: '表演', py: 'biǎoyǎn', vi: 'biểu diễn' } ] },
+        { zh: '小东和同学一起去看。', py: 'Xiǎo Dōng hé tóngxué yìqǐ qù kàn.', vi: 'Tiểu Đông cùng bạn học đi xem.', audio: '',
+          gloss: [ { w: '同学', py: 'tóngxué', vi: 'bạn học' }, { w: '一起', py: 'yìqǐ', vi: 'cùng nhau' } ] },
+        { zh: '因为来的人很多，所以他们到得很早。', py: 'Yīnwèi lái de rén hěn duō, suǒyǐ tāmen dào de hěn zǎo.', vi: 'Vì người đến rất đông, nên họ đến rất sớm.', audio: '',
+          gloss: [ { w: '因为…所以', py: 'yīnwèi…suǒyǐ', vi: 'vì…nên' }, { w: '到得很早', py: 'dào de hěn zǎo', vi: 'đến rất sớm' } ] },
+        { zh: '表演七点开始，大家都很安静。', py: 'Biǎoyǎn qī diǎn kāishǐ, dàjiā dōu hěn ānjìng.', vi: 'Buổi diễn bắt đầu lúc bảy giờ, mọi người đều rất yên tĩnh.', audio: '',
+          gloss: [ { w: '开始', py: 'kāishǐ', vi: 'bắt đầu' }, { w: '安静', py: 'ānjìng', vi: 'yên tĩnh' } ] }
+      ]
+    }, {
+      sentences: [
+        { zh: '第一个节目是唱歌，非常好听。', py: 'Dì yī ge jiémù shì chànggē, fēicháng hǎotīng.', vi: 'Tiết mục đầu tiên là hát, rất hay.', audio: '',
+          gloss: [ { w: '节目', py: 'jiémù', vi: 'tiết mục' }, { w: '唱歌', py: 'chànggē', vi: 'hát' }, { w: '好听', py: 'hǎotīng', vi: 'hay (âm thanh)' } ] },
+        { zh: '小东最喜欢后面的音乐。', py: 'Xiǎo Dōng zuì xǐhuān hòumiàn de yīnyuè.', vi: 'Tiểu Đông thích nhất phần âm nhạc ở sau.', audio: '',
+          gloss: [ { w: '最喜欢', py: 'zuì xǐhuān', vi: 'thích nhất' }, { w: '后面', py: 'hòumiàn', vi: 'phía sau' } ] },
+        { zh: '虽然表演不长，但是大家都很开心。', py: 'Suīrán biǎoyǎn bù cháng, dànshì dàjiā dōu hěn kāixīn.', vi: 'Tuy buổi diễn không dài, nhưng mọi người đều rất vui.', audio: '',
+          gloss: [ { w: '虽然…但是', py: 'suīrán…dànshì', vi: 'tuy…nhưng' }, { w: '不长', py: 'bù cháng', vi: 'không dài' } ] },
+        { zh: '回家以后，他还在想那些好听的歌。', py: 'Huí jiā yǐhòu, tā hái zài xiǎng nàxiē hǎotīng de gē.', vi: 'Về nhà rồi, bạn ấy vẫn nghĩ về những bài hát hay đó.', audio: '',
+          gloss: [ { w: '回家以后', py: 'huí jiā yǐhòu', vi: 'sau khi về nhà' }, { w: '那些', py: 'nàxiē', vi: 'những…đó' }, { w: '歌', py: 'gē', vi: 'bài hát' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Tuần này trường có hoạt động gì?', en: 'What event is at school this week?' }, options: ['Buổi biểu diễn âm nhạc', 'Kỳ thi', 'Trận bóng', 'Chuyến đi'], answer: 0, explain_vi: '有一个音乐表演 = có một buổi biểu diễn âm nhạc.' },
+      { q: { vi: 'Vì sao họ đến sớm?', en: 'Why do they arrive early?' }, options: ['Vì người đến rất đông', 'Vì trời mưa', 'Vì quên giờ', 'Vì gần nhà'], answer: 0, explain_vi: '因为来的人很多 = vì người đến đông.' },
+      { q: { vi: 'Tiết mục đầu tiên là gì?', en: 'What is the first program?' }, options: ['Hát', 'Vẽ', 'Nhảy', 'Đọc thơ'], answer: 0, explain_vi: '第一个节目是唱歌 = tiết mục đầu là hát.' }
+    ]
+  },
+  {
+    id: 'rd-3-012', level: 3, topic: 'cong-viec',
+    title: { vi: 'Giúp việc ở cửa hàng của bố', en: "Helping at Dad's Shop", zh: '在爸爸的店里帮忙' },
+    summary_vi: 'Tiểu Văn giúp bố bán trái cây; một lần đưa táo cho cụ già thiếu tiền và được bố khen.',
+    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    est_words: 112,
+    paragraphs: [{
+      sentences: [
+        { zh: '周末，小文常常去爸爸的小店帮忙。', py: 'Zhōumò, Xiǎo Wén chángcháng qù bàba de xiǎo diàn bāngmáng.', vi: 'Cuối tuần, Tiểu Văn thường đến cửa hàng nhỏ của bố giúp việc.', audio: '',
+          gloss: [ { w: '常常', py: 'chángcháng', vi: 'thường xuyên' }, { w: '小店', py: 'xiǎo diàn', vi: 'cửa hàng nhỏ' }, { w: '帮忙', py: 'bāngmáng', vi: 'giúp việc' } ] },
+        { zh: '爸爸的店卖很多水果。', py: 'Bàba de diàn mài hěn duō shuǐguǒ.', vi: 'Cửa hàng của bố bán rất nhiều trái cây.', audio: '',
+          gloss: [ { w: '卖', py: 'mài', vi: 'bán' }, { w: '水果', py: 'shuǐguǒ', vi: 'trái cây' } ] },
+        { zh: '小文负责把水果放好，还要看着价钱。', py: 'Xiǎo Wén fùzé bǎ shuǐguǒ fàng hǎo, hái yào kàn zhe jiàqián.', vi: 'Tiểu Văn phụ trách xếp trái cây cho gọn, còn phải để ý giá cả.', audio: '',
+          gloss: [ { w: '负责', py: 'fùzé', vi: 'phụ trách' }, { w: '把…放好', py: 'bǎ…fàng hǎo', vi: 'xếp…cho gọn' }, { w: '价钱', py: 'jiàqián', vi: 'giá cả' } ] },
+        { zh: '客人很多的时候，他也帮忙拿东西。', py: 'Kèrén hěn duō de shíhou, tā yě bāngmáng ná dōngxi.', vi: 'Khi khách đông, bạn ấy cũng giúp lấy đồ.', audio: '',
+          gloss: [ { w: '客人', py: 'kèrén', vi: 'khách hàng' }, { w: '拿东西', py: 'ná dōngxi', vi: 'lấy đồ' } ] }
+      ]
+    }, {
+      sentences: [
+        { zh: '有一次，一位老人买苹果，钱带得不够。', py: 'Yǒu yí cì, yí wèi lǎorén mǎi píngguǒ, qián dài de bú gòu.', vi: 'Có lần, một cụ già mua táo nhưng mang không đủ tiền.', audio: '',
+          gloss: [ { w: '有一次', py: 'yǒu yí cì', vi: 'có một lần' }, { w: '老人', py: 'lǎorén', vi: 'cụ già/người già' }, { w: '不够', py: 'bú gòu', vi: 'không đủ' } ] },
+        { zh: '小文想了想，就先给了她一个。', py: 'Xiǎo Wén xiǎng le xiǎng, jiù xiān gěi le tā yí ge.', vi: 'Tiểu Văn nghĩ một chút, rồi đưa trước cho cụ một quả.', audio: '',
+          gloss: [ { w: '想了想', py: 'xiǎng le xiǎng', vi: 'nghĩ một chút' }, { w: '先给', py: 'xiān gěi', vi: 'đưa trước' } ] },
+        { zh: '爸爸知道以后，觉得他做得很对。', py: 'Bàba zhīdào yǐhòu, juéde tā zuò de hěn duì.', vi: 'Bố biết chuyện, thấy bạn ấy làm rất đúng.', audio: '',
+          gloss: [ { w: '知道以后', py: 'zhīdào yǐhòu', vi: 'sau khi biết' }, { w: '做得很对', py: 'zuò de hěn duì', vi: 'làm rất đúng' } ] },
+        { zh: '他说，帮助别人是一件好事。', py: 'Tā shuō, bāngzhù biérén shì yí jiàn hǎoshì.', vi: 'Bố nói, giúp đỡ người khác là một việc tốt.', audio: '',
+          gloss: [ { w: '帮助', py: 'bāngzhù', vi: 'giúp đỡ' }, { w: '别人', py: 'biérén', vi: 'người khác' }, { w: '好事', py: 'hǎoshì', vi: 'việc tốt' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Cửa hàng của bố bán gì?', en: "What does dad's shop sell?" }, options: ['Trái cây', 'Quần áo', 'Sách', 'Đồ chơi'], answer: 0, explain_vi: '卖很多水果 = bán rất nhiều trái cây.' },
+      { q: { vi: 'Tiểu Văn làm gì khi cụ già thiếu tiền?', en: 'What does Xiao Wen do when the old lady is short of money?' }, options: ['Đưa trước cho cụ một quả táo', 'Không bán', 'Gọi bố', 'Bảo cụ về'], answer: 0, explain_vi: '就先给了她一个 = đưa trước cho cụ một quả.' },
+      { q: { vi: 'Bố nghĩ thế nào về việc đó?', en: 'How does dad feel about it?' }, options: ['Thấy bạn ấy làm đúng', 'Rất giận', 'Không quan tâm', 'Bảo trả tiền'], answer: 0, explain_vi: '觉得他做得很对 = thấy bạn ấy làm rất đúng.' }
+    ]
+  },
+  {
+    id: 'rd-3-013', level: 3, topic: 'suc-khoe',
+    title: { vi: 'Bắt đầu vận động buổi sáng', en: 'Starting Morning Exercise', zh: '早上运动' },
+    summary_vi: 'Tiểu An nghe lời bác sĩ, tập buổi sáng mỗi ngày và dần thấy khỏe hơn.',
+    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    est_words: 114,
+    paragraphs: [{
+      sentences: [
+        { zh: '小安发现自己最近身体不太好。', py: 'Xiǎo Ān fāxiàn zìjǐ zuìjìn shēntǐ bú tài hǎo.', vi: 'Tiểu An phát hiện dạo này sức khỏe không tốt lắm.', audio: '',
+          gloss: [ { w: '发现', py: 'fāxiàn', vi: 'phát hiện' }, { w: '最近', py: 'zuìjìn', vi: 'dạo này' }, { w: '身体', py: 'shēntǐ', vi: 'sức khỏe/cơ thể' } ] },
+        { zh: '医生说，他应该多运动。', py: 'Yīshēng shuō, tā yīnggāi duō yùndòng.', vi: 'Bác sĩ nói bạn ấy nên vận động nhiều.', audio: '',
+          gloss: [ { w: '应该', py: 'yīnggāi', vi: 'nên' }, { w: '多运动', py: 'duō yùndòng', vi: 'vận động nhiều' } ] },
+        { zh: '因为白天要上课，所以他决定早上运动。', py: 'Yīnwèi báitiān yào shàngkè, suǒyǐ tā juédìng zǎoshang yùndòng.', vi: 'Vì ban ngày phải đi học, nên bạn ấy quyết định tập vào buổi sáng.', audio: '',
+          gloss: [ { w: '因为…所以', py: 'yīnwèi…suǒyǐ', vi: 'vì…nên' }, { w: '白天', py: 'báitiān', vi: 'ban ngày' }, { w: '决定', py: 'juédìng', vi: 'quyết định' } ] },
+        { zh: '第一天，他六点就起床了。', py: 'Dì yī tiān, tā liù diǎn jiù qǐchuáng le.', vi: 'Ngày đầu, bạn ấy sáu giờ đã dậy.', audio: '',
+          gloss: [ { w: '第一天', py: 'dì yī tiān', vi: 'ngày đầu tiên' }, { w: '起床', py: 'qǐchuáng', vi: 'thức dậy' } ] }
+      ]
+    }, {
+      sentences: [
+        { zh: '他每天在公园走路、跑步。', py: 'Tā měitiān zài gōngyuán zǒulù, pǎobù.', vi: 'Mỗi ngày bạn ấy đi bộ, chạy bộ trong công viên.', audio: '',
+          gloss: [ { w: '公园', py: 'gōngyuán', vi: 'công viên' }, { w: '走路', py: 'zǒulù', vi: 'đi bộ' }, { w: '跑步', py: 'pǎobù', vi: 'chạy bộ' } ] },
+        { zh: '虽然开始的时候很累，但是他还是每天去。', py: 'Suīrán kāishǐ de shíhou hěn lèi, dànshì tā háishi měitiān qù.', vi: 'Tuy lúc đầu rất mệt, nhưng bạn ấy vẫn đi mỗi ngày.', audio: '',
+          gloss: [ { w: '虽然…但是', py: 'suīrán…dànshì', vi: 'tuy…nhưng' }, { w: '还是', py: 'háishi', vi: 'vẫn' } ] },
+        { zh: '一个月以后，他觉得身体比以前好多了。', py: 'Yí ge yuè yǐhòu, tā juéde shēntǐ bǐ yǐqián hǎo duō le.', vi: 'Một tháng sau, bạn ấy thấy sức khỏe tốt hơn trước nhiều.', audio: '',
+          gloss: [ { w: '一个月以后', py: 'yí ge yuè yǐhòu', vi: 'một tháng sau' }, { w: '比以前', py: 'bǐ yǐqián', vi: 'so với trước' }, { w: '好多了', py: 'hǎo duō le', vi: 'tốt hơn nhiều' } ] },
+        { zh: '现在，运动已经成了他的习惯。', py: 'Xiànzài, yùndòng yǐjīng chéng le tā de xíguàn.', vi: 'Bây giờ, vận động đã trở thành thói quen của bạn ấy.', audio: '',
+          gloss: [ { w: '已经', py: 'yǐjīng', vi: 'đã' }, { w: '成了', py: 'chéng le', vi: 'trở thành' }, { w: '习惯', py: 'xíguàn', vi: 'thói quen' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Bác sĩ khuyên Tiểu An điều gì?', en: 'What does the doctor advise Xiao An?' }, options: ['Nên vận động nhiều', 'Uống nhiều nước', 'Ngủ sớm', 'Ăn ít'], answer: 0, explain_vi: '应该多运动 = nên vận động nhiều.' },
+      { q: { vi: 'Vì sao bạn ấy tập vào buổi sáng?', en: 'Why does he exercise in the morning?' }, options: ['Vì ban ngày phải đi học', 'Vì sáng mát', 'Vì thích dậy sớm', 'Vì có bạn'], answer: 0, explain_vi: '因为白天要上课 = vì ban ngày phải đi học.' },
+      { q: { vi: 'Một tháng sau bạn ấy thấy thế nào?', en: 'How does he feel after a month?' }, options: ['Sức khỏe tốt hơn trước nhiều', 'Mệt hơn', 'Không đổi', 'Lười hơn'], answer: 0, explain_vi: '身体比以前好多了 = sức khỏe tốt hơn trước nhiều.' }
+    ]
+  },
+  {
+    id: 'rd-3-014', level: 3, topic: 'hoc-tap',
+    title: { vi: 'Làm bài tập nhóm', en: 'Doing Group Homework', zh: '一起做小组作业' },
+    summary_vi: 'Một nhóm ba bạn làm bài tập chung; máy tính hỏng nhưng họ vẫn hoàn thành nhờ cùng cố gắng.',
+    source: 'ai-gen', reviewed_by: '', reviewed_at: '',
+    est_words: 113,
+    paragraphs: [{
+      sentences: [
+        { zh: '老师给大家一个任务，要三个人一起完成。', py: 'Lǎoshī gěi dàjiā yí ge rènwù, yào sān ge rén yìqǐ wánchéng.', vi: 'Cô giáo giao một nhiệm vụ, cần ba người cùng hoàn thành.', audio: '',
+          gloss: [ { w: '任务', py: 'rènwù', vi: 'nhiệm vụ' }, { w: '完成', py: 'wánchéng', vi: 'hoàn thành' } ] },
+        { zh: '小丽、小马和小东在一组。', py: 'Xiǎo Lì, Xiǎo Mǎ hé Xiǎo Dōng zài yì zǔ.', vi: 'Tiểu Lệ, Tiểu Mã và Tiểu Đông cùng một nhóm.', audio: '',
+          gloss: [ { w: '在一组', py: 'zài yì zǔ', vi: 'cùng một nhóm' } ] },
+        { zh: '他们决定周末在图书馆见面。', py: 'Tāmen juédìng zhōumò zài túshūguǎn jiànmiàn.', vi: 'Họ quyết định cuối tuần gặp nhau ở thư viện.', audio: '',
+          gloss: [ { w: '决定', py: 'juédìng', vi: 'quyết định' }, { w: '图书馆', py: 'túshūguǎn', vi: 'thư viện' }, { w: '见面', py: 'jiànmiàn', vi: 'gặp mặt' } ] },
+        { zh: '每个人负责一部分，再一起讨论。', py: 'Měi ge rén fùzé yí bùfen, zài yìqǐ tǎolùn.', vi: 'Mỗi người phụ trách một phần, rồi cùng thảo luận.', audio: '',
+          gloss: [ { w: '负责', py: 'fùzé', vi: 'phụ trách' }, { w: '一部分', py: 'yí bùfen', vi: 'một phần' }, { w: '讨论', py: 'tǎolùn', vi: 'thảo luận' } ] }
+      ]
+    }, {
+      sentences: [
+        { zh: '小马的电脑突然坏了，大家有点担心。', py: 'Xiǎo Mǎ de diànnǎo tūrán huài le, dàjiā yǒudiǎn dānxīn.', vi: 'Máy tính của Tiểu Mã đột nhiên hỏng, mọi người hơi lo.', audio: '',
+          gloss: [ { w: '电脑', py: 'diànnǎo', vi: 'máy tính' }, { w: '突然', py: 'tūrán', vi: 'đột nhiên' }, { w: '担心', py: 'dānxīn', vi: 'lo lắng' } ] },
+        { zh: '小丽说：“不管有没有电脑，我们都能想办法。”', py: 'Xiǎo Lì shuō: “Bùguǎn yǒu méiyǒu diànnǎo, wǒmen dōu néng xiǎng bànfǎ.”', vi: 'Tiểu Lệ nói: “Bất kể có máy tính hay không, chúng ta đều có cách.”', audio: '',
+          gloss: [ { w: '不管…都', py: 'bùguǎn…dōu', vi: 'bất kể…đều' }, { w: '想办法', py: 'xiǎng bànfǎ', vi: 'nghĩ cách' } ] },
+        { zh: '他们用笔和纸完成了任务。', py: 'Tāmen yòng bǐ hé zhǐ wánchéng le rènwù.', vi: 'Họ dùng bút và giấy hoàn thành nhiệm vụ.', audio: '',
+          gloss: [ { w: '用笔和纸', py: 'yòng bǐ hé zhǐ', vi: 'dùng bút và giấy' }, { w: '完成', py: 'wánchéng', vi: 'hoàn thành' } ] },
+        { zh: '因为大家一起努力，所以作业做得很好。', py: 'Yīnwèi dàjiā yìqǐ nǔlì, suǒyǐ zuòyè zuò de hěn hǎo.', vi: 'Vì mọi người cùng cố gắng, nên bài tập làm rất tốt.', audio: '',
+          gloss: [ { w: '因为…所以', py: 'yīnwèi…suǒyǐ', vi: 'vì…nên' }, { w: '努力', py: 'nǔlì', vi: 'cố gắng' }, { w: '作业', py: 'zuòyè', vi: 'bài tập' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Nhiệm vụ cô giáo giao cần mấy người?', en: 'How many people does the task need?' }, options: ['Ba người', 'Hai người', 'Bốn người', 'Một người'], answer: 0, explain_vi: '要三个人一起完成 = cần ba người cùng hoàn thành.' },
+      { q: { vi: 'Khi máy tính hỏng, Tiểu Lệ nói gì?', en: 'What does Xiao Li say when the computer breaks?' }, options: ['Bất kể có máy tính hay không đều có cách', 'Phải về nhà', 'Hỏi cô giáo', 'Đợi sửa máy'], answer: 0, explain_vi: '不管有没有电脑，我们都能想办法 = bất kể có máy tính hay không đều có cách.' },
+      { q: { vi: 'Vì sao bài tập làm tốt?', en: 'Why is the homework done well?' }, options: ['Vì mọi người cùng cố gắng', 'Vì có máy tính mới', 'Vì bài dễ', 'Vì cô giúp'], answer: 0, explain_vi: '因为大家一起努力 = vì mọi người cùng cố gắng.' }
+    ]
   }
 ];

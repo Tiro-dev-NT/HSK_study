@@ -1,13 +1,35 @@
 # Action Items
 
+## ✅ Session 2026-06-07 — A1 Reader MVP shipped + xóa hẳn HSK 2.0 (đã push `main`)
+
+**Đã làm & LIVE prod (`main` `085dad0`):**
+- ☑ **Điều tra Reader** → `docs/plans/a1-reader-investigation.md` (hiện trạng 5 điểm + 3 phương án schema + pipeline + mục G audio/edge-tts + mục H chi phí AI credit). Duyệt: B2 (schema mới tách hẳn) · Reader **thuần HSK 3.0** · gate Q3 · gloss 2 tầng · ID thuần · module mới.
+- ☑ **Reader MVP** (Phase A1): `js/reader.js` · `pages/reader.html` · `css/pages/reader.css` · `js/data/reader/reader-hsk1.js` (4 bài seed HSK1, schema §C). Route `/reader`, card "📚 Đọc truyện" hub Học. Tap-to-gloss (port speaking.js) + toggle pinyin/nghĩa Việt + TTS Web Speech + MCQ có giải thích + progress `reader_progress_v1`. Pro-gate: HSK1-2 free · 3-4 free 3 bài/cấp · 5-9 Pro. **0 AI credit runtime.**
+- ☑ **Xóa hẳn HSK 2.0** (`173e23d`): 61 file (59 data `hsk1-6.js`+sub-decks + `hsk-version.js` + `hsk-switch.css`), sửa 11 file. Verify 11.456 từ HSK3 load OK, `HSK_DATA`/`HSKVersion`=undefined, 0 lỗi console.
+
+**🔴 CẦN USER:**
+- ☐ **Duyệt 4 bài seed Reader** → điền `reviewed_by`/`reviewed_at` trong `reader-hsk1.js` (hiện rỗng = chưa duyệt; app KHÔNG gate field này → bài vẫn live).
+- ☐ **Kiểm mắt thường** `hanzigenz.com/reader` (build xong CHƯA test browser thật — Playwright bận lúc đó).
+
+**🟠 FOLLOW-UP A1 (theo báo cáo):**
+- ☐ **AI-gen ~50 bài HSK1-3** (pipeline §D): AI sinh + user duyệt, batch 10 bài/đợt, filter chính trị/cấp/bản quyền.
+- ☐ **SEO `/doc-truyen`** (§A.5): nhân bản `scripts/gen-dict-pages.js` → pre-render bài đọc tĩnh + **merge** sitemap (đừng ghi đè). Làm khi ≥20-30 bài.
+- ☐ **Audio chuẩn hơn** (§G): Web Speech → `edge-tts` (free, Azure Neural) hoặc pipeline Mai → R2, điền field `audio`. Pre-gen 1 lần → chi phí ~0.
+
+**🆕 Ý TƯỞNG MỚI (2026-06-07) — Tra/dịch toàn app:**
+- ☐ **Gom tap-to-gloss TOÀN APP:** hiện 3 bản chồng — `LookupPanel` (toàn cục, desktop-hover) + popup tap riêng ở `speaking.js` & `reader.js`. Việc: nâng `LookupPanel` hỗ trợ **tap + mobile** (bỏ chặn `_isDesktop`), đánh dấu nội dung Hán `data-lookup="true"` ở các trang còn thiếu (Mai/grammar/mock-exam/text-analyzer), bỏ 2 popup trùng → 1 component. Cần **tách-từ longest-match** cho text tự do (`_findWord` hiện chỉ exact + fallback 1 chữ). **0 credit.**
+- ☐ **Dịch câu đã tô** (3 mức): A. dịch sẵn (Reader/Mai đã có field `vi` → free, có sẵn) · B. ghép gloss từng từ (free, thô, sai trật tự) · C. AI dịch qua `ai-proxy` (~1cr/câu, mượt). Đề xuất **hybrid**: tô câu → "Nghĩa từng từ (free)" + "Dịch AI (1cr)", tái dùng `AIClient.call` + thêm task type + gate.
+
+---
+
 ## 🧭 Session 2026-06-06 — Strategy Council (Reader / Truyện tranh / FSRS / PWA)
 
 > Họp 6-vai soi 8 đối thủ ảnh TikTok. Chi tiết + danh mục phương án: `implementation_plan.md` §"📍 v5.0 — Strategy Council 2026-06-06". Lộ trình chốt: **A1 Reader text → A2 truyện tranh → B FSRS → D PWA** (tuần tự, không song song).
 
 **🔴 ƯU TIÊN NGAY — Phương án A (Graded Reader Việt-first) [DUYỆT]:**
-- ☐ **Điều tra Reader trước (chỉ đọc, chưa code):** đọc `js/reading.js` · `js/data/readings.js` · CSS reading. Xác định: (1) shape passage + số lượng/level (hiện ~vài chục, mỏng); (2) reader UI có tap-to-gloss/toggle pinyin chưa; (3) Pro-gate enforce client hay RPC server-side; (4) tái dùng audio Mai (`MAI_AUDIO_BASE`) cho listening-dictation được không; (5) nhân bản hạ tầng SEO `/tu-dien` → `/doc-truyen`. → Output: hiện trạng + 2-3 phương án mở rộng (schema cũ vs reader mới) + thiết kế pipeline. **Chờ duyệt rồi mới code.**
-- ☐ **Thiết kế schema bài đọc ỔN ĐỊNH ngay từ bài #1** (id, level, tiêu đề, đoạn văn, câu+gloss Hán-Việt, audio path, câu hỏi) — đổi schema khi đã có trăm bài = đau.
-- ☐ **Pipeline content gốc (C, đi kèm A):** AI-sinh → người duyệt → commit tĩnh + filter chính trị/bản quyền. Quyết nguồn sinh: (a) AI-sinh+duyệt / (b) tự viết / (c) thuê CTV. Bắt đầu ~50 bài HSK1-3 sạch.
+- ☑ **Điều tra Reader DONE 2026-06-07** → `docs/plans/a1-reader-investigation.md` (5 điểm hiện trạng + phương án + pipeline). Xem session 2026-06-07 trên cùng.
+- ☑ **Schema ỔN ĐỊNH chốt DONE 2026-06-07** (§C báo cáo, `var READER_DATA` → đã code `reader-hsk1.js`): id thuần, level HSK3.0, paragraphs→sentences{zh,py,vi,audio,gloss[]}, questions{explain_vi}, source+reviewed_*.
+- ☐ **Pipeline content gốc (C):** thiết kế xong (§D báo cáo: AI-gen + user duyệt + filter chính trị/cấp/bản quyền). **Chưa chạy gen** — xem follow-up A1 session 2026-06-07.
 - ☐ **A2 Truyện tranh (pilot, sau khi A1 chứng minh đọc thật):** chữ Hán LUÔN ở text-layer (bong bóng HTML/CSS đè ảnh), KHÔNG vẽ vào ảnh. Nhân vật: nối đời Mai + Bé Rồng (tái dùng asset, nhất quán).
   - 📌 **Test AI gen (2026-06-06):** chạy cùng prompt 4-panel quán mì trên GPT/Gemini/Claude/Nano Banana Pro. **Kết quả: 🏆 Nano Banana Pro** thắng pipeline (bong bóng trống sạch tuyệt đối, không tự nhét chữ Hán, nhân vật nhất quán nhất). GPT vẽ đẹp nhất NHƯNG tự render chữ Hán giả lên biển hiệu (bệnh phải prompt `blank signs, no signage text`). Claude flat-vector hợp UI app nhưng rồng mất nhận diện mascot.
   - ☐ **Test consistency cảnh 2** (cùng Mai+Bé Rồng, bối cảnh khác) trên NBP + GPT → phép thử cuối chọn nhà sản xuất tranh.

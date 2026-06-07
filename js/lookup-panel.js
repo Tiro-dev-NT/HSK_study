@@ -320,7 +320,7 @@ var LookupPanel = {
 
   _missingHTML: function(query) {
     return '<div class="lp-header"><span class="lp-badge">Lookup</span><button class="lp-icon-btn" data-lp-close aria-label="Đóng">✕</button></div>' +
-      '<div class="lp-missing"><div class="lp-missing-char">' + this._escapeHTML(query) + '</div><h3>Không tìm thấy</h3><p>Chưa có từ này trong HSK_DATA.</p><button class="lp-link-btn" data-lp-dict>🔗 Mở Từ điển đầy đủ</button></div>';
+      '<div class="lp-missing"><div class="lp-missing-char">' + this._escapeHTML(query) + '</div><h3>Không tìm thấy</h3><p>Chưa có từ này trong từ điển.</p><button class="lp-link-btn" data-lp-dict>🔗 Mở Từ điển đầy đủ</button></div>';
   },
 
   _isDesktop: function() {

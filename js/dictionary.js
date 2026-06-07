@@ -23,13 +23,7 @@ var Dictionary = {
     // Restore the previous query so leaving & returning keeps your search (P1-3).
     if (Dictionary._lastQuery && !input.value) input.value = Dictionary._lastQuery;
 
-    // Background-load HSK 3.0 data for integrated search
-    if (typeof HSKVersion !== 'undefined' && !HSKVersion.isV3Loaded()) {
-      HSKVersion.preloadV3(function() {
-        var inp = document.getElementById('dictSearch');
-        if (inp) Dictionary.searchDict(inp.value.trim());
-      });
-    }
+    // HSK 3.0 data is loaded eagerly in index.html — no lazy preload needed.
 
     // The router rebuilds #content on every navigation, so the input + tab nodes
     // are brand-new each visit. Bind per element (guard flag) instead of once

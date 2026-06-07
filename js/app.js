@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ['setupRightSidebar', function() { if (typeof RightSidebar !== 'undefined') RightSidebar.init(); }],
     ['initQuests',      function() { if (typeof Quests !== 'undefined') Quests.init(); }],
     ['setupSidebar',    function() { _initSidebarCollapse(); }],
-    ['initHSKVersion',  function() { if (typeof HSKVersion !== 'undefined') HSKVersion.init(); }],
     ['setupCmdPalette', function() { if (typeof CmdPalette !== 'undefined') CmdPalette.setup(); }],
     ['setupLookupPanel', function() { if (typeof LookupPanel !== 'undefined') LookupPanel.init(); }],
     ['firstRunGuide',   function() { if (typeof AppGuide !== 'undefined') AppGuide.maybeShowFirstRun(); }],

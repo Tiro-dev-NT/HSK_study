@@ -65,11 +65,7 @@ var AdminContent = (function() {
     if (wrap) wrap.innerHTML = '<p class="adm-empty">Đang tải dữ liệu từ vựng...</p>';
 
     // Load from global data files (already in memory via index.html scripts)
-    if (_vocabVer === 'hsk3') {
-      _vocabData = _flattenHSK3Data();
-    } else {
-      _vocabData = _flattenHSK2Data();
-    }
+    _vocabData = _flattenHSK3Data();
 
     _populateLevelFilter(_vocabVer);
     _renderVocab();
@@ -80,16 +76,6 @@ var AdminContent = (function() {
     var out = [];
     [1,2,3,4,5,6,7,8,9].forEach(function(lvl) {
       var words = HSK3_DATA[lvl] || [];
-      words.forEach(function(w) { out.push(Object.assign({ level: lvl }, w)); });
-    });
-    return out;
-  }
-
-  function _flattenHSK2Data() {
-    if (!window.HSK_DATA) return [];
-    var out = [];
-    [1,2,3,4,5,6].forEach(function(lvl) {
-      var words = HSK_DATA[lvl] || [];
       words.forEach(function(w) { out.push(Object.assign({ level: lvl }, w)); });
     });
     return out;

@@ -153,13 +153,8 @@ var LearnMethod = (function() {
   }
 
   function _findWord(hanzi) {
-    // Search through all available HSK data arrays
+    // Search through all available HSK 3.0 data arrays
     var sources = [];
-    if (window.HSK_DATA) {
-      for (var lvl = 1; lvl <= 6; lvl++) {
-        if (HSK_DATA[lvl]) sources.push(HSK_DATA[lvl]);
-      }
-    }
     if (window.HSK3_DATA) {
       for (var l = 1; l <= 9; l++) {
         if (HSK3_DATA[l]) sources.push(HSK3_DATA[l]);

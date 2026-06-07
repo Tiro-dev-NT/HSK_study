@@ -1,10 +1,7 @@
 // ─── HSK Data Core ────────────────────────────────────
-// Each level is loaded from js/data/hskN.js
-// Using var (not const) to allow inline fallback in HTML if cached.
+// HSK 3.0 only (HSK 2.0 removed 2026-06-07). Levels loaded from js/data/v3/*.
 
-var HSK_DATA = { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[] };
-
-// ─── HSK 3.0 (New HSK 2021) — populated lazily when user switches version ──
+// ─── HSK 3.0 (New HSK 2021) — the only active dataset ──
 var HSK3_DATA = { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[] };
 
 // ─── Pro gate constants ────────────────────────────────

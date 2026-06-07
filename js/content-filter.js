@@ -60,8 +60,8 @@ var ContentFilter = (function () {
   // ── Dev scanner: check all loaded HSK vocab data ──────
   // Run in browser console: ContentFilter.scanAllData()
   function scanAllData() {
-    if (typeof HSK_DATA === 'undefined' && typeof HSK_DATA_V3 === 'undefined') {
-      console.warn('[ContentFilter] No HSK_DATA found. Load vocab data first.');
+    if (typeof HSK3_DATA === 'undefined' && typeof HSK_DATA_V3 === 'undefined') {
+      console.warn('[ContentFilter] No HSK3_DATA found. Load vocab data first.');
       return;
     }
 
@@ -90,19 +90,12 @@ var ContentFilter = (function () {
       });
     }
 
-    // HSK 2.0
-    if (typeof HSK_DATA !== 'undefined') {
-      Object.keys(HSK_DATA).forEach(function (level) {
-        (HSK_DATA[level] || []).forEach(function (w) {
-          scanEntry(w, 'HSK2.0 L' + level);
-        });
-      });
-    }
-
     // HSK 3.0
-    if (typeof HSK_DATA_V3 !== 'undefined') {
-      Object.keys(HSK_DATA_V3).forEach(function (level) {
-        (HSK_DATA_V3[level] || []).forEach(function (w) {
+    var v3 = (typeof HSK3_DATA !== 'undefined') ? HSK3_DATA
+           : (typeof HSK_DATA_V3 !== 'undefined') ? HSK_DATA_V3 : null;
+    if (v3) {
+      Object.keys(v3).forEach(function (level) {
+        (v3[level] || []).forEach(function (w) {
           scanEntry(w, 'HSK3.0 L' + level);
         });
       });

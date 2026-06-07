@@ -814,7 +814,19 @@ var HSKK_ZHONGJI = {
     { id: 'zo15', zh: '在你看来，一个好朋友最重要的是什么样的品质？',
       py: 'Zài nǐ kànlái, yí ge hǎo péngyou zuì zhòngyào de shì shénmeyàng de pǐnzhì?',
       vi: 'Theo bạn, một người bạn tốt cần có phẩm chất quan trọng nhất là gì?',
-      hint: 'Chân thành · tin tưởng · giúp đỡ' }
+      hint: 'Chân thành · tin tưởng · giúp đỡ' },
+    { id: 'zo16', zh: '你觉得每天早睡早起重要吗？为什么？',
+      py: 'Nǐ juéde měi tiān zǎo shuì zǎo qǐ zhòngyào ma? Wèishénme?',
+      vi: 'Bạn thấy ngủ sớm dậy sớm mỗi ngày có quan trọng không? Vì sao?',
+      hint: 'Sức khỏe · tinh thần · thói quen' },
+    { id: 'zo17', zh: '如果朋友遇到困难，你会怎么帮助他？',
+      py: 'Rúguǒ péngyou yùdào kùnnan, nǐ huì zěnme bāngzhù tā?',
+      vi: 'Nếu bạn bè gặp khó khăn, bạn sẽ giúp họ như thế nào?',
+      hint: 'Lắng nghe · cùng nghĩ cách · hành động cụ thể' },
+    { id: 'zo18', zh: '你认为选择工作时，兴趣和工资哪个更重要？',
+      py: 'Nǐ rènwéi xuǎnzé gōngzuò shí, xìngqù hé gōngzī nǎge gèng zhòngyào?',
+      vi: 'Bạn cho rằng khi chọn công việc, sở thích và tiền lương, điều nào quan trọng hơn?',
+      hint: 'Sở thích · thu nhập · phát triển lâu dài' }
   ]
 };
 

@@ -135,7 +135,10 @@ var HSKK_SOCAP = {
     { id: 'o12', zh: '你平时喜欢做什么？',     py: 'Nǐ píngshí xǐhuan zuò shénme?',   vi: 'Bình thường bạn thích làm gì?', hint: 'Sở thích · khi nào làm · vì sao thích' },
     { id: 'o13', zh: '介绍一下你喜欢的城市。', py: 'Jièshào yíxià nǐ xǐhuan de chéngshì.', vi: 'Hãy giới thiệu thành phố bạn thích.', hint: 'Thành phố nào · có gì · vì sao thích' },
     { id: 'o14', zh: '说一说你今天打算做什么。', py: 'Shuō yi shuō nǐ jīntiān dǎsuàn zuò shénme.', vi: 'Hãy kể hôm nay bạn định làm gì.', hint: 'Buổi sáng · buổi chiều · buổi tối' },
-    { id: 'o15', zh: '说一说你怎么学习汉语。', py: 'Shuō yi shuō nǐ zěnme xuéxí Hànyǔ.', vi: 'Hãy nói về cách bạn học tiếng Trung.', hint: 'Học khi nào · cách học · luyện gì' }
+    { id: 'o15', zh: '说一说你怎么学习汉语。', py: 'Shuō yi shuō nǐ zěnme xuéxí Hànyǔ.', vi: 'Hãy nói về cách bạn học tiếng Trung.', hint: 'Học khi nào · cách học · luyện gì' },
+    { id: 'o16', zh: '请说一说你喜欢的天气。', py: 'Qǐng shuō yi shuō nǐ xǐhuan de tiānqì.', vi: 'Hãy nói về kiểu thời tiết bạn thích.', hint: 'Nắng/mưa · nóng/lạnh · thường làm gì' },
+    { id: 'o17', zh: '介绍一下你常去的商店。', py: 'Jièshào yíxià nǐ cháng qù de shāngdiàn.', vi: 'Hãy giới thiệu cửa hàng bạn thường đến.', hint: 'Ở đâu · bán gì · vì sao hay đến' },
+    { id: 'o18', zh: '说一说你上个周末做了什么。', py: 'Shuō yi shuō nǐ shàng ge zhōumò zuò le shénme.', vi: 'Hãy kể cuối tuần trước bạn đã làm gì.', hint: 'Đi đâu · với ai · cảm thấy thế nào' }
   ]
 };
 

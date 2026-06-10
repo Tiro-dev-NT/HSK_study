@@ -295,10 +295,8 @@ var Profile = (function() {
   // ── Settings tab extras ───────────────────────────────
   function _renderSettings(snap) {
     var emailEl   = document.getElementById('profSettingEmail');
-    var versionEl = document.getElementById('profHskVersionDesc');
     var user = (typeof AppState !== 'undefined') ? AppState.user : null;
     if (emailEl) emailEl.textContent = (user && user.email) ? user.email : 'Chưa đăng nhập';
-    if (versionEl) versionEl.textContent = snap.version === 3 ? 'HSK 3.0 (9 cấp)' : 'HSK 2.0 (6 cấp)';
   }
 
   // ── Outfit helpers ────────────────────────────────────

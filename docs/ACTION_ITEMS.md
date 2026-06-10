@@ -1,6 +1,6 @@
 # Action Items
 
-## 🟢 Session 2026-06-10 (b) — Cộng đồng Hub V0 (branch `community-hub-v0`)
+## ✅ Session 2026-06-10 (b) — Cộng đồng Hub V0 (ĐÃ push `main` `8de0ff8` → deploy)
 
 > Spec đầy đủ: `docs/plans/community-build.md` (Phần A = Hub V0 · Phần B = Trang Tri Ân chờ làm). Ý tưởng Phase V: `docs/design/DESIGN_IDEAS.md`.
 

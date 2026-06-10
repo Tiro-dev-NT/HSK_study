@@ -134,6 +134,9 @@ var Session = {
     document.getElementById(prefix + 'WrongCount').textContent   = AppState.fcSession.wrong;
     document.getElementById(prefix + 'Current').textContent      = AppState.fcIndex + 1;
     document.getElementById(prefix + 'Total').textContent        = AppState.fcDeck.length;
+    // Thanh progress mảnh trong session header
+    var pf = document.getElementById(prefix + 'ProgFill');
+    if (pf) pf.style.width = (AppState.fcDeck.length ? Math.round((AppState.fcIndex + 1) / AppState.fcDeck.length * 100) : 0) + '%';
     // keep compat aliases in sync
     fcIndex   = AppState.fcIndex;
     fcSession = AppState.fcSession;
@@ -255,6 +258,18 @@ var Session = {
       document.getElementById('fcExPy').textContent = w.ex.py;
     } else {
       exBox.style.display = 'none';
+    }
+
+    // Active recall: ẩn pinyin mặt trước mặc định + nút "Xem pinyin" (reset mỗi card mới)
+    const front = fc.querySelector('.fc-front');
+    const pinToggle = document.getElementById('fcPinyinToggle');
+    if (shouldFlip) {
+      // recall mode: "(nhớ lại chữ Trung)" là gợi ý → hiện luôn, ẩn nút toggle
+      if (front) front.classList.add('pinyin-shown');
+      if (pinToggle) pinToggle.style.display = 'none';
+    } else {
+      if (front) front.classList.remove('pinyin-shown');
+      if (pinToggle) pinToggle.style.display = '';
     }
   },
 
@@ -478,6 +493,7 @@ var Session = {
     const lang = AppState.lang;
     document.getElementById('mcqHanzi').textContent  = w.h;
     document.getElementById('mcqPinyin').textContent = w.p;
+    document.getElementById('mcqPinyin').classList.add('mcq-pinyin-masked'); // ẩn lại mỗi câu mới
     // E8: show related words
     if (typeof RightSidebar !== 'undefined' && RightSidebar.renderRelated) RightSidebar.renderRelated(w);
     const allWords = getAllWords();

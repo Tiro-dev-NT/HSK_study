@@ -222,7 +222,7 @@
         </div>
 
         <!-- CTA button -->
-        <button class="btn-study-now" id="startLearn">🚀 Học ngay</button>
+        <button class="btn-study-now" id="startLearn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg> Học ngay</button>
 
         <!-- Word list -->
         <div class="dd-word-list-header">
@@ -237,20 +237,25 @@
       <!-- ── FLASHCARD MODE ── -->
       <div class="flashcard-area" id="flashcardArea" style="display:none">
         <div class="session-header">
-          <div class="fc-progress"><span id="fcCurrent">1</span> / <span id="fcTotal">10</span></div>
-          <div class="session-score">✅ <span id="fcCorrectCount">0</span> &nbsp; ❌ <span id="fcWrongCount">0</span></div>
-          <button class="btn-exit" id="exitLearn">✕</button>
+          <div class="prog-track session-prog"><div class="prog-fill" id="fcProgFill" style="width:0%"></div></div>
+          <div class="session-progress-num"><span id="fcCurrent">1</span>/<span id="fcTotal">10</span></div>
+          <div class="session-score">
+            <span class="ss-correct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span id="fcCorrectCount">0</span></span>
+            <span class="ss-wrong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span id="fcWrongCount">0</span></span>
+          </div>
+          <button class="btn-exit" id="exitLearn" aria-label="Thoát phiên học"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         </div>
         <div class="flashcard" id="flashcard">
           <div class="fc-front">
             <div class="fc-hanzi" id="fcHanzi">你好</div>
             <div class="fc-pinyin" id="fcPinyin">nǐ hǎo</div>
+            <button type="button" class="btn-ghost fc-pinyin-toggle" id="fcPinyinToggle" onclick="event.stopPropagation();this.parentElement.classList.add('pinyin-shown')">Xem pinyin</button>
             <div class="fc-tap" data-vi="Nhấn để xem nghĩa" data-en="Tap to reveal">Nhấn để xem nghĩa</div>
           </div>
           <div class="fc-back">
             <div class="fc-hanzi-sm" id="fcHanziBack">你好</div>
             <div class="fc-pinyin-back" id="fcPinyinBack"></div>
-            <button class="tts-inline-btn" id="fcTts">🔊</button>
+            <button class="tts-inline-btn" id="fcTts" aria-label="Phát âm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
             <div class="fc-meaning-vi" id="fcMeaningVi"></div>
             <div class="fc-meaning-en" id="fcMeaningEn"></div>
             <div class="fc-ex-block" id="fcExBlock" style="display:none">
@@ -262,14 +267,14 @@
         </div>
         <div class="srs-buttons" id="fcButtons" style="display:none">
           <div id="fcBtnsAdvanced" class="srs-btns-inner" style="display:none">
-            <button class="srs-btn srs-again" id="btnAgain">❌ Không nhớ<small>1 phút</small></button>
-            <button class="srs-btn srs-hard"  id="btnHard">😓 Khó<small>6 phút</small></button>
-            <button class="srs-btn srs-good"  id="btnGood">😊 Ổn<small>10 phút</small></button>
-            <button class="srs-btn srs-easy"  id="btnEasy">✅ Dễ<small>4 ngày</small></button>
+            <button class="srs-btn srs-again" id="btnAgain">Quên<small>1 phút</small></button>
+            <button class="srs-btn srs-hard"  id="btnHard">Khó<small>6 phút</small></button>
+            <button class="srs-btn srs-good"  id="btnGood">Tốt<small>10 phút</small></button>
+            <button class="srs-btn srs-easy"  id="btnEasy">Dễ<small>4 ngày</small></button>
           </div>
           <div id="fcBtnsSimple" class="srs-btns-inner">
-            <button class="srs-btn srs-again srs-btn-simple" id="btnForget">❌ Chưa nhớ<small>ôn lại</small></button>
-            <button class="srs-btn srs-good  srs-btn-simple" id="btnRemember">✅ Nhớ rồi<small>1 ngày</small></button>
+            <button class="srs-btn srs-again srs-btn-simple" id="btnForget">Chưa nhớ<small>ôn lại</small></button>
+            <button class="srs-btn srs-easy  srs-btn-simple" id="btnRemember">Nhớ rồi<small>1 ngày</small></button>
           </div>
         </div>
       </div>
@@ -277,9 +282,13 @@
       <!-- ── TYPING MODE ── -->
       <div class="typing-area" id="typingArea" style="display:none">
         <div class="session-header">
-          <div class="fc-progress"><span id="tyCurrent">1</span> / <span id="tyTotal">10</span></div>
-          <div class="session-score">✅ <span id="tyCorrectCount">0</span> &nbsp; ❌ <span id="tyWrongCount">0</span></div>
-          <button class="btn-exit" id="exitTyping">✕</button>
+          <div class="prog-track session-prog"><div class="prog-fill" id="tyProgFill" style="width:0%"></div></div>
+          <div class="session-progress-num"><span id="tyCurrent">1</span>/<span id="tyTotal">10</span></div>
+          <div class="session-score">
+            <span class="ss-correct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span id="tyCorrectCount">0</span></span>
+            <span class="ss-wrong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span id="tyWrongCount">0</span></span>
+          </div>
+          <button class="btn-exit" id="exitTyping" aria-label="Thoát"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         </div>
         <div class="typing-card" id="typingCard">
           <div class="ty-label" data-vi="Nghĩa:" data-en="Meaning:">Nghĩa:</div>
@@ -292,7 +301,7 @@
           </div>
           <div class="ty-hint-row">
             <div class="ty-hint" id="tyHint"></div>
-            <button class="ty-reveal-btn" id="tyRevealBtn" title="Hiện 1 ký tự">💡</button>
+            <button class="ty-reveal-btn" id="tyRevealBtn" title="Hiện 1 ký tự" aria-label="Gợi ý 1 ký tự"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></button>
           </div>
           <div class="ty-input-row">
             <input type="text" id="tyInput" placeholder="Nhập pinyin hoặc chữ Hán..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
@@ -303,16 +312,16 @@
             <div class="ty-ans-row">
               <span class="ty-ans-hanzi" id="tyAnsHanzi"></span>
               <span class="ty-ans-pinyin" id="tyAnsPinyin"></span>
-              <button class="tts-inline-btn" id="tyTts">🔊</button>
+              <button class="tts-inline-btn" id="tyTts" aria-label="Phát âm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
             </div>
             <div class="ty-ans-meaning" id="tyAnsMeaning"></div>
             <div class="ty-ans-ex" id="tyAnsEx" style="display:none"></div>
             <div class="srs-buttons" id="tyBtnsRating" style="display:none;margin-top:16px">
               <div class="srs-btns-inner">
-                <button class="srs-btn srs-again" id="tyBtnAgain">❌ Không nhớ<small>ôn lại</small></button>
-                <button class="srs-btn srs-hard"  id="tyBtnHard">😓 Khó<small>1 ngày</small></button>
-                <button class="srs-btn srs-good"  id="tyBtnGood">😊 Tốt<small>3 ngày</small></button>
-                <button class="srs-btn srs-easy"  id="tyBtnEasy">✅ Dễ<small>4 ngày</small></button>
+                <button class="srs-btn srs-again" id="tyBtnAgain">Quên<small>ôn lại</small></button>
+                <button class="srs-btn srs-hard"  id="tyBtnHard">Khó<small>1 ngày</small></button>
+                <button class="srs-btn srs-good"  id="tyBtnGood">Tốt<small>3 ngày</small></button>
+                <button class="srs-btn srs-easy"  id="tyBtnEasy">Dễ<small>4 ngày</small></button>
               </div>
             </div>
           </div>
@@ -322,13 +331,17 @@
       <!-- ── LISTENING MODE ── -->
       <div class="typing-area" id="listeningArea" style="display:none">
         <div class="session-header">
-          <div class="fc-progress"><span id="lsCurrent">1</span> / <span id="lsTotal">10</span></div>
-          <div class="session-score">✅ <span id="lsCorrectCount">0</span> &nbsp; ❌ <span id="lsWrongCount">0</span></div>
-          <button class="btn-exit" id="exitListening">✕</button>
+          <div class="prog-track session-prog"><div class="prog-fill" id="lsProgFill" style="width:0%"></div></div>
+          <div class="session-progress-num"><span id="lsCurrent">1</span>/<span id="lsTotal">10</span></div>
+          <div class="session-score">
+            <span class="ss-correct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span id="lsCorrectCount">0</span></span>
+            <span class="ss-wrong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span id="lsWrongCount">0</span></span>
+          </div>
+          <button class="btn-exit" id="exitListening" aria-label="Thoát"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         </div>
         <div class="typing-card" id="listeningCard">
           <div class="ls-tts-block">
-            <button class="ls-tts-btn" id="lsTtsBtn">🔊</button>
+            <button class="ls-tts-btn" id="lsTtsBtn" aria-label="Nghe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
             <div class="ls-tts-label" data-vi="Nhấn để nghe lại" data-en="Tap to replay">Nhấn để nghe lại</div>
           </div>
           <div class="ty-label" data-vi="Nghĩa:" data-en="Meaning:">Nghĩa:</div>
@@ -342,16 +355,16 @@
             <div class="ty-ans-row">
               <span class="ty-ans-hanzi" id="lsAnsHanzi"></span>
               <span class="ty-ans-pinyin" id="lsAnsPinyin"></span>
-              <button class="tts-inline-btn" id="lsTtsAns">🔊</button>
+              <button class="tts-inline-btn" id="lsTtsAns" aria-label="Phát âm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
             </div>
             <div class="ty-ans-meaning" id="lsAnsMeaning"></div>
             <div class="ty-ans-ex" id="lsAnsEx" style="display:none"></div>
             <div class="srs-buttons" id="lsBtnsRating" style="display:none;margin-top:16px">
               <div class="srs-btns-inner">
-                <button class="srs-btn srs-again" id="lsBtnAgain">❌ Không nhớ<small>ôn lại</small></button>
-                <button class="srs-btn srs-hard"  id="lsBtnHard">😓 Khó<small>1 ngày</small></button>
-                <button class="srs-btn srs-good"  id="lsBtnGood">😊 Tốt<small>3 ngày</small></button>
-                <button class="srs-btn srs-easy"  id="lsBtnEasy">✅ Dễ<small>4 ngày</small></button>
+                <button class="srs-btn srs-again" id="lsBtnAgain">Quên<small>ôn lại</small></button>
+                <button class="srs-btn srs-hard"  id="lsBtnHard">Khó<small>1 ngày</small></button>
+                <button class="srs-btn srs-good"  id="lsBtnGood">Tốt<small>3 ngày</small></button>
+                <button class="srs-btn srs-easy"  id="lsBtnEasy">Dễ<small>4 ngày</small></button>
               </div>
             </div>
           </div>
@@ -361,15 +374,22 @@
       <!-- ── MCQ MODE ── -->
       <div class="mcq-area" id="mcqArea" style="display:none">
         <div class="session-header">
-          <div class="fc-progress"><span id="mcqCurrent">1</span> / <span id="mcqTotal">10</span></div>
-          <div class="session-score">✅ <span id="mcqCorrectCount">0</span> &nbsp; ❌ <span id="mcqWrongCount">0</span></div>
-          <button class="btn-exit" id="exitMcq">✕</button>
+          <div class="prog-track session-prog"><div class="prog-fill" id="mcqProgFill" style="width:0%"></div></div>
+          <div class="session-progress-num"><span id="mcqCurrent">1</span>/<span id="mcqTotal">10</span></div>
+          <div class="session-score">
+            <span class="ss-correct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span id="mcqCorrectCount">0</span></span>
+            <span class="ss-wrong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span id="mcqWrongCount">0</span></span>
+          </div>
+          <button class="btn-exit" id="exitMcq" aria-label="Thoát"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         </div>
         <div class="mcq-card">
           <div class="mcq-question-word">
             <div class="mcq-hanzi" id="mcqHanzi"></div>
-            <div class="mcq-pinyin" id="mcqPinyin"></div>
-            <button class="tts-inline-btn" id="mcqTts">🔊</button>
+            <div class="mcq-pinyin mcq-pinyin-masked" id="mcqPinyin"></div>
+            <div class="mcq-word-actions">
+              <button type="button" class="btn-ghost mcq-pinyin-toggle" onclick="document.getElementById('mcqPinyin').classList.remove('mcq-pinyin-masked')">Xem pinyin</button>
+              <button class="tts-inline-btn" id="mcqTts" aria-label="Phát âm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
+            </div>
           </div>
           <div class="mcq-prompt" data-vi="Nghĩa của từ này là?" data-en="What does this word mean?">Nghĩa của từ này là?</div>
           <div class="mcq-options" id="mcqOptions"></div>
@@ -380,17 +400,18 @@
       <div class="session-result" id="sessionResult" style="display:none">
         <div class="sr-emoji" id="srEmoji">🎉</div>
         <h2 class="sr-title" id="srTitle">Hoàn thành phiên học!</h2>
-        <div class="sr-stats-row">
+        <div class="sr-stats-grid">
           <div class="sr-stat sr-correct"><span id="srCorrect">0</span><small>Đúng</small></div>
           <div class="sr-stat sr-wrong"><span id="srWrong">0</span><small>Sai</small></div>
           <div class="sr-stat"><span id="srPct">0%</span><small>Điểm</small></div>
-        </div>
-        <div class="sr-stats-row sr-stats-row2">
           <div class="sr-stat"><span id="srTime">—</span><small>Thời gian</small></div>
           <div class="sr-stat sr-xp"><span id="srXP">+0 XP</span><small>Kinh nghiệm</small></div>
           <div class="sr-stat"><span id="srStreak">0 🔥</span><small>Chuỗi ngày</small></div>
         </div>
         <p class="sr-due" id="srDueTomorrow"></p>
-        <button class="btn-primary" id="learnAgainBtn">🔄 Học lại</button>
+        <div class="sr-actions">
+          <button class="btn-primary" onclick="Router.navigateTo('learn')">Về Học</button>
+          <button class="btn-secondary" id="learnAgainBtn">Học lại</button>
+        </div>
       </div>
     </section>

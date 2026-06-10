@@ -1,0 +1,249 @@
+/* ============================================================
+   Cards — Wave 0 shared component system
+   ============================================================ */
+
+.card-hero,
+.card-std,
+.card-quiet {
+  color: var(--text);
+}
+
+.card-hero {
+  padding: var(--s-6) var(--s-8);
+  border-radius: var(--r-5);
+  background: linear-gradient(135deg, var(--chau-hong) 0%, var(--hoang-kim) 100%);
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-3);
+  color: var(--me-bach);
+}
+
+.card-std {
+  padding: var(--s-5);
+  border-radius: var(--r-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--d-base) var(--ease-out),
+              border-color var(--d-base) var(--ease-out),
+              box-shadow var(--d-base) var(--ease-out);
+}
+.card-std:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-2);
+}
+
+.card-quiet {
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  background: var(--surface2);
+  border: none;
+  box-shadow: none;
+}
+
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin: var(--s-8) 0 var(--s-4);
+}
+.sec-title {
+  font-size: var(--t-h3);
+  font-weight: 600;
+  color: var(--text);
+  line-height: var(--lh-snug);
+}
+.sec-eyebrow {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.sec-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+.sec-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.home-shortcuts-header,
+.quest-widget-header,
+.hub-section-label {
+  margin: var(--s-8) 0 var(--s-4);
+}
+.home-shortcuts-title,
+.lh-section-label,
+.tools-section-hd,
+.hub-section-label {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.badge-new,
+.badge-learning,
+.badge-due,
+.badge-mastered,
+.badge-pro,
+.badge-free,
+.badge-soon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-label);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge-new { background: var(--status-new-bg); color: var(--status-new); }
+.badge-learning { background: var(--status-learning-bg); color: var(--status-learning); }
+.badge-due { background: var(--status-due-bg); color: var(--status-due); }
+.badge-mastered { background: var(--status-mastered-bg); color: var(--status-mastered); }
+.badge-pro { background: color-mix(in srgb, var(--pro-gem) 15%, transparent); color: var(--pro-gem); }
+.badge-free { background: var(--status-mastered-bg); color: var(--status-mastered); }
+.badge-soon { background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+
+.prog-track,
+.lh-cont-bar-wrap,
+.lh-rc-progbar,
+.dac-bar-track,
+.xp-bar-track,
+.hcc-bar {
+  height: 6px;
+  background: var(--surface2);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.prog-fill,
+.lh-cont-bar,
+.lh-rc-progfill,
+.dac-bar-fill,
+.xp-bar-fill,
+.hcc-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--r-pill);
+  transition: width var(--d-slow) var(--ease-out);
+}
+.prog-fill[style*="100%"],
+.lh-cont-bar[style*="100%"],
+.lh-rc-progfill[style*="100%"],
+.dac-bar-fill[style*="100%"],
+.xp-bar-fill[style*="100%"],
+.hcc-bar-fill[style*="100%"] {
+  background: var(--thuy-luc);
+}
+
+.lh-util-chip {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0 var(--s-4);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  color: var(--text2);
+  font-size: var(--t-small);
+  font-weight: 600;
+  transition: background var(--d-base) var(--ease-out),
+              border-color var(--d-base) var(--ease-out),
+              color var(--d-base) var(--ease-out);
+}
+.lh-util-chip:hover {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.lh-util-chip svg { width: 16px; height: 16px; }
+
+/* Hub card pattern shared by Tools / Practice / Community. */
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-4);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color var(--d-base) var(--ease-out),
+              box-shadow var(--d-base) var(--ease-out),
+              transform var(--d-base) var(--ease-out);
+  cursor: pointer;
+  position: relative;
+}
+a.tool-card:hover {
+  border-color: var(--chau-hong);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+.tool-card--locked {
+  opacity: .6;
+  cursor: default;
+}
+
+.tool-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tc-icon--red { background: var(--status-due-bg); color: var(--chau-hong); }
+.tc-icon--green { background: var(--status-mastered-bg); color: var(--thuy-luc); }
+.tc-icon--gold { background: var(--status-learning-bg); color: var(--hoang-kim); }
+.tc-icon--indigo { background: var(--info-bg); color: var(--info); }
+.tc-icon--neutral,
+.tc-icon--locked { background: var(--surface2); color: var(--fg-4); }
+
+.tool-card-body { flex: 1; min-width: 0; }
+.tool-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.tool-card-desc {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: var(--lh-snug);
+}
+
+.tool-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.tool-badge--available {
+  background: var(--status-mastered-bg);
+  color: var(--status-mastered);
+}
+.tool-badge--soon {
+  background: var(--surface2);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+.tool-badge--pro {
+  background: color-mix(in srgb, var(--pro-gem) 15%, transparent);
+  color: var(--pro-gem);
+}

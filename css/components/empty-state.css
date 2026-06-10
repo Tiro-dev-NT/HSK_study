@@ -380,3 +380,33 @@
 [data-theme="dark"] .ui-mascot__wifi-off { background: var(--surface); box-shadow: 0 6px 18px rgba(0, 0, 0, .4), inset 0 0 0 3px rgba(220, 38, 38, .25); }
 [data-theme="dark"] .ui-mascot__warning { background: rgba(245, 158, 11, .18); }
 [data-theme="dark"] .ui-mascot__q { text-shadow: 0 2px 0 var(--surface), 0 6px 12px rgba(220, 38, 38, .35); }
+
+.skel {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface2);
+  border-radius: var(--r-2);
+}
+.skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  animation: skel-shimmer 1.2s infinite;
+}
+.skel-line {
+  height: 12px;
+  width: 100%;
+}
+.skel-line + .skel-line { margin-top: var(--s-2); }
+.skel-card {
+  min-height: 84px;
+  border-radius: var(--r-4);
+}
+@keyframes skel-shimmer {
+  100% { transform: translateX(100%); }
+}
+[data-theme="dark"] .skel::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+}

@@ -14,7 +14,7 @@
   background: linear-gradient(135deg, var(--chau-hong) 0%, var(--hoang-kim) 100%);
   border: 2px solid var(--primary);
   box-shadow: var(--shadow-3);
-  color: var(--fg-inv);
+  color: var(--me-bach);
 }
 
 .card-std {
@@ -87,6 +87,88 @@
   text-transform: uppercase;
   color: var(--text3);
 }
+
+.badge-new,
+.badge-learning,
+.badge-due,
+.badge-mastered,
+.badge-pro,
+.badge-free,
+.badge-soon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-label);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge-new { background: var(--status-new-bg); color: var(--status-new); }
+.badge-learning { background: var(--status-learning-bg); color: var(--status-learning); }
+.badge-due { background: var(--status-due-bg); color: var(--status-due); }
+.badge-mastered { background: var(--status-mastered-bg); color: var(--status-mastered); }
+.badge-pro { background: color-mix(in srgb, var(--pro-gem) 15%, transparent); color: var(--pro-gem); }
+.badge-free { background: var(--status-mastered-bg); color: var(--status-mastered); }
+.badge-soon { background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+
+.prog-track,
+.lh-cont-bar-wrap,
+.lh-rc-progbar,
+.dac-bar-track,
+.xp-bar-track,
+.hcc-bar {
+  height: 6px;
+  background: var(--surface2);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.prog-fill,
+.lh-cont-bar,
+.lh-rc-progfill,
+.dac-bar-fill,
+.xp-bar-fill,
+.hcc-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--r-pill);
+  transition: width var(--d-slow) var(--ease-out);
+}
+.prog-fill[style*="100%"],
+.lh-cont-bar[style*="100%"],
+.lh-rc-progfill[style*="100%"],
+.dac-bar-fill[style*="100%"],
+.xp-bar-fill[style*="100%"],
+.hcc-bar-fill[style*="100%"] {
+  background: var(--thuy-luc);
+}
+
+.lh-util-chip {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0 var(--s-4);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  color: var(--text2);
+  font-size: var(--t-small);
+  font-weight: 600;
+  transition: background var(--d-base) var(--ease-out),
+              border-color var(--d-base) var(--ease-out),
+              color var(--d-base) var(--ease-out);
+}
+.lh-util-chip:hover {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.lh-util-chip svg { width: 16px; height: 16px; }
 
 /* Hub card pattern shared by Tools / Practice / Community. */
 .tool-card {

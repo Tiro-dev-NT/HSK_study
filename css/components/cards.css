@@ -1,0 +1,120 @@
+/* ============================================================
+   Cards — Wave 0 shared component system
+   ============================================================ */
+
+.card-hero,
+.card-std,
+.card-quiet {
+  color: var(--text);
+}
+
+.card-hero {
+  padding: var(--s-6) var(--s-8);
+  border-radius: var(--r-5);
+  background: linear-gradient(135deg, var(--chau-hong) 0%, var(--hoang-kim) 100%);
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-3);
+  color: var(--fg-inv);
+}
+
+.card-std {
+  padding: var(--s-5);
+  border-radius: var(--r-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--d-base) var(--ease-out),
+              border-color var(--d-base) var(--ease-out),
+              box-shadow var(--d-base) var(--ease-out);
+}
+.card-std:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-2);
+}
+
+.card-quiet {
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  background: var(--surface2);
+  border: none;
+  box-shadow: none;
+}
+
+/* Hub card pattern shared by Tools / Practice / Community. */
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-4);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color var(--d-base) var(--ease-out),
+              box-shadow var(--d-base) var(--ease-out),
+              transform var(--d-base) var(--ease-out);
+  cursor: pointer;
+  position: relative;
+}
+a.tool-card:hover {
+  border-color: var(--chau-hong);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+.tool-card--locked {
+  opacity: .6;
+  cursor: default;
+}
+
+.tool-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tc-icon--red { background: var(--status-due-bg); color: var(--chau-hong); }
+.tc-icon--green { background: var(--status-mastered-bg); color: var(--thuy-luc); }
+.tc-icon--gold { background: var(--status-learning-bg); color: var(--hoang-kim); }
+.tc-icon--indigo { background: var(--info-bg); color: var(--info); }
+.tc-icon--neutral,
+.tc-icon--locked { background: var(--surface2); color: var(--fg-4); }
+
+.tool-card-body { flex: 1; min-width: 0; }
+.tool-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.tool-card-desc {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: var(--lh-snug);
+}
+
+.tool-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.tool-badge--available {
+  background: var(--status-mastered-bg);
+  color: var(--status-mastered);
+}
+.tool-badge--soon {
+  background: var(--surface2);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+.tool-badge--pro {
+  background: color-mix(in srgb, var(--pro-gem) 15%, transparent);
+  color: var(--pro-gem);
+}

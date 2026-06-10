@@ -41,6 +41,53 @@
   box-shadow: none;
 }
 
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin: var(--s-8) 0 var(--s-4);
+}
+.sec-title {
+  font-size: var(--t-h3);
+  font-weight: 600;
+  color: var(--text);
+  line-height: var(--lh-snug);
+}
+.sec-eyebrow {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.sec-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+.sec-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.home-shortcuts-header,
+.quest-widget-header,
+.hub-section-label {
+  margin: var(--s-8) 0 var(--s-4);
+}
+.home-shortcuts-title,
+.lh-section-label,
+.tools-section-hd,
+.hub-section-label {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
 /* Hub card pattern shared by Tools / Practice / Community. */
 .tool-card {
   display: flex;

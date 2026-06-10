@@ -302,6 +302,8 @@ var Router = (function() {
     if (_pending) { _queued = { page: page, pushState: pushState }; return; }
     page = page || 'home';
     if (page.charAt(0) === '/') page = page.slice(1) || 'home';
+    // Điều hướng đi bất kỳ → thoát trạng thái session (hiện lại right rail + bottom nav)
+    document.body.classList.remove('session-active');
     _pending = true;
     var content = document.getElementById('content');
 

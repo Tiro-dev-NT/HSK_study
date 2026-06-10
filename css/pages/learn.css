@@ -146,12 +146,24 @@
 .srs-easy:hover  { background: var(--success); color: var(--me-bach); }
 .srs-easy:hover small { color: var(--me-bach); }
 .srs-hard:hover, .srs-good:hover { border-color: var(--primary); background: var(--surface2); }
-/* Mobile: nút to, full-width, dễ bấm bằng ngón cái; chừa chỗ cho bottom-nav cố định */
+/* Trạng thái session: ẩn right rail + bottom nav (Calm Study — chrome tối thiểu) */
+body.session-active .right-sidebar,
+body.session-active .bottom-nav { display: none; }
+
+/* Mobile: nút SRS dính đáy màn (bottom-nav đã ẩn) + safe-area-inset-bottom */
 @media (max-width: 640px) {
   .srs-btn { min-height: 60px; font-size: 16px; }
   .srs-btns-inner { gap: var(--s-2); }
   .flashcard { min-height: 300px; padding: var(--s-6) var(--s-4); }
-  .flashcard-area, .typing-area, .mcq-area { padding-bottom: 88px; }
+  body.session-active .srs-buttons {
+    position: fixed; left: 0; right: 0; bottom: 0; margin: 0; z-index: 50;
+    padding: var(--s-3) var(--s-3) calc(var(--s-3) + env(safe-area-inset-bottom));
+    background: var(--bg); border-top: 1px solid var(--border);
+  }
+  body.session-active .srs-buttons .srs-btns-inner { max-width: 720px; margin: 0 auto; }
+  body.session-active .flashcard-area,
+  body.session-active .typing-area,
+  body.session-active .mcq-area { padding-bottom: 132px; }
 }
 
 /* Typing Mode */

@@ -609,8 +609,9 @@ function wireDecksUI() {
     fcIndex   = AppState.fcIndex;
     fcSession = AppState.fcSession;
 
-    // Hide setup, show session
+    // Hide setup, show session (body.session-active → ẩn right rail + bottom nav)
     document.getElementById('deckDetail').style.display = 'none';
+    document.body.classList.add('session-active');
     if (currentLearnMode === 'flashcard') {
       document.getElementById('flashcardArea').style.display  = 'block'; showFcCard();
     } else if (currentLearnMode === 'typing') {
@@ -625,6 +626,7 @@ function wireDecksUI() {
   // Session exit → back to deck detail
   ['exitLearn','exitTyping','exitMcq','exitListening'].forEach(id => {
     document.getElementById(id)?.addEventListener('click', () => {
+      document.body.classList.remove('session-active');
       endLearnSession();
       setTimeout(() => {
         document.getElementById('sessionResult').style.display = 'none';
@@ -635,6 +637,7 @@ function wireDecksUI() {
 
   // Session result: learn again
   document.getElementById('learnAgainBtn')?.addEventListener('click', () => {
+    document.body.classList.remove('session-active');
     document.getElementById('sessionResult').style.display = 'none';
     openDeckDetail(activeDeckId);
   });

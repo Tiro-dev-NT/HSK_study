@@ -93,7 +93,7 @@ var Dictionary = {
     if (!list.length) { wrap.style.display = 'none'; return; }
     wrap.style.display = 'flex';
     chips.innerHTML = list.map(function(q) {
-      return '<button class="dict-recent-chip" data-q="' + q.replace(/"/g,'&quot;') + '">' + q + '</button>';
+      return '<button class="dict-recent-chip" data-q="' + q.replace(/"/g,'&quot;') + '">' + escapeHtml(q) + '</button>';
     }).join('');
     chips.querySelectorAll('.dict-recent-chip').forEach(function(btn) {
       btn.addEventListener('click', function() {

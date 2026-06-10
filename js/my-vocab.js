@@ -125,11 +125,12 @@ var MyVocab = (function() {
       }
       var levelBadge = w.level ? '<span class="mv-level-badge">HSK ' + w.level + '</span>' : '';
 
-      html += '<div class="mv-card' + selectedClass + '" data-hanzi="' + w.h + '">' +
-        '<label class="mv-card-check"><input type="checkbox" data-hanzi="' + w.h + '"' + checked + '/></label>' +
-        '<div class="mv-card-hanzi">' + w.h + '</div>' +
-        '<div class="mv-card-pinyin">' + (w.p || '') + '</div>' +
-        '<div class="mv-card-meaning">' + (w.v || w.e || '') + '</div>' +
+      var hAttr = escapeHtml(w.h);
+      html += '<div class="mv-card' + selectedClass + '" data-hanzi="' + hAttr + '">' +
+        '<label class="mv-card-check"><input type="checkbox" data-hanzi="' + hAttr + '"' + checked + '/></label>' +
+        '<div class="mv-card-hanzi">' + escapeHtml(w.h) + '</div>' +
+        '<div class="mv-card-pinyin">' + escapeHtml(w.p || '') + '</div>' +
+        '<div class="mv-card-meaning">' + escapeHtml(w.v || w.e || '') + '</div>' +
         '<div class="mv-card-tags">' + levelBadge + tagsHtml + '</div>' +
       '</div>';
     });

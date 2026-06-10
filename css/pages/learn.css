@@ -480,6 +480,22 @@
 .lh-hsk0-modules {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px;
 }
+/* Collapse mặc định (W4): ẩn 6 chip, hiện nút mở */
+.lh-tl-node--hsk0-collapsed .lh-hsk0-modules { display: none; }
+.lh-hsk0-toggle {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+  color: var(--text2);
+  font: inherit; font-size: 12px; font-weight: 600;
+  cursor: pointer;
+  transition: border-color .18s, color .18s;
+}
+.lh-hsk0-toggle:hover { border-color: var(--primary); color: var(--text); }
+/* Khi đã mở (bỏ class collapsed) → ẩn nút để khỏi trùng */
+.lh-tl-node--hsk0:not(.lh-tl-node--hsk0-collapsed) .lh-hsk0-toggle { display: none; }
 .lh-hsk0-mod {
   display: flex; flex-direction: column; align-items: center; gap: 5px;
   padding: 10px 6px; background: var(--surface2);

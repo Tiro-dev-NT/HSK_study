@@ -378,11 +378,23 @@ function _lhRenderTimeline() {
     { icon: '05-numbers',  name: 'Số đếm',      route: 'hsk0-numbers' },
     { icon: '06-typing',   name: 'Gõ Pinyin',   route: 'hsk0-typing' }
   ];
-  html += '<div class="lh-tl-node lh-tl-node--hsk0">';
+  // Collapse HSK 0 mặc định — chỉ expand cho người mới đặt placement=hsk0 chưa
+  // qua (W4: 2 tín hiệu "bắt đầu" cạnh tranh — HSK0 6 chip vs Truyện Mai "Bạn ở đây").
+  var _hsk0Passed = localStorage.getItem('hsk0_passed') === '1';
+  var _placement  = localStorage.getItem('hsk_placement_level');
+  var _maiProg = {};
+  try { _maiProg = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}'); } catch (e) {}
+  var _hasMai = Object.keys(_maiProg).some(function(k) { return _maiProg[k] && _maiProg[k].completed; });
+  var _hsk0Expand = (_placement === 'hsk0') && !_hsk0Passed && !_hasMai;
+
+  html += '<div class="lh-tl-node lh-tl-node--hsk0' + (_hsk0Expand ? '' : ' lh-tl-node--hsk0-collapsed') + '">';
   html += '<div class="lh-tl-icon">🔰</div>';
   html += '<div class="lh-tl-body">';
   html += '<div class="lh-tl-name">HSK 0 · Nhập Môn</div>';
   html += '<div class="lh-tl-sub">Thanh điệu · Pinyin · Nét viết · Số đếm</div>';
+  if (!_hsk0Expand) {
+    html += '<button class="lh-hsk0-toggle" onclick="this.closest(\'.lh-tl-node--hsk0\').classList.toggle(\'lh-tl-node--hsk0-collapsed\')">Xem 6 mục nhập môn ▾</button>';
+  }
   html += '<div class="lh-hsk0-modules">';
   for (var mi = 0; mi < HSK0_MODS.length; mi++) {
     var m = HSK0_MODS[mi];

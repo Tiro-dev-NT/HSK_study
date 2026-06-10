@@ -49,6 +49,7 @@ var Games = {
         else if (game === 'racing' && typeof RacingQuiz !== 'undefined') RacingQuiz.start();
         else if (game === 'sentence' && typeof SentenceBuilder !== 'undefined') SentenceBuilder.start();
         else if (game === 'handwriting' && typeof HandwritingGame !== 'undefined') HandwritingGame.start();
+        else if (game === 'tone-trainer' && typeof ToneTrainer !== 'undefined') ToneTrainer.start('games');
       });
     });
   },

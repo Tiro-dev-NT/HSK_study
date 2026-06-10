@@ -87,53 +87,29 @@
       <span class="tool-badge tool-badge--available">Có sẵn</span>
     </a>
 
-    <!-- 🔒 Dịch thuật (Phase O7) -->
-    <a class="tool-card tool-card--locked" href="#" onclick="Router.navigateTo('translate');return false;">
-      <div class="tool-card-icon tc-icon--locked">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-card-name">Dịch thuật</div>
-        <div class="tool-card-desc">Zh ↔ Vi ↔ En · phân tích câu · ghi chú từ vựng</div>
-      </div>
-      <span class="tool-badge tool-badge--soon">Phase O7</span>
-    </a>
-
-    <!-- 🔒 Phân tích văn bản (Phase O5) -->
-    <a class="tool-card tool-card--locked" href="#" onclick="Router.navigateTo('text-analyzer');return false;">
-      <div class="tool-card-icon tc-icon--locked">
+    <!-- ✅ Phân tích văn bản (Phase O5 — đã build) -->
+    <a class="tool-card" href="#" onclick="Router.navigateTo('text-analyzer');return false;">
+      <div class="tool-card-icon tc-icon--indigo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">Phân tích văn bản</div>
         <div class="tool-card-desc">Dán văn bản Trung → highlight từ theo HSK · tra nhanh</div>
       </div>
-      <span class="tool-badge tool-badge--soon">Phase O5</span>
+      <span class="tool-badge tool-badge--available">Có sẵn</span>
     </a>
 
-    <!-- 🔒 OCR (Phase U) -->
-    <a class="tool-card tool-card--locked" href="#" onclick="Router.navigateTo('ocr');return false;">
+    <!-- 🔒 Gom 3 stub chưa build thành 1 card (W4: gỡ nhiễu stub) -->
+    <div class="tool-card tool-card--locked tool-card--soongroup">
       <div class="tool-card-icon tc-icon--locked">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
       <div class="tool-card-body">
-        <div class="tool-card-name">OCR nhận dạng chữ</div>
-        <div class="tool-card-desc">Chụp ảnh sách / biển hiệu → tra ngay từ vựng</div>
+        <div class="tool-card-name">Sắp ra mắt</div>
+        <div class="tool-card-desc">Dịch thuật (Zh↔Vi↔En) · OCR nhận dạng chữ · Luyện gõ Pinyin</div>
       </div>
-      <span class="tool-badge tool-badge--soon">Phase U</span>
-    </a>
-
-    <!-- 🔒 Luyện gõ tiếng Trung (Phase M) -->
-    <a class="tool-card tool-card--locked" href="#" onclick="Router.navigateTo('typing');return false;">
-      <div class="tool-card-icon tc-icon--locked">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M8 13h.01M12 13h.01M16 13h.01M7 17h10"/></svg>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-card-name">Luyện gõ tiếng Trung</div>
-        <div class="tool-card-desc">Tốc độ gõ Pinyin · WPM tracker · leaderboard</div>
-      </div>
-      <span class="tool-badge tool-badge--soon">Phase M</span>
-    </a>
+      <span class="tool-badge tool-badge--soon">Đang phát triển</span>
+    </div>
 
   </div>
 

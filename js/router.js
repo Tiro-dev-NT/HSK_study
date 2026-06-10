@@ -187,7 +187,9 @@ var Router = (function() {
     'practice':     function() {
       if (typeof lhRefreshDueBadges === 'function') lhRefreshDueBadges();
     },
-    'community':    function() {},
+    'community':    function() {
+      if (typeof Community !== 'undefined') Community.init();
+    },
     'leaderboard':  function() {
       if (typeof Leaderboard !== 'undefined') Leaderboard.init();
     },

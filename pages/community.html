@@ -5,27 +5,20 @@
     <p class="hub-sub">Kết nối, thi đua và cùng học với học viên Hanzi Genz</p>
   </div>
 
-  <!-- Live feature banner -->
-  <div style="margin:0 var(--s-6) var(--s-6);padding:var(--s-5) var(--s-6);background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-4);display:flex;gap:var(--s-4);align-items:center">
-    <span style="font-size:2rem">🏆</span>
-    <div>
-      <div style="font-weight:600;color:var(--text1);margin-bottom:2px">Bảng Phong Vân đã mở</div>
-      <div style="font-size:var(--t-small);color:var(--text2)">Thi đua nhẹ theo ngày học tuần/tháng. Mặc định không công khai — bạn tự bật opt-in khi muốn tham gia.</div>
-    </div>
+  <!-- Bé Rồng host + welcome bubble -->
+  <div class="comm-host">
+    <img src="assets/icon-soft.webp" class="comm-host-img" alt="Bé Rồng" width="48" height="48" loading="lazy"/>
+    <div class="comm-host-bubble">Chào bạn! Đây là nơi cùng học và thi đua nhẹ nhàng — không ồn ào. 🐉</div>
   </div>
 
-  <!-- ── Social features ── -->
-  <div class="hub-section-label" style="margin-bottom:var(--s-3)">Cộng đồng</div>
-  <div style="display:flex;flex-direction:column;gap:var(--s-3);padding:0 var(--s-6) var(--s-6)">
+  <!-- Hero — Bảng Phong Vân preview (JS render: Community.init) -->
+  <div class="comm-hero" id="commHero">
+    <div class="comm-hero-loading">Đang tải Bảng Phong Vân…</div>
+  </div>
 
-    <a class="comm-card" href="#" onclick="Router.navigateTo('leaderboard');return false;">
-      <div class="comm-card-icon">🏆</div>
-      <div class="comm-card-body">
-        <div class="comm-card-name">Bảng Phong Vân</div>
-        <div class="comm-card-desc">Xếp hạng tuần / tháng · opt-in · không dùng email</div>
-      </div>
-      <span class="comm-badge comm-badge--available">Đã mở</span>
-    </a>
+  <!-- ── Feature grid 2x2 ── -->
+  <div class="hub-section-label">Cộng đồng</div>
+  <div class="comm-grid">
 
     <div class="comm-card comm-card--locked">
       <div class="comm-card-icon">🍵</div>
@@ -33,7 +26,7 @@
         <div class="comm-card-name">Sảnh Trà</div>
         <div class="comm-card-desc">Diễn đàn học nhóm · hỏi đáp · thảo luận ngữ pháp</div>
       </div>
-      <span class="comm-badge comm-badge--soon">Phase V2</span>
+      <span class="comm-badge comm-badge--soon">Sắp ra mắt</span>
     </div>
 
     <div class="comm-card comm-card--locked">
@@ -42,7 +35,7 @@
         <div class="comm-card-name">Lưu Ý Hay</div>
         <div class="comm-card-desc">Ghi chú ngắn từ cộng đồng · mẹo học hay · upvote</div>
       </div>
-      <span class="comm-badge comm-badge--soon">Phase V3</span>
+      <span class="comm-badge comm-badge--soon">Sắp ra mắt</span>
     </div>
 
     <div class="comm-card comm-card--locked">
@@ -51,25 +44,7 @@
         <div class="comm-card-name">Tủ Sách Cộng Đồng</div>
         <div class="comm-card-desc">Chia sẻ bộ thẻ · review sách · danh sách đọc</div>
       </div>
-      <span class="comm-badge comm-badge--soon">Phase V4</span>
-    </div>
-
-    <div class="comm-card comm-card--locked">
-      <div class="comm-card-icon">🎓</div>
-      <div class="comm-card-body">
-        <div class="comm-card-name">Sảnh Trà Học Tập</div>
-        <div class="comm-card-desc">Phòng học nhóm online · đặt mục tiêu chung</div>
-      </div>
-      <span class="comm-badge comm-badge--soon">Phase V5</span>
-    </div>
-
-    <div class="comm-card comm-card--locked">
-      <div class="comm-card-icon">🏫</div>
-      <div class="comm-card-body">
-        <div class="comm-card-name">Lớp Học Mở</div>
-        <div class="comm-card-desc">Giáo viên tạo lớp · giao bài · theo dõi tiến độ</div>
-      </div>
-      <span class="comm-badge comm-badge--soon">Phase V6</span>
+      <span class="comm-badge comm-badge--soon">Sắp ra mắt</span>
     </div>
 
     <div class="comm-card comm-card--locked">
@@ -78,9 +53,35 @@
         <div class="comm-card-name">Trang Tri Ân</div>
         <div class="comm-card-desc">Ghi danh học viên đóng góp · cảm ơn cộng đồng</div>
       </div>
-      <span class="comm-badge comm-badge--soon">Phase Q3.7</span>
+      <span class="comm-badge comm-badge--soon">Sắp ra mắt</span>
     </div>
 
+  </div>
+
+  <!-- ── Premium band — Học cùng nhau ── -->
+  <div class="comm-band">
+    <div class="comm-band-label">Học cùng nhau</div>
+    <div class="comm-band-cards">
+
+      <div class="comm-card comm-card--locked">
+        <div class="comm-card-icon">🎓</div>
+        <div class="comm-card-body">
+          <div class="comm-card-name">Sảnh Trà Học Tập</div>
+          <div class="comm-card-desc">Phòng học nhóm online · Pomodoro chung · đặt mục tiêu</div>
+        </div>
+        <span class="comm-badge comm-badge--soon">Sắp ra mắt</span>
+      </div>
+
+      <div class="comm-card comm-card--locked">
+        <div class="comm-card-icon">🏫</div>
+        <div class="comm-card-body">
+          <div class="comm-card-name">Lớp Học Mở</div>
+          <div class="comm-card-desc">Giáo viên tạo lớp · giao bài · theo dõi tiến độ</div>
+        </div>
+        <span class="comm-badge comm-badge--soon">Sắp ra mắt</span>
+      </div>
+
+    </div>
   </div>
 
   <!-- ── Honor Hall link ── -->

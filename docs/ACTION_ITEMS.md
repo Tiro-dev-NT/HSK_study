@@ -9,7 +9,7 @@
   - Grid **2x2** (Sảnh Trà/Lưu Ý Hay/Tủ Sách/Trang Tri Ân) + **premium band "Học cùng nhau"** (Sảnh Trà Học Tập/Lớp Học Mở) + Honor Hall. Badge locked đổi "Phase Vx" → "Sắp ra mắt" (user-facing). Bé Rồng host + welcome bubble.
   - CSS mới `css/pages/community.css` (token-only, không hardcode hex). Đăng ký `index.html` (`?v=1.0`) + `router.js`.
   - **Verified in-browser:** light + dark + mobile 375px, 0 lỗi console. Fix bug mobile banner bóp chữ (flex-wrap + CTA full-width).
-- ☑ **Phần B — Trang Tri Ân: CODE DONE** (branch `community-tri-an`), ⚠️ **CHỜ chạy SQL prod** mới live:
+- ☑ **Phần B — Trang Tri Ân: CODE pushed `main` `6b08f32`**, ⚠️ **CHỜ chạy SQL prod** mới live:
   - **SQL `sql/v24_community_appreciation.sql`** (force-add vì `.gitignore` có `*.sql`): +3 cột `feedback` (`public_consent`/`is_approved`/`is_featured`) + RPC public sanitized `community_appreciation_wall`/`_featured` (GRANT anon+authenticated, **KHÔNG trả email/user_id**) + admin RPC `admin_set_feedback_approved`/`_featured` + mở rộng `admin_list_feedback` (DROP+CREATE thêm 3 cột). RLS feedback giữ nguyên. **PHẢI chạy thủ công trên Supabase prod.**
   - Page `/tri-an`: `pages/tri-an.html` + `js/tri-an.js` (`TriAn.init` — featured spotlight + wall grid + filter pills, mọi field `escapeHtml`, empty-state graceful khi RPC chưa có) + `css/pages/tri-an.css`. Route + init `router.js`, đăng ký `index.html` `?v=1.0`.
   - Consent: checkbox `fbPublicConsent` ở `pages/feedback.html` + `js/feedback.js` (lưu `public_consent` + sync lên Supabase, reset sau submit) + style `.fb-consent` (`home.css`).

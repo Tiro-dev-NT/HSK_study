@@ -1,0 +1,172 @@
+/* ════════════════════════════════════════════════════════
+   Trang Tri Ân — appreciation wall (editorial, ấm áp)
+   • Dùng .hub-page / .hub-header (coming-soon.css)
+   • Token-only — KHÔNG hardcode hex (giữ dark mode)
+   ════════════════════════════════════════════════════════ */
+
+/* ── Hero — Bé Rồng host ── */
+.ta-hero {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin: 0 var(--s-6) var(--s-6);
+  padding: var(--s-5) var(--s-6);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-4);
+}
+.ta-hero-img { width: 56px; height: 56px; flex-shrink: 0; }
+.ta-hero-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+.ta-hero-msg {
+  font-size: var(--t-body);
+  color: var(--text2);
+  line-height: var(--lh-normal);
+  flex: 1;
+  min-width: 200px;
+}
+.ta-hero-cta {
+  flex-shrink: 0;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-3);
+  padding: 9px 18px;
+  font-size: var(--t-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.ta-hero-cta:hover { opacity: .88; }
+
+/* ── Monthly MVP spotlight ── */
+.ta-featured {
+  margin: 0 var(--s-6) var(--s-6);
+  padding: var(--s-6);
+  background: var(--warning-bg);
+  border: 1px solid rgba(245,158,11,.28);
+  border-radius: var(--r-4);
+}
+.ta-featured-badge {
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--hoang-kim-2);
+  margin-bottom: var(--s-3);
+}
+.ta-featured-quote {
+  margin: 0 0 var(--s-3);
+  font-size: var(--t-h3);
+  line-height: var(--lh-snug);
+  color: var(--text1);
+  font-weight: 500;
+}
+.ta-featured-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: var(--t-small);
+}
+
+/* ── Filter pills ── */
+.ta-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding: 0 var(--s-6) var(--s-5);
+}
+.ta-pill {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 6px 14px;
+  font-size: var(--t-small);
+  color: var(--text2);
+  cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+}
+.ta-pill:hover { border-color: var(--primary); }
+.ta-pill.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── Wall grid ── */
+.ta-wall {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-3);
+  padding: 0 var(--s-6) var(--s-12);
+}
+.ta-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text3);
+  font-size: var(--t-small);
+  padding: var(--s-8) 0;
+}
+.ta-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-4);
+  padding: var(--s-5);
+}
+.ta-card-star {
+  position: absolute;
+  top: var(--s-3);
+  right: var(--s-3);
+  font-size: 0.9rem;
+}
+.ta-card-msg {
+  font-size: var(--t-body);
+  color: var(--text1);
+  line-height: var(--lh-normal);
+  margin-bottom: var(--s-3);
+}
+.ta-card-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  font-size: var(--t-small);
+}
+.ta-name { font-weight: 600; color: var(--text2); }
+.ta-card-tag {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 1px 8px;
+  font-size: 0.68rem;
+  color: var(--text3);
+}
+.ta-stars { color: var(--hoang-kim); letter-spacing: 1px; margin-left: auto; }
+
+/* ── Empty state ── */
+.ta-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--s-10) var(--s-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+}
+.ta-empty-title { font-size: var(--t-h3); font-weight: 700; color: var(--text1); }
+.ta-empty-desc { font-size: var(--t-small); color: var(--text2); max-width: 360px; line-height: var(--lh-normal); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .ta-hero { margin: 0 var(--s-4) var(--s-4); padding: var(--s-4); }
+  .ta-featured { margin: 0 var(--s-4) var(--s-4); padding: var(--s-5); }
+  .ta-filters { padding: 0 var(--s-4) var(--s-4); }
+  .ta-wall { grid-template-columns: 1fr; padding: 0 var(--s-4) var(--s-10); }
+  .ta-hero-cta { width: 100%; }
+}

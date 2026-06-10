@@ -456,6 +456,12 @@
   outline: none; resize: vertical; font-family: var(--font-ui); transition: .2s;
 }
 .fb-textarea:focus { border-color: var(--primary); }
+.fb-consent {
+  display: flex; align-items: flex-start; gap: 8px; margin: 14px 0 16px;
+  font-size: 13px; color: var(--text2); line-height: 1.5; cursor: pointer;
+}
+.fb-consent input { margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+.fb-consent strong { color: var(--text1); }
 .fb-success {
   text-align: center; padding: 20px; background: var(--success-bg);
   border: 1px solid var(--success); border-radius: 12px; margin: 12px 0;

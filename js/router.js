@@ -59,6 +59,7 @@ var Router = (function() {
     '/practice':        'practice',
     '/community':       'community',
     '/leaderboard':     'leaderboard',
+    '/tri-an':          'tri-an',
     // Nav v2 — off-path
     '/stories':         'stories',
     '/explore':         'explore',
@@ -189,6 +190,9 @@ var Router = (function() {
     },
     'community':    function() {
       if (typeof Community !== 'undefined') Community.init();
+    },
+    'tri-an':       function() {
+      if (typeof TriAn !== 'undefined') TriAn.init();
     },
     'leaderboard':  function() {
       if (typeof Leaderboard !== 'undefined') Leaderboard.init();

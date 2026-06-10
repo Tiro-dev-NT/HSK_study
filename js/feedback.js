@@ -44,12 +44,14 @@ var Feedback = {
     document.getElementById('fbSubmit')?.addEventListener('click', function() {
       const msg = document.getElementById('fbMessage')?.value.trim();
       if (!msg) { alert('Vui lòng nhập nội dung góp ý!'); return; }
+      const consentEl = document.getElementById('fbPublicConsent');
       const list = JSON.parse(localStorage.getItem(Feedback.STORAGE_KEY) || '[]');
       list.unshift({
         id:       Date.now(),
         rating:   Feedback._rating,
         category: Feedback._category,
         message:  msg,
+        public_consent: !!(consentEl && consentEl.checked),
         date: new Date().toLocaleDateString('vi-VN'),
         time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
       });
@@ -59,6 +61,7 @@ var Feedback = {
       Feedback.syncPending();
 
       document.getElementById('fbMessage').value = '';
+      if (consentEl) consentEl.checked = false;
       const ok = document.getElementById('fbSuccess');
       if (ok) {
         ok.style.display = 'block';
@@ -107,6 +110,7 @@ var Feedback = {
           priority:     fb.category === 'bug' ? 'high' : 'normal',
           rating:       fb.rating,
           is_pro:       !!isPro,
+          public_consent: !!fb.public_consent,
           created_at:   fb.id ? new Date(fb.id).toISOString() : undefined
         };
       });

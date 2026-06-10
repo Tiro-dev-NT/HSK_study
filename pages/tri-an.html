@@ -1,0 +1,34 @@
+<div class="hub-page tri-an-page">
+
+  <div class="hub-header">
+    <h1 class="hub-title">🌸 Trang Tri Ân</h1>
+    <p class="hub-sub">Cảm ơn những góp ý giúp Hanzi Genz tốt hơn từng ngày</p>
+  </div>
+
+  <!-- Bé Rồng host + CTA gửi góp ý -->
+  <div class="ta-hero">
+    <img src="assets/icon-soft.webp" class="ta-hero-img" alt="Bé Rồng" width="56" height="56" loading="lazy"/>
+    <div class="ta-hero-body">
+      <div class="ta-hero-msg">Mỗi góp ý của bạn đều được lắng nghe. Cảm ơn cộng đồng đã đồng hành! 🐉</div>
+      <button type="button" class="ta-hero-cta" onclick="Router.navigateTo('feedback')">Gửi góp ý</button>
+    </div>
+  </div>
+
+  <!-- Monthly MVP spotlight (JS render) -->
+  <div id="taFeatured"></div>
+
+  <!-- Filter pills -->
+  <div class="ta-filters" id="taFilters">
+    <button type="button" class="ta-pill active" data-cat="">Tất cả</button>
+    <button type="button" class="ta-pill" data-cat="feature">Tính năng</button>
+    <button type="button" class="ta-pill" data-cat="content">Nội dung</button>
+    <button type="button" class="ta-pill" data-cat="ui">Giao diện</button>
+    <button type="button" class="ta-pill" data-cat="other">Khác</button>
+  </div>
+
+  <!-- Wall grid (JS render) -->
+  <div class="ta-wall" id="taWall">
+    <div class="ta-loading">Đang tải lời tri ân…</div>
+  </div>
+
+</div>

@@ -191,7 +191,7 @@ var AdminFeedback = (function() {
       + '<div class="adm-fb-reply-actions">'
       + '<div class="adm-row adm-gap-6">'
       + '<button class="adm-btn-secondary-sm" id="fbMarkResolved">✓ Đã giải quyết</button>'
-      + '<button class="adm-btn-ghost" style="font-size:12px">⭐ Promote Trang Tri Ân</button>'
+      + _curationBtns(f)
       + '</div>'
       + '<div class="adm-row adm-gap-6">'
       + '<button class="adm-btn-ghost" style="font-size:12px">Lưu nháp</button>'
@@ -205,6 +205,57 @@ var AdminFeedback = (function() {
     if (sendBtn) sendBtn.addEventListener('click', function() { _sendReply(f.id); });
     var resolveBtn = document.getElementById('fbMarkResolved');
     if (resolveBtn) resolveBtn.addEventListener('click', function() { _markResolved(f.id); });
+    var approveBtn = document.getElementById('fbApproveBtn');
+    if (approveBtn) approveBtn.addEventListener('click', function() { _setApproved(f.id, !f.is_approved); });
+    var featureBtn = document.getElementById('fbFeatureBtn');
+    if (featureBtn && !featureBtn.disabled) featureBtn.addEventListener('click', function() { _setFeatured(f.id, !f.is_featured); });
+  }
+
+  // Trang Tri Ân curation buttons (duyệt công khai + chọn MVP tháng).
+  function _curationBtns(f) {
+    var approve;
+    if (!f.public_consent) {
+      approve = '<button class="adm-btn-ghost" style="font-size:12px" disabled title="User chưa cho phép đăng công khai">🔒 Chưa cho công khai</button>';
+    } else {
+      approve = '<button class="adm-btn-ghost" id="fbApproveBtn" style="font-size:12px">'
+        + (f.is_approved ? '✓ Đang công khai' : '🌸 Duyệt công khai') + '</button>';
+    }
+    var canFeature = f.public_consent && f.is_approved;
+    var feature = '<button class="adm-btn-ghost" id="fbFeatureBtn" style="font-size:12px"'
+      + (canFeature ? '' : ' disabled title="Cần duyệt công khai trước"') + '>'
+      + (f.is_featured ? '🌟 Đang là MVP' : '🌟 Đặt làm MVP') + '</button>';
+    return approve + feature;
+  }
+
+  async function _setApproved(fbId, val) {
+    var resEl = document.getElementById('fbReplyResult');
+    if (window.SB) {
+      var res = await SB.rpc('admin_set_feedback_approved', { p_id: fbId, p_val: val });
+      if (res.error || (res.data && res.data.ok === false)) {
+        _setResult(resEl, '❌ ' + ((res.data && res.data.error) || (res.error && res.error.message) || 'lỗi'), false);
+        return;
+      }
+    }
+    var f = _items.find(function(x) { return String(x.id) === String(fbId); });
+    if (f) { f.is_approved = val; if (!val) f.is_featured = false; }
+    if (_selected && String(_selected.id) === String(fbId)) _renderDetail(f);
+    _setResult(resEl, val ? '✅ Đã duyệt lên Trang Tri Ân' : '✅ Đã gỡ khỏi Trang Tri Ân', true);
+  }
+
+  async function _setFeatured(fbId, val) {
+    var resEl = document.getElementById('fbReplyResult');
+    if (window.SB) {
+      var res = await SB.rpc('admin_set_feedback_featured', { p_id: fbId, p_val: val });
+      if (res.error || (res.data && res.data.ok === false)) {
+        _setResult(resEl, '❌ ' + ((res.data && res.data.error) || (res.error && res.error.message) || 'lỗi'), false);
+        return;
+      }
+    }
+    if (val) _items.forEach(function(x) { x.is_featured = false; }); // chỉ 1 MVP
+    var f = _items.find(function(x) { return String(x.id) === String(fbId); });
+    if (f) f.is_featured = val;
+    if (_selected && String(_selected.id) === String(fbId)) _renderDetail(f);
+    _setResult(resEl, val ? '🌟 Đã đặt làm MVP tháng' : '✅ Đã bỏ MVP', true);
   }
 
   function _renderUserAside(f) {

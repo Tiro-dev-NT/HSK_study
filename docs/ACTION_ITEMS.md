@@ -1,5 +1,19 @@
 # Action Items
 
+## 🟢 Session 2026-06-10 (b) — Cộng đồng Hub V0 (branch `community-hub-v0`)
+
+> Spec đầy đủ: `docs/plans/community-build.md` (Phần A = Hub V0 · Phần B = Trang Tri Ân chờ làm). Ý tưởng Phase V: `docs/design/DESIGN_IDEAS.md`.
+
+- ☑ **Hub V0 (Phần A) DONE** — polish layout `/community` theo design 53, FE thuần (KHÔNG đụng Supabase):
+  - Hero **Bảng Phong Vân preview**: podium top-3 (hạng 2-1-3) + dòng rank của tôi, tái dùng RPC `get_leaderboard` (p_limit 3). Fallback banner khi chưa login / chưa opt-in / lỗi. Module mới `js/community.js` (`Community.init`), router init map gọi.
+  - Grid **2x2** (Sảnh Trà/Lưu Ý Hay/Tủ Sách/Trang Tri Ân) + **premium band "Học cùng nhau"** (Sảnh Trà Học Tập/Lớp Học Mở) + Honor Hall. Badge locked đổi "Phase Vx" → "Sắp ra mắt" (user-facing). Bé Rồng host + welcome bubble.
+  - CSS mới `css/pages/community.css` (token-only, không hardcode hex). Đăng ký `index.html` (`?v=1.0`) + `router.js`.
+  - **Verified in-browser:** light + dark + mobile 375px, 0 lỗi console. Fix bug mobile banner bóp chữ (flex-wrap + CTA full-width).
+- ☐ **Phần B — Trang Tri Ân** (chờ): chạy SQL `v24_community_appreciation` (cột `public_consent/is_approved/is_featured` + RPC public sanitized) → page `/tri-an` + consent feedback + admin curation. Chi tiết `community-build.md` §B.
+- ⚠️ **Lưu ý:** `implementation_plan.md` (gitignored) bị hook auto-restore revert khi đổi branch → các sửa Phase V design-sync turn trước trong file đó MẤT; chi tiết Phase V vẫn an toàn ở `DESIGN_IDEAS.md` + `community-build.md`. Nếu muốn plan chính thức phản ánh → chạy `/sync-plan` trên `main`.
+
+---
+
 ## ✅ Session 2026-06-10 — Review toàn diện + fix data-loss + lazy-load (đã push `main` → deploy)
 
 > Bối cảnh: báo cáo review toàn diện 2026-06-10 (sức khỏe codebase + plan vs thực tế + Top-5). Chi tiết findings + trạng thái: memory `review-2026-06-10-findings`. Plan đồng bộ: `implementation_plan.md` block **v5.0 (2026-06-10) Reality Sync** ở đầu file.
@@ -10,6 +24,8 @@
 - ☑ **Bỏ SRS pull cap 2000** (`08a8adb`): `Sync._fetchAllSRS()` paginate 1000-row/trang ở pullAll+mergeAll (trước `.limit(2000)` truncate im lặng khi >2000 thẻ).
 - ☑ **Lazy-load data theo route** (`0e8e914`): `js/data-loader.js` (DataLoader) inject data on-demand theo route, router `_navigateTo` await `ensureForPage()` trước init. Cắt **~2.3MB** khỏi first-paint (course 1.9MB + hskk/reader/shadowing/grammar/readings/radicals214). **Verified:** home lazy globals undefined, mỗi route load đúng bundle + render OK, idempotent, 0 lỗi. Convention mới đã ghi `CLAUDE.md` (thêm content data → vào `data-loader.js` bundle, KHÔNG `<script>` index.html).
 - ☑ **Đồng bộ doc** (local, gitignored): `implementation_plan.md` (header v4.8→v5.0 + bảng tiến trình flip O/P/Q/R/S/Y/A1/V1 sang live + vá tham chiếu gãy "v5.0 Strategy Council" + đính chính mascot Bé Rồng/giá SKU 2.490.000đ) · `BUG_REPORT.md` (3 entry) · `CLAUDE.md` (data-loader + key `hsk_decks_v3`).
+
+**🎨 Design & Nav review (cùng ngày):** khảo sát app thật mobile+desktop → `docs/DESIGN_NAV_REVIEW_2026-06-10.md` (5 wave W1-W5). 🔴 P0: copy "HSK 2.0" còn trong pricing/terms/free-vs-pro (compliance — app đã xóa HSK 2.0!) + first-visit mobile 2-3 prompt chồng nhau. 🟠 P1: FAB sheet 12 mục flat thiếu Đọc truyện/Gia sư AI + router thiếu `_pageTabMap` (trang con không active tab cha) + hub Tools/Practice vượt quota 8 mục.
 
 **🟠 FOLLOW-UP (Top-5 review còn lại):**
 - ☐ **Split HSK3 lvl5-9 on-demand** — phần còn lại của lazy-load: `v3/hsk3_lvl1-9.js` (~3MB) hiện vẫn upfront vì `HSK3_DATA` dùng khắp app (dictionary/quiz/SRS). Cần tách lvl5-9 load khi cần (khó hơn vì nhiều consumer "all levels").
@@ -61,7 +77,7 @@
 
 **🟡 ROI cao về sau:**
 - ☐ **E — Ôn-điểm-yếu** (heuristic trên lapses/wrong sẵn có, client-side, cost 0) — làm cùng B.
-- ☐ **F — Community async** (Sảnh Trà forum + peer-review bài nói/viết) — sau khi A giữ chân.
+- ☐ **F — Community async** (Sảnh Trà forum + peer-review bài nói/viết) — sau khi A giữ chân. 🎨 Design specs Phase V đã chốt 2026-06: `docs/design/53-community-hub` (hub layout) · `63-luu-y-hay` · `64-tu-sach-cong-dong` · `65-sanh-tra-hoc-tap` (V5 đổi concept → co-study rooms Pomodoro chung, bỏ paired voice+whiteboard). Chi tiết: cây Phase V trong `implementation_plan.md`.
 - ☐ **Kiểm:** Duolingo có course Trung-cho-người-Việt chưa (độ bền moat).
 
 **⚫ ĐÃ PHỦ QUYẾT (đừng quay lại):** HelloTalk 1-1 chat · realtime voice đua Doubao · handwriting input+OCR (Phase U) · đua từ điển Pleco · scrape content bản quyền · notification-spam/streak-shaming.

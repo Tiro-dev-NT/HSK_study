@@ -187,9 +187,13 @@ var Gamification = {
         return s.dueDate && s.dueDate <= today;
       }).length;
       dEl.textContent = due;
-      // Sync due review card on home page
-      var dEl2 = document.getElementById('statDue2');
-      if (dEl2) dEl2.textContent = due;
+      // Toggle "Ôn tập (N)" trong hero — chỉ hiện khi có từ cần ôn
+      var revBtn = document.getElementById('hccReviewBtn');
+      if (revBtn) {
+        revBtn.style.display = due > 0 ? '' : 'none';
+        var revCount = revBtn.querySelector('.hcc-rev-count');
+        if (revCount) revCount.textContent = due;
+      }
     }
 
     // Word Journey widget
@@ -550,13 +554,11 @@ var Gamification = {
     if (!welcome) return;
     var learned = (typeof AppState !== 'undefined' && AppState.totalLearned) ? AppState.totalLearned() : 0;
     var isNew = learned === 0;
-    var statsRow = page.querySelector('.stats-row');
-    var journey  = page.querySelector('.word-journey-widget');
-    var cont     = page.querySelector('.home-continue-card');
+    var statsCompact = page.querySelector('.home-stats-compact');
+    var cont         = page.querySelector('.home-continue-card');
     welcome.style.display = isNew ? 'flex' : 'none';
-    if (statsRow) statsRow.style.display = isNew ? 'none' : '';
-    if (journey)  journey.style.display  = isNew ? 'none' : '';
-    if (cont)     cont.style.display     = isNew ? 'none' : '';
+    if (statsCompact) statsCompact.style.display = isNew ? 'none' : '';
+    if (cont)         cont.style.display         = isNew ? 'none' : '';
   },
 
   _updateContinueCard: function() {

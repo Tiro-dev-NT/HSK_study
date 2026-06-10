@@ -2,37 +2,33 @@
    HOME PAGE v2 — Smart Hub Tổng quan
    ══════════════════════════════════════════════════ */
 
-/* ── Word Journey widget (token-based so it survives dark mode) ── */
-.word-journey-widget {
-  margin: 16px 0;
-  padding: 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+/* ── C3 · Stats compact (gộp stats + word-journey + xp bar) ── */
+.home-stats-compact {
+  display: flex; flex-direction: column; gap: var(--s-3);
+  margin-bottom: var(--s-5);
 }
-.word-journey-widget .wj-title {
-  font-size: 14px; font-weight: 600;
-  color: var(--text); margin-bottom: 12px;
+.hsc-nums {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: var(--s-2) var(--s-3);
+  font-size: var(--t-small); color: var(--text2);
 }
-.word-journey-widget .wj-stages {
-  display: flex; gap: 8px; margin-bottom: 10px;
-}
-.word-journey-widget .wj-stage {
-  flex: 1 1 0;
-  display: flex; flex-direction: column; align-items: center;
+.hsc-nums strong { font-size: var(--t-h3); font-weight: 800; color: var(--text); letter-spacing: -.01em; }
+.hsc-sep, .hsc-lvl { color: var(--text3); }
+.streak-fire { margin: 0 1px; }
+.hsc-journey .wj-stages { display: flex; gap: var(--s-2); margin-bottom: var(--s-2); }
+.wj-stage {
+  flex: 1 1 0; display: flex; flex-direction: column; align-items: center;
   gap: 2px; min-width: 0; text-align: center;
 }
-.word-journey-widget .wj-emoji { font-size: 20px; line-height: 1; }
-.word-journey-widget .wj-count {
-  font-size: 15px; font-weight: 700; color: var(--text);
+.wj-emoji { font-size: 18px; line-height: 1; }
+.wj-count { font-size: 14px; font-weight: 700; color: var(--text); }
+.wj-label { font-size: 10px; color: var(--text3); line-height: 1.2; }
+.hsc-journey .wj-bar {
+  height: 6px; background: var(--surface2);
+  border-radius: var(--r-pill); overflow: hidden; display: flex;
 }
-.word-journey-widget .wj-label {
-  font-size: 10px; color: var(--text2); line-height: 1.2;
-}
-.word-journey-widget .wj-bar {
-  height: 8px; background: var(--border);
-  border-radius: 4px; overflow: hidden; display: flex;
-}
+.hsc-xp .xp-bar-track { height: 4px; }
+.hsc-xp .xp-bar-footer { margin-top: 4px; font-size: var(--t-label); color: var(--text3); }
 
 /* ── Greeting ── */
 .home-greeting { margin-bottom: 24px; }
@@ -50,123 +46,82 @@
 }
 .home-greeting-sub { font-size: 13px; color: var(--text2); margin: 0; }
 
-/* ── First-visit welcome card (W2: thay khối "toàn số 0" cho user mới) ── */
+/* ── C2 · Hero welcome state (nền gradient kế thừa từ .card-hero) ── */
 .home-welcome-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-  padding: 18px 18px;
-  background: linear-gradient(135deg, var(--chau-hong-3) 0%, var(--primary) 50%, var(--chau-hong-2) 100%);
-  border-radius: 16px;
-  color: var(--me-bach);
-  box-shadow: 0 8px 28px rgba(220, 38, 38, .28);
+  display: flex; align-items: center; gap: var(--s-4);
+  margin-bottom: var(--s-5);
 }
 .home-welcome-card .hwc-icon { font-size: 34px; line-height: 1; flex-shrink: 0; }
 .home-welcome-card .hwc-text { flex: 1; min-width: 0; }
-.home-welcome-card .hwc-title { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
-.home-welcome-card .hwc-sub { font-size: 12.5px; line-height: 1.45; opacity: .92; }
-.home-welcome-card .hwc-cta {
-  flex-shrink: 0;
-  padding: 11px 16px;
-  border-radius: 10px;
-  border: none;
-  background: var(--me-bach);
-  color: var(--primary);
-  font-family: var(--font-ui);
-  font-size: 13.5px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform .15s, opacity .15s;
-}
-.home-welcome-card .hwc-cta:hover { opacity: .92; }
-.home-welcome-card .hwc-cta:active { transform: scale(.97); }
+.home-welcome-card .hwc-title { font-size: var(--t-body-lg); font-weight: 700; margin-bottom: 3px; }
+.home-welcome-card .hwc-sub { font-size: var(--t-small); line-height: 1.45; opacity: .92; }
+.home-welcome-card .hwc-cta { flex-shrink: 0; }
 @media (max-width: 420px) {
   .home-welcome-card { flex-wrap: wrap; }
   .home-welcome-card .hwc-cta { flex: 1 1 100%; }
 }
 
-/* ── Stats row ── */
-.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 12px 14px;
-  text-align: center;
-  transition: transform .18s, box-shadow .18s;
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+/* Nút trên hero gradient: đảo màu (nền trắng / chữ primary) để nổi trên Châu hồng→Hoàng kim */
+.home-welcome-card .btn-primary,
+.home-continue-card .btn-primary {
+  background: var(--me-bach);
+  color: var(--primary);
+  box-shadow: 0 4px 0 rgba(0,0,0,.18);   /* đáy 3D — overlay tối trên nền gradient */
 }
-.stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.09); }
-.stat-num { font-size: 38px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -0.02em; }
-.stat-unit { font-size: 11px; color: var(--text3); margin-top: 3px; font-weight: 500; }
-.stat-label { font-size: 11px; color: var(--text2); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
-
-/* ── Continue learning card (big red gradient) ── */
-.home-continue-card {
-  background: linear-gradient(135deg, var(--chau-hong-3) 0%, var(--primary) 50%, var(--chau-hong-2) 100%);
-  border-radius: 16px;
-  padding: 20px 24px;
-  margin-bottom: 20px;
+.home-welcome-card .btn-primary:hover,
+.home-continue-card .btn-primary:hover { transform: translateY(-1px); }
+.home-welcome-card .btn-primary:active,
+.home-continue-card .btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0,0,0,.18);
+}
+.home-continue-card .btn-secondary {
+  border-color: var(--me-bach);
   color: var(--me-bach);
-  box-shadow: 0 8px 28px rgba(220,38,38,.35);
+  background: transparent;
 }
-.hcc-eyebrow {
-  font-size: 11px; font-weight: 700; letter-spacing: .08em;
-  opacity: .8; margin-bottom: 10px;
-}
-.hcc-body {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 16px;
-}
-.hcc-info { flex: 1; min-width: 0; }
-.hcc-title {
-  font-size: 18px; font-weight: 700; line-height: 1.3;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  margin-bottom: 10px;
-}
-.hcc-progress-row { display: flex; align-items: center; gap: 10px; }
-.hcc-bar {
-  flex: 1; height: 6px; background: rgba(255,255,255,.3);
-  border-radius: 999px; overflow: hidden;
-}
-.hcc-bar-fill {
-  height: 100%; background: var(--me-bach);
-  border-radius: 999px; transition: width .4s;
-}
-.hcc-pct { font-size: 12px; opacity: .85; white-space: nowrap; }
-/* Play circle icon */
-.hcc-play {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(255,255,255,.22);
-  border: 1.5px solid rgba(255,255,255,.4);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--me-bach); flex-shrink: 0;
-  transition: background .15s;
-}
-.hcc-play svg { margin-left: 2px; }
-.home-continue-card:hover .hcc-play { background: rgba(255,255,255,.32); }
-.hcc-btn {
-  flex-shrink: 0;
-  background: rgba(255,255,255,.92); border: none;
-  color: var(--primary); font-size: 14px; font-weight: 700;
-  padding: 10px 20px; border-radius: 10px;
-  cursor: pointer; transition: background .15s, transform .12s;
-  font-family: var(--font-ui); white-space: nowrap;
-  text-decoration: none; display: inline-flex; align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,.12);
-}
-.hcc-btn:hover { background: var(--me-bach); transform: translateY(-1px); }
+.home-continue-card .btn-secondary:hover { background: rgba(255,255,255,.16); }  /* me-bach overlay */
 
-/* ── 2-col: wotd + due ── */
+/* ── C2 · Hero continue state (nền gradient kế thừa từ .card-hero) ── */
+.home-continue-card { margin-bottom: var(--s-5); }
+.hcc-eyebrow {
+  font-size: var(--t-label); font-weight: 600; letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase; opacity: .85; margin-bottom: var(--s-2);
+}
+.hcc-title {
+  font-size: var(--t-h2); font-weight: 700; line-height: 1.25;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: var(--s-3);
+}
+.hcc-progress-row { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-2); }
+/* Track + fill trắng trên nền gradient (override prog-track token mặc định) */
+.home-continue-card .hcc-bar { flex: 1; background: rgba(255,255,255,.3); }  /* me-bach overlay */
+.home-continue-card .hcc-bar-fill { background: var(--me-bach); }
+.hcc-pct { font-size: var(--t-small); opacity: .9; white-space: nowrap; }
+.hcc-meta { display: flex; align-items: center; gap: var(--s-2); font-size: var(--t-small); opacity: .9; margin-bottom: var(--s-4); }
+.hcc-actions { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+
+/* ── C4 · 2-col: WOTD + Quests ── */
 .home-two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: var(--s-4);
+  margin-bottom: var(--s-5);
   align-items: start;
 }
 @media (max-width: 640px) { .home-two-col { grid-template-columns: 1fr; } }
+
+/* WOTD + Quest là card NỘI DUNG (.card-std) — không nhấc khi hover (chỉ card điều hướng mới lift) */
+.wotd-card:hover,
+#home-quest-widget-wrap:hover {
+  transform: none;
+  border-color: var(--border);
+  box-shadow: var(--shadow-1);
+}
+/* Quest widget header nằm trong card → reset top-margin của .sec pattern + gắn icon */
+#home-quest-widget-wrap .quest-widget-header { margin: 0 0 var(--s-3); }
+.quest-widget-title { display: inline-flex; align-items: center; gap: var(--s-2); }
+.quest-widget-link { display: inline-flex; align-items: center; gap: var(--s-1); }
 
 /* ── Word of the day (updated layout) ── */
 .wotd-card {
@@ -181,11 +136,13 @@
 }
 .wotd-badge { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .05em; }
 .wotd-tts-sm {
+  display: inline-flex; align-items: center; justify-content: center;
   background: none; border: 1px solid var(--border);
-  border-radius: 8px; padding: 5px 9px;
-  font-size: 15px; cursor: pointer; transition: .15s; color: var(--text2);
+  border-radius: var(--r-2); padding: 6px;
+  cursor: pointer; transition: border-color var(--d-base) var(--ease-out), color var(--d-base) var(--ease-out);
+  color: var(--text2);
 }
-.wotd-tts-sm:hover { border-color: var(--accent); color: var(--accent); }
+.wotd-tts-sm:hover { border-color: var(--hoang-kim); color: var(--hoang-kim); }
 .wotd-main { display: flex; gap: 16px; align-items: flex-start; flex: 1; }
 .wotd-hanzi-area { flex-shrink: 0; }
 .wotd-hanzi {
@@ -194,7 +151,7 @@
   letter-spacing: -0.01em;
 }
 .wotd-info { flex: 1; min-width: 0; padding-top: 6px; }
-.wotd-pinyin { font-size: 20px; color: var(--accent); margin-bottom: 4px; font-weight: 400; }
+.wotd-pinyin { font-size: var(--t-pinyin); color: var(--hoang-kim); margin-bottom: 4px; font-weight: 400; }
 .wotd-meaning { font-size: 15px; color: var(--text); font-weight: 500; margin-bottom: 8px; }
 /* Word type + level badges */
 .wotd-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
@@ -204,58 +161,26 @@
 }
 .wotd-example { font-size: 12px; color: var(--text2); line-height: 1.5; }
 .wotd-ex-zh { font-family: var(--font-hanzi); font-size: 14px; color: var(--text); }
-.wotd-ex-py { color: var(--accent); }
+.wotd-ex-py { color: var(--hoang-kim); }
 .wotd-ex-vi { color: var(--text2); }
-.wotd-btn {
-  padding: 8px 14px; border-radius: 8px;
-  border: 1px solid var(--border); background: var(--surface2);
-  cursor: pointer; font-size: 13px; color: var(--text2);
-  transition: all .15s; font-family: var(--font-ui);
-  align-self: flex-start;
-}
-.wotd-btn:hover { border-color: var(--primary); color: var(--primary); }
-.wotd-btn-detail { background: var(--primary); color: var(--me-bach); border-color: var(--primary); }
-.wotd-btn-detail:hover { opacity: .85; }
+/* Nút "Xem chi tiết" dùng .btn-ghost; chỉ cần căn trái trong card cột */
+.wotd-btn-detail { align-self: flex-start; padding-left: 0; padding-right: 0; }
 
-/* ── Due review card ── */
-.home-due-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px; padding: 22px 20px;
-  display: flex; flex-direction: column; gap: 6px;
-  align-items: flex-start;
-}
-.hdc-count {
-  font-size: 48px; font-weight: 700; line-height: 1;
-  color: var(--accent);
-}
-.hdc-label { font-size: 14px; font-weight: 600; color: var(--text); }
-.hdc-hint  { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
-.hdc-btn {
-  margin-top: auto; padding: 9px 18px;
-  background: var(--primary); color: var(--me-bach);
-  border: none; border-radius: 10px;
-  font-size: 13px; font-weight: 700; cursor: pointer;
-  transition: opacity .15s; font-family: var(--font-ui);
-}
-.hdc-btn:hover { opacity: .88; }
-
-/* ── Game shortcuts ── */
-.home-shortcuts { margin: 20px 0; }
-.home-shortcuts-header { margin-bottom: 12px; }
-.home-shortcuts-title { font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .05em; }
-.home-shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.home-sc-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 4px;
-  text-decoration: none; cursor: pointer;
-  transition: border-color .15s, transform .15s, box-shadow .15s;
-}
-.home-sc-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-.home-sc-icon { font-size: 22px; }
-.home-sc-name { font-size: 14px; font-weight: 600; color: var(--text); }
-.home-sc-sub  { font-size: 11px; color: var(--text2); }
+/* ── C5 · Khám phá nhanh (shortcuts dùng hub-card mini) ── */
+.home-shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+/* .home-sc-card kế thừa .tool-card (cards.css) — chỉ thu nhỏ icon tile cho mật độ home */
+.home-sc-card .tool-card-icon { width: 40px; height: 40px; }
+@media (max-width: 900px) { .home-shortcuts-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .home-shortcuts-grid { grid-template-columns: 1fr; } }
+
+/* ── C6 · Tiến độ (collapse: đóng mobile, mở desktop ≥1280px) ── */
+.home-progress-wrap { display: block; }
+@media (max-width: 1279px) {
+  .home-progress-wrap { display: none; }
+  .home-progress-wrap.open { display: block; }
+}
+@media (min-width: 1280px) { .home-progress-toggle { display: none; } }
+.home-progress-toggle { background: none; border: none; cursor: pointer; font-family: var(--font-ui); }
 
 /* ── Desktop topbar ── */
 .desktop-topbar {
@@ -480,30 +405,7 @@
 .fb-hist-msg { font-size: 14px; color: var(--text); line-height: 1.5; }
 /* â•â• ANKI-STYLE DECK DETAIL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-   WORD OF THE DAY (F1)
-.wotd-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 24px; }
-.wotd-header { margin-bottom: 12px; }
-.wotd-badge { font-size: 14px; font-weight: 600; color: var(--primary); background: var(--primary-soft); padding: 4px 12px; border-radius: 20px; }
-.wotd-body { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
-.wotd-hanzi-area { text-align: center; min-width: 120px; }
-.wotd-hanzi { font-size: 48px; font-weight: 700; font-family: 'Noto Sans SC', sans-serif; color: var(--text); }
-.wotd-info { flex: 1; min-width: 200px; }
-.wotd-pinyin { font-size: 20px; color: var(--primary); margin-bottom: 4px; }
-.wotd-meaning { font-size: 16px; color: var(--text); margin-bottom: 8px; }
-.wotd-example { font-size: 14px; color: var(--text2); line-height: 1.5; }
-.wotd-ex-zh { font-family: 'Noto Sans SC', sans-serif; font-size: 15px; }
-.wotd-ex-py { color: var(--text2); font-size: 13px; }
-.wotd-ex-vi { color: var(--text2); font-size: 13px; }
-.wotd-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.wotd-btn { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 14px; color: var(--text); transition: all .2s; }
-.wotd-btn:hover { border-color: var(--primary); background: var(--primary-soft); }
-.wotd-btn-detail { background: var(--primary); color: var(--me-bach); border-color: var(--primary); }
-.wotd-btn-detail:hover { opacity: .85; }
-@media (max-width: 480px) {
-  .wotd-body { flex-direction: column; text-align: center; }
-  .wotd-info { min-width: unset; }
-  .wotd-actions { justify-content: center; }
-}
+/* (Khối WOTD trùng lặp cũ — đã gỡ trong fe-redesign w1; dùng khối WOTD C4 ở đầu file) */
 
 /* ═══════════════════════════════════════════════════════
    PROGRESS ANALYTICS (F2)

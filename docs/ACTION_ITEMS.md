@@ -1,5 +1,25 @@
 # Action Items
 
+## ✅ Session 2026-06-10 — Review toàn diện + fix data-loss + lazy-load (đã push `main` → deploy)
+
+> Bối cảnh: báo cáo review toàn diện 2026-06-10 (sức khỏe codebase + plan vs thực tế + Top-5). Chi tiết findings + trạng thái: memory `review-2026-06-10-findings`. Plan đồng bộ: `implementation_plan.md` block **v5.0 (2026-06-10) Reality Sync** ở đầu file.
+
+**Đã làm & LIVE prod (3 commit `main`, ĐÃ push):**
+- ☑ **Fix XSS** (`28b3032`): escapeHtml `dictionary.js` (recent search chip) + `my-vocab.js` (card hanzi/pinyin/nghĩa). Quét nốt 9 sink input-user (search/feedback/tutor/lookup/vocab-import/text-analyzer/writing) → đều đã escape, không còn hở.
+- ☑ **Fix deck cloud-sync CHẾT** (`08a8adb`) — bug mất bộ thẻ tự tạo khi đổi máy: 3 nguồn lệch key/format (`decks.js`=`hsk_decks_v3` object · `sync.js`=`hsk_user_decks` array không tồn tại · `handwriting.js`=`hsk_decks` format `wordIds` không tồn tại). Gom format về bridge `getUserDecksForSync()`/`applyUserDecksFromSync()` trong `decks.js`; sync push/pull/merge qua bridge (pull mode 'merge' không wipe deck local + enrich stub `{h}` từ data HSK); handwriting đọc `_decksKey()`. **Verified in-browser.**
+- ☑ **Bỏ SRS pull cap 2000** (`08a8adb`): `Sync._fetchAllSRS()` paginate 1000-row/trang ở pullAll+mergeAll (trước `.limit(2000)` truncate im lặng khi >2000 thẻ).
+- ☑ **Lazy-load data theo route** (`0e8e914`): `js/data-loader.js` (DataLoader) inject data on-demand theo route, router `_navigateTo` await `ensureForPage()` trước init. Cắt **~2.3MB** khỏi first-paint (course 1.9MB + hskk/reader/shadowing/grammar/readings/radicals214). **Verified:** home lazy globals undefined, mỗi route load đúng bundle + render OK, idempotent, 0 lỗi. Convention mới đã ghi `CLAUDE.md` (thêm content data → vào `data-loader.js` bundle, KHÔNG `<script>` index.html).
+- ☑ **Đồng bộ doc** (local, gitignored): `implementation_plan.md` (header v4.8→v5.0 + bảng tiến trình flip O/P/Q/R/S/Y/A1/V1 sang live + vá tham chiếu gãy "v5.0 Strategy Council" + đính chính mascot Bé Rồng/giá SKU 2.490.000đ) · `BUG_REPORT.md` (3 entry) · `CLAUDE.md` (data-loader + key `hsk_decks_v3`).
+
+**🟠 FOLLOW-UP (Top-5 review còn lại):**
+- ☐ **Split HSK3 lvl5-9 on-demand** — phần còn lại của lazy-load: `v3/hsk3_lvl1-9.js` (~3MB) hiện vẫn upfront vì `HSK3_DATA` dùng khắp app (dictionary/quiz/SRS). Cần tách lvl5-9 load khi cần (khó hơn vì nhiều consumer "all levels").
+- ☐ **#4 Reader:** đẩy nốt ~20 bài HSK1-3 đạt ~50 + duyệt batch chờ → bật SEO `/doc-truyen` (xem follow-up A1 session 2026-06-07).
+- ☐ **#5 Service worker** (PWA bước 1) — cache app shell + assets; manifest đã có sẵn (`index.html`). Là điều kiện để tận dụng lazy-load cho offline precache.
+- ☐ **Bật JWT verify lại** cho `create-payment` (tắt từ K.9.1, giờ auth cache ổn) — chống spam `payment_orders`.
+- ☐ **Self-host** `supabase.js`+`hanzi-writer` vào `vendor/` — jsdelivr sập là app không login được.
+
+---
+
 ## ✅ Session 2026-06-07 — A1 Reader MVP shipped + xóa hẳn HSK 2.0 (đã push `main`)
 
 **Đã làm & LIVE prod (`main` `085dad0`):**

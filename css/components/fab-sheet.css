@@ -70,6 +70,66 @@
   line-height: 1;
 }
 
+/* ── Section title (Đi đến / Lối tắt) ─────────────────── */
+.fab-sheet-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px var(--s-5) 4px;
+}
+
+/* ── Hubs row (2 hub không có slot bottom-nav) ─────────── */
+.fab-sheet-hubs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-2);
+  padding: var(--s-1) var(--s-3) var(--s-2);
+}
+.fab-sheet-hub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: var(--r-3);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--d-fast), border-color var(--d-fast);
+}
+.fab-sheet-hub:hover,
+.fab-sheet-hub:active {
+  background: var(--primary-soft);
+  border-color: var(--chau-hong);
+}
+.fab-sheet-hub-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-2);
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.fab-sheet-hub-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.fab-sheet-hub-text b { font-size: 14px; font-weight: 700; color: var(--text); }
+.fab-sheet-hub-text small {
+  font-size: 10.5px;
+  color: var(--text3);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .fab-sheet-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -67,6 +67,8 @@
     transition: transform .15s, box-shadow .15s;
   }
   .bnav-fab:active { transform: scale(.91); box-shadow: 0 2px 8px rgba(220,38,38,.25); }
+  /* Active khi đang ở hub Luyện tập / Công cụ (không có slot bottom-nav) */
+  .bnav-fab--active { box-shadow: 0 0 0 3px var(--surface), 0 0 0 6px var(--primary), 0 4px 14px rgba(220,38,38,.40); }
   /* Mobile: 2-col stats, hide streak (shown in XP bar) */
   .stats-row { grid-template-columns: repeat(2,1fr); gap: 10px; }
   .streak-card { display: none; }

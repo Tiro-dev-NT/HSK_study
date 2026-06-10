@@ -245,11 +245,40 @@ var Router = (function() {
       });
   }
 
+  // ── Page → parent tab (Nav v2 6-tab) ─────────────────
+  // Trang con kế thừa active-state của hub cha → sidebar desktop + bottom-nav
+  // mobile luôn sáng đúng tab dù URL là trang con (W3 design review 2026-06-10).
+  // Trang nào KHÔNG có trong map = tự nó là tab (vd home/learn/profile…).
+  var _pageTabMap = {
+    // ② Học
+    'course':'learn', 'reader':'learn', 'grammar':'learn', 'reading':'learn',
+    'ban-do-hsk':'learn', 'topics':'learn', 'learn-method':'learn',
+    'hsk0-pinyin-initials':'learn', 'hsk0-pinyin-finals':'learn', 'hsk0-strokes':'learn',
+    'hsk0-numbers':'learn', 'hsk0-typing':'learn', 'hsk0-final':'learn', 'hsk0-placement':'learn',
+    // ③ Luyện tập (không có slot bottom-nav → FAB sáng)
+    'quiz':'practice', 'mock-exam':'practice', 'hskk':'practice',
+    'speaking':'practice', 'writing':'practice',
+    // ④ Công cụ (không có slot bottom-nav → FAB sáng)
+    'dictionary':'tools', 'pinyin-lab':'tools', 'handwriting':'tools',
+    'text-analyzer':'tools', 'tutor':'tools', 'radicals':'tools',
+    'translate':'tools', 'ocr':'tools', 'typing':'tools',
+    // ⑤ Tôi
+    'vault':'profile', 'my-vocab':'profile', 'quests':'profile',
+    'pricing':'profile', 'vocab-import':'profile', 'video-vocab':'profile',
+    // ⑥ Cộng đồng
+    'leaderboard':'community', 'honor-hall':'community'
+  };
+
   // ── Update nav highlights ────────────────────────────
   function _updateNav(page) {
+    var tab = _pageTabMap[page] || page;
     document.querySelectorAll('[data-page]').forEach(function(el) {
-      el.classList.toggle('active', el.dataset.page === page);
+      el.classList.toggle('active', el.dataset.page === tab);
     });
+    // Mobile: Luyện tập & Công cụ không có slot trong bottom-nav 5-tab →
+    // highlight FAB để user biết đang ở nhánh "Xem thêm".
+    var fab = document.querySelector('.bnav-fab');
+    if (fab) fab.classList.toggle('bnav-fab--active', tab === 'practice' || tab === 'tools');
   }
 
   // ── Resolve URL path → page name ────────────────────

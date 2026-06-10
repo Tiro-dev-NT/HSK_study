@@ -84,6 +84,17 @@
   --color-indigo:                  var(--info);
   --color-gold:                    var(--hoang-kim);
   --color-red:                     var(--danger);
+  --fg-1:                          var(--text);
+  --bg-2:                          var(--bg2);
+  --bg-3:                          var(--surface2);
+  --r-lg:                          var(--r-4);
+  --red:                           var(--chau-hong);
+  --red-dark:                      var(--chau-hong-2);
+  --green:                         var(--thuy-luc);
+  --green-light:                   var(--success-bg);
+  --chau-hong-soft:                var(--danger-bg);
+  --hoang-kim-soft:                var(--warning-bg);
+  --thuy-luc-soft:                 var(--success-bg);
 
   /* ───── Semantic state ───── */
   --success:    #10B981;

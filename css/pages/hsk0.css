@@ -50,8 +50,8 @@
 
 /* ── Hero Section ──────────────────────────────────── */
 .hsk0-hero {
-  background: linear-gradient(135deg, var(--mac-hac) 0%, #374151 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--mac-hac) 0%, var(--mac-hac-3) 100%);
+  color: var(--me-bach);
   border-radius: 16px;
   padding: 24px;
   margin-bottom: 20px;
@@ -155,12 +155,12 @@
 }
 
 .hsk0-warn {
-  background: #FFFBEB;
-  border: 1px solid #FDE68A;
+  background: var(--warning-bg);
+  border: 1px solid var(--hoang-kim-3);
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 13px;
-  color: #92400E;
+  color: var(--hoang-kim-2);
   line-height: 1.5;
 }
 
@@ -323,7 +323,7 @@
 
 .hsk0-word-item:hover {
   border-color: var(--red);
-  background: #FEF2F2;
+  background: var(--danger-bg);
 }
 
 .hsk0-word-zh {
@@ -351,7 +351,7 @@
   border-radius: 12px;
   border: none;
   background: var(--red);
-  color: #fff;
+  color: var(--me-bach);
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -384,7 +384,7 @@
 
 .hsk0-btn-play {
   background: var(--mac-hac);
-  color: #fff;
+  color: var(--me-bach);
   border: none;
   border-radius: 24px;
   padding: 10px 20px;
@@ -402,7 +402,7 @@
 
 .hsk0-btn-play-big {
   background: var(--mac-hac);
-  color: #fff;
+  color: var(--me-bach);
   border: none;
   border-radius: 24px;
   padding: 14px 28px;
@@ -488,7 +488,7 @@
 .hsk0-quiz-option:hover:not(:disabled) {
   transform: translateY(-2px);
   border-color: var(--red);
-  background: #FEF2F2;
+  background: var(--danger-bg);
 }
 
 .hsk0-quiz-option:disabled {
@@ -498,13 +498,13 @@
 .hsk0-quiz-option.correct {
   background: var(--green-light);
   border-color: var(--green);
-  color: #065F46;
+  color: var(--thuy-luc-2);
 }
 
 .hsk0-quiz-option.wrong {
-  background: #FEE2E2;
-  border-color: #EF4444;
-  color: #991B1B;
+  background: var(--danger-bg);
+  border-color: var(--chau-hong-3);
+  color: var(--chau-hong-2);
 }
 
 .hsk0-quiz-feedback {
@@ -523,14 +523,14 @@
 
 .hsk0-quiz-feedback.correct {
   background: var(--green-light);
-  color: #065F46;
-  border: 1px solid #6EE7B7;
+  color: var(--thuy-luc-2);
+  border: 1px solid var(--thuy-luc);
 }
 
 .hsk0-quiz-feedback.wrong {
-  background: #FEE2E2;
-  color: #991B1B;
-  border: 1px solid #FCA5A5;
+  background: var(--danger-bg);
+  color: var(--chau-hong-2);
+  border: 1px solid var(--chau-hong-3);
 }
 
 /* ── Result ────────────────────────────────────────── */
@@ -593,7 +593,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(-60px);
   background: var(--mac-hac);
-  color: #fff;
+  color: var(--me-bach);
   padding: 10px 20px;
   border-radius: 24px;
   font-size: 14px;
@@ -785,7 +785,7 @@
 
 .stroke-ex-char:hover {
   border-color: var(--red);
-  background: #FEF2F2;
+  background: var(--danger-bg);
 }
 
 .stroke-replay-btn {
@@ -856,7 +856,7 @@
   margin: 0 auto 12px;
   border: 2px solid var(--border);
   border-radius: 12px;
-  background: #FAFAF9;
+  background: var(--me-bach);
   overflow: hidden;
 }
 
@@ -886,15 +886,15 @@
 }
 
 .practice-feedback.correct {
-  background: #F0FDF4;
-  color: #065F46;
-  border: 1px solid #6EE7B7;
+  background: var(--success-bg);
+  color: var(--thuy-luc-2);
+  border: 1px solid var(--thuy-luc);
 }
 
 .practice-feedback.wrong {
-  background: #FEF2F2;
-  color: #991B1B;
-  border: 1px solid #FCA5A5;
+  background: var(--danger-bg);
+  color: var(--chau-hong-2);
+  border: 1px solid var(--chau-hong-3);
 }
 
 .practice-ref {
@@ -937,11 +937,11 @@
 }
 
 .practice-result-row.pass {
-  background: #F0FDF4;
+  background: var(--success-bg);
 }
 
 .practice-result-row.fail {
-  background: #FFF5F5;
+  background: var(--danger-bg);
 }
 
 /* Responsive adjustments for strokes */
@@ -1062,7 +1062,7 @@
   flex-wrap: wrap;
 }
 
-.num-compound-row:hover { background: #FEF2F2; }
+.num-compound-row:hover { background: var(--danger-bg); }
 
 .num-compound-val {
   font-weight: 800;
@@ -1116,13 +1116,13 @@
 
 .num-day-card:hover {
   border-color: var(--red);
-  background: #FEF2F2;
+  background: var(--danger-bg);
   transform: translateY(-2px);
 }
 
 .num-day-card.weekend {
-  background: #FFF7ED;
-  border-color: #FED7AA;
+  background: var(--warning-bg);
+  border-color: color-mix(in srgb, var(--hoang-kim) 35%, var(--border));
 }
 
 .num-day-char {
@@ -1175,7 +1175,7 @@
 }
 
 .num-month-chip:hover {
-  background: #FEF2F2;
+  background: var(--danger-bg);
   border-color: var(--red);
   color: var(--red);
 }
@@ -1198,7 +1198,7 @@
   transition: background 0.15s;
 }
 
-.num-phrase-row:hover { background: #FEF2F2; }
+.num-phrase-row:hover { background: var(--danger-bg); }
 
 .num-phrase-zh {
   font-size: 18px;
@@ -1257,7 +1257,7 @@
   width: 28px;
   height: 28px;
   background: var(--red);
-  color: #fff;
+  color: var(--me-bach);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1308,12 +1308,12 @@
   font-size: 22px;
   padding: 4px 8px;
   border-radius: 6px;
-  background: #F3F4F6;
+  background: var(--surface2);
   color: var(--text-secondary);
 }
 .typing-eg-cand.active {
   background: var(--red);
-  color: #fff;
+  color: var(--me-bach);
 }
 
 /* Platform guide */
@@ -1344,8 +1344,8 @@
 .typing-step-num {
   min-width: 22px;
   height: 22px;
-  background: #6B7280;
-  color: #fff;
+  background: var(--text3);
+  color: var(--me-bach);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1395,20 +1395,20 @@
   font-size: 22px;
   padding: 8px 12px;
   border-radius: 8px;
-  background: #F3F4F6;
+  background: var(--surface2);
   color: var(--text-secondary);
   border: 2px solid transparent;
   transition: all 0.15s;
 }
 .typing-cand.active {
-  background: #EFF6FF;
-  border-color: #2563EB;
-  color: #1D4ED8;
+  background: var(--info-bg);
+  border-color: var(--info);
+  color: var(--info);
 }
 .typing-cand.correct {
-  background: #ECFDF5;
-  border-color: #059669;
-  color: #065F46;
+  background: var(--success-bg);
+  border-color: var(--thuy-luc-2);
+  color: var(--thuy-luc-2);
 }
 .typing-input-wrap {
   display: flex;
@@ -1441,7 +1441,7 @@
   width: 48px;
   height: 48px;
   background: var(--red);
-  color: #fff;
+  color: var(--me-bach);
   border: none;
   border-radius: 10px;
   font-size: 20px;

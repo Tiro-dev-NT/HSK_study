@@ -11,6 +11,8 @@
 - ☑ **Lazy-load data theo route** (`0e8e914`): `js/data-loader.js` (DataLoader) inject data on-demand theo route, router `_navigateTo` await `ensureForPage()` trước init. Cắt **~2.3MB** khỏi first-paint (course 1.9MB + hskk/reader/shadowing/grammar/readings/radicals214). **Verified:** home lazy globals undefined, mỗi route load đúng bundle + render OK, idempotent, 0 lỗi. Convention mới đã ghi `CLAUDE.md` (thêm content data → vào `data-loader.js` bundle, KHÔNG `<script>` index.html).
 - ☑ **Đồng bộ doc** (local, gitignored): `implementation_plan.md` (header v4.8→v5.0 + bảng tiến trình flip O/P/Q/R/S/Y/A1/V1 sang live + vá tham chiếu gãy "v5.0 Strategy Council" + đính chính mascot Bé Rồng/giá SKU 2.490.000đ) · `BUG_REPORT.md` (3 entry) · `CLAUDE.md` (data-loader + key `hsk_decks_v3`).
 
+**🎨 Design & Nav review (cùng ngày):** khảo sát app thật mobile+desktop → `docs/DESIGN_NAV_REVIEW_2026-06-10.md` (5 wave W1-W5). 🔴 P0: copy "HSK 2.0" còn trong pricing/terms/free-vs-pro (compliance — app đã xóa HSK 2.0!) + first-visit mobile 2-3 prompt chồng nhau. 🟠 P1: FAB sheet 12 mục flat thiếu Đọc truyện/Gia sư AI + router thiếu `_pageTabMap` (trang con không active tab cha) + hub Tools/Practice vượt quota 8 mục.
+
 **🟠 FOLLOW-UP (Top-5 review còn lại):**
 - ☐ **Split HSK3 lvl5-9 on-demand** — phần còn lại của lazy-load: `v3/hsk3_lvl1-9.js` (~3MB) hiện vẫn upfront vì `HSK3_DATA` dùng khắp app (dictionary/quiz/SRS). Cần tách lvl5-9 load khi cần (khó hơn vì nhiều consumer "all levels").
 - ☐ **#4 Reader:** đẩy nốt ~20 bài HSK1-3 đạt ~50 + duyệt batch chờ → bật SEO `/doc-truyen` (xem follow-up A1 session 2026-06-07).
@@ -61,7 +63,7 @@
 
 **🟡 ROI cao về sau:**
 - ☐ **E — Ôn-điểm-yếu** (heuristic trên lapses/wrong sẵn có, client-side, cost 0) — làm cùng B.
-- ☐ **F — Community async** (Sảnh Trà forum + peer-review bài nói/viết) — sau khi A giữ chân.
+- ☐ **F — Community async** (Sảnh Trà forum + peer-review bài nói/viết) — sau khi A giữ chân. 🎨 Design specs Phase V đã chốt 2026-06: `docs/design/53-community-hub` (hub layout) · `63-luu-y-hay` · `64-tu-sach-cong-dong` · `65-sanh-tra-hoc-tap` (V5 đổi concept → co-study rooms Pomodoro chung, bỏ paired voice+whiteboard). Chi tiết: cây Phase V trong `implementation_plan.md`.
 - ☐ **Kiểm:** Duolingo có course Trung-cho-người-Việt chưa (độ bền moat).
 
 **⚫ ĐÃ PHỦ QUYẾT (đừng quay lại):** HelloTalk 1-1 chat · realtime voice đua Doubao · handwriting input+OCR (Phase U) · đua từ điển Pleco · scrape content bản quyền · notification-spam/streak-shaming.

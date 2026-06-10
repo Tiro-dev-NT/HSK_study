@@ -79,9 +79,13 @@
   max-width: 160px;
   object-fit: contain;
   object-position: left center;
-  flex: 1;
+  margin-right: auto;       /* đẩy header-actions sang phải, KHÔNG kéo giãn logo */
   border-radius: 10px;
-  background: #000;
+  /* Chip nền tối cố định (logo là wordmark sáng trên nền trong suốt) —
+     giữ readable trên cả light/dark, khớp .sidebar-logo-img. Trước đây dùng
+     flex:1 + background:#000 làm logo bị kéo giãn thành "khối đen" ngang header. */
+  background: #0f0f1a;
+  padding: 3px 8px;
 }
 .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 0 12px; overflow-y: auto; min-height: 0; scrollbar-width: none; }
 .sidebar-nav::-webkit-scrollbar { display: none; }

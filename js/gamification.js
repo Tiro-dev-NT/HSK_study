@@ -218,6 +218,10 @@ var Gamification = {
       }
     }
 
+    // W2 first-visit empty-state: user chưa học từ nào → ẩn khối "toàn số 0"
+    // (stats + hành trình + continue card), hiện 1 card chào mừng với CTA duy nhất.
+    Gamification._updateFirstVisit();
+
     Gamification.renderXPBar();
     Gamification.renderStreakCalendar();
     Gamification._updateContinueCard();
@@ -536,7 +540,25 @@ var Gamification = {
     };
   },
 
-  // ── Continue card (home page big red card) ────────────
+  // ── First-visit empty-state (welcome card thay khối "toàn số 0") ──
+  _updateFirstVisit: function() {
+    var page = document.getElementById('page-home');
+    if (!page) return;
+    var welcome = document.getElementById('homeWelcomeCard');
+    // Nếu fragment home chưa có welcome card (vd browser cache bản cũ) → giữ
+    // nguyên layout cũ, KHÔNG ẩn stats/journey để tránh màn hình trống.
+    if (!welcome) return;
+    var learned = (typeof AppState !== 'undefined' && AppState.totalLearned) ? AppState.totalLearned() : 0;
+    var isNew = learned === 0;
+    var statsRow = page.querySelector('.stats-row');
+    var journey  = page.querySelector('.word-journey-widget');
+    var cont     = page.querySelector('.home-continue-card');
+    welcome.style.display = isNew ? 'flex' : 'none';
+    if (statsRow) statsRow.style.display = isNew ? 'none' : '';
+    if (journey)  journey.style.display  = isNew ? 'none' : '';
+    if (cont)     cont.style.display     = isNew ? 'none' : '';
+  },
+
   _updateContinueCard: function() {
     var titleEl = document.getElementById('hccTitle');
     var fillEl  = document.getElementById('hccBarFill');

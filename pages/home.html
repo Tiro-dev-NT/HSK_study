@@ -12,6 +12,16 @@
         </div>
       </div>
 
+      <!-- ── First-visit welcome (user learned==0; toggled bởi gamification.updateStats) ── -->
+      <div class="home-welcome-card" id="homeWelcomeCard" style="display:none">
+        <div class="hwc-icon" aria-hidden="true">🐉</div>
+        <div class="hwc-text">
+          <div class="hwc-title">Bắt đầu hành trình HSK của bạn</div>
+          <div class="hwc-sub">Học 15 phút mỗi ngày cùng Bé Rồng — bài đầu tiên chỉ mất vài phút.</div>
+        </div>
+        <button class="hwc-cta" data-page="learn" onclick="Router.navigateTo('learn')">Bắt đầu bài 1 →</button>
+      </div>
+
       <!-- ── Stats row ── -->
       <div class="stats-row">
         <div class="stat-card">

@@ -95,6 +95,24 @@
 }
 .cc-btn-link:hover { color: var(--text, #1A202C); }
 
+/* ── Mobile: clear bottom-nav + compact (W2 2026-06-10) ─── */
+@media (max-width: 768px) {
+  .cc-banner {
+    /* Bottom-nav cao ~63px + safe-area; chừa khoảng rộng để banner không che nav */
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px) + 16px);
+    left: 10px;
+    right: 10px;
+    padding: 14px 16px;
+  }
+  .cc-banner .cc-inner { gap: 10px; }
+  .cc-banner .cc-text strong { font-size: 14px; }
+  .cc-banner .cc-text p { font-size: 12.5px; margin: 2px 0 0; }
+  .cc-banner .cc-actions { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+  .cc-banner .cc-actions .cc-btn-primary,
+  .cc-banner .cc-actions .cc-btn-secondary { flex: 1 1 0; }
+  .cc-banner .cc-actions .cc-btn-link { flex: 1 1 100%; padding: 6px 8px; }
+}
+
 /* ── Customize modal ─────────────────────────────────── */
 .cc-modal-backdrop {
   position: fixed;

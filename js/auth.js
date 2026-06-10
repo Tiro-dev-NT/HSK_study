@@ -375,10 +375,23 @@ var Auth = {
 
   _scheduleSoftPrompt: function() {
     if (Auth._isPromptDismissed()) return;
-    // Delay so user sees app first, then gentle prompt
-    setTimeout(function() {
-      if (!Auth.user) Auth._showPrompt();
-    }, 4000);
+    // W2 (2026-06-10): tuần tự hóa prompt — cookie consent (bắt buộc pháp lý) phải
+    // được quyết định TRƯỚC, rồi mới hiện nudge login sau 30s. Tránh 2 hộp thoại
+    // chồng nhau ở first-visit (Calm Study UI: 1 hành động/màn).
+    var DELAY_MS = 30000;
+    function arm() {
+      setTimeout(function() {
+        if (!Auth.user) Auth._showPrompt();
+      }, DELAY_MS);
+    }
+    if (typeof CookieConsent !== 'undefined' && !CookieConsent.hasDecided()) {
+      window.addEventListener('cookie-consent-updated', function onConsent() {
+        window.removeEventListener('cookie-consent-updated', onConsent);
+        arm();
+      });
+    } else {
+      arm();
+    }
   },
 
   _isPromptDismissed: function() {

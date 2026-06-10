@@ -72,8 +72,8 @@ var Sync = {
         if (r3.error) throw new Error('[push xp] ' + r3.error.message);
       }
 
-      // 4. User decks
-      var rawDecks = JSON.parse(localStorage.getItem('hsk_user_decks') || '[]');
+      // 4. User decks — đọc qua decks.js (nguồn key duy nhất: hsk_decks_v3)
+      var rawDecks = (typeof getUserDecksForSync === 'function') ? getUserDecksForSync() : [];
       if (rawDecks.length > 0) {
         var deckRows = rawDecks.map(function(d) {
           return {
@@ -113,6 +113,24 @@ var Sync = {
     }
   },
 
+  // ── Lấy TẤT CẢ row SRS (paginate, bỏ cap 2000) ────
+  // PostgREST mặc định cap ~1000 row/request → phải kéo theo trang.
+  // Trước đây .limit(2000) truncate im lặng khi user có >2000 thẻ (mất lịch ôn khi đổi máy).
+  _fetchAllSRS: async function(uid) {
+    var PAGE = 1000;
+    var all = [];
+    for (var from = 0; ; from += PAGE) {
+      var r = await SB.from('user_srs')
+        .select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags,word_data')
+        .eq('user_id', uid).eq('hsk_version', AppState.version)
+        .range(from, from + PAGE - 1);
+      if (r.error) return { data: all, error: r.error };
+      if (r.data && r.data.length) all = all.concat(r.data);
+      if (!r.data || r.data.length < PAGE) break;
+    }
+    return { data: all, error: null };
+  },
+
   // ── Pull tất cả cloud data về local (overwrite) ────
   pullAll: async function() {
     if (!SB || !Auth.user) return;
@@ -129,9 +147,8 @@ var Sync = {
         progress = AppState.progress;
       }
 
-      // 2. SRS
-      // limit 2000 — paginate if user exceeds this (TODO Phase H)
-      var sr = await SB.from('user_srs').select('hanzi,interval_days,ease,due_date,reps,lapses,last_review,tags,word_data').eq('user_id', uid).eq('hsk_version', AppState.version).limit(2000);
+      // 2. SRS — paginate full (bỏ cap 2000)
+      var sr = await Sync._fetchAllSRS(uid);
       if (!sr.error && sr.data && sr.data.length > 0) {
         sr.data.forEach(function(row) {
           var entry = {
@@ -160,14 +177,13 @@ var Sync = {
         if (d.last_active) localStorage.setItem('hsk_last_active', d.last_active);
       }
 
-      // 4. User decks
+      // 4. User decks — merge vào decks.js (giữ system decks + deck local chưa push)
       var dr = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid).limit(200);
       if (!dr.error && dr.data && dr.data.length > 0) {
         var pulledDecks = dr.data.map(function(row) {
           return { name: row.name, words: (row.word_ids || []).map(function(h) { return { h: h }; }) };
         });
-        localStorage.setItem('hsk_user_decks', JSON.stringify(pulledDecks));
-        if (typeof loadDecks === 'function') loadDecks();
+        if (typeof applyUserDecksFromSync === 'function') applyUserDecksFromSync(pulledDecks, 'merge');
       }
 
       // 5. Settings + quiz/game activity
@@ -229,7 +245,7 @@ var Sync = {
         progress = AppState.progress;
       }
 
-      var sr = await SB.from('user_srs').select('*').eq('user_id', uid).eq('hsk_version', AppState.version).limit(2000);
+      var sr = await Sync._fetchAllSRS(uid);
       if (!sr.error && sr.data) {
         sr.data.forEach(function(row) {
           var local = AppState.srsData[row.hanzi];
@@ -282,21 +298,13 @@ var Sync = {
         localStorage.setItem('hsk_streak', Math.max(cloudStreak, localStreak));
       }
 
-      // Decks: merge by name (union words)
+      // Decks: merge by name (union words) — qua decks.js, giữ deck local chưa push
       var dr2 = await SB.from('user_decks').select('name,word_ids').eq('user_id', uid).limit(200);
       if (!dr2.error && dr2.data && dr2.data.length > 0) {
-        var localDecks = JSON.parse(localStorage.getItem('hsk_user_decks') || '[]');
-        var deckMap = {};
-        localDecks.forEach(function(d) { deckMap[d.name] = new Set((d.words || []).map(function(w) { return w.h; })); });
-        dr2.data.forEach(function(row) {
-          if (!deckMap[row.name]) deckMap[row.name] = new Set();
-          (row.word_ids || []).forEach(function(h) { deckMap[row.name].add(h); });
+        var pulledDecks2 = dr2.data.map(function(row) {
+          return { name: row.name, words: (row.word_ids || []).map(function(h) { return { h: h }; }) };
         });
-        var mergedDecks = Object.keys(deckMap).map(function(name) {
-          return { name: name, words: Array.from(deckMap[name]).map(function(h) { return { h: h }; }) };
-        });
-        localStorage.setItem('hsk_user_decks', JSON.stringify(mergedDecks));
-        if (typeof loadDecks === 'function') loadDecks();
+        if (typeof applyUserDecksFromSync === 'function') applyUserDecksFromSync(pulledDecks2, 'merge');
       }
 
       // Quiz + game data: merge from cloud settings

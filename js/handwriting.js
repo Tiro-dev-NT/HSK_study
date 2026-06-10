@@ -261,15 +261,16 @@ var Handwriting = {
 
   _loadDeckChars: function(deckId) {
     if (!deckId) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
-    var decks = JSON.parse(localStorage.getItem('hsk_decks') || '[]');
-    if (!Array.isArray(decks)) decks = [];
-    var deck = decks.find(function(d) { return d.id === deckId; });
-    if (!deck || !deck.wordIds) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
+    var key = (typeof _decksKey === 'function') ? _decksKey() : 'hsk_decks_v3';
+    var store = {};
+    try { store = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch(e) { store = {}; }
+    var deck = store[deckId];
+    if (!deck) { Handwriting.selectedChars = []; Handwriting._updatePreview(); return; }
 
     var all = getAllWords();
     var map = {};
     all.forEach(function(w) { map[w.h] = w; });
-    Handwriting.selectedChars = deck.wordIds.map(function(id) { return map[id]; }).filter(Boolean);
+    Handwriting.selectedChars = (deck.words || []).map(function(w) { return map[w.h] || w; }).filter(Boolean);
     Handwriting._updatePreview();
   },
 
@@ -294,12 +295,15 @@ var Handwriting = {
   _populateDecks: function() {
     var select = document.getElementById('hwDeckSelect');
     if (!select) return;
-    var decks = JSON.parse(localStorage.getItem('hsk_decks') || '[]');
-    if (!Array.isArray(decks)) decks = [];
-    decks.forEach(function(d) {
+    var key = (typeof _decksKey === 'function') ? _decksKey() : 'hsk_decks_v3';
+    var store = {};
+    try { store = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch(e) { store = {}; }
+    Object.keys(store).forEach(function(id) {
+      var d = store[id];
+      if (d.isSystem) return; // HSK decks đã có nút cấp riêng
       var opt = document.createElement('option');
       opt.value = d.id;
-      opt.textContent = d.name + ' (' + (d.wordIds ? d.wordIds.length : 0) + ' từ)';
+      opt.textContent = (d.title || d.name || 'Bộ thẻ') + ' (' + ((d.words || []).length) + ' từ)';
       select.appendChild(opt);
     });
   },

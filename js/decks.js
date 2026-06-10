@@ -77,6 +77,58 @@ function migrateVaultToDecks() {
   localStorage.removeItem('hsk_vault');
 }
 
+// ── Cloud sync bridge (called by sync.js) ─────────────
+// `decks.js` là NGUỒN DUY NHẤT biết format/key deck. sync.js gọi 2 hàm này
+// thay vì tự parse localStorage (trước đây dùng key `hsk_user_decks` không tồn
+// tại → deck user không bao giờ sync). System HSK decks là dữ liệu suy ra, KHÔNG sync.
+function getUserDecksForSync() {
+  if (!Object.keys(decks).length && typeof loadDecks === 'function') loadDecks();
+  return Object.values(decks)
+    .filter(function(d) { return !d.isSystem; })
+    .map(function(d) { return { name: d.title, words: (d.words || []) }; });
+}
+
+// Áp deck kéo từ cloud vào `decks` local.
+// mode='merge' (mặc định an toàn): union words theo hanzi, KHÔNG xóa deck local chưa push.
+// mode='overwrite': thay words của deck trùng tên. System decks luôn được giữ.
+function applyUserDecksFromSync(pulledDecks, mode) {
+  if (!Array.isArray(pulledDecks) || !pulledDecks.length) return;
+  if (!Object.keys(decks).length && typeof loadDecks === 'function') loadDecks();
+  // Làm giàu lại stub {h} từ data HSK để pinyin/nghĩa không mất sau round-trip cloud
+  var wmap = null;
+  function enrich(w) {
+    if (w && w.p && w.v) return w;
+    if (!wmap && typeof getAllWords === 'function') {
+      wmap = {}; getAllWords().forEach(function(x) { wmap[x.h] = x; });
+    }
+    return (wmap && wmap[w.h]) ? wmap[w.h] : w;
+  }
+  var byTitle = {};
+  Object.keys(decks).forEach(function(id) {
+    if (!decks[id].isSystem) byTitle[decks[id].title] = decks[id];
+  });
+  pulledDecks.forEach(function(row) {
+    var cloudWords = (row.words || []).map(enrich);
+    var existing = byTitle[row.name];
+    if (existing) {
+      if (mode === 'overwrite') {
+        existing.words = cloudWords;
+      } else {
+        var have = {};
+        existing.words.forEach(function(w) { have[w.h] = true; });
+        cloudWords.forEach(function(w) { if (!have[w.h]) existing.words.push(w); });
+      }
+    } else {
+      var id = 'deck_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+      decks[id] = { id: id, title: row.name, isSystem: false, words: cloudWords,
+        icon: '📥', color: '#16A085', createdAt: new Date().toISOString() };
+      byTitle[row.name] = decks[id];
+    }
+  });
+  saveDecks();
+  if (typeof renderDeckBrowser === 'function') renderDeckBrowser();
+}
+
 // ── Helpers ────────────────────────────────────────────
 function getDeckWords(deck) {
   if (deck.isSystem && deck.level) return getNewWordsForLevel(deck.level).map(w => ({...w, level: deck.level}));

@@ -9,6 +9,26 @@
 }
 .mobile-header { display: none; }
 
+/* Route data-loading indicator (W5) — deferred, hiện khi bundle nặng đang tải */
+.route-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 0;
+  color: var(--text2);
+  font-size: 14px;
+}
+.route-loading-spin {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: routeLoadSpin .7s linear infinite;
+}
+@keyframes routeLoadSpin { to { transform: rotate(360deg); } }
+
 /* â”€â”€ PAGES â”€â”€ */
 .page { display: none; animation: fadeIn .3s ease; }
 .page.active { display: block; }

@@ -299,11 +299,10 @@ function startReviewAllDue() {
 // Cập nhật badge "Ôn tất cả" trên trang Luyện tập (ẩn card nếu 0 due)
 function lhRefreshDueBadges() {
   var n      = getAllDueHanzi().length;
-  var cntEl  = document.getElementById('practiceReviewCount');
   var descEl = document.getElementById('practiceReviewDesc');
-  if (cntEl)  cntEl.textContent = n > 0 ? (n + ' thẻ đến hạn') : 'Không có thẻ đến hạn';
+  // W5: status xuống dòng sub (desc, tone xám trung tính) thay vì dính title amber
   if (descEl) descEl.textContent = n > 0
-    ? 'Gom tất cả từ đến hạn của mọi cấp vào 1 phiên'
+    ? (n + ' thẻ đến hạn · gom mọi cấp vào 1 phiên')
     : 'Bạn đã ôn hết — quay lại sau nhé';
 }
 

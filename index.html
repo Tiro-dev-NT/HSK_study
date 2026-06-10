@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="css/base/variables.css?v=2.2"/>
   <!-- Layout: sidebar, main, right-sidebar -->
   <link rel="stylesheet" href="css/layout/sidebar.css?v=2.1"/>
-  <link rel="stylesheet" href="css/layout/main.css?v=1.0"/>
+  <link rel="stylesheet" href="css/layout/main.css?v=1.1"/>
   <link rel="stylesheet" href="css/layout/right-sidebar.css?v=2.2"/>
   <!-- Components: shared UI patterns -->
   <link rel="stylesheet" href="css/components/buttons.css?v=1.0"/>
@@ -41,7 +41,7 @@
   <!-- Pages: critical styles (needed for initial render) -->
   <link rel="stylesheet" href="css/pages/home.css?v=2.5"/>
   <link rel="stylesheet" href="css/pages/dictionary.css?v=2.2"/>
-  <link rel="stylesheet" href="css/pages/learn.css?v=1.6"/>
+  <link rel="stylesheet" href="css/pages/learn.css?v=1.7"/>
   <link rel="stylesheet" href="css/pages/handout.css?v=1.1"/>
   <!-- Pages: deferred (loaded async, not needed before first paint) -->
   <link rel="stylesheet" href="css/pages/quiz.css?v=1.0" media="print" onload="this.media='all'"/>
@@ -331,7 +331,7 @@
       <span>Tổng quan</span>
     </a>
     <a class="bnav-item" data-page="learn" href="#">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/><line x1="22" y1="10" x2="22" y2="15"/></svg>
       <span>Học</span>
     </a>
     <!-- Center FAB — opens quick nav sheet on mobile -->
@@ -558,9 +558,9 @@
   <script src="js/srs.js?v=2.5"></script>
   <!-- ══ Core modules (ordered by dependency) ══ -->
   <script src="js/state.js?v=2.9"></script>
-  <script src="js/router.js?v=4.9"></script>
+  <script src="js/router.js?v=5.0"></script>
   <script src="js/theme.js?v=2.5"></script>
-  <script src="js/gamification.js?v=3.6"></script>
+  <script src="js/gamification.js?v=3.7"></script>
   <script src="js/dictionary.js?v=3.6"></script>
   <script src="js/lookup-panel.js?v=1.1"></script>
   <script src="js/mistake-book.js?v=1.0"></script>
@@ -570,8 +570,8 @@
   <script src="js/feedback.js?v=2.7"></script>
   <script src="js/settings.js?v=2.7"></script>
   <!-- ══ Deck & session (depends on state + modules above) ══ -->
-  <script src="js/decks.js?v=3.1"></script>
-  <script src="js/learn-hub.js?v=1.8"></script>
+  <script src="js/decks.js?v=3.2"></script>
+  <script src="js/learn-hub.js?v=1.9"></script>
   <script src="js/session.js?v=2.9"></script>
   <script src="js/games.js?v=3.3"></script>
   <script src="js/games/boss.js?v=2.1"></script>

@@ -579,10 +579,11 @@ var Gamification = {
     var total   = wds.length || (info.count || 0);
     var mastered = st.mastered || 0;
     var pct     = total ? Math.round(mastered / total * 100) : 0;
-    var isV3    = typeof AppState !== 'undefined' && AppState.version === 3;
-    var prefix  = isV3 ? 'HSK 3.0 · L' : 'HSK ';
-    var suffix  = info.label ? ' — ' + info.label : '';
-    titleEl.textContent = prefix + currentLevel + suffix;
+    // W5: title cũ "HSK 3.0 · L1 — HSK 3.0 L1" trùng lặp → truncate xấu ở 375px.
+    // info.label đã là "HSK 3.0 L{n}" → bỏ tiền tố "HSK 3.0 " (app chỉ còn HSK 3.0)
+    // còn "L1" gọn, hợp mọi viewport.
+    var label   = info.label || ('L' + currentLevel);
+    titleEl.textContent = label.replace(/^HSK\s*3\.0\s*/, '');
     if (fillEl) fillEl.style.width = pct + '%';
     if (pctEl)  pctEl.textContent  = mastered + '/' + total + ' · ' + pct + '%';
   },

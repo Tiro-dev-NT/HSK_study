@@ -480,6 +480,18 @@
 .lh-hsk0-modules {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px;
 }
+/* Deck preview banner (Pro upsell) — W5: token-based, readable light+dark */
+.deck-preview-banner {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--hoang-kim) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--hoang-kim) 35%, var(--border));
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 /* Collapse mặc định (W4): ẩn 6 chip, hiện nút mở */
 .lh-tl-node--hsk0-collapsed .lh-hsk0-modules { display: none; }
 .lh-hsk0-toggle {

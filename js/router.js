@@ -331,7 +331,26 @@ var Router = (function() {
         var _dataReady = (typeof DataLoader !== 'undefined')
           ? DataLoader.ensureForPage(page)
           : Promise.resolve();
+        // W5: route nặng (vd course ~1.9MB) trên mạng chậm có thể trắng vùng
+        // data trong lúc await. Hiện 1 spinner mảnh — deferred 220ms để
+        // navigation nhanh (bundle đã cache) KHÔNG bao giờ nháy.
+        var _loadTimer = setTimeout(function() {
+          var c = document.getElementById('content');
+          if (c && !c.querySelector('.route-loading')) {
+            var d = document.createElement('div');
+            d.className = 'route-loading';
+            d.setAttribute('aria-live', 'polite');
+            d.innerHTML = '<span class="route-loading-spin" aria-hidden="true"></span><span>Đang tải…</span>';
+            c.appendChild(d);
+          }
+        }, 220);
+        var _clearLoad = function() {
+          clearTimeout(_loadTimer);
+          var rl = document.querySelector('.route-loading');
+          if (rl && rl.parentNode) rl.parentNode.removeChild(rl);
+        };
         return _dataReady.then(function() {
+          _clearLoad();
           try {
             if (_initMap[page]) _initMap[page]();
           } catch(e) {

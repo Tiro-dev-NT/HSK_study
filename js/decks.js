@@ -355,8 +355,8 @@ function openDeckDetail(deckId, topicFilter = null) {
       var isEN = typeof AppState !== 'undefined' && AppState.lang === 'en';
       banner.style.display = 'block';
       banner.innerHTML = isEN
-        ? '🔒 Free preview: <strong>' + PREVIEW_WORD_COUNT + ' of ' + fullCount + ' words</strong> — <a href="#" onclick="Router.navigateTo(\'pricing\');return false;" style="color:#92400E;font-weight:600;text-decoration:underline">Upgrade to Pro</a> for full access'
-        : '🔒 Xem thử: <strong>' + PREVIEW_WORD_COUNT + '/' + fullCount + ' từ</strong> — <a href="#" onclick="Router.navigateTo(\'pricing\');return false;" style="color:#92400E;font-weight:600;text-decoration:underline">Nâng lên Pro</a> để học đủ';
+        ? '🔒 Free preview: <strong>' + PREVIEW_WORD_COUNT + ' of ' + fullCount + ' words</strong> — <a href="#" onclick="Router.navigateTo(\'pricing\');return false;" style="color:var(--primary);font-weight:600;text-decoration:underline">Upgrade to Pro</a> for full access'
+        : '🔒 Xem thử: <strong>' + PREVIEW_WORD_COUNT + '/' + fullCount + ' từ</strong> — <a href="#" onclick="Router.navigateTo(\'pricing\');return false;" style="color:var(--primary);font-weight:600;text-decoration:underline">Nâng lên Pro</a> để học đủ';
     } else {
       banner.style.display = 'none';
     }

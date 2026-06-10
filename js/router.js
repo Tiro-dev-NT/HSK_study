@@ -294,24 +294,32 @@ var Router = (function() {
           var path = page === 'home' ? '/' : '/' + page;
           history.pushState({ page: page }, '', path);
         }
-        try {
-          if (_initMap[page]) _initMap[page]();
-        } catch(e) {
-          console.error('[Router] initPageModule ' + page + ' failed:', e);
-        }
-        _updateNav(page);
-        _current = page;
-        if (typeof RightSidebar !== 'undefined' && RightSidebar.onNavigate) {
-          try { RightSidebar.onNavigate(page); } catch(e) {}
-        }
-        if (typeof window.updateMascot === 'function') window.updateMascot(page);
-        // Forward nav → top of page. Back/forward → restore saved scroll (P1-1).
-        if (pushState !== false) {
-          window.scrollTo(0, 0);
-        } else {
-          var _sc = (history.state && history.state._scroll) || 0;
-          requestAnimationFrame(function() { window.scrollTo(0, _sc); });
-        }
+        // Lazy-load data bundles riêng của route TRƯỚC khi init (perf — cắt
+        // ~2.3MB data JS khỏi first paint). ensureForPage không bao giờ reject;
+        // nếu mạng lỗi, consumer vẫn guard typeof nên page degrade gracefully.
+        var _dataReady = (typeof DataLoader !== 'undefined')
+          ? DataLoader.ensureForPage(page)
+          : Promise.resolve();
+        return _dataReady.then(function() {
+          try {
+            if (_initMap[page]) _initMap[page]();
+          } catch(e) {
+            console.error('[Router] initPageModule ' + page + ' failed:', e);
+          }
+          _updateNav(page);
+          _current = page;
+          if (typeof RightSidebar !== 'undefined' && RightSidebar.onNavigate) {
+            try { RightSidebar.onNavigate(page); } catch(e) {}
+          }
+          if (typeof window.updateMascot === 'function') window.updateMascot(page);
+          // Forward nav → top of page. Back/forward → restore saved scroll (P1-1).
+          if (pushState !== false) {
+            window.scrollTo(0, 0);
+          } else {
+            var _sc = (history.state && history.state._scroll) || 0;
+            requestAnimationFrame(function() { window.scrollTo(0, _sc); });
+          }
+        });
       })
       .catch(function(err) {
         console.error('[Router] fetch failed for ' + page + ':', err);

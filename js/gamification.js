@@ -181,6 +181,8 @@ var Gamification = {
     if (sEl) sEl.textContent = Gamification.getStreak();
     var tbStreak = document.getElementById('topbarStreakBadge');
     if (tbStreak) tbStreak.textContent = String(Gamification.getStreak());
+    var mbStreak = document.getElementById('mHeaderStreakNum');
+    if (mbStreak) mbStreak.textContent = String(Gamification.getStreak());
     if (dEl) {
       const today = new Date().toISOString().split('T')[0];
       const due   = Object.values(AppState.srsData).filter(function(s) {

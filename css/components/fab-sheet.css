@@ -7,7 +7,9 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--overlay);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   z-index: 900;
   opacity: 0;
   transition: opacity var(--d-base) var(--ease-out);
@@ -24,11 +26,13 @@
   bottom: 0;
   z-index: 901;
   background: var(--surface);
-  border-radius: 20px 20px 0 0;
+  border-radius: var(--r-6) var(--r-6) 0 0;
   padding: 0 0 env(safe-area-inset-bottom, 0);
   transform: translateY(100%);
-  transition: transform var(--d-base) var(--ease-out);
+  transition: transform var(--d-slow) var(--ease-out);
   box-shadow: var(--shadow-4);
+  max-height: 85vh;
+  overflow-y: auto;
 }
 .fab-sheet.open {
   transform: translateY(0);
@@ -39,7 +43,7 @@
   height: 4px;
   background: var(--border);
   border-radius: var(--r-pill);
-  margin: 12px auto 0;
+  margin: 10px auto 0;
 }
 
 .fab-sheet-header {
@@ -49,25 +53,25 @@
   padding: 14px var(--s-5) 10px;
 }
 .fab-sheet-title {
-  font-size: 13px;
+  font-size: var(--t-h3);
   font-weight: 700;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--text);
+  letter-spacing: -0.01em;
 }
 .fab-sheet-close {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--surface2);
-  border: none;
-  color: var(--text3);
-  font-size: 16px;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 15px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 /* ── Section title (Đi đến / Lối tắt) ─────────────────── */

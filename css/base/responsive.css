@@ -1,56 +1,142 @@
+/* ============================================================
+   RESPONSIVE — Mobile polish (Wave 3, 2026-06-11)
+   Spec: docs/plans/fe-redesign/07-mobile.md
+   Breakpoint chính: 768px. Token-only.
+   ============================================================ */
+
 @media (max-width: 768px) {
   .sidebar { display: none; }
-  .main-content { margin-left: 0; padding: 16px 16px calc(76px + env(safe-area-inset-bottom, 0px)); max-width: 100%; }
+  .main-content {
+    margin-left: 0;
+    padding: 16px 16px calc(76px + env(safe-area-inset-bottom, 0px));
+    max-width: 100%;
+  }
+
+  /* ───── Mobile header (56px sticky, logo + chips) ───── */
   .mobile-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 0 20px;
-    margin-bottom: 4px;
+    gap: var(--s-2);
+    height: 56px;
+    padding: 0;
+    margin-bottom: var(--s-3);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
   }
-  .header-actions { display: flex; align-items: center; gap: 8px; }
-  .btn-lang-sm {
-    background: var(--surface);
+  .mobile-logo-img {
+    height: 32px;
+    padding: 3px 6px;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-1);
+  }
+
+  /* Chip pill 32px — token / streak / AI credit / theme / lang / login */
+  .header-actions .header-token,
+  .header-actions .mh-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: var(--r-pill);
+    background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 12px;
     font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .header-actions .header-token { padding: 0 10px 0 8px; }
+  .header-actions #token-count { font-size: 13px; color: var(--primary); }
+  .header-actions .mh-chip svg,
+  .header-actions .mh-chip img { width: 14px; height: 14px; flex-shrink: 0; }
+  .header-actions .mh-chip--streak { color: var(--chau-hong); }
+  .header-actions .mh-chip--credit { color: var(--info); }
+
+  /* Buttons (theme/lang/login) — pill 32px */
+  .header-actions .btn-icon,
+  .header-actions .btn-lang-sm,
+  .header-actions .auth-login-btn-sm {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: var(--r-pill);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
     font-weight: 700;
     color: var(--text2);
     cursor: pointer;
   }
+  .header-actions .btn-lang-sm { width: auto; padding: 0 10px; font-size: 12px; }
+
+  /* ≤ 375px: ẩn AI credit + nén "token" chữ chỉ giữ số (CSS-only, không đụng JS) */
+  @media (max-width: 375px) {
+    .header-actions .mh-chip--credit { display: none; }
+    .header-actions .header-token { padding: 0 8px; font-size: 11px; }
+    .header-actions { gap: 4px; }
+  }
+
+  /* ───── Bottom nav (5 tab + FAB) ───── */
   .bottom-nav {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     position: fixed;
     bottom: 0; left: 0; right: 0;
+    height: calc(64px + env(safe-area-inset-bottom, 0px));
+    padding: 0 0 env(safe-area-inset-bottom, 0px);
     background: var(--surface);
     border-top: 1px solid var(--border);
     z-index: 100;
-    padding: 4px 0 max(env(safe-area-inset-bottom, 6px), 6px);
   }
   .bnav-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-    padding: 6px 4px;
+    justify-content: center;
+    gap: 2px;
+    min-width: 48px;
     min-height: 48px;
+    padding: 6px 4px 4px;
     text-decoration: none;
     color: var(--text3);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
-    transition: color .2s;
+    transition: color .15s;
     touch-action: manipulation;
+    position: relative;
   }
   .bottom-nav::-webkit-scrollbar { display: none; }
-  .bnav-item svg { width: 20px; height: 20px; }
-  .bnav-item.active { color: var(--primary); }
-  /* Center FAB button */
+  .bnav-item svg { width: 24px; height: 24px; stroke-width: 2; }
+  .bnav-item.active {
+    color: var(--primary);
+  }
+  /* Active dot indicator (4px) above icon — KHÔNG nền block */
+  .bnav-item.active::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  /* Center FAB — 56px, nhô 12px, shadow-red */
   .bnav-fab {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background: var(--primary);
     border: none;
@@ -61,15 +147,23 @@
     cursor: pointer;
     flex-shrink: 0;
     position: relative;
-    top: -10px;
-    box-shadow: 0 4px 14px rgba(220,38,38,.40);
+    top: -12px;
+    box-shadow: var(--shadow-red);
     touch-action: manipulation;
-    transition: transform .15s, box-shadow .15s;
+    transition: transform .15s var(--ease-out), box-shadow .15s var(--ease-out);
   }
-  .bnav-fab:active { transform: scale(.91); box-shadow: 0 2px 8px rgba(220,38,38,.25); }
-  /* Active khi đang ở hub Luyện tập / Công cụ (không có slot bottom-nav) */
-  .bnav-fab--active { box-shadow: 0 0 0 3px var(--surface), 0 0 0 6px var(--primary), 0 4px 14px rgba(220,38,38,.40); }
-  /* Mobile: 2-col stats, hide streak (shown in XP bar) */
+  .bnav-fab svg { width: 24px; height: 24px; stroke-width: 2.4; }
+  .bnav-fab:active { transform: scale(.95); }
+  .bnav-fab:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+  /* Hub Luyện tập / Công cụ → FAB pulse ring */
+  .bnav-fab--active {
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 6px var(--primary), var(--shadow-red);
+  }
+
+  /* Ẩn bottom-nav + FAB khi đang session học (Calm Study UI) */
+  body.session-active .bottom-nav { display: none; }
+
+  /* ───── Misc page tweaks (giữ từ bản cũ) ───── */
   .stats-row { grid-template-columns: repeat(2,1fr); gap: 10px; }
   .streak-card { display: none; }
   .stat-num { font-size: 32px; }
@@ -78,5 +172,73 @@
   .page-header { flex-direction: column; align-items: flex-start; gap: 2px; margin-bottom: 20px; }
   .page-header h1 { font-size: 22px; }
   .fc-hanzi { font-size: 56px; }
-}
 
+  /* ───── Touch ergonomics sweep (W3) ───── */
+  /* Tránh iOS auto-zoom: input font ≥ 16px */
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+  /* Scroll ngang: cho phép kéo riêng + snap nhẹ (chips/timeline). overflow-x explicit */
+  .lh-chip-row,
+  .lh-timeline,
+  .practice-tabs,
+  .pr-tabs,
+  .tools-cat-tabs,
+  .profile-tabs,
+  .prof-tabs,
+  .deck-filter-row,
+  .topic-chips {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .lh-chip-row::-webkit-scrollbar,
+  .lh-timeline::-webkit-scrollbar,
+  .practice-tabs::-webkit-scrollbar,
+  .pr-tabs::-webkit-scrollbar,
+  .tools-cat-tabs::-webkit-scrollbar,
+  .profile-tabs::-webkit-scrollbar,
+  .prof-tabs::-webkit-scrollbar,
+  .deck-filter-row::-webkit-scrollbar,
+  .topic-chips::-webkit-scrollbar { display: none; }
+  .lh-chip-row > *,
+  .lh-timeline > *,
+  .practice-tabs > *,
+  .pr-tabs > *,
+  .tools-cat-tabs > *,
+  .profile-tabs > *,
+  .prof-tabs > *,
+  .topic-chips > * { scroll-snap-align: start; }
+
+  /* ───── W3 regression fixes — touch targets ≥44 trên trang đã redesign ───── */
+  /* Session header — nút X exit (learn.css 36px → 44px mobile) */
+  .btn-exit { width: 44px; height: 44px; }
+  /* "Xem pinyin" toggle trên flashcard */
+  .fc-pinyin-toggle { padding: 8px 14px; min-height: 36px; }
+  /* WOTD TTS button (home) — bump tap area */
+  .wotd-tts-sm { padding: 10px; }
+  /* HSK map bubble (home) — 40 → 44 cho dễ bấm khi scroll ngang */
+  .hsk-map-bubble { width: 44px; height: 44px; }
+  .hsk-map-line { width: 22px; }
+  /* Topbar user button trên home — đã có 36px desktop, để mobile rộng hơn */
+  .topbar-user-btn { width: 40px; height: 40px; }
+  /* Dictionary search bar — đảm bảo input ≥16px (đã global ở trên), tăng padding cho thumb */
+  .dict-search-input { padding: 14px 16px; }
+  /* Session "Xem nghĩa" tap hint — primary CTA luôn nửa dưới nhờ flashcard tự center */
+
+  /* Nút "Đăng nhập"/icon góc — gôp với chip pill (đã làm ở header-actions trên) */
+  /* Hover-only affordances: ép active tương đương trên các card đã redesign */
+  .tool-card:hover, .tool-card:active,
+  .pr-card:hover,   .pr-card:active,
+  .prof-card:hover, .prof-card:active,
+  .com-card:hover,  .com-card:active,
+  .lh-card:hover,   .lh-card:active { border-color: var(--primary); }
+}

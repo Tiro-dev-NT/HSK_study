@@ -628,14 +628,31 @@ var AICredit = {
       balance = cached !== null ? parseInt(cached, 10) : null;
     }
     var badge = document.getElementById('topbarAICreditBadge');
-    if (!badge) return;
-    if (balance === null) { badge.style.display = 'none'; return; }
-    badge.style.display = '';
-    badge.textContent   = balance.toLocaleString() + ' cr';
-    badge.style.cursor  = 'pointer';
-    if (!badge._aiBound) {
-      badge._aiBound = true;
-      badge.addEventListener('click', function() { AICredit.openModal(); });
+    var mBadge = document.getElementById('mHeaderAICredit');
+    var mBadgeNum = document.getElementById('mHeaderAICreditNum');
+    if (balance === null) {
+      if (badge) badge.style.display = 'none';
+      if (mBadge) mBadge.style.display = 'none';
+      return;
+    }
+    var label = balance.toLocaleString();
+    if (badge) {
+      badge.style.display = '';
+      badge.textContent   = label + ' cr';
+      badge.style.cursor  = 'pointer';
+      if (!badge._aiBound) {
+        badge._aiBound = true;
+        badge.addEventListener('click', function() { AICredit.openModal(); });
+      }
+    }
+    if (mBadge) {
+      mBadge.style.display = '';
+      if (mBadgeNum) mBadgeNum.textContent = label;
+      mBadge.style.cursor = 'pointer';
+      if (!mBadge._aiBound) {
+        mBadge._aiBound = true;
+        mBadge.addEventListener('click', function() { AICredit.openModal(); });
+      }
     }
   },
 

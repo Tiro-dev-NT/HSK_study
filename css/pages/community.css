@@ -182,9 +182,9 @@
   .comm-host { padding: 0 var(--s-4) var(--s-4); }
   .comm-honor-wrap { margin: 0 var(--s-4) var(--s-4); }
   .comm-hero { margin: 0 var(--s-4) var(--s-4); padding: var(--s-4); }
-  .comm-grid { grid-template-columns: 1fr; padding: 0 var(--s-4) var(--s-4); }
+  .comm-grid { grid-template-columns: minmax(0, 1fr); padding: 0 var(--s-4) var(--s-4); }
   .comm-band { margin: 0 var(--s-4) var(--s-4); }
-  .comm-band-cards { grid-template-columns: 1fr; }
+  .comm-band-cards { grid-template-columns: minmax(0, 1fr); }
   .comm-hero-head { flex-wrap: wrap; }
   /* Fallback banner: trophy+text dòng 1, CTA full-width xuống dòng 2 */
   .comm-hero-banner { flex-wrap: wrap; }

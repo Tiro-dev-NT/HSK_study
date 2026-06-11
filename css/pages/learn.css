@@ -641,6 +641,7 @@ body.session-active .bottom-nav { display: none; }
 
 /* Resources section — hub-card pattern (.tool-card lo geometry/hover) */
 .lh-resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+@media (max-width: 480px) { .lh-resource-grid { grid-template-columns: 1fr; } }
 /* Resource card = tool-card nhưng body cao (có progress) → canh trên + reset button */
 .lh-resource-card { align-items: flex-start; text-align: left; font: inherit; }
 .lh-resource-card .tool-card-icon { margin-top: 2px; }

@@ -113,7 +113,7 @@ function _lhRenderMilestone() {
     ? Course.pendingMilestones() : null;
   if (!m) { wrap.innerHTML = ''; return; }
 
-  var icon = m.isBoss ? '🏆' : '📝';
+  var icon = (typeof Icons !== 'undefined') ? Icons.get(m.isBoss ? 'trophy' : 'file-text', { size: 20 }) : '';
   wrap.innerHTML =
     '<button class="lh-milestone" onclick="lhMilestoneClick()">' +
       '<span class="lh-ms-icon">' + icon + '</span>' +
@@ -121,7 +121,7 @@ function _lhRenderMilestone() {
         '<span class="lh-ms-title">' + m.label + ' đã mở khóa</span>' +
         '<span class="lh-ms-desc">' + m.desc + '</span>' +
       '</span>' +
-      '<span class="lh-ms-cta">Làm ngay →</span>' +
+      '<span class="lh-ms-cta">Làm ngay' + ((typeof Icons !== 'undefined') ? Icons.get('arrow-right', { size: 16 }) : '') + '</span>' +
     '</button>';
   window._lhMilestone = m;
 }
@@ -236,9 +236,9 @@ function _lhRenderMistakeBanner() {
   b.id = 'lhMistakeBanner';
   b.className = 'lh-mistake-banner';
   b.onclick = function () { MistakeBook.review(); };
-  b.innerHTML = '<span class="lh-mb-icon">📓</span>' +
+  b.innerHTML = '<span class="lh-mb-icon">' + ((typeof Icons !== 'undefined') ? Icons.get('file-text', { size: 20 }) : '') + '</span>' +
     '<span class="lh-mb-text">Bạn có <b>' + n + '</b> lỗi cần ôn lại</span>' +
-    '<span class="lh-mb-cta">Ôn ngay →</span>';
+    '<span class="lh-mb-cta">Ôn ngay' + ((typeof Icons !== 'undefined') ? Icons.get('arrow-right', { size: 16 }) : '') + '</span>';
   grid.insertAdjacentElement('afterend', b);
 }
 
@@ -386,13 +386,14 @@ function _lhRenderTimeline() {
   var _hasMai = Object.keys(_maiProg).some(function(k) { return _maiProg[k] && _maiProg[k].completed; });
   var _hsk0Expand = (_placement === 'hsk0') && !_hsk0Passed && !_hasMai;
 
+  var _ic = function(name, size) { return (typeof Icons !== 'undefined') ? Icons.get(name, { size: size || 18 }) : ''; };
   html += '<div class="lh-tl-node lh-tl-node--hsk0' + (_hsk0Expand ? '' : ' lh-tl-node--hsk0-collapsed') + '">';
-  html += '<div class="lh-tl-icon">🔰</div>';
+  html += '<div class="lh-tl-icon">' + _ic('star', 20) + '</div>';
   html += '<div class="lh-tl-body">';
   html += '<div class="lh-tl-name">HSK 0 · Nhập Môn</div>';
   html += '<div class="lh-tl-sub">Thanh điệu · Pinyin · Nét viết · Số đếm</div>';
   if (!_hsk0Expand) {
-    html += '<button class="lh-hsk0-toggle" onclick="this.closest(\'.lh-tl-node--hsk0\').classList.toggle(\'lh-tl-node--hsk0-collapsed\')">Xem 6 mục nhập môn ▾</button>';
+    html += '<button class="lh-hsk0-toggle" onclick="this.closest(\'.lh-tl-node--hsk0\').classList.toggle(\'lh-tl-node--hsk0-collapsed\')">Xem 6 mục nhập môn <span class="lh-hsk0-tog-chev">' + _ic('chevron-right', 14) + '</span></button>';
   }
   html += '<div class="lh-hsk0-modules">';
   for (var mi = 0; mi < HSK0_MODS.length; mi++) {
@@ -423,14 +424,14 @@ function _lhRenderTimeline() {
     else cls += ' lh-tl-node--done';
 
     html += '<button class="' + cls + '" onclick="Router.navigateTo(\'course\')">';
-    html += '<div class="lh-tl-icon">📖</div>';
+    html += '<div class="lh-tl-icon">' + _ic('book-open', 20) + '</div>';
     html += '<div class="lh-tl-body">';
     html += '<div class="lh-tl-name">Truyện Mai <span class="lh-spine-tag">Giáo trình chính</span></div>';
     html += '<div class="lh-tl-progress"><div class="lh-tl-bar" style="width:' + coursePct + '%"></div></div>';
     html += '<div class="lh-tl-sub">' + courseDone + ' / ' + courseTotal + ' bài · học tuần tự';
     if (courseCurrent) html += ' &nbsp;<span class="lh-here-chip">Bạn ở đây</span>';
     html += '</div></div>';
-    if (courseCurrent) html += '<div class="lh-tl-arrow-active">▶</div>';
+    if (courseCurrent) html += '<div class="lh-tl-arrow-active">' + _ic('play', 16) + '</div>';
     html += '</button><div class="lh-tl-connector"></div>';
   }
 
@@ -444,12 +445,12 @@ function _lhRenderTimeline() {
   }
   html += '<div class="lh-vocab-group" id="lhVocabGroup">';
   html += '<button class="lh-vocab-head" onclick="lhToggleVocabGroup()">';
-  html += '<div class="lh-tl-icon">📚</div>';
+  html += '<div class="lh-tl-icon">' + _ic('layers', 20) + '</div>';
   html += '<div class="lh-tl-body">';
   html += '<div class="lh-tl-name">Kho từ vựng theo cấp</div>';
   html += '<div class="lh-tl-sub">' + count + ' cấp · ' + vLearned + ' / ' + vTotal + ' từ · tra cứu & ôn</div>';
   html += '</div>';
-  html += '<div class="lh-vocab-chevron">▾</div>';
+  html += '<div class="lh-vocab-chevron">' + _ic('chevron-right', 16) + '</div>';
   html += '</button>';
   html += '<div class="lh-vocab-list">';
   for (var lv = 1; lv <= count; lv++) {
@@ -461,7 +462,7 @@ function _lhRenderTimeline() {
     var isCur   = (lv === curLevel);
     var id      = 'sys_hsk' + lv;
     html += '<button class="lh-vocab-row' + (isCur ? ' lh-vocab-row--cur' : '') + '" onclick="learnHubOpenDeck(\'' + id + '\')">';
-    html += '<span class="lh-vocab-ic">' + (info.icon || '📕') + '</span>';
+    html += '<span class="lh-vocab-dot" style="background:var(--hsk-' + lv + ')">' + lv + '</span>';
     html += '<span class="lh-vocab-nm">' + (info.label || ('HSK ' + lv)) + '</span>';
     html += '<span class="lh-vocab-mini"><span class="lh-vocab-mini-bar" style="width:' + pct + '%"></span></span>';
     html += '<span class="lh-vocab-cnt">' + learned + '/' + total + (isCur ? ' · đang ôn' : '') + '</span>';
@@ -471,7 +472,7 @@ function _lhRenderTimeline() {
   html += '</div>'; // .lh-vocab-group
 
   html += '<button class="lh-tl-map-link" onclick="Router.navigateTo(\'ban-do-hsk\')">';
-  html += '🗺️ Xem dạng Bản đồ HSK →</button>';
+  html += _ic('map', 16) + ' Xem dạng Bản đồ HSK' + _ic('arrow-right', 14) + '</button>';
 
   container.innerHTML = html;
 }

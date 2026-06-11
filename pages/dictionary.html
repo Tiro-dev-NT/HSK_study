@@ -19,10 +19,13 @@
           <!-- Search bar with button -->
           <div class="dict-search-bar">
             <div class="dict-search-input-wrap">
-              <svg class="dict-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" id="dictSearch" placeholder="Tìm chữ Hán, pinyin hoặc nghĩa..." autocomplete="off"/>
+              <svg class="dict-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="dictSearch" placeholder="Tra chữ Hán, pinyin hoặc nghĩa Việt..." autocomplete="off"/>
+              <button class="dict-search-clear" id="dictSearchClear" title="Xóa" aria-label="Xóa" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
             </div>
-            <button class="dict-search-btn" id="dictSearchBtn">Tra từ</button>
+            <button class="btn-primary dict-search-btn" id="dictSearchBtn">Tra từ</button>
           </div>
 
           <!-- Filter tabs -->
@@ -31,14 +34,16 @@
             <button class="stab" data-mode="hanzi">Hán tự</button>
             <button class="stab" data-mode="pinyin">Pinyin</button>
             <button class="stab" data-mode="meaning">Nghĩa Việt</button>
-            <button class="stab" data-mode="radical">🔑 Bộ thủ</button>
+            <button class="stab" data-mode="radical">Bộ thủ</button>
           </div>
 
           <!-- Recent searches -->
           <div class="dict-recent" id="dictRecent" style="display:none">
-            <span class="dict-recent-label">GẦN ĐÂY:</span>
+            <span class="sec-eyebrow dict-recent-label">Gần đây</span>
             <div class="dict-recent-chips" id="dictRecentChips"></div>
-            <button class="dict-recent-clear" id="dictRecentClear" title="Xóa lịch sử">✕</button>
+            <button class="dict-recent-clear" id="dictRecentClear" title="Xóa lịch sử" aria-label="Xóa lịch sử">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
           </div>
 
           <!-- Radical browser -->
@@ -62,25 +67,17 @@
           <!-- Stats cards (hidden while a word detail is open) -->
           <div class="dict-aside-stats" id="dictAsideStats">
 
-          <!-- Vocab progress card -->
-          <div class="dict-aside-card">
+          <!-- Vocab progress card (demote → card-quiet) -->
+          <div class="card-quiet dict-aside-card dict-progress-card">
             <div class="dac-label">Từ vựng đã học</div>
             <div class="dac-count-row">
               <span class="dac-num" id="dictKnownCount">0</span>
               <span class="dac-denom">/ <span id="dictTotalCount">0</span> từ</span>
             </div>
-            <div class="dac-bar-track">
+            <div class="prog-track dac-bar-track">
               <div class="dac-bar-fill" id="dictKnownBar" style="width:0%"></div>
             </div>
             <div class="dac-sub" id="dictKnownSub">trong tổng số từ HSK</div>
-          </div>
-
-          <!-- AI Reverse Lookup (Pro) -->
-          <div class="dict-aside-card dict-ai-card">
-            <span class="dac-pro-badge">⭐ Pro</span>
-            <div class="dac-ai-title">Tra nghĩa ngược</div>
-            <p class="dac-desc">Nhập nghĩa Việt / Anh, AI gợi ý từ Hán phù hợp nhất.</p>
-            <button class="dac-pro-btn" onclick="if(typeof Monetization!=='undefined')Monetization.showGate('ai-reverse-lookup')">Dùng thử →</button>
           </div>
 
           <!-- My decks mini -->
@@ -89,7 +86,18 @@
             <div class="dac-deck-list" id="dictDeckList">
               <div class="dac-deck-empty">Chưa có bộ thẻ nào</div>
             </div>
-            <a class="dac-link" data-page="my-vocab" href="#" onclick="Router.navigateTo('my-vocab');return false;">Quản lý bộ thẻ →</a>
+            <a class="dac-link" data-page="my-vocab" href="#" onclick="Router.navigateTo('my-vocab');return false;">
+              Quản lý bộ thẻ
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- AI Reverse Lookup (Pro) — upsell xuống cuối, không đè utility -->
+          <div class="dict-aside-card dict-ai-card">
+            <span class="badge-pro dac-pro-badge">Pro</span>
+            <div class="dac-ai-title">Tra nghĩa ngược</div>
+            <p class="dac-desc">Nhập nghĩa Việt / Anh, AI gợi ý từ Hán phù hợp nhất.</p>
+            <button class="btn-secondary dac-pro-btn" onclick="if(typeof Monetization!=='undefined')Monetization.showGate('ai-reverse-lookup')">Dùng thử</button>
           </div>
 
           </div><!-- /.dict-aside-stats -->

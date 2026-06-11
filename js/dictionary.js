@@ -31,8 +31,27 @@ var Dictionary = {
     if (!input._dictBound) {
       input._dictBound = true;
       input.addEventListener('input', function() {
+        Dictionary._toggleClear(input.value);
         Dictionary.searchDict(input.value.trim());
       });
+    }
+
+    // Nút xóa (×) — hiện khi có text
+    var clearBtn = document.getElementById('dictSearchClear');
+    if (clearBtn && !clearBtn._dictBound) {
+      clearBtn._dictBound = true;
+      clearBtn.addEventListener('click', function() {
+        input.value = '';
+        Dictionary._toggleClear('');
+        Dictionary.searchDict('');
+        input.focus();
+      });
+    }
+    Dictionary._toggleClear(input.value);
+
+    // Autofocus khi vào trang (chỉ desktop ≥1024 để mobile không bật bàn phím)
+    if (window.matchMedia('(min-width: 1024px)').matches) {
+      setTimeout(function() { input.focus(); }, 60);
     }
 
     // Search mode tabs
@@ -66,6 +85,12 @@ var Dictionary = {
 
     // Initial render: restored query (P1-3) or default suggestions when empty.
     Dictionary.searchDict(input.value.trim());
+  },
+
+  // Ẩn/hiện nút xóa search theo có text hay không
+  _toggleClear: function(val) {
+    var btn = document.getElementById('dictSearchClear');
+    if (btn) btn.style.display = (val && val.length) ? 'flex' : 'none';
   },
 
   // ── Recent searches ────────────────────────────────
@@ -179,12 +204,26 @@ var Dictionary = {
     // Remember the last query so leaving & returning to the page restores it (P1-3).
     Dictionary._lastQuery = query;
     if (!query) {
-      const label = document.createElement('p');
-      label.className = 'rad-results-label';
-      label.textContent = AppState.lang === 'vi' ? 'Gợi ý từ vựng hôm nay' : 'Word of the day suggestions';
-      res.innerHTML = '';
-      res.appendChild(label);
-      const wrapper = document.createElement('div');
+      var isVi = AppState.lang === 'vi';
+      var sugg = ['你好', '学习', '谢谢', '中国', '朋友', '时间'];
+      var chips = sugg.map(function(s) { return '<button class="dict-sugg-chip" data-q="' + s + '">' + s + '</button>'; }).join('');
+      var searchIc = (typeof Icons !== 'undefined') ? Icons.get('search', { size: 28 }) : '';
+      res.innerHTML =
+        '<div class="dict-empty">' +
+          '<div class="dict-empty-ic">' + searchIc + '</div>' +
+          '<div class="dict-empty-title">' + (isVi ? 'Tra chữ Hán, pinyin hoặc nghĩa Việt' : 'Search by hanzi, pinyin or meaning') + '</div>' +
+          '<div class="dict-empty-chips">' + chips + '</div>' +
+        '</div>' +
+        '<p class="rad-results-label">' + (isVi ? 'Gợi ý từ vựng hôm nay' : 'Word of the day suggestions') + '</p>';
+      res.querySelectorAll('.dict-sugg-chip').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var inp = document.getElementById('dictSearch');
+          if (inp) { inp.value = btn.dataset.q; }
+          Dictionary._toggleClear(btn.dataset.q);
+          Dictionary.searchDict(btn.dataset.q);
+        });
+      });
+      var wrapper = document.createElement('div');
       Dictionary._renderWordList(shuffle(getAllWordsBothVersions()).slice(0, 20), wrapper);
       res.appendChild(wrapper);
       return;
@@ -209,29 +248,46 @@ var Dictionary = {
   _renderWordList: function(words, container) {
     const lang = AppState.lang;
     if (!words.length) {
-      container.innerHTML = '<p class="hint">' + (lang === 'vi' ? 'Không tìm thấy kết quả' : 'No results found') + '</p>';
+      var nrIc = (typeof Icons !== 'undefined') ? Icons.get('search', { size: 28 }) : '';
+      container.innerHTML =
+        '<div class="dict-empty dict-empty--noresult">' +
+          '<div class="dict-empty-ic">' + nrIc + '</div>' +
+          '<div class="dict-empty-title">' + (lang === 'vi' ? 'Không tìm thấy kết quả' : 'No results found') + '</div>' +
+          '<div class="dict-empty-sub">' + (lang === 'vi' ? 'Thử tra theo Pinyin hoặc kiểm tra lại chính tả' : 'Try searching by Pinyin or check spelling') + '</div>' +
+        '</div>';
       return;
     }
+    var volIc = (typeof Icons !== 'undefined') ? Icons.get('volume', { size: 18 }) : '';
     container.innerHTML = words.map(function(w) {
-      var ver = w.ver || 2;
-      var badge = (ver === 3 ? '3.0' : '2.0') + ' L' + w.level;
-      var alsoChip = w._alsoIn
-        ? ' <span class="dict-also">' + (w._alsoIn.ver === 3 ? '3.0' : '2.0') + '</span>'
-        : '';
-      var badgeClass = 'dict-hsk dict-hsk-v' + ver;
-      return '<div class="dict-card" data-hanzi="' + w.h + '">' +
+      var lv = w.level || 1;
+      var badge = 'HSK ' + lv;
+      var meaning = (lang === 'vi' ? w.v : w.e) || '';
+      var second  = (lang === 'vi' && w.e) ? ' <span class="dict-meaning-en">· ' + escapeHtml(w.e) + '</span>' : '';
+      return '<div class="dict-card" data-hanzi="' + escapeHtml(w.h) + '">' +
         '<div class="dict-hanzi">' + w.h + '</div>' +
         '<div class="dict-info">' +
-          '<div class="dict-pinyin">' + w.p + '</div>' +
-          '<div class="dict-meaning">' + (lang === 'vi' ? w.v : w.e) + '</div>' +
+          '<div class="dict-info-top">' +
+            '<span class="dict-pinyin">' + escapeHtml(w.p) + '</span>' +
+            '<span class="dict-hsk" style="color:var(--hsk-' + lv + ');border-color:var(--hsk-' + lv + ')">' + badge + '</span>' +
+          '</div>' +
+          '<div class="dict-meaning">' + escapeHtml(meaning) + second + '</div>' +
         '</div>' +
-        '<div class="' + badgeClass + '">' + badge + alsoChip + '</div>' +
-        '<button class="quick-add" data-hidx="' + w.h + '" title="' + (lang === 'vi' ? 'Thêm vào bộ thẻ' : 'Add to deck') + '">+</button>' +
+        '<div class="dict-card-actions">' +
+          '<button class="dict-tts" data-h="' + escapeHtml(w.h) + '" title="Phát âm" aria-label="Phát âm">' + volIc + '</button>' +
+          '<button class="quick-add" data-hidx="' + escapeHtml(w.h) + '" title="' + (lang === 'vi' ? 'Thêm vào bộ thẻ' : 'Add to deck') + '" aria-label="Thêm vào bộ thẻ">+</button>' +
+        '</div>' +
       '</div>';
     }).join('');
     container.querySelectorAll('.dict-card').forEach(function(card, i) {
       card.addEventListener('click', function(e) {
-        if (!e.target.classList.contains('quick-add')) Dictionary.showDetail(words[i]);
+        if (e.target.closest('.quick-add') || e.target.closest('.dict-tts')) return;
+        Dictionary.showDetail(words[i]);
+      });
+    });
+    container.querySelectorAll('.dict-tts').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        Dictionary.playTTS(btn.dataset.h);
       });
     });
     container.querySelectorAll('.quick-add').forEach(function(btn, i) {
@@ -285,11 +341,12 @@ var Dictionary = {
     var badge = 'HSK ' + (ver === 3 ? '3.0 L' : '2.0 L') + word.level;
     var ex    = word.ex;
     var exHtml = '';
+    var ic = function(name, size) { return (typeof Icons !== 'undefined') ? Icons.get(name, { size: size || 16 }) : ''; };
     if (ex) {
       exHtml =
         '<div class="dd-section-title">Ví dụ câu</div>' +
         '<div class="dd-example">' +
-          '<button class="dd-ex-tts" data-dd-tts="' + esc(ex.zh || word.h) + '" title="Nghe câu">🔊</button>' +
+          '<button class="dd-ex-tts" data-dd-tts="' + esc(ex.zh || word.h) + '" title="Nghe câu" aria-label="Nghe câu">' + ic('volume', 16) + '</button>' +
           '<p class="dd-ex-zh">' + esc(ex.zh) + '</p>' +
           (ex.py ? '<p class="dd-ex-py">' + esc(ex.py) + '</p>' : '') +
           (ex.vi ? '<p class="dd-ex-vi">' + esc(ex.vi) + '</p>' : '') +
@@ -298,13 +355,13 @@ var Dictionary = {
     }
     return '' +
       '<div class="dd-head">' +
-        '<span class="dd-badge dd-badge-v' + ver + '">' + esc(badge) + '</span>' +
-        '<button class="dd-close" data-dd-close aria-label="Đóng">✕</button>' +
+        '<span class="dd-badge" style="color:var(--hsk-' + (word.level || 1) + ');border-color:var(--hsk-' + (word.level || 1) + ')">' + esc(badge) + '</span>' +
+        '<button class="dd-close" data-dd-close aria-label="Đóng">' + ic('x', 16) + '</button>' +
       '</div>' +
       '<div class="dd-hero">' +
         '<div class="dd-hanzi">' + esc(word.h) + '</div>' +
         '<div class="dd-pinyin">' + esc(word.p) + '</div>' +
-        '<button class="dd-tts" data-dd-tts="' + esc(word.h) + '">🔊 Nghe phát âm</button>' +
+        '<button class="dd-tts" data-dd-tts="' + esc(word.h) + '">' + ic('volume', 16) + ' Nghe phát âm</button>' +
       '</div>' +
       '<div class="dd-meanings">' +
         '<div class="dd-meaning-row"><span class="dd-lang dd-lang-vi">VI</span><strong>' + esc(word.v || '—') + '</strong></div>' +
@@ -312,8 +369,8 @@ var Dictionary = {
       '</div>' +
       exHtml +
       '<div class="dd-foot">' +
-        '<button class="dd-btn dd-btn-primary" data-dd-add>➕ Thêm vào bộ thẻ</button>' +
-        '<button class="dd-btn dd-btn-ghost" data-dd-more>✍️ Nét chữ &amp; chi tiết</button>' +
+        '<button class="dd-btn dd-btn-primary" data-dd-add>' + ic('plus', 16) + ' Thêm vào bộ thẻ</button>' +
+        '<button class="dd-btn dd-btn-ghost" data-dd-more>' + ic('edit-3', 16) + ' Nét chữ &amp; chi tiết</button>' +
       '</div>';
   },
 

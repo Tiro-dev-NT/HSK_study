@@ -167,10 +167,11 @@
   gap: var(--s-3);
 }
 
+/* Stats cá nhân = card-quiet (surface2, không viền) — không tranh với CTA. */
 .prof-stat {
   padding: var(--s-4);
-  background: var(--surface);
-  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  border: none;
   border-radius: var(--r-3);
   text-align: center;
 }

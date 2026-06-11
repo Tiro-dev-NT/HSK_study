@@ -304,6 +304,14 @@ function lhRefreshDueBadges() {
   if (descEl) descEl.textContent = n > 0
     ? (n + ' thẻ đến hạn · gom mọi cấp vào 1 phiên')
     : 'Bạn đã ôn hết — quay lại sau nhé';
+  // W3 redesign: card "Ôn tất cả" là card nổi duy nhất khi due>0 + badge số due
+  var card  = document.getElementById('practiceReviewCard');
+  var badge = document.getElementById('practiceReviewBadge');
+  if (card) card.classList.toggle('tool-card--featured', n > 0);
+  if (badge) {
+    if (n > 0) { badge.textContent = n + ' đến hạn'; badge.style.display = ''; }
+    else { badge.style.display = 'none'; }
+  }
 }
 
 // ── Section 4: Supporting resources progress ──────────

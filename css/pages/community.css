@@ -174,9 +174,13 @@
   gap: var(--s-3);
 }
 
+/* ── Honor Hall link wrap ── */
+.comm-honor-wrap { margin: 0 var(--s-6) var(--s-6); }
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .comm-host { padding: 0 var(--s-4) var(--s-4); }
+  .comm-honor-wrap { margin: 0 var(--s-4) var(--s-4); }
   .comm-hero { margin: 0 var(--s-4) var(--s-4); padding: var(--s-4); }
   .comm-grid { grid-template-columns: 1fr; padding: 0 var(--s-4) var(--s-4); }
   .comm-band { margin: 0 var(--s-4) var(--s-4); }

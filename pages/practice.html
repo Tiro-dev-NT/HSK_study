@@ -5,96 +5,98 @@
     <p class="hub-sub">Kiểm tra và củng cố kiến thức — output đo skill thực</p>
   </div>
 
-  <!-- ── Available now ── -->
-  <div class="hub-section-label">Có sẵn ngay</div>
-  <div class="hub-grid" style="margin-bottom:var(--s-6)">
+  <!-- ── Hằng ngày ── -->
+  <div class="hub-section-label">Hằng ngày</div>
+  <div class="hub-grid">
 
-    <a class="tool-card" href="#" onclick="startReviewAllDue();return false;">
+    <a class="tool-card" id="practiceReviewCard" href="#" onclick="startReviewAllDue();return false;">
       <div class="tool-card-icon tc-icon--gold">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">Ôn tất cả</div>
         <div class="tool-card-desc" id="practiceReviewDesc">Gom tất cả từ đến hạn của mọi cấp vào 1 phiên</div>
       </div>
-      <span class="tool-badge tool-badge--available">SRS</span>
+      <span class="tool-badge tool-badge--due" id="practiceReviewBadge" style="display:none"></span>
     </a>
 
     <a class="tool-card" href="#" onclick="Router.navigateTo('quiz');return false;">
       <div class="tool-card-icon tc-icon--red">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">Quiz từ vựng</div>
         <div class="tool-card-desc">Trắc nghiệm · Điền từ · Flashcard</div>
       </div>
-      <span class="tool-badge tool-badge--available">Có sẵn</span>
-    </a>
-
-    <a class="tool-card" href="#" onclick="Router.navigateTo('mock-exam');return false;">
-      <div class="tool-card-icon tc-icon--indigo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-card-name">Thi thử Mock</div>
-        <div class="tool-card-desc">Nghe + Đọc · đếm ngược · HSK 1-6</div>
-      </div>
-      <span class="tool-badge tool-badge--available">Có sẵn</span>
     </a>
 
     <a class="tool-card" href="#" onclick="Router.navigateTo('quiz');return false;" data-mode="daily">
       <div class="tool-card-icon tc-icon--gold">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">Thử thách ngày</div>
         <div class="tool-card-desc">10 câu mỗi ngày · chuỗi streak · XP thưởng</div>
       </div>
-      <span class="tool-badge tool-badge--available">Có sẵn</span>
     </a>
 
     <a class="tool-card" href="#" onclick="Router.navigateTo('quiz');return false;" data-mode="survival">
       <div class="tool-card-icon tc-icon--green">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">Survival mode</div>
         <div class="tool-card-desc">Sai là thua · không giới hạn · xếp hạng cao nhất</div>
       </div>
-      <span class="tool-badge tool-badge--available">Có sẵn</span>
+    </a>
+
+  </div>
+
+  <!-- ── Thi & kỹ năng ── -->
+  <div class="hub-section-label">Thi &amp; kỹ năng</div>
+  <div class="hub-grid">
+
+    <a class="tool-card" href="#" onclick="Router.navigateTo('mock-exam');return false;">
+      <div class="tool-card-icon tc-icon--indigo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-card-name">Thi thử Mock</div>
+        <div class="tool-card-desc">Nghe + Đọc · đếm ngược · HSK 1-6</div>
+      </div>
     </a>
 
     <a class="tool-card" href="#" onclick="Router.navigateTo('writing');return false;">
       <div class="tool-card-icon tc-icon--red">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">Luyện viết (Writing Tutor)</div>
         <div class="tool-card-desc">Viết đoạn văn · AI chấm điểm · gợi ý cải thiện</div>
       </div>
-      <span class="tool-badge tool-badge--available">Mới · AI</span>
+      <span class="tool-badge tool-badge--ai">AI</span>
     </a>
 
     <a class="tool-card" href="#" onclick="Router.navigateTo('speaking');return false;">
       <div class="tool-card-icon tc-icon--red">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">Luyện phát âm Shadowing</div>
         <div class="tool-card-desc">Đọc theo câu mẫu · SpeechSuper chấm phát âm</div>
       </div>
-      <span class="tool-badge tool-badge--available">Mới · Pro · AI</span>
+      <span class="tool-badge tool-badge--pro">Pro</span>
     </a>
 
     <a class="tool-card" href="#" onclick="Router.navigateTo('hskk');return false;">
-      <div class="tool-card-icon tc-icon--red">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      <div class="tool-card-icon tc-icon--gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
       </div>
       <div class="tool-card-body">
         <div class="tool-card-name">HSKK Thi thử nói</div>
         <div class="tool-card-desc">Sơ cấp · AI chấm phát âm · gợi ý từng câu</div>
       </div>
-      <span class="tool-badge tool-badge--available">Mới · Pro · AI</span>
+      <span class="tool-badge tool-badge--pro">Pro</span>
     </a>
 
   </div>

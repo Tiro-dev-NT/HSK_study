@@ -9,7 +9,7 @@
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fff;
+  background: #fff;   /* xem trước trang in A4 — giấy luôn trắng, cố ý không theo theme */
   margin-top: 8px;
 }
 .hw-livepreview-scale {
@@ -19,7 +19,7 @@
   pointer-events: none;
 }
 .hw-livepreview-inner { min-height: 297mm; font-family: sans-serif; }
-.hw-lp-empty { padding: 40px; text-align: center; color: #aaa; font-size: 14px; }
+.hw-lp-empty { padding: 40px; text-align: center; color: var(--text3); font-size: 14px; }
 .hw-preview-hint { font-size: 11px; color: var(--text2); text-align: center; margin-top: 6px; }
 
 /* ═══════════════════════════════════════════════════════
@@ -46,7 +46,7 @@
   cursor: pointer;
   transition: background .2s, color .2s;
 }
-.hw-tab.active { background: var(--primary); color: #fff; }
+.hw-tab.active { background: var(--primary); color: var(--on-accent); }
 .hw-tab:not(.active):hover { background: var(--surface2); color: var(--text); }
 
 /* Panel wrapper */
@@ -133,7 +133,7 @@
   cursor: pointer;
   transition: all .2s;
 }
-.hw-src-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.hw-src-tab.active { background: var(--primary); color: var(--on-accent); border-color: var(--primary); }
 .hw-src-tab:not(.active):hover { border-color: var(--primary); color: var(--text); }
 
 /* HSK level buttons */
@@ -149,7 +149,7 @@
   cursor: pointer;
   transition: all .2s;
 }
-.hw-hsk-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.hw-hsk-btn.active { background: var(--primary); color: var(--on-accent); border-color: var(--primary); }
 .hw-hsk-btn:not(.active):hover { border-color: var(--primary); }
 
 /* Deck select & custom textarea */

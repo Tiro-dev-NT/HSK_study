@@ -181,6 +181,8 @@ var Gamification = {
     if (sEl) sEl.textContent = Gamification.getStreak();
     var tbStreak = document.getElementById('topbarStreakBadge');
     if (tbStreak) tbStreak.textContent = String(Gamification.getStreak());
+    var mbStreak = document.getElementById('mHeaderStreakNum');
+    if (mbStreak) mbStreak.textContent = String(Gamification.getStreak());
     if (dEl) {
       const today = new Date().toISOString().split('T')[0];
       const due   = Object.values(AppState.srsData).filter(function(s) {
@@ -278,10 +280,10 @@ var Gamification = {
         countHtml +
         '<div class="level-progress-bar"><div class="level-progress-fill" style="width:' + pct + '%;background:' + info.color + '"></div></div>' +
         '<div class="level-stats-grid">' +
-          '<span class="ls-item ls-new" title="' + lblNew + '">🆕 ' + stats.new + '</span>' +
-          '<span class="ls-item ls-learning" title="' + lblLearning + '">📖 ' + stats.learning + '</span>' +
-          '<span class="ls-item ls-due" title="' + lblDue + '">🔄 ' + stats.due + '</span>' +
-          '<span class="ls-item ls-mastered" title="' + lblMastered + '">✅ ' + stats.mastered + '</span>' +
+          '<span class="ls-item ls-new" title="' + lblNew + '">' + Icons.get('star',{size:16}) + ' ' + stats.new + '</span>' +
+          '<span class="ls-item ls-learning" title="' + lblLearning + '">' + Icons.get('book-open',{size:16}) + ' ' + stats.learning + '</span>' +
+          '<span class="ls-item ls-due" title="' + lblDue + '">' + Icons.get('repeat',{size:16}) + ' ' + stats.due + '</span>' +
+          '<span class="ls-item ls-mastered" title="' + lblMastered + '">' + Icons.get('check',{size:16}) + ' ' + stats.mastered + '</span>' +
         '</div>';
       card.addEventListener('click', function() {
         Router.navigateTo('learn');

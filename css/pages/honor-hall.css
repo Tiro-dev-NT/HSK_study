@@ -96,7 +96,7 @@
 .honor-spotlight-badge {
   display: inline-block;
   background: var(--hoang-kim);
-  color: #fff;
+  color: var(--on-accent);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 2px 10px;
@@ -127,7 +127,7 @@
   align-items: center;
   gap: 0.5rem;
   background: var(--chau-hong);
-  color: #fff;
+  color: var(--on-accent);
   border: none;
   border-radius: 10px;
   padding: 0.65rem 1.25rem;
@@ -245,7 +245,7 @@
   display: block;
   width: 100%;
   background: var(--chau-hong);
-  color: #fff;
+  color: var(--on-accent);
   border: none;
   padding: 0.4rem;
   font-size: 0.8rem;
@@ -296,8 +296,8 @@
   text-align: center; transition: transform .15s, box-shadow .15s;
 }
 .honor-tier-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-.honor-tier-card--dong  { border-color: #cd7f32; }
-.honor-tier-card--bac   { border-color: #9ca3af; }
+.honor-tier-card--dong  { border-color: var(--medal-bronze); }
+.honor-tier-card--bac   { border-color: var(--medal-silver); }
 .honor-tier-card--kim   { border-color: var(--hoang-kim); box-shadow: 0 0 0 3px rgba(245,158,11,.15); }
 .honor-tier-card--hoa-dang { border-color: var(--chau-hong); box-shadow: 0 0 0 3px rgba(220,38,38,.12); }
 .honor-tier-img {

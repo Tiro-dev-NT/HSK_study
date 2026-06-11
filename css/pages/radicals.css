@@ -56,7 +56,7 @@
 
 .rad-clear-btn:hover {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border-color: transparent;
 }
 
@@ -86,7 +86,7 @@
 
 .rad-stroke-btn.active {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border-color: transparent;
 }
 
@@ -216,7 +216,7 @@
 
 .rad-detail-close:hover {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border-color: transparent;
 }
 
@@ -299,7 +299,7 @@
 .rad-animate-btn {
   padding: 10px 20px;
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border: none;
   border-radius: 10px;
   font-size: 14px;

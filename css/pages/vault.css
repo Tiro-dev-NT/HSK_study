@@ -37,7 +37,7 @@
   transition: all 0.15s;
 }
 .mv-tab:hover { border-color: var(--primary); color: var(--primary); }
-.mv-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.mv-tab.active { background: var(--primary); color: var(--on-accent); border-color: var(--primary); }
 
 .mv-tag-chips {
   display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; align-items: center;
@@ -48,7 +48,7 @@
   transition: all 0.15s;
 }
 .mv-chip:hover { border-color: var(--primary); color: var(--primary); }
-.mv-chip.mv-chip-active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.mv-chip.mv-chip-active { background: var(--primary); color: var(--on-accent); border-color: var(--primary); }
 .mv-chip.mv-chip-clear { background: transparent; color: var(--text2); font-size: 11px; }
 
 .mv-bulk-bar {
@@ -82,7 +82,7 @@
 }
 .mv-level-badge {
   font-size: 10px; padding: 2px 6px; border-radius: 8px;
-  background: var(--primary); color: #fff; font-weight: 600;
+  background: var(--primary); color: var(--on-accent); font-weight: 600;
 }
 
 .mv-empty { text-align: center; padding: 40px 20px; color: var(--text2); }

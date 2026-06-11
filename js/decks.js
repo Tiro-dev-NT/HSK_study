@@ -706,9 +706,9 @@ function renderVaultDeckList() {
         <div class="vdi-meta">${d.words.length} từ · Tạo: ${new Date(d.createdAt).toLocaleDateString('vi-VN')}</div>
       </div>
       <div class="vdi-actions">
-        <button class="vdi-btn" data-action="edit" data-id="${d.id}">✏️ Sửa</button>
-        <button class="vdi-btn" data-action="export" data-id="${d.id}">📤 Export</button>
-        <button class="vdi-btn danger" data-action="delete" data-id="${d.id}">🗑️</button>
+        <button class="vdi-btn" data-action="edit" data-id="${d.id}">${Icons.get('edit-3',{size:16})} Sửa</button>
+        <button class="vdi-btn" data-action="export" data-id="${d.id}">${Icons.get('download',{size:16})} Export</button>
+        <button class="vdi-btn danger" data-action="delete" data-id="${d.id}" aria-label="Xóa">${Icons.get('trash',{size:16})}</button>
       </div>
     </div>
   `).join('');
@@ -729,7 +729,7 @@ function openEditDeck(deckId) {
   const deck = decks[deckId];
   document.getElementById('vaultDeckList').style.display = 'none';
   document.getElementById('vaultEditDeck').style.display = 'block';
-  document.getElementById('editDeckTitle').textContent = `✏️ ${deck.title}`;
+  document.getElementById('editDeckTitle').textContent = deck.title;
   document.getElementById('editDeckNameInput').value = deck.title;
   renderEditWordsList();
 }
@@ -744,7 +744,7 @@ function renderEditWordsList() {
     <div class="edit-word-chip">
       <span class="ewc-hanzi">${escapeHtml(w.h)}</span>
       <span class="ewc-meaning">${escapeHtml(w.v)}</span>
-      <button class="ewc-del" data-h="${escapeAttr(w.h)}">✕</button>
+      <button class="ewc-del" data-h="${escapeAttr(w.h)}" aria-label="Xóa">${Icons.get('x',{size:16})}</button>
     </div>
   `).join('') || '<span style="color:var(--text3);font-size:13px">Chưa có từ nào</span>';
   list.querySelectorAll('.ewc-del').forEach(btn => {

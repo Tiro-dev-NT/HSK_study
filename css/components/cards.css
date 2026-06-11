@@ -196,6 +196,12 @@ a.tool-card:hover {
   opacity: .6;
   cursor: default;
 }
+/* Recommended slot — max 1 per hub (Ôn tất cả khi due>0 · Từ điển). */
+.tool-card--featured {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-2);
+}
+a.tool-card--featured:hover { border-color: var(--primary); }
 
 .tool-card-icon {
   width: 52px;
@@ -246,4 +252,16 @@ a.tool-card:hover {
 .tool-badge--pro {
   background: color-mix(in srgb, var(--pro-gem) 15%, transparent);
   color: var(--pro-gem);
+}
+.tool-badge--ai {
+  background: var(--info-bg);
+  color: var(--info);
+}
+.tool-badge--new {
+  background: var(--status-new-bg);
+  color: var(--status-new);
+}
+.tool-badge--due {
+  background: var(--status-due-bg);
+  color: var(--status-due);
 }

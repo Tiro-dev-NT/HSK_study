@@ -3,6 +3,9 @@
    "Đọc trên app → tự chép vào vở". Print-friendly A4.
    Tất cả selector scope dưới .handout-page để không đụng style app.
    Giữ giao diện "giấy trắng" cố ý (kể cả dark mode) — đây là tài liệu đọc/in.
+   ⚠️ HEX HARDCODE CỐ Ý — MIỄN TRỪ dọn-hex (01-foundation §H "in ấn").
+   Đây là palette in cục bộ (--ho-*): giấy luôn trắng, mực luôn tối, KHÔNG
+   theo app theme. Token app (--surface…) đổi theo dark mode sẽ làm hỏng bản in.
    ============================================================ */
 
 .handout-page {
@@ -34,9 +37,9 @@
   box-shadow: 0 2px 8px rgba(0,0,0,.08); transition: all .15s;
 }
 .handout-page .ho-toolbar button:hover { border-color: var(--ho-chau-hong); color: var(--ho-chau-hong); }
-.handout-page .ho-toolbar button.primary { background: var(--ho-chau-hong); color: #fff; border-color: var(--ho-chau-hong); }
-.handout-page .ho-toolbar button.primary:hover { background: #B91C1C; color: #fff; }
-.handout-page .ho-toolbar button.done { background: var(--ho-thuy-luc); border-color: var(--ho-thuy-luc); color: #fff; }
+.handout-page .ho-toolbar button.primary { background: var(--ho-chau-hong); color: var(--on-accent); border-color: var(--ho-chau-hong); }
+.handout-page .ho-toolbar button.primary:hover { background: #B91C1C; color: var(--on-accent); }
+.handout-page .ho-toolbar button.done { background: var(--ho-thuy-luc); border-color: var(--ho-thuy-luc); color: var(--on-accent); }
 
 /* Container A4 */
 .handout-page .ho-doc {
@@ -76,7 +79,7 @@
 }
 .handout-page .ho-section-h .ho-num {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 28px; height: 28px; background: var(--ho-chau-hong); color: #fff;
+  width: 28px; height: 28px; background: var(--ho-chau-hong); color: var(--on-accent);
   border-radius: 50%; font-size: 14px; font-weight: 700; flex-shrink: 0;
 }
 
@@ -89,7 +92,7 @@
 /* Vocab table */
 .handout-page .ho-vocab-wrap { border: 1px solid var(--ho-border); border-radius: 8px; overflow: hidden; }
 .handout-page table.ho-vocab { width: 100%; border-collapse: collapse; font-size: 14px; }
-.handout-page table.ho-vocab thead { background: var(--ho-chau-hong); color: #fff; }
+.handout-page table.ho-vocab thead { background: var(--ho-chau-hong); color: var(--on-accent); }
 .handout-page table.ho-vocab th { padding: 10px 12px; font-weight: 700; text-align: left; font-size: 13px; }
 .handout-page table.ho-vocab th:first-child { width: 40px; text-align: center; }
 .handout-page table.ho-vocab td { padding: 9px 12px; border-top: 1px solid var(--ho-border); }
@@ -134,7 +137,7 @@
 .handout-page .ho-toast {
   position: fixed; bottom: 24px; left: 50%;
   transform: translateX(-50%) translateY(80px);
-  background: var(--ho-mac-hac); color: #fff; padding: 10px 20px;
+  background: var(--ho-mac-hac); color: var(--on-accent); padding: 10px 20px;
   border-radius: 8px; font-size: 13px; opacity: 0; transition: all .3s; z-index: 200;
 }
 .handout-page .ho-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }

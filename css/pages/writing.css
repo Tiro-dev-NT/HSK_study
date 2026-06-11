@@ -49,7 +49,7 @@
 .wt-pill--on {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
 }
 .wt-topic-row {
   display: flex;
@@ -113,7 +113,7 @@
 .wt-count b, #wtCharCount { color: var(--text); font-weight: 700; }
 .wt-grade-btn {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border: none;
   border-radius: 10px;
   padding: 11px 28px;
@@ -223,7 +223,7 @@
 .wt-list { margin: 0; padding-left: 20px; }
 .wt-list li { color: var(--text); line-height: 1.6; margin-bottom: 5px; }
 
-.wt-noerr { color: var(--success, #10B981); margin: 0; font-weight: 600; }
+.wt-noerr { color: var(--success); margin: 0; font-weight: 600; }
 
 /* Lỗi */
 .wt-err-item {
@@ -243,11 +243,11 @@
   padding: 2px 8px;
   margin-bottom: 6px;
 }
-.wt-etype--liang { color: #fff; background: var(--danger, #DC2626); border-color: var(--danger, #DC2626); }
+.wt-etype--liang { color: var(--on-accent); background: var(--danger); border-color: var(--danger); }
 .wt-err-fix { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 1.05rem; }
-.wt-err-orig { color: var(--danger, #DC2626); text-decoration: line-through; text-decoration-thickness: 1px; }
+.wt-err-orig { color: var(--danger); text-decoration: line-through; text-decoration-thickness: 1px; }
 .wt-err-arrow { color: var(--text2); }
-.wt-err-corr { color: var(--success, #10B981); font-weight: 600; }
+.wt-err-corr { color: var(--success); font-weight: 600; }
 .wt-err-explain { margin: 6px 0 0; color: var(--text2); font-size: 0.9rem; line-height: 1.5; }
 
 /* Bản viết lại */
@@ -299,9 +299,9 @@
   color: var(--text2);
   background: var(--bg);
 }
-.wt-h-good { color: #fff; background: var(--success, #10B981); }
-.wt-h-mid  { color: #fff; background: var(--warning, #F59E0B); }
-.wt-h-low  { color: #fff; background: var(--danger, #DC2626); }
+.wt-h-good { color: var(--on-accent); background: var(--success); }
+.wt-h-mid  { color: var(--on-accent); background: var(--warning); }
+.wt-h-low  { color: var(--on-accent); background: var(--danger); }
 .wt-h-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .wt-h-topic {
   color: var(--text); font-weight: 500; font-size: 0.92rem;

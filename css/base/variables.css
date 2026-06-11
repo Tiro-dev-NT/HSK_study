@@ -137,6 +137,16 @@
   --pro-gem: #F59E0B;
   --pro-bg:  linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
 
+  /* ───── On-accent + medal/illustration (Wave-final hex cleanup) ─────
+     Cố ý KHÔNG đổi theo theme: chữ/icon trên nền brand bão hòa luôn trắng;
+     ink trên nền vàng luôn tối; huy chương màu kim loại cố định. */
+  --on-accent: #FFFFFF;          /* text/icon trên nền brand bão hòa (đỏ/lục/vàng) */
+  --on-gold:   #1F2937;          /* ink tối trên nền Hoàng kim */
+  --medal-gold:   #F59E0B;
+  --medal-silver: #9CA3AF;
+  --medal-bronze: #CD7F32;
+  --bronze:       #B45309;       /* chữ/accent hạng đồng */
+
   /* ───── Typography ───── */
   --font-ui:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-hanzi: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;

@@ -68,7 +68,7 @@
 .me-level-btn.active {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 /* ── Format preview card ─────────────────────────────── */
@@ -128,8 +128,8 @@
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: var(--mac-hac, #1F2937);
-  color: #fff;
+  background: var(--mac-hac);
+  color: var(--on-accent);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -140,7 +140,7 @@
   background: rgba(255,255,255,0.12);
   border: none;
   border-radius: 8px;
-  color: #fff;
+  color: var(--on-accent);
   font-size: 14px;
   cursor: pointer;
   display: flex;
@@ -161,11 +161,11 @@
 }
 .me-section-badge--listen {
   background: rgba(99,102,241,0.25);
-  color: #a5b4fc;
+  color: var(--info);
 }
 .me-section-badge--read {
   background: rgba(16,185,129,0.25);
-  color: #6ee7b7;
+  color: var(--thuy-luc);
 }
 
 .me-q-count {
@@ -179,13 +179,13 @@
   font-size: 19px;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
-  color: var(--hoang-kim, #F59E0B);
+  color: var(--hoang-kim);
   white-space: nowrap;
   min-width: 56px;
   text-align: right;
 }
 .me-timer--danger {
-  color: #f87171;
+  color: var(--chau-hong-3);
   animation: me-pulse 1s ease-in-out infinite;
 }
 @keyframes me-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -215,7 +215,7 @@
   gap: 20px;
   justify-content: center;
   padding: 28px 20px;
-  background: var(--info-bg, #EEF2FF);
+  background: var(--info-bg);
   border: 1px solid rgba(99,102,241,0.2);
   border-radius: 16px;
   margin-bottom: 20px;
@@ -231,8 +231,8 @@
 }
 
 .me-play-btn {
-  background: #6366f1;
-  color: #fff;
+  background: var(--info);
+  color: var(--on-accent);
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
@@ -319,20 +319,20 @@
 .me-opt-text { flex: 1; word-break: break-word; }
 
 .me-opt--correct {
-  border-color: var(--thuy-luc, #10B981) !important;
-  background: var(--success-bg, #ECFDF5) !important;
+  border-color: var(--thuy-luc) !important;
+  background: var(--success-bg) !important;
 }
 .me-opt--correct .me-opt-letter {
-  background: var(--thuy-luc, #10B981);
-  color: #fff;
+  background: var(--thuy-luc);
+  color: var(--on-accent);
 }
 .me-opt--wrong {
   border-color: var(--primary) !important;
-  background: var(--danger-bg, #FEF2F2) !important;
+  background: var(--danger-bg) !important;
 }
 .me-opt--wrong .me-opt-letter {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 /* ── Next button ─────────────────────────────────────── */
@@ -370,9 +370,9 @@
 }
 
 .me-time-up-banner {
-  background: var(--warning-bg, #FFFBEB);
-  border: 1px solid var(--hoang-kim, #F59E0B);
-  color: var(--hoang-kim-2, #D97706);
+  background: var(--warning-bg);
+  border: 1px solid var(--hoang-kim);
+  color: var(--hoang-kim-2);
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 14px;
@@ -401,13 +401,13 @@
   justify-content: center;
 }
 .me-circle--pass {
-  border-color: var(--thuy-luc, #10B981);
-  background: var(--success-bg, #ECFDF5);
-  color: var(--thuy-luc-2, #059669);
+  border-color: var(--thuy-luc);
+  background: var(--success-bg);
+  color: var(--thuy-luc-2);
 }
 .me-circle--fail {
   border-color: var(--primary);
-  background: var(--danger-bg, #FEF2F2);
+  background: var(--danger-bg);
   color: var(--primary);
 }
 .me-circle-pct   { font-size: 22px; font-weight: 800; line-height: 1; }
@@ -452,14 +452,14 @@
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  background: var(--danger-bg, #FEF2F2);
+  background: var(--danger-bg);
   border: 1px solid rgba(220,38,38,0.12);
   border-radius: 8px;
   font-size: 13px;
 }
 .me-wi-type { font-size: 15px; }
 .me-wi-h    { font-size: 18px; font-weight: 700; color: var(--text); font-family: 'Noto Sans SC', serif; }
-.me-wi-p    { font-size: 11px; color: var(--hoang-kim-2, #D97706); }
+.me-wi-p    { font-size: 11px; color: var(--hoang-kim-2); }
 .me-wi-v    { color: var(--text2); font-size: 12px; }
 
 /* ── Perfect ─────────────────────────────────────────── */
@@ -467,7 +467,7 @@
   text-align: center;
   font-size: 18px;
   font-weight: 700;
-  color: var(--thuy-luc, #10B981);
+  color: var(--thuy-luc);
   padding: 24px;
   margin-bottom: 20px;
 }

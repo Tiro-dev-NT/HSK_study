@@ -424,12 +424,12 @@ var Dictionary = {
       document.getElementById('exEn').textContent = word.ex.en;
     } else {
       if (exCard) exCard.classList.add('wd-example-card--empty');
-      document.getElementById('exZh').textContent = 'Ví dụ đang được bổ sung ✍️';
+      document.getElementById('exZh').textContent = 'Ví dụ đang được bổ sung';
       document.getElementById('exPy').textContent = '';
       document.getElementById('exVi').textContent = '';
       document.getElementById('exEn').textContent = '';
     }
-    document.getElementById('addToVault').textContent = '➕ Thêm vào bộ thẻ';
+    document.getElementById('addToVault').textContent = 'Thêm vào bộ thẻ';
     document.getElementById('modalOverlay').classList.add('open');
 
     setTimeout(function() { Dictionary.playTTS(word.h); }, 300);

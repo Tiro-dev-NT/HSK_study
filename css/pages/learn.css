@@ -241,6 +241,7 @@ body.session-active .bottom-nav { display: none; }
 /* Session Result */
 .session-result { text-align: center; padding: var(--s-8) 0; }
 .sr-emoji { font-size: 64px; margin-bottom: 16px; }
+.sr-emoji-img { display: inline-block; width: 120px; height: 120px; object-fit: contain; vertical-align: middle; }
 .sr-title { font-size: var(--t-h1); margin-bottom: var(--s-6); }
 .sr-stats-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3);

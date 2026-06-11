@@ -156,7 +156,15 @@ var Session = {
     const pct = Math.round((AppState.fcSession.correct / total) * 100);
     document.getElementById('srPct').textContent   = pct + '%';
     document.getElementById('srTitle').textContent = AppState.lang === 'vi' ? 'Hoàn thành phiên học!' : 'Session Complete!';
-    document.getElementById('srEmoji').textContent = pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '💪';
+    // Điểm cao (≥80%): thay 🎉 bằng pose Bé Rồng cheer; mức khác giữ emoji.
+    const srEmoji = document.getElementById('srEmoji');
+    if (pct >= 80) {
+      srEmoji.innerHTML = '<img class="sr-emoji-img" src="assets/mascot/be-rong-cheer.webp" alt="" ' +
+        'loading="lazy" width="120" height="120" ' +
+        'onerror="this.parentNode.textContent=\'🌟\'">';
+    } else {
+      srEmoji.textContent = pct >= 50 ? '👍' : '💪';
+    }
     // XP reward
     const earned = AppState.fcSession.correct * 10 + AppState.fcSession.wrong * 3;
     addXP(earned);

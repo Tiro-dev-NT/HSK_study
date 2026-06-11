@@ -257,6 +257,28 @@
   transition: transform var(--d-base) var(--ease-out), filter var(--d-base) var(--ease-out);
 }
 
+/* ───── Mascot pose illustration (assets/mascot/be-rong-*.webp) ─────
+   Stands in the icon slot of an empty/error state. Inside .ui-mascot it
+   fills the sized container; used standalone it is 160px (per spec 08-E.1).
+   Transparent webp — no white edge in light/dark (alpha-cleaned, batch 2). */
+.empty-state-img {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  margin: 0 auto var(--s-4);
+}
+.ui-mascot > .empty-state-img { width: 100%; height: 100%; margin: 0; }
+
+/* When a real pose is shown, hide the SVG accessories (they are the
+   fallback decoration). onerror adds .is-fallback → generic mascot +
+   accessories reappear, so a missing file never shows a broken image. */
+.ui-mascot--has-pose:not(.is-fallback) .ui-mascot__zzz,
+.ui-mascot--has-pose:not(.is-fallback) .ui-mascot__wifi-off,
+.ui-mascot--has-pose:not(.is-fallback) .ui-mascot__q,
+.ui-mascot--has-pose:not(.is-fallback) .ui-mascot__warning,
+.ui-mascot--has-pose:not(.is-fallback) .ui-mascot__streak { display: none; }
+
 /* mood tilt + saturation */
 .ui-mascot--sleep    > img { transform: rotate(-8deg); filter: saturate(.9); }
 .ui-mascot--sad      > img { transform: rotate(-3deg); filter: saturate(.85); }

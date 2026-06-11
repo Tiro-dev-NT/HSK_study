@@ -179,7 +179,7 @@ var Leaderboard = (function() {
 
     if (!rows.length) {
       list.innerHTML = (typeof UIStates !== 'undefined') ? UIStates.empty({
-        mood: 'sleep',
+        mood: 'trophy',
         title: 'Chưa có ai trên bảng kỳ này',
         description: 'Khi học viên đã opt-in và có ngày học đầu tiên, bảng sẽ hiện tại đây.'
       }) : '<div class="lb-loading">Chưa có dữ liệu leaderboard.</div>';

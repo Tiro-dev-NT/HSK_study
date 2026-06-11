@@ -34,12 +34,19 @@ var UIStates = (function () {
     return 'assets/icon-soft.png';
   }
 
-  // Mood-specific illustrations (Asset Batch 2 — empty-states WebP)
-  // When available, replaces generic icon + accessories with a full illustration.
+  // Mood-specific Bé Rồng pose illustrations (fe-redesign assets, batch 2).
+  // Map per docs/plans/fe-redesign/08-assets-optional.md table C.
+  // When present, replaces generic icon + accessories with a full pose.
+  // Missing file → onerror falls back to generic mascot + accessories (no 404).
   var MASCOT_MOOD_IMGS = {
-    'sleep':     'assets/empty-states/01-empty-deck.webp',
-    'celebrate': 'assets/empty-states/03-lesson-complete.webp',
-    'lost':      'assets/empty-states/05-error-404.webp'
+    'sleep':     'assets/mascot/be-rong-sleep.webp',   // hết từ ôn / inbox trống
+    'celebrate': 'assets/mascot/be-rong-cheer.webp',   // session result điểm cao / level-up
+    'lost':      'assets/mascot/be-rong-think.webp',   // 404 / route lạ / tra không thấy
+    'sad':       'assets/mascot/be-rong-comfort.webp', // error nhẹ / offline (an ủi)
+    'comfort':   'assets/mascot/be-rong-comfort.webp', // sai nhiều trong session
+    'welcome':   'assets/mascot/be-rong-wave.webp',    // home hero user mới / onboarding
+    'study':     'assets/mascot/be-rong-book.webp',    // deck/reader/quiz trống
+    'trophy':    'assets/mascot/be-rong-trophy.webp'   // milestone / Bảng Phong Vân / Honor Hall
   };
 
   /* ---------- SVG icon library (inline, no dep) ---------- */
@@ -63,18 +70,20 @@ var UIStates = (function () {
      MASCOT
      mood: 'sleep' | 'sad' | 'lost' | 'concerned' | 'celebrate' | 'neutral'
      ============================================================ */
+  // onerror handler for pose images: swap to the generic mascot and reveal
+  // the SVG accessories so a missing pose file never shows a broken image.
+  function _poseFallback(img) {
+    img.onerror = null;
+    var box = img.closest ? img.closest('.ui-mascot') : null;
+    if (box) box.classList.add('is-fallback');
+    img.classList.remove('empty-state-img');
+    img.src = MASCOT_SRC();
+    img.alt = 'Bé Rồng';
+  }
+
   function mascot(mood, size) {
     mood = mood || 'neutral';
-    var sz = size || 200;
-
-    // Mood-specific illustration: use full-scene WebP, no accessories needed
-    if (MASCOT_MOOD_IMGS[mood]) {
-      return (
-        '<div class="ui-mascot ui-mascot--' + esc(mood) + '" style="--mascot-size:' + parseInt(sz, 10) + 'px">' +
-          '<img src="' + MASCOT_MOOD_IMGS[mood] + '" alt="Bé Rồng">' +
-        '</div>'
-      );
-    }
+    var sz = parseInt(size || 200, 10);
 
     var accessories = '';
     switch (mood) {
@@ -111,9 +120,22 @@ var UIStates = (function () {
         break;
     }
 
+    var pose = MASCOT_MOOD_IMGS[mood];
+    if (pose) {
+      // Full Bé Rồng pose; accessories kept hidden (CSS) as onerror fallback.
+      return (
+        '<div class="ui-mascot ui-mascot--' + esc(mood) + ' ui-mascot--has-pose" style="--mascot-size:' + sz + 'px">' +
+          '<img class="empty-state-img" src="' + pose + '" alt="" loading="lazy" ' +
+               'width="' + sz + '" height="' + sz + '" ' +
+               'onerror="window.UIStates&&UIStates._poseFallback&&UIStates._poseFallback(this)">' +
+          accessories +
+        '</div>'
+      );
+    }
+
     return (
-      '<div class="ui-mascot ui-mascot--' + esc(mood) + '" style="--mascot-size:' + parseInt(sz, 10) + 'px">' +
-        '<img src="' + MASCOT_SRC() + '" alt="Bé Rồng">' +
+      '<div class="ui-mascot ui-mascot--' + esc(mood) + '" style="--mascot-size:' + sz + 'px">' +
+        '<img src="' + MASCOT_SRC() + '" alt="Bé Rồng" width="' + sz + '" height="' + sz + '">' +
         accessories +
       '</div>'
     );
@@ -493,6 +515,7 @@ var UIStates = (function () {
     paymentFailed: paymentFailed,
     openModal: openModal,
     closeAll: closeAll,
+    _poseFallback: _poseFallback,  // inline onerror handler for mascot poses
     _icons: ICONS  // expose if pages need to compose
   };
 })();

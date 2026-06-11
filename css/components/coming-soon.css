@@ -21,6 +21,10 @@
   margin-bottom: var(--s-5);
   animation: cs-float 3s ease-in-out infinite;
 }
+/* Bé Rồng "đang xây" pose (assets/mascot/be-rong-build.webp); transparent
+   webp, no white edge in light/dark. onerror reveals the emoji fallback. */
+.cs-mascot-img { width: 128px; height: 128px; object-fit: contain; display: block; }
+.cs-mascot-emoji { font-size: 3.5rem; line-height: 1; }
 @keyframes cs-float {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-10px); }

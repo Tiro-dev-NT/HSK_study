@@ -221,6 +221,8 @@ function hskListRowHTML(deck) {
   const isExpanded = expandedLevels[deck.level];
   const badge = typeof getSRSBadgeHTML === 'function' ? getSRSBadgeHTML(words) : '';
   const topicGroups = getTopicGroups(deck.level);
+  const playIc = (typeof Icons !== 'undefined') ? Icons.get('play', { size: 14 }) : '';
+  const chevIc = (typeof Icons !== 'undefined') ? Icons.get('chevron-right', { size: 14 }) : '';
   const subRows = Object.entries(topicGroups).map(([topic, tw]) => {
     const meta = TOPIC_META[topic] || { vi: topic, icon: '📌' };
     const subBadge = typeof getSRSBadgeHTML === 'function' ? getSRSBadgeHTML(tw) : '';
@@ -231,20 +233,20 @@ function hskListRowHTML(deck) {
       <span class="hsk-sub-name">${meta.vi}</span>
       <span class="hsk-sub-count">${tw.length} từ</span>
       <div class="hsk-sub-badges">${subBadge}</div>
-      <button class="btn-learn-sub" data-deck="${deck.id}" data-topic="${topic}">▶ Học</button>
+      <button class="btn-learn-sub" data-deck="${deck.id}" data-topic="${topic}">${playIc} Học</button>
     </div>`;
   }).join('');
 
   return `
   <div class="hsk-list-row" data-id="${deck.id}" data-level="${deck.level}">
-    <button class="hsk-expand-btn" data-level="${deck.level}">${isExpanded ? '▼' : '▶'}</button>
-    <span class="hsk-row-icon">${m.icon || '📚'}</span>
+    <button class="hsk-expand-btn${isExpanded ? ' expanded' : ''}" data-level="${deck.level}" aria-label="Mở rộng">${chevIc}</button>
+    <span class="hsk-row-dot" style="background:var(--hsk-${deck.level})">${deck.level}</span>
     <div class="hsk-row-info">
       <div class="hsk-row-title">${deck.title}</div>
       <div class="hsk-row-sub">${words.length} từ · ${prog.pct}% đã học</div>
     </div>
     <div class="hsk-row-badges">${badge}</div>
-    <button class="btn-learn-deck" data-id="${deck.id}">▶ Học</button>
+    <button class="btn-learn-deck" data-id="${deck.id}">${playIc} Học</button>
   </div>
   ${subRows}`;
 }
@@ -281,12 +283,12 @@ function renderMyDecks() {
   const mine = Object.values(decks).filter(d => !d.isSystem);
   grid.className = `deck-grid${deckViewMode === 'list' ? ' list-view' : ''}`;
   if (!mine.length) {
-    grid.innerHTML = `<div class="deck-card deck-card-create" id="createDeckCard"><span class="plus">＋</span><span>Tạo bộ thẻ đầu tiên</span></div>`;
+    grid.innerHTML = `<div class="deck-card deck-card-create" id="createDeckCard"><span class="plus">${(typeof Icons !== 'undefined') ? Icons.get('plus', { size: 28 }) : '+'}</span><span>Tạo bộ thẻ đầu tiên</span></div>`;
     grid.querySelector('#createDeckCard')?.addEventListener('click', promptCreateDeck);
     return;
   }
   grid.innerHTML = mine.map(d => deckCardHTML(d, true)).join('')
-    + `<div class="deck-card deck-card-create" id="createDeckCard"><span class="plus">＋</span><span>Tạo bộ thẻ mới</span></div>`;
+    + `<div class="deck-card deck-card-create" id="createDeckCard"><span class="plus">${(typeof Icons !== 'undefined') ? Icons.get('plus', { size: 28 }) : '+'}</span><span>Tạo bộ thẻ mới</span></div>`;
   grid.querySelectorAll('.deck-card[data-id]').forEach(card => {
     card.addEventListener('click', e => {
       if (e.target.closest('.deck-card-menu')) return;
@@ -304,19 +306,22 @@ function deckCardHTML(deck, showMenu = false) {
   const words = getDeckWords(deck);
   const total = prog.total || words.length;
   const badge = typeof getSRSBadgeHTML === 'function' ? getSRSBadgeHTML(words) : '';
+  const playIc = (typeof Icons !== 'undefined') ? Icons.get('play', { size: 16 }) : '';
+  // Băng màu trái: theo --hsk-n cho deck hệ thống, theo màu deck cho deck của tôi (data).
+  const band = (deck.isSystem && deck.level) ? `var(--hsk-${deck.level})` : (deck.color || 'var(--border)');
   return `
-  <div class="deck-card" data-id="${deck.id}">
-    ${showMenu ? `<button class="deck-card-menu" data-id="${deck.id}">⋮</button>` : ''}
+  <div class="deck-card" data-id="${deck.id}" style="border-left:4px solid ${band}">
+    ${showMenu ? `<button class="deck-card-menu" data-id="${deck.id}" aria-label="Tùy chọn">⋯</button>` : ''}
     <div class="deck-card-body">
       <div class="deck-card-icon">${deck.icon}</div>
       <div class="deck-card-title">${escapeHtml(deck.title)}</div>
       <div class="deck-card-count">${total} từ</div>
       ${deck.isSystem ? `<div class="deck-srs-badges">${badge}</div>` : ''}
-      <div class="deck-progress-bar"><div class="deck-progress-fill" style="width:${prog.pct}%"></div></div>
+      <div class="prog-track deck-progress-bar"><div class="deck-progress-fill" style="width:${prog.pct}%"></div></div>
       <div class="deck-progress-pct">${prog.pct}% đã học</div>
     </div>
     <div class="deck-card-actions">
-      <button class="btn-primary">▶ Học</button>
+      <button class="btn-primary btn-sm">${playIc} Học</button>
     </div>
   </div>`;
 }
@@ -380,9 +385,9 @@ function openDeckDetail(deckId, topicFilter = null) {
     const { stats } = buildStudyQueue(words);
     srsInfoEl.style.display = 'flex';
     srsInfoEl.innerHTML = `
-      <span class="srs-stat srs-new">🔵 ${stats.newToday} mới</span>
-      <span class="srs-stat srs-due">🟠 ${stats.due} ôn</span>
-      <span class="srs-stat srs-relearn">🔴 ${stats.relearn} học lại</span>
+      <span class="srs-stat srs-new"><i class="srs-stat-dot"></i>${stats.newToday} mới</span>
+      <span class="srs-stat srs-due"><i class="srs-stat-dot"></i>${stats.due} ôn</span>
+      <span class="srs-stat srs-relearn"><i class="srs-stat-dot"></i>${stats.relearn} học lại</span>
     `;
   } else if (srsInfoEl) {
     srsInfoEl.style.display = 'none';
@@ -410,7 +415,12 @@ function renderPreviewCard() {
   const w = previewWords[previewIdx];
   previewFlipped = false;
   document.getElementById('pcHanzi').textContent = w.h;
-  document.getElementById('pcPinyin').textContent = w.p;
+  const pcPy = document.getElementById('pcPinyin');
+  pcPy.textContent = w.p;
+  // Pinyin ẩn mặc định (active recall) — re-mask + hiện lại nút "Xem pinyin" mỗi từ
+  pcPy.classList.add('pc-pinyin-masked');
+  const pcPyToggle = document.querySelector('.pc-pinyin-toggle');
+  if (pcPyToggle) pcPyToggle.style.display = '';
   const meaningEl = document.getElementById('pcMeaning');
   if (meaningEl) { meaningEl.textContent = w.v; meaningEl.style.display = 'none'; }
   const hint = document.querySelector('.pc-tap-hint');
@@ -440,15 +450,24 @@ function renderDeckWordList(words) {
     list.innerHTML = '<p style="color:var(--text3);padding:20px">Không có từ vựng nào.</p>';
     return;
   }
+  const volIc = (typeof Icons !== 'undefined') ? Icons.get('volume', { size: 18 }) : '';
+  const srs = (typeof AppState !== 'undefined' && AppState.srsData) ? AppState.srsData : {};
+  const today = new Date().toISOString().split('T')[0];
+  function statusOf(h) {
+    const c = srs[h];
+    if (!c || !c.dueDate) return 'new';
+    if (c.dueDate <= today) return 'due';
+    return (c.lapses || 0) > 0 ? 'learning' : 'mastered';
+  }
   list.innerHTML = words.map((w, i) => `
     <div class="ddwl-row" data-idx="${i}">
-      <span class="ddwl-num">${i + 1}</span>
+      <span class="ddwl-dot ddwl-dot--${statusOf(w.h)}" aria-hidden="true"></span>
       <div class="ddwl-hanzi">${w.h}</div>
       <div class="ddwl-info">
         <div class="ddwl-pinyin">${w.p}</div>
         <div class="ddwl-meaning">${w.v}</div>
       </div>
-      <button class="ddwl-tts" data-h="${w.h}" title="Phát âm">🔊</button>
+      <button class="ddwl-tts" data-h="${w.h}" title="Phát âm" aria-label="Phát âm">${volIc}</button>
     </div>
   `).join('');
   list.querySelectorAll('.ddwl-tts').forEach(btn => {

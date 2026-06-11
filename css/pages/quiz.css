@@ -39,10 +39,10 @@
   text-align: center;
 }
 .q-opt:hover { border-color: var(--primary); color: var(--primary); }
-.q-opt.correct { background: #D1FAE5; border-color: #059669; color: #065F46; }
-.q-opt.wrong { background: #FEE2E2; border-color: #DC2626; color: #991B1B; }
-[data-theme="dark"] .q-opt.correct { background: #064E3B; color: #6EE7B7; }
-[data-theme="dark"] .q-opt.wrong { background: #450A0A; color: #FCA5A5; }
+.q-opt.correct { background: var(--success-bg); border-color: var(--thuy-luc); color: var(--thuy-luc-2); }
+.q-opt.wrong { background: var(--danger-bg); border-color: var(--danger); color: var(--chau-hong-2); }
+[data-theme="dark"] .q-opt.correct { color: var(--thuy-luc); }
+[data-theme="dark"] .q-opt.wrong { color: var(--chau-hong-3); }
 .quiz-result { text-align: center; padding: 48px 0; }
 .result-circle {
   width: 120px; height: 120px;
@@ -53,7 +53,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--on-accent);
   font-size: 36px;
   font-weight: 800;
 }
@@ -117,7 +117,7 @@
   transition: all .18s;
 }
 .scope-tab:hover { border-color: var(--primary); color: var(--primary); }
-.scope-tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.scope-tab.active { background: var(--primary); border-color: var(--primary); color: var(--on-accent); }
 .scope-panel { padding-top: 4px; }
 .scope-desc { font-size: 13px; color: var(--text2); }
 .adaptive-stats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
@@ -127,12 +127,11 @@
   font-size: 12px;
   font-weight: 600;
 }
-.adapt-due  { background: #FEF3C7; color: #92400E; }
-.adapt-reln { background: #FEE2E2; color: #991B1B; }
-.adapt-new  { background: #DBEAFE; color: #1E40AF; }
-[data-theme="dark"] .adapt-due  { background: #451A03; color: #FCD34D; }
-[data-theme="dark"] .adapt-reln { background: #450A0A; color: #FCA5A5; }
-[data-theme="dark"] .adapt-new  { background: #1E3A5F; color: #93C5FD; }
+.adapt-due  { background: var(--warning-bg); color: var(--hoang-kim-2); }
+.adapt-reln { background: var(--danger-bg); color: var(--chau-hong-2); }
+.adapt-new  { background: var(--info-bg); color: var(--info); }
+[data-theme="dark"] .adapt-due  { color: var(--hoang-kim-3); }
+[data-theme="dark"] .adapt-reln { color: var(--chau-hong-3); }
 
 /* Question mode grid (B5b) */
 .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -149,8 +148,7 @@
   background: var(--surface2);
   transition: all .18s;
 }
-.mode-opt input:checked + .mode-card { border-color: var(--primary); background: #FFF0EE; }
-[data-theme="dark"] .mode-opt input:checked + .mode-card { background: #2D1A1A; }
+.mode-opt input:checked + .mode-card { border-color: var(--primary); background: var(--primary-soft); }
 .mode-opt:hover .mode-card { border-color: var(--primary); }
 .mode-icon { font-family: var(--font-hanzi); font-size: 15px; font-weight: 700; color: var(--text); }
 .mode-name { font-size: 11px; color: var(--text2); text-align: center; }
@@ -221,9 +219,9 @@
 }
 .hist-detail { font-size: 12px; color: var(--text2); }
 .hist-score { font-size: 22px; font-weight: 800; min-width: 52px; text-align: right; }
-.hist-score--good { color: #059669; }
+.hist-score--good { color: var(--thuy-luc-2); }
 .hist-score--ok   { color: var(--accent); }
-.hist-score--poor { color: #DC2626; }
+.hist-score--poor { color: var(--danger); }
 
 /* â”€â”€ VAULT â”€â”€ */
 
@@ -234,8 +232,8 @@
   padding: 16px 18px; transition: all .2s; cursor: default;
 }
 .special-mode-card:hover { border-color: var(--primary); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-.dc-card { border-left: 4px solid #F59E0B; }
-.sv-card { border-left: 4px solid #EF4444; }
+.dc-card { border-left: 4px solid var(--hoang-kim); }
+.sv-card { border-left: 4px solid var(--chau-hong-3); }
 .smc-icon { font-size: 32px; flex-shrink: 0; }
 .smc-body { flex: 1; min-width: 0; }
 .smc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
@@ -247,16 +245,16 @@
 .dc-done-score { font-size: 20px; font-weight: 700; color: var(--primary); }
 .dc-done-xp { font-size: 14px; color: var(--accent); font-weight: 600; }
 .dc-countdown { font-size: 12px; color: var(--text3); margin-top: 4px; }
-.dc-streak { font-size: 13px; color: #F59E0B; font-weight: 600; margin-top: 4px; }
+.dc-streak { font-size: 13px; color: var(--hoang-kim); font-weight: 600; margin-top: 4px; }
 .dc-result-detail { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: 16px 0; font-size: 16px; }
 .dc-xp-earned { font-size: 20px; font-weight: 700; color: var(--accent); }
 
 /* Survival Mode */
 .sv-result-detail { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: 16px 0; font-size: 16px; }
-.sv-new-best { font-size: 18px; font-weight: 700; color: #F59E0B; animation: pulse .5s infinite alternate; }
+.sv-new-best { font-size: 18px; font-weight: 700; color: var(--hoang-kim); animation: pulse .5s infinite alternate; }
 .sv-best { font-size: 14px; color: var(--text2); }
 .survival-timer-badge { font-weight: 700; margin-left: 8px; color: var(--accent); }
-.survival-timer-badge.timer-danger { color: #EF4444; animation: pulse .4s infinite alternate; }
+.survival-timer-badge.timer-danger { color: var(--chau-hong-3); animation: pulse .4s infinite alternate; }
 
 /* Wave A: Double XP chip */
 .quiz-double-xp-wrap { margin-bottom: 4px; }
@@ -276,11 +274,11 @@
   font-family: var(--font-ui, inherit);
   transition: background var(--d-fast, .15s), border-color var(--d-fast, .15s), color var(--d-fast, .15s);
 }
-.quiz-double-xp-chip:hover:not(:disabled) { border-color: #F59E0B; color: #F59E0B; }
+.quiz-double-xp-chip:hover:not(:disabled) { border-color: var(--hoang-kim); color: var(--hoang-kim); }
 .quiz-double-xp-chip.active {
   background: rgba(245,158,11,.14);
-  border-color: #F59E0B;
-  color: #F59E0B;
+  border-color: var(--hoang-kim);
+  color: var(--hoang-kim);
 }
 .quiz-double-xp-chip:disabled { opacity: .4; cursor: not-allowed; }
 
@@ -312,8 +310,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--primary, #DC2626);
-  color: #fff;
+  background: var(--primary);
+  color: var(--on-accent);
   font-size: 13px;
   font-weight: 600;
   padding: 5px 14px;

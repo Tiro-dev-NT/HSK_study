@@ -8,7 +8,7 @@
 .pinyin-hero-badge {
   padding: 8px 12px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary), var(--accent, #F59E0B));
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   color: white;
   font-weight: 700;
   white-space: nowrap;
@@ -227,13 +227,13 @@
 }
 
 .pinyin-feedback.ok {
-  background: color-mix(in srgb, #10B981 16%, transparent);
-  color: #10B981;
+  background: color-mix(in srgb, var(--thuy-luc) 16%, transparent);
+  color: var(--thuy-luc);
 }
 
 .pinyin-feedback.no {
-  background: color-mix(in srgb, #EF4444 16%, transparent);
-  color: #EF4444;
+  background: color-mix(in srgb, var(--chau-hong-3) 16%, transparent);
+  color: var(--chau-hong-3);
 }
 
 .pinyin-result {
@@ -295,11 +295,11 @@
 }
 
 .pinyin-pair-feedback.ok {
-  color: #10B981;
+  color: var(--thuy-luc);
 }
 
 .pinyin-pair-feedback.no {
-  color: #EF4444;
+  color: var(--chau-hong-3);
 }
 
 .pinyin-sound-results h3,

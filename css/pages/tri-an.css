@@ -34,7 +34,7 @@
 .ta-hero-cta {
   flex-shrink: 0;
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border: none;
   border-radius: var(--r-3);
   padding: 9px 18px;
@@ -94,7 +94,7 @@
 .ta-pill.active {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   font-weight: 600;
 }
 

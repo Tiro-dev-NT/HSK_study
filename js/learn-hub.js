@@ -66,7 +66,7 @@ function _lhRenderContinue() {
       var lesson = COURSE_DATA[nextCourseId];
       var doneCnt = courseIds.filter(function(id) { return courseProgress[id] && courseProgress[id].completed; }).length;
       nameEl.textContent = 'Bài ' + nextCourseId + ' — ' + (lesson ? lesson.title : '');
-      if (metaEl) metaEl.textContent = (courseHasProgress ? '▶ Học tiếp · ' : '📍 Bài tiếp theo · ') + doneCnt + '/' + courseIds.length + ' bài';
+      if (metaEl) metaEl.textContent = (courseHasProgress ? 'Học tiếp · ' : 'Bài tiếp theo · ') + doneCnt + '/' + courseIds.length + ' bài';
       if (barEl)  barEl.style.width = Math.round(doneCnt / courseIds.length * 100) + '%';
       if (btn) btn.onclick = function() { Router.navigateTo('course'); };
       return;

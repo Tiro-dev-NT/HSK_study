@@ -206,7 +206,7 @@ var Session = {
     const srs = AppState.srsData || {};
     const dueTomorrow = Object.values(srs).filter(function(c) { return c.dueDate === tomorrowStr; }).length;
     const dueEl = document.getElementById('srDueTomorrow');
-    if (dueEl) dueEl.textContent = dueTomorrow > 0 ? ('📅 Ngày mai cần ôn: ' + dueTomorrow + ' thẻ') : '';
+    if (dueEl) dueEl.textContent = dueTomorrow > 0 ? ('Ngày mai cần ôn: ' + dueTomorrow + ' thẻ') : '';
   },
 
   // ── Flashcard ──────────────────────────────────────
@@ -246,7 +246,7 @@ var Session = {
     const contextBox = document.getElementById('fcContextBlock');
     if (contextBox && srsCard && srsCard.source_sentence) {
       contextBox.style.display = 'block';
-      contextBox.innerHTML = '💬 Bạn gặp từ này trong: 「' + srsCard.source_sentence + '」';
+      contextBox.innerHTML = 'Bạn gặp từ này trong: 「' + srsCard.source_sentence + '」';
     } else if (contextBox) {
       contextBox.style.display = 'none';
     }

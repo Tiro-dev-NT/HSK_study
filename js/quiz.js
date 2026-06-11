@@ -122,7 +122,7 @@ var Quiz = {
         var badge = document.createElement('div');
         badge.id = 'quizWeakBadge';
         badge.className = 'quiz-weak-badge';
-        badge.textContent = '🎯 Ôn điểm yếu';
+        badge.textContent = 'Ôn điểm yếu';
         quizArea.insertBefore(badge, quizArea.firstChild);
       }
     }
@@ -310,7 +310,7 @@ var Quiz = {
     Quiz._showQuestion();
     // Update refresh button label
     var btn = document.getElementById('quizRefreshBtn');
-    if (btn) btn.title = '🔄 ' + (5 - Quiz._refreshUsed) + ' lần còn lại';
+    if (btn) btn.title = '' + (5 - Quiz._refreshUsed) + ' lần còn lại';
   },
 
   start: function() {
@@ -740,7 +740,7 @@ var Quiz = {
     if (shsEl) {
       var hs = AppState.survivalHighScore;
       if (hs.score > 0) {
-        shsEl.innerHTML = '🏆 ' + (lang === 'vi' ? 'Kỷ lục: ' : 'Best: ') + hs.score +
+        shsEl.innerHTML = '' + (lang === 'vi' ? 'Kỷ lục: ' : 'Best: ') + hs.score +
           (lang === 'vi' ? ' câu' : ' pts');
         shsEl.style.display = 'block';
       } else {
@@ -826,7 +826,7 @@ var Quiz = {
       resultEl.innerHTML =
         '<div class="quiz-result" style="display:block">' +
           '<div class="result-circle"><span>' + pct + '%</span><small>' + (lang === 'vi' ? 'điểm' : 'pts') + '</small></div>' +
-          '<h2>🏆 ' + (lang === 'vi' ? 'Thử thách hàng ngày' : 'Daily Challenge') + '</h2>' +
+          '<h2>' + (lang === 'vi' ? 'Thử thách hàng ngày' : 'Daily Challenge') + '</h2>' +
           '<div class="dc-result-detail">' +
             '<div>' + score + '/' + total + (lang === 'vi' ? ' đúng' : ' correct') + '</div>' +
             '<div class="dc-xp-earned">+' + xpEarned + ' XP' + bonusText + '</div>' +
@@ -894,7 +894,7 @@ var Quiz = {
     if (badge) {
       var lang = AppState.lang;
       var level = Quiz._getSurvivalLevel();
-      badge.textContent = '💀 ' + (lang === 'vi' ? 'Survival' : 'Survival') +
+      badge.textContent = '' + (lang === 'vi' ? 'Survival' : 'Survival') +
         ' — Level ' + level + ' — ' + AppState.qScore + (lang === 'vi' ? ' đúng' : ' correct');
     }
   },
@@ -916,12 +916,12 @@ var Quiz = {
         progressBar.appendChild(timerEl);
       }
     }
-    if (timerEl) timerEl.textContent = ' ⏱ ' + duration + 's';
+    if (timerEl) timerEl.textContent = ' ' + duration + 's';
 
     Quiz._survivalTimer = setInterval(function() {
       Quiz._survivalTimeLeft--;
       if (timerEl) {
-        timerEl.textContent = ' ⏱ ' + Quiz._survivalTimeLeft + 's';
+        timerEl.textContent = ' ' + Quiz._survivalTimeLeft + 's';
         if (Quiz._survivalTimeLeft <= 3) timerEl.classList.add('timer-danger');
         else timerEl.classList.remove('timer-danger');
       }
@@ -970,15 +970,15 @@ var Quiz = {
       resultEl.innerHTML =
         '<div class="quiz-result" style="display:block">' +
           '<div class="result-circle"><span>' + score + '</span><small>' + (lang === 'vi' ? 'câu đúng' : 'correct') + '</small></div>' +
-          '<h2>💀 ' + (lang === 'vi' ? 'Game Over!' : 'Game Over!') + '</h2>' +
+          '<h2>' + (lang === 'vi' ? 'Game Over!' : 'Game Over!') + '</h2>' +
           '<div class="sv-result-detail">' +
             '<div>Level ' + level + '</div>' +
             '<div>+' + xpEarned + ' XP</div>' +
-            (isNewBest ? '<div class="sv-new-best">🏆 ' + (lang === 'vi' ? 'Kỷ lục mới!' : 'New High Score!') + '</div>' : '') +
+            (isNewBest ? '<div class="sv-new-best">' + (lang === 'vi' ? 'Kỷ lục mới!' : 'New High Score!') + '</div>' : '') +
             '<div class="sv-best">' + (lang === 'vi' ? 'Kỷ lục: ' : 'Best: ') + AppState.survivalHighScore.score + '</div>' +
           '</div>' +
           '<div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap">' +
-            '<button class="btn-primary" id="replaySurvival" data-vi="🔄 Chơi lại" data-en="🔄 Replay">🔄 Chơi lại</button>' +
+            '<button class="btn-primary" id="replaySurvival" data-vi="Chơi lại" data-en="Replay">Chơi lại</button>' +
             '<button class="btn-outline" id="survivalBackBtn" data-vi="Quay lại" data-en="Back">Quay lại</button>' +
           '</div>' +
         '</div>';

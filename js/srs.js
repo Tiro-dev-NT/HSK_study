@@ -127,9 +127,9 @@ function getSRSBadgeHTML(words) {
     return '<span class="srs-badge srs-done">✓ Đã ôn hôm nay</span>';
   }
   let html = '';
-  if (newCards.length) html += `<span class="srs-badge srs-new">🔵 ${Math.min(newCards.length, SRS_NEW_PER_DAY)} mới</span>`;
-  if (dueCards.length) html += `<span class="srs-badge srs-due">🟠 ${dueCards.length} ôn</span>`;
-  if (relearning.length) html += `<span class="srs-badge srs-relearn">🔴 ${relearning.length} học lại</span>`;
+  if (newCards.length) html += `<span class="srs-badge srs-new">${Math.min(newCards.length, SRS_NEW_PER_DAY)} mới</span>`;
+  if (dueCards.length) html += `<span class="srs-badge srs-due">${dueCards.length} ôn</span>`;
+  if (relearning.length) html += `<span class="srs-badge srs-relearn">${relearning.length} học lại</span>`;
   return html;
 }
 

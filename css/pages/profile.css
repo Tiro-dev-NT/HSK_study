@@ -27,7 +27,7 @@
   height: 72px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--chau-hong), var(--hoang-kim));
-  color: #fff;
+  color: var(--on-accent);
   font-size: 28px;
   font-weight: 700;
   display: flex;
@@ -62,7 +62,7 @@
   padding: 3px 10px;
   border-radius: var(--r-pill);
   background: rgba(99,102,241,.12);
-  color: #6366F1;
+  color: var(--info);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .03em;
@@ -615,7 +615,7 @@
 .prof-outfit-wear-btn {
   background: var(--chau-hong);
   border-color: var(--chau-hong);
-  color: #fff;
+  color: var(--on-accent);
 }
 .prof-outfit-buy-btn {
   background: transparent;
@@ -752,7 +752,7 @@
 .prof-soc-dot {
   width: 9px; height: 9px;
   border-radius: 50%;
-  background: var(--border-2, #D6D3D1);
+  background: var(--border-2);
   flex: 0 0 auto;
 }
 .prof-soc-dot.on { background: var(--thuy-luc); box-shadow: 0 0 0 3px rgba(16,185,129,.18); }
@@ -772,7 +772,7 @@
 .prof-setting-action--danger {
   background: rgba(220,38,38,.08);
   border-color: rgba(220,38,38,.3);
-  color: #DC2626;
+  color: var(--danger);
 }
 .prof-setting-action--danger:hover { background: rgba(220,38,38,.16); }
 
@@ -808,8 +808,8 @@
   text-align: center;
 }
 .prof-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
-.prof-toast--success { background: #10B981; color: #fff; }
-.prof-toast--error   { background: #DC2626; color: #fff; }
+.prof-toast--success { background: var(--thuy-luc); color: var(--on-accent); }
+.prof-toast--error   { background: var(--danger); color: var(--on-accent); }
 .prof-toast--info    { background: var(--surface); color: var(--text); border: 1.5px solid var(--border); }
 
 /* ── Responsive ── */

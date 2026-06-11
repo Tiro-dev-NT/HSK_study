@@ -63,7 +63,7 @@
 .quest-widget-title { font-weight: 600; font-size: 15px; flex: 1; }
 .quest-widget-count {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   font-size: 11px;
   font-weight: 700;
   padding: 2px 8px;
@@ -97,7 +97,7 @@
 .quest-mini-status.claimed { font-size: 14px; }
 .quest-mini-claim {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border: none;
   border-radius: 10px;
   padding: 3px 10px;
@@ -162,7 +162,7 @@
 }
 .quest-tab.active {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border-color: var(--primary);
 }
 .quest-tab:not(.active):hover { border-color: var(--primary); color: var(--text); }
@@ -182,14 +182,14 @@
 }
 .quest-card:hover { border-color: var(--primary); }
 .quest-card.quest-card-done { opacity: .6; }
-.quest-card.quest-card-premium { border-color: #f59e0b; }
-.quest-card.quest-card-premium:hover { border-color: #d97706; }
+.quest-card.quest-card-premium { border-color: var(--hoang-kim); }
+.quest-card.quest-card-premium:hover { border-color: var(--hoang-kim-2); }
 .quest-premium-badge {
   display: inline-block;
   font-size: .65rem;
   font-weight: 700;
-  color: #92400e;
-  background: linear-gradient(135deg, #fde68a, #fbbf24);
+  color: var(--on-gold);
+  background: linear-gradient(135deg, var(--hoang-kim-3), var(--hoang-kim));
   border-radius: 4px;
   padding: 1px 5px;
   margin-left: 6px;
@@ -208,14 +208,14 @@
 .quest-card-desc { font-size: 13px; color: var(--text2); }
 .quest-card-claimed {
   font-size: 13px;
-  color: #10b981;
+  color: var(--thuy-luc);
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
 }
 .quest-claim-btn {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-accent);
   border: none;
   border-radius: 10px;
   padding: 8px 14px;
@@ -274,7 +274,7 @@
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
-.quest-toast.quest-claim { border-color: #10b981; }
+.quest-toast.quest-claim { border-color: var(--thuy-luc); }
 .quest-toast.quest-ready { border-color: var(--primary); }
 
 @media (max-width: 600px) {

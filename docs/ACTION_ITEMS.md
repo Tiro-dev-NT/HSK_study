@@ -1,5 +1,23 @@
 # Action Items
 
+## ✅ Session 2026-06-11 — FE redesign (đợt đồng bộ execution toàn app, branch `fe-redesign-final`)
+
+> Spec: `docs/plans/fe-redesign/00-MASTER.md` (mục 6 = Definition of Done, đã đánh ✅ từng dòng). 4 wave theo lưu lượng.
+
+- ☑ **W0 Foundation** — `js/icons.js` (Icons.get, Feather-style, +icon `trash`), `css/components/cards.css`/`buttons.css`, token system, dọn hex top-5 file. (wave trước)
+- ☑ **W1 Core loop** — Home (6-block Calm Study, 1 hero CTA) + Session (flashcard/typing/listening/MCQ/result, SRS buttons `Quên/Khó/Tốt/Dễ`+interval, pinyin ẩn mặc định + toggle). (wave trước)
+- ☑ **W2 Learn + Dict** — Learn hub + Deck browser/detail + Dictionary redesign. (wave trước)
+- ☑ **W3 Hubs + Mobile** — 4 hub Practice/Tools/Profile/Community + polish mobile nav/FAB/touch. (wave trước, **CHƯA merge `main`** — xem dưới)
+- ☑ **Wave-final (2026-06-11)** — chốt hạ:
+  - **Hex sweep:** `css/pages/*.css` (trừ admin/landing/legal) **373→24** (`grep -c`). 24 còn lại 100% trong file IN ẤN (`handout.css` palette `--ho-*` giấy-trắng cố ý + `handwriting.css` xem-trước A4), đã thêm comment miễn-trừ. File themeable = 0 hex. Token mới `--on-accent/--on-gold/--medal-*/--bronze`. Dọn: games(78)/quiz/reader/mock-exam/ban-do-hsk/reading/quests/pinyin-lab/profile/leaderboard/honor-hall.
+  - **Emoji-icon sweep** ở quiz/session/dictionary/learn/decks/gamification (chi tiết DoD dòng 2). Bump `?v=` 13 CSS + 8 JS trong `index.html`.
+  - **Smoke test:** flashcard end-to-end + tra từ + 6 tab + games + reader, light/dark/375px, **0 console error**.
+- ☐ **MERGE `fe-redesign-final` → `main`** — branch chứa W0–W3 + wave-final. ⚠️ `main` hiện mới tới W2 merge (`0e6dbbb`); W3 + final CHƯA lên `main`. Cần review → merge → Cloudflare deploy.
+- ☐ **Treo: hệ icon-định-danh deck** — `DECK_ICONS`/level/topic icon (📕📗📘…) trong `js/decks.js` còn dùng emoji (là data nhận-diện bộ thẻ, không phải icon control). Batch sau: map sang Icons SVG hoặc giữ làm "deck avatar" có chủ đích.
+- ☐ **Treo: empty-state minh hoạ** — 📭 (decks empty), 😢 (gamification error) còn emoji to. Thay bằng SVG/mascot illustration theo chuẩn empty-state.
+
+---
+
 ## ✅ Session 2026-06-10 (b) — Cộng đồng Hub V0 (live) + Trang Tri Ân (code done, chờ SQL prod)
 
 > Spec đầy đủ: `docs/plans/community-build.md` (Phần A = Hub V0 · Phần B = Trang Tri Ân chờ làm). Ý tưởng Phase V: `docs/design/DESIGN_IDEAS.md`.

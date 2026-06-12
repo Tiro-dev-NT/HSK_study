@@ -1,10 +1,17 @@
 // ═══════════════════════════════════════════════════════
-// LESSON-PRACTICE.JS — C1 Lesson Practice Suite
+// LESSON-PRACTICE.JS — C1 Lesson Practice Suite (v2 GUIDED)
 // • Route /lesson-practice?id=N (tab Học). Sinh bài tập RUNTIME từ
 //   COURSE_DATA[id] (giáo trình Mai HSK 1-4) — KHÔNG tạo data mới.
-// • Tái dùng Course.exerciseAPI (isCorrect/pushWrong/speak/audioUrl/char) +
-//   Course.checkLessonGate — KHÔNG đụng flow visual-novel của course.js.
-// • 0 AI credit · 0 bảng Supabase mới. Key localStorage MỚI: lesson_practice_v1.
+// • v2 (spec §9, 2026-06-12): guided stepper là MẶC ĐỊNH —
+//   Bối cảnh → Hội thoại → Điền từ → Nghe chọn → Chép chính tả →
+//   Sắp xếp → Luyện dịch → Tổng hợp (bài thiếu dạng nào skip bước đó).
+//   Tab tự do hạ vai trò → sheet danh sách bước (jump không khoá).
+//   Resume lastStep+câu · mobile header 1 hàng + stepper compact ·
+//   Tổng hợp cap 12 câu (guided) · TID-3 mode "che từ" cho Luyện dịch.
+// • Tái dùng Course.exerciseAPI (isCorrect/pushWrong/speak/audioUrl/char)
+//   + Course.checkLessonGate — KHÔNG đụng flow visual-novel của course.js.
+// • 0 AI credit · 0 bảng Supabase mới. Key localStorage: lesson_practice_v1
+//   (record bài: {tabKey:{done,total,best}, _steps, _lastStep, _lastIdx, _done}).
 // • Auto-gen thuần client, deterministic (seed = id) → ngày nào cũng cùng đề.
 // ═══════════════════════════════════════════════════════
 
@@ -13,15 +20,25 @@ var LessonPractice = {
   lessonId: null,
   lesson:   null,
   sets:     null,
-  tab:      'doc',
-  tabState: {},        // { tabKey: { idx, answers:{}, checked:{}, build:[] } }
+  steps:    [],        // các bước active của bài (STEP_DEFS đã lọc rỗng)
+  stepIdx:  0,
+  tab:      'context', // key của bước hiện tại (giữ tên 'tab' cho tabState)
+  tabState: {},        // { key: { idx, answers:{}, checked:{}, build:[], reveal:{}, mode } }
+  doneSteps: {},       // { key: 1 } — bước đã hoàn thành (session + persisted _steps)
+  finished: false,     // đã tới màn kết quả bài
+  mixLimit: 12,        // cap Tổng hợp trong guided flow (§9.5) — "Làm thêm" mở full
+  MIX_CAP:  12,
+  _resume:  null,      // { key, idx } — đọc từ _lastStep/_lastIdx khi vào bài
   _pendingId: null,    // set bởi caller trước Router.navigateTo('lesson-practice')
   _levelPoolCache: {},
   _audioAll: null,     // trạng thái "Nghe toàn bộ"
+  _docShowVi: true,
+  _docShowPy: true,
 
-  // Thứ tự 7 tab (doc = transcript, 5 dạng bài, mix = tổng hợp)
-  TABS: [
-    { key: 'doc',       label: 'Hội thoại',     icon: 'book-open' },
+  // Thứ tự bước cố định (§9.1 — pedagogy: context → input → nhận diện → sản xuất → chốt)
+  STEP_DEFS: [
+    { key: 'context',   label: 'Bối cảnh',      icon: 'book-open' },
+    { key: 'doc',       label: 'Hội thoại',     icon: 'headphones' },
     { key: 'fill',      label: 'Điền từ',       icon: 'pencil-fill' },
     { key: 'listen',    label: 'Nghe chọn',     icon: 'ear' },
     { key: 'dictation', label: 'Chép chính tả', icon: 'keyboard-dictation' },
@@ -82,25 +99,70 @@ var LessonPractice = {
     LessonPractice.lesson   = COURSE_DATA[id];
     LessonPractice.sets     = LessonPractice._buildSets(LessonPractice.lesson);
     LessonPractice.tabState = {};
-    // Chọn tab mặc định = tab đầu tiên có nội dung (ưu tiên Hội thoại)
-    LessonPractice.tab = LessonPractice._firstNonEmptyTab();
+    LessonPractice.finished = false;
+    LessonPractice.mixLimit = Math.min(LessonPractice.MIX_CAP, (LessonPractice.sets.mix || []).length);
+    // Toggle Hội thoại persist (§9.5: đúng 2 toggle)
+    LessonPractice._docShowVi = localStorage.getItem('lp_doc_vi') !== '0';
+    LessonPractice._docShowPy = localStorage.getItem('lp_doc_py') !== '0';
+
+    // Bước active = STEP_DEFS lọc bước rỗng, đánh số lại runtime (§9.1)
+    LessonPractice.steps = LessonPractice.STEP_DEFS.filter(function(s) {
+      return LessonPractice._stepAvailable(s.key);
+    });
+    if (!LessonPractice.steps.length) { LessonPractice._renderMissing(); return; }
+
+    // Resume (§9.2): _lastStep + vị trí câu từ lesson_practice_v1
+    var rec = LessonPractice._loadProg()[id] || {};
+    LessonPractice.doneSteps = {};
+    Object.keys(rec._steps || {}).forEach(function(k) { LessonPractice.doneSteps[k] = 1; });
+    LessonPractice._resume = null;
+    if (rec._lastStep) {
+      var ri = LessonPractice._stepIndexOf(rec._lastStep);
+      if (ri > 0 || (ri === 0 && (rec._lastIdx | 0) > 0)) {
+        LessonPractice._resume = { key: rec._lastStep, idx: rec._lastIdx | 0 };
+      }
+    }
+
+    LessonPractice.stepIdx = 0;
+    LessonPractice.tab = LessonPractice.steps[0].key;
+    // Bài không có màn Bối cảnh → resume thẳng vào bước dở
+    if (LessonPractice.tab !== 'context' && LessonPractice._resume) {
+      LessonPractice._applyResume();
+    }
     try { history.replaceState({ page: 'lesson-practice', id: id }, '', '/lesson-practice?id=' + id); } catch (e) {}
     LessonPractice._bindKeys();
     LessonPractice.render();
   },
 
-  _firstNonEmptyTab: function() {
-    var t = LessonPractice.TABS;
-    for (var i = 0; i < t.length; i++) {
-      if (LessonPractice._tabCount(t[i].key) > 0) return t[i].key;
+  _stepAvailable: function(key) {
+    if (key === 'context') {
+      var l = LessonPractice.lesson;
+      return !!(l && (l.context || (l.vocabPreview || []).length));
     }
-    return 'doc';
+    return LessonPractice._tabCount(key) > 0;
   },
 
+  _stepIndexOf: function(key) {
+    for (var i = 0; i < LessonPractice.steps.length; i++) {
+      if (LessonPractice.steps[i].key === key) return i;
+    }
+    return -1;
+  },
+
+  // Số câu hiển thị của 1 bước (mix bị cap trong guided flow §9.5)
   _tabCount: function(key) {
     var s = LessonPractice.sets;
     if (!s) return 0;
+    if (key === 'mix') return Math.min((s.mix || []).length, LessonPractice.mixLimit || LessonPractice.MIX_CAP);
     return (s[key] || []).length;
+  },
+
+  // Set bài tập hiệu lực của 1 bước (mix capped)
+  _setFor: function(key) {
+    var s = LessonPractice.sets;
+    if (!s) return [];
+    if (key === 'mix') return (s.mix || []).slice(0, LessonPractice.mixLimit);
+    return s[key] || [];
   },
 
   // ═══════════════════════════════════════════════════
@@ -165,10 +227,11 @@ var LessonPractice = {
     });
 
     // translate = workbook (build word-bank) + auto-gen (đề = nghĩa VI)
+    // toks giữ lại theo thứ tự đáp án — dùng cho mode "che từ" (TID-3)
     var translate = wbTr.map(function(e) {
       var clean = LessonPractice._stripPunc(e.answer);
       var toks  = LessonPractice._segment(clean, vset);
-      return { type: 'translate', prompt: e.prompt, answer: clean,
+      return { type: 'translate', prompt: e.prompt, answer: clean, toks: toks,
                words: LessonPractice._wordBank(toks, level, rng), explain: e.explain };
     });
     var tCount = 0;
@@ -177,13 +240,13 @@ var LessonPractice = {
       var clean = LessonPractice._stripPunc(d.text);
       var toks  = LessonPractice._segment(clean, vset);
       if (toks.length >= 2 && toks.length <= 8) {
-        translate.push({ type: 'translate', prompt: d.meaning, answer: clean,
+        translate.push({ type: 'translate', prompt: d.meaning, answer: clean, toks: toks,
                          words: LessonPractice._wordBank(toks, level, rng), py: d.pinyin, _autogen: true });
         tCount++;
       }
     });
 
-    // mix = trộn seeded 15-20 câu từ các set + MCQ vocab
+    // mix = trộn seeded từ các set + MCQ vocab (guided cap 12 — §9.5)
     var pool = [];
     [fill, listen, order, translate, dictation].forEach(function(arr) {
       arr.forEach(function(e) { pool.push(LessonPractice._clone(e)); });
@@ -291,6 +354,71 @@ var LessonPractice = {
   },
 
   // ═══════════════════════════════════════════════════
+  //  GUIDED FLOW (§9.2)
+  // ═══════════════════════════════════════════════════
+  _curStep: function() { return LessonPractice.steps[LessonPractice.stepIdx] || LessonPractice.steps[0]; },
+
+  _markStepDone: function(key) { LessonPractice.doneSteps[key] = 1; },
+
+  // CTA "Bước tiếp theo →" / "Bắt đầu →" — auto-advance, hết bước cuối → kết quả bài
+  nextStep: function() {
+    LessonPractice._stopAll();
+    LessonPractice._markStepDone(LessonPractice.tab);
+    if (LessonPractice.stepIdx >= LessonPractice.steps.length - 1) { LessonPractice._finish(); return; }
+    LessonPractice.stepIdx++;
+    LessonPractice.tab = LessonPractice.steps[LessonPractice.stepIdx].key;
+    LessonPractice.finished = false;
+    LessonPractice._saveMeta(LessonPractice.tab, LessonPractice._state().idx);
+    LessonPractice.render();
+  },
+
+  // Jump tự do qua sheet/tab bar — KHÔNG khoá bước, không phá state bước dở (§9.2)
+  jumpStep: function(i) {
+    LessonPractice.closeStepSheet();
+    if (i === LessonPractice.stepIdx && !LessonPractice.finished) return;
+    LessonPractice._stopAll();
+    LessonPractice.finished = false;
+    LessonPractice.stepIdx = i;
+    LessonPractice.tab = LessonPractice.steps[i].key;
+    LessonPractice._saveMeta(LessonPractice.tab, LessonPractice._state().idx);
+    LessonPractice.render();
+  },
+
+  _applyResume: function() {
+    var r = LessonPractice._resume;
+    LessonPractice._resume = null;
+    if (!r) return;
+    var i = LessonPractice._stepIndexOf(r.key);
+    if (i < 0) return;
+    LessonPractice.stepIdx = i;
+    LessonPractice.tab = r.key;
+    if (r.key !== 'context' && r.key !== 'doc') {
+      var st = LessonPractice._state();
+      st.idx = Math.min(r.idx, LessonPractice._setFor(r.key).length);
+    }
+  },
+
+  resumeGo: function() {
+    LessonPractice._applyResume();
+    LessonPractice.render();
+  },
+
+  // "Học từ đầu" trên màn Bối cảnh khi có resume
+  startFresh: function() {
+    LessonPractice._resume = null;
+    LessonPractice.tabState = {};
+    LessonPractice.doneSteps = {};
+    LessonPractice._saveMeta(null, 0);
+    LessonPractice.nextStep();
+  },
+
+  _finish: function() {
+    LessonPractice.finished = true;
+    LessonPractice._saveMeta(null, 0, { done: true });
+    LessonPractice.render();
+  },
+
+  // ═══════════════════════════════════════════════════
   //  RENDER
   // ═══════════════════════════════════════════════════
   _el: function() { return document.getElementById('lpPage'); },
@@ -303,70 +431,146 @@ var LessonPractice = {
       '<div class="lp-shell">' +
         LessonPractice._sidebarHTML() +
         '<div class="lp-main">' +
-          '<button class="lp-sheet-btn" onclick="LessonPractice.openSheet()">' + LessonPractice._ic('list', 16) + 'Danh sách bài</button>' +
           LessonPractice._headerHTML(l) +
+          LessonPractice._stepperHTML() +
           LessonPractice._tabsHTML() +
-          '<div class="lp-exarea" id="lpExarea">' + LessonPractice._tabContentHTML() + '</div>' +
+          '<div class="lp-exarea" id="lpExarea">' + LessonPractice._bodyHTML() + '</div>' +
         '</div>' +
       '</div>';
+  },
+
+  _bodyHTML: function() {
+    if (LessonPractice.finished) return LessonPractice._finishHTML();
+    if (LessonPractice.tab === 'context') return LessonPractice._contextHTML();
+    if (LessonPractice.tab === 'doc') return LessonPractice._docHTML();
+    var set = LessonPractice._setFor(LessonPractice.tab);
+    if (!set.length) return LessonPractice._emptyHTML();
+    return LessonPractice._exerciseHTML(set);
   },
 
   _ic: function(name, size) {
     return (typeof Icons !== 'undefined') ? Icons.get(name, { size: size || 18 }) : '';
   },
 
+  // Header gộp 1 hàng (§9.3): ‹ back + title + ⋯ (mobile) / actions inline (desktop)
   _headerHTML: function(l) {
     var vlen = (l.vocab || []).length;
-    var docN = LessonPractice._tabCount('doc');
-    return '<div class="lp-header">' +
-      '<button class="lp-back" onclick="Router.navigateTo(\'learn\')">' + LessonPractice._ic('chevron-left', 16) + 'Về Học</button>' +
-      '<div class="lp-h-row">' +
-        '<h1 class="lp-h-title">Bài ' + l.id + ': ' + LessonPractice._esc(l.title || '') + '</h1>' +
-        '<div class="lp-h-actions">' +
-          (docN > 0 ? '<button class="lp-btn" onclick="LessonPractice.playAll()" id="lpPlayAll">' + LessonPractice._ic('volume', 16) + 'Nghe toàn bộ</button>' : '') +
-          '<button class="lp-btn" onclick="LessonPractice.openVocab()">' + LessonPractice._ic('book-open', 16) + 'Từ vựng (' + vlen + ')</button>' +
-        '</div>' +
+    var docN = (LessonPractice.sets.doc || []).length;
+    return '<div class="lp-header"><div class="lp-h-bar">' +
+      '<button class="lp-back" onclick="Router.navigateTo(\'learn\')" aria-label="Về Học">' + LessonPractice._ic('chevron-left', 18) + '<span class="lp-back-txt">Về Học</span></button>' +
+      '<h1 class="lp-h-title">Bài ' + l.id + ': ' + LessonPractice._esc(l.title || '') + '</h1>' +
+      '<div class="lp-h-actions">' +
+        (docN > 0 ? '<button class="lp-btn" onclick="LessonPractice.playAll()" id="lpPlayAll">' + LessonPractice._ic('volume', 16) + 'Nghe toàn bộ</button>' : '') +
+        '<button class="lp-btn" onclick="LessonPractice.openVocab()">' + LessonPractice._ic('book-open', 16) + 'Từ vựng (' + vlen + ')</button>' +
       '</div>' +
-    '</div>';
+      '<button class="lp-menu-btn" onclick="LessonPractice.openMenu()" aria-label="Menu">' + LessonPractice._ic('more-h', 20) + '</button>' +
+    '</div></div>';
   },
 
+  // Stepper compact (mobile <1024): "Bước x/y · Tên bước" + dots — tap mở sheet bước.
+  // Dots KHÔNG hiện số câu (§9.5).
+  _stepperHTML: function() {
+    var cur = LessonPractice._curStep();
+    var label = LessonPractice.finished
+      ? 'Hoàn thành bài 🎉'
+      : 'Bước ' + (LessonPractice.stepIdx + 1) + '/' + LessonPractice.steps.length + ' · ' + cur.label;
+    var dots = LessonPractice.steps.map(function(s, i) {
+      var cls = 'lp-dot';
+      if (LessonPractice.finished || LessonPractice.doneSteps[s.key]) cls += ' lp-dot--done';
+      if (!LessonPractice.finished && i === LessonPractice.stepIdx) cls += ' lp-dot--cur';
+      return '<span class="' + cls + '"></span>';
+    }).join('');
+    return '<button class="lp-stepper" onclick="LessonPractice.openStepSheet()" aria-label="Danh sách bước">' +
+      '<span class="lp-stepper-label">' + label + '</span>' +
+      '<span class="lp-stepper-dots">' + dots + '</span>' +
+    '</button>';
+  },
+
+  // Tab bar desktop (≥1024): đầy đủ bước, ✓ khi xong, KHÔNG badge số (MASTER §⚖️)
   _tabsHTML: function() {
     var html = '<div class="lp-tabs" role="tablist">';
-    LessonPractice.TABS.forEach(function(t) {
-      var n = LessonPractice._tabCount(t.key);
-      if (n === 0) return; // ẩn tab rỗng
-      var active = t.key === LessonPractice.tab ? ' lp-tab--active' : '';
-      html += '<button class="lp-tab' + active + '" role="tab" onclick="LessonPractice.switchTab(\'' + t.key + '\')">' +
-        LessonPractice._ic(t.icon, 16) +
-        '<span>' + t.label + '</span>' +
-        '<span class="lp-tab-badge">' + n + '</span>' +
+    LessonPractice.steps.forEach(function(s, i) {
+      var active = (!LessonPractice.finished && i === LessonPractice.stepIdx) ? ' lp-tab--active' : '';
+      var done = LessonPractice.doneSteps[s.key] ? '<span class="lp-tab-done">' + LessonPractice._ic('check', 14) + '</span>' : '';
+      html += '<button class="lp-tab' + active + '" role="tab" onclick="LessonPractice.jumpStep(' + i + ')">' +
+        LessonPractice._ic(s.icon, 16) +
+        '<span>' + s.label + '</span>' + done +
       '</button>';
     });
     html += '</div>';
     return html;
   },
 
-  switchTab: function(key) {
-    if (LessonPractice.tab === key) return;
-    LessonPractice._stopAll();
-    LessonPractice.tab = key;
-    LessonPractice.render();
+  // ── Bước 0: Bối cảnh (§9.1 — màn mở đầu NHẸ, giữ "chất truyện") ──
+  _contextHTML: function() {
+    var l = LessonPractice.lesson;
+    // Ảnh scene = bg của step đầu có bg (asset mai-scenes webp)
+    var bg = '';
+    for (var i = 0; i < (l.steps || []).length; i++) {
+      if (l.steps[i].bg) { bg = 'assets/mai/scenes/' + l.steps[i].bg + '.webp'; break; }
+    }
+    if (!bg) bg = 'assets/mai/scenes/classroom.webp';
+
+    var chips = (l.vocabPreview || []).map(function(h, ci) {
+      var w = null;
+      (l.vocab || []).some(function(x) { if (x.h === h) { w = x; return true; } return false; });
+      return '<button class="lp-chip" onclick="LessonPractice.speakChip(' + ci + ')">' +
+        '<span class="lp-chip-h">' + LessonPractice._esc(h) + '</span>' +
+        (w && w.p ? '<span class="lp-chip-p">' + LessonPractice._esc(w.p) + '</span>' : '') +
+      '</button>';
+    }).join('');
+
+    // Banner nhẹ "nên học truyện trước" (không chặn) — dismiss là nhớ (§9.5)
+    var banner = '';
+    var courseProg = {};
+    try { courseProg = JSON.parse(localStorage.getItem('hsk_course_progress') || '{}'); } catch (e) {}
+    var storyDone = courseProg[l.id] && courseProg[l.id].completed;
+    if (!storyDone && localStorage.getItem('lp_hint_story') !== '1') {
+      banner = '<div class="lp-banner" id="lpStoryBanner">' +
+        '<span>💡 Nên học truyện Mai bài này trước để nắm bối cảnh.</span>' +
+        '<button class="lp-banner-link" onclick="Course._pendingId=' + l.id + ';Router.navigateTo(\'course\')">Học truyện →</button>' +
+        '<button class="lp-banner-x" onclick="LessonPractice.dismissStoryHint()" aria-label="Đóng">' + LessonPractice._ic('x', 14) + '</button>' +
+      '</div>';
+    }
+
+    // 1 CTA primary duy nhất (§9.5) — resume thì CTA = "Tiếp tục Bước k"
+    var cta;
+    if (LessonPractice._resume) {
+      var ri = LessonPractice._stepIndexOf(LessonPractice._resume.key);
+      var rl = ri >= 0 ? LessonPractice.steps[ri].label : '';
+      cta = '<button class="lp-btn lp-btn--primary lp-btn--lg" onclick="LessonPractice.resumeGo()">Tiếp tục Bước ' + (ri + 1) + ': ' + rl + ' ' + LessonPractice._ic('arrow-right', 16) + '</button>' +
+        '<button class="lp-btn" onclick="LessonPractice.startFresh()">Học từ đầu</button>';
+    } else {
+      cta = '<button class="lp-btn lp-btn--primary lp-btn--lg" onclick="LessonPractice.nextStep()">Bắt đầu ' + LessonPractice._ic('arrow-right', 16) + '</button>';
+    }
+
+    return '<div class="lp-context">' +
+      '<div class="lp-context-scene"><img src="' + bg + '" alt="" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>' +
+      (l.context ? '<p class="lp-context-text">' + LessonPractice._esc(l.context) + '</p>' : '') +
+      (chips ? '<div class="lp-context-chips">' + chips + '</div>' : '') +
+      banner +
+      '<div class="lp-result-btns lp-context-cta">' + cta + '</div>' +
+    '</div>';
   },
 
-  _tabContentHTML: function() {
-    if (LessonPractice.tab === 'doc') return LessonPractice._docHTML();
-    var set = (LessonPractice.sets && LessonPractice.sets[LessonPractice.tab]) || [];
-    if (!set.length) return LessonPractice._emptyHTML();
-    return LessonPractice._exerciseHTML(set);
+  speakChip: function(ci) {
+    var h = (LessonPractice.lesson.vocabPreview || [])[ci];
+    if (h && typeof Course !== 'undefined' && Course.exerciseAPI) Course.exerciseAPI.speak(h);
+  },
+
+  dismissStoryHint: function() {
+    try { localStorage.setItem('lp_hint_story', '1'); } catch (e) {}
+    var b = document.getElementById('lpStoryBanner');
+    if (b && b.parentNode) b.parentNode.removeChild(b);
   },
 
   _renderExarea: function() {
     var area = document.getElementById('lpExarea');
     if (!area) { LessonPractice.render(); return; }
-    area.innerHTML = LessonPractice._tabContentHTML();
+    area.innerHTML = LessonPractice._bodyHTML();
   },
 
-  // ── Hội thoại tab ────────────────────────────────────
+  // ── Hội thoại (bước 1) — 2 toggle: Ẩn pinyin · Ẩn nghĩa (§9.5) ──
   _docHTML: function() {
     var doc = (LessonPractice.sets && LessonPractice.sets.doc) || [];
     if (!doc.length) return LessonPractice._emptyHTML();
@@ -379,29 +583,55 @@ var LessonPractice = {
         '<div class="lp-doc-body">' +
           '<div class="lp-doc-name">' + LessonPractice._esc(c.name || d.speaker) + '</div>' +
           '<div class="lp-doc-hanzi">' + LessonPractice._esc(d.text) + '</div>' +
-          (d.pinyin ? '<div class="lp-doc-py">' + LessonPractice._esc(d.pinyin) + '</div>' : '') +
-          (d.meaning ? '<div class="lp-doc-vi" id="lpDocVi' + i + '"' + (LessonPractice._docShowVi ? '' : ' hidden') + '>' + LessonPractice._esc(d.meaning) + '</div>' : '') +
+          (d.pinyin ? '<div class="lp-doc-py"' + (LessonPractice._docShowPy ? '' : ' hidden') + '>' + LessonPractice._esc(d.pinyin) + '</div>' : '') +
+          (d.meaning ? '<div class="lp-doc-vi"' + (LessonPractice._docShowVi ? '' : ' hidden') + '>' + LessonPractice._esc(d.meaning) + '</div>' : '') +
         '</div>' +
         '<button class="lp-doc-play" title="Nghe" onclick="LessonPractice.playDoc(' + i + ')">' + LessonPractice._ic('volume', 18) + '</button>' +
       '</div>';
     }).join('');
     return '<div class="lp-doc-bar">' +
-        '<button class="lp-btn" onclick="LessonPractice.toggleDocVi()">' + LessonPractice._ic('book-open', 16) + (LessonPractice._docShowVi ? 'Ẩn nghĩa' : 'Hiện nghĩa') + '</button>' +
+        '<button class="lp-btn" onclick="LessonPractice.toggleDocPy()">' + (LessonPractice._docShowPy ? 'Ẩn pinyin' : 'Hiện pinyin') + '</button>' +
+        '<button class="lp-btn" onclick="LessonPractice.toggleDocVi()">' + (LessonPractice._docShowVi ? 'Ẩn nghĩa' : 'Hiện nghĩa') + '</button>' +
       '</div>' +
-      '<div class="lp-doc">' + lines + '</div>';
+      '<div class="lp-doc">' + lines + '</div>' +
+      '<div class="lp-actions lp-actions--center">' + LessonPractice._nextStepBtn() + '</div>';
   },
 
-  _docShowVi: true,
   toggleDocVi: function() {
     LessonPractice._docShowVi = !LessonPractice._docShowVi;
+    try { localStorage.setItem('lp_doc_vi', LessonPractice._docShowVi ? '1' : '0'); } catch (e) {}
     LessonPractice._renderExarea();
   },
 
-  // ── Exercise tabs (1 câu/màn) ────────────────────────
+  toggleDocPy: function() {
+    LessonPractice._docShowPy = !LessonPractice._docShowPy;
+    try { localStorage.setItem('lp_doc_py', LessonPractice._docShowPy ? '1' : '0'); } catch (e) {}
+    LessonPractice._renderExarea();
+  },
+
+  // Nút primary "Bước tiếp theo / Hoàn thành bài" dùng chung
+  _nextStepBtn: function() {
+    var last = LessonPractice.stepIdx >= LessonPractice.steps.length - 1;
+    var label = last ? 'Hoàn thành bài 🎉'
+      : 'Bước tiếp theo: ' + LessonPractice.steps[LessonPractice.stepIdx + 1].label + ' ';
+    return '<button class="lp-btn lp-btn--primary lp-btn--lg" onclick="LessonPractice.nextStep()">' + label + (last ? '' : LessonPractice._ic('arrow-right', 16)) + '</button>';
+  },
+
+  // ── Exercise steps (1 câu/màn) ───────────────────────
   _state: function() {
     var t = LessonPractice.tab;
-    if (!LessonPractice.tabState[t]) LessonPractice.tabState[t] = { idx: 0, answers: {}, checked: {}, build: [] };
+    if (!LessonPractice.tabState[t]) {
+      LessonPractice.tabState[t] = {
+        idx: 0, answers: {}, checked: {}, build: [], reveal: {},
+        mode: (t === 'translate') ? (localStorage.getItem('lp_translate_mode') === 'mask' ? 'mask' : 'bank') : undefined
+      };
+    }
     return LessonPractice.tabState[t];
+  },
+
+  // TID-3: mode "che từ" đang bật cho bước Luyện dịch?
+  _maskOn: function() {
+    return LessonPractice.tab === 'translate' && LessonPractice._state().mode === 'mask';
   },
 
   _exerciseHTML: function(set) {
@@ -428,7 +658,12 @@ var LessonPractice = {
     else if (item.type === 'vocabmcq')  body = LessonPractice._vmcqHTML(item, idx, checked, ans);
     else if (item.type === 'dictation') body = LessonPractice._dictHTML(item, idx, checked, ans);
     else if (item.type === 'order')     body = LessonPractice._buildHTML(item, idx, checked, ans, 'order');
-    else if (item.type === 'translate') body = LessonPractice._buildHTML(item, idx, checked, ans, 'translate');
+    else if (item.type === 'translate') {
+      body = LessonPractice._maskOn()
+        ? LessonPractice._maskHTML(item, idx, checked, ans)
+        : LessonPractice._buildHTML(item, idx, checked, ans, 'translate');
+      if (LessonPractice.tab === 'translate') body = LessonPractice._modesHTML() + body;
+    }
 
     var feedback = '';
     if (checked) feedback = LessonPractice._feedbackHTML(item, ans);
@@ -496,7 +731,6 @@ var LessonPractice = {
   _dictHTML: function(item, idx, checked, ans) {
     var revealed = '';
     if (checked) {
-      var ok = Course.exerciseAPI.isCorrect(item, ans);
       revealed = '<div class="lp-q-label" style="margin-top:6px">Đáp án: <b style="color:var(--text)">' + LessonPractice._esc(item.answer) + '</b>' +
         (item.py ? ' <span class="lp-reveal-py">' + LessonPractice._esc(item.py) + '</span>' : '') + '</div>';
     }
@@ -508,7 +742,7 @@ var LessonPractice = {
       revealed;
   },
 
-  // order / translate — word-bank build
+  // order / translate — word-bank build (mức dễ)
   _buildHTML: function(item, idx, checked, ans, kind) {
     var st = LessonPractice._state();
     var words = item.words || [];
@@ -533,6 +767,96 @@ var LessonPractice = {
       '<div class="lp-wordbank">' + bankHtml + '</div>';
   },
 
+  // ── TID-3: mode "câu mẫu che từ" cho Luyện dịch ─────
+  // Đáp án mẫu = chip che (lộ chữ đầu + độ dài). Click chip / Ctrl+Space mở
+  // DẦN từng từ; "Hiện tất cả" = đầu hàng → đẩy SRS. Gõ câu rồi Enter nộp.
+  _modesHTML: function() {
+    var mode = LessonPractice._state().mode || 'bank';
+    return '<div class="lp-modes" role="group" aria-label="Chế độ luyện dịch">' +
+      '<button class="lp-mode' + (mode === 'bank' ? ' lp-mode--on' : '') + '" onclick="LessonPractice.setTranslateMode(\'bank\')">Ghép từ</button>' +
+      '<button class="lp-mode' + (mode === 'mask' ? ' lp-mode--on' : '') + '" onclick="LessonPractice.setTranslateMode(\'mask\')">🧠 Che từ</button>' +
+    '</div>';
+  },
+
+  setTranslateMode: function(m) {
+    var st = LessonPractice._state();
+    if (st.mode === m) return;
+    st.mode = m;
+    try { localStorage.setItem('lp_translate_mode', m); } catch (e) {}
+    if (!st.checked[st.idx]) { st.build = []; delete st.reveal[st.idx]; }
+    LessonPractice._renderExarea();
+  },
+
+  _maskToks: function(item) {
+    if (item.toks && item.toks.length) return item.toks;
+    return LessonPractice._stripPunc(item.answer || '').split('');
+  },
+
+  _maskText: function(tok) {
+    if (tok.length <= 1) return '＊';
+    var s = LessonPractice._esc(tok.charAt(0));
+    for (var i = 1; i < tok.length; i++) s += '＊';
+    return s;
+  },
+
+  _maskHTML: function(item, idx, checked, ans) {
+    var toks = LessonPractice._maskToks(item);
+    var rev  = LessonPractice._state().reveal[idx] || {};
+    var chips = toks.map(function(t, ti) {
+      if (checked || rev[ti]) return '<span class="lp-mask lp-mask--open">' + LessonPractice._esc(t) + '</span>';
+      return '<button class="lp-mask" id="lpMask' + ti + '" onclick="LessonPractice.revealWord(' + ti + ')" title="Mở từ này">' + LessonPractice._maskText(t) + '</button>';
+    }).join('');
+    var giveup = checked ? '' : '<button class="lp-mask-all" onclick="LessonPractice.maskGiveUp()">Hiện tất cả</button>';
+    var surrendered = ans === '(đã xem đáp án)';
+    return '<div class="lp-q-label">Dịch sang tiếng Trung — nhớ lại rồi gõ câu (chip là gợi ý, mở dần từng từ):</div>' +
+      '<div class="lp-q-prompt">' + LessonPractice._esc(item.prompt) + '</div>' +
+      '<div class="lp-maskrow">' + chips + giveup + '</div>' +
+      '<input class="lp-input" id="lpInput" placeholder="Gõ câu tiếng Trung…" ' +
+        (checked ? 'disabled value="' + (surrendered ? '' : LessonPractice._attr(ans)) + '"' : 'onkeydown="LessonPractice._inputKey(event)"') + '>';
+  },
+
+  revealWord: function(ti) {
+    var st = LessonPractice._state();
+    if (st.checked[st.idx]) return;
+    (st.reveal[st.idx] = st.reveal[st.idx] || {})[ti] = 1;
+    var set = LessonPractice._setFor(LessonPractice.tab);
+    var item = set[st.idx];
+    if (!item) return;
+    var tok = LessonPractice._maskToks(item)[ti];
+    var el = document.getElementById('lpMask' + ti);
+    // Update DOM tại chỗ — KHÔNG re-render để không mất chữ đang gõ trong input
+    if (el && tok !== undefined) el.outerHTML = '<span class="lp-mask lp-mask--open">' + LessonPractice._esc(tok) + '</span>';
+  },
+
+  revealNext: function() {
+    var st = LessonPractice._state();
+    if (st.checked[st.idx]) return;
+    var set = LessonPractice._setFor(LessonPractice.tab);
+    var item = set[st.idx];
+    if (!item) return;
+    var toks = LessonPractice._maskToks(item);
+    var rev = st.reveal[st.idx] || {};
+    for (var ti = 0; ti < toks.length; ti++) {
+      if (!rev[ti]) { LessonPractice.revealWord(ti); return; }
+    }
+  },
+
+  // "Hiện tất cả" = đầu hàng: tính là cần ôn → đẩy SRS (TID-3)
+  maskGiveUp: function() {
+    var st = LessonPractice._state();
+    if (st.checked[st.idx]) return;
+    var set = LessonPractice._setFor(LessonPractice.tab);
+    var item = set[st.idx];
+    if (!item) return;
+    var toks = LessonPractice._maskToks(item);
+    var rev = st.reveal[st.idx] = st.reveal[st.idx] || {};
+    for (var ti = 0; ti < toks.length; ti++) rev[ti] = 1;
+    var ans = '(đã xem đáp án)';
+    st.answers[st.idx] = ans;
+    LessonPractice._commitCheck(item, ans);   // sai → tự đẩy SRS
+    LessonPractice._renderExarea();
+  },
+
   _answerToBuild: function(ans, words) {
     // tái dựng vị trí build từ chuỗi answer đã lưu (chỉ để hiển thị sau khi check)
     var build = [], used = {}, rest = ans || '';
@@ -554,31 +878,42 @@ var LessonPractice = {
   },
 
   _feedbackHTML: function(item, ans) {
-    var ok = LessonPractice._itemCorrect(item, ans);
-    var fb = ok
-      ? '<div class="lp-feedback lp-feedback--ok">✓ Chính xác!</div>'
-      : '<div class="lp-feedback lp-feedback--no">✗ Chưa đúng. Đáp án: <b>' + LessonPractice._esc(item.answer) + '</b></div>';
+    var fb;
+    if (ans === '(đã xem đáp án)') {
+      fb = '<div class="lp-feedback lp-feedback--no">👀 Đã xem đáp án: <b>' + LessonPractice._esc(item.answer) + '</b> — câu này sẽ vào ôn tập.</div>';
+    } else if (LessonPractice._itemCorrect(item, ans)) {
+      fb = '<div class="lp-feedback lp-feedback--ok">✓ Chính xác!</div>';
+    } else {
+      fb = '<div class="lp-feedback lp-feedback--no">✗ Chưa đúng. Đáp án: <b>' + LessonPractice._esc(item.answer) + '</b></div>';
+    }
     var explain = '';
     var ex = item.explain || item.feedback;
     if (ex) explain = '<div class="lp-explain">💡 ' + LessonPractice._esc(ex) + '</div>';
     return fb + explain;
   },
 
+  // Đúng 1 primary CTA/màn (§9.5): MCQ chưa check → chọn đáp án LÀ hành động
+  // chính (không hiện nút Kiểm tra thừa); input types → Kiểm tra; checked → Câu tiếp.
   _actionsHTML: function(item, idx, checked) {
     var st = LessonPractice._state();
-    var set = LessonPractice.sets[LessonPractice.tab] || [];
+    var set = LessonPractice._setFor(LessonPractice.tab);
     var last = idx >= set.length - 1;
-    var btn;
-    if (!checked) {
-      btn = '<button class="lp-btn lp-btn--primary" onclick="LessonPractice.check()">Kiểm tra</button>';
-    } else {
+    var isMcq = !!item.options || item.type === 'vocabmcq';
+    var btn = '';
+    if (checked) {
       btn = '<button class="lp-btn lp-btn--primary" onclick="LessonPractice.next()">' + (last ? 'Xem kết quả' : 'Câu tiếp') + ' ' + LessonPractice._ic('arrow-right', 16) + '</button>';
+    } else if (!isMcq) {
+      btn = '<button class="lp-btn lp-btn--primary" onclick="LessonPractice.check()">Kiểm tra</button>';
     }
-    var audioTab = (LessonPractice.tab === 'listen' || LessonPractice.tab === 'dictation' || item.type === 'listen' || item.type === 'dictation');
+    var audioItem = (item.type === 'listen' || item.type === 'dictation');
+    var maskMode = LessonPractice._maskOn() && item.type === 'translate' && !checked;
     var hint = '<div class="lp-kbd-hint">' +
-      '<span><span class="lp-kbd">Enter</span> ' + (checked ? 'tiếp' : 'kiểm tra') + '</span>' +
-      (audioTab ? '<span><span class="lp-kbd">Ctrl</span> nghe lại</span>' : '') +
-      ((item.options) ? '<span><span class="lp-kbd">1</span>–<span class="lp-kbd">4</span> chọn</span>' : '') +
+      (checked
+        ? '<span><span class="lp-kbd">Enter</span> tiếp</span>'
+        : (isMcq ? '<span><span class="lp-kbd">1</span>–<span class="lp-kbd">4</span> chọn</span>'
+                 : '<span><span class="lp-kbd">Enter</span> ' + (maskMode ? 'nộp' : 'kiểm tra') + '</span>')) +
+      (maskMode ? '<span><span class="lp-kbd">Ctrl</span>+<span class="lp-kbd">Space</span> mở từ</span>' : '') +
+      (audioItem && !checked ? '<span><span class="lp-kbd">Ctrl</span> nghe lại</span>' : '') +
     '</div>';
     return '<div class="lp-actions">' + btn + hint + '</div>';
   },
@@ -587,7 +922,7 @@ var LessonPractice = {
   pick: function(oi) {
     var st = LessonPractice._state();
     if (st.checked[st.idx]) return;
-    var set = LessonPractice.sets[LessonPractice.tab] || [];
+    var set = LessonPractice._setFor(LessonPractice.tab);
     var item = set[st.idx];
     var opt = (item.options || [])[oi];
     if (opt === undefined) return;
@@ -615,10 +950,11 @@ var LessonPractice = {
   check: function() {
     var st = LessonPractice._state();
     if (st.checked[st.idx]) return;
-    var set = LessonPractice.sets[LessonPractice.tab] || [];
+    var set = LessonPractice._setFor(LessonPractice.tab);
     var item = set[st.idx];
     var ans;
-    if (item.type === 'dictation') {
+    var typed = item.type === 'dictation' || (item.type === 'translate' && LessonPractice._maskOn());
+    if (typed) {
       var inp = document.getElementById('lpInput');
       ans = inp ? inp.value.trim() : '';
       if (!ans) ans = '(bỏ trống)';
@@ -641,6 +977,7 @@ var LessonPractice = {
   },
 
   _itemCorrect: function(item, ans) {
+    if (ans === '(đã xem đáp án)') return false;
     if (item.type === 'vocabmcq') return ans === item.answer;
     return Course.exerciseAPI.isCorrect(item, ans);
   },
@@ -659,58 +996,121 @@ var LessonPractice = {
     var st = LessonPractice._state();
     st.idx++;
     st.build = [];
+    LessonPractice._saveMeta(LessonPractice.tab, st.idx);  // resume đúng câu (§9.2)
     LessonPractice._renderExarea();
     var area = document.getElementById('lpExarea');
     if (area && area.scrollIntoView) { try { area.scrollIntoView({ block: 'nearest' }); } catch (e) {} }
   },
 
-  // ── Result mini-screen ───────────────────────────────
+  // ── Mini-result 1 bước (§9.2: primary duy nhất = Bước tiếp theo) ──
   _resultHTML: function(set) {
     var st = LessonPractice._state();
+    // Resume rơi đúng màn result của session mới (chưa trả lời câu nào) →
+    // hiện "đã xong trước đó" thay vì 0% gây hiểu nhầm, không ghi đè kết quả.
+    if (!Object.keys(st.checked).length) {
+      var prevRec = (LessonPractice._loadProg()[LessonPractice.lessonId] || {})[LessonPractice.tab];
+      return '<div class="lp-result">' +
+        '<div class="lp-result-emoji">✅</div>' +
+        '<div class="lp-result-score">Bước này bạn đã hoàn thành</div>' +
+        '<div class="lp-result-sub">' + (prevRec ? 'Kết quả tốt nhất: ' + (prevRec.best || 0) + '%' : 'Làm lại để cải thiện kết quả nhé.') + '</div>' +
+        '<div class="lp-result-btns">' +
+          '<button class="lp-btn" onclick="LessonPractice.retry()">' + LessonPractice._ic('refresh', 16) + 'Làm lại</button>' +
+          LessonPractice._nextStepBtn() +
+        '</div>' +
+      '</div>';
+    }
     var correct = 0;
     set.forEach(function(item, i) {
       if (st.checked[i] && LessonPractice._itemCorrect(item, st.answers[i])) correct++;
     });
     var total = set.length;
     var pct = total ? Math.round(correct / total * 100) : 0;
+    LessonPractice._markStepDone(LessonPractice.tab);   // trước _saveResult để _steps có bước này
     LessonPractice._saveResult(LessonPractice.tab, correct, total);
     // Quest hook (TODO Q1 wire metric): nếu có Quests.incrementMetric('skills_today') thì gọi.
     if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
       try { Quests.incrementMetric('skills_today', 0); } catch (e) {}
     }
     var emoji = pct >= 90 ? '🏆' : pct >= 70 ? '🎉' : '💪';
-    var nextTab = LessonPractice._nextTabKey();
+    // "Làm thêm" cho Tổng hợp khi pool còn câu ngoài cap (§9.5)
+    var more = '';
+    if (LessonPractice.tab === 'mix') {
+      var rawLen = (LessonPractice.sets.mix || []).length;
+      if (rawLen > LessonPractice.mixLimit) {
+        more = '<button class="lp-btn" onclick="LessonPractice.moreMix()">Làm thêm +' + (rawLen - LessonPractice.mixLimit) + ' câu</button>';
+      }
+    }
     return '<div class="lp-result">' +
       '<div class="lp-result-emoji">' + emoji + '</div>' +
       '<div class="lp-result-score">' + correct + '/' + total + ' đúng (' + pct + '%)</div>' +
       '<div class="lp-result-sub">' + (pct >= 70 ? 'Làm tốt lắm! Câu sai đã được thêm vào ôn tập.' : 'Cố lên — xem lại câu sai rồi thử lại nhé.') + '</div>' +
       '<div class="lp-result-btns">' +
         '<button class="lp-btn" onclick="LessonPractice.retry()">' + LessonPractice._ic('refresh', 16) + 'Làm lại</button>' +
-        (nextTab ? '<button class="lp-btn lp-btn--primary" onclick="LessonPractice.switchTab(\'' + nextTab + '\')">' + LessonPractice._tabLabel(nextTab) + ' ' + LessonPractice._ic('arrow-right', 16) + '</button>' : '') +
+        more +
+        LessonPractice._nextStepBtn() +
       '</div>' +
     '</div>';
   },
 
-  _nextTabKey: function() {
-    var keys = LessonPractice.TABS.map(function(t) { return t.key; }).filter(function(k) { return LessonPractice._tabCount(k) > 0; });
-    var i = keys.indexOf(LessonPractice.tab);
-    return (i >= 0 && i < keys.length - 1) ? keys[i + 1] : null;
-  },
-
-  _tabLabel: function(key) {
-    for (var i = 0; i < LessonPractice.TABS.length; i++) if (LessonPractice.TABS[i].key === key) return LessonPractice.TABS[i].label;
-    return key;
+  moreMix: function() {
+    LessonPractice.mixLimit = (LessonPractice.sets.mix || []).length;
+    LessonPractice._renderExarea(); // st.idx đang = cap cũ → tiếp tục câu kế
   },
 
   retry: function() {
-    LessonPractice.tabState[LessonPractice.tab] = { idx: 0, answers: {}, checked: {}, build: [] };
+    var mode = (LessonPractice.tabState[LessonPractice.tab] || {}).mode;
+    LessonPractice.tabState[LessonPractice.tab] = { idx: 0, answers: {}, checked: {}, build: [], reveal: {}, mode: mode };
+    LessonPractice._saveMeta(LessonPractice.tab, 0);
     LessonPractice._renderExarea();
+  },
+
+  // ── Màn kết quả BÀI (hết bước cuối — §9.2) ───────────
+  _finishHTML: function() {
+    var prog = LessonPractice._loadProg();
+    var rec  = prog[LessonPractice.lessonId] || {};
+    var rows = LessonPractice.steps.filter(function(s) {
+      return s.key !== 'context' && s.key !== 'doc';
+    }).map(function(s) {
+      var r = rec[s.key];
+      var best = r ? (r.best || 0) : 0;
+      return '<div class="lp-fin-row">' +
+        '<span class="lp-fin-label">' + LessonPractice._ic(s.icon, 16) + s.label + '</span>' +
+        '<span class="lp-fin-track"><span class="lp-fin-fill" style="width:' + best + '%"></span></span>' +
+        '<span class="lp-fin-pct">' + (r ? best + '%' : '—') + '</span>' +
+      '</div>';
+    }).join('');
+    var nextId = LessonPractice._nextLessonId();
+    return '<div class="lp-result lp-finish">' +
+      '<div class="lp-result-emoji">🎓</div>' +
+      '<div class="lp-result-score">Hoàn thành Bài ' + LessonPractice.lessonId + '!</div>' +
+      '<div class="lp-result-sub">Kết quả tốt nhất từng dạng:</div>' +
+      (rows ? '<div class="lp-fin-rows">' + rows + '</div>' : '') +
+      '<div class="lp-result-btns">' +
+        '<button class="lp-btn" onclick="LessonPractice.openSheet()">' + LessonPractice._ic('list', 16) + 'Về danh sách</button>' +
+        (nextId
+          ? '<button class="lp-btn lp-btn--primary lp-btn--lg" onclick="LessonPractice.gotoLesson(' + nextId + ')">Bài tiếp theo ' + LessonPractice._ic('arrow-right', 16) + '</button>'
+          : '<button class="lp-btn lp-btn--primary" onclick="Router.navigateTo(\'learn\')">Về Học</button>') +
+      '</div>' +
+    '</div>';
+  },
+
+  _nextLessonId: function() {
+    var ids = LessonPractice._levelLessonIds();
+    var i = ids.indexOf(LessonPractice.lessonId);
+    return (i >= 0 && i < ids.length - 1) ? ids[i + 1] : null;
+  },
+
+  _levelLessonIds: function() {
+    var level = LessonPractice._levelOf(LessonPractice.lessonId);
+    return Object.keys(COURSE_DATA).map(Number).filter(function(id) {
+      return LessonPractice._levelOf(id) === level;
+    }).sort(function(a, b) { return a - b; });
   },
 
   // ── Audio ────────────────────────────────────────────
   playItem: function() {
     var st = LessonPractice._state();
-    var set = LessonPractice.sets[LessonPractice.tab] || [];
+    var set = LessonPractice._setFor(LessonPractice.tab);
     LessonPractice._playAudioFor(set[st.idx]);
   },
 
@@ -789,19 +1189,26 @@ var LessonPractice = {
 
   _lessonListHTML: function() {
     var level = LessonPractice._levelOf(LessonPractice.lessonId);
-    var ids = Object.keys(COURSE_DATA).map(Number).filter(function(id) {
-      return LessonPractice._levelOf(id) === level;
-    }).sort(function(a, b) { return a - b; });
+    var ids = LessonPractice._levelLessonIds();
     var prog = LessonPractice._loadProg();
     var html = '<div class="lp-sidebar-title">Bài học HSK ' + level + '</div>';
     ids.forEach(function(id) {
       var l = COURSE_DATA[id];
       var active = id === LessonPractice.lessonId ? ' lp-lesson-item--active' : '';
+      var rec = prog[id] || {};
       var pct = LessonPractice._lessonPct(id, prog);
+      // Nhãn resume trên card (§9.2)
+      var resume = '';
+      if (rec._lastStep && !rec._done) {
+        var rl = null;
+        LessonPractice.STEP_DEFS.some(function(s) { if (s.key === rec._lastStep) { rl = s.label; return true; } return false; });
+        if (rl) resume = '<span class="lp-li-resume">▶ Tiếp tục: ' + rl + '</span>';
+      }
       html += '<button class="lp-lesson-item' + active + '" onclick="LessonPractice.gotoLesson(' + id + ')">' +
         '<span class="lp-li-num">' + id + '</span>' +
         '<span class="lp-li-body">' +
           '<span class="lp-li-title">' + LessonPractice._esc(l.title || ('Bài ' + id)) + '</span>' +
+          resume +
           (pct > 0 ? '<span class="lp-li-track"><span class="lp-li-fill" style="width:' + pct + '%"></span></span>' : '') +
         '</span>' +
         (pct > 0 ? '<span class="lp-li-pct">' + pct + '%</span>' : '') +
@@ -811,26 +1218,62 @@ var LessonPractice = {
   },
 
   gotoLesson: function(id) {
-    if (id === LessonPractice.lessonId) { LessonPractice.closeSheet(); return; }
+    if (id === LessonPractice.lessonId && !LessonPractice.finished) { LessonPractice.closeSheet(); return; }
     LessonPractice._stopAll();
     LessonPractice.closeSheet();
     LessonPractice._gateAndLoad(id);
   },
 
-  // ── Mobile bottom-sheet ──────────────────────────────
-  openSheet: function() {
-    LessonPractice.closeSheet();
+  // ── Bottom-sheets (danh sách bài · danh sách bước · menu ⋯) ──
+  _openBackdrop: function(id, innerHTML) {
+    LessonPractice._closeAllSheets();
     var back = document.createElement('div');
     back.className = 'lp-sheet-backdrop';
-    back.id = 'lpSheet';
-    back.onclick = function(e) { if (e.target === back) LessonPractice.closeSheet(); };
-    back.innerHTML = '<div class="lp-sheet"><div class="lp-sheet-grip"></div>' + LessonPractice._lessonListHTML() + '</div>';
+    back.id = id;
+    back.onclick = function(e) { if (e.target === back) LessonPractice._closeAllSheets(); };
+    back.innerHTML = '<div class="lp-sheet"><div class="lp-sheet-grip"></div>' + innerHTML + '</div>';
     document.body.appendChild(back);
   },
 
-  closeSheet: function() {
-    var s = document.getElementById('lpSheet');
-    if (s && s.parentNode) s.parentNode.removeChild(s);
+  _closeAllSheets: function() {
+    ['lpSheet', 'lpStepSheet', 'lpMenu'].forEach(function(id) {
+      var s = document.getElementById(id);
+      if (s && s.parentNode) s.parentNode.removeChild(s);
+    });
+  },
+
+  openSheet: function() { LessonPractice._openBackdrop('lpSheet', LessonPractice._lessonListHTML()); },
+  closeSheet: function() { LessonPractice._closeAllSheets(); },
+
+  // Sheet danh sách bước = tab bar cũ chuyển vào sheet (§9.2) — số câu chỉ hiện ở đây (§9.5)
+  openStepSheet: function() {
+    var html = '<div class="lp-sidebar-title">Các bước trong bài</div>';
+    LessonPractice.steps.forEach(function(s, i) {
+      var state = LessonPractice.doneSteps[s.key] ? '<span class="lp-step-state lp-step-state--done">' + LessonPractice._ic('check', 14) + '</span>'
+        : (!LessonPractice.finished && i === LessonPractice.stepIdx) ? '<span class="lp-step-state lp-step-state--cur">●</span>'
+        : '<span class="lp-step-state">○</span>';
+      var n = (s.key === 'context') ? 0 : LessonPractice._tabCount(s.key);
+      var count = n > 0 ? '<span class="lp-step-count">' + n + (s.key === 'doc' ? ' câu thoại' : ' câu') + '</span>' : '';
+      var active = (!LessonPractice.finished && i === LessonPractice.stepIdx) ? ' lp-step-row--active' : '';
+      html += '<button class="lp-step-row' + active + '" onclick="LessonPractice.jumpStep(' + i + ')">' +
+        state +
+        '<span class="lp-step-name">Bước ' + (i + 1) + ' · ' + s.label + '</span>' +
+        count +
+      '</button>';
+    });
+    LessonPractice._openBackdrop('lpStepSheet', html);
+  },
+  closeStepSheet: function() { LessonPractice._closeAllSheets(); },
+
+  // Menu ⋯ mobile (§9.3): Nghe toàn bộ · Từ vựng · Danh sách bài
+  openMenu: function() {
+    var docN = (LessonPractice.sets.doc || []).length;
+    var vlen = (LessonPractice.lesson.vocab || []).length;
+    var html = '';
+    if (docN > 0) html += '<button class="lp-step-row" onclick="LessonPractice._closeAllSheets();LessonPractice.playAll()">' + LessonPractice._ic('volume', 18) + '<span class="lp-step-name">Nghe toàn bộ hội thoại</span></button>';
+    html += '<button class="lp-step-row" onclick="LessonPractice._closeAllSheets();LessonPractice.openVocab()">' + LessonPractice._ic('book-open', 18) + '<span class="lp-step-name">Từ vựng (' + vlen + ')</span></button>';
+    html += '<button class="lp-step-row" onclick="LessonPractice.openSheet()">' + LessonPractice._ic('list', 18) + '<span class="lp-step-name">Danh sách bài</span></button>';
+    LessonPractice._openBackdrop('lpMenu', html);
   },
 
   // ── Vocab modal ──────────────────────────────────────
@@ -867,14 +1310,38 @@ var LessonPractice = {
 
   _onKey: function(e) {
     if (!LessonPractice._el()) { document.removeEventListener('keydown', LessonPractice._onKey); return; }
-    if (LessonPractice.tab === 'doc') return;
-    if (document.getElementById('lpVocab') || document.getElementById('lpSheet')) return;
+    if (document.getElementById('lpVocab') || document.getElementById('lpSheet') ||
+        document.getElementById('lpStepSheet') || document.getElementById('lpMenu')) return;
+    if (LessonPractice.finished) return;
+
+    var tab = LessonPractice.tab;
+    if (tab === 'context') {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (LessonPractice._resume) LessonPractice.resumeGo(); else LessonPractice.nextStep();
+      }
+      return;
+    }
+    if (tab === 'doc') {
+      if (e.key === 'Enter') { e.preventDefault(); LessonPractice.nextStep(); }
+      return;
+    }
+
     var st = LessonPractice._state();
-    var set = LessonPractice.sets[LessonPractice.tab] || [];
+    var set = LessonPractice._setFor(tab);
     var item = set[st.idx];
-    if (!item) return; // màn kết quả
+    if (!item) { // màn mini-result → Enter = Bước tiếp theo (primary)
+      if (e.key === 'Enter') { e.preventDefault(); LessonPractice.nextStep(); }
+      return;
+    }
     var checked = !!st.checked[st.idx];
 
+    // TID-3: Ctrl+Space mở dần từng từ (mode che từ)
+    if (e.ctrlKey && e.code === 'Space' && LessonPractice._maskOn() && item.type === 'translate' && !checked) {
+      e.preventDefault();
+      LessonPractice.revealNext();
+      return;
+    }
     if (e.key === 'Control') {
       if (item.type === 'listen' || item.type === 'dictation') { LessonPractice._playAudioFor(item); }
       return;
@@ -896,8 +1363,13 @@ var LessonPractice = {
   },
 
   // ── Progress (lesson_practice_v1) ────────────────────
+  // Record bài: { tabKey:{done,total,best}, _steps:{key:1}, _lastStep, _lastIdx, _done }
   _loadProg: function() {
     try { return JSON.parse(localStorage.getItem('lesson_practice_v1') || '{}'); } catch (e) { return {}; }
+  },
+
+  _saveProg: function(all) {
+    try { localStorage.setItem('lesson_practice_v1', JSON.stringify(all)); } catch (e) {}
   },
 
   _saveResult: function(tab, done, total) {
@@ -907,16 +1379,35 @@ var LessonPractice = {
     var pct = total ? Math.round(done / total * 100) : 0;
     var prev = all[id][tab] || {};
     all[id][tab] = { done: done, total: total, best: Math.max(prev.best || 0, pct) };
-    try { localStorage.setItem('lesson_practice_v1', JSON.stringify(all)); } catch (e) {}
+    all[id]._steps = LessonPractice._stepsCopy();
+    LessonPractice._saveProg(all);
   },
 
-  // % luyện tập của 1 bài = trung bình best các tab bài tập (bỏ doc)
+  // lastStep + vị trí câu để resume (§9.2). extra.done = hoàn thành bài.
+  _saveMeta: function(lastStep, lastIdx, extra) {
+    var all = LessonPractice._loadProg();
+    var id = LessonPractice.lessonId;
+    all[id] = all[id] || {};
+    all[id]._lastStep = lastStep || null;
+    all[id]._lastIdx  = lastIdx | 0;
+    all[id]._steps    = LessonPractice._stepsCopy();
+    if (extra && extra.done) all[id]._done = 1;
+    LessonPractice._saveProg(all);
+  },
+
+  _stepsCopy: function() {
+    var o = {};
+    Object.keys(LessonPractice.doneSteps).forEach(function(k) { o[k] = 1; });
+    return o;
+  },
+
+  // % luyện tập của 1 bài = trung bình best các bước bài tập (bỏ doc/context/_meta)
   _lessonPct: function(id, prog) {
     var rec = prog[id];
     if (!rec) return 0;
     var sum = 0, cnt = 0;
     Object.keys(rec).forEach(function(k) {
-      if (k === 'doc') return;
+      if (k === 'doc' || k === 'context' || k.charAt(0) === '_') return;
       sum += rec[k].best || 0; cnt++;
     });
     return cnt ? Math.round(sum / cnt) : 0;
@@ -927,7 +1418,8 @@ var LessonPractice = {
     return '<div class="lp-empty">' +
       '<img class="lp-empty-img" src="assets/mascot/be-rong-book.webp" alt="" onerror="this.style.display=\'none\'">' +
       '<div class="lp-empty-title">Bài này chưa có dạng bài tập này</div>' +
-      '<div class="lp-empty-sub">Thử tab khác hoặc bài khác trong danh sách bên trái nhé.</div>' +
+      '<div class="lp-empty-sub">Bấm "Bước tiếp theo" hoặc chọn bước khác trong danh sách.</div>' +
+      '<div class="lp-result-btns" style="margin-top:16px">' + LessonPractice._nextStepBtn() + '</div>' +
     '</div>';
   },
 
@@ -948,7 +1440,7 @@ var LessonPractice = {
     if (!el) return;
     el.innerHTML = '<div class="lp-empty">' +
       '<div class="lp-empty-title">Chưa chọn bài để luyện tập</div>' +
-      '<div class="lp-empty-sub">Vào tab Học → chọn một bài Truyện Mai rồi bấm “Luyện tập bài này”.</div>' +
+      '<div class="lp-empty-sub">Vào tab Học → chọn một bài Truyện Mai rồi bấm "Luyện tập bài này".</div>' +
       '<div class="lp-result-btns" style="margin-top:16px"><button class="lp-btn lp-btn--primary" onclick="Router.navigateTo(\'learn\')">Về Học</button></div>' +
     '</div>';
   },

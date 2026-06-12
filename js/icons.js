@@ -44,7 +44,8 @@
     'keyboard-dictation': '<rect x="2" y="7" width="20" height="11" rx="2"/><path d="M6 11h.01M10 11h.01M14 11h.01M18 11h.01"/><line x1="8" y1="14.5" x2="16" y2="14.5"/>',
     'shuffle-order': '<polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/>',
     translate: '<path d="M4 5h7"/><path d="M9 3v2c0 4-2.2 7-5 8.5"/><path d="M5 8.5c0 2.5 2.5 4.5 6 5.5"/><path d="M13 21l4-9 4 9"/><line x1="14.5" y1="18" x2="19.5" y2="18"/>',
-    'layers-mix': '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>'
+    'layers-mix': '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+    'more-h': '<circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/>'
   };
 
   function attrs(opts) {

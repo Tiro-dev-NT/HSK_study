@@ -1527,14 +1527,16 @@ var Course = {
 
   // On a WRONG workbook answer, push the lesson-vocab words contained in the
   // correct answer back into SRS as "Again" (quality 0) so they get re-reviewed.
-  _pushWrongToSRS: function(ex) {
+  // ctx (optional) = { vocab, lessonId } — cho phép LessonPractice đẩy SRS với
+  // vocab/bài của nó mà KHÔNG cần set Course.lesson (giữ VN flow độc lập).
+  _pushWrongToSRS: function(ex, ctx) {
     try {
       if (typeof updateSRSCard !== 'function') return;
       if (typeof loadSRS === 'function') loadSRS();
-      var vocab = (Course.lesson && Course.lesson.vocab) || [];
+      var vocab = (ctx && ctx.vocab) || (Course.lesson && Course.lesson.vocab) || [];
       var ans   = ex && ex.answer ? String(ex.answer) : '';
       if (!ans) return;
-      var lessonId = Course.lesson ? Course.lesson.id : null;
+      var lessonId = (ctx && ctx.lessonId != null) ? ctx.lessonId : (Course.lesson ? Course.lesson.id : null);
       var seen = {};
       vocab.forEach(function(w) {
         if (w && w.h && !seen[w.h] && ans.indexOf(w.h) !== -1) {
@@ -1626,6 +1628,7 @@ var Course = {
         Course._grammarNotesHTML() +
         '<div class="cs-complete-btns">' +
           (hasNext ? '<button class="cs-btn-primary" onclick="Course.loadLesson(' + nextId + ')">Bài tiếp theo →</button>' : '') +
+          (typeof LessonPractice !== 'undefined' ? '<button class="cs-btn-secondary" onclick="LessonPractice.open(' + l.id + ')">🏋️ Luyện tập bài này</button>' : '') +
           (spk > 0 ? '<button class="cs-btn-secondary cs-speak-btn" onclick="Course.openShadowing(' + l.id + ')">🎙️ Luyện nói ' + spk + ' câu trong bài</button>' : '') +
           '<button class="cs-btn-secondary" onclick="Handout.open(' + l.id + ')">📔 Trang chép bài</button>' +
           '<button class="cs-btn-secondary" onclick="Router.navigateTo(\'learn\')">← Về Học</button>' +
@@ -1779,5 +1782,40 @@ var Course = {
   _goBack: function() {
     window.speechSynthesis && window.speechSynthesis.cancel();
     Router.navigateTo('learn');
+  },
+
+  // ── Lesson gate dùng CHUNG (C1 LessonPractice gọi, không tự chế) ──
+  // Mirror nguyên tắc gate ở loadLesson: HSK level>=3 → cần Pro.
+  // onAllowed() khi được vào · onGated(id) khi bị chặn. Server-side là nguồn
+  // sự thật (Monetization.isPro qua RPC); isProSync chỉ là cache warm.
+  checkLessonGate: function(id, onAllowed, onGated) {
+    onAllowed = onAllowed || function() {};
+    onGated   = onGated   || function() {};
+    var ld = (typeof COURSE_DATA !== 'undefined') ? COURSE_DATA[id] : null;
+    if (ld && ld.level >= 3 && typeof Monetization !== 'undefined') {
+      if (Monetization.isProSync()) { onAllowed(); return; }
+      Monetization.isPro().then(function(pro) {
+        if (pro) onAllowed(); else onGated(id);
+      });
+      return;
+    }
+    onAllowed();
+  },
+
+  // ── Exercise API: surface tái dùng cho LessonPractice (C1) ──
+  // Gói các hàm private để module ngoài KHÔNG đụng nội bộ Course.
+  exerciseAPI: {
+    isCorrect:   function(ex, ans) { return Course._isExCorrect(ex, ans); },
+    normalizeZh: function(s)       { return Course._normalizeZh(s); },
+    // ctx = { vocab, lessonId } → đẩy SRS đúng vocab bài, không cần set Course.lesson
+    pushWrong:   function(ex, ctx) { return Course._pushWrongToSRS(ex, ctx); },
+    speak:       function(text)    { return Course._speakZh(text); },
+    char:        function(key)     { return Course._vnChar(key); },
+    // URL audio R2 per câu thoại (giọng thật) — khớp _vnTts: L<id>_<slug>.mp3.
+    // '' nếu không cấu hình R2 (local dev) → caller fallback speak().
+    audioUrl:    function(lessonId, speaker, text) {
+      if (!MAI_AUDIO_BASE) return '';
+      return MAI_AUDIO_BASE + 'mai/audio/L' + lessonId + '_' + Course._audioSlug(speaker, text) + '.mp3';
+    }
   }
 };

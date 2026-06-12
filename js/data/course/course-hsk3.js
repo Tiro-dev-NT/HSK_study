@@ -1802,7 +1802,7 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我一眼就___你！', options: ['认出', '热爱', '前往'], answer: '认出' },
         { type: 'fill', sentence: '你的能力大家都___。', options: ['认可', '确定', '散步'], answer: '认可' },
         { type: 'order', words: ['我', '想', '请教', '您'], answer: '我想请教您' },
-        { type: 'order', words: ['两门课', '区别', '的', '有'], answer: '两门课有区别' }
+        { type: 'order', words: ['两门课', '有', '区别'], answer: '两门课有区别' }
       ],
       hard: [
         { type: 'fill', sentence: '你___教务处了吗？', options: ['前往', '认得', '取消'], answer: '前往' },
@@ -2188,7 +2188,7 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '他___门走进来。', options: ['推开', '推动', '退'], answer: '推开' },
         { type: 'fill', sentence: '不合适也可以___。', options: ['退', '围', '系'], answer: '退' },
         { type: 'fill', sentence: '他是刚___的教授。', options: ['退休', '推广', '同意'], answer: '退休' },
-        { type: 'order', words: ['我们', '为了', '推广', '俱乐部'], answer: '为了推广俱乐部' },
+        { type: 'order', words: ['为了', '推广', '俱乐部'], answer: '为了推广俱乐部' },
         { type: 'order', words: ['大家', '握手', '站起来'], answer: '大家站起来握手' }
       ],
       hard: [
@@ -5824,7 +5824,7 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '游客___不高。', options: ['比例', '城', '刀'], answer: '比例' },
         { type: 'fill', sentence: '我的___是写作。', options: ['所长', '工厂', '家乡'], answer: '所长' },
         { type: 'order', words: ['我', '下决心', '为家乡', '做贡献'], answer: '我下决心为家乡做贡献' },
-        { type: 'order', words: ['___', '介绍', '一下', '特色'], answer: '能不能介绍一下特色' }
+        { type: 'order', words: ['能不能', '介绍', '一下', '特色'], answer: '能不能介绍一下特色' }
       ],
       hard: [
         { type: 'fill', sentence: '我下___为家乡做贡献。', options: ['决心', '比例', '所长'], answer: '决心' },

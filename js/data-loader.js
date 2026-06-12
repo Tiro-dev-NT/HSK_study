@@ -18,8 +18,8 @@ var DataLoader = (function() {
     course: [
       'js/data/course/course-data.js?v=1.0',
       'js/data/course/course-hsk1.js?v=1.2',
-      'js/data/course/course-hsk2.js?v=1.3',
-      'js/data/course/course-hsk3.js?v=1.2',
+      'js/data/course/course-hsk2.js?v=1.4',
+      'js/data/course/course-hsk3.js?v=1.3',
       'js/data/course/course-hsk4.js?v=1.3'
     ],
     hskk: [

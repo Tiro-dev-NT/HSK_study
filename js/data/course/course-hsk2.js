@@ -704,7 +704,7 @@ Object.assign(COURSE_DATA, {
         { type: 'fill', sentence: '我的手机___了。', options: ['掉', '放下', '分开'], answer: '掉' },
         { type: 'fill', sentence: '今天气温是二十___。', options: ['度', '封', '发'], answer: '度' },
         { type: 'fill', sentence: '我们一起练习___。', options: ['对话', '对面', '服务'], answer: '对话' },
-        { type: 'order', words: ['复习', '怎么样', '你', '了'], answer: '你复习得怎么样了' },
+        { type: 'order', words: ['你', '复习', '得', '怎么样', '了'], answer: '你复习得怎么样了' },
         { type: 'order', words: ['感觉', '我', '很难', '这个'], answer: '我感觉这个很难' },
         { type: 'listen', audio: '我的笔掉了我捡起来', options: ['我的笔掉了我捡起来','你复习得怎么样了','我学会了放下手机'], answer: '我的笔掉了我捡起来', py: 'Wǒ de bǐ diào le, wǒ jiǎn qǐlái.', explain: 'Nghe 掉 = rơi.' },
         { type: 'dictation', audio: '我们得分开了', answer: '我们得分开了', hint: 'Chúng ta phải chia tay rồi.', py: 'Wǒmen děi fēnkāi le.', explain: 'Nghe viết 分开 = chia tay.' }

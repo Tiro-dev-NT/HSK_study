@@ -1,5 +1,69 @@
 # Action Items
 
+## 🔍 Session 2026-06-12 — Competitor scan theieltsdictionary.com (TID) → đề xuất rút ra
+
+> Snapshot đầy đủ + 10 đề xuất map sẵn: `content/reference/competitors/theieltsdictionary_com/2026-06-12.md` (+ 9 screenshots cùng folder). TID = web luyện IELTS VN, free 100% → funnel bán khóa offline 4.8tr; điểm mạnh = gloss curated theo bài + Translation Hub guided 5 bước; điểm yếu = xài đề Cambridge + dịch full báo (bản quyền), gamification mỏng, không SRS. USP mình giữ vững.
+
+- ☐ **TID-1 → C2:** schema giải thích từ 2 tầng kiểu TID: gloss Việt + **POS badge** + định nghĩa đơn giản + **usage note theo ngữ cảnh bài** (curated per-lesson). Gắn vào `02-c2-explain-depth.md` (mục POS CC-CEDICT + confusion-pairs đã có — usage note là dạng micro-disambiguation).
+- ☐ **TID-2 → dictionary/LookupPanel:** nút **"Lưu nhanh / Chọn bộ thẻ"** ngay trong popup tra từ (quick→Kho từ, picker→deck `hsk_decks_v3`). Gộp khi làm việc "gom tap-gloss toàn app" (2026-06-07). Quick win.
+- ☐ **TID-3 → C1 v2 (tab Luyện dịch):** mode **"câu mẫu che từ"** — đáp án hiện chip che (`黑**` lộ chữ đầu + độ dài), click/Ctrl+Space mở dần từng từ, "Hiện tất cả" = đầu hàng. Deterministic 0 AI. (Validate luôn hướng guided-stepper §9: TID cũng stepper 5 bước.)
+- ☐ **TID-4 → C7:** khung copy **"TRƯỚC KHI HỌC / SAU KHÓA HỌC" per-skill + quote tóm tắt** cho pricing/free-vs-pro — mô tả thay đổi năng lực, compliance-safe (không "bao đậu").
+- ☐ **TID-5 (backlog nhỏ):** email nhắc ôn SRS opt-in (chưa có PWA push) · greeting Bé Rồng theo giờ trên Home (1 dòng, 0 cost) · mở rộng "Gợi ý hôm nay" heuristic kỹ-năng-ít-luyện-nhất.
+
+## 📐 Session 2026-06-12 (b) — Mai HSK 5→9 curriculum: BLUEPRINT sẵn sàng (build chờ Opus)
+
+> Bộ spec đầy đủ: **`docs/plans/mai-hsk5-9-curriculum/`** — `00-MASTER.md` (story arc 5 cấp nối đời Mai, cast/scene mới, pipeline mirror `mai-hsk4-handoff.md`, ràng buộc HARD, prompt khởi động per-level) + `05-hsk5.md`…`09-hsk9.md` (mỗi cấp: số bài + danh sách bài title zh/vi + grammar checklist + thiết kế bài tập C1-compatible) + **golden sample `golden-sample-hsk5-bai155.js`** (Bài 155 data thật, ĐÃ verify: `node --check` OK · 18/18 vocab đều có trong `hsk3_lvl5.js` và tag đủ trong steps · workbook 6/10/10 · 100% item có `explain` · 2 choice + checkpoint 3 câu).
+> Quy mô chốt: HSK5 = 60 bài (155–214, 1.337 từ) · HSK6 = 90 bài (215–304, 3.223 từ, tách `course-hsk6a/b/c.js`) · HSK7 = 40 (305–344, 1.000) · HSK8 = 40 (345–384, 1.000) · HSK9 = 60 (385–444, 2.058, tách `9a/9b`) — tổng 290 bài / 8.618 từ. Build TUẦN TỰ 5→9, batch 8-12 bài/session.
+
+- ☐ **Build HSK 5** (Opus 4.8) — prompt khởi động: *"Đọc docs/plans/mai-hsk5-9-curriculum/00-MASTER.md + 05-hsk5.md + docs/plans/mai-hsk4-handoff.md + golden-sample-hsk5-bai155.js. Việc: [B0 coverage | batch bài N–M], gen course-hsk5.js theo golden sample, verify node + browser, bump ?v=."* Bài 155 dùng NGUYÊN golden sample.
+- ☐ **Asset treo (user gen 1 đợt khi build):** cast `anna`/`gaojiaoshou` (HSK5) · `dawei` (6) · `jingli` (7-8) · `xiaofang` (9) + scene `airport`/`teahouse`/`stage`/`meeting-room` — session build chỉ tạo `.md` prompt + `mai-hsk59-ASSETS-TODO.md`, emoji/classroom fallback chạy ngay (MASTER §3).
+- ☐ **Perf BẮT BUỘC trước merge HSK 6:** tách bundle `course` trong `data-loader.js` theo level (sau HSK6 bundle >4MB) — MASTER §5 ⚡.
+- ☐ Audio per level gen theo batch + `rclone copy` R2 (HSK5 ~1.500 file). KHÔNG commit MP3/docs.
+
+## 🔍 Session 2026-06-11 (b) — Competitor scan HSK Club → cải tiến rút ra (chưa làm)
+
+> Snapshot đầy đủ: `content/reference/competitors/hskclub_com/2026-06-11.md`. Stack họ: Next.js+React+Turbopack/Vercel (KHÔNG phải Vite). Quyết định: **KHÔNG đổi stack** — vanilla JS giữ nguyên (bảo mật thật đã server-side RLS/RPC/ai-proxy; minify chỉ là obfuscation). Tuỳ chọn sau: thêm esbuild minify ở Cloudflare build command (không đổi kiến trúc).
+>
+> 📐 **BUILD SPEC sẵn sàng (2026-06-11): `docs/plans/cs-hskclub/00-MASTER.md`** + 6 file `01..06` chi tiết từng việc (files đụng, schema, UI, build steps, verify, asset). Mỗi session build mở đúng 1 file theo thứ tự — prompt khởi động paste-sẵn trong MASTER. Asset cần gen (gộp 1 đợt): 2 pose Bé Rồng ("cầm bút làm bài" C1 + "đeo balo đi thi" C4); còn lại toàn SVG vẽ tay vào `icons.js`/CSS — chi tiết bảng asset trong MASTER. Folder `docs/` gitignored CÓ CHỦ ĐÍCH (repo public) — spec giữ local, KHÔNG force-add lên GitHub.
+
+- 🔶 **C1 · Lesson practice suite — v1 BUILD DONE 2026-06-12 nhưng ⛔ KHOAN MERGE: cần refactor v2 GUIDED trước** (branch `c1-lesson-practice`). User review v1: tab tự do gây RỐI (vào thẳng bài tập mất bối cảnh, tab tràn mobile). **Việc còn lại:** làm §9 spec `01-c1` (guided stepper 8 bước mặc định, bước 0 Bối cảnh, tab→sheet, resume `lastStep`, mobile header gộp, quy tắc chống rối §9.5) TRÊN branch hiện có → verify §9.4 → mới duyệt merge. Quyết định ADOPT/LOẠI LOCKED: `00-MASTER.md` §⚖️ (2026-06-12). Chi tiết build v1: Page `/lesson-practice?id=N` (tab Học, off-path): 7 tab Hội thoại/Điền từ/Nghe chọn/Chép chính tả/Sắp xếp/Luyện dịch/Tổng hợp, 1 câu/màn, sidebar danh sách bài (2-pane desktop, bottom-sheet mobile). Module mới `js/lesson-practice.js` (`LessonPractice`) + `pages/lesson-practice.html` + `css/pages/lesson-practice.css` (token-only). Generator `_buildSets()` sinh runtime từ `COURSE_DATA[id]` (workbook + auto-gen deterministic seed=id: dictation phát file R2 giọng thật fallback TTS, order segment, translate word-bank+nhiễu, mix 15-20 + MCQ vocab) — **0 AI credit, 0 bảng Supabase**. Tái dùng `Course.exerciseAPI` + `Course.checkLessonGate` (KHÔNG đụng flow visual-novel) + nút entry màn hoàn thành bài + card learn-hub. Key `lesson_practice_v1`; sai → SRS `hsk_srs_v3`. +6 icon. **Unit-check 154 bài 0 rỗng + verify app thật (HSK1+HSK4 gate, R2 audio HTTP200, SRS push, keyboard, mobile 375, light/dark, console 0 error, mix deterministic).** Chi tiết: block "Session 2026-06-12" dưới. Map Phase P.
+- ☐ **C2 · Giải thích chi tiết hơn (user yêu cầu note):** (a) ngữ pháp `js/data/grammar.js` thêm mục "⚠️ Lưu ý / sai lầm thường gặp" + tăng drill mỗi điểm (họ 20 câu/điểm) — pipeline AI gen + QA như `_gen_hsk4_grammar.js`; (b) vocab thêm **từ loại POS** (đã treo ở A2 follow-up, nguồn CC-CEDICT) + note phân biệt từ dễ nhầm (二/两, 会/能/可以…) cho từ HSK1-3 hay sai; (c) quiz/mock: phủ field `explain` đều hơn (họ bán "giải thích AI mỗi đáp án" làm Plus selling point — mình có ai-proxy làm được rẻ).
+- ☐ **C3 · Bảng Pinyin tương tác full** (413 tổ hợp × 4 thanh, tap nghe) trong Pinyin Lab — data `pinyin-syllable-map.js` CÓ SẴN. Quick win.
+- ☐ **C4 · Readiness dashboard:** đặt ngày thi + cấp mục tiêu → % sẵn sàng per-skill + kế hoạch tuần + "hôm nay cần làm" (gắn vào Bản đồ HSK / learn-hub; metric đọc từ progress/SRS sẵn có).
+- ☐ **C5 · Design pattern đáng áp (giữ chất riêng dark Calm-Study, KHÔNG copy light-indigo):** ruby pinyin per-word + toggle ẩn/hiện (reader/course) · chips pastel loại-bài-tập + progress % trên card bài · keyboard hint hiển thị ngay UI ("Enter kiểm tra · Ctrl nghe lại") · watermark chữ Hán mờ nền card · hero header trang con có stats. Áp theo design-while-building từng trang, không big-bang.
+- ☐ **C6 · YouTube embed listening library** (Phase T/LB8): nhúng video kênh học tiếng Trung qua iframe chính chủ (0 phí bản quyền) + player dictation/shadowing segment-based (speed 0.5-1.5x, hint dots, Auto Next). Họ làm rất tốt — mình có speech-eval mạnh hơn để chấm shadowing thật.
+- ☐ **C7 · Conversion home khách + pricing** (bổ sung sau): trust strip + testimonial THẬT (tái dùng RPC Tri Ân v24) + `public_stats` RPC (SQL v26, ngưỡng hiển thị) + pricing redesign refund/FAQ/value — compliance-first, KHÔNG fake số/urgency. Trial (B2) CHỜ user quyết. Thứ tự linh hoạt, không chặn C1/C2. 📐 spec `docs/plans/cs-hskclub/07-c7-landing-pricing-conversion.md`.
+- ⚠️ KHÔNG copy: wording "Bao đậu HSK" (rủi ro Luật QC VN) · league leaderboard toxic (giữ nguyên tắc anti-toxic).
+
+## ✅ Session 2026-06-12 — C1 Lesson Practice Suite (branch `c1-lesson-practice`, CHƯA merge `main`)
+
+> Spec: `docs/plans/cs-hskclub/01-c1-lesson-practice-suite.md` (+ `00-MASTER.md`). Build theo build-steps §7, verify §8.
+
+- ☑ **DONE — page `/lesson-practice?id=N`** (tab Học, off-path, không thêm nav primary). Files mới: `js/lesson-practice.js` (`LessonPractice`) · `pages/lesson-practice.html` · `css/pages/lesson-practice.css` (token-only). Sửa: `js/course.js` (+`exerciseAPI`/`checkLessonGate`/nút entry, `_pushWrongToSRS(ex,ctx)`) · `js/icons.js` (+6 icon) · `js/router.js` (route+init+tabMap) · `js/data-loader.js` (page→bundle course) · `pages/learn.html` (card "Luyện tập theo bài") · `index.html` (đăng ký + bump `?v=`).
+  - **7 tab**: Hội thoại (transcript + "Nghe toàn bộ" audio queue) · Điền từ · Nghe chọn · Chép chính tả · Sắp xếp · Luyện dịch · Tổng hợp. 1 câu/màn, progress x/y, feedback + giải thích, kết quả mini, tab rỗng tự ẩn. Sidebar danh sách bài (active accent, đổi bài in-place không full-reload) · mobile <1024 → bottom-sheet.
+  - **Generator `_buildSets()`** sinh runtime từ `COURSE_DATA[id]`, auto-gen deterministic (seed=id): dictation (≤6, R2 `cdn.hanzigenz.com/mai/audio/L{id}_{slug}.mp3` giọng thật, fallback `_speakZh`) · order (segment 4-8 token) · translate (đề=nghĩa VI, word-bank=token + 4-6 chữ nhiễu cùng cấp) · mix (15-20 + MCQ vocab). **0 AI credit, 0 bảng Supabase.** Key MỚI `lesson_practice_v1`. Sai → SRS `hsk_srs_v3` qua `exerciseAPI.pushWrong`. Gate HSK≥3 qua `Course.checkLessonGate` → `Monetization.showGate`.
+  - **Unit-check 154 bài**: 0 bài rỗng bài tập, mix avg 20, determinism OK. **Verify app thật** (worktree, python http.server): HSK1 + HSK4 (gate đúng), 7 tab badge đúng, dictation R2 file thật (HTTP 200) + fallback, sai fill → SRS 0→1, Enter/Ctrl/1-4 OK, sidebar đổi bài SPA, mobile 375 sheet (30 bài), light + dark, mix deterministic, **console 0 error**.
+  - Bump `?v=`: `icons.js`→1.3 · `data-loader.js`→1.1 · `router.js`→5.2 · `course.js`→3.8 · +`lesson-practice.js?v=1.0` + `lesson-practice.css?v=1.0`.
+- ☐ **MERGE `c1-lesson-practice` → `main`** (chờ duyệt). docs/ local-only — KHÔNG commit lên GitHub.
+- ☑ **Treo (data) DONE 2026-06-12**: 4 workbook `order` item words ghép ≠ answer đã sửa + commit: Bài 33 thêm 得 (`course-hsk2.js`) · Bài 82 bỏ token thừa · Bài 85 bỏ 我们 thừa · Bài 113 `___`→能不能 (`course-hsk3.js`). **Verify multiset-check toàn HSK1-4 = 0 lệch.** Bump `?v=`: course-hsk2→1.4, course-hsk3→1.3 (trong `data-loader.js`), data-loader→1.1 (`index.html`).
+- ☐ **Treo (asset, tùy chọn)**: empty-state dùng `be-rong-book.webp`; có thể gen pose "cầm bút làm bài" riêng (MASTER asset checklist).
+- ◇ **TODO in-code**: quest hook `Quests.incrementMetric('skills_today')` gọi delta 0 (chờ C1-Quest/Q1 wire metric).
+
+## 🎯 Session 2026-06-11 — Quest Design (app hoàn thiện) — DESIGN done, build chờ
+
+> Blueprint đầy đủ: **`docs/QUEST_DESIGN.md`**. Phát hiện: hệ quest Phase L (`js/quests.js`) chỉ phủ flashcard/games/Mai/mock — **thiếu Reader, Speaking/Shadowing, HSKK, Writing, Tutor, Pinyin/HSK0, Community**. Nhiều metric khai báo nhưng chưa wire. Engine GIỮ NGUYÊN — chỉ thêm data + wire metric.
+>
+> Nguyên tắc chốt: **mở rộng POOL không mở SLOT** (giữ earn rate, chống inflation) · action tốn AI-credit (HSKK/Writing/Tutor/Shadow-graded) → quest **Premium Pro-only** (free chỉ thưởng phần không-chấm) · achievement trùng nguồn grant → chỉ badge/cosmetic `token:0`.
+
+- ☐ **Q1 — Wire metric** (chặn các quest mới): metric mới `reader_done`/`pinyin_drill`/`shadow_practiced`/`shadow_graded`/`hskk_graded`/`writing_graded`/`tutor_msg`/`vocab_saved`/`community_visit` + metric treo còn dùng (`dict_opened`/`correct_streak`/`perfect_mcq`/`typing_answers`/`hard_studied`/`new_cards`/`deck_completed`) + tổng hợp `skills_today`. **Nhớ thêm field vào 2 block reset `qd.metrics` (`quests.js:145` & `:157`) — thiếu = `incrementMetric` no-op.**
+- ☐ **Q2 — Data quest:** append vào `DAILY_TIER_*` / `WEEKLY_QUESTS` / `QUEST_CHAINS` (§6-8 doc). Chain mới: `speaker`/`reader`/`toolsmith` + onboarding `rookie`.
+- ☐ **Q3 — UI còn thiếu (bug tồn Phase L):** `QUEST_CHAINS` đã có data nhưng `renderQuestPage` **chỉ render daily/weekly** → chain chưa từng hiện. Thêm tab "Hành trình" + achievement ở `pages/quests.html`. Onboarding `rookie` one-time (lưu `qd.chains.rookie`, ẩn khi xong).
+- ☐ **Q4 — Seasonal (tùy mùa, sau):** `SEASONAL_QUESTS` + cờ `activeFrom/To`, gắn pet/outfit limited (TOKEN_SINK Wave D).
+- 📌 **Verify khi build:** `_pickDaily` vẫn pick 3-4 slot/ngày (KHÔNG nở slot) + seeded determinism (cùng ngày → cùng quest).
+- 📌 **Doc gitignored** (`docs/` blanket-ignore) → `git add -f docs/QUEST_DESIGN.md` nếu muốn commit.
+
+---
+
 ## ✅ Session 2026-06-11 — FE redesign (đợt đồng bộ execution toàn app, branch `fe-redesign-final`)
 
 > Spec: `docs/plans/fe-redesign/00-MASTER.md` (mục 6 = Definition of Done, đã đánh ✅ từng dòng). 4 wave theo lưu lượng.
@@ -13,8 +77,8 @@
   - **Emoji-icon sweep** ở quiz/session/dictionary/learn/decks/gamification (chi tiết DoD dòng 2). Bump `?v=` 13 CSS + 8 JS trong `index.html`.
   - **Smoke test:** flashcard end-to-end + tra từ + 6 tab + games + reader, light/dark/375px, **0 console error**.
 - ☐ **MERGE `fe-redesign-final` → `main`** — branch chứa W0–W3 + wave-final. ⚠️ `main` hiện mới tới W2 merge (`0e6dbbb`); W3 + final CHƯA lên `main`. Cần review → merge → Cloudflare deploy.
-- ☐ **Treo: hệ icon-định-danh deck** — `DECK_ICONS`/level/topic icon (📕📗📘…) trong `js/decks.js` còn dùng emoji (là data nhận-diện bộ thẻ, không phải icon control). Batch sau: map sang Icons SVG hoặc giữ làm "deck avatar" có chủ đích.
-- ☐ **Treo: empty-state minh hoạ** — 📭 (decks empty), 😢 (gamification error) còn emoji to. Thay bằng SVG/mascot illustration theo chuẩn empty-state.
+- ☐ **Treo: hệ icon-định-danh deck** — `DECK_ICONS`/level/topic icon (📕📗📘…) trong `js/decks.js` còn dùng emoji (là data nhận-diện bộ thẻ, không phải icon control). 📐 Quyết định + spec: `docs/plans/fe-redesign/08-followups.md` §2 (GIỮ làm deck avatar, chuẩn hoá khung `.deck-avatar`).
+- ☐ **Treo: empty-state minh hoạ** — 📭 (decks empty), 😢 (gamification error) còn emoji to. 📐 Spec: `docs/plans/fe-redesign/08-followups.md` §1 (dùng 8 pose Bé Rồng sẵn có). §3 cùng file gom luôn mobile-nav P1 còn dang dở (NAV review 2026-06-10).
 
 ---
 
@@ -102,6 +166,7 @@
 **🟡 ROI cao về sau:**
 - ☐ **E — Ôn-điểm-yếu** (heuristic trên lapses/wrong sẵn có, client-side, cost 0) — làm cùng B.
 - ☐ **F — Community async** (Sảnh Trà forum + peer-review bài nói/viết) — sau khi A giữ chân. 🎨 Design specs Phase V đã chốt 2026-06: `docs/design/53-community-hub` (hub layout) · `63-luu-y-hay` · `64-tu-sach-cong-dong` · `65-sanh-tra-hoc-tap` (V5 đổi concept → co-study rooms Pomodoro chung, bỏ paired voice+whiteboard). Chi tiết: cây Phase V trong `implementation_plan.md`.
+- ☐ **Focus Timer (Pomodoro) + Sảnh Trà Học Tập (V5)** — 📐 **BUILD SPEC sẵn sàng 2026-06-11:** `docs/plans/focus-sanh-tra-build.md` (Phần A `/focus` FE-only 0 SQL → Phần B `/study-rooms` SQL `v25` + Realtime co-study). Build theo wave A trước B sau; checkpoint bảo mật/pháp lý ghi sẵn trong spec.
 - ☐ **Kiểm:** Duolingo có course Trung-cho-người-Việt chưa (độ bền moat).
 
 **⚫ ĐÃ PHỦ QUYẾT (đừng quay lại):** HelloTalk 1-1 chat · realtime voice đua Doubao · handwriting input+OCR (Phase U) · đua từ điển Pleco · scrape content bản quyền · notification-spam/streak-shaming.

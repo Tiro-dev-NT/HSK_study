@@ -146,7 +146,7 @@ var Router = (function() {
       if (typeof PinyinLab !== 'undefined') PinyinLab.setup();
     },
     'pricing': function() {
-      if (typeof Pricing !== 'undefined') Pricing._checkReturnUrl();
+      if (typeof Pricing !== 'undefined') Pricing.setupPage();
     },
     'admin': function() {
       if (typeof Admin !== 'undefined') Admin.setup();

@@ -46,6 +46,65 @@
 }
 .home-greeting-sub { font-size: 13px; color: var(--text2); margin: 0; }
 
+/* ── C7·A · Guest acquisition strip (khách chưa login) ── */
+.home-guest { margin-bottom: var(--s-6); }
+.home-guest .hg-hero {
+  display: flex; align-items: center; gap: var(--s-4);
+  padding: var(--s-5);
+  border-radius: var(--radius-lg, 16px);
+  background: linear-gradient(135deg, var(--chau-hong, #DC2626), var(--hoang-kim, #F59E0B));
+  color: #fff;
+}
+.home-guest .hg-mascot { flex-shrink: 0; width: 88px; height: 88px; border-radius: 50%; }
+.home-guest .hg-hero-text { flex: 1; min-width: 0; }
+.home-guest .hg-title { font-size: var(--t-h3, 1.25rem); font-weight: 800; margin: 0 0 4px; line-height: 1.25; }
+.home-guest .hg-sub { font-size: var(--t-small); line-height: 1.5; opacity: .95; margin: 0 0 var(--s-3); }
+.home-guest .hg-cta { background: var(--me-bach, #fff); color: var(--primary); border: none; }
+.home-guest .hg-bullets {
+  list-style: none; margin: var(--s-4) 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5);
+}
+.home-guest .hg-bullets li {
+  font-size: var(--t-small); color: var(--text2); display: flex; align-items: center; gap: 6px;
+}
+.home-guest .hg-bullets li::before { content: "✓"; color: var(--thuy-luc, #10B981); font-weight: 800; }
+.home-guest .hg-chips {
+  display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-4);
+}
+.home-guest .hg-chip {
+  font-size: var(--t-small); font-weight: 600; text-decoration: none;
+  padding: 8px 14px; border-radius: 999px;
+  background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+  transition: background .15s, border-color .15s;
+}
+.home-guest .hg-chip:hover { background: var(--surface3, var(--surface2)); border-color: var(--primary); }
+.home-guest .hg-stats { margin-top: var(--s-4); font-size: var(--t-small); color: var(--text2); }
+.home-guest .hg-stats .pst-nums strong { color: var(--text); }
+.home-guest .hg-testimonials { margin-top: var(--s-5); }
+@media (max-width: 480px) {
+  .home-guest .hg-hero { flex-direction: column; text-align: center; }
+  .home-guest .hg-cta { width: 100%; }
+  .home-guest .hg-bullets { justify-content: center; }
+}
+
+/* ── Testimonials (component tái dùng: home khách + pricing) ── */
+.tst-heading { font-size: var(--t-body); font-weight: 700; margin-bottom: var(--s-3); color: var(--text); }
+.tst-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s-3); }
+.tst-card {
+  position: relative; margin: 0; padding: var(--s-4);
+  border-radius: var(--radius, 12px); background: var(--surface2); border: 1px solid var(--border);
+}
+.tst-card .tst-star { position: absolute; top: 10px; right: 12px; font-size: 14px; }
+.tst-card .tst-msg { margin: 0 0 var(--s-3); font-size: var(--t-small); line-height: 1.55; color: var(--text); }
+.tst-card .tst-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); }
+.tst-card .tst-name { font-size: var(--t-xs, 12px); font-weight: 700; color: var(--text2); }
+.tst-card .tst-stars { font-size: 12px; color: var(--hoang-kim, #F59E0B); letter-spacing: 1px; }
+.tst-more {
+  display: inline-block; margin-top: var(--s-3); font-size: var(--t-small); font-weight: 600;
+  color: var(--primary); text-decoration: none;
+}
+.tst-more:hover { text-decoration: underline; }
+
 /* ── C2 · Hero welcome state (nền gradient kế thừa từ .card-hero) ── */
 .home-welcome-card {
   display: flex; align-items: center; gap: var(--s-4);

@@ -545,3 +545,62 @@
   padding-top: var(--s-4);
   border-top: 1px solid var(--border);
 }
+
+/* ============================================================
+   C7 — Conversion additions: value (Trước→Sau), assurance,
+   social proof, footer CTA. Tokens only (dark-mode safe).
+   ============================================================ */
+
+/* ── Trước → Sau khi học (TID-4) ── */
+.pricing-baprep { margin: var(--s-8) 0 var(--s-6); }
+.baprep-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); margin-top: var(--s-4);
+}
+.baprep-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius, 12px); padding: var(--s-4);
+}
+.baprep-skill { font-weight: 800; font-size: var(--t-body); margin-bottom: var(--s-3); color: var(--text); }
+.baprep-row { font-size: var(--t-small); line-height: 1.5; margin-bottom: var(--s-2); color: var(--text2); }
+.baprep-row:last-child { margin-bottom: 0; }
+.baprep-tag {
+  display: inline-block; font-size: var(--t-xs, 11px); font-weight: 700;
+  padding: 1px 7px; border-radius: 999px; margin-right: 6px; vertical-align: middle;
+}
+.baprep-before .baprep-tag { background: color-mix(in srgb, var(--text3) 18%, transparent); color: var(--text2); }
+.baprep-after  { color: var(--text); }
+.baprep-after  .baprep-tag { background: color-mix(in srgb, var(--thuy-luc, #10B981) 22%, transparent); color: var(--thuy-luc, #10B981); }
+.baprep-note { font-size: var(--t-xs, 12px); color: var(--text3); margin-top: var(--s-3); text-align: center; }
+
+/* ── Yên tâm khi mua ── */
+.pricing-assurance {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3);
+  margin: var(--s-5) 0 var(--s-2);
+}
+.passure-item {
+  display: flex; gap: var(--s-3); align-items: flex-start;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius, 12px); padding: var(--s-4);
+}
+.passure-icon { font-size: 20px; line-height: 1; flex-shrink: 0; }
+.passure-title { font-weight: 700; font-size: var(--t-small); margin-bottom: 3px; color: var(--text); }
+.passure-desc { font-size: var(--t-xs, 12px); line-height: 1.55; color: var(--text2); }
+.passure-desc a { color: var(--primary); text-decoration: none; }
+.passure-desc a:hover { text-decoration: underline; }
+
+/* ── Social proof block ── */
+.pricing-social { margin: var(--s-8) 0; }
+.pricing-stats { text-align: center; font-size: var(--t-small); color: var(--text2); margin-bottom: var(--s-4); }
+.pricing-stats .pst-nums strong { color: var(--text); }
+
+/* ── Footer CTA ── */
+.pricing-footer-cta {
+  text-align: center; margin: var(--s-8) 0 var(--s-4);
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-3);
+}
+.pfcta-text { font-size: var(--t-body-lg); font-weight: 700; color: var(--text); }
+
+@media (max-width: 640px) {
+  .baprep-grid { grid-template-columns: 1fr; }
+  .pricing-assurance { grid-template-columns: 1fr; }
+}

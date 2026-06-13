@@ -227,6 +227,7 @@ var Gamification = {
     // W2 first-visit empty-state: user chưa học từ nào → ẩn khối "toàn số 0"
     // (stats + hành trình + continue card), hiện 1 card chào mừng với CTA duy nhất.
     Gamification._updateFirstVisit();
+    Gamification._updateGuestHome();
 
     Gamification.renderXPBar();
     Gamification.renderStreakCalendar();
@@ -561,6 +562,20 @@ var Gamification = {
     welcome.style.display = isNew ? 'flex' : 'none';
     if (statsCompact) statsCompact.style.display = isNew ? 'none' : '';
     if (cont)         cont.style.display         = isNew ? 'none' : '';
+  },
+
+  // ── Guest (chưa login) acquisition strip — C7·A (trust strip + social proof) ──
+  _updateGuestHome: function() {
+    var strip = document.getElementById('homeGuestStrip');
+    if (!strip) return;
+    var isGuest = (typeof Auth === 'undefined') || !Auth.user;
+    strip.style.display = isGuest ? '' : 'none';
+    if (!isGuest) return;
+    // Khách: ẩn welcome card (CTA trùng) — guest strip là hero duy nhất.
+    var welcome = document.getElementById('homeWelcomeCard');
+    if (welcome) welcome.style.display = 'none';
+    if (typeof Testimonials !== 'undefined') Testimonials.render('homeGuestTestimonials', { limit: 2 });
+    if (typeof PublicStats !== 'undefined')   PublicStats.render('homeGuestStats');
   },
 
   _updateContinueCard: function() {

@@ -9,6 +9,15 @@ var Pricing = {
   _sku:       null,
   _pendingOrder: null,      // remembered when login required mid-flow
 
+  // ── Page setup (router entry) — return-url + social proof (C7 B6/A2) ──
+  setupPage: function() {
+    Pricing._checkReturnUrl();
+    if (typeof Testimonials !== 'undefined')
+      Testimonials.render('pricingTestimonials', { heading: 'Học viên nói gì', limit: 3 });
+    if (typeof PublicStats !== 'undefined')
+      PublicStats.render('pricingStats');
+  },
+
   // ── Open subscription modal ───────────────────────────
   openPayment: function(sku) {
     if (!window.PLAN_CATALOG) return;

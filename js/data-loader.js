@@ -15,6 +15,16 @@ var DataLoader = (function() {
   // Thứ tự trong 1 bundle quan trọng: course-data.js khai báo COURSE_DATA
   // trước, course-hskN.js push vào → phải load tuần tự.
   var _bundles = {
+    // HSK 3.0 vocab L5-9 (~2.3MB) — tách khỏi first-paint. Prefetch nền ngay
+    // sau boot (js/app.js) + gate route vocab bên dưới. ?v= GIỮ khớp version
+    // file đã từng nằm index.html để cache đúng.
+    hsk3_rest: [
+      'js/data/v3/hsk3_lvl5.js?v=1.2',
+      'js/data/v3/hsk3_lvl6.js?v=1.2',
+      'js/data/v3/hsk3_lvl7.js?v=1.1',
+      'js/data/v3/hsk3_lvl8.js?v=1.1',
+      'js/data/v3/hsk3_lvl9.js?v=1.1'
+    ],
     course: [
       'js/data/course/course-data.js?v=1.0',
       'js/data/course/course-hsk1.js?v=1.2',
@@ -43,19 +53,35 @@ var DataLoader = (function() {
   // ── Page (router page name) → bundle cần load trước init ──
   // Coupling: COURSE_DATA dùng ở learn-hub/ban-do-hsk/speaking;
   // GRAMMAR_DATA/READINGS_DATA dùng ở learn-hub + admin/content.
+  // 'hsk3_rest' = guarantee đủ vocab L5-9 cho page đọc/ghi "all levels"
+  // (tra từ, học, quiz, deck, kho từ, mock-exam, text-analyzer, topics, bản đồ…).
+  // Prefetch nền (app.js) thường đã xong trước khi user click → ensureForPage
+  // dùng lại Promise cache, không tải lại. Đây là LƯỚI AN TOÀN khi mạng chậm.
   var _pageBundles = {
     course:       ['course'],
     'lesson-practice': ['course'],   // C1 — sinh bài tập runtime từ COURSE_DATA
     handout:      ['course'],
-    learn:        ['course', 'grammar', 'readings'],
-    'ban-do-hsk': ['course'],
+    learn:        ['hsk3_rest', 'course', 'grammar', 'readings'],
+    'ban-do-hsk': ['hsk3_rest', 'course'],
     speaking:     ['shadowing', 'course'],
     hskk:         ['hskk'],
     reader:       ['reader'],
     grammar:      ['grammar'],
     reading:      ['readings'],
     radicals:     ['radicals'],
-    admin:        ['grammar', 'readings']
+    admin:        ['hsk3_rest', 'grammar', 'readings'],
+    dictionary:   ['hsk3_rest'],
+    quiz:         ['hsk3_rest'],
+    'mock-exam':  ['hsk3_rest'],
+    vault:        ['hsk3_rest'],
+    games:        ['hsk3_rest'],
+    'my-vocab':   ['hsk3_rest'],
+    'vocab-import': ['hsk3_rest'],
+    'text-analyzer': ['hsk3_rest'],
+    topics:       ['hsk3_rest'],
+    'learn-method': ['hsk3_rest'],
+    handwriting:  ['hsk3_rest'],
+    profile:      ['hsk3_rest']
   };
 
   function _loadScript(url) {

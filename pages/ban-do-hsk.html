@@ -1,6 +1,44 @@
     <!-- PAGE: BAN DO HSK -->
     <section class="page active" id="page-ban-do-hsk">
 
+      <!-- Readiness Dashboard (injected by BanDoHsk.renderReadiness) -->
+      <div id="bdhReadiness"></div>
+
+      <!-- Goal modal -->
+      <div id="bdhGoalModal" class="modal-overlay" onclick="if(event.target===this)BanDoHsk.closeGoalModal()">
+        <div class="modal bdh-goal-modal">
+          <button class="modal-close" onclick="BanDoHsk.closeGoalModal()">✕</button>
+          <h2 class="bdh-gm-title">🎯 Đặt mục tiêu thi</h2>
+          <div class="bdh-gm-field">
+            <label class="bdh-gm-label">Cấp HSK mục tiêu</label>
+            <div class="bdh-gm-level-row" id="bdhGoalLevelBtns">
+              <button class="bdh-gm-lv" data-lv="1" onclick="BanDoHsk._goalSelectLv(1)">HSK 1</button>
+              <button class="bdh-gm-lv" data-lv="2" onclick="BanDoHsk._goalSelectLv(2)">HSK 2</button>
+              <button class="bdh-gm-lv" data-lv="3" onclick="BanDoHsk._goalSelectLv(3)">HSK 3</button>
+              <button class="bdh-gm-lv" data-lv="4" onclick="BanDoHsk._goalSelectLv(4)">HSK 4</button>
+              <button class="bdh-gm-lv" data-lv="5" onclick="BanDoHsk._goalSelectLv(5)">HSK 5</button>
+              <button class="bdh-gm-lv" data-lv="6" onclick="BanDoHsk._goalSelectLv(6)">HSK 6</button>
+            </div>
+          </div>
+          <div class="bdh-gm-field">
+            <label class="bdh-gm-label" for="bdhGoalDate">Ngày thi dự kiến</label>
+            <input type="date" id="bdhGoalDate" class="bdh-gm-input"/>
+          </div>
+          <div class="bdh-gm-field">
+            <label class="bdh-gm-label">Phút học / ngày (tùy chọn)</label>
+            <div class="bdh-gm-min-row" id="bdhGoalMinBtns">
+              <button class="bdh-gm-min" data-min="15" onclick="BanDoHsk._goalSelectMin(15)">15 phút</button>
+              <button class="bdh-gm-min" data-min="30" onclick="BanDoHsk._goalSelectMin(30)">30 phút</button>
+              <button class="bdh-gm-min" data-min="60" onclick="BanDoHsk._goalSelectMin(60)">60 phút</button>
+            </div>
+          </div>
+          <div class="bdh-gm-actions">
+            <button class="btn-primary" onclick="BanDoHsk.saveGoalModal()">Lưu mục tiêu</button>
+            <button class="btn-outline" onclick="BanDoHsk.closeGoalModal()">Hủy</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Header -->
       <div class="bdh-header">
         <div class="bdh-header-text">

@@ -15,6 +15,7 @@ function initLearnHub() {
 
   _lhRenderContinue();
   _lhRenderMilestone();
+  lhRenderGoalWidget();
   _lhRenderToday();
   _lhRenderTimeline();
   _lhRenderResources();
@@ -483,4 +484,68 @@ function _lhRenderTimeline() {
   html += _ic('map', 16) + ' Xem dạng Bản đồ HSK' + _ic('arrow-right', 14) + '</button>';
 
   container.innerHTML = html;
+}
+
+// ── Goal readiness widget (injected above "Hôm nay" cards) ──
+// Chỉ hiện khi user đã đặt mục tiêu thi. 0 AI credit.
+function lhRenderGoalWidget() {
+  var wrap = document.getElementById('lhGoalWidget');
+  if (!wrap) return;
+
+  var goal = null;
+  try { goal = JSON.parse(localStorage.getItem('hsk_exam_goal_v1') || 'null'); } catch (e) {}
+  if (!goal || !goal.level || !goal.examDate) { wrap.innerHTML = ''; return; }
+
+  // Compute readiness via BanDoHsk if available
+  var r = null;
+  if (typeof BanDoHsk !== 'undefined' && BanDoHsk._computeReadiness) {
+    r = BanDoHsk._computeReadiness(goal.level);
+  }
+
+  // Days left
+  var today = new Date(); today.setHours(0,0,0,0);
+  var exam  = new Date(goal.examDate + 'T00:00:00');
+  var days  = Math.ceil((exam - today) / 86400000);
+  var pct   = r ? r.total : 0;
+
+  var levelLabel = 'HSK ' + goal.level;
+  var dateStr = goal.examDate.split('-').reverse().join('/');
+  var daysStr = days > 0 ? days + ' ngày' : 'Hôm nay!';
+
+  // Today chips (simplified: vocab + grammar/listen depending on weakest)
+  var chips = [];
+  if (r) {
+    if (r.vocab < 100)   chips.push({ icon:'📖', lbl:'Từ mới', route:'learn',   deckId:'sys_hsk'+goal.level });
+    if (r.grammar < 100) chips.push({ icon:'✏️', lbl:'Ngữ pháp', route:'grammar' });
+    if (r.listen  < 60)  chips.push({ icon:'🎧', lbl:'Nghe', route:'speaking' });
+    if (days <= 14)      chips.push({ icon:'📝', lbl:'Đề thử', route:'mock-exam' });
+  }
+  chips = chips.slice(0, 3);
+
+  var chipsHtml = chips.map(function(c) {
+    var click = c.deckId
+      ? 'lhGoalChipClick(\'' + c.deckId + '\',null)'
+      : 'lhGoalChipClick(null,\'' + c.route + '\')';
+    return '<button class="lh-goal-widget-chip" onclick="' + click + '">' + c.icon + ' ' + c.lbl + '</button>';
+  }).join('');
+
+  wrap.innerHTML =
+    '<div class="lh-goal-widget">' +
+      '<div class="lh-goal-widget-info">' +
+        '<div class="lh-goal-widget-title">🎯 ' + levelLabel + ' · ' + dateStr + ' (' + daysStr + ')</div>' +
+        '<div class="lh-goal-widget-bar-wrap">' +
+          '<div class="lh-goal-widget-bar-track"><div class="lh-goal-widget-bar-fill" style="width:' + pct + '%"></div></div>' +
+          '<span class="lh-goal-widget-pct">' + pct + '%</span>' +
+        '</div>' +
+      '</div>' +
+      (chipsHtml ? '<div class="lh-goal-widget-chips">' + chipsHtml + '</div>' : '') +
+    '</div>';
+}
+
+function lhGoalChipClick(deckId, route) {
+  if (deckId) {
+    if (typeof learnHubOpenDeck === 'function') learnHubOpenDeck(deckId);
+    return;
+  }
+  if (route && typeof Router !== 'undefined') Router.navigateTo(route);
 }

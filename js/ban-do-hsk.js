@@ -382,6 +382,265 @@ var BanDoHsk = (function() {
     );
   }
 
+  // ══════════════════════════════════════════════════════
+  // READINESS DASHBOARD (C4)
+  // Hardcoded totals per level — edit here, không cần sửa logic.
+  // ══════════════════════════════════════════════════════
+  var READINESS_TARGETS = {
+    1: { label:'HSK 1', words:500,  grammarPatterns:20, shadowingSets:6,  readerPassages:8,  mockTarget:3 },
+    2: { label:'HSK 2', words:772,  grammarPatterns:25, shadowingSets:10, readerPassages:8,  mockTarget:3 },
+    3: { label:'HSK 3', words:973,  grammarPatterns:30, shadowingSets:15, readerPassages:8,  mockTarget:3 },
+    4: { label:'HSK 4', words:1071, grammarPatterns:35, shadowingSets:20, readerPassages:8,  mockTarget:3 },
+    5: { label:'HSK 5', words:1709, grammarPatterns:40, shadowingSets:25, readerPassages:8,  mockTarget:3 },
+    6: { label:'HSK 6', words:2663, grammarPatterns:45, shadowingSets:30, readerPassages:8,  mockTarget:3 }
+  };
+
+  var _goalSelectedLv  = null;
+  var _goalSelectedMin = null;
+
+  function _loadGoal() {
+    try { return JSON.parse(localStorage.getItem('hsk_exam_goal_v1') || 'null'); }
+    catch (e) { return null; }
+  }
+  function _saveGoal(goal) {
+    try { localStorage.setItem('hsk_exam_goal_v1', JSON.stringify(goal)); } catch (e) {}
+  }
+
+  function _daysLeft(dateStr) {
+    if (!dateStr) return null;
+    var today = new Date(); today.setHours(0,0,0,0);
+    var exam  = new Date(dateStr + 'T00:00:00');
+    return Math.ceil((exam - today) / 86400000);
+  }
+
+  function _computeReadiness(level) {
+    var t = READINESS_TARGETS[level];
+    if (!t) return { vocab:0, grammar:0, listen:0, read:0, mock:0, total:0 };
+
+    // ── Từ vựng ──────────────────────────────────────────
+    var vocabPct = 0;
+    try {
+      if (typeof getLevelStats === 'function') {
+        var st = getLevelStats(level);
+        vocabPct = st.total > 0 ? Math.round((st.total - st.new) / st.total * 100) : 0;
+      } else {
+        var vp = JSON.parse(localStorage.getItem('hsk_progress_v3') || '{}');
+        var vDone = Object.keys(vp).filter(function(h) {
+          return vp[h] && vp[h].level == level && !vp[h].new;
+        }).length;
+        vocabPct = t.words > 0 ? Math.min(100, Math.round(vDone / t.words * 100)) : 0;
+      }
+    } catch (e) {}
+
+    // ── Ngữ pháp ─────────────────────────────────────────
+    var grammarPct = 0;
+    try {
+      var gProg  = JSON.parse(localStorage.getItem('grammar_progress_v1') || '{}');
+      var gLevel = gProg[String(level)] || {};
+      var gDone  = Object.keys(gLevel).filter(function(id) { return gLevel[id]; }).length;
+      grammarPct = t.grammarPatterns > 0 ? Math.min(100, Math.round(gDone / t.grammarPatterns * 100)) : 0;
+    } catch (e) {}
+
+    // ── Nghe (shadowing sets có tiến độ) ─────────────────
+    var listenPct = 0;
+    try {
+      var sProg = JSON.parse(localStorage.getItem('shadowing_progress_v1') || '{}');
+      var sDone = Object.keys(sProg).filter(function(id) {
+        var s = sProg[id]; return s && s.lines && Object.keys(s.lines).length > 0;
+      }).length;
+      listenPct = t.shadowingSets > 0 ? Math.min(100, Math.round(sDone / t.shadowingSets * 100)) : 0;
+    } catch (e) {}
+
+    // ── Đọc (graded reader r{lv} + reading r{lv}) ────────
+    var readPct = 0;
+    try {
+      var re = new RegExp('^rd?-?' + level + '[_-]');
+      var rprog = JSON.parse(localStorage.getItem('reader_progress_v1') || '{}');
+      var rdprog = JSON.parse(localStorage.getItem('reading_progress_v1') || '{}');
+      var rDone = Object.keys(rprog).filter(function(id) {
+        return rprog[id] && (id.match(new RegExp('^rd-' + level + '-')) || id.match(new RegExp('^r' + level + '_')));
+      }).length;
+      var rdDone = Object.keys(rdprog).filter(function(id) {
+        return rdprog[id] && id.match(new RegExp('^r' + level + '_'));
+      }).length;
+      readPct = t.readerPassages > 0 ? Math.min(100, Math.round((rDone + rdDone) / t.readerPassages * 100)) : 0;
+    } catch (e) {}
+
+    // ── Đề thi (3 đề gần nhất đạt ≥80%) ─────────────────
+    var mockPct = 0;
+    try {
+      var hist = JSON.parse(localStorage.getItem('mock_exam_history_v1') || '[]');
+      var lvHist = hist.filter(function(e) { return e && e.level == level; }).slice(-3);
+      var passed80 = lvHist.filter(function(e) { return e.pct >= 80; }).length;
+      mockPct = Math.min(100, Math.round(passed80 / t.mockTarget * 100));
+    } catch (e) {}
+
+    var total = Math.round(vocabPct*0.30 + grammarPct*0.20 + listenPct*0.20 + readPct*0.15 + mockPct*0.15);
+    return { vocab:vocabPct, grammar:grammarPct, listen:listenPct, read:readPct, mock:mockPct, total:total };
+  }
+
+  function _weeklyPlan(level, days, r) {
+    var t = READINESS_TARGETS[level];
+    if (!t) return null;
+    var weeks = Math.max(1, Math.ceil(days / 7));
+    var plan = {};
+    plan.vocab   = Math.max(1, Math.ceil((t.words         * (100 - r.vocab)   / 100) / weeks / 7));
+    plan.grammar = Math.max(0, Math.round((t.grammarPatterns * (100 - r.grammar) / 100) / weeks));
+    plan.listen  = Math.max(0, Math.round((t.shadowingSets   * (100 - r.listen)  / 100) / weeks));
+    plan.read    = Math.max(0, Math.round((t.readerPassages  * (100 - r.read)    / 100) / weeks));
+    plan.mock    = Math.max(0, Math.round((t.mockTarget      * (100 - r.mock)    / 100) / weeks));
+    // daily (ceil / 7, min 1 for vocab)
+    plan.vocabDay   = Math.max(1, Math.ceil(plan.vocab   / 7));
+    plan.grammarDay = Math.max(0, Math.ceil(plan.grammar / 7));
+    plan.listenDay  = Math.max(0, Math.ceil(plan.listen  / 7));
+    plan.readDay    = Math.max(0, Math.ceil(plan.read    / 7));
+    plan.mockDay    = plan.mock > 0 ? 1 : 0;
+    return plan;
+  }
+
+  function _pBar(pct, isWeak) {
+    var cls = isWeak ? ' bdh-rdns-sk-fill--warn' : '';
+    return '<div class="bdh-rdns-sk-bar-track"><div class="bdh-rdns-sk-bar-fill' + cls + '" style="width:' + pct + '%"></div></div>';
+  }
+
+  function _renderReadinessSection() {
+    var wrap = document.getElementById('bdhReadiness');
+    if (!wrap) return;
+    var goal = _loadGoal();
+
+    if (!goal || !goal.level || !goal.examDate) {
+      wrap.innerHTML =
+        '<div class="bdh-rdns-empty">' +
+          '<img src="assets/icon-soft.webp" class="bdh-rdns-empty-img" alt="Bé Rồng" width="64" height="64" loading="lazy"/>' +
+          '<p class="bdh-rdns-empty-txt">Đặt ngày thi để xem mức độ sẵn sàng theo từng kỹ năng</p>' +
+          '<button class="btn-primary bdh-rdns-empty-cta" onclick="BanDoHsk.openGoalModal()">🎯 Đặt mục tiêu thi</button>' +
+        '</div>';
+      return;
+    }
+
+    var level = goal.level;
+    var days  = _daysLeft(goal.examDate);
+    if (days === null) { wrap.innerHTML = ''; return; }
+
+    var r    = _computeReadiness(level);
+    var plan = _weeklyPlan(level, days, r);
+    var tgt  = READINESS_TARGETS[level];
+
+    var dateStr = goal.examDate.split('-').reverse().join('/');
+    var sprint  = days <= 14;
+    var ready85 = r.total >= 85;
+
+    // ── Header ────────────────────────────────────────────
+    var html = '<div class="bdh-rdns-card">';
+
+    // Congrats banner
+    if (ready85) {
+      html += '<div class="bdh-rdns-ready-banner">🎉 Bạn đã sẵn sàng đi thi! Chúc bạn thi tốt!</div>';
+    }
+    // Sprint warning
+    if (sprint) {
+      html += '<div class="bdh-rdns-sprint-banner">⚡ Giai đoạn nước rút — ưu tiên đề thi &amp; ôn SRS</div>';
+    }
+
+    html +=
+      '<div class="bdh-rdns-head">' +
+        '<div class="bdh-rdns-head-info">' +
+          '<span class="bdh-rdns-target-icon">🎯</span>' +
+          '<div>' +
+            '<div class="bdh-rdns-head-title">Mục tiêu: ' + (tgt ? tgt.label : 'HSK ' + level) + '</div>' +
+            '<div class="bdh-rdns-head-sub">Thi ' + dateStr + ' · ' + (days > 0 ? days + ' ngày nữa' : 'Hôm nay!') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<button class="bdh-rdns-edit-btn" onclick="BanDoHsk.openGoalModal()">sửa</button>' +
+      '</div>';
+
+    // ── Tổng sẵn sàng ─────────────────────────────────────
+    var totalClr = r.total >= 85 ? 'bdh-rdns-total--ready' : r.total >= 50 ? '' : 'bdh-rdns-total--low';
+    html +=
+      '<div class="bdh-rdns-total ' + totalClr + '">' +
+        '<span class="bdh-rdns-total-lbl">MỨC ĐỘ SẴN SÀNG</span>' +
+        '<div class="bdh-rdns-total-row">' +
+          '<div class="bdh-rdns-total-bar-track"><div class="bdh-rdns-total-bar-fill" style="width:' + r.total + '%"></div></div>' +
+          '<span class="bdh-rdns-total-pct">' + r.total + '%</span>' +
+        '</div>' +
+      '</div>';
+
+    // ── Per-skill ─────────────────────────────────────────
+    var SKILLS = [
+      { key:'vocab',   label:'Từ vựng', pct: r.vocab   },
+      { key:'grammar', label:'Ngữ pháp', pct: r.grammar },
+      { key:'listen',  label:'Nghe',     pct: r.listen  },
+      { key:'read',    label:'Đọc',      pct: r.read    },
+      { key:'mock',    label:'Đề thi',   pct: r.mock    }
+    ];
+    html += '<div class="bdh-rdns-skills">';
+    SKILLS.forEach(function(sk) {
+      var isWeak = sk.pct < 40;
+      html +=
+        '<div class="bdh-rdns-skill">' +
+          '<span class="bdh-rdns-sk-lbl' + (isWeak ? ' bdh-rdns-sk-lbl--warn' : '') + '">' + sk.label + '</span>' +
+          _pBar(sk.pct, isWeak) +
+          '<span class="bdh-rdns-sk-pct">' + sk.pct + '%</span>' +
+        '</div>';
+    });
+    html += '</div>';
+
+    // ── Kế hoạch ──────────────────────────────────────────
+    if (plan) {
+      var weeks = Math.max(1, Math.ceil(days / 7));
+      var weekParts = [];
+      if (plan.vocab   > 0) weekParts.push(plan.vocab + ' từ');
+      if (plan.grammar > 0) weekParts.push(plan.grammar + ' NP');
+      if (plan.listen  > 0) weekParts.push(plan.listen  + ' nghe');
+      if (plan.read    > 0) weekParts.push(plan.read    + ' đọc');
+      if (plan.mock    > 0) weekParts.push(plan.mock    + ' đề');
+
+      html += '<div class="bdh-rdns-plan">';
+      if (weekParts.length) {
+        html += '<div class="bdh-rdns-plan-row">' +
+          '<span class="bdh-rdns-plan-lbl">Tuần này (~' + weeks + ' tuần còn lại)</span>' +
+          '<span class="bdh-rdns-plan-val">' + weekParts.join(' · ') + '</span>' +
+        '</div>';
+      }
+      html += '</div>';
+
+      // ── Hôm nay cần làm ───────────────────────────────────
+      var chips = [];
+      if (plan.vocabDay > 0) {
+        chips.push({ icon:'📖', lbl:plan.vocabDay + ' từ mới', route:'learn', deckId:'sys_hsk'+level });
+      }
+      if (plan.grammarDay > 0) {
+        chips.push({ icon:'✏️', lbl:plan.grammarDay + ' NP', route:'grammar' });
+      }
+      if (plan.listenDay > 0) {
+        chips.push({ icon:'🎧', lbl:plan.listenDay + ' nghe', route:'speaking' });
+      }
+      if (plan.readDay > 0) {
+        chips.push({ icon:'📚', lbl:plan.readDay + ' đọc', route:'reader' });
+      }
+      if (sprint || plan.mockDay > 0) {
+        chips.push({ icon:'📝', lbl:'1 đề thử', route:'mock-exam' });
+      }
+      chips = chips.slice(0, 4);
+
+      if (chips.length) {
+        html += '<div class="bdh-rdns-today">';
+        html += '<span class="bdh-rdns-today-lbl">Hôm nay cần làm</span>';
+        html += '<div class="bdh-rdns-chips">';
+        chips.forEach(function(c) {
+          var click = c.deckId
+            ? 'BanDoHsk._openDeck(\'' + c.deckId + '\')'
+            : 'Router.navigateTo(\'' + c.route + '\')';
+          html += '<button class="bdh-rdns-chip" onclick="' + click + '">' + c.icon + ' ' + c.lbl + '</button>';
+        });
+        html += '</div></div>';
+      }
+    }
+
+    html += '</div>'; // .bdh-rdns-card
+    wrap.innerHTML = html;
+  }
+
   // ── Public API ───────────────────────────────────────
   return {
 
@@ -536,8 +795,87 @@ var BanDoHsk = (function() {
       }, 120);
     },
 
+    renderReadiness: function() {
+      _renderReadinessSection();
+    },
+
+    _computeReadiness: _computeReadiness,
+
+    openGoalModal: function() {
+      var goal  = _loadGoal();
+      var today = new Date();
+      var minDate = new Date(today.getTime() + 7 * 86400000).toISOString().split('T')[0];
+      var maxDate = new Date(today.getTime() + 548 * 86400000).toISOString().split('T')[0]; // ~18 months
+
+      var dateEl = document.getElementById('bdhGoalDate');
+      if (dateEl) {
+        dateEl.min   = minDate;
+        dateEl.max   = maxDate;
+        dateEl.value = (goal && goal.examDate) ? goal.examDate : '';
+      }
+
+      _goalSelectedLv  = (goal && goal.level)  ? goal.level  : null;
+      _goalSelectedMin = (goal && goal.minutesPerDay) ? goal.minutesPerDay : null;
+
+      document.querySelectorAll('.bdh-gm-lv').forEach(function(b) {
+        b.classList.toggle('bdh-gm-lv--active', parseInt(b.dataset.lv) === _goalSelectedLv);
+      });
+      document.querySelectorAll('.bdh-gm-min').forEach(function(b) {
+        b.classList.toggle('bdh-gm-min--active', parseInt(b.dataset.min) === _goalSelectedMin);
+      });
+
+      var m = document.getElementById('bdhGoalModal');
+      if (m) m.classList.add('open');
+    },
+
+    closeGoalModal: function() {
+      var m = document.getElementById('bdhGoalModal');
+      if (m) m.classList.remove('open');
+    },
+
+    _goalSelectLv: function(lv) {
+      _goalSelectedLv = lv;
+      document.querySelectorAll('.bdh-gm-lv').forEach(function(b) {
+        b.classList.toggle('bdh-gm-lv--active', parseInt(b.dataset.lv) === lv);
+      });
+    },
+
+    _goalSelectMin: function(min) {
+      _goalSelectedMin = (min === _goalSelectedMin) ? null : min;
+      document.querySelectorAll('.bdh-gm-min').forEach(function(b) {
+        b.classList.toggle('bdh-gm-min--active', parseInt(b.dataset.min) === _goalSelectedMin);
+      });
+    },
+
+    saveGoalModal: function() {
+      var dateEl = document.getElementById('bdhGoalDate');
+      var dateVal = dateEl ? dateEl.value : '';
+      if (!_goalSelectedLv) {
+        if (typeof showToast === 'function') showToast('Vui lòng chọn cấp HSK mục tiêu');
+        else alert('Vui lòng chọn cấp HSK mục tiêu');
+        return;
+      }
+      if (!dateVal) {
+        if (typeof showToast === 'function') showToast('Vui lòng chọn ngày thi');
+        else alert('Vui lòng chọn ngày thi');
+        return;
+      }
+      _saveGoal({ level: _goalSelectedLv, examDate: dateVal, minutesPerDay: _goalSelectedMin, setAt: new Date().toISOString() });
+      BanDoHsk.closeGoalModal();
+      _renderReadinessSection();
+      if (typeof lhRenderGoalWidget === 'function') lhRenderGoalWidget();
+    },
+
+    _openDeck: function(deckId) {
+      Router.navigateTo('learn');
+      setTimeout(function() {
+        document.dispatchEvent(new CustomEvent('hsk:openDeck', { detail: { deckId: deckId } }));
+      }, 120);
+    },
+
     setup: function() {
       BanDoHsk.render();
+      _renderReadinessSection();
     }
   };
 

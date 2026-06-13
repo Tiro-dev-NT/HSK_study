@@ -327,6 +327,14 @@ var MockExam = (function() {
     // Track quest progress (only if passed)
     if (passed && typeof Quests !== 'undefined') Quests.incrementMetric('mock_passed', 1);
 
+    // Save result to history (used by Readiness Dashboard)
+    try {
+      var _mhist = JSON.parse(localStorage.getItem('mock_exam_history_v1') || '[]');
+      _mhist.push({ level: _state.level, pct: pct, passed: passed, date: new Date().toISOString().split('T')[0] });
+      if (_mhist.length > 20) _mhist = _mhist.slice(-20);
+      localStorage.setItem('mock_exam_history_v1', JSON.stringify(_mhist));
+    } catch (_he) {}
+
     // Lát 2: lưu pass ải/trùm để node lộ trình hiện ✓
     if (_state.quick && passed) _saveCheckpoint(_state.quick.key);
 

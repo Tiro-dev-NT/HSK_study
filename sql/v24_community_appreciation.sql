@@ -135,5 +135,5 @@ GRANT  EXECUTE ON FUNCTION public.admin_list_feedback(INT) TO authenticated;
 --  • User tick "đăng công khai" khi gửi góp ý → feedback.public_consent=true.
 --  • Admin duyệt (admin_set_feedback_approved) + chọn MVP (admin_set_feedback_featured).
 --  • Trang /tri-an đọc community_appreciation_wall + community_appreciation_featured (sanitized).
--- Ghi "DEPLOYED prod: <ngày>" vào đây sau khi chạy.
+-- DEPLOYED prod: 2026-06-13
 -- ═══════════════════════════════════════════════════════════════════════

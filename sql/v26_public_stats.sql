@@ -49,5 +49,5 @@ GRANT  EXECUTE ON FUNCTION public.public_stats() TO anon, authenticated;
 -- DONE v26 — sau khi chạy:
 --   • Home khách + Pricing đọc public_stats() → hiện "{N} học viên · {M} người
 --     học trong 7 ngày qua" KHI users_count ≥ ngưỡng; dưới ngưỡng hiện copy chữ.
--- DEPLOYED prod: <điền ngày sau khi chạy>
+-- DEPLOYED prod: 2026-06-13
 -- ═══════════════════════════════════════════════════════════════════════

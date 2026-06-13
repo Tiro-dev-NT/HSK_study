@@ -247,5 +247,187 @@ READER_DATA[2] = [
       { q: { vi: 'Hôm nay bạn ấy mua gì?', en: 'What does she buy today?' }, options: ['Bánh bao và sữa', 'Cơm và rau', 'Táo và trà', 'Mì và trứng'], answer: 0, explain_vi: '买了一个包子和一杯牛奶 = mua bánh bao và một cốc sữa.' },
       { q: { vi: 'Bạn ấy nghĩ cách này thế nào?', en: 'What does she think of this way?' }, options: ['Vừa nhanh vừa tiện', 'Quá khó', 'Không sạch', 'Rất xa'], answer: 0, explain_vi: '又快又方便 = vừa nhanh vừa tiện.' }
     ]
+  },
+  {
+    id: 'rd-2-011', level: 2, topic: 'so-thich',
+    title: { vi: 'Học vẽ tranh', en: 'Learning to Paint', zh: '学画画' },
+    summary_vi: 'Tiểu Hồng học vẽ mỗi thứ Bảy và được cô giáo khen.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 43,
+    paragraphs: [{
+      sentences: [
+        { zh: '小红从小喜欢画画。', py: 'Xiǎo Hóng cóngxiǎo xǐhuān huàhuà.', vi: 'Tiểu Hồng từ nhỏ đã thích vẽ tranh.', audio: '',
+          gloss: [ { w: '从小', py: 'cóngxiǎo', vi: 'từ nhỏ' }, { w: '画画', py: 'huàhuà', vi: 'vẽ tranh' } ] },
+        { zh: '每个星期六，她去学画。', py: 'Měi ge xīngqīliù, tā qù xué huà.', vi: 'Mỗi thứ Bảy, bạn ấy đi học vẽ.', audio: '',
+          gloss: [ { w: '每个星期六', py: 'měi ge xīngqīliù', vi: 'mỗi thứ Bảy' }, { w: '学画', py: 'xué huà', vi: 'học vẽ' } ] },
+        { zh: '今天她画了一只小猫。', py: 'Jīntiān tā huà le yì zhī xiǎo māo.', vi: 'Hôm nay bạn ấy vẽ một con mèo nhỏ.', audio: '',
+          gloss: [ { w: '画了', py: 'huà le', vi: 'đã vẽ' }, { w: '一只小猫', py: 'yì zhī xiǎo māo', vi: 'một con mèo nhỏ' } ] },
+        { zh: '老师说她画得很好。', py: 'Lǎoshī shuō tā huà de hěn hǎo.', vi: 'Cô giáo nói bạn ấy vẽ rất đẹp.', audio: '',
+          gloss: [ { w: '画得很好', py: 'huà de hěn hǎo', vi: 'vẽ rất đẹp' } ] },
+        { zh: '她很高兴，想画更多的画。', py: 'Tā hěn gāoxìng, xiǎng huà gèng duō de huà.', vi: 'Bạn ấy rất vui, muốn vẽ thêm nhiều tranh.', audio: '',
+          gloss: [ { w: '更多', py: 'gèng duō', vi: 'nhiều hơn' }, { w: '画', py: 'huà', vi: 'tranh/vẽ' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Tiểu Hồng thích làm gì từ nhỏ?', en: 'What has Xiao Hong liked since childhood?' }, options: ['Vẽ tranh', 'Bơi', 'Nấu ăn', 'Chạy bộ'], answer: 0, explain_vi: '从小喜欢画画 = từ nhỏ thích vẽ tranh.' },
+      { q: { vi: 'Hôm nay bạn ấy vẽ gì?', en: 'What does she paint today?' }, options: ['Một con mèo nhỏ', 'Một bông hoa', 'Một con chó', 'Một ngôi nhà'], answer: 0, explain_vi: '画了一只小猫 = vẽ một con mèo nhỏ.' },
+      { q: { vi: 'Cô giáo nói thế nào?', en: 'What does the teacher say?' }, options: ['Vẽ rất đẹp', 'Vẽ chưa tốt', 'Quá chậm', 'Quá nhỏ'], answer: 0, explain_vi: '画得很好 = vẽ rất đẹp.' }
+    ]
+  },
+  {
+    id: 'rd-2-012', level: 2, topic: 'du-lich',
+    title: { vi: 'Một ngày ở sở thú', en: 'A Day at the Zoo', zh: '动物园的一天' },
+    summary_vi: 'Bố đưa tôi đi sở thú xem nhiều con vật trong một buổi sáng vui.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 44,
+    paragraphs: [{
+      sentences: [
+        { zh: '星期天，爸爸带我去动物园。', py: 'Xīngqītiān, bàba dài wǒ qù dòngwùyuán.', vi: 'Chủ nhật, bố đưa tôi đi sở thú.', audio: '',
+          gloss: [ { w: '带我去', py: 'dài wǒ qù', vi: 'đưa tôi đi' }, { w: '动物园', py: 'dòngwùyuán', vi: 'sở thú' } ] },
+        { zh: '动物园里有很多动物。', py: 'Dòngwùyuán lǐ yǒu hěn duō dòngwù.', vi: 'Trong sở thú có rất nhiều con vật.', audio: '',
+          gloss: [ { w: '动物', py: 'dòngwù', vi: 'động vật/con vật' }, { w: '很多', py: 'hěn duō', vi: 'rất nhiều' } ] },
+        { zh: '我看见了很多鱼，还有小鸟。', py: 'Wǒ kànjiàn le hěn duō yú, hái yǒu xiǎo niǎo.', vi: 'Tôi thấy rất nhiều cá, còn có những con chim nhỏ.', audio: '',
+          gloss: [ { w: '看见', py: 'kànjiàn', vi: 'nhìn thấy' }, { w: '鱼', py: 'yú', vi: 'cá' }, { w: '小鸟', py: 'xiǎo niǎo', vi: 'chim nhỏ' } ] },
+        { zh: '我们玩了一个上午。', py: 'Wǒmen wán le yí ge shàngwǔ.', vi: 'Chúng tôi chơi cả buổi sáng.', audio: '',
+          gloss: [ { w: '上午', py: 'shàngwǔ', vi: 'buổi sáng' } ] },
+        { zh: '我觉得这一天很有意思。', py: 'Wǒ juéde zhè yì tiān hěn yǒu yìsi.', vi: 'Tôi thấy ngày hôm đó rất thú vị.', audio: '',
+          gloss: [ { w: '觉得', py: 'juéde', vi: 'cảm thấy' }, { w: '有意思', py: 'yǒu yìsi', vi: 'thú vị' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Ai đưa tôi đi sở thú?', en: 'Who takes me to the zoo?' }, options: ['Bố', 'Mẹ', 'Anh trai', 'Cô giáo'], answer: 0, explain_vi: '爸爸带我去动物园 = bố đưa tôi đi sở thú.' },
+      { q: { vi: 'Trong sở thú có gì?', en: 'What is in the zoo?' }, options: ['Rất nhiều con vật', 'Rất nhiều sách', 'Rất nhiều xe', 'Rất nhiều hoa'], answer: 0, explain_vi: '有很多动物 = có rất nhiều con vật.' },
+      { q: { vi: 'Tôi thấy ngày hôm đó thế nào?', en: 'How do I feel about the day?' }, options: ['Rất thú vị', 'Quá mệt', 'Không vui', 'Quá xa'], answer: 0, explain_vi: '很有意思 = rất thú vị.' }
+    ]
+  },
+  {
+    id: 'rd-2-013', level: 2, topic: 'mua-sam',
+    title: { vi: 'Mua cặp sách mới', en: 'Buying a New Backpack', zh: '买新书包' },
+    summary_vi: 'Cặp sách hỏng, hai mẹ con đi mua một chiếc cặp mới màu xanh.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 45,
+    paragraphs: [{
+      sentences: [
+        { zh: '我的书包坏了。', py: 'Wǒ de shūbāo huài le.', vi: 'Cặp sách của tôi hỏng rồi.', audio: '',
+          gloss: [ { w: '书包', py: 'shūbāo', vi: 'cặp sách' }, { w: '坏了', py: 'huài le', vi: 'hỏng rồi' } ] },
+        { zh: '妈妈带我去商店买新的。', py: 'Māma dài wǒ qù shāngdiàn mǎi xīn de.', vi: 'Mẹ đưa tôi đi cửa hàng mua cái mới.', audio: '',
+          gloss: [ { w: '商店', py: 'shāngdiàn', vi: 'cửa hàng' }, { w: '买新的', py: 'mǎi xīn de', vi: 'mua cái mới' } ] },
+        { zh: '商店里的书包又多又好看。', py: 'Shāngdiàn lǐ de shūbāo yòu duō yòu hǎokàn.', vi: 'Cặp trong cửa hàng vừa nhiều vừa đẹp.', audio: '',
+          gloss: [ { w: '又多又好看', py: 'yòu duō yòu hǎokàn', vi: 'vừa nhiều vừa đẹp' } ] },
+        { zh: '我买了一个蓝色的书包。', py: 'Wǒ mǎi le yí ge lánsè de shūbāo.', vi: 'Tôi mua một chiếc cặp màu xanh.', audio: '',
+          gloss: [ { w: '蓝色', py: 'lánsè', vi: 'màu xanh' } ] },
+        { zh: '我很喜欢这个新书包。', py: 'Wǒ hěn xǐhuān zhège xīn shūbāo.', vi: 'Tôi rất thích chiếc cặp mới này.', audio: '',
+          gloss: [ { w: '这个', py: 'zhège', vi: 'cái này' }, { w: '新书包', py: 'xīn shūbāo', vi: 'cặp mới' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Vì sao tôi mua cặp mới?', en: 'Why do I buy a new backpack?' }, options: ['Cặp cũ hỏng rồi', 'Mất cặp', 'Cặp quá nhỏ', 'Không thích màu'], answer: 0, explain_vi: '我的书包坏了 = cặp của tôi hỏng rồi.' },
+      { q: { vi: 'Cặp trong cửa hàng thế nào?', en: 'How are the backpacks in the shop?' }, options: ['Vừa nhiều vừa đẹp', 'Rất đắt', 'Quá ít', 'Không đẹp'], answer: 0, explain_vi: '又多又好看 = vừa nhiều vừa đẹp.' },
+      { q: { vi: 'Tôi mua cặp màu gì?', en: 'What color backpack do I buy?' }, options: ['Màu xanh', 'Màu đỏ', 'Màu trắng', 'Màu đen'], answer: 0, explain_vi: '蓝色的书包 = cặp màu xanh.' }
+    ]
+  },
+  {
+    id: 'rd-2-014', level: 2, topic: 'am-thuc',
+    title: { vi: 'Cùng mẹ làm bánh mì', en: 'Making Bread with Mom', zh: '和妈妈做面包' },
+    summary_vi: 'Buổi chiều tôi giúp mẹ làm bánh mì từ trứng và sữa.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 46,
+    paragraphs: [{
+      sentences: [
+        { zh: '下午，我和妈妈一起做面包。', py: 'Xiàwǔ, wǒ hé māma yìqǐ zuò miànbāo.', vi: 'Buổi chiều, tôi cùng mẹ làm bánh mì.', audio: '',
+          gloss: [ { w: '一起', py: 'yìqǐ', vi: 'cùng nhau' }, { w: '做面包', py: 'zuò miànbāo', vi: 'làm bánh mì' } ] },
+        { zh: '妈妈先准备好鸡蛋和牛奶。', py: 'Māma xiān zhǔnbèi hǎo jīdàn hé niúnǎi.', vi: 'Mẹ chuẩn bị sẵn trứng và sữa trước.', audio: '',
+          gloss: [ { w: '先', py: 'xiān', vi: 'trước/đầu tiên' }, { w: '准备好', py: 'zhǔnbèi hǎo', vi: 'chuẩn bị sẵn' }, { w: '鸡蛋', py: 'jīdàn', vi: 'trứng gà' } ] },
+        { zh: '我帮她做，觉得很有意思。', py: 'Wǒ bāng tā zuò, juéde hěn yǒu yìsi.', vi: 'Tôi giúp mẹ làm, thấy rất thú vị.', audio: '',
+          gloss: [ { w: '帮她做', py: 'bāng tā zuò', vi: 'giúp mẹ làm' }, { w: '有意思', py: 'yǒu yìsi', vi: 'thú vị' } ] },
+        { zh: '半个小时以后，面包好了。', py: 'Bàn ge xiǎoshí yǐhòu, miànbāo hǎo le.', vi: 'Nửa tiếng sau, bánh mì xong.', audio: '',
+          gloss: [ { w: '半个小时以后', py: 'bàn ge xiǎoshí yǐhòu', vi: 'nửa tiếng sau' } ] },
+        { zh: '面包很好吃，我们都很高兴。', py: 'Miànbāo hěn hǎochī, wǒmen dōu hěn gāoxìng.', vi: 'Bánh mì rất ngon, chúng tôi đều rất vui.', audio: '',
+          gloss: [ { w: '很好吃', py: 'hěn hǎochī', vi: 'rất ngon' }, { w: '都', py: 'dōu', vi: 'đều' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Tôi và mẹ làm gì?', en: 'What do mom and I make?' }, options: ['Làm bánh mì', 'Vẽ tranh', 'Đi sở thú', 'Dọn nhà'], answer: 0, explain_vi: '一起做面包 = cùng làm bánh mì.' },
+      { q: { vi: 'Mẹ chuẩn bị gì?', en: 'What does mom prepare?' }, options: ['Trứng và sữa', 'Rau và thịt', 'Táo và trà', 'Sách và bút'], answer: 0, explain_vi: '准备好鸡蛋和牛奶 = chuẩn bị trứng và sữa.' },
+      { q: { vi: 'Bánh mì thế nào?', en: 'How is the bread?' }, options: ['Rất ngon', 'Quá cay', 'Không ngon', 'Rất đắt'], answer: 0, explain_vi: '面包很好吃 = bánh mì rất ngon.' }
+    ]
+  },
+  {
+    id: 'rd-2-015', level: 2, topic: 'doi-song',
+    title: { vi: 'Tìm điện thoại', en: 'Looking for the Phone', zh: '找手机' },
+    summary_vi: 'Tiểu Minh tìm điện thoại khắp nơi và cuối cùng thấy nó trên giường.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 47,
+    paragraphs: [{
+      sentences: [
+        { zh: '早上，小明找不到他的手机。', py: 'Zǎoshang, Xiǎo Míng zhǎo bu dào tā de shǒujī.', vi: 'Buổi sáng, Tiểu Minh không tìm thấy điện thoại.', audio: '',
+          gloss: [ { w: '找不到', py: 'zhǎo bu dào', vi: 'không tìm thấy' }, { w: '手机', py: 'shǒujī', vi: 'điện thoại' } ] },
+        { zh: '他在桌子上、椅子上都找了。', py: 'Tā zài zhuōzi shang, yǐzi shang dōu zhǎo le.', vi: 'Bạn ấy tìm trên bàn, trên ghế đều rồi.', audio: '',
+          gloss: [ { w: '桌子上', py: 'zhuōzi shang', vi: 'trên bàn' }, { w: '椅子', py: 'yǐzi', vi: 'ghế' } ] },
+        { zh: '妈妈说：“你打个电话试试。”', py: 'Māma shuō: “Nǐ dǎ ge diànhuà shìshi.”', vi: 'Mẹ nói: “Con gọi thử một cuộc xem.”', audio: '',
+          gloss: [ { w: '打电话', py: 'dǎ diànhuà', vi: 'gọi điện' }, { w: '试试', py: 'shìshi', vi: 'thử xem' } ] },
+        { zh: '后来，他在床上找到了手机。', py: 'Hòulái, tā zài chuáng shang zhǎodào le shǒujī.', vi: 'Sau đó, bạn ấy tìm thấy điện thoại trên giường.', audio: '',
+          gloss: [ { w: '后来', py: 'hòulái', vi: 'sau đó' }, { w: '床上', py: 'chuáng shang', vi: 'trên giường' }, { w: '找到了', py: 'zhǎodào le', vi: 'đã tìm thấy' } ] },
+        { zh: '小明很高兴，谢谢妈妈。', py: 'Xiǎo Míng hěn gāoxìng, xièxie māma.', vi: 'Tiểu Minh rất vui, cảm ơn mẹ.', audio: '',
+          gloss: [ { w: '高兴', py: 'gāoxìng', vi: 'vui' }, { w: '谢谢', py: 'xièxie', vi: 'cảm ơn' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Tiểu Minh tìm gì?', en: 'What is Xiao Ming looking for?' }, options: ['Điện thoại', 'Sách', 'Chìa khóa', 'Cặp'], answer: 0, explain_vi: '找不到他的手机 = không tìm thấy điện thoại.' },
+      { q: { vi: 'Cuối cùng điện thoại ở đâu?', en: 'Where is the phone in the end?' }, options: ['Trên giường', 'Trên bàn', 'Trên ghế', 'Trong cặp'], answer: 0, explain_vi: '在床上找到了手机 = tìm thấy điện thoại trên giường.' },
+      { q: { vi: 'Ai giúp Tiểu Minh?', en: 'Who helps Xiao Ming?' }, options: ['Mẹ', 'Bố', 'Cô giáo', 'Bạn'], answer: 0, explain_vi: '妈妈说…打个电话试试 = mẹ bảo gọi thử.' }
+    ]
+  },
+  {
+    id: 'rd-2-016', level: 2, topic: 'ban-be',
+    title: { vi: 'Viết thư cho bạn', en: 'Writing a Letter to a Friend', zh: '给朋友写信' },
+    summary_vi: 'Tôi viết thư cho một người bạn ở xa và mong bạn ấy sớm hồi âm.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 48,
+    paragraphs: [{
+      sentences: [
+        { zh: '我有一个好朋友，他住得很远。', py: 'Wǒ yǒu yí ge hǎo péngyǒu, tā zhù de hěn yuǎn.', vi: 'Tôi có một người bạn tốt, bạn ấy sống ở rất xa.', audio: '',
+          gloss: [ { w: '好朋友', py: 'hǎo péngyǒu', vi: 'bạn tốt' }, { w: '住得很远', py: 'zhù de hěn yuǎn', vi: 'sống ở rất xa' } ] },
+        { zh: '今天，我给他写信。', py: 'Jīntiān, wǒ gěi tā xiě xìn.', vi: 'Hôm nay, tôi viết thư cho bạn ấy.', audio: '',
+          gloss: [ { w: '给他', py: 'gěi tā', vi: 'cho bạn ấy' }, { w: '写信', py: 'xiě xìn', vi: 'viết thư' } ] },
+        { zh: '我在信里说了我的学校和朋友。', py: 'Wǒ zài xìn lǐ shuō le wǒ de xuéxiào hé péngyǒu.', vi: 'Trong thư tôi kể về trường và bạn bè của mình.', audio: '',
+          gloss: [ { w: '信里', py: 'xìn lǐ', vi: 'trong thư' }, { w: '学校', py: 'xuéxiào', vi: 'trường học' } ] },
+        { zh: '我还问他最近好不好。', py: 'Wǒ hái wèn tā zuìjìn hǎo bu hǎo.', vi: 'Tôi còn hỏi dạo này bạn ấy có khỏe không.', audio: '',
+          gloss: [ { w: '还问', py: 'hái wèn', vi: 'còn hỏi' }, { w: '最近', py: 'zuìjìn', vi: 'dạo này/gần đây' } ] },
+        { zh: '我想他快点回信。', py: 'Wǒ xiǎng tā kuài diǎn huí xìn.', vi: 'Tôi mong bạn ấy sớm hồi âm.', audio: '',
+          gloss: [ { w: '快点', py: 'kuài diǎn', vi: 'nhanh lên/sớm' }, { w: '回信', py: 'huí xìn', vi: 'hồi âm/trả lời thư' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Bạn của tôi sống ở đâu?', en: 'Where does my friend live?' }, options: ['Ở rất xa', 'Gần nhà tôi', 'Trong trường', 'Bên bờ sông'], answer: 0, explain_vi: '他住得很远 = bạn ấy sống ở rất xa.' },
+      { q: { vi: 'Tôi viết gì trong thư?', en: 'What do I write in the letter?' }, options: ['Về trường học và bạn bè', 'Về thời tiết', 'Về món ăn', 'Về con mèo'], answer: 0, explain_vi: '说了我的学校和朋友 = kể về trường và bạn bè.' },
+      { q: { vi: 'Tôi mong điều gì?', en: 'What do I hope for?' }, options: ['Bạn sớm hồi âm', 'Bạn đến nhà', 'Bạn gọi điện', 'Bạn đi học'], answer: 0, explain_vi: '想他快点回信 = mong bạn ấy sớm hồi âm.' }
+    ]
+  },
+  {
+    id: 'rd-2-017', level: 2, topic: 'doi-song',
+    title: { vi: 'Nuôi cá nhỏ', en: 'Keeping Little Fish', zh: '养小鱼' },
+    summary_vi: 'Chị gái mua cho tôi hai con cá nhỏ, mỗi sáng tôi cho chúng ăn.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 46,
+    paragraphs: [{
+      sentences: [
+        { zh: '上个月，姐姐给我买了两条小鱼。', py: 'Shàng ge yuè, jiějie gěi wǒ mǎi le liǎng tiáo xiǎo yú.', vi: 'Tháng trước, chị gái mua cho tôi hai con cá nhỏ.', audio: '',
+          gloss: [ { w: '上个月', py: 'shàng ge yuè', vi: 'tháng trước' }, { w: '两条小鱼', py: 'liǎng tiáo xiǎo yú', vi: 'hai con cá nhỏ' } ] },
+        { zh: '两条鱼在一个大杯子里。', py: 'Liǎng tiáo yú zài yí ge dà bēizi lǐ.', vi: 'Hai con cá ở trong một cái cốc to.', audio: '',
+          gloss: [ { w: '鱼', py: 'yú', vi: 'cá' }, { w: '大杯子里', py: 'dà bēizi lǐ', vi: 'trong cốc to' } ] },
+        { zh: '每天早上，我给它们一点东西吃。', py: 'Měitiān zǎoshang, wǒ gěi tāmen yìdiǎn dōngxi chī.', vi: 'Mỗi sáng, tôi cho chúng ăn một chút.', audio: '',
+          gloss: [ { w: '它们', py: 'tāmen', vi: 'chúng (vật)' }, { w: '一点东西', py: 'yìdiǎn dōngxi', vi: 'một chút đồ' } ] },
+        { zh: '它们很小，也很好看。', py: 'Tāmen hěn xiǎo, yě hěn hǎokàn.', vi: 'Chúng rất nhỏ, cũng rất xinh.', audio: '',
+          gloss: [ { w: '很小', py: 'hěn xiǎo', vi: 'rất nhỏ' }, { w: '好看', py: 'hǎokàn', vi: 'đẹp/xinh' } ] },
+        { zh: '我很喜欢这两条小鱼。', py: 'Wǒ hěn xǐhuān zhè liǎng tiáo xiǎo yú.', vi: 'Tôi rất thích hai con cá nhỏ này.', audio: '',
+          gloss: [ { w: '喜欢', py: 'xǐhuān', vi: 'thích' }, { w: '这两条', py: 'zhè liǎng tiáo', vi: 'hai con này' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Ai mua cá cho tôi?', en: 'Who buys me the fish?' }, options: ['Chị gái', 'Mẹ', 'Bố', 'Anh trai'], answer: 0, explain_vi: '姐姐给我买了两条小鱼 = chị gái mua cho tôi hai con cá.' },
+      { q: { vi: 'Tôi nuôi mấy con cá?', en: 'How many fish do I keep?' }, options: ['Hai con', 'Một con', 'Ba con', 'Bốn con'], answer: 0, explain_vi: '两条小鱼 = hai con cá nhỏ.' },
+      { q: { vi: 'Mỗi sáng tôi làm gì?', en: 'What do I do every morning?' }, options: ['Cho cá ăn', 'Rửa cốc', 'Tưới hoa', 'Đọc sách'], answer: 0, explain_vi: '给它们一点东西吃 = cho chúng ăn một chút.' }
+    ]
   }
 ];

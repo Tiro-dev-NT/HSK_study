@@ -289,5 +289,180 @@ READER_DATA[1] = [
       { q: { vi: 'Tôi đi đâu bằng xe?', en: 'Where do I go by bus/car?' }, options: ['Đến trường', 'Đến nhà hàng', 'Đến bệnh viện', 'Đến hiệu sách'], answer: 0, explain_vi: '坐车去学校 = đi xe đến trường.' },
       { q: { vi: 'Mẹ ngồi ở đâu?', en: 'Where does mom sit?' }, options: ['Bên cạnh tôi', 'Phía sau tôi', 'Ở nhà', 'Ở trường'], answer: 0, explain_vi: '妈妈坐在我旁边 = mẹ ngồi bên cạnh tôi.' }
     ]
+  },
+  {
+    id: 'rd-1-013', level: 1, topic: 'doi-song',
+    title: { vi: 'Những bông hoa nhỏ', en: 'Little Flowers', zh: '小花' },
+    summary_vi: 'Mỗi sáng tôi chăm những bông hoa đỏ trong nhà.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 27,
+    paragraphs: [{
+      sentences: [
+        { zh: '我家有很多花。', py: 'Wǒ jiā yǒu hěn duō huā.', vi: 'Nhà tôi có rất nhiều hoa.', audio: '',
+          gloss: [ { w: '我家', py: 'wǒ jiā', vi: 'nhà tôi' }, { w: '很多', py: 'hěn duō', vi: 'rất nhiều' }, { w: '花', py: 'huā', vi: 'hoa' } ] },
+        { zh: '花是红的，很好看。', py: 'Huā shì hóng de, hěn hǎokàn.', vi: 'Hoa màu đỏ, rất đẹp.', audio: '',
+          gloss: [ { w: '红的', py: 'hóng de', vi: 'màu đỏ' }, { w: '好看', py: 'hǎokàn', vi: 'đẹp mắt' } ] },
+        { zh: '每天早上，我给花一点水。', py: 'Měitiān zǎoshang, wǒ gěi huā yìdiǎn shuǐ.', vi: 'Mỗi sáng, tôi cho hoa một chút nước.', audio: '',
+          gloss: [ { w: '每天早上', py: 'měitiān zǎoshang', vi: 'mỗi sáng' }, { w: '给', py: 'gěi', vi: 'cho' }, { w: '一点水', py: 'yìdiǎn shuǐ', vi: 'một chút nước' } ] },
+        { zh: '妈妈说我做得很好。', py: 'Māma shuō wǒ zuò de hěn hǎo.', vi: 'Mẹ nói tôi làm rất tốt.', audio: '',
+          gloss: [ { w: '说', py: 'shuō', vi: 'nói' }, { w: '做得很好', py: 'zuò de hěn hǎo', vi: 'làm rất tốt' } ] },
+        { zh: '我很喜欢这些花。', py: 'Wǒ hěn xǐhuān zhèxiē huā.', vi: 'Tôi rất thích những bông hoa này.', audio: '',
+          gloss: [ { w: '喜欢', py: 'xǐhuān', vi: 'thích' }, { w: '这些', py: 'zhèxiē', vi: 'những…này' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Hoa màu gì?', en: 'What color are the flowers?' }, options: ['Màu đỏ', 'Màu trắng', 'Màu đen', 'Màu xanh'], answer: 0, explain_vi: '花是红的 = hoa màu đỏ.' },
+      { q: { vi: 'Mỗi sáng tôi làm gì cho hoa?', en: 'What do I do for the flowers each morning?' }, options: ['Cho hoa một chút nước', 'Hát cho hoa', 'Mua thêm hoa', 'Đọc sách'], answer: 0, explain_vi: '给花一点水 = cho hoa một chút nước.' }
+    ]
+  },
+  {
+    id: 'rd-1-014', level: 1, topic: 'so-thich',
+    title: { vi: 'Tôi thích hát', en: 'I Like Singing', zh: '我喜欢唱歌' },
+    summary_vi: 'Mỗi tối tôi hát ở nhà, anh trai cũng thích hát.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 28,
+    paragraphs: [{
+      sentences: [
+        { zh: '我很喜欢唱歌。', py: 'Wǒ hěn xǐhuān chànggē.', vi: 'Tôi rất thích hát.', audio: '',
+          gloss: [ { w: '喜欢', py: 'xǐhuān', vi: 'thích' }, { w: '唱歌', py: 'chànggē', vi: 'hát' } ] },
+        { zh: '每天晚上，我在家里唱歌。', py: 'Měitiān wǎnshang, wǒ zài jiā lǐ chànggē.', vi: 'Mỗi tối, tôi hát ở nhà.', audio: '',
+          gloss: [ { w: '每天晚上', py: 'měitiān wǎnshang', vi: 'mỗi tối' }, { w: '在家里', py: 'zài jiā lǐ', vi: 'ở nhà' } ] },
+        { zh: '妈妈说我唱得很好。', py: 'Māma shuō wǒ chàng de hěn hǎo.', vi: 'Mẹ nói tôi hát rất hay.', audio: '',
+          gloss: [ { w: '唱得很好', py: 'chàng de hěn hǎo', vi: 'hát rất hay' } ] },
+        { zh: '哥哥也很喜欢唱歌。', py: 'Gēge yě hěn xǐhuān chànggē.', vi: 'Anh trai cũng rất thích hát.', audio: '',
+          gloss: [ { w: '哥哥', py: 'gēge', vi: 'anh trai' }, { w: '唱歌', py: 'chànggē', vi: 'hát' } ] },
+        { zh: '我们一起唱歌，很高兴。', py: 'Wǒmen yìqǐ chànggē, hěn gāoxìng.', vi: 'Chúng tôi cùng hát, rất vui.', audio: '',
+          gloss: [ { w: '一起', py: 'yìqǐ', vi: 'cùng nhau' }, { w: '高兴', py: 'gāoxìng', vi: 'vui' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Tôi thích làm gì?', en: 'What do I like to do?' }, options: ['Hát', 'Vẽ', 'Chạy', 'Nấu ăn'], answer: 0, explain_vi: '我很喜欢唱歌 = tôi rất thích hát.' },
+      { q: { vi: 'Mẹ nói tôi hát thế nào?', en: 'How does mom say I sing?' }, options: ['Rất hay', 'Không hay', 'Quá to', 'Quá nhỏ'], answer: 0, explain_vi: '唱得很好 = hát rất hay.' }
+    ]
+  },
+  {
+    id: 'rd-1-015', level: 1, topic: 'doi-song',
+    title: { vi: 'Ngày mưa ở nhà', en: 'A Rainy Day at Home', zh: '下雨天在家' },
+    summary_vi: 'Trời mưa, cả nhà ở nhà đọc sách, xem tivi và uống trà.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 29,
+    paragraphs: [{
+      sentences: [
+        { zh: '今天下雨了，我不出去。', py: 'Jīntiān xià yǔ le, wǒ bù chūqù.', vi: 'Hôm nay trời mưa, tôi không ra ngoài.', audio: '',
+          gloss: [ { w: '下雨了', py: 'xià yǔ le', vi: 'trời mưa rồi' }, { w: '不出去', py: 'bù chūqù', vi: 'không ra ngoài' } ] },
+        { zh: '我在家看书，也看电视。', py: 'Wǒ zài jiā kàn shū, yě kàn diànshì.', vi: 'Tôi ở nhà đọc sách, cũng xem tivi.', audio: '',
+          gloss: [ { w: '看书', py: 'kàn shū', vi: 'đọc sách' }, { w: '看电视', py: 'kàn diànshì', vi: 'xem tivi' } ] },
+        { zh: '妈妈做了热茶。', py: 'Māma zuò le rè chá.', vi: 'Mẹ pha trà nóng.', audio: '',
+          gloss: [ { w: '做了', py: 'zuò le', vi: 'đã làm/pha' }, { w: '热茶', py: 'rè chá', vi: 'trà nóng' } ] },
+        { zh: '我们一起喝茶，说话。', py: 'Wǒmen yìqǐ hē chá, shuōhuà.', vi: 'Chúng tôi cùng uống trà, trò chuyện.', audio: '',
+          gloss: [ { w: '喝茶', py: 'hē chá', vi: 'uống trà' }, { w: '说话', py: 'shuōhuà', vi: 'nói chuyện' } ] },
+        { zh: '下雨天在家也很好。', py: 'Xià yǔ tiān zài jiā yě hěn hǎo.', vi: 'Ngày mưa ở nhà cũng rất tốt.', audio: '',
+          gloss: [ { w: '下雨天', py: 'xià yǔ tiān', vi: 'ngày mưa' }, { w: '在家', py: 'zài jiā', vi: 'ở nhà' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Hôm nay thời tiết thế nào?', en: "How's the weather today?" }, options: ['Trời mưa', 'Trời nắng', 'Có tuyết', 'Gió lớn'], answer: 0, explain_vi: '今天下雨了 = hôm nay trời mưa.' },
+      { q: { vi: 'Ở nhà tôi làm gì?', en: 'What do I do at home?' }, options: ['Đọc sách và xem tivi', 'Đi học', 'Chạy bộ', 'Đi mua sắm'], answer: 0, explain_vi: '看书，也看电视 = đọc sách và xem tivi.' }
+    ]
+  },
+  {
+    id: 'rd-1-016', level: 1, topic: 'mua-sam',
+    title: { vi: 'Áo mới', en: 'A New Shirt', zh: '新衣服' },
+    summary_vi: 'Mẹ mua cho tôi một chiếc áo màu đỏ ở cửa hàng.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 29,
+    paragraphs: [{
+      sentences: [
+        { zh: '今天妈妈给我买衣服。', py: 'Jīntiān māma gěi wǒ mǎi yīfu.', vi: 'Hôm nay mẹ mua quần áo cho tôi.', audio: '',
+          gloss: [ { w: '给我买', py: 'gěi wǒ mǎi', vi: 'mua cho tôi' }, { w: '衣服', py: 'yīfu', vi: 'quần áo' } ] },
+        { zh: '商店里的衣服很多。', py: 'Shāngdiàn lǐ de yīfu hěn duō.', vi: 'Quần áo trong cửa hàng rất nhiều.', audio: '',
+          gloss: [ { w: '商店', py: 'shāngdiàn', vi: 'cửa hàng' }, { w: '很多', py: 'hěn duō', vi: 'rất nhiều' } ] },
+        { zh: '我喜欢那个红的衣服。', py: 'Wǒ xǐhuān nàge hóng de yīfu.', vi: 'Tôi thích chiếc áo màu đỏ kia.', audio: '',
+          gloss: [ { w: '那个', py: 'nàge', vi: 'cái…kia' }, { w: '红的', py: 'hóng de', vi: 'màu đỏ' } ] },
+        { zh: '我穿上，很好看。', py: 'Wǒ chuān shàng, hěn hǎokàn.', vi: 'Tôi mặc vào, rất đẹp.', audio: '',
+          gloss: [ { w: '穿上', py: 'chuān shàng', vi: 'mặc vào' }, { w: '好看', py: 'hǎokàn', vi: 'đẹp' } ] },
+        { zh: '妈妈说这个很好。', py: 'Māma shuō zhège hěn hǎo.', vi: 'Mẹ nói chiếc này rất đẹp.', audio: '',
+          gloss: [ { w: '这个', py: 'zhège', vi: 'cái này' }, { w: '很好', py: 'hěn hǎo', vi: 'rất tốt/đẹp' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Mẹ mua gì cho tôi?', en: 'What does mom buy for me?' }, options: ['Quần áo', 'Sách', 'Táo', 'Hoa'], answer: 0, explain_vi: '给我买衣服 = mua quần áo cho tôi.' },
+      { q: { vi: 'Tôi thích chiếc áo màu gì?', en: 'Which color shirt do I like?' }, options: ['Màu đỏ', 'Màu trắng', 'Màu đen', 'Màu xanh'], answer: 0, explain_vi: '红的衣服 = áo màu đỏ.' }
+    ]
+  },
+  {
+    id: 'rd-1-017', level: 1, topic: 'gia-dinh',
+    title: { vi: 'Buổi tối của gia đình', en: 'A Family Evening', zh: '晚上的家' },
+    summary_vi: 'Một buổi tối ở nhà, mỗi người một việc, tôi uống trà với ông.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 30,
+    paragraphs: [{
+      sentences: [
+        { zh: '晚上，我们一家在家里。', py: 'Wǎnshang, wǒmen yì jiā zài jiā lǐ.', vi: 'Buổi tối, cả nhà tôi ở nhà.', audio: '',
+          gloss: [ { w: '晚上', py: 'wǎnshang', vi: 'buổi tối' }, { w: '一家', py: 'yì jiā', vi: 'cả nhà' } ] },
+        { zh: '爸爸看书，妈妈看电视。', py: 'Bàba kàn shū, māma kàn diànshì.', vi: 'Bố đọc sách, mẹ xem tivi.', audio: '',
+          gloss: [ { w: '看书', py: 'kàn shū', vi: 'đọc sách' }, { w: '看电视', py: 'kàn diànshì', vi: 'xem tivi' } ] },
+        { zh: '我和爷爷一起喝茶、说话。', py: 'Wǒ hé yéye yìqǐ hē chá, shuōhuà.', vi: 'Tôi và ông cùng uống trà, trò chuyện.', audio: '',
+          gloss: [ { w: '爷爷', py: 'yéye', vi: 'ông nội' }, { w: '喝茶', py: 'hē chá', vi: 'uống trà' }, { w: '说话', py: 'shuōhuà', vi: 'nói chuyện' } ] },
+        { zh: '爷爷问我今天的学习。', py: 'Yéye wèn wǒ jīntiān de xuéxí.', vi: 'Ông hỏi tôi về việc học hôm nay.', audio: '',
+          gloss: [ { w: '问', py: 'wèn', vi: 'hỏi' }, { w: '学习', py: 'xuéxí', vi: 'việc học' } ] },
+        { zh: '晚上在家，我觉得很高兴。', py: 'Wǎnshang zài jiā, wǒ juéde hěn gāoxìng.', vi: 'Buổi tối ở nhà, tôi thấy rất vui.', audio: '',
+          gloss: [ { w: '觉得', py: 'juéde', vi: 'cảm thấy' }, { w: '高兴', py: 'gāoxìng', vi: 'vui' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Buổi tối mẹ làm gì?', en: 'What does mom do in the evening?' }, options: ['Xem tivi', 'Đọc sách', 'Nấu cơm', 'Đi ngủ'], answer: 0, explain_vi: '妈妈看电视 = mẹ xem tivi.' },
+      { q: { vi: 'Tôi và ông cùng làm gì?', en: 'What do grandpa and I do together?' }, options: ['Uống trà và trò chuyện', 'Xem tivi', 'Chơi bóng', 'Đọc sách'], answer: 0, explain_vi: '和爷爷一起喝茶、说话 = uống trà và nói chuyện với ông.' }
+    ]
+  },
+  {
+    id: 'rd-1-018', level: 1, topic: 'hoc-tap',
+    title: { vi: 'Đến thư viện', en: 'Going to the Library', zh: '去图书馆' },
+    summary_vi: 'Buổi chiều tôi đến thư viện đọc một quyển sách tiếng Trung.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 28,
+    paragraphs: [{
+      sentences: [
+        { zh: '下午我去图书馆。', py: 'Xiàwǔ wǒ qù túshūguǎn.', vi: 'Buổi chiều tôi đi thư viện.', audio: '',
+          gloss: [ { w: '下午', py: 'xiàwǔ', vi: 'buổi chiều' }, { w: '图书馆', py: 'túshūguǎn', vi: 'thư viện' } ] },
+        { zh: '图书馆里有很多书。', py: 'Túshūguǎn lǐ yǒu hěn duō shū.', vi: 'Trong thư viện có rất nhiều sách.', audio: '',
+          gloss: [ { w: '图书馆里', py: 'túshūguǎn lǐ', vi: 'trong thư viện' }, { w: '很多书', py: 'hěn duō shū', vi: 'rất nhiều sách' } ] },
+        { zh: '我看了一本中文书。', py: 'Wǒ kàn le yì běn zhōngwén shū.', vi: 'Tôi đọc một quyển sách tiếng Trung.', audio: '',
+          gloss: [ { w: '一本书', py: 'yì běn shū', vi: 'một quyển sách' }, { w: '中文', py: 'zhōngwén', vi: 'tiếng Trung' } ] },
+        { zh: '图书馆里人不多。', py: 'Túshūguǎn lǐ rén bù duō.', vi: 'Trong thư viện không đông người.', audio: '',
+          gloss: [ { w: '人不多', py: 'rén bù duō', vi: 'không đông người' } ] },
+        { zh: '我喜欢在图书馆看书。', py: 'Wǒ xǐhuān zài túshūguǎn kàn shū.', vi: 'Tôi thích đọc sách ở thư viện.', audio: '',
+          gloss: [ { w: '喜欢', py: 'xǐhuān', vi: 'thích' }, { w: '看书', py: 'kàn shū', vi: 'đọc sách' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Buổi chiều tôi đi đâu?', en: 'Where do I go in the afternoon?' }, options: ['Thư viện', 'Cửa hàng', 'Bệnh viện', 'Công viên'], answer: 0, explain_vi: '下午我去图书馆 = buổi chiều tôi đi thư viện.' },
+      { q: { vi: 'Trong thư viện có gì?', en: 'What is in the library?' }, options: ['Rất nhiều sách', 'Rất nhiều hoa', 'Rất nhiều người', 'Tivi'], answer: 0, explain_vi: '有很多书 = có rất nhiều sách.' }
+    ]
+  },
+  {
+    id: 'rd-1-019', level: 1, topic: 'doi-song',
+    title: { vi: 'Giúp mẹ', en: 'Helping Mom', zh: '帮妈妈' },
+    summary_vi: 'Chủ nhật tôi ở nhà giúp mẹ rửa cốc, rửa rau và cùng ăn cơm.',
+    source: 'ai-gen', reviewed_by: 'opus-qa', reviewed_at: '2026-06-13',
+    est_words: 30,
+    paragraphs: [{
+      sentences: [
+        { zh: '今天是星期天，我在家。', py: 'Jīntiān shì xīngqītiān, wǒ zài jiā.', vi: 'Hôm nay là chủ nhật, tôi ở nhà.', audio: '',
+          gloss: [ { w: '星期天', py: 'xīngqītiān', vi: 'chủ nhật' }, { w: '在家', py: 'zài jiā', vi: 'ở nhà' } ] },
+        { zh: '妈妈做饭，我帮她。', py: 'Māma zuò fàn, wǒ bāng tā.', vi: 'Mẹ nấu cơm, tôi giúp mẹ.', audio: '',
+          gloss: [ { w: '做饭', py: 'zuò fàn', vi: 'nấu cơm' }, { w: '帮她', py: 'bāng tā', vi: 'giúp mẹ' } ] },
+        { zh: '我洗杯子，也洗菜。', py: 'Wǒ xǐ bēizi, yě xǐ cài.', vi: 'Tôi rửa cốc, cũng rửa rau.', audio: '',
+          gloss: [ { w: '洗杯子', py: 'xǐ bēizi', vi: 'rửa cốc' }, { w: '洗菜', py: 'xǐ cài', vi: 'rửa rau' } ] },
+        { zh: '爸爸说我是好孩子。', py: 'Bàba shuō wǒ shì hǎo háizi.', vi: 'Bố nói tôi là đứa con ngoan.', audio: '',
+          gloss: [ { w: '好孩子', py: 'hǎo háizi', vi: 'đứa trẻ ngoan' } ] },
+        { zh: '我们一起吃饭，很高兴。', py: 'Wǒmen yìqǐ chīfàn, hěn gāoxìng.', vi: 'Chúng tôi cùng ăn cơm, rất vui.', audio: '',
+          gloss: [ { w: '一起', py: 'yìqǐ', vi: 'cùng nhau' }, { w: '吃饭', py: 'chīfàn', vi: 'ăn cơm' } ] }
+      ]
+    }],
+    questions: [
+      { q: { vi: 'Hôm nay là thứ mấy?', en: 'What day is it today?' }, options: ['Chủ nhật', 'Thứ Hai', 'Thứ Bảy', 'Thứ Sáu'], answer: 0, explain_vi: '今天是星期天 = hôm nay là chủ nhật.' },
+      { q: { vi: 'Tôi giúp mẹ làm gì?', en: 'What do I help mom with?' }, options: ['Rửa cốc và rửa rau', 'Mua sách', 'Tưới hoa', 'Hát'], answer: 0, explain_vi: '洗杯子，也洗菜 = rửa cốc và rửa rau.' }
+    ]
   }
 ];

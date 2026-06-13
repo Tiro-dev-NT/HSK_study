@@ -28,9 +28,11 @@ var DataLoader = (function() {
     ],
     shadowing: ['js/data/speaking/shadowing.js?v=2.0'],
     reader: [
-      'js/data/reader/reader-hsk1.js?v=1.1',
-      'js/data/reader/reader-hsk2.js?v=1.0',
-      'js/data/reader/reader-hsk3.js?v=1.0'
+      'js/data/reader/reader-hsk1.js?v=1.2',
+      'js/data/reader/reader-hsk2.js?v=1.1',
+      'js/data/reader/reader-hsk3.js?v=1.1',
+      'js/data/reader/reader-hsk4.js?v=1.0',
+      'js/data/reader/reader-hsk5.js?v=1.0'
     ],
     grammar:  ['js/data/grammar.js?v=1.1'],
     readings: ['js/data/readings.js?v=1.2'],

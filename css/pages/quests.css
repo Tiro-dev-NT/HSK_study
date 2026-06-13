@@ -285,3 +285,124 @@
   .quest-toast.quest-toast-show { transform: translateY(0); }
 }
 
+/* ── Quest Chains ───────────────────────────────────── */
+.quest-chain-section {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  transition: all 0.3s ease;
+}
+[data-theme="dark"] .quest-chain-section {
+  background: var(--surface2);
+}
+.quest-chain-section.chain-completed {
+  border-color: var(--success);
+  opacity: 0.85;
+}
+.quest-chain-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+.quest-chain-icon {
+  font-size: 28px;
+  background: var(--surface3, var(--border));
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.quest-chain-header-info {
+  flex: 1;
+  min-width: 0;
+}
+.quest-chain-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+.quest-chain-subtitle {
+  font-size: 13px;
+  color: var(--text2);
+  margin-top: 2px;
+}
+.quest-chain-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.quest-chain-step-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--background);
+  transition: all 0.2s ease;
+}
+[data-theme="dark"] .quest-chain-step-card {
+  background: var(--surface3);
+}
+.quest-chain-step-card.step-locked {
+  opacity: 0.6;
+  background: var(--surface2);
+}
+.quest-chain-step-card.step-completed {
+  border-color: var(--border);
+  background: var(--background);
+  opacity: 0.75;
+}
+[data-theme="dark"] .quest-chain-step-card.step-completed {
+  border-color: var(--border);
+  background: var(--surface2);
+}
+.quest-chain-step-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.quest-chain-step-info {
+  flex: 1;
+  min-width: 0;
+}
+.quest-chain-step-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.quest-chain-step-desc {
+  font-size: 12.5px;
+  color: var(--text2);
+  margin-top: 2px;
+}
+.quest-chain-step-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.quest-chain-step-status.claimed {
+  color: var(--success);
+}
+.quest-chain-step-status.locked {
+  color: var(--text2);
+  background: var(--border);
+}
+.quest-chain-step-progress-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text2);
+  white-space: nowrap;
+}
+
+

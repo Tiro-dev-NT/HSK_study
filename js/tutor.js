@@ -164,6 +164,9 @@ var Tutor = (function () {
     _history.push({ role: 'assistant', content: reply });
     _saveHistory();
     _appendMsg('assistant', reply);
+    if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+      Quests.incrementMetric('tutor_msg');
+    }
   }
 
   // ── Clear ──────────────────────────────────────────────────────────

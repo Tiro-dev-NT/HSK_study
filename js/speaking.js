@@ -313,6 +313,9 @@ var Speaking = (function () {
     p.ts = Date.now();
     prog[setId] = p;
     try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(prog)); } catch (e) {}
+    if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+      Quests.incrementMetric('shadow_practiced');
+    }
   }
 
   function _openSet(id) {
@@ -670,6 +673,9 @@ var Speaking = (function () {
     if (overall != null) {
       _saveHistory({ ts: Date.now(), set: _set.title, line: line.h, overall: overall, pron: pron, flu: flu });
       _markPracticed(_set.id, _idx);
+      if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+        Quests.incrementMetric('shadow_graded');
+      }
     }
   }
 

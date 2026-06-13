@@ -482,6 +482,9 @@ var PinyinLab = {
         Gamification.checkAndUpdateStreak();
         Gamification.updateStats();
       }
+      if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+        Quests.incrementMetric('pinyin_drill');
+      }
       box.innerHTML = '<div class="pinyin-result"><h3>Kết quả: ' + state.score + '/10 đúng</h3><p>+' + xp + ' XP</p><button class="btn-primary" id="pinyinRetryDrill" type="button">Làm lại</button></div>';
       document.getElementById('pinyinRetryDrill').onclick = PinyinLab._startDrill;
       return;

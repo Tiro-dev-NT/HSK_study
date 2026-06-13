@@ -20,7 +20,8 @@ var DataLoader = (function() {
       'js/data/course/course-hsk1.js?v=1.2',
       'js/data/course/course-hsk2.js?v=1.4',
       'js/data/course/course-hsk3.js?v=1.3',
-      'js/data/course/course-hsk4.js?v=1.3'
+      'js/data/course/course-hsk4.js?v=1.3',
+      'js/data/course/course-hsk5.js?v=1.0'
     ],
     hskk: [
       'js/data/hskk/so-cap.js?v=1.2',

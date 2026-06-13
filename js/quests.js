@@ -18,6 +18,12 @@ var DAILY_TIER_EASY = [
   { id: 'mai_first',    icon: '📖', title: 'Bài học đầu tiên',  desc: 'Hoàn thành 1 bài Truyện Mai',      metric: 'mai_lessons',    target: 1,  rewards: { token: 8,  xp: 15 } },
   { id: 'topic_try',    icon: '🎯', title: 'Thử học chủ đề',     desc: 'Học theo 1 chủ đề bất kỳ',         metric: 'topics_tried',   target: 1,  rewards: { token: 8,  xp: 10 } },
   { id: 'analyze_text', icon: '🔍', title: 'Phân tích văn bản',  desc: 'Dùng Text Analyzer 1 lần',        metric: 'text_analyzed',  target: 1,  rewards: { token: 5,  xp: 10 } },
+  // Q2 — Easy mới (§6 QUEST_DESIGN.md)
+  { id: 'reader_open',      icon: '📚', title: 'Mọt sách',        desc: 'Đọc 1 đoạn truyện (Đọc truyện)',                metric: 'reader_done',      target: 1, rewards: { token: 8,  xp: 15 } },
+  { id: 'pinyin_e',         icon: '🔤', title: 'Chuẩn âm',         desc: 'Luyện 1 âm Pinyin (HSK 0)',                      metric: 'pinyin_drill',     target: 1, rewards: { token: 5,  xp: 10 } },
+  { id: 'save_vocab',       icon: '📥', title: 'Nhặt từ',          desc: 'Lưu 1 từ vào Kho từ',                            metric: 'vocab_saved',      target: 1, rewards: { token: 5,  xp: 5  } },
+  { id: 'shadow_warm',      icon: '🎤', title: 'Mở miệng',         desc: 'Luyện 1 câu Shadowing (không cần chấm)',          metric: 'shadow_practiced', target: 1, rewards: { token: 8,  xp: 15 } },
+  { id: 'visit_community',  icon: '🤝', title: 'Ghé cộng đồng',   desc: 'Xem Bảng Phong Vân / Tri Ân',                    metric: 'community_visit',  target: 1, rewards: { token: 5,  xp: 5  } },
 ];
 
 var DAILY_TIER_NORMAL = [
@@ -33,6 +39,12 @@ var DAILY_TIER_NORMAL = [
   { id: 'deck_session', icon: '📋', title: 'Tập trung',           desc: 'Hoàn thành 1 session bất kỳ',    metric: 'sessions_done',  target: 1,  rewards: { token: 10, xp: 15 } },
   { id: 'mai_3',        icon: '📚', title: 'Tiến bộ từng ngày',  desc: 'Hoàn thành 3 bài Truyện Mai',    metric: 'mai_lessons',    target: 3,  rewards: { token: 15, xp: 30 } },
   { id: 'mock_try',     icon: '📝', title: 'Thử sức thi thử',    desc: 'Hoàn thành 1 bài thi thử HSK',   metric: 'mock_passed',    target: 1,  rewards: { token: 12, xp: 25 } },
+  // Q2 — Normal mới (§6)
+  { id: 'reader_2',         icon: '📖', title: 'Đọc đều',          desc: 'Đọc 2 đoạn truyện hôm nay',                      metric: 'reader_done',      target: 2, rewards: { token: 12, xp: 20 } },
+  { id: 'shadow_5',         icon: '🎙️',title: 'Luyện nói',        desc: 'Shadowing 5 câu (không cần chấm)',                metric: 'shadow_practiced', target: 5, rewards: { token: 12, xp: 20 } },
+  { id: 'grammar_free',     icon: '📐', title: 'Nắm ngữ pháp',    desc: 'Học 1 điểm ngữ pháp',                             metric: 'grammar_done',     target: 1, rewards: { token: 10, xp: 20 } },
+  { id: 'pinyin_5',         icon: '🔤', title: 'Vững phát âm',     desc: 'Luyện 5 âm Pinyin',                               metric: 'pinyin_drill',     target: 5, rewards: { token: 10, xp: 15 } },
+  { id: 'handwrite_5',      icon: '✍️', title: 'Luyện bút',        desc: 'Viết tay 5 chữ',                                  metric: 'cards_studied',    target: 5, rewards: { token: 12, xp: 20 } },
 ];
 
 var DAILY_TIER_HARD = [
@@ -47,6 +59,10 @@ var DAILY_TIER_HARD = [
   { id: 'win_boss',     icon: '⚔️', title: 'Thảo phạt yêu quái', desc: 'Thắng Boss Battle 1 lần',        metric: 'boss_won',       target: 1,  rewards: { token: 20, xp: 30 } },
   { id: 'study_hsk5',   icon: '🎓', title: 'HSK nâng cao',        desc: 'Học 10 từ HSK5/6 hôm nay',      metric: 'hard_studied',   target: 10, rewards: { token: 20, xp: 35 } },
   { id: 'mai_5',        icon: '🎓', title: 'Học viên tích cực',  desc: 'Hoàn thành 5 bài Truyện Mai',   metric: 'mai_lessons',    target: 5,  rewards: { token: 25, xp: 50 } },
+  // Q2 — Hard mới (§6)
+  { id: 'reader_mcq',       icon: '🧠', title: 'Đọc hiểu',         desc: 'Đọc 1 truyện + đúng hết MCQ',                    metric: 'reader_done',      target: 3, rewards: { token: 20, xp: 35 } },
+  { id: 'polyglot',         icon: '🌐', title: 'Đa kỹ năng',       desc: 'Chạm 3 kỹ năng khác nhau hôm nay',         metric: 'skills_today',     target: 3, rewards: { token: 22, xp: 40 } },
+  { id: 'shadow_10',        icon: '🎙️',title: 'Nói trôi chảy',    desc: 'Shadowing 10 câu',                                metric: 'shadow_practiced', target: 10, rewards: { token: 20, xp: 35 } },
 ];
 
 var DAILY_TIER_SKULL = [
@@ -55,7 +71,9 @@ var DAILY_TIER_SKULL = [
   { id: 'earn_200xp',   icon: '💀', title: 'XP cuồng',           desc: 'Kiếm 200 XP hôm nay',             metric: 'xp_earned_today',target: 200,rewards: { token: 40, xp: 0   } },
   { id: 'daily_chall',  icon: '📅', title: 'Thử thách ngày',     desc: 'Hoàn thành Daily Challenge',      metric: 'daily_challenge_done', target: 1, rewards: { token: 35, xp: 60 } },
   { id: 'boss_3',       icon: '💀', title: 'Thảm sát boss',       desc: 'Thắng Boss Battle 3 lần hôm nay',metric: 'boss_won',       target: 3,  rewards: { token: 60, xp: 100 } },
-  { id: 'perfect_day',  icon: '💀', title: 'Ngày hoàn hảo',      desc: 'Hoàn thành cả 2 quest kia + SRS', metric: 'perfect_day',    target: 1,  rewards: { token: 50, xp: 80  } },
+  { id: 'perfect_day',  icon: '💥', title: 'Ngày hoàn hảo',      desc: 'Hoàn thành cả 2 quest kia + SRS', metric: 'perfect_day',    target: 1,  rewards: { token: 50, xp: 80  } },
+  // Q2 — Skull mới (§6)
+  { id: 'renaissance',      icon: '🏛️', title: 'Toàn tài',         desc: 'Chạm cả 4 kỹ năng 听说读写 trong 1 ngày',          metric: 'skills_today',     target: 4, rewards: { token: 50, xp: 90 } },
 ];
 
 // Pro-exclusive quests — shown as 4th daily slot for Pro subscribers
@@ -66,6 +84,11 @@ var DAILY_TIER_PREMIUM = [
   { id: 'boss_premium',   icon: '👑', title: 'Chiến binh tinh nhuệ', desc: 'Thắng Boss Battle 2 lần hôm nay',metric: 'boss_won',      target: 2, rewards: { token: 30, xp: 40 }, requires: 'pro' },
   { id: 'grammar_lesson', icon: '📖', title: 'Học ngữ pháp',         desc: 'Hoàn thành 1 bài ngữ pháp',      metric: 'grammar_done',  target: 1, rewards: { token: 15, xp: 25 }, requires: 'pro' },
   { id: 'reading_passage',icon: '📰', title: 'Đọc hiểu nâng cao',   desc: 'Đọc 1 đoạn văn trong Reading',   metric: 'reading_done',  target: 1, rewards: { token: 15, xp: 20 }, requires: 'pro' },
+  // Q2 — Premium/AI-credit mới (§6 — Pro-only)
+  { id: 'hskk_one',         icon: '🗣️', title: 'Thử khẩu ngữ',    desc: 'Chấm 1 câu HSKK',                                 metric: 'hskk_graded',     target: 1, rewards: { token: 25, xp: 35 }, requires: 'pro' },
+  { id: 'writing_one',      icon: '📝', title: 'Luyện bút luận',   desc: 'Chấm 1 bài Writing',                              metric: 'writing_graded',  target: 1, rewards: { token: 25, xp: 35 }, requires: 'pro' },
+  { id: 'tutor_chat',       icon: '💬', title: 'Hỏi gia sư',       desc: 'Hỏi Gia sư AI 1 câu',                            metric: 'tutor_msg',       target: 1, rewards: { token: 20, xp: 30 }, requires: 'pro' },
+  { id: 'shadow_graded_3',  icon: '🎯', title: 'Chuẩn từng âm',   desc: 'Chấm 3 câu Shadowing',                            metric: 'shadow_graded',   target: 3, rewards: { token: 25, xp: 35 }, requires: 'pro' },
 ];
 
 var WEEKLY_QUESTS = [
@@ -80,6 +103,12 @@ var WEEKLY_QUESTS = [
   { id: 'w_200xp_day',  icon: '⚡', title: 'Ngày bùng nổ',       desc: 'Kiếm 200 XP trong 1 ngày duy nhất',metric:'weekly_big_day',target: 1, rewards: { token: 65,  xp: 0   } },
   { id: 'w_mai_10',     icon: '📖', title: 'Chinh phục giáo trình',desc:'Hoàn thành 10 bài Truyện Mai trong tuần',metric:'weekly_mai',target: 10, rewards: { token: 60,  xp: 100 } },
   { id: 'w_3_mock',     icon: '📝', title: 'Thi thử kiên trì',   desc: 'Pass 3 bài thi thử trong tuần', metric:'weekly_mock',   target: 3,  rewards: { token: 55,  xp: 90  } },
+  // Q2 — Weekly mới (§7)
+  { id: 'w_reader_7',       icon: '📚', title: 'Tuần đọc sách',    desc: 'Đọc 7 đoạn truyện trong tuần',                    metric: 'weekly_reader',        target: 7,   rewards: { token: 60,  xp: 100 } },
+  { id: 'w_shadow_5d',      icon: '🎤', title: 'Kiên trì luyện nói',desc: 'Shadowing ≥5 ngày trong tuần',                   metric: 'weekly_shadow_days',   target: 5,   rewards: { token: 65,  xp: 110 } },
+  { id: 'w_all_skills',     icon: '🏛️', title: 'Ngũ kỹ toàn vẹn', desc: 'Chạm đủ 听说读写译 trong tuần',                    metric: 'weekly_skills',        target: 5,   rewards: { token: 100, xp: 200 } },
+  { id: 'w_explore_hubs',   icon: '🧭', title: 'Khám phá',         desc: 'Ghé đủ 6 hub trong tuần',                         metric: 'weekly_hubs',          target: 6,   rewards: { token: 50,  xp: 80  } },
+  { id: 'w_pinyin_30',      icon: '🔤', title: 'Sạch phát âm',     desc: 'Luyện 30 âm Pinyin trong tuần',                   metric: 'weekly_pinyin',        target: 30,  rewards: { token: 50,  xp: 80  } },
 ];
 
 var QUEST_CHAINS = {
@@ -117,8 +146,50 @@ var QUEST_CHAINS = {
       { id: 'sc_str100', title: 'Centurion',    desc: 'Giữ streak 100 ngày',     metric: 'streak_days',  target: 100, rewards: { token: 0, xp: 0,   badge: 'Centurion', outfit: 'be_rong_centurion' } },
       { id: 'sc_str365', title: 'Năm Kiên Trì', desc: 'Giữ streak 365 ngày',     metric: 'streak_days',  target: 365, rewards: { token: 0, xp: 0,  badge: 'Year of Persistence', outfit: 'be_rong_year_limited', cert: 'one_year_persistence' } },
     ]
+  },
+  // Q2 chains mới (§8 QUEST_DESIGN.md)
+  speaker: {
+    title: 'Khẩu Ngữ', icon: '🗣️',
+    proOnly: true,   // các bước chấm tốn credit
+    steps: [
+      { id: 'sp_shadow',     title: 'Bắt chước',          desc: 'Luyện 30 câu Shadowing',         metric: 'chain_shadow',      target: 30,  rewards: { token: 30, xp: 50 } },
+      { id: 'sp_hskk_so',   title: 'Sơ cấp khẩu ngữ',   desc: 'Pass 3 đề HSKK Sơ cấp',         metric: 'chain_hskk_so',    target: 3,   rewards: { token: 40, xp: 60 } },
+      { id: 'sp_hskk_zhong',title: 'Trung cấp khẩu ngữ', desc: 'Pass 3 đề HSKK Trung cấp',      metric: 'chain_hskk_zhong', target: 3,   rewards: { token: 50, xp: 80 } },
+      { id: 'sp_master',    title: 'Diễn Giả',            desc: '100 câu khẩu ngữ tổng',          metric: 'chain_speak_total', target: 100, rewards: { token: 100, xp: 0, badge: 'Diễn Giả' } },
+    ]
+  },
+  reader: {
+    title: 'Mọt Sách', icon: '📚',
+    steps: [
+      { id: 'rd_10',    title: 'Tập đọc',     desc: 'Đọc 10 đoạn truyện',             metric: 'chain_reader',     target: 10,  rewards: { token: 25, xp: 40 } },
+      { id: 'rd_30',    title: 'Ham đọc',     desc: 'Đọc 30 đoạn truyện',             metric: 'chain_reader',     target: 30,  rewards: { token: 40, xp: 60 } },
+      { id: 'rd_hsk5',  title: 'Đọc nâng cao',desc: 'Đọc 5 truyện HSK5+',             metric: 'chain_reader_adv', target: 5,   rewards: { token: 50, xp: 80 } },
+      { id: 'rd_master',title: 'Thư Sinh',    desc: 'Đọc 80 đoạn truyện',             metric: 'chain_reader',     target: 80,  rewards: { token: 100, xp: 0, badge: 'Thư Sinh' } },
+    ]
+  },
+  toolsmith: {
+    title: 'Bậc Thầy Công Cụ', icon: '🧰',
+    steps: [
+      { id: 'ts_dict',    title: 'Tra cứu',    desc: 'Dùng Từ điển',                   metric: 'dict_opened',   target: 1,  rewards: { token: 10, xp: 0 } },
+      { id: 'ts_pinyin',  title: 'Phát âm',    desc: 'Dùng Pinyin Lab',                metric: 'pinyin_drill',  target: 1,  rewards: { token: 10, xp: 0 } },
+      { id: 'ts_analyze', title: 'Phân tích',  desc: 'Dùng Text Analyzer',             metric: 'text_analyzed', target: 1,  rewards: { token: 10, xp: 0 } },
+      { id: 'ts_write',   title: 'Viết tay',   desc: 'Dùng Luyện viết',                metric: 'cards_studied', target: 1,  rewards: { token: 10, xp: 0 } },
+      { id: 'ts_all',     title: 'Thợ Cả',     desc: 'Dùng đủ 4 công cụ trên',         metric: 'ts_all_done',   target: 1,  rewards: { token: 50, xp: 0, badge: 'Toolsmith' } },
+    ]
+  },
+  rookie: {
+    title: 'Tân Binh', icon: '🐣',
+    oneTime: true,    // không reset daily, lưu vĩnh viễn trong qd.chains.rookie
+    steps: [
+      { id: 'rk_card',   title: 'Bài đầu',              desc: 'Học 5 thẻ đầu tiên',              metric: 'cards_studied', target: 5,  rewards: { token: 10, xp: 0 } },
+      { id: 'rk_mai',    title: 'Câu chuyện đầu',       desc: 'Hoàn thành 1 bài Truyện Mai',     metric: 'mai_lessons',   target: 1,  rewards: { token: 10, xp: 0 } },
+      { id: 'rk_reader', title: 'Trang đầu',            desc: 'Đọc 1 đoạn truyện',               metric: 'reader_done',   target: 1,  rewards: { token: 10, xp: 0 } },
+      { id: 'rk_quiz',   title: 'Thử sức',              desc: 'Hoàn thành 1 quiz',               metric: 'sessions_done', target: 1,  rewards: { token: 10, xp: 0 } },
+      { id: 'rk_done',   title: 'Nhập Môn',             desc: 'Hoàn thành tour Tân Binh',        metric: 'rookie_done',   target: 1,  rewards: { token: 50, xp: 0, outfit: 'be_rong_rookie' } },
+    ]
   }
 };
+
 
 // ── All daily quests flat (for lookup by id) ───────────
 var ALL_DAILY_QUESTS = DAILY_TIER_EASY.concat(DAILY_TIER_NORMAL, DAILY_TIER_HARD, DAILY_TIER_SKULL, DAILY_TIER_PREMIUM);
@@ -151,7 +222,14 @@ var Quests = {
         deck_completed: 0, app_opened: 1, perfect_day: 0,
         racing_done: 0, sentence_done: 0, listen_used: 0,
         grammar_done: 0, reading_done: 0,
-        mai_lessons: 0, topics_tried: 0, text_analyzed: 0, mock_passed: 0, hsk0_modules: 0
+        mai_lessons: 0, topics_tried: 0, text_analyzed: 0, mock_passed: 0, hsk0_modules: 0,
+        // Q1: metric mới (wire 2026-06-13)
+        reader_done: 0, pinyin_drill: 0,
+        shadow_practiced: 0, shadow_graded: 0,
+        hskk_graded: 0, writing_graded: 0,
+        tutor_msg: 0, vocab_saved: 0, community_visit: 0,
+        skills_today: 0,
+        skills_first: {}   // track first-of-day per skill group for skills_today
       };
     } else if (!qd.metrics || qd.metrics.date !== today) {
       qd.metrics = {
@@ -163,7 +241,14 @@ var Quests = {
         deck_completed: 0, app_opened: 1, perfect_day: 0,
         racing_done: 0, sentence_done: 0, listen_used: 0,
         grammar_done: 0, reading_done: 0,
-        mai_lessons: 0, topics_tried: 0, text_analyzed: 0, mock_passed: 0
+        mai_lessons: 0, topics_tried: 0, text_analyzed: 0, mock_passed: 0, hsk0_modules: 0,
+        // Q1: metric mới (wire 2026-06-13)
+        reader_done: 0, pinyin_drill: 0,
+        shadow_practiced: 0, shadow_graded: 0,
+        hskk_graded: 0, writing_graded: 0,
+        tutor_msg: 0, vocab_saved: 0, community_visit: 0,
+        skills_today: 0,
+        skills_first: {}   // track first-of-day per skill group for skills_today
       };
     } else {
       // Mark app opened for login_bonus quest
@@ -337,11 +422,109 @@ var Quests = {
     amount = amount || 1;
     var qd = AppState.questData;
     if (!qd.metrics) return;
+
+    var oldVal = qd.metrics[metric];
     if (typeof qd.metrics[metric] === 'boolean') {
       qd.metrics[metric] = true;
     } else if (typeof qd.metrics[metric] === 'number') {
       qd.metrics[metric] += amount;
     }
+
+    // Propagate to weekly metrics
+    if (qd.weekly) {
+      var w = qd.weekly;
+      var addWeekly = function(key, amt) {
+        w[key] = (w[key] || 0) + (amt || 1);
+      };
+
+      if (metric === 'cards_studied') addWeekly('weekly_cards', amount);
+      if (metric === 'games_played') addWeekly('weekly_games', amount);
+      if (metric === 'correct_answers') addWeekly('weekly_correct', amount);
+      if (metric === 'boss_won') addWeekly('weekly_boss', amount);
+      if (metric === 'mai_lessons') addWeekly('weekly_mai', amount);
+      if (metric === 'mock_passed') addWeekly('weekly_mock', amount);
+      if (metric === 'reader_done') addWeekly('weekly_reader', amount);
+      if (metric === 'pinyin_drill') addWeekly('weekly_pinyin', amount);
+
+      if (metric === 'daily_challenge_done' && oldVal !== true) {
+        addWeekly('weekly_daily_done', 1);
+      }
+      if (metric === 'srs_reviewed' && (oldVal || 0) === 0) {
+        addWeekly('weekly_srs_days', 1);
+      }
+      if ((metric === 'shadow_practiced' || metric === 'shadow_graded') && 
+          ((qd.metrics.shadow_practiced || 0) + (qd.metrics.shadow_graded || 0) === amount)) {
+        addWeekly('weekly_shadow_days', 1);
+      }
+
+      // Track weekly skills done (up to 5: học-SRS, đọc-reader, nói-shadow, nghe-listen, viết-writing)
+      if (!w.skills_done) w.skills_done = {};
+      var skillGroup = null;
+      if (metric === 'cards_studied' || metric === 'srs_reviewed') skillGroup = 'study';
+      if (metric === 'reader_done' || metric === 'reading_done') skillGroup = 'read';
+      if (metric === 'shadow_practiced' || metric === 'shadow_graded' || metric === 'hskk_graded') skillGroup = 'speak';
+      if (metric === 'listen_used' || metric === 'tts_clicked') skillGroup = 'listen';
+      if (metric === 'writing_graded') skillGroup = 'write';
+      
+      if (skillGroup && !w.skills_done[skillGroup]) {
+        w.skills_done[skillGroup] = true;
+        w.weekly_skills = Object.keys(w.skills_done).length;
+      }
+
+      // Track weekly hubs visited (at least community, tools, learn, practice, profile)
+      if (!w.hubs_visited) w.hubs_visited = {};
+      if (metric === 'community_visit') w.hubs_visited['community'] = true;
+      if (metric === 'dict_opened') w.hubs_visited['tools'] = true;
+      // Derived from core activities:
+      if (metric === 'cards_studied' || metric === 'srs_reviewed' || metric === 'reader_done') w.hubs_visited['learn'] = true;
+      if (metric === 'shadow_practiced' || metric === 'hskk_graded' || metric === 'writing_graded') w.hubs_visited['practice'] = true;
+      
+      w.weekly_hubs = Object.keys(w.hubs_visited).length;
+    }
+
+    // Propagate to lifetime chain metrics
+    if (!qd.chains) qd.chains = {};
+    if (!qd.chains.lifetime) qd.chains.lifetime = {};
+
+    var chainMetrics = [];
+    if (metric === 'shadow_practiced') {
+      chainMetrics.push('chain_shadow');
+      chainMetrics.push('chain_speak_total');
+    }
+    if (metric === 'shadow_graded') {
+      chainMetrics.push('chain_speak_total');
+    }
+    if (metric === 'reader_done') {
+      chainMetrics.push('chain_reader');
+      chainMetrics.push('reader_done');
+    }
+    if (metric === 'pinyin_drill') {
+      chainMetrics.push('pinyin_drill');
+    }
+    if (metric === 'text_analyzed') {
+      chainMetrics.push('text_analyzed');
+    }
+    if (metric === 'dict_opened') {
+      chainMetrics.push('dict_opened');
+    }
+    if (metric === 'mai_lessons') {
+      chainMetrics.push('mai_lessons');
+    }
+    if (metric === 'sessions_done') {
+      chainMetrics.push('sessions_done');
+    }
+    if (metric === 'cards_studied') {
+      chainMetrics.push('cards_studied');
+    }
+    if (metric === 'cards_studied_handwriting') {
+      chainMetrics.push('cards_studied_handwriting');
+    }
+    chainMetrics.push(metric);
+
+    chainMetrics.forEach(function(cm) {
+      qd.chains.lifetime[cm] = (qd.chains.lifetime[cm] || 0) + amount;
+    });
+
     AppState.saveQuests();
     Quests._syncProgress();
     Quests._checkCompletion();
@@ -352,6 +535,15 @@ var Quests = {
   _syncProgress: function() {
     var qd = AppState.questData;
     var metrics = qd.metrics || {};
+
+    // Calculate skills_today derived
+    var skillsCount = 0;
+    if ((metrics.cards_studied || 0) > 0 || (metrics.srs_reviewed || 0) > 0) skillsCount++;
+    if ((metrics.reader_done || 0) > 0 || (metrics.reading_done || 0) > 0) skillsCount++;
+    if ((metrics.shadow_practiced || 0) > 0 || (metrics.shadow_graded || 0) > 0 || (metrics.hskk_graded || 0) > 0) skillsCount++;
+    if ((metrics.listen_used || 0) > 0 || (metrics.tts_clicked || 0) > 0) skillsCount++;
+    if ((metrics.writing_graded || 0) > 0) skillsCount++;
+    metrics.skills_today = skillsCount;
 
     // Daily quests
     (qd.daily.active || []).forEach(function(id) {
@@ -529,14 +721,22 @@ var Quests = {
     var qd = AppState.questData;
     var html = '';
 
+    // Hide countdown if tab is chains
+    var countdownRow = document.querySelector('.quest-countdown-row');
+    if (countdownRow) {
+      countdownRow.style.display = (tab === 'chains') ? 'none' : '';
+    }
+
     if (tab === 'daily') {
       var daily  = qd.daily || {};
       var active = daily.active || [];
       html = Quests._renderQuestCards(active, daily.progress || {}, 'daily');
-    } else {
+    } else if (tab === 'weekly') {
       var weekly = qd.weekly || {};
       var active = weekly.active || [];
       html = Quests._renderQuestCards(active, weekly.progress || {}, 'weekly');
+    } else if (tab === 'chains') {
+      html = Quests._renderQuestChains();
     }
 
     container.innerHTML = html || '<div class="quest-empty">Không có nhiệm vụ nào.</div>';
@@ -576,6 +776,156 @@ var Quests = {
       '</div>';
     });
     return html;
+  },
+
+  _renderQuestChains: function() {
+    var qd = AppState.questData;
+    if (!qd.chains) qd.chains = {};
+    if (!qd.chains.status) qd.chains.status = {};
+    if (!qd.chains.lifetime) qd.chains.lifetime = {};
+
+    var html = '';
+    Object.keys(QUEST_CHAINS).forEach(function(chainId) {
+      var chain = QUEST_CHAINS[chainId];
+      var status = qd.chains.status[chainId] || { stepIndex: 0, claimed: false };
+      qd.chains.status[chainId] = status; // init in place
+
+      var stepIndex = status.stepIndex;
+      var isAllCompleted = stepIndex >= chain.steps.length;
+
+      html += '<div class="quest-chain-section' + (isAllCompleted ? ' chain-completed' : '') + '">';
+      html += '  <div class="quest-chain-header">';
+      html += '    <span class="quest-chain-icon">' + chain.icon + '</span>';
+      html += '    <div class="quest-chain-header-info">';
+      html += '      <div class="quest-chain-title">' + chain.title + '</div>';
+      if (isAllCompleted) {
+        html += '      <div class="quest-chain-subtitle text-success">🏆 Đã hoàn thành hành trình!</div>';
+      } else {
+        html += '      <div class="quest-chain-subtitle">Bước ' + (stepIndex + 1) + ' / ' + chain.steps.length + ': ' + chain.steps[stepIndex].title + '</div>';
+      }
+      html += '    </div>';
+      html += '  </div>';
+
+      // Only show steps if not all completed, or show all as completed
+      html += '  <div class="quest-chain-steps">';
+      chain.steps.forEach(function(step, idx) {
+        var isUnlocked = idx === stepIndex;
+        var isDoneBefore = idx < stepIndex;
+        var isLocked = idx > stepIndex;
+
+        // Progress for this step
+        var metricVal = qd.chains.lifetime[step.metric] || 0;
+
+        // Special derived checks
+        if (step.id === 'ts_all' && stepIndex >= 4) {
+          metricVal = 1;
+        }
+        if (step.id === 'rk_done' && stepIndex >= 4) {
+          metricVal = 1;
+        }
+
+        var pct = isDoneBefore ? 100 : isLocked ? 0 : Math.min(100, Math.round(metricVal / step.target * 100));
+        var stepCompleted = isDoneBefore || (isUnlocked && metricVal >= step.target);
+        var statusClass = isDoneBefore ? 'step-completed' : isUnlocked ? 'step-active' : 'step-locked';
+
+        html += '    <div class="quest-chain-step-card ' + statusClass + '">';
+        html += '      <div class="quest-chain-step-top">';
+        html += '        <div class="quest-chain-step-info">';
+        html += '          <div class="quest-chain-step-title">' + step.title + '</div>';
+        html += '          <div class="quest-chain-step-desc">' + step.desc + '</div>';
+        html += '        </div>';
+
+        if (isDoneBefore) {
+          html += '        <div class="quest-chain-step-status claimed">✅ Đã nhận</div>';
+        } else if (isUnlocked) {
+          if (metricVal >= step.target) {
+            html += '        <button class="quest-claim-btn" onclick="Quests.claimChainReward(\'' + chainId + '\')">Nhận thưởng</button>';
+          } else {
+            html += '        <div class="quest-chain-step-progress-label">' + metricVal + ' / ' + step.target + '</div>';
+          }
+        } else {
+          html += '        <div class="quest-chain-step-status locked">🔒 Chưa mở</div>';
+        }
+
+        html += '      </div>';
+        html += '      <div class="quest-progress-bar"><div class="quest-progress-fill" style="width:' + pct + '%"></div></div>';
+
+        // Rewards footer
+        html += '      <div class="quest-card-footer">';
+        var rewardsText = [];
+        if (step.rewards.token > 0) rewardsText.push('+' + step.rewards.token + TOKEN_IMG);
+        if (step.rewards.xp > 0) rewardsText.push('+' + step.rewards.xp + 'XP');
+        if (step.rewards.badge) rewardsText.push('🏅 Huy hiệu: ' + step.rewards.badge);
+        if (step.rewards.outfit) rewardsText.push('👕 Trang phục: ' + step.rewards.outfit);
+        html += '        <span class="quest-rewards">' + rewardsText.join(' · ') + '</span>';
+        html += '      </div>';
+        html += '    </div>';
+      });
+
+      html += '  </div>'; // steps list
+      html += '</div>'; // chain section
+    });
+    return html;
+  },
+
+  claimChainReward: function(chainId) {
+    var qd = AppState.questData;
+    if (!qd.chains || !qd.chains.status) return;
+    var status = qd.chains.status[chainId];
+    if (!status) return;
+
+    var chain = QUEST_CHAINS[chainId];
+    if (!chain) return;
+
+    var stepIndex = status.stepIndex;
+    if (stepIndex >= chain.steps.length) return;
+
+    var step = chain.steps[stepIndex];
+    if (!step) return;
+
+    // Verify progress
+    var metricVal = qd.chains.lifetime[step.metric] || 0;
+
+    // Special derived checks
+    if (step.id === 'ts_all' && stepIndex >= 4) {
+      metricVal = 1;
+    }
+    if (step.id === 'rk_done' && stepIndex >= 4) {
+      metricVal = 1;
+    }
+
+    if (metricVal < step.target) return;
+
+    // Grant rewards
+    if (step.rewards.token > 0) {
+      Quests.addToken(step.rewards.token, 'chain:' + step.id);
+    }
+    if (step.rewards.xp > 0 && typeof Gamification !== 'undefined') {
+      Gamification.addXP(step.rewards.xp);
+    }
+    if (step.rewards.badge) {
+      var badges = [];
+      try { badges = JSON.parse(localStorage.getItem('hsk_user_badges') || '[]'); } catch (e) {}
+      if (badges.indexOf(step.rewards.badge) === -1) {
+        badges.push(step.rewards.badge);
+        localStorage.setItem('hsk_user_badges', JSON.stringify(badges));
+      }
+    }
+    if (step.rewards.outfit) {
+      var owned = [];
+      try { owned = JSON.parse(localStorage.getItem('hsk_user_outfits') || '[]'); } catch (e) {}
+      if (owned.indexOf(step.rewards.outfit) === -1) {
+        owned.push(step.rewards.outfit);
+        localStorage.setItem('hsk_user_outfits', JSON.stringify(owned));
+      }
+    }
+
+    // Advance to next step
+    status.stepIndex++;
+    AppState.saveQuests();
+
+    Quests._showClaimToast(step);
+    Quests._updateQuestUI();
   },
 
   switchTab: function(tab) {

@@ -54,7 +54,10 @@ var Reader = (function() {
     if (p[id]) return;
     p[id] = true;
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(p));
-    if (typeof Quests !== 'undefined' && Quests.incrementMetric) Quests.incrementMetric('reading_done');
+    if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+      Quests.incrementMetric('reading_done');
+      Quests.incrementMetric('reader_done');
+    }
   }
 
   // ── Entry ─────────────────────────────────────────────

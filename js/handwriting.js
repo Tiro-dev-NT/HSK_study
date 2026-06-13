@@ -153,6 +153,7 @@ var Handwriting = {
     if (typeof Gamification !== 'undefined') Gamification.addXP(xp);
     if (typeof Quests !== 'undefined') {
       Quests.incrementMetric('cards_studied', total);
+      Quests.incrementMetric('cards_studied_handwriting', total);
       Quests.incrementMetric('sessions_done', 1);
     }
 

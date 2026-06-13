@@ -143,6 +143,10 @@ var HandwritingGame = {
 
           HandwritingGame.results.push({ word: w, mistakes: mistakes, quality: quality });
           if (typeof updateSRSCard === 'function') updateSRSCard(w.h, quality);
+          if (typeof Quests !== 'undefined') {
+            Quests.incrementMetric('cards_studied', 1);
+            Quests.incrementMetric('cards_studied_handwriting', 1);
+          }
           if (typeof addXP === 'function') addXP(xp);
 
           var fb = document.getElementById('hwFeedback');

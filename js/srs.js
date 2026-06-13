@@ -72,9 +72,15 @@ function updateSRSCard(hanzi, quality, opts) {
   due.setDate(due.getDate() + card.interval);
   card.dueDate = due.toISOString().split('T')[0];
 
+  const isNew = !srsData[hanzi];
   srsData[hanzi] = card;
   saveSRS();
-  if (typeof Quests !== 'undefined') Quests.incrementMetric('srs_reviewed');
+  if (typeof Quests !== 'undefined') {
+    Quests.incrementMetric('srs_reviewed');
+    if (isNew) {
+      Quests.incrementMetric('vocab_saved');
+    }
+  }
   // Persist daily review count in localStorage
   var dailyData = JSON.parse(localStorage.getItem(SRS_DAILY_KEY) || '{}');
   if (dailyData.date !== today) { dailyData = { date: today, count: 0 }; }

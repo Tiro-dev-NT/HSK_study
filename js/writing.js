@@ -215,6 +215,9 @@ var Writing = (function () {
       excerpt: essay.slice(0, 40)
     });
     _renderHistory();
+    if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+      Quests.incrementMetric('writing_graded');
+    }
   }
 
   // Bóc JSON từ text (AI đôi khi bọc trong ```json ... ```)

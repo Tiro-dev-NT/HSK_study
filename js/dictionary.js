@@ -321,6 +321,9 @@ var Dictionary = {
     currentWord = word; // compat alias
     panel.innerHTML = Dictionary._detailHTML(word);
     panel.hidden = false;
+    if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+      Quests.incrementMetric('dict_opened');
+    }
     if (aside) aside.classList.add('has-detail');
     Dictionary._bindDetail(word);
     setTimeout(function() { Dictionary.playTTS(word.h); }, 150);
@@ -431,6 +434,9 @@ var Dictionary = {
     }
     document.getElementById('addToVault').textContent = 'Thêm vào bộ thẻ';
     document.getElementById('modalOverlay').classList.add('open');
+    if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+      Quests.incrementMetric('dict_opened');
+    }
 
     setTimeout(function() { Dictionary.playTTS(word.h); }, 300);
 

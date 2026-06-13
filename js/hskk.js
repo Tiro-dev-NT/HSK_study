@@ -993,6 +993,16 @@ var HSKK = (function () {
         pron: _avg(pron), flu: _avg(flu), scored: scored, total: _exam.length,
         perPart: _perPartScores()
       });
+      if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+        Quests.incrementMetric('hskk_graded');
+        if (overall >= 60) {
+          if (_level === 'so-cap') {
+            Quests.incrementMetric('chain_hskk_so');
+          } else if (_level === 'trung-cap') {
+            Quests.incrementMetric('chain_hskk_zhong');
+          }
+        }
+      }
     }
 
     var res = $('hskkResult');

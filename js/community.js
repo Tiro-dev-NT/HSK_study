@@ -11,6 +11,10 @@ var Community = {
     var hero = document.getElementById('commHero');
     if (!hero) return;
 
+    if (typeof Quests !== 'undefined' && Quests.incrementMetric) {
+      Quests.incrementMetric('community_visit');
+    }
+
     // Chưa đăng nhập / chưa có Supabase → fallback CTA.
     if (!window.SB || typeof Auth === 'undefined' || !Auth.user) {
       Community._renderFallback(hero, 'login');

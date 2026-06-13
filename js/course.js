@@ -23,6 +23,9 @@ var VN_CHARACTERS = {
   mama:     { name: '妈妈',      role: 'Mẹ Mai',     emoji: '👩‍🦰', color: '#B45309', img: 'assets/mai/cast/mama.webp',     pitch: 1.05, rate: 0.9  },
   fuwuyuan: { name: '服务员',    role: 'Phục vụ',    emoji: '🧑‍💼', color: '#0EA5E9', img: 'assets/mai/cast/fuwuyuan.webp', pitch: 1.1,  rate: 1.0  },
   yisheng:  { name: '医生',      role: 'Bác sĩ',     emoji: '🧑‍⚕️', color: '#0D9488', img: 'assets/mai/cast/yisheng.webp',  pitch: 0.85, rate: 0.9  },
+  // HSK 5 cast bổ sung (Phase P — arc «Du học Bắc Kinh») — img có emoji fallback nếu ảnh chưa gen
+  anna:        { name: '安娜',   role: 'Bạn cùng phòng', emoji: '👱‍♀️', color: '#8B5CF6', img: 'assets/mai/cast/anna.webp',        pitch: 1.3,  rate: 1.05 },
+  gaojiaoshou: { name: '高教授', role: 'Giáo sư',        emoji: '👨‍🎓', color: '#475569', img: 'assets/mai/cast/gaojiaoshou.webp', pitch: 0.75, rate: 0.9  },
   class:    { name: 'Cả lớp',    role: '',           emoji: '👥',  color: '#6B7280', img: '',                              pitch: 1,    rate: 1.0  }
 };
 
@@ -62,6 +65,15 @@ var COURSE_LEVELS = [
       { label: 'Kỳ thực tập',           from: 122, to: 133 },
       { label: 'Dự án & trưởng thành',  from: 134, to: 149 },
       { label: 'Chủ đề & đọc thêm',     from: 150, to: 154 }
+    ]
+  },
+  {
+    level: 5, label: 'HSK 5', pro: true,
+    chapters: [
+      { label: 'Đặt chân đến Bắc Kinh',      from: 155, to: 170 },
+      { label: 'Giảng đường & trưởng thành', from: 171, to: 188 },
+      { label: 'Củng cố từ vựng',            from: 189, to: 204 },
+      { label: 'Đọc thêm',                   from: 205, to: 214 }
     ]
   }
 ];

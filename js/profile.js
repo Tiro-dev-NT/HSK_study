@@ -22,6 +22,24 @@ var Profile = (function() {
     { id:'mockpass', emoji:'📝', name:'Thi thử đầu tiên',   cond:'mock >= 1',     check: function(s) { return s.mockPassed >= 1; } },
     { id:'explorer', emoji:'🎯', name:'Khám phá chủ đề',    cond:'topics >= 1',   check: function(s) { return s.topicsTried >= 1; } },
     { id:'analyzer', emoji:'🔍', name:'Phân tích văn bản',  cond:'text >= 1',     check: function(s) { return s.textAnalyzed >= 1; } },
+    { id:'diengia',  emoji:'🗣️', name:'Diễn Giả',           cond:'Khẩu ngữ master',check: function(s) {
+      try {
+        var badges = JSON.parse(localStorage.getItem('hsk_user_badges') || '[]');
+        return badges.indexOf('Diễn Giả') !== -1;
+      } catch(e) { return false; }
+    } },
+    { id:'thusinh',  emoji:'📚', name:'Thư Sinh',           cond:'Đọc truyện master', check: function(s) {
+      try {
+        var badges = JSON.parse(localStorage.getItem('hsk_user_badges') || '[]');
+        return badges.indexOf('Thư Sinh') !== -1;
+      } catch(e) { return false; }
+    } },
+    { id:'toolsmith',emoji:'🧰', name:'Toolsmith',          cond:'Master 4 công cụ',check: function(s) {
+      try {
+        var badges = JSON.parse(localStorage.getItem('hsk_user_badges') || '[]');
+        return badges.indexOf('Toolsmith') !== -1;
+      } catch(e) { return false; }
+    } },
   ];
 
   // ── Outfit data ───────────────────────────────────────

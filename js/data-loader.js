@@ -42,6 +42,7 @@ var DataLoader = (function() {
   // GRAMMAR_DATA/READINGS_DATA dùng ở learn-hub + admin/content.
   var _pageBundles = {
     course:       ['course'],
+    'lesson-practice': ['course'],   // C1 — sinh bài tập runtime từ COURSE_DATA
     handout:      ['course'],
     learn:        ['course', 'grammar', 'readings'],
     'ban-do-hsk': ['course'],

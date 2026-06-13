@@ -1,0 +1,500 @@
+/* ═══════════════════════════════════════════════════════
+   LESSON-PRACTICE.CSS — C1 Lesson Practice Suite v2 GUIDED (token-only)
+   Desktop ≥1024: sidebar + tab bar ngang (✓ done, KHÔNG badge số).
+   Mobile <1024: header 1 hàng (‹ title ⋯) + stepper compact (§9.3).
+   Mọi màu qua var(--token). Test light + dark + 375px.
+   ═══════════════════════════════════════════════════════ */
+
+.lp-page { max-width: 1180px; margin: 0 auto; }
+.lp-loading { padding: 48px 16px; text-align: center; color: var(--text3); }
+
+/* ── Shell 2-pane ──────────────────────────────────── */
+.lp-shell { display: flex; gap: 20px; align-items: flex-start; }
+
+.lp-sidebar {
+  flex: 0 0 248px;
+  position: sticky; top: 12px;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+.lp-sidebar-title {
+  font-size: 13px; font-weight: 700; color: var(--text2);
+  text-transform: uppercase; letter-spacing: .04em;
+  padding: 4px 6px 10px;
+}
+.lp-lesson-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  padding: 9px 10px; margin-bottom: 4px;
+  background: transparent; border: 1px solid transparent;
+  border-radius: 10px; cursor: pointer;
+  color: var(--text); transition: background .15s, border-color .15s;
+}
+.lp-lesson-item:hover { background: var(--surface2); }
+.lp-lesson-item--active {
+  background: var(--primary-soft);
+  border-color: var(--accent);
+}
+.lp-li-num {
+  flex: 0 0 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 700;
+  background: var(--surface2); color: var(--text2);
+}
+.lp-lesson-item--active .lp-li-num { background: var(--accent); color: #fff; }
+.lp-li-body { flex: 1; min-width: 0; }
+.lp-li-title {
+  display: block;
+  font-size: 13.5px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.lp-li-resume {
+  display: block;
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.lp-li-track {
+  display: block;
+  height: 4px; border-radius: 4px; margin-top: 5px;
+  background: var(--surface3, var(--surface2));
+  overflow: hidden;
+}
+.lp-li-fill { display: block; height: 100%; background: var(--success); border-radius: 4px; }
+.lp-li-pct { font-size: 11px; color: var(--text3); margin-left: 6px; flex: 0 0 auto; }
+
+/* ── Main pane ─────────────────────────────────────── */
+.lp-main { flex: 1; min-width: 0; }
+
+/* Header gộp 1 hàng (§9.3): ‹ back + title + actions/⋯ */
+.lp-header { margin-bottom: 10px; }
+.lp-h-bar { display: flex; align-items: center; gap: 8px; }
+.lp-back {
+  display: inline-flex; align-items: center; gap: 4px;
+  flex: 0 0 auto;
+  background: none; border: none; cursor: pointer;
+  color: var(--text2); font-size: 13.5px; padding: 6px 4px;
+  border-radius: 8px;
+}
+.lp-back:hover { color: var(--primary); background: var(--surface2); }
+.lp-h-title {
+  flex: 1; min-width: 0;
+  font-size: 20px; font-weight: 800; color: var(--text); margin: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.lp-h-actions { display: flex; gap: 8px; flex: 0 0 auto; }
+.lp-menu-btn {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer; color: var(--text2);
+}
+.lp-menu-btn:hover { color: var(--primary); background: var(--surface2); }
+
+.lp-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 7px 12px; cursor: pointer;
+  color: var(--text); font-size: 13px; font-weight: 600;
+  transition: background .15s, border-color .15s;
+}
+.lp-btn:hover { background: var(--surface2); border-color: var(--border-2); }
+.lp-btn svg { color: var(--text2); }
+.lp-btn--primary {
+  background: var(--primary); border-color: var(--primary);
+  color: #fff;
+}
+.lp-btn--primary:hover { background: var(--primary-light); border-color: var(--primary-light); }
+.lp-btn--primary svg { color: #fff; }
+.lp-btn--lg { padding: 11px 20px; font-size: 14.5px; border-radius: 12px; }
+.lp-btn:disabled { opacity: .5; cursor: default; }
+
+/* ── Stepper compact mobile (§9.2/9.3) — dots KHÔNG số câu (§9.5) ── */
+.lp-stepper {
+  display: none;
+  width: 100%;
+  align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 14px; cursor: pointer;
+  margin-bottom: 12px;
+}
+.lp-stepper:hover { background: var(--surface2); }
+.lp-stepper-label {
+  font-size: 13.5px; font-weight: 700; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.lp-stepper-dots { display: flex; gap: 5px; flex: 0 0 auto; align-items: center; }
+.lp-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: transparent; border: 1.5px solid var(--border-2);
+}
+.lp-dot--done { background: var(--success); border-color: var(--success); }
+.lp-dot--cur {
+  background: var(--accent); border-color: var(--accent);
+  width: 9px; height: 9px;
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* ── Tab bar desktop (✓ done, KHÔNG badge số — MASTER §⚖️) ── */
+.lp-tabs {
+  display: flex; flex-wrap: wrap; gap: 2px 4px;  /* wrap thay vì scroll ngang — đủ 8 bước không tràn (§9.3) */
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0; margin-bottom: 16px;
+}
+.lp-tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+  background: none; border: none; cursor: pointer;
+  padding: 9px 10px; margin-bottom: -1px;
+  color: var(--text2); font-size: 13.5px; font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.lp-tab svg { color: currentColor; }
+.lp-tab:hover { color: var(--text); }
+.lp-tab--active { color: var(--primary); border-bottom-color: var(--primary); }
+.lp-tab-done { display: inline-flex; color: var(--success); }
+
+/* ── Exercise area ─────────────────────────────────── */
+.lp-exarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 22px 18px;
+  box-shadow: var(--shadow-1);
+}
+.lp-progress { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.lp-progress-track { flex: 1; height: 6px; border-radius: 6px; background: var(--surface2); overflow: hidden; }
+.lp-progress-fill { height: 100%; background: var(--accent); border-radius: 6px; transition: width .25s; }
+.lp-progress-label { font-size: 12.5px; font-weight: 700; color: var(--text3); flex: 0 0 auto; }
+
+.lp-q-label { font-size: 13px; color: var(--text2); margin-bottom: 10px; font-weight: 600; }
+.lp-q-sentence { font-size: 24px; line-height: 1.6; color: var(--text); margin-bottom: 18px; }
+.lp-q-prompt {
+  font-size: 16px; color: var(--text); margin-bottom: 16px;
+  padding: 12px 14px; background: var(--surface2); border-radius: 10px;
+}
+.lp-blank { color: var(--accent); font-weight: 800; padding: 0 4px; }
+.lp-blank--filled { border-bottom: 2px solid var(--text3); }
+.lp-blank--ok { color: var(--success); }
+.lp-blank--no { color: var(--danger); }
+
+/* MCQ options */
+.lp-opts { display: flex; flex-direction: column; gap: 10px; }
+.lp-opt {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; text-align: left;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 13px 15px; cursor: pointer;
+  color: var(--text); font-size: 16px;
+  transition: border-color .15s, background .15s;
+}
+.lp-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--surface2); }
+.lp-opt:disabled { cursor: default; }
+.lp-opt-key {
+  flex: 0 0 22px; height: 22px; border-radius: 6px;
+  display: grid; place-items: center;
+  font-size: 11.5px; font-weight: 700;
+  background: var(--surface2); color: var(--text3);
+  border: 1px solid var(--border);
+}
+.lp-opt--correct { border-color: var(--success); background: var(--success-bg); color: var(--text); }
+.lp-opt--correct .lp-opt-key { background: var(--success); color: #fff; border-color: var(--success); }
+.lp-opt--wrong { border-color: var(--danger); background: var(--danger-bg); }
+.lp-opt--wrong .lp-opt-key { background: var(--danger); color: #fff; border-color: var(--danger); }
+
+/* Word bank (order / translate mức dễ) */
+.lp-wordbank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; min-height: 44px; }
+.lp-build {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  min-height: 50px; padding: 10px 12px; margin-bottom: 16px;
+  background: var(--surface2); border: 1.5px dashed var(--border-2);
+  border-radius: 12px;
+}
+.lp-build:empty::before { content: attr(data-ph); color: var(--text3); font-size: 13px; align-self: center; }
+.lp-word {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 9px 14px; cursor: pointer;
+  font-size: 18px; color: var(--text);
+  transition: border-color .15s, transform .1s, opacity .15s;
+}
+.lp-word:hover:not(:disabled) { border-color: var(--accent); }
+.lp-word:active { transform: scale(.96); }
+.lp-word--used { opacity: .32; pointer-events: none; }
+.lp-word:disabled { cursor: default; }
+.lp-word--inbuild { background: var(--primary-soft); border-color: var(--accent); }
+
+/* ── TID-3: mode "che từ" (Luyện dịch) ─────────────── */
+.lp-modes {
+  display: inline-flex; gap: 0; margin-bottom: 14px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 3px;
+}
+.lp-mode {
+  background: none; border: none; cursor: pointer;
+  padding: 6px 12px; border-radius: 8px;
+  font-size: 12.5px; font-weight: 700; color: var(--text3);
+  transition: background .15s, color .15s;
+}
+.lp-mode--on { background: var(--surface); color: var(--primary); box-shadow: var(--shadow-1); }
+
+.lp-maskrow {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  margin-bottom: 16px; padding: 12px;
+  background: var(--surface2); border: 1.5px dashed var(--border-2);
+  border-radius: 12px;
+}
+.lp-mask {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 8px 12px; cursor: pointer;
+  font-size: 18px; color: var(--text2);
+  letter-spacing: 2px;
+  transition: border-color .15s, color .15s;
+}
+.lp-mask:hover { border-color: var(--accent); color: var(--text); }
+.lp-mask--open {
+  border-color: var(--success); color: var(--text);
+  background: var(--success-bg);
+  letter-spacing: normal; cursor: default;
+}
+.lp-mask-all {
+  margin-left: auto;
+  background: none; border: none; cursor: pointer;
+  font-size: 12px; font-weight: 600; color: var(--text3);
+  text-decoration: underline; padding: 4px 6px;
+}
+.lp-mask-all:hover { color: var(--danger); }
+
+/* Text input (dictation + che từ) */
+.lp-input {
+  width: 100%; box-sizing: border-box;
+  font-size: 18px; padding: 12px 14px; margin-bottom: 16px;
+  background: var(--surface); color: var(--text);
+  border: 1.5px solid var(--border); border-radius: 12px;
+}
+.lp-input:focus { outline: none; border-color: var(--accent); }
+.lp-input:disabled { background: var(--surface2); color: var(--text2); }
+
+.lp-play {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--primary-soft); border: 1.5px solid var(--accent);
+  border-radius: 12px; padding: 14px 20px; cursor: pointer;
+  color: var(--primary); font-size: 15px; font-weight: 700;
+  margin-bottom: 16px;
+}
+.lp-play:hover { background: var(--primary); color: #fff; }
+.lp-play:hover svg { color: #fff; }
+.lp-play svg { color: var(--primary); }
+
+/* Feedback + explain */
+.lp-feedback {
+  margin-bottom: 14px; padding: 12px 14px; border-radius: 10px;
+  font-size: 14.5px; font-weight: 600;
+}
+.lp-feedback--ok { background: var(--success-bg); color: var(--success); }
+.lp-feedback--no { background: var(--danger-bg); color: var(--danger); }
+.lp-feedback--no b { color: var(--text); }
+.lp-explain {
+  margin-bottom: 14px; padding: 11px 14px; border-radius: 10px;
+  background: var(--warning-bg); color: var(--text2);
+  font-size: 13.5px; line-height: 1.5;
+  border-left: 3px solid var(--accent);
+}
+.lp-reveal-py { color: var(--text3); font-size: 14px; font-weight: 500; }
+
+/* Actions + keyboard hint */
+.lp-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+.lp-actions--center { justify-content: center; margin-top: 18px; }
+.lp-kbd-hint { margin-left: auto; display: flex; gap: 8px; align-items: center; color: var(--text3); font-size: 12px; }
+.lp-kbd {
+  display: inline-block; min-width: 18px; text-align: center;
+  font-size: 11px; font-family: ui-monospace, monospace;
+  background: var(--surface2); color: var(--text2);
+  border: 1px solid var(--border); border-bottom-width: 2px;
+  border-radius: 5px; padding: 1px 5px;
+}
+
+/* Mini result + kết quả bài */
+.lp-result { text-align: center; padding: 24px 12px; }
+.lp-result-emoji { font-size: 44px; }
+.lp-result-score { font-size: 26px; font-weight: 800; color: var(--text); margin: 8px 0 4px; }
+.lp-result-sub { color: var(--text2); font-size: 14px; margin-bottom: 20px; }
+.lp-result-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+.lp-fin-rows {
+  max-width: 420px; margin: 0 auto 22px;
+  display: flex; flex-direction: column; gap: 10px;
+  text-align: left;
+}
+.lp-fin-row { display: flex; align-items: center; gap: 10px; }
+.lp-fin-label {
+  flex: 0 0 132px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--text2);
+}
+.lp-fin-label svg { color: var(--text3); }
+.lp-fin-track { flex: 1; height: 8px; border-radius: 8px; background: var(--surface2); overflow: hidden; }
+.lp-fin-fill { display: block; height: 100%; background: var(--success); border-radius: 8px; }
+.lp-fin-pct { flex: 0 0 42px; text-align: right; font-size: 12.5px; font-weight: 700; color: var(--text3); }
+
+/* ── Bước 0: Bối cảnh (§9.1) ───────────────────────── */
+.lp-context { max-width: 560px; margin: 0 auto; text-align: center; }
+.lp-context-scene {
+  border-radius: 14px; overflow: hidden; margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+.lp-context-scene img {
+  display: block; width: 100%; max-height: 240px; object-fit: cover;
+}
+.lp-context-text {
+  font-size: 15.5px; line-height: 1.65; color: var(--text);
+  margin: 0 0 16px; text-align: left;
+}
+.lp-context-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 18px; }
+.lp-chip {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 7px 14px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.lp-chip:hover { border-color: var(--accent); background: var(--primary-soft); }
+.lp-chip-h { font-size: 17px; color: var(--text); font-weight: 600; }
+.lp-chip-p { font-size: 12px; color: var(--text3); }
+.lp-context-cta { margin-top: 6px; }
+
+/* Banner nhẹ "học truyện trước" — dismiss là nhớ (§9.5) */
+.lp-banner {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  text-align: left;
+  background: var(--warning-bg); border-left: 3px solid var(--accent);
+  border-radius: 10px; padding: 10px 12px; margin-bottom: 16px;
+  font-size: 13px; color: var(--text2);
+}
+.lp-banner-link {
+  background: none; border: none; cursor: pointer;
+  font-size: 13px; font-weight: 700; color: var(--primary);
+  padding: 2px 4px; text-decoration: underline;
+}
+.lp-banner-x {
+  margin-left: auto;
+  background: none; border: none; cursor: pointer;
+  color: var(--text3); padding: 4px; border-radius: 6px;
+}
+.lp-banner-x:hover { color: var(--text); background: var(--surface2); }
+
+/* ── Conversation (Hội thoại) ──────────────────────── */
+.lp-doc-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+.lp-doc { display: flex; flex-direction: column; gap: 10px; }
+.lp-doc-line {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 14px;
+}
+.lp-doc-line--narr { background: var(--surface2); border-style: dashed; }
+.lp-doc-avatar {
+  flex: 0 0 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 18px;
+  background: var(--surface2); overflow: hidden;
+}
+.lp-doc-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.lp-doc-body { flex: 1; min-width: 0; }
+.lp-doc-name { font-size: 12px; font-weight: 700; color: var(--text3); margin-bottom: 3px; }
+.lp-doc-hanzi { font-size: 19px; color: var(--text); line-height: 1.5; }
+.lp-doc-py { font-size: 13.5px; color: var(--text3); margin-top: 2px; }
+.lp-doc-py[hidden] { display: none; }
+.lp-doc-vi { font-size: 13.5px; color: var(--text2); margin-top: 3px; }
+.lp-doc-vi[hidden] { display: none; }
+.lp-doc-play {
+  flex: 0 0 auto; align-self: center;
+  background: none; border: none; cursor: pointer;
+  color: var(--text3); padding: 6px; border-radius: 8px;
+}
+.lp-doc-play:hover { color: var(--primary); background: var(--surface2); }
+.lp-doc-play--on { color: var(--primary); }
+
+/* ── Empty state ───────────────────────────────────── */
+.lp-empty { text-align: center; padding: 40px 16px; }
+.lp-empty-img { width: 140px; height: 140px; object-fit: contain; margin-bottom: 12px; }
+.lp-empty-title { font-size: 16px; font-weight: 700; color: var(--text); }
+.lp-empty-sub { color: var(--text3); font-size: 13.5px; margin-top: 6px; }
+
+/* ── Vocab modal ───────────────────────────────────── */
+.lp-modal-backdrop {
+  position: fixed; inset: 0; z-index: 1200;
+  background: rgba(0,0,0,.4);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.lp-modal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); max-width: 460px; width: 100%;
+  max-height: 80vh; overflow-y: auto; padding: 20px;
+  box-shadow: var(--shadow-4);
+}
+.lp-modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.lp-modal-title { font-size: 16px; font-weight: 800; color: var(--text); }
+.lp-modal-close { background: none; border: none; cursor: pointer; color: var(--text3); padding: 4px; }
+.lp-modal-close:hover { color: var(--primary); }
+.lp-vlist { display: flex; flex-direction: column; gap: 8px; }
+.lp-vrow { display: flex; gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.lp-vrow:last-child { border-bottom: none; }
+.lp-vh { font-size: 20px; color: var(--text); flex: 0 0 auto; }
+.lp-vp { font-size: 13px; color: var(--text3); flex: 0 0 auto; min-width: 80px; }
+.lp-vv { font-size: 14px; color: var(--text2); }
+
+/* ── Bottom-sheet (bài · bước · menu ⋯) ───────────── */
+.lp-sheet-backdrop {
+  position: fixed; inset: 0; z-index: 1100;
+  background: rgba(0,0,0,.4);
+  display: flex; align-items: flex-end;
+}
+.lp-sheet {
+  background: var(--surface); width: 100%;
+  border-radius: 18px 18px 0 0; max-height: 72vh; overflow-y: auto;
+  padding: 8px 12px 24px;
+  box-shadow: var(--shadow-4);
+}
+.lp-sheet-grip { width: 40px; height: 4px; border-radius: 4px; background: var(--border-2); margin: 8px auto 12px; }
+
+/* Sheet bước: ✓/●/○ + số câu (số câu CHỈ ở đây — §9.5) */
+.lp-step-row {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  padding: 11px 10px; margin-bottom: 2px;
+  background: transparent; border: 1px solid transparent;
+  border-radius: 10px; cursor: pointer;
+  color: var(--text); font-size: 14px; font-weight: 600;
+}
+.lp-step-row:hover { background: var(--surface2); }
+.lp-step-row--active { background: var(--primary-soft); border-color: var(--accent); }
+.lp-step-row svg { color: var(--text2); flex: 0 0 auto; }
+.lp-step-state {
+  flex: 0 0 20px; text-align: center;
+  font-size: 13px; color: var(--text3);
+}
+.lp-step-state--done { color: var(--success); display: inline-flex; justify-content: center; }
+.lp-step-state--cur { color: var(--accent); }
+.lp-step-name { flex: 1; min-width: 0; }
+.lp-step-count { flex: 0 0 auto; font-size: 12px; font-weight: 600; color: var(--text3); }
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .lp-sidebar { display: none; }
+  .lp-tabs { display: none; }
+  .lp-stepper { display: flex; }
+  .lp-menu-btn { display: inline-flex; }
+  .lp-h-actions { display: none; }
+  .lp-back-txt { display: none; }
+  .lp-h-title { font-size: 17px; }
+}
+@media (max-width: 560px) {
+  .lp-q-sentence { font-size: 20px; }
+  .lp-exarea { padding: 16px 14px; }
+  .lp-kbd-hint { display: none; }
+  .lp-context-scene img { max-height: 170px; }
+}

@@ -74,6 +74,7 @@ var Router = (function() {
     '/typing':          'typing',
     '/topics':          'topics',
     '/course':          'course',
+    '/lesson-practice': 'lesson-practice',
     '/handout':         'handout',
     '/references':      'references',
     '/mock-exam':       'mock-exam',
@@ -223,6 +224,9 @@ var Router = (function() {
     'course':       function() {
       if (typeof Course !== 'undefined') Course.init();
     },
+    'lesson-practice': function() {
+      if (typeof LessonPractice !== 'undefined') LessonPractice.init();
+    },
     'handout':      function() {
       if (typeof Handout !== 'undefined') Handout.init();
     },
@@ -255,7 +259,7 @@ var Router = (function() {
   // Trang nào KHÔNG có trong map = tự nó là tab (vd home/learn/profile…).
   var _pageTabMap = {
     // ② Học
-    'course':'learn', 'reader':'learn', 'grammar':'learn', 'reading':'learn',
+    'course':'learn', 'lesson-practice':'learn', 'reader':'learn', 'grammar':'learn', 'reading':'learn',
     'ban-do-hsk':'learn', 'topics':'learn', 'learn-method':'learn',
     'hsk0-pinyin-initials':'learn', 'hsk0-pinyin-finals':'learn', 'hsk0-strokes':'learn',
     'hsk0-numbers':'learn', 'hsk0-typing':'learn', 'hsk0-final':'learn', 'hsk0-placement':'learn',

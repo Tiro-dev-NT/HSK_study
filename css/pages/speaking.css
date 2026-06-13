@@ -627,77 +627,8 @@
 .sp-syllable--mid { background: var(--warning-bg); color: var(--warning); border-color: var(--warning); }
 .sp-syllable--low { background: var(--danger-bg); color: var(--danger); border-color: var(--danger); }
 
-.sp-hz {
-  cursor: pointer;
-  padding: 2px 4px;
-  margin: 0 1px;
-  border-radius: var(--r-2);
-  transition: background var(--d-fast) var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
-}
-.sp-hz:hover { background: var(--primary-soft); }
-.sp-hz:active { background: var(--primary-bg); }
-
-.sp-lookup {
-  position: fixed;
-  min-width: 240px;
-  max-width: 320px;
-  padding: var(--s-4);
-  border: 1px solid var(--border);
-  border-radius: var(--r-4);
-  background: var(--surface);
-  box-shadow: var(--shadow-4);
-  z-index: 1000;
-}
-.sp-lookup-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 26px;
-  height: 26px;
-  border: none;
-  border-radius: var(--r-2);
-  background: var(--bg2);
-  color: var(--text3);
-  font-size: 14px;
-  cursor: pointer;
-  transition: background var(--d-fast) var(--ease-out), color var(--d-fast) var(--ease-out);
-}
-.sp-lookup-close:hover { background: var(--danger-bg); color: var(--danger); }
-.sp-lookup-py {
-  font-size: var(--t-h3);
-  color: var(--accent);
-  font-weight: 750;
-  margin-bottom: var(--s-2);
-}
-.sp-lookup-vi {
-  color: var(--text);
-  font-size: var(--t-body);
-  margin-bottom: var(--s-3);
-  line-height: var(--lh-normal);
-}
-.sp-lookup-actions {
-  display: flex;
-  gap: var(--s-2);
-  flex-wrap: wrap;
-}
-.sp-lookup-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-pill);
-  background: var(--bg2);
-  color: var(--text);
-  font-size: var(--t-small);
-  font-weight: 750;
-  cursor: pointer;
-  transition: border-color var(--d-fast) var(--ease-out), background var(--d-fast) var(--ease-out);
-}
-.sp-lookup-btn:hover { border-color: var(--primary); background: var(--primary-soft); }
-.sp-lookup-btn:active { transform: scale(0.97); }
+/* Tap-to-gloss is handled by the shared global LookupPanel (css/components/lookup-panel.css);
+   the old .sp-hz / .sp-lookup popup styles were removed when speaking.js was unified. */
 
 @media (max-width: 760px) {
   .speaking-page { padding-inline: var(--s-3); }

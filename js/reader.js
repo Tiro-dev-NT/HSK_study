@@ -16,7 +16,6 @@ var Reader = (function() {
   var _showPinyin = true;
   var _showVi = true;
   var _ttsRate = 1;
-  var _lookupPopup = null;
 
   var PROGRESS_KEY = 'reader_progress_v1';      // { id: true }
   var PINYIN_KEY   = 'reader_show_pinyin';
@@ -359,18 +358,11 @@ var Reader = (function() {
     return _resolveWordDict(ch, nextCh);
   }
 
-  function _closeLookup() {
-    if (_lookupPopup && _lookupPopup.parentNode) _lookupPopup.parentNode.removeChild(_lookupPopup);
-    _lookupPopup = null;
-    document.removeEventListener('click', _onDocClick);
-  }
-  function _onDocClick(e) {
-    if (!_lookupPopup) return;
-    if (!_lookupPopup.contains(e.target) && !e.target.classList.contains('rd-hz')) _closeLookup();
-  }
-
+  // The floating card UI is the shared global LookupPanel. Reader keeps its own
+  // resolution (curated per-sentence gloss > dictionary) and hands the result to
+  // the panel via opts.word — one component, in-context meaning preserved.
   function _showLookup(target) {
-    _closeLookup();
+    if (typeof LookupPanel === 'undefined' || !LookupPanel.open) return;
     var ch = target.getAttribute('data-ch');
     var row = target.closest('.rd-sent');
     var si = row ? parseInt(row.dataset.si, 10) : -1;
@@ -386,37 +378,9 @@ var Reader = (function() {
     var w = _lookupToken(sentence, ch, nextCh);
     if (!w) { _toast('Chưa có trong từ điển'); return; }
 
-    var popup = document.createElement('div');
-    popup.className = 'rd-lookup';
-    popup.innerHTML =
-      '<button class="rd-lookup-close">✕</button>' +
-      '<div class="rd-lookup-h" lang="zh">' + _esc(w.h || ch) + '</div>' +
-      '<div class="rd-lookup-py">' + _esc(w.p || '') + '</div>' +
-      '<div class="rd-lookup-vi">' + _esc(w.v || '') + '</div>' +
-      '<div class="rd-lookup-act">' +
-        '<button class="rd-lookup-btn rd-lookup-tts" data-text="' + _esc(w.h || ch) + '">🔊 Nghe</button>' +
-        '<button class="rd-lookup-btn rd-lookup-srs" data-word="' + _esc(w.h || ch) + '">📚 Lưu ôn tập</button>' +
-      '</div>';
-    document.body.appendChild(popup);
-    _lookupPopup = popup;
-
     var rect = target.getBoundingClientRect();
-    var top = rect.bottom + 8;
-    var left = rect.left + rect.width / 2 - popup.offsetWidth / 2;
-    if (top + popup.offsetHeight > window.innerHeight - 20) top = rect.top - popup.offsetHeight - 8;
-    if (left < 10) left = 10;
-    if (left + popup.offsetWidth > window.innerWidth - 10) left = window.innerWidth - popup.offsetWidth - 10;
-    popup.style.top = (top + window.scrollY) + 'px';
-    popup.style.left = left + 'px';
-
-    popup.querySelector('.rd-lookup-close').onclick = _closeLookup;
-    popup.querySelector('.rd-lookup-tts').onclick = function() { _speak(this.getAttribute('data-text')); };
-    popup.querySelector('.rd-lookup-srs').onclick = function() {
-      var h = this.getAttribute('data-word');
-      if (typeof updateSRSCard === 'function') { updateSRSCard(h, 0, { source: 'reader' }); _toast('Đã thêm vào ôn tập'); }
-      _closeLookup();
-    };
-    setTimeout(function() { document.addEventListener('click', _onDocClick); }, 0);
+    LookupPanel.pinned = true; // tap-to-open should stay until dismissed
+    LookupPanel.open(w.h || ch, rect.left + rect.width / 2, rect.bottom, { word: w, token: target });
   }
 
   // ── TTS (Web Speech; R2 audio file = nâng cấp sau, §G) ─

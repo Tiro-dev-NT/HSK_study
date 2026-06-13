@@ -21,21 +21,36 @@ var LookupPanel = {
     window.addEventListener('resize', this._onResize.bind(this));
   },
 
-  open: function(character, x, y) {
-    if (!this._isDesktop()) return;
+  // open(query, x, y, opts) — opts.word: pre-resolved word object (e.g. reader curated
+  // gloss) to render instead of dictionary lookup; opts.token: element to mark active.
+  open: function(character, x, y, opts) {
+    opts = opts || {};
     var query = (character || '').trim();
-    if (!query) return;
-    var word = this._findWord(query);
+    if (!query && !opts.word) return;
+    var word = opts.word ? this._enrichWord(opts.word, query) : this._findWord(query);
     this.currentWord = word;
-    this.currentQuery = query;
-    this.el.innerHTML = word ? this._wordHTML(word) : this._missingHTML(query);
+    this.currentQuery = query || (word && word.h) || '';
+    this.el.innerHTML = word ? this._wordHTML(word) : this._missingHTML(this.currentQuery);
     this.el.classList.remove('hidden');
     this.el.classList.toggle('pinned', this.pinned);
     this.el.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lp-panel-open');
+    if (opts.token) this._setActiveToken(opts.token, this.pinned);
     this._position(x, y);
     this._bindPanelActions();
     if (word) this._saveRecent(word);
+  },
+
+  // Merge a caller-supplied word (curated p/v) with dictionary extras (e/level/ex)
+  // without overriding the curated fields. Lets reader keep its in-context gloss.
+  _enrichWord: function(w, query) {
+    var dict = this._findWord(w.h || query);
+    if (!dict) return w;
+    return {
+      h: w.h || dict.h, p: w.p || dict.p, v: w.v || dict.v,
+      e: w.e || dict.e, level: w.level || dict.level, ex: w.ex || dict.ex,
+      ver: dict.ver
+    };
   },
 
   close: function() {
@@ -90,11 +105,17 @@ var LookupPanel = {
   },
 
   _onClick: function(e) {
-    if (!this._isDesktop()) return;
     if (this.el && this.el.contains(e.target)) return;
-    if (this._ignoreTarget(e.target)) return;
+    if (this._ignoreTarget(e.target)) {
+      // Tap outside any lookup token while panel is open (mobile/pinned) → close.
+      if (this.el && !this.el.classList.contains('hidden')) this.close();
+      return;
+    }
     var hit = this._lookupFromEvent(e);
-    if (!hit || !hit.query) return;
+    if (!hit || !hit.query) {
+      if (this.el && !this.el.classList.contains('hidden')) this.close();
+      return;
+    }
     e.preventDefault();
     e.stopPropagation();
     this._setActiveToken(hit.token, true);
@@ -107,7 +128,8 @@ var LookupPanel = {
   },
 
   _onResize: function() {
-    if (!this._isDesktop()) this.close();
+    // Breakpoint may flip floating ↔ bottom-sheet; close to avoid stale positioning.
+    if (this.el && !this.el.classList.contains('hidden')) this.close();
   },
 
   _schedule: function(query, x, y, token) {
@@ -131,7 +153,9 @@ var LookupPanel = {
     }
     var root = target.closest && target.closest('[data-lookup="true"], .hanzi-text');
     if (!root) return null;
-    var query = this._charAtPoint(e.clientX, e.clientY) || this._firstHanzi(target.textContent || root.textContent);
+    // Free-flowing text → segment at the caret with longest dictionary match
+    // (e.g. 高兴 over 高), falling back to the single tapped character.
+    var query = this._segmentAtPoint(e.clientX, e.clientY) || this._firstHanzi(target.textContent || root.textContent);
     return { query: query, token: target.closest('span, ruby, p, div') || root };
   },
 
@@ -145,28 +169,64 @@ var LookupPanel = {
     return !!(target && target.closest && target.closest('button, a, input, textarea, select, [contenteditable="true"], .lp-panel, #page-dictionary'));
   },
 
-  _charAtPoint: function(x, y) {
-    var range = null;
+  _isHan: function(ch) {
+    return /[一-鿿㐀-䶿]/.test(ch || '');
+  },
+
+  // Resolve the text node + offset under a viewport point (cross-browser caret API).
+  _textAndOffsetAtPoint: function(x, y) {
+    var node = null, offset = 0;
     if (document.caretPositionFromPoint) {
       var pos = document.caretPositionFromPoint(x, y);
-      if (pos && pos.offsetNode) {
-        range = document.createRange();
-        range.setStart(pos.offsetNode, Math.max(0, pos.offset));
-        range.setEnd(pos.offsetNode, Math.min((pos.offsetNode.textContent || '').length, pos.offset + 1));
-      }
+      if (pos && pos.offsetNode) { node = pos.offsetNode; offset = pos.offset; }
     } else if (document.caretRangeFromPoint) {
-      range = document.caretRangeFromPoint(x, y);
+      var range = document.caretRangeFromPoint(x, y);
+      if (range) { node = range.startContainer; offset = range.startOffset; }
     }
-    if (!range || !range.startContainer) return '';
-    var text = range.startContainer.textContent || '';
-    var offset = Math.max(0, Math.min(range.startOffset, text.length - 1));
+    if (!node) return null;
+    return { text: node.textContent || '', offset: offset };
+  },
+
+  // Snap to nearest Han char at the caret, then longest-match forward against the
+  // dictionary (up to 4 chars) so taps on compounds resolve the whole word.
+  _segmentAtPoint: function(x, y) {
+    var info = this._textAndOffsetAtPoint(x, y);
+    if (!info) return '';
+    var text = info.text;
+    var offset = Math.max(0, Math.min(info.offset, text.length - 1));
+    var start = -1;
     for (var i = offset; i >= 0 && i >= offset - 2; i--) {
-      if (/[一-鿿]/.test(text.charAt(i))) return text.charAt(i);
+      if (this._isHan(text.charAt(i))) { start = i; break; }
     }
-    for (var j = offset + 1; j < text.length && j <= offset + 2; j++) {
-      if (/[一-鿿]/.test(text.charAt(j))) return text.charAt(j);
+    if (start < 0) {
+      for (var j = offset + 1; j < text.length && j <= offset + 2; j++) {
+        if (this._isHan(text.charAt(j))) { start = j; break; }
+      }
     }
-    return '';
+    if (start < 0) return '';
+    var win = '';
+    for (var k = start; k < text.length && win.length < 4; k++) {
+      if (this._isHan(text.charAt(k))) win += text.charAt(k); else break;
+    }
+    var set = this._wordSet();
+    for (var len = win.length; len >= 2; len--) {
+      if (set[win.substr(0, len)]) return win.substr(0, len);
+    }
+    return win.charAt(0);
+  },
+
+  // Lazy-built headword index { hanzi: true } for longest-match. Rebuilt if the
+  // vocab dataset grows (lazy route loading adds words after first build).
+  _wordSet: function() {
+    if (typeof getAllWordsBothVersions !== 'function') return {};
+    var words = getAllWordsBothVersions();
+    if (!this._wsCache || this._wsCount !== words.length) {
+      var set = {};
+      for (var i = 0; i < words.length; i++) { if (words[i].h) set[words[i].h] = true; }
+      this._wsCache = set;
+      this._wsCount = words.length;
+    }
+    return this._wsCache;
   },
 
   _firstHanzi: function(text) {
@@ -188,6 +248,15 @@ var LookupPanel = {
   },
 
   _position: function(x, y) {
+    // Mobile/tablet → bottom-sheet (CSS-positioned). Clear inline coords so the
+    // stylesheet's left/right/bottom take over.
+    if (!this._isDesktop()) {
+      this.el.classList.add('lp-panel--sheet');
+      this.el.style.left = '';
+      this.el.style.top = '';
+      return;
+    }
+    this.el.classList.remove('lp-panel--sheet');
     var width = 280;
     var gap = 14;
     var vw = window.innerWidth;
@@ -219,6 +288,7 @@ var LookupPanel = {
     var pinBtn = this.el.querySelector('[data-lp-pin]');
     var ttsBtns = this.el.querySelectorAll('[data-lp-tts]');
     var srsBtn = this.el.querySelector('[data-lp-srs]');
+    var deckBtn = this.el.querySelector('[data-lp-deck]');
     var dictBtn = this.el.querySelector('[data-lp-dict]');
     var recentBtns = this.el.querySelectorAll('[data-lp-recent]');
     if (closeBtn) closeBtn.addEventListener('click', this.close.bind(this));
@@ -227,6 +297,7 @@ var LookupPanel = {
       btn.addEventListener('click', function() { LookupPanel._speak(btn.dataset.lpTts || (LookupPanel.currentWord && LookupPanel.currentWord.h)); });
     });
     if (srsBtn) srsBtn.addEventListener('click', function() { LookupPanel._addToSRS(); });
+    if (deckBtn) deckBtn.addEventListener('click', function() { LookupPanel._addToDeck(); });
     if (dictBtn) dictBtn.addEventListener('click', function() {
       if (typeof Router !== 'undefined' && Router.navigateTo) Router.navigateTo('dictionary');
       LookupPanel.close();
@@ -241,7 +312,10 @@ var LookupPanel = {
     if (!this.el) return;
     var badge = this.el.querySelector('.lp-badge');
     var pinBtn = this.el.querySelector('[data-lp-pin]');
-    if (badge && this.currentWord) badge.textContent = this.pinned ? 'PINNED' : 'HSK ' + (this.currentWord.ver === 3 ? '3.0 ' : '') + this.currentWord.level;
+    if (badge && this.currentWord) {
+      var lv = this.currentWord.level ? ('HSK ' + (this.currentWord.ver === 3 ? '3.0 ' : '') + this.currentWord.level) : 'TỪ VỰNG';
+      badge.textContent = this.pinned ? 'PINNED' : lv;
+    }
     if (pinBtn) {
       pinBtn.classList.toggle('active', this.pinned);
       pinBtn.setAttribute('aria-pressed', this.pinned ? 'true' : 'false');
@@ -271,7 +345,17 @@ var LookupPanel = {
       if (typeof saveSRS === 'function') saveSRS();
       if (typeof AppState !== 'undefined' && AppState.markLearned) AppState.markLearned(word);
     }
-    if (typeof showToast === 'function') showToast('Đã thêm ' + word.h + ' vào SRS');
+    if (typeof showToast === 'function') showToast('Đã lưu ' + word.h + ' vào Kho từ');
+  },
+
+  // TID-2 — pick a deck (hsk_decks_v3) via the shared add-to-deck picker.
+  _addToDeck: function() {
+    var word = this.currentWord;
+    if (!word) return;
+    var payload = { h: word.h, p: word.p || '', v: word.v || '', e: word.e || '', level: word.level || 0 };
+    this.close();
+    if (typeof openAddToDeckForWord === 'function') openAddToDeckForWord(payload);
+    else if (typeof showToast === 'function') showToast('Chưa sẵn sàng — thử lại sau');
   },
 
   _saveRecent: function(word) {
@@ -301,7 +385,7 @@ var LookupPanel = {
 
   _wordHTML: function(word) {
     var ex = word.ex || {};
-    var level = 'HSK ' + (word.ver === 3 ? '3.0 L' : '') + word.level;
+    var level = word.level ? ('HSK ' + (word.ver === 3 ? '3.0 L' : '') + word.level) : 'TỪ VỰNG';
     var learned = typeof getSRSCard === 'function' && getSRSCard(word.h);
     var srsText = learned ? 'Đã học' : 'Từ mới';
     return '<div class="lp-header">' +
@@ -315,7 +399,8 @@ var LookupPanel = {
     '<div class="lp-example"><button class="lp-mini-tts" data-lp-tts="' + this._escapeAttr(ex.zh || word.h) + '">🔊</button><p class="lp-ex-zh">' + this._escapeHTML(ex.zh || 'Chưa có ví dụ.') + '</p>' +
     (ex.py ? '<p class="lp-ex-py">' + this._escapeHTML(ex.py) + '</p>' : '') +
     (ex.vi ? '<p class="lp-ex-vi">' + this._escapeHTML(ex.vi) + '</p>' : '') + '</div>' +
-    '<div class="lp-footer"><button class="lp-primary" data-lp-srs>📚 Thêm SRS</button><button class="lp-secondary" data-lp-dict>🔗 Từ điển</button></div>';
+    '<div class="lp-footer"><button class="lp-primary" data-lp-srs>💾 Lưu nhanh</button><button class="lp-secondary" data-lp-deck>📁 Bộ thẻ</button></div>' +
+    '<button class="lp-link-btn" data-lp-dict>🔗 Mở Từ điển đầy đủ</button>';
   },
 
   _missingHTML: function(query) {

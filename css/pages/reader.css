@@ -127,25 +127,8 @@
 }
 .rd-explain.ok { background: rgba(16, 185, 129, .12); }
 
-/* ── Tap-lookup popup ── */
-.rd-lookup {
-  position: absolute; z-index: 1000; min-width: 180px; max-width: 260px;
-  background: var(--surface2); border: 1px solid var(--accent);
-  border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 28px rgba(0,0,0,.4);
-}
-.rd-lookup-close {
-  position: absolute; top: 6px; right: 8px; background: none; border: none;
-  color: var(--text2); cursor: pointer; font-size: .9rem;
-}
-.rd-lookup-h { font-family: "Noto Sans SC", serif; font-size: 1.6rem; color: var(--text); }
-.rd-lookup-py { color: var(--accent); font-size: 1rem; margin-top: 2px; }
-.rd-lookup-vi { color: var(--text); font-size: .95rem; margin-top: 4px; }
-.rd-lookup-act { display: flex; gap: 8px; margin-top: 12px; }
-.rd-lookup-btn {
-  flex: 1; padding: 7px; border-radius: 8px; cursor: pointer; font-size: .8rem; font-weight: 600;
-  background: var(--surface3); color: var(--text); border: 1px solid var(--border);
-}
-.rd-lookup-btn:hover { border-color: var(--accent); }
+/* Tap-lookup now uses the shared global LookupPanel (css/components/lookup-panel.css);
+   reader keeps .rd-hz spans but the .rd-lookup popup styles were removed on unification. */
 
 @media (max-width: 600px) {
   .rd-hanzi { font-size: 1.35rem; }

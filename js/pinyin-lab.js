@@ -160,14 +160,17 @@ var PinyinLab = {
   _doSearch: function(q) {
     var wrap = document.getElementById('pinyinTableWrap');
     if (!wrap || !q) return;
+    // Sanitize: only allow a-z and ü
+    q = q.replace(/[^a-züü]/g, '');
+    if (!q) return;
     // Remove old flash
     wrap.querySelectorAll('.pft-flash').forEach(function(el) { el.classList.remove('pft-flash'); });
     // Find matching cells
-    var found = wrap.querySelectorAll('.pinyin-cell[data-syllable="' + q + '"]');
-    if (!found.length) {
-      // Try partial match
-      found = wrap.querySelectorAll('.pinyin-cell[data-syllable*="' + q + '"]');
-    }
+    var found = [];
+    wrap.querySelectorAll('.pft-cell').forEach(function(cell) {
+      var syl = cell.dataset.syllable || '';
+      if (syl === q || syl.indexOf(q) !== -1) found.push(cell);
+    });
     if (found.length) {
       var first = found[0];
       first.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
@@ -179,9 +182,58 @@ var PinyinLab = {
   },
 
   /* ──── Full Pinyin Table (finals=rows, initials=cols) ──── */
-  _hasSyllable: function(syllable) {
-    if (typeof PINYIN_SYLLABLE_MAP === 'undefined') return false;
-    return !!PINYIN_SYLLABLE_MAP[syllable];
+  /* ──── Valid syllable set (all standard pinyin combos) ──── */
+  _validSet: null,
+  _buildValidSet: function() {
+    if (PinyinLab._validSet) return;
+    var set = {};
+    // From exampleSyllables
+    var es = PinyinLab.exampleSyllables;
+    for (var k in es) { if (es.hasOwnProperty(k)) es[k].forEach(function(s) { set[s] = 1; }); }
+    // Zero-initial simple finals
+    PinyinLab.zeroInitialFinals.forEach(function(f) { set[f] = 1; });
+    // Zero-initial mapped (yi/wu/yu series)
+    var yVals = ['yi','ya','ye','yao','you','yan','yin','yang','ying','yong',
+                 'wu','wa','wo','wai','wei','wan','wen','wang','weng',
+                 'yu','yue','yuan','yun'];
+    yVals.forEach(function(s) { set[s] = 1; });
+    // Common combos missing from exampleSyllables but valid in standard pinyin
+    var extra = [
+      'beng','deng','meng','neng','leng','pang','mang',
+      'gua','guai','gui','guan','gun','guang',
+      'hua','huai','hui','huan','hun','huang',
+      'kua','kuai','kui','kuan','kun','kuang',
+      'zhua','zhui','zhuan','zhun','zhuang',
+      'chui','chuan','chun','chuang',
+      'shua','shuai','shui','shuan','shun','shuang',
+      'rui','ruan','run',
+      'sui','suan','sun',
+      'dui','duan','dun','tui','tuan','tun',
+      'nuo','luo','nian','lian','niang','liang',
+      'niao','liao','niu','liu',
+      'nüe','lüe',
+      'bie','pie','mie','nie','lie',
+      'biao','piao','miao','diao','tiao',
+      'diu',
+      'dia','chua','nue','lue',
+      'guei','guen','kuei','kuen','huei','huen',
+      'zhuo','chuo','shuo','ruo','zuo','cuo','suo',
+      'dang','dong','nong','long',
+      'ding','ning','ling','ming','bing','ping','ting',
+      'jiong',
+      'ceng','zeng','seng','heng'
+    ];
+    extra.forEach(function(s) { set[s] = 1; });
+    // Also add anything in the syllable map
+    if (typeof PINYIN_SYLLABLE_MAP !== 'undefined') {
+      for (var m in PINYIN_SYLLABLE_MAP) { if (PINYIN_SYLLABLE_MAP.hasOwnProperty(m)) set[m] = 1; }
+    }
+    PinyinLab._validSet = set;
+  },
+
+  _isValidSyllable: function(syllable) {
+    PinyinLab._buildValidSet();
+    return !!PinyinLab._validSet[syllable];
   },
 
   _syllableForCell: function(initial, final) {
@@ -197,17 +249,25 @@ var PinyinLab = {
         'ü': 'yu', 'üe': 'yue', 'üan': 'yuan', 'ün': 'yun'
       };
       var mapped = yMap[final];
-      if (mapped && PinyinLab._hasSyllable(mapped)) return mapped;
+      if (mapped) return mapped;   // always valid, audio may fallback
       return '';
     }
-    // j/q/x + ü → u in written form
-    var syl = initial + final;
-    var sylu = initial + final.replace('ü', 'u');
+    // j/q/x + ü → u in written pinyin (jü→ju, qüe→que, etc.)
     if ((initial === 'j' || initial === 'q' || initial === 'x') && final.indexOf('ü') !== -1) {
-      if (PinyinLab._hasSyllable(sylu)) return sylu;
+      var syl = initial + final.replace('ü', 'u');
+      if (PinyinLab._isValidSyllable(syl)) return syl;
+      return '';
     }
-    if (PinyinLab._hasSyllable(syl)) return syl;
-    if (PinyinLab._hasSyllable(sylu)) return sylu;
+    // j/q/x CANNOT combine with plain u-finals (u/ua/uo/uai/ui/uan/un/uang/ueng/ong)
+    // They only combine with ü-finals (shown above). Block to prevent duplicates.
+    if ((initial === 'j' || initial === 'q' || initial === 'x') &&
+        (final === 'u' || final === 'ong' || (final.charAt(0) === 'u' && final !== 'ü'))) {
+      return '';
+    }
+    // Other initials: ü stays as ü (nü, lü)
+    // Non-ü finals: direct concatenation
+    var syl2 = initial + final;
+    if (PinyinLab._isValidSyllable(syl2)) return syl2;
     return '';
   },
 
@@ -274,11 +334,12 @@ var PinyinLab = {
     PinyinLab._playQueue = token;
 
     var tones = [1, 2, 3, 4];
-    // Filter to existing tones only
+    // Filter to existing tones only when map entry exists
     if (typeof PINYIN_SYLLABLE_MAP !== 'undefined') {
       var entry = PINYIN_SYLLABLE_MAP[syllable];
       if (entry) {
-        tones = tones.filter(function(t) { return !!entry[t]; });
+        var filtered = tones.filter(function(t) { return !!entry[t]; });
+        if (filtered.length) tones = filtered;
       }
     }
     if (!tones.length) return;

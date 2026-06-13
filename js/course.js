@@ -1811,6 +1811,9 @@ var Course = {
     pushWrong:   function(ex, ctx) { return Course._pushWrongToSRS(ex, ctx); },
     speak:       function(text)    { return Course._speakZh(text); },
     char:        function(key)     { return Course._vnChar(key); },
+    // Sprite biểu cảm Mai theo `expression` của dòng thoại (C1 bước Hội thoại).
+    // Chỉ Mai có sprite expression; speaker khác dùng char().img tĩnh.
+    maiImg:      function(expr)    { return Course._maiImg(expr); },
     // URL audio R2 per câu thoại (giọng thật) — khớp _vnTts: L<id>_<slug>.mp3.
     // '' nếu không cấu hình R2 (local dev) → caller fallback speak().
     audioUrl:    function(lessonId, speaker, text) {

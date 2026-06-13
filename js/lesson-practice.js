@@ -180,7 +180,7 @@ var LessonPractice = {
     var doc = [];
     (lesson.steps || []).forEach(function(s) {
       if (s.type === 'dialogue' && s.text && /[一-鿿]/.test(s.text)) {
-        doc.push({ speaker: s.speaker || 'narrator', text: s.text, pinyin: s.pinyin || '', meaning: s.meaning || '' });
+        doc.push({ speaker: s.speaker || 'narrator', text: s.text, pinyin: s.pinyin || '', meaning: s.meaning || '', expression: s.expression || '' });
       }
     });
 
@@ -501,15 +501,19 @@ var LessonPractice = {
     return html;
   },
 
+  // URL ảnh scene = bg của step đầu có bg (tái dùng cho bước 0 + banner Hội thoại)
+  _sceneBgUrl: function() {
+    var steps = (LessonPractice.lesson && LessonPractice.lesson.steps) || [];
+    for (var i = 0; i < steps.length; i++) {
+      if (steps[i].bg) return 'assets/mai/scenes/' + steps[i].bg + '.webp';
+    }
+    return 'assets/mai/scenes/classroom.webp';
+  },
+
   // ── Bước 0: Bối cảnh (§9.1 — màn mở đầu NHẸ, giữ "chất truyện") ──
   _contextHTML: function() {
     var l = LessonPractice.lesson;
-    // Ảnh scene = bg của step đầu có bg (asset mai-scenes webp)
-    var bg = '';
-    for (var i = 0; i < (l.steps || []).length; i++) {
-      if (l.steps[i].bg) { bg = 'assets/mai/scenes/' + l.steps[i].bg + '.webp'; break; }
-    }
-    if (!bg) bg = 'assets/mai/scenes/classroom.webp';
+    var bg = LessonPractice._sceneBgUrl();
 
     var chips = (l.vocabPreview || []).map(function(h, ci) {
       var w = null;
@@ -571,25 +575,41 @@ var LessonPractice = {
   },
 
   // ── Hội thoại (bước 1) — 2 toggle: Ẩn pinyin · Ẩn nghĩa (§9.5) ──
+  // DECISION 2026-06-12 (spec §⚖️): transcript + CHẤT TRUYỆN NHẸ — scene banner
+  // mỏng + avatar/expression theo từng dòng + narrator nhạt + highlight dòng
+  // đang phát. KHÔNG replay visual-novel (/course = HỌC · /lesson-practice = ÔN).
   _docHTML: function() {
     var doc = (LessonPractice.sets && LessonPractice.sets.doc) || [];
     if (!doc.length) return LessonPractice._emptyHTML();
+    var api = (typeof Course !== 'undefined' && Course.exerciseAPI) ? Course.exerciseAPI : null;
     var lines = doc.map(function(d, i) {
-      var c = (typeof Course !== 'undefined' && Course.exerciseAPI) ? Course.exerciseAPI.char(d.speaker) : { name: d.speaker, emoji: '👤', img: '' };
-      var narr = d.speaker === 'narrator' ? ' lp-doc-line--narr' : '';
-      var avatar = c.img ? '<img src="' + c.img + '" alt="" onerror="this.style.display=\'none\'">' : (c.emoji || '👤');
-      return '<div class="lp-doc-line' + narr + '">' +
+      var c = api ? api.char(d.speaker) : { name: d.speaker, emoji: '👤', img: '' };
+      var py = d.pinyin ? '<div class="lp-doc-py"' + (LessonPractice._docShowPy ? '' : ' hidden') + '>' + LessonPractice._esc(d.pinyin) + '</div>' : '';
+      var vi = d.meaning ? '<div class="lp-doc-vi"' + (LessonPractice._docShowVi ? '' : ' hidden') + '>' + LessonPractice._esc(d.meaning) + '</div>' : '';
+      var playBtn = '<button class="lp-doc-play" title="Nghe" onclick="LessonPractice.playDoc(' + i + ')">' + LessonPractice._ic('volume', 18) + '</button>';
+      // Narrator: dòng dẫn nhạt, italic, KHÔNG avatar (DECISION #4)
+      if (d.speaker === 'narrator') {
+        return '<div class="lp-doc-line lp-doc-line--narr" id="lpDocLine' + i + '">' +
+          '<div class="lp-doc-body">' +
+            '<div class="lp-doc-hanzi lp-doc-hanzi--narr">' + LessonPractice._esc(d.text) + '</div>' + py + vi +
+          '</div>' + playBtn +
+        '</div>';
+      }
+      // Mai: sprite expression theo dòng (DECISION #2); speaker khác: ảnh cast tĩnh
+      var imgSrc = (d.speaker === 'mai' && api && api.maiImg) ? api.maiImg(d.expression) : (c.img || '');
+      var avatar = imgSrc
+        ? '<img src="' + imgSrc + '" alt="" onerror="this.onerror=null;this.parentNode.textContent=\'' + (c.emoji || '👤') + '\'">'
+        : (c.emoji || '👤');
+      return '<div class="lp-doc-line" id="lpDocLine' + i + '">' +
         '<div class="lp-doc-avatar" style="color:' + (c.color || 'var(--text2)') + '">' + avatar + '</div>' +
         '<div class="lp-doc-body">' +
           '<div class="lp-doc-name">' + LessonPractice._esc(c.name || d.speaker) + '</div>' +
-          '<div class="lp-doc-hanzi">' + LessonPractice._esc(d.text) + '</div>' +
-          (d.pinyin ? '<div class="lp-doc-py"' + (LessonPractice._docShowPy ? '' : ' hidden') + '>' + LessonPractice._esc(d.pinyin) + '</div>' : '') +
-          (d.meaning ? '<div class="lp-doc-vi"' + (LessonPractice._docShowVi ? '' : ' hidden') + '>' + LessonPractice._esc(d.meaning) + '</div>' : '') +
-        '</div>' +
-        '<button class="lp-doc-play" title="Nghe" onclick="LessonPractice.playDoc(' + i + ')">' + LessonPractice._ic('volume', 18) + '</button>' +
+          '<div class="lp-doc-hanzi">' + LessonPractice._esc(d.text) + '</div>' + py + vi +
+        '</div>' + playBtn +
       '</div>';
     }).join('');
-    return '<div class="lp-doc-bar">' +
+    return '<div class="lp-doc-scene"><img src="' + LessonPractice._sceneBgUrl() + '" alt="" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>' +
+      '<div class="lp-doc-bar">' +
         '<button class="lp-btn" onclick="LessonPractice.toggleDocPy()">' + (LessonPractice._docShowPy ? 'Ẩn pinyin' : 'Hiện pinyin') + '</button>' +
         '<button class="lp-btn" onclick="LessonPractice.toggleDocVi()">' + (LessonPractice._docShowVi ? 'Ẩn nghĩa' : 'Hiện nghĩa') + '</button>' +
       '</div>' +
@@ -1126,11 +1146,25 @@ var LessonPractice = {
     } else { fallback(); }
   },
 
+  // Highlight dòng đang phát (karaoke-style, DECISION #3) + scroll theo
+  _setPlayingLine: function(i) {
+    var prev = document.querySelector('.lp-doc-line--playing');
+    if (prev) prev.classList.remove('lp-doc-line--playing');
+    if (i == null) return;
+    var el = document.getElementById('lpDocLine' + i);
+    if (el) {
+      el.classList.add('lp-doc-line--playing');
+      try { el.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {}
+    }
+  },
+
   playDoc: function(i) {
     var doc = (LessonPractice.sets && LessonPractice.sets.doc) || [];
     var d = doc[i];
     if (!d) return;
-    LessonPractice._playDocLine(d);
+    if (LessonPractice._audioAll) LessonPractice._stopAll(); // không chồng lên queue
+    LessonPractice._setPlayingLine(i);
+    LessonPractice._playDocLine(d, function() { LessonPractice._setPlayingLine(null); });
   },
 
   _playDocLine: function(d, onend) {
@@ -1155,7 +1189,9 @@ var LessonPractice = {
   playAll: function() {
     if (LessonPractice._audioAll) { LessonPractice._stopAll(); return; }
     var doc = (LessonPractice.sets && LessonPractice.sets.doc) || [];
-    var queue = doc.filter(function(d) { return /[一-鿿]/.test(d.text); });
+    // Giữ index gốc trong doc để highlight đúng dòng (karaoke, DECISION #3)
+    var queue = [];
+    doc.forEach(function(d, i) { if (/[一-鿿]/.test(d.text)) queue.push({ d: d, idx: i }); });
     if (!queue.length) return;
     LessonPractice._audioAll = { i: 0, queue: queue };
     var btn = document.getElementById('lpPlayAll');
@@ -1166,8 +1202,9 @@ var LessonPractice = {
   _stepAll: function() {
     var s = LessonPractice._audioAll;
     if (!s || s.i >= s.queue.length) { LessonPractice._stopAll(); return; }
-    var d = s.queue[s.i];
-    LessonPractice._playDocLine(d, function() {
+    var cur = s.queue[s.i];
+    LessonPractice._setPlayingLine(cur.idx);
+    LessonPractice._playDocLine(cur.d, function() {
       if (!LessonPractice._audioAll) return;
       LessonPractice._audioAll.i++;
       LessonPractice._stepAll();
@@ -1178,6 +1215,7 @@ var LessonPractice = {
     LessonPractice._audioAll = null;
     if (LessonPractice._audioEl) { try { LessonPractice._audioEl.pause(); } catch (e) {} LessonPractice._audioEl = null; }
     if (window.speechSynthesis) try { window.speechSynthesis.cancel(); } catch (e) {}
+    LessonPractice._setPlayingLine(null);
     var btn = document.getElementById('lpPlayAll');
     if (btn) btn.classList.remove('lp-doc-play--on');
   },

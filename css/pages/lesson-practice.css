@@ -388,17 +388,40 @@
 }
 .lp-banner-x:hover { color: var(--text); background: var(--surface2); }
 
-/* ── Conversation (Hội thoại) ──────────────────────── */
+/* ── Conversation (Hội thoại) — DECISION 2026-06-12 ─── */
+/* Scene banner mỏng đầu màn (tái dùng bg step đầu, "chất truyện") */
+.lp-doc-scene {
+  border-radius: 12px; overflow: hidden; margin-bottom: 14px;
+  border: 1px solid var(--border); position: relative;
+}
+.lp-doc-scene img { display: block; width: 100%; height: 90px; object-fit: cover; opacity: .92; }
+.lp-doc-scene::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--surface));
+  pointer-events: none;
+}
 .lp-doc-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
 .lp-doc { display: flex; flex-direction: column; gap: 10px; }
 .lp-doc-line {
   display: flex; gap: 12px; align-items: flex-start;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; padding: 12px 14px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
 }
-.lp-doc-line--narr { background: var(--surface2); border-style: dashed; }
+/* Narrator: nhạt, italic, không avatar (DECISION #4) */
+.lp-doc-line--narr {
+  background: transparent; border-style: dashed; border-color: var(--border);
+  padding: 8px 14px;
+}
+.lp-doc-hanzi--narr { font-size: 15px; font-style: italic; color: var(--text3); }
+/* Dòng đang phát khi "Nghe toàn bộ" — karaoke highlight (DECISION #3) */
+.lp-doc-line--playing {
+  border-color: var(--accent);
+  background: var(--primary-soft);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
 .lp-doc-avatar {
-  flex: 0 0 38px; height: 38px; border-radius: 50%;
+  flex: 0 0 40px; height: 40px; border-radius: 50%;
   display: grid; place-items: center; font-size: 18px;
   background: var(--surface2); overflow: hidden;
 }

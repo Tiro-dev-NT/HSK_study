@@ -1,30 +1,44 @@
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // PINYIN LAB — HSK 0-1 pronunciation on-ramp
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 
 var PinyinLab = {
-  selectedTone: 1,
+  selectedTone: 0,          // 0 = toàn bộ (play all 4), 1-4 = specific tone
+  _playQueue: null,         // cancel token for sequential playback
   drill: { questions: [], index: 0, score: 0, locked: false },
 
+  // Full table layout: columns = initials (thanh mẫu), rows = finals (vận mẫu)
+  tableInitials: ['b','p','m','f','d','t','n','l','g','k','h','j','q','x','zh','ch','sh','r','z','c','s','∅'],
+  tableFinals: [
+    'a','o','e','i','u','ü',
+    'ai','ei','ao','ou',
+    'an','en','ang','eng','er',
+    'ia','ie','iao','iu','ian','in','iang','ing','iong',
+    'ua','uo','uai','ui','uan','un','uang','ueng',
+    'üe','üan','ün',
+    'ong'
+  ],
+
+  // Original arrays (kept for _combine compatibility + other tabs)
   initials: ['b','p','m','f','d','t','n','l','g','k','h','j','q','x','zh','ch','sh','r','z','c','s'],
   finals: ['a','o','e','i','u','ü','ai','ei','ao','ou','an','en','ang','eng','er','ia','ie','iao','iu','ian','in','iang','ing','iong','ua','uo','uai','ui','uan','un','uang','ueng','üe','üan','ün','ong','iou','uei','uen'],
   zeroInitialFinals: ['a','o','e','ai','ei','ao','ou','an','en','ang','eng','er'],
 
   tips: {
     initials: {
-      b: 'gần “p” không bật hơi', p: '“p” bật hơi mạnh', m: '“m”', f: '“ph/f”',
-      d: 'gần “t” không bật hơi', t: '“th” bật hơi', n: '“n”', l: '“l”',
-      g: 'gần “c/k” không bật hơi', k: '“kh” bật hơi', h: '“h/kh” nhẹ',
-      j: 'gần “ch” mềm, mặt lưỡi cao', q: 'gần “ch” bật hơi, mặt lưỡi cao', x: 'gần “x/s” mềm, mặt lưỡi cao',
-      zh: 'gần “tr” uốn lưỡi', ch: 'gần “tr” bật hơi, uốn lưỡi', sh: 'gần “s” uốn lưỡi', r: 'gần “r/gi” uốn lưỡi',
-      z: 'gần “ch/dz” không bật hơi', c: 'gần “x/ts” bật hơi', s: '“x/s”'
+      b: 'gần "p" không bật hơi', p: '"p" bật hơi mạnh', m: '"m"', f: '"ph/f"',
+      d: 'gần "t" không bật hơi', t: '"th" bật hơi', n: '"n"', l: '"l"',
+      g: 'gần "c/k" không bật hơi', k: '"kh" bật hơi', h: '"h/kh" nhẹ',
+      j: 'gần "ch" mềm, mặt lưỡi cao', q: 'gần "ch" bật hơi, mặt lưỡi cao', x: 'gần "x/s" mềm, mặt lưỡi cao',
+      zh: 'gần "tr" uốn lưỡi', ch: 'gần "tr" bật hơi, uốn lưỡi', sh: 'gần "s" uốn lưỡi', r: 'gần "r/gi" uốn lưỡi',
+      z: 'gần "ch/dz" không bật hơi', c: 'gần "x/ts" bật hơi', s: '"x/s"'
     },
     finals: {
-      a: '“a”', o: '“ô/o” tròn môi', e: 'gần “ơ”', i: '“i”', u: '“u”', 'ü': '“uy/u” tròn môi, giữ âm “i”',
-      ai: '“ai”', ei: '“ây/ei”', ao: '“ao”', ou: '“âu/ôu”', an: '“an”', en: '“ân/ơn”', ang: '“ang”', eng: '“âng/ơng”', er: '“ơr”, cuộn lưỡi',
-      ia: '“ia/ya”', ie: '“iê”', iao: '“iao/eo”', iu: '“iu”', ian: '“ien/iên”', in: '“in”', iang: '“iang”', ing: '“ing”', iong: '“iung/iong”',
-      ua: '“oa/ua”', uo: '“uô/o”', uai: '“oai/uai”', ui: '“uây/ui”', uan: '“oan/uan”', un: '“uân/un”', uang: '“oang/uang”', ueng: '“uâng/ueng”',
-      'üe': '“uyê/uê”, tròn môi', 'üan': '“uyên”, tròn môi', 'ün': '“uyn”, tròn môi', ong: '“ung/ông”', iou: '“iou” đầy đủ, thường viết iu', uei: '“uei” đầy đủ, thường viết ui', uen: '“uen” đầy đủ, thường viết un'
+      a: '"a"', o: '"ô/o" tròn môi', e: 'gần "ơ"', i: '"i"', u: '"u"', 'ü': '"uy/u" tròn môi, giữ âm "i"',
+      ai: '"ai"', ei: '"ây/ei"', ao: '"ao"', ou: '"âu/ôu"', an: '"an"', en: '"ân/ơn"', ang: '"ang"', eng: '"âng/ơng"', er: '"ơr", cuộn lưỡi',
+      ia: '"ia/ya"', ie: '"iê"', iao: '"iao/eo"', iu: '"iu"', ian: '"ien/iên"', in: '"in"', iang: '"iang"', ing: '"ing"', iong: '"iung/iong"',
+      ua: '"oa/ua"', uo: '"uô/o"', uai: '"oai/uai"', ui: '"uây/ui"', uan: '"oan/uan"', un: '"uân/un"', uang: '"oang/uang"', ueng: '"uâng/ueng"',
+      'üe': '"uyê/uê", tròn môi', 'üan': '"uyên", tròn môi', 'ün': '"uyn", tròn môi', ong: '"ung/ông"', iou: '"iou" đầy đủ, thường viết iu', uei: '"uei" đầy đủ, thường viết ui', uen: '"uen" đầy đủ, thường viết un'
     }
   },
 
@@ -33,11 +47,11 @@ var PinyinLab = {
   },
 
   pairGroups: [
-    { title: 'zh / z', desc: 'zh uốn lưỡi giống “tr”; z phẳng hơn và không bật hơi.', items: ['zhi','zi','zhao','zao'], quiz: { prompt: 'Âm nào là zh?', answer: 'zhi' } },
+    { title: 'zh / z', desc: 'zh uốn lưỡi giống "tr"; z phẳng hơn và không bật hơi.', items: ['zhi','zi','zhao','zao'], quiz: { prompt: 'Âm nào là zh?', answer: 'zhi' } },
     { title: 'ch / c', desc: 'ch uốn lưỡi và bật hơi; c bật hơi nhưng đầu lưỡi phẳng hơn.', items: ['chi','ci','cha','ca'], quiz: { prompt: 'Âm nào là ch?', answer: 'chi' } },
-    { title: 'sh / s', desc: 'sh uốn lưỡi; s phẳng hơn, gần “x/s”.', items: ['shi','si','shan','san'], quiz: { prompt: 'Âm nào là sh?', answer: 'shi' } },
+    { title: 'sh / s', desc: 'sh uốn lưỡi; s phẳng hơn, gần "x/s".', items: ['shi','si','shan','san'], quiz: { prompt: 'Âm nào là sh?', answer: 'shi' } },
     { title: 'j / q / x', desc: 'Cả ba là âm mặt lưỡi trước i/ü; q bật hơi, x mềm hơn.', items: ['ji','qi','xi','ju','qu','xu'], quiz: { prompt: 'Âm nào bật hơi rõ nhất?', answer: 'qi' } },
-    { title: 'ü / u', desc: 'ü tròn môi nhưng giữ vị trí lưỡi như “i”; u là “u” tròn môi thường.', items: ['lü','lu','nü','nu','ju','zhu'], quiz: { prompt: 'Âm nào dùng ü?', answer: 'lü' } }
+    { title: 'ü / u', desc: 'ü tròn môi nhưng giữ vị trí lưỡi như "i"; u là "u" tròn môi thường.', items: ['lü','lu','nü','nu','ju','zhu'], quiz: { prompt: 'Âm nào dùng ü?', answer: 'lü' } }
   ],
 
   exampleSyllables: {
@@ -68,6 +82,8 @@ var PinyinLab = {
     PinyinLab._initTabs();
     PinyinLab._renderTonePicker();
     PinyinLab._renderTable();
+    PinyinLab._bindToneDemo();
+    PinyinLab._bindSearch();
     PinyinLab._renderPairs();
     PinyinLab._renderSoundPicker();
     PinyinLab._bindDrill();
@@ -88,12 +104,21 @@ var PinyinLab = {
     });
   },
 
+  /* ──── Tone Picker (with "toàn bộ" option) ──── */
   _renderTonePicker: function() {
     var el = document.getElementById('pinyinTonePicker');
     if (!el) return;
-    var labels = ['ˉ 1', 'ˊ 2', 'ˇ 3', 'ˋ 4'];
-    el.innerHTML = labels.map(function(label, idx) {
-      return '<button class="pinyin-tone-btn' + (idx === 0 ? ' active' : '') + '" data-tone="' + (idx + 1) + '" type="button">' + label + '</button>';
+    var labels = [
+      { tone: 0, label: '全' },
+      { tone: 1, label: 'ˉ 1' },
+      { tone: 2, label: 'ˊ 2' },
+      { tone: 3, label: 'ˇ 3' },
+      { tone: 4, label: 'ˋ 4' }
+    ];
+    el.innerHTML = labels.map(function(item) {
+      var cls = 'pinyin-tone-btn' + (item.tone === 0 ? ' active' : '');
+      if (item.tone > 0) cls += ' pft-tone-' + item.tone;
+      return '<button class="' + cls + '" data-tone="' + item.tone + '" type="button" title="' + (item.tone === 0 ? 'Toàn bộ — phát 4 thanh' : 'Thanh ' + item.tone) + '">' + item.label + '</button>';
     }).join('');
     el.querySelectorAll('.pinyin-tone-btn').forEach(function(btn) {
       btn.onclick = function() {
@@ -104,43 +129,185 @@ var PinyinLab = {
     });
   },
 
+  /* ──── Mini-card tone demo (mā/má/mǎ/mà) ──── */
+  _bindToneDemo: function() {
+    var demo = document.getElementById('pinyinToneDemo');
+    if (!demo) return;
+    demo.querySelectorAll('.ptd-item').forEach(function(btn) {
+      btn.onclick = function() {
+        PinyinLab._speak(btn.dataset.syl);
+        demo.querySelectorAll('.ptd-item').forEach(function(b) { b.classList.remove('ptd-active'); });
+        btn.classList.add('ptd-active');
+        setTimeout(function() { btn.classList.remove('ptd-active'); }, 800);
+      };
+    });
+  },
+
+  /* ──── Search ──── */
+  _bindSearch: function() {
+    var input = document.getElementById('pinyinTableSearch');
+    if (!input) return;
+    var timer = null;
+    input.addEventListener('input', function() {
+      clearTimeout(timer);
+      timer = setTimeout(function() { PinyinLab._doSearch(input.value.trim().toLowerCase()); }, 250);
+    });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { clearTimeout(timer); PinyinLab._doSearch(input.value.trim().toLowerCase()); }
+    });
+  },
+
+  _doSearch: function(q) {
+    var wrap = document.getElementById('pinyinTableWrap');
+    if (!wrap || !q) return;
+    // Remove old flash
+    wrap.querySelectorAll('.pft-flash').forEach(function(el) { el.classList.remove('pft-flash'); });
+    // Find matching cells
+    var found = wrap.querySelectorAll('.pinyin-cell[data-syllable="' + q + '"]');
+    if (!found.length) {
+      // Try partial match
+      found = wrap.querySelectorAll('.pinyin-cell[data-syllable*="' + q + '"]');
+    }
+    if (found.length) {
+      var first = found[0];
+      first.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+      found.forEach(function(cell) {
+        cell.classList.add('pft-flash');
+        setTimeout(function() { cell.classList.remove('pft-flash'); }, 1600);
+      });
+    }
+  },
+
+  /* ──── Full Pinyin Table (finals=rows, initials=cols) ──── */
+  _hasSyllable: function(syllable) {
+    if (typeof PINYIN_SYLLABLE_MAP === 'undefined') return false;
+    return !!PINYIN_SYLLABLE_MAP[syllable];
+  },
+
+  _syllableForCell: function(initial, final) {
+    // Zero initial
+    if (initial === '∅') {
+      if (PinyinLab.zeroInitialFinals.indexOf(final) !== -1) return final;
+      // yi/wu/yu series
+      var yMap = {
+        'i': 'yi', 'ia': 'ya', 'ie': 'ye', 'iao': 'yao', 'iu': 'you',
+        'ian': 'yan', 'in': 'yin', 'iang': 'yang', 'ing': 'ying', 'iong': 'yong',
+        'u': 'wu', 'ua': 'wa', 'uo': 'wo', 'uai': 'wai', 'ui': 'wei',
+        'uan': 'wan', 'un': 'wen', 'uang': 'wang', 'ueng': 'weng',
+        'ü': 'yu', 'üe': 'yue', 'üan': 'yuan', 'ün': 'yun'
+      };
+      var mapped = yMap[final];
+      if (mapped && PinyinLab._hasSyllable(mapped)) return mapped;
+      return '';
+    }
+    // j/q/x + ü → u in written form
+    var syl = initial + final;
+    var sylu = initial + final.replace('ü', 'u');
+    if ((initial === 'j' || initial === 'q' || initial === 'x') && final.indexOf('ü') !== -1) {
+      if (PinyinLab._hasSyllable(sylu)) return sylu;
+    }
+    if (PinyinLab._hasSyllable(syl)) return syl;
+    if (PinyinLab._hasSyllable(sylu)) return sylu;
+    return '';
+  },
+
   _renderTable: function() {
     var wrap = document.getElementById('pinyinTableWrap');
     if (!wrap) return;
-    var html = '<table class="pinyin-table"><thead><tr><th>Âm đầu</th>';
-    PinyinLab.finals.forEach(function(final) { html += '<th>' + final + '</th>'; });
+    var tone = PinyinLab.selectedTone;
+    var inits = PinyinLab.tableInitials;
+    var fins = PinyinLab.tableFinals;
+    var cellCount = 0;
+
+    var html = '<table class="pinyin-table pft"><thead><tr><th class="pft-corner"></th>';
+    inits.forEach(function(ini) {
+      html += '<th class="pft-col-head">' + ini + '</th>';
+    });
     html += '</tr></thead><tbody>';
 
-    PinyinLab.initials.forEach(function(initial) {
-      html += '<tr><th>' + initial + '</th>';
-      PinyinLab.finals.forEach(function(final) {
-        var syllable = PinyinLab._combine(initial, final);
-        if (!syllable) {
-          html += '<td class="pinyin-empty"></td>';
+    fins.forEach(function(fin) {
+      html += '<tr><th class="pft-row-head">' + fin + '</th>';
+      inits.forEach(function(ini) {
+        var syl = PinyinLab._syllableForCell(ini, fin);
+        if (!syl) {
+          html += '<td class="pft-empty"></td>';
           return;
         }
-        var marked = PinyinLab._withToneMark(syllable, PinyinLab.selectedTone);
-        var tip = PinyinLab._tooltip(initial, final);
-        html += '<td><button class="pinyin-cell" data-syllable="' + syllable + '" data-spoken="' + marked + '" type="button">' + marked + '<span class="pinyin-tooltip">' + tip + '</span></button></td>';
+        cellCount++;
+        var display = tone > 0 ? PinyinLab._withToneMark(syl, tone) : syl;
+        var toneClass = tone > 0 ? ' pft-t' + tone : '';
+        html += '<td><button class="pinyin-cell pft-cell' + toneClass + '" data-syllable="' + syl + '" type="button">' + display + '</button></td>';
       });
       html += '</tr>';
     });
 
-    html += '<tr><th>∅</th>';
-    PinyinLab.finals.forEach(function(final) {
-      if (PinyinLab.zeroInitialFinals.indexOf(final) === -1) {
-        html += '<td class="pinyin-empty"></td>';
+    html += '</tbody></table>';
+    wrap.innerHTML = html;
+    console.log('[PinyinLab] Bảng pinyin: ' + cellCount + ' cells rendered (tone=' + tone + ')');
+
+    // Bind click
+    wrap.querySelectorAll('.pft-cell').forEach(function(btn) {
+      btn.onclick = function() {
+        var syl = btn.dataset.syllable;
+        if (tone > 0) {
+          PinyinLab._speakCell(btn, syl, tone);
+        } else {
+          PinyinLab._playAllTones(btn, syl);
+        }
+      };
+    });
+  },
+
+  /* Speak + highlight cell */
+  _speakCell: function(btn, syllable, tone) {
+    var marked = PinyinLab._withToneMark(syllable, tone);
+    btn.classList.add('pft-playing');
+    PinyinLab._speak(marked);
+    setTimeout(function() { btn.classList.remove('pft-playing'); }, 800);
+  },
+
+  /* Play all 4 tones sequentially with 600ms delay */
+  _playAllTones: function(btn, syllable) {
+    // Cancel previous queue
+    if (PinyinLab._playQueue) PinyinLab._playQueue.cancelled = true;
+    var token = { cancelled: false };
+    PinyinLab._playQueue = token;
+
+    var tones = [1, 2, 3, 4];
+    // Filter to existing tones only
+    if (typeof PINYIN_SYLLABLE_MAP !== 'undefined') {
+      var entry = PINYIN_SYLLABLE_MAP[syllable];
+      if (entry) {
+        tones = tones.filter(function(t) { return !!entry[t]; });
+      }
+    }
+    if (!tones.length) return;
+
+    btn.classList.add('pft-playing');
+    var i = 0;
+    function playNext() {
+      if (token.cancelled || i >= tones.length) {
+        btn.classList.remove('pft-playing');
         return;
       }
-      var marked = PinyinLab._withToneMark(final, PinyinLab.selectedTone);
-      html += '<td><button class="pinyin-cell" data-syllable="' + final + '" data-spoken="' + marked + '" type="button">' + marked + '<span class="pinyin-tooltip">' + PinyinLab.tips.finals[final] + '</span></button></td>';
-    });
-    html += '</tr></tbody></table>';
-    wrap.innerHTML = html;
-
-    wrap.querySelectorAll('.pinyin-cell').forEach(function(btn) {
-      btn.onclick = function() { PinyinLab._speak(btn.dataset.spoken || btn.dataset.syllable); };
-    });
+      var t = tones[i];
+      var marked = PinyinLab._withToneMark(syllable, t);
+      // Update cell text to show current tone
+      btn.textContent = marked;
+      btn.className = btn.className.replace(/ pft-t\d/g, '') + ' pft-t' + t;
+      PinyinLab._speak(marked);
+      i++;
+      setTimeout(playNext, 650);
+    }
+    playNext();
+    // Restore original text after sequence
+    setTimeout(function() {
+      if (!token.cancelled) {
+        btn.textContent = syllable;
+        btn.className = btn.className.replace(/ pft-t\d/g, '');
+        btn.classList.remove('pft-playing');
+      }
+    }, tones.length * 650 + 200);
   },
 
   _combine: function(initial, final) {

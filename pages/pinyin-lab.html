@@ -15,13 +15,29 @@
   </div>
 
   <div class="pinyin-panel active" id="pinyinPanelTable" role="tabpanel">
+    <!-- Mini-card: cùng âm khác thanh = khác nghĩa -->
+    <div class="pinyin-tone-demo" id="pinyinToneDemo">
+      <div class="ptd-title">Cùng âm, khác thanh = khác nghĩa</div>
+      <div class="ptd-items">
+        <button class="ptd-item" data-syl="mā" type="button"><span class="ptd-char" style="color:var(--tone-1)">mā</span><span class="ptd-hanzi">妈</span><span class="ptd-vi">mẹ</span></button>
+        <button class="ptd-item" data-syl="má" type="button"><span class="ptd-char" style="color:var(--tone-2)">má</span><span class="ptd-hanzi">麻</span><span class="ptd-vi">tê, gai</span></button>
+        <button class="ptd-item" data-syl="mǎ" type="button"><span class="ptd-char" style="color:var(--tone-3)">mǎ</span><span class="ptd-hanzi">马</span><span class="ptd-vi">ngựa</span></button>
+        <button class="ptd-item" data-syl="mà" type="button"><span class="ptd-char" style="color:var(--tone-4)">mà</span><span class="ptd-hanzi">骂</span><span class="ptd-vi">mắng</span></button>
+      </div>
+    </div>
+
     <div class="pinyin-card">
       <div class="pinyin-section-head">
         <div>
           <h2>Bảng Pinyin tương tác</h2>
-          <p>Chọn thanh điệu rồi bấm một ô để nghe phát âm. Rê chuột hoặc chạm giữ để xem gợi ý tiếng Việt.</p>
+          <p>Chọn thanh điệu rồi bấm ô để nghe. <strong>Toàn bộ</strong> phát lần lượt 4 thanh.</p>
         </div>
-        <div class="pinyin-tone-picker" id="pinyinTonePicker"></div>
+        <div class="pft-controls">
+          <div class="pinyin-tone-picker" id="pinyinTonePicker"></div>
+          <div class="pft-search">
+            <input type="text" id="pinyinTableSearch" class="pft-search-input" placeholder="Tìm âm… vd: xiang" autocomplete="off" spellcheck="false"/>
+          </div>
+        </div>
       </div>
       <div class="pinyin-table-wrap" id="pinyinTableWrap"></div>
     </div>

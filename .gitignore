@@ -150,3 +150,6 @@ gen-docx.js
 # Page text snapshots + marketing screenshots (local QA / marketing only)
 hg-*.md
 hg-*.png
+
+# Local security scan output (Semgrep/CodeQL) — never commit to public repo
+static_analysis_semgrep_*/

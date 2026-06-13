@@ -137,7 +137,7 @@ var Pricing = {
 
     Pricing._setState('loading');
 
-    // Best-effort access token (Edge Function tolerates missing JWT)
+    // Access token REQUIRED — create-payment verifies JWT server-side (anti-spam).
     var accessToken = null;
     try {
       var sessionRes = await Promise.race([
@@ -149,7 +149,14 @@ var Pricing = {
       var s = sessionRes && sessionRes.data && sessionRes.data.session;
       if (s && s.access_token) accessToken = s.access_token;
     } catch(e) {
-      console.warn('[Pricing] getSession failed, proceeding without token:', e.message);
+      console.warn('[Pricing] getSession failed:', e.message);
+    }
+    if (!accessToken) {
+      Pricing._setState('error');
+      var elNoTok = document.getElementById('pmErrorMsg');
+      if (elNoTok) elNoTok.textContent =
+        'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại rồi thử thanh toán.';
+      return;
     }
 
     // Client-side SKU guard — Edge Function validates again server-side
@@ -166,6 +173,9 @@ var Pricing = {
     }
 
     var fnUrl = SB_URL + '/functions/v1/create-payment';
+    // New function derives userId/email from the verified JWT (body ignored).
+    // userId kept in body for backward-compat during deploy window (old function
+    // still reads body.userId) — harmless once new function is live.
     var body = {
       type:      orderType,        // 'subscription' | 'token'
       sku:       sku,              // e.g. 'yearly' | 'pack500'
@@ -173,8 +183,10 @@ var Pricing = {
       userEmail: user.email,
       userName:  (user.user_metadata && user.user_metadata.name) || ''
     };
-    var headers = { 'Content-Type': 'application/json' };
-    if (accessToken) headers['Authorization'] = 'Bearer ' + accessToken;
+    var headers = {
+      'Content-Type':  'application/json',
+      'Authorization': 'Bearer ' + accessToken
+    };
 
     try {
       var controller = new AbortController();

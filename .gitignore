@@ -157,3 +157,6 @@ hg-*.png
 
 # Local security scan output (Semgrep/CodeQL) — never commit to public repo
 static_analysis_semgrep_*/
+
+# demo/ — file demo/sample HTML, KHÔNG cần cho production (2026-06-13)
+demo/

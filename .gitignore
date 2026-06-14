@@ -56,6 +56,10 @@ sync_fix_*.md
 # Repo PUBLIC — tránh leak business strategy + pricing + revenue projection
 docs/
 
+# sql/ — chạy THỦ CÔNG trên Supabase prod, KHÔNG cần cho web app.
+# Repo PUBLIC — tránh leak schema/RLS/RPC (2026-06-13). *.sql cũng đã chặn ở trên.
+sql/
+
 # Local-only assets — không cần cho production Cloudflare deploy
 # (2026-05-17) data prep tools + raw curriculum private
 scripts/
